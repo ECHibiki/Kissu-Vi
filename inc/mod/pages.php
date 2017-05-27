@@ -773,6 +773,65 @@ function mod_view_thread50($boardName, $thread) {
 	echo $page;
 }
 
+// <<<<<<< HEAD
+// =======
+
+
+function mod_ip_set_forcedflag($ip, $country_id) {
+	global $config, $mod;
+	
+	if (!hasPermission($config['mod']['forcedflag']))
+			error($config['error']['noaccess']);
+
+	if (!validate_ip_string($ip))
+		error("Invalid IP address.");
+ 
+	$country_id = (int)$country_id;
+	if(!isset($config['mod']['forcedflag_countries'][$country_id]))
+		error($config['error']['bad_forcedflag']);
+
+	$query = prepare('INSERT INTO ``custom_geoip`` VALUES(:ip, :country_id)');
+	$query->bindValue(':ip', $config['bcrypt_ip_addresses'] ? $ip : ipv4to6($ip));
+	$query->bindValue(':country_id', $country_id);
+	$query->execute() or error(db_error($query));
+	
+	modLog("Added forced {$config['mod']['forcedflag_countries'][$country_id]} for <a href=\"?/IP/{$ip}\">{$ip}</a>");
+	
+	header('Location: ?/IP/' . $ip, true, $config['redirect_http']);
+}
+
+
+function mod_ip_remove_forcedflag($ip) {
+	global $config, $mod;
+	
+	if (!hasPermission($config['mod']['forcedflag']))
+			error($config['error']['noaccess']);
+	
+	if (!validate_ip_string($ip))
+		error("Invalid IP address.");
+
+	$query = prepare('SELECT `country` FROM ``custom_geoip`` WHERE `ip` = :ip');
+	$query->bindValue(':ip', $config['bcrypt_ip_addresses'] ? $ip : ipv4to6($ip));
+	$query->execute() or error(db_error($query));
+	$country_id = $query->fetch(PDO::FETCH_ASSOC);
+	$country_id = $country_id['country'];
+
+	$country_name = "UNKNOWN";
+	if(isset($config['mod']['forcedflag_countries'][$country_id]))
+		$country_name = $config['mod']['forcedflag_countries'][$country_id];
+
+	$query = prepare('DELETE FROM ``custom_geoip`` WHERE `ip` = :ip');
+	$query->bindValue(':ip', $config['bcrypt_ip_addresses'] ? $ip : ipv4to6($ip));
+	$query->execute() or error(db_error($query));
+	
+	modLog("Removed forced {$country_name} flag for <a href=\"?/IP/{$ip}\">{$ip}</a>");
+	
+	header('Location: ?/IP/' . $ip, true, $config['redirect_http']);
+}
+
+
+
+// >>>>>>> afb3a531... Merge pull request #70 from PupperWoff/master
 function mod_ip_remove_note($ip, $id) {
 	global $config, $mod;
 	
@@ -1602,16 +1661,23 @@ function mod_delete($board, $post) {
 	if (!hasPermission($config['mod']['delete'], $board))
 		error($config['error']['noaccess']);
 	
-	// Delete post
-	deletePost($post);
+	// Delete post (get thread id)
+	$thread_id = deletePost($post);
 	// Record the action
 	modLog("Deleted post #{$post}");
 	// Rebuild board
 	buildIndex();
 	// Rebuild themes
 	rebuildThemes('post-delete', $board);
+
 	// Redirect
-	header('Location: ?/' . sprintf($config['board_path'], $board) . $config['file_index'], true, $config['redirect_http']);
+	if($thread_id !== true) {
+		// If we got a thread id number as response reload to thread
+		header('Location: ?/' . sprintf($config['board_path'], $board) . $config['dir']['res'] . sprintf($config['file_page'], $thread_id), true, $config['redirect_http']);
+	} else {
+		// Reload to board index
+		header('Location: ?/' . sprintf($config['board_path'], $board) . $config['file_index'], true, $config['redirect_http']);
+	}
 }
 
 function mod_deletefile($board, $post, $file) {
