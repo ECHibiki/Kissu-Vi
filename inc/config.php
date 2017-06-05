@@ -1303,6 +1303,25 @@
 	$config['dir']['thumb'] = 'thumb/';
 	$config['dir']['res'] = 'res/';
 
+
+	// Directory for archived threads
+	$config['dir']['archive'] = 'archive/';
+	// Directory for "Featured Threads" (threads makred for permanent storage)
+	$config['dir']['featured'] = 'featured/';
+
+	// Indicate if threads should be archived
+	$config['archive']['threads'] = true;
+	// Indicate if it is possible to mark threads as featured (stored forever)
+	$config['feature']['threads'] = true;
+
+	// Days to keep archived threads before deletion (if set to false all archived threads are kept forever)
+	$config['archive']['lifetime'] = 3;
+
+	// Number of chars in snippet
+	$config['archive']['snippet_len'] = 400;
+	
+
+
 	// For load balancing, having a seperate server (and domain/subdomain) for serving static content is
 	// possible. This can either be a directory or a URL. Defaults to $config['root'] . 'static/'.
 	// $config['dir']['static'] = 'http://static.example.org/';
@@ -1571,6 +1590,7 @@ $config['mod']['capcode'] = array(
 	// Don't worry about per-board moderators. Let all mods moderate any board.
 	$config['mod']['skip_per_board'] = false;
 
+<<<<<<< HEAD
 	/* Post Controls */
 	// View IP addresses
 	$config['mod']['show_ip'] = MOD;
@@ -1623,6 +1643,7 @@ $config['mod']['capcode'] = array(
 	$config['mod']['report_dismiss'] = JANITOR;
 	// Dismiss all abuse reports by an IP
 	$config['mod']['report_dismiss_ip'] = JANITOR;
+
 	// View list of bans
 	$config['mod']['view_banlist'] = MOD;
 	// View the username of the mod who made a ban
