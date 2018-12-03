@@ -831,6 +831,8 @@
 
 	// WebM Settings
 	$config['webm']['use_ffmpeg'] = false;
+	$config['webm']['expected_format'] = array('webm' => 'webm', 'mp4' => 'mp4');
+	$config['webm']['video_codecs'] = array('vp8', 'vp9', 'h264', 'av1');
 	$config['webm']['allow_audio'] = false;
 	$config['webm']['max_length'] = 120;
 	$config['webm']['ffmpeg_path'] = 'ffmpeg';
