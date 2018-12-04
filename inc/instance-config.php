@@ -32,8 +32,8 @@
 	$config['additional_javascript'][] = 'js/ajax.js';
 	$config['additional_javascript'][] = 'js/settings.js';
 	$config['additional_javascript'][] = 'js/options.js';
+	$config['additional_javascript'][] = 'js/style-select.js';
 	$config['additional_javascript'][] = 'js/options/general.js';
-	$config['additional_javascript'][] = 'js/options/fav.js';
 	$config['additional_javascript'][] = 'js/options/user-css.js';
 	$config['additional_javascript'][] = 'js/options/user-js.js';
 	$config['additional_javascript'][] = 'js/webm-settings.js';
@@ -46,7 +46,6 @@
 	$config['additional_javascript'][] = 'js/comment-toolbar.js';
 	$config['additional_javascript'][] = 'js/image-hover.js';
 	$config['additional_javascript'][] = 'js/show-backlinks.js';
-	$config['additional_javascript'][] = 'js/style-select.js';
 	$config['additional_javascript'][] = 'js/expand-video.js';
 	$config['additional_javascript'][] = 'js/quick-reply.js';
 	$config['additional_javascript'][] = 'js/quick-post-controls.js';
@@ -58,6 +57,8 @@
 	
 	//what does this do?
 	// $config['additional_javascript'][] = 'js/inline.js';
+		//broken jquery
+	// $config['additional_javascript'][] = 'js/options/general.js';
 	
 	$config['webm']['use_ffmpeg'] = true;
 	$config['webm']['allow_audio'] = true;

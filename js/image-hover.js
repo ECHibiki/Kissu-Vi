@@ -24,9 +24,9 @@ $('.image-hover').on('change', function(){
 });
 
 if (!localStorage.imageHover || !localStorage.catalogImageHover || !localStorage.imageHoverFollowCursor) {
-	localStorage.imageHover = 'false';
-	localStorage.catalogImageHover = 'false';
-	localStorage.imageHoverFollowCursor = 'false';
+	localStorage.imageHover = 'true';
+	localStorage.catalogImageHover = 'true';
+	localStorage.imageHoverFollowCursor = 'true';
 }
 
 if (getSetting('imageHover')) $('#imageHover>input').prop('checked', 'checked');

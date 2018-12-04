@@ -808,6 +808,51 @@ $(function(){
 
 }();
 /*
+ * style-select.js
+ * https://github.com/savetheinternet/Tinyboard/blob/master/js/style-select.js
+ *
+ * Changes the stylesheet chooser links to a <select>
+ *
+ * Released under the MIT license
+ * Copyright (c) 2013 Michael Save <savetheinternet@tinyboard.org>
+ * Copyright (c) 2013-2014 Marcin Łabanowski <marcin@6irc.net> 
+ *
+ * Usage:
+ *   $config['additional_javascript'][] = 'js/jquery.min.js';
+ *   $config['additional_javascript'][] = 'js/style-select.js';
+ *
+ */
+// var is_style_select = true;
+onready(function(){	
+	var stylesDiv = $('div.styles');
+	var stylesSelect = $('<select></select>');
+	
+	var i = 1;
+	stylesDiv.children().each(function() {
+		var opt = $('<option></option>')
+			.html(this.innerHTML.replace(/(^\[|\]$)/g, ''))
+			.val(i);
+		if ($(this).hasClass('selected'))
+			opt.attr('selected', true);
+		stylesSelect.append(opt);
+		$(this).attr('id', 'style-select-' + i);
+		i++;
+	});
+	
+	stylesSelect.change(function() {
+		$('#style-select-' + $(this).val()).click();
+	});
+	
+	stylesDiv.hide();
+	
+	stylesDiv.after(
+		$('<div id="style-select" style="float:right;margin-bottom:10px"></div>')
+			.text(_('Style: '))
+			.append(stylesSelect)
+	);
+});
+
+/*
  * options/general.js - general settings tab for options panel
  *
  * Copyright (c) 2014 Marcin Łabanowski <marcin@6irc.net>
@@ -858,78 +903,6 @@ $(function(){
 });
 
 }();
-$(document).ready(function(){
-//Creating functions
-var generateList = function(){
-	var favStor = [];
-  	for(var i=1; i<favorites.length+1; i++){
-  		favStor.push($("#sortable > div:nth-child("+i+")").html());
-  	}
-	return favStor;
-} //This will generate a list of boards based off of the list on the screen
-function removeBoard(boardNumber){
-	favorites.splice(boardNumber, 1);
-	localStorage.favorites = JSON.stringify(favorites);
-	$("#sortable > div:nth-child("+(boardNumber+1)+")").remove();
-	$("#minusList > div:nth-child("+(favorites.length+1)+")").remove();
-	add_favorites();
-} //This removes a board from favorites, localStorage.favorites and the page
-function addBoard(){
-	$("#sortable").append("<div>"+($("#plusBox").val())+"</div>");
-	$("#minusList").append( $('<div data-board="'+favorites.length+'" style="cursor: pointer; margin-right: 5px">-</div>').on('click', function(e){removeBoard($(this).data('board'));}) );
-	favorites.push($("#plusBox").val());
-	localStorage.favorites = JSON.stringify(favorites);
-	$("#plusBox").val(""); //Removing text from textbox
-	add_favorites();
-} //This adds the text inside the textbox to favorites, localStorage.favorites and the page
-
-var favorites = JSON.parse(localStorage.favorites);
-Options.add_tab('fav-tab','star',_("Favorites"));
-
-//Pregenerating list of boards 
-var favList = $('<div id="sortable" style="cursor: pointer; display: inline-block">');
-for(var i=0; i<favorites.length; i++){
-    favList.append( $('<div>'+favorites[i]+'</div>') );
-} 
-
-//Creating list of minus symbols to remove unwanted boards
-var minusList = $('<div id="minusList" style="color: #0000FF; display: inline-block">');
-for(var i=0; i<favorites.length; i++){
-    minusList.append( $('<div data-board="'+i+'" style="cursor: pointer; margin-right: 5px">-</div>').on('click', function(e){removeBoard($(this).data('board'));}) );
-} 
-
-//Help message so people understand how sorting boards works
-$("<span>"+_("Drag the boards to sort them.")+"</span><br><br>").appendTo(Options.get_tab('fav-tab').content);
-
-//Adding list of boards and minus symbols to remove boards with
-$(minusList).appendTo(Options.get_tab('fav-tab').content); //Adding the list of minus symbols to the tab
-$(favList).appendTo(Options.get_tab('fav-tab').content);  //Adding the list of favorite boards to the tab
-
-//Adding spacing and text box to right boards into
-var addDiv = $("<div id='favs-add-board'>");
-
-var plusBox = $("<input id=\"plusBox\" type=\"text\">").appendTo(addDiv);
-plusBox.keydown(function( event ) {
-	if(event.keyCode == 13){
-		$("#plus").click();
-	}
-});
-
-//Adding plus symbol to use to add board
-$("<div id=\"plus\">+</div>").css({
-	cursor: "pointer",
-	color: "#0000FF"
-}).on('click', function(e){addBoard()}).appendTo(addDiv);
-
-addDiv.appendTo(Options.get_tab('fav-tab').content); //Adding the plus button
-
-favList.sortable(); //Making boards with sortable id use the sortable jquery function
-favList.on('sortstop', function() {
-	favorites = generateList();	
-	localStorage.favorites = JSON.stringify(favorites);
-	add_favorites();
-});
-});
 /*
  * options/user-css.js - allow user enter custom css entries
  *
@@ -2158,9 +2131,9 @@ $('.image-hover').on('change', function(){
 });
 
 if (!localStorage.imageHover || !localStorage.catalogImageHover || !localStorage.imageHoverFollowCursor) {
-	localStorage.imageHover = 'false';
-	localStorage.catalogImageHover = 'false';
-	localStorage.imageHoverFollowCursor = 'false';
+	localStorage.imageHover = 'true';
+	localStorage.catalogImageHover = 'true';
+	localStorage.imageHoverFollowCursor = 'true';
 }
 
 if (getSetting('imageHover')) $('#imageHover>input').prop('checked', 'checked');
@@ -2377,51 +2350,6 @@ onready(function(){
 		}
 	});
 });
-/*
- * style-select.js
- * https://github.com/savetheinternet/Tinyboard/blob/master/js/style-select.js
- *
- * Changes the stylesheet chooser links to a <select>
- *
- * Released under the MIT license
- * Copyright (c) 2013 Michael Save <savetheinternet@tinyboard.org>
- * Copyright (c) 2013-2014 Marcin Łabanowski <marcin@6irc.net> 
- *
- * Usage:
- *   $config['additional_javascript'][] = 'js/jquery.min.js';
- *   $config['additional_javascript'][] = 'js/style-select.js';
- *
- */
-// var is_style_select = true;
-onready(function(){	
-	var stylesDiv = $('div.styles');
-	var stylesSelect = $('<select></select>');
-	
-	var i = 1;
-	stylesDiv.children().each(function() {
-		var opt = $('<option></option>')
-			.html(this.innerHTML.replace(/(^\[|\]$)/g, ''))
-			.val(i);
-		if ($(this).hasClass('selected'))
-			opt.attr('selected', true);
-		stylesSelect.append(opt);
-		$(this).attr('id', 'style-select-' + i);
-		i++;
-	});
-	
-	stylesSelect.change(function() {
-		$('#style-select-' + $(this).val()).click();
-	});
-	
-	stylesDiv.hide();
-	
-	stylesDiv.after(
-		$('<div id="style-select" style="float:right;margin-bottom:10px"></div>')
-			.text(_('Style: '))
-			.append(stylesSelect)
-	);
-});
-
 /* This file is dedicated to the public domain; you may do as you wish with it. */
 /* Note: This code expects the global variable configRoot to be set. */
 
