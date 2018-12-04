@@ -25,6 +25,8 @@
 	$config['allowed_ext_files'][] = 'flac';
 	$config['allowed_ext_op'] = [true];
 	
+	$config['spoiler_images'] = true;
+	
 	// $config['file_script'] = 'main.js';
 	$config['additional_javascript'][] = 'js/jquery.min.js';
 	$config['additional_javascript'][] = 'js/jquery.mixitup.min.js';

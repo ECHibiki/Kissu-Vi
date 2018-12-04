@@ -35,6 +35,9 @@ secrets.php
 # rss
 *.rss
 
+#sitemap
+sitemap.xml
+
 # templates cache
 /templates/cache
 
