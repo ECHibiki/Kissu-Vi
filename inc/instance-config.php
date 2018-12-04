@@ -32,6 +32,9 @@
 	$config['additional_javascript'][] = 'js/ajax.js';
 	$config['additional_javascript'][] = 'js/settings.js';
 	$config['additional_javascript'][] = 'js/options.js';
+	$config['additional_javascript'][] = 'js/options/user-css.js';
+	$config['additional_javascript'][] = 'js/options/user-js.js';
+	$config['additional_javascript'][] = 'js/options/fav.js';
 	$config['additional_javascript'][] = 'js/webm-settings.js';
 	
 	$config['additional_javascript'][] = 'js/ajax-post-controls.js';

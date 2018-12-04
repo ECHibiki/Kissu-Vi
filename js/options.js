@@ -121,6 +121,4 @@ $(function(){
   options_handler.appendTo($(document.body));
 });
 
-Options.add_tab("general", '', "General", '');
-
 }();

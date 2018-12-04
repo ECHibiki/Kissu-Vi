@@ -806,9 +806,218 @@ $(function(){
   options_handler.appendTo($(document.body));
 });
 
-Options.add_tab("general", '', "General", '');
+}();
+/*
+ * options/user-css.js - allow user enter custom css entries
+ *
+ * Copyright (c) 2014 Marcin Łabanowski <marcin@6irc.net>
+ *
+ * Usage:
+ *   $config['additional_javascript'][] = 'js/jquery.min.js';
+ *   $config['additional_javascript'][] = 'js/options.js';
+ *   $config['additional_javascript'][] = 'js/options/user-css.js';
+ */
+
++function(){
+
+var tab = Options.add_tab("user-css", "css3", _("User CSS"));
+
+var textarea = $("<textarea></textarea>").css({
+  "font-size": 12,
+  position: "absolute",
+  top: 35, bottom: 35,
+  width: "calc(100% - 20px)", margin: 0, padding: "4px", border: "1px solid black",
+  left: 5, right: 5
+}).appendTo(tab.content);
+var submit = $("<input type='button' value='"+_("Update custom CSS")+"'>").css({
+  position: "absolute",
+  height: 25, bottom: 5,
+  width: "calc(100% - 10px)",
+  left: 5, right: 5
+}).click(function() {
+  localStorage.user_css = textarea.val();
+  apply_css();
+}).appendTo(tab.content);
+
+var apply_css = function() {
+  $('.user-css').remove();
+  $('link[rel="stylesheet"]')
+    .last()
+    .after($("<style></style>")
+      .addClass("user-css")
+      .text(localStorage.user_css)
+    );
+};
+
+var update_textarea = function() {
+  if (!localStorage.user_css) {
+    textarea.text("/* "+_("Enter here your own CSS rules...")+" */\n" +
+                  "/* "+_("If you want to make a redistributable style, be sure to\nhave a Yotsuba B theme selected.")+" */\n" +
+                  "/* "+_("You can include CSS files from remote servers, for example:")+" */\n" +
+                  '@import "http://example.com/style.css";');
+  }
+  else {
+    textarea.text(localStorage.user_css);
+    apply_css();
+  }
+};
+
+update_textarea();
+
 
 }();
+/*
+ * options/user-js.js - allow user enter custom javascripts
+ *
+ * Copyright (c) 2014 Marcin Łabanowski <marcin@6irc.net>
+ *
+ * Usage:
+ *   $config['additional_javascript'][] = 'js/jquery.min.js';
+ *   $config['additional_javascript'][] = 'js/options.js';
+ *   $config['additional_javascript'][] = 'js/options/user-js.js';
+ */
+
++function(){
+
+var tab = Options.add_tab("user-js", "code", _("User JS"));
+
+var textarea = $("<textarea></textarea>").css({
+  "font-size": 12,
+  position: "absolute",
+  top: 35, bottom: 35,
+  width: "calc(100% - 20px)", margin: 0, padding: "4px", border: "1px solid black",
+  left: 5, right: 5
+}).appendTo(tab.content);
+var submit = $("<input type='button' value='"+_("Update custom Javascript")+"'>").css({
+  position: "absolute",
+  height: 25, bottom: 5,
+  width: "calc(100% - 10px)",
+  left: 5, right: 5
+}).click(function() {
+  localStorage.user_js = textarea.val();
+  document.location.reload();
+}).appendTo(tab.content);
+
+var apply_js = function() {
+  var proc = function() {
+    $('.user-js').remove();
+    $('script')
+      .last()
+      .after($("<script></script>")
+        .addClass("user-js")
+        .text(localStorage.user_js)
+      );
+  }
+
+  if (/immediate()/.test(localStorage.user_js)) {
+    proc(); // Apply the script immediately
+  }
+  else {
+    $(proc); // Apply the script when the page fully loads
+  }
+};
+
+var update_textarea = function() {
+  if (!localStorage.user_js) {
+    textarea.text("/* "+_("Enter here your own Javascript code...")+" */\n" +
+                  "/* "+_("Have a backup of your storage somewhere, as messing here\nmay render you this website unusable.")+" */\n" +
+                  "/* "+_("You can include JS files from remote servers, for example:")+" */\n" +
+                  'load_js("http://example.com/script.js");');
+  }
+  else {
+    textarea.text(localStorage.user_js);
+    apply_js();
+  }
+};
+
+update_textarea();
+
+
+// User utility functions
+window.load_js = function(url) {
+  $('script')
+    .last()
+    .after($("<script></script>")
+      .prop("type", "text/javascript")
+      .prop("src", url)
+    );
+};
+window.immediate = function() { // A dummy function.
+}
+
+}();
+$(document).ready(function(){
+//Creating functions
+var generateList = function(){
+	var favStor = [];
+  	for(var i=1; i<favorites.length+1; i++){
+  		favStor.push($("#sortable > div:nth-child("+i+")").html());
+  	}
+	return favStor;
+} //This will generate a list of boards based off of the list on the screen
+function removeBoard(boardNumber){
+	favorites.splice(boardNumber, 1);
+	localStorage.favorites = JSON.stringify(favorites);
+	$("#sortable > div:nth-child("+(boardNumber+1)+")").remove();
+	$("#minusList > div:nth-child("+(favorites.length+1)+")").remove();
+	add_favorites();
+} //This removes a board from favorites, localStorage.favorites and the page
+function addBoard(){
+	$("#sortable").append("<div>"+($("#plusBox").val())+"</div>");
+	$("#minusList").append( $('<div data-board="'+favorites.length+'" style="cursor: pointer; margin-right: 5px">-</div>').on('click', function(e){removeBoard($(this).data('board'));}) );
+	favorites.push($("#plusBox").val());
+	localStorage.favorites = JSON.stringify(favorites);
+	$("#plusBox").val(""); //Removing text from textbox
+	add_favorites();
+} //This adds the text inside the textbox to favorites, localStorage.favorites and the page
+
+var favorites = JSON.parse(localStorage.favorites);
+Options.add_tab('fav-tab','star',_("Favorites"));
+
+//Pregenerating list of boards 
+var favList = $('<div id="sortable" style="cursor: pointer; display: inline-block">');
+for(var i=0; i<favorites.length; i++){
+    favList.append( $('<div>'+favorites[i]+'</div>') );
+} 
+
+//Creating list of minus symbols to remove unwanted boards
+var minusList = $('<div id="minusList" style="color: #0000FF; display: inline-block">');
+for(var i=0; i<favorites.length; i++){
+    minusList.append( $('<div data-board="'+i+'" style="cursor: pointer; margin-right: 5px">-</div>').on('click', function(e){removeBoard($(this).data('board'));}) );
+} 
+
+//Help message so people understand how sorting boards works
+$("<span>"+_("Drag the boards to sort them.")+"</span><br><br>").appendTo(Options.get_tab('fav-tab').content);
+
+//Adding list of boards and minus symbols to remove boards with
+$(minusList).appendTo(Options.get_tab('fav-tab').content); //Adding the list of minus symbols to the tab
+$(favList).appendTo(Options.get_tab('fav-tab').content);  //Adding the list of favorite boards to the tab
+
+//Adding spacing and text box to right boards into
+var addDiv = $("<div id='favs-add-board'>");
+
+var plusBox = $("<input id=\"plusBox\" type=\"text\">").appendTo(addDiv);
+plusBox.keydown(function( event ) {
+	if(event.keyCode == 13){
+		$("#plus").click();
+	}
+});
+
+//Adding plus symbol to use to add board
+$("<div id=\"plus\">+</div>").css({
+	cursor: "pointer",
+	color: "#0000FF"
+}).on('click', function(e){addBoard()}).appendTo(addDiv);
+
+addDiv.appendTo(Options.get_tab('fav-tab').content); //Adding the plus button
+
+favList.sortable(); //Making boards with sortable id use the sortable jquery function
+favList.on('sortstop', function() {
+	favorites = generateList();	
+	localStorage.favorites = JSON.stringify(favorites);
+	add_favorites();
+});
+});
 /* This file is dedicated to the public domain; you may do as you wish with it. */
 
 if (typeof _ == 'undefined') {
