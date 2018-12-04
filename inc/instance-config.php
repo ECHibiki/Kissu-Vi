@@ -47,6 +47,7 @@
 	$config['additional_javascript'][] = 'js/image-hover.js';
 	$config['additional_javascript'][] = 'js/show-backlinks.js';
 	$config['additional_javascript'][] = 'js/expand-video.js';
+	$config['additional_javascript'][] = 'js/expand-audio.js';
 	$config['additional_javascript'][] = 'js/quick-reply.js';
 	$config['additional_javascript'][] = 'js/quick-post-controls.js';
 	$config['additional_javascript'][] = 'js/treeview.js';
