@@ -11,32 +11,32 @@ if (typeof _ == 'undefined') {
 }
 
 // Default settings
-var defaultSettings = {
+var defaultSettings_audio = {
     "audioexpand": true,
     "audiohover": false,
     "audiovolume": 1.0
 };
 
 // Non-persistent settings for when localStorage is absent/disabled
-var tempSettings = {};
+var tempSettings_audio = {};
 
 // Scripts obtain settings by calling this function
-function setting(name) {
+function setting_audio(name) {
     if (localStorage) {
-        if (localStorage[name] === undefined) return defaultSettings[name];
+        if (localStorage[name] === undefined) return defaultSettings_audio[name];
         return JSON.parse(localStorage[name]);
     } else {
-        if (tempSettings[name] === undefined) return defaultSettings[name];
-        return tempSettings[name];
+        if (tempSettings_audio[name] === undefined) return defaultSettings_audio[name];
+        return tempSettings_audio[name];
     }
 }
 
 // Settings should be changed with this function
-function changeSetting(name, value) {
+function changeSetting_audio(name, value) {
     if (localStorage) {
         localStorage[name] = JSON.stringify(value);
     } else {
-        tempSettings[name] = value;
+        tempSettings_audio[name] = value;
     }
 }
 
@@ -62,14 +62,14 @@ settingsMenu.innerHTML = prefix
     + '<label><input type="range" name="audiovolume" min="0" max="1" step="0.01" style="width: 4em; height: 1ex; vertical-align: middle; margin: 0px;">'+_('Default volume')+'</label><br>'
     + suffix;
 
-function refreshSettings() {
-    var settingsItems = settingsMenu.getElementsByTagName("input");
-    for (var i = 0; i < settingsItems.length; i++) {
-        var control = settingsItems[i];
+function refreshSettings_audio() {
+    var settingsItems_audio = settingsMenu.getElementsByTagName("input");
+    for (var i = 0; i < settingsItems_audio.length; i++) {
+        var control = settingsItems_audio[i];
         if (control.type == "checkbox") {
-            control.checked = setting(control.name);
+            control.checked = setting_audio(control.name);
         } else if (control.type == "range") {
-            control.value = setting(control.name);
+            control.value = setting_audio(control.name);
         }
     }
 }
@@ -77,22 +77,22 @@ function refreshSettings() {
 function setupControl(control) {
     if (control.addEventListener) control.addEventListener("change", function(e) {
         if (control.type == "checkbox") {
-            changeSetting(control.name, control.checked);
+            changeSetting_audio(control.name, control.checked);
         } else if (control.type == "range") {
-            changeSetting(control.name, control.value);
+            changeSetting_audio(control.name, control.value);
         }
     }, false);
 }
 
-refreshSettings();
-var settingsItems = settingsMenu.getElementsByTagName("input");
-for (var i = 0; i < settingsItems.length; i++) {
-    setupControl(settingsItems[i]);
+refreshSettings_audio();
+var settingsItems_audio = settingsMenu.getElementsByTagName("input");
+for (var i = 0; i < settingsItems_audio.length; i++) {
+    setupControl(settingsItems_audio[i]);
 }
 
 if (settingsMenu.addEventListener && !window.Options) {
     settingsMenu.addEventListener("mouseover", function(e) {
-        refreshSettings();
+        refreshSettings_audio();
         settingsMenu.getElementsByTagName("a")[0].style.fontWeight = "bold";
         settingsMenu.getElementsByTagName("div")[0].style.display = "block";
     }, false);
@@ -105,6 +105,7 @@ if (settingsMenu.addEventListener && !window.Options) {
 //------------
 
 function setupAudio(thumb, url) {
+	console.log(thumb.audioAlreadySetUp);
     if (thumb.audioAlreadySetUp) return;
     thumb.audioAlreadySetUp = true;
 
@@ -182,7 +183,7 @@ function setupAudio(thumb, url) {
 
     // Clicking on thumbnail expands audio
     thumb.addEventListener("click", function(e) {
-        if (setting("audioexpand") && !e.shiftKey && !e.ctrlKey && !e.altKey && !e.metaKey) {
+        if (setting_audio("audioexpand") && !e.shiftKey && !e.ctrlKey && !e.altKey && !e.metaKey) {
             getAudio();
             expanded = true;
             hovering = false;
@@ -196,8 +197,8 @@ function setupAudio(thumb, url) {
             audio.parentNode.parentNode.removeAttribute('style');
             thumb.style.display = "none";
 
-            audio.muted = (setting("audiovolume") == 0);
-            audio.volume = setting("audiovolume");
+            audio.muted = (setting_audio("audiovolume") == 0);
+            audio.volume = setting_audio("audiovolume");
             audio.controls = true;
             if (audio.readyState == 0) {
                 audio.addEventListener("loadedmetadata", expand2, false);
@@ -217,13 +218,13 @@ function setupAudio(thumb, url) {
             window.scrollBy(0, bottom - window.innerHeight);
         }
         // work around Firefox volume control bug
-        audio.volume = Math.max(setting("audiovolume") - 0.001, 0);
-        audio.volume = setting("audiovolume");
+        audio.volume = Math.max(setting_audio("audiovolume") - 0.001, 0);
+        audio.volume = setting_audio("audiovolume");
     }
 
     // Hovering over thumbnail displays audio
     thumb.addEventListener("mouseover", function(e) {
-        if (setting("audiohover")) {
+        if (setting_audio("audiohover")) {
             getAudio();
             expanded = false;
             hovering = true;
@@ -247,8 +248,8 @@ function setupAudio(thumb, url) {
             audioContainer.style.display = "inline";
             audioContainer.style.position = "fixed";
 
-            audio.muted = (setting("audiovolume") == 0);
-            audio.volume = setting("audiovolume");
+            audio.muted = (setting_audio("audiovolume") == 0);
+            audio.volume = setting_audio("audiovolume");
             audio.controls = false;
             audio.play();
         }
@@ -258,8 +259,8 @@ function setupAudio(thumb, url) {
 
     // Scroll wheel on thumbnail adjusts default volume
     thumb.addEventListener("wheel", function(e) {
-        if (setting("audiohover")) {
-            var volume = setting("audiovolume");
+        if (setting_audio("audiohover")) {
+            var volume = setting_audio("audiovolume");
             if (e.deltaY > 0) volume -= 0.1;
             if (e.deltaY < 0) volume += 0.1;
             if (volume < 0) volume = 0;
@@ -268,7 +269,7 @@ function setupAudio(thumb, url) {
                 audio.muted = (volume == 0);
                 audio.volume = volume;
             }
-            changeSetting("audiovolume", volume);
+            changeSetting_audio("audiovolume", volume);
             e.preventDefault();
         }
     }, false);
@@ -305,11 +306,15 @@ function setupAudioIn(element) {
     for (var i = 0; i < thumbs.length; i++) {
         if (/\.mp3$|\.flac$/.test(thumbs[i].pathname)) {
             setupAudio(thumbs[i], thumbs[i].href);
+			console.log('aa');
         } else {
             var m = thumbs[i].search.match(/\bv=([^&]*)/);
             if (m != null) {
                 var url = decodeURIComponent(m[1]);
-                if (/\.mp3$|\.flac$/.test(url)) setupAudio(thumbs[i], url);
+                if (/\.mp3$|\.flac$/.test(url)){
+					setupAudio(thumbs[i], url);
+					console.log('ab');
+				}
             }
         }
     }

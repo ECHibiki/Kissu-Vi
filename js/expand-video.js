@@ -83,7 +83,8 @@ function setupVideo(thumb, url) {
 
     // Clicking on thumbnail expands video
     thumb.addEventListener("click", function(e) {
-        if (setting("videoexpand") && !e.shiftKey && !e.ctrlKey && !e.altKey && !e.metaKey) {
+			console.log(setting_webm("videoexpand") );
+        if (setting_webm("videoexpand") && !e.shiftKey && !e.ctrlKey && !e.altKey && !e.metaKey) {
             getVideo();
             expanded = true;
             hovering = false;
@@ -97,8 +98,8 @@ function setupVideo(thumb, url) {
             video.parentNode.parentNode.removeAttribute('style');
             thumb.style.display = "none";
 
-            video.muted = (setting("videovolume") == 0);
-            video.volume = setting("videovolume");
+            video.muted = (setting_webm("videovolume") == 0);
+            video.volume = setting_webm("videovolume");
             video.controls = true;
             if (video.readyState == 0) {
                 video.addEventListener("loadedmetadata", expand2, false);
@@ -118,13 +119,13 @@ function setupVideo(thumb, url) {
             window.scrollBy(0, bottom - window.innerHeight);
         }
         // work around Firefox volume control bug
-        video.volume = Math.max(setting("videovolume") - 0.001, 0);
-        video.volume = setting("videovolume");
+        video.volume = Math.max(setting_webm("videovolume") - 0.001, 0);
+        video.volume = setting_webm("videovolume");
     }
 
     // Hovering over thumbnail displays video
     thumb.addEventListener("mouseover", function(e) {
-        if (setting("videohover")) {
+        if (setting_webm("videohover")) {
             getVideo();
             expanded = false;
             hovering = true;
@@ -148,8 +149,8 @@ function setupVideo(thumb, url) {
             videoContainer.style.display = "inline";
             videoContainer.style.position = "fixed";
 
-            video.muted = (setting("videovolume") == 0);
-            video.volume = setting("videovolume");
+            video.muted = (setting_webm("videovolume") == 0);
+            video.volume = setting_webm("videovolume");
             video.controls = false;
             video.play();
         }
@@ -159,8 +160,8 @@ function setupVideo(thumb, url) {
 
     // Scroll wheel on thumbnail adjusts default volume
     thumb.addEventListener("wheel", function(e) {
-        if (setting("videohover")) {
-            var volume = setting("videovolume");
+        if (setting_webm("videohover")) {
+            var volume = setting_webm("videovolume");
             if (e.deltaY > 0) volume -= 0.1;
             if (e.deltaY < 0) volume += 0.1;
             if (volume < 0) volume = 0;
@@ -169,7 +170,7 @@ function setupVideo(thumb, url) {
                 video.muted = (volume == 0);
                 video.volume = volume;
             }
-            changeSetting("videovolume", volume);
+            changeSetting_webm("videovolume", volume);
             e.preventDefault();
         }
     }, false);
@@ -206,11 +207,15 @@ function setupVideosIn(element) {
     for (var i = 0; i < thumbs.length; i++) {
         if (/\.webm$|\.mp4$/.test(thumbs[i].pathname)) {
             setupVideo(thumbs[i], thumbs[i].href);
+			console.log('va');
         } else {
             var m = thumbs[i].search.match(/\bv=([^&]*)/);
             if (m != null) {
                 var url = decodeURIComponent(m[1]);
-                if (/\.webm$|\.mp4$/.test(url)) setupVideo(thumbs[i], url);
+                if (/\.webm$|\.mp4$/.test(url)){
+					setupVideo(thumbs[i], url);
+					console.log('vb');
+				}
             }
         }
     }
