@@ -808,6 +808,129 @@ $(function(){
 
 }();
 /*
+ * options/general.js - general settings tab for options panel
+ *
+ * Copyright (c) 2014 Marcin Łabanowski <marcin@6irc.net>
+ *
+ * Usage:
+ *   $config['additional_javascript'][] = 'js/jquery.min.js';
+ *   $config['additional_javascript'][] = 'js/options.js';
+ *   $config['additional_javascript'][] = 'js/style-select.js';
+ *   $config['additional_javascript'][] = 'js/options/general.js';
+ */
+
++function(){
+
+var tab = Options.add_tab("general", "home", _("General"));
+
+$(function(){
+  var stor = $("<div>"+_("Storage: ")+"</div>");
+  stor.appendTo(tab.content);
+
+  $("<button>"+_("Export")+"</button>").appendTo(stor).on("click", function() {
+    var str = JSON.stringify(localStorage);
+
+    $(".output").remove();
+    $("<input type='text' class='output'>").appendTo(stor).val(str);
+  });
+  $("<button>"+_("Import")+"</button>").appendTo(stor).on("click", function() {
+    var str = prompt(_("Paste your storage data"));
+    if (!str) return false;
+    var obj = JSON.parse(str);
+    if (!obj) return false;
+
+    localStorage.clear();
+    for (var i in obj) {
+      localStorage[i] = obj[i];
+    }
+
+    document.location.reload();
+  });
+  $("<button>"+_("Erase")+"</button>").appendTo(stor).on("click", function() {
+    if (confirm(_("Are you sure you want to erase your storage? This involves your hidden threads, watched threads, post password and many more."))) {
+      localStorage.clear();
+      document.location.reload();
+    }
+  });
+
+
+  $("#style-select").detach().css({float:"none","margin-bottom":0}).appendTo(tab.content);
+});
+
+}();
+$(document).ready(function(){
+//Creating functions
+var generateList = function(){
+	var favStor = [];
+  	for(var i=1; i<favorites.length+1; i++){
+  		favStor.push($("#sortable > div:nth-child("+i+")").html());
+  	}
+	return favStor;
+} //This will generate a list of boards based off of the list on the screen
+function removeBoard(boardNumber){
+	favorites.splice(boardNumber, 1);
+	localStorage.favorites = JSON.stringify(favorites);
+	$("#sortable > div:nth-child("+(boardNumber+1)+")").remove();
+	$("#minusList > div:nth-child("+(favorites.length+1)+")").remove();
+	add_favorites();
+} //This removes a board from favorites, localStorage.favorites and the page
+function addBoard(){
+	$("#sortable").append("<div>"+($("#plusBox").val())+"</div>");
+	$("#minusList").append( $('<div data-board="'+favorites.length+'" style="cursor: pointer; margin-right: 5px">-</div>').on('click', function(e){removeBoard($(this).data('board'));}) );
+	favorites.push($("#plusBox").val());
+	localStorage.favorites = JSON.stringify(favorites);
+	$("#plusBox").val(""); //Removing text from textbox
+	add_favorites();
+} //This adds the text inside the textbox to favorites, localStorage.favorites and the page
+
+var favorites = JSON.parse(localStorage.favorites);
+Options.add_tab('fav-tab','star',_("Favorites"));
+
+//Pregenerating list of boards 
+var favList = $('<div id="sortable" style="cursor: pointer; display: inline-block">');
+for(var i=0; i<favorites.length; i++){
+    favList.append( $('<div>'+favorites[i]+'</div>') );
+} 
+
+//Creating list of minus symbols to remove unwanted boards
+var minusList = $('<div id="minusList" style="color: #0000FF; display: inline-block">');
+for(var i=0; i<favorites.length; i++){
+    minusList.append( $('<div data-board="'+i+'" style="cursor: pointer; margin-right: 5px">-</div>').on('click', function(e){removeBoard($(this).data('board'));}) );
+} 
+
+//Help message so people understand how sorting boards works
+$("<span>"+_("Drag the boards to sort them.")+"</span><br><br>").appendTo(Options.get_tab('fav-tab').content);
+
+//Adding list of boards and minus symbols to remove boards with
+$(minusList).appendTo(Options.get_tab('fav-tab').content); //Adding the list of minus symbols to the tab
+$(favList).appendTo(Options.get_tab('fav-tab').content);  //Adding the list of favorite boards to the tab
+
+//Adding spacing and text box to right boards into
+var addDiv = $("<div id='favs-add-board'>");
+
+var plusBox = $("<input id=\"plusBox\" type=\"text\">").appendTo(addDiv);
+plusBox.keydown(function( event ) {
+	if(event.keyCode == 13){
+		$("#plus").click();
+	}
+});
+
+//Adding plus symbol to use to add board
+$("<div id=\"plus\">+</div>").css({
+	cursor: "pointer",
+	color: "#0000FF"
+}).on('click', function(e){addBoard()}).appendTo(addDiv);
+
+addDiv.appendTo(Options.get_tab('fav-tab').content); //Adding the plus button
+
+favList.sortable(); //Making boards with sortable id use the sortable jquery function
+favList.on('sortstop', function() {
+	favorites = generateList();	
+	localStorage.favorites = JSON.stringify(favorites);
+	add_favorites();
+});
+});
+/*
  * options/user-css.js - allow user enter custom css entries
  *
  * Copyright (c) 2014 Marcin Łabanowski <marcin@6irc.net>
@@ -946,78 +1069,6 @@ window.immediate = function() { // A dummy function.
 }
 
 }();
-$(document).ready(function(){
-//Creating functions
-var generateList = function(){
-	var favStor = [];
-  	for(var i=1; i<favorites.length+1; i++){
-  		favStor.push($("#sortable > div:nth-child("+i+")").html());
-  	}
-	return favStor;
-} //This will generate a list of boards based off of the list on the screen
-function removeBoard(boardNumber){
-	favorites.splice(boardNumber, 1);
-	localStorage.favorites = JSON.stringify(favorites);
-	$("#sortable > div:nth-child("+(boardNumber+1)+")").remove();
-	$("#minusList > div:nth-child("+(favorites.length+1)+")").remove();
-	add_favorites();
-} //This removes a board from favorites, localStorage.favorites and the page
-function addBoard(){
-	$("#sortable").append("<div>"+($("#plusBox").val())+"</div>");
-	$("#minusList").append( $('<div data-board="'+favorites.length+'" style="cursor: pointer; margin-right: 5px">-</div>').on('click', function(e){removeBoard($(this).data('board'));}) );
-	favorites.push($("#plusBox").val());
-	localStorage.favorites = JSON.stringify(favorites);
-	$("#plusBox").val(""); //Removing text from textbox
-	add_favorites();
-} //This adds the text inside the textbox to favorites, localStorage.favorites and the page
-
-var favorites = JSON.parse(localStorage.favorites);
-Options.add_tab('fav-tab','star',_("Favorites"));
-
-//Pregenerating list of boards 
-var favList = $('<div id="sortable" style="cursor: pointer; display: inline-block">');
-for(var i=0; i<favorites.length; i++){
-    favList.append( $('<div>'+favorites[i]+'</div>') );
-} 
-
-//Creating list of minus symbols to remove unwanted boards
-var minusList = $('<div id="minusList" style="color: #0000FF; display: inline-block">');
-for(var i=0; i<favorites.length; i++){
-    minusList.append( $('<div data-board="'+i+'" style="cursor: pointer; margin-right: 5px">-</div>').on('click', function(e){removeBoard($(this).data('board'));}) );
-} 
-
-//Help message so people understand how sorting boards works
-$("<span>"+_("Drag the boards to sort them.")+"</span><br><br>").appendTo(Options.get_tab('fav-tab').content);
-
-//Adding list of boards and minus symbols to remove boards with
-$(minusList).appendTo(Options.get_tab('fav-tab').content); //Adding the list of minus symbols to the tab
-$(favList).appendTo(Options.get_tab('fav-tab').content);  //Adding the list of favorite boards to the tab
-
-//Adding spacing and text box to right boards into
-var addDiv = $("<div id='favs-add-board'>");
-
-var plusBox = $("<input id=\"plusBox\" type=\"text\">").appendTo(addDiv);
-plusBox.keydown(function( event ) {
-	if(event.keyCode == 13){
-		$("#plus").click();
-	}
-});
-
-//Adding plus symbol to use to add board
-$("<div id=\"plus\">+</div>").css({
-	cursor: "pointer",
-	color: "#0000FF"
-}).on('click', function(e){addBoard()}).appendTo(addDiv);
-
-addDiv.appendTo(Options.get_tab('fav-tab').content); //Adding the plus button
-
-favList.sortable(); //Making boards with sortable id use the sortable jquery function
-favList.on('sortstop', function() {
-	favorites = generateList();	
-	localStorage.favorites = JSON.stringify(favorites);
-	add_favorites();
-});
-});
 /* This file is dedicated to the public domain; you may do as you wish with it. */
 
 if (typeof _ == 'undefined') {
