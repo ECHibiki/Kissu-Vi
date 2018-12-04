@@ -1,17 +1,17 @@
-vichan - A lightweight and full featured PHP imageboard.
+ViQa-Kissu - An expanded lightweight and full featured PHP imageboard.
 ========================================================
 
 About
 ------------
-vichan is a free light-weight, fast, highly configurable and user-friendly
-imageboard software package. It is written in PHP and has few dependencies.
+ViQa-Kissu is an expansion on top of the free light-weight, fast, highly configurable and user-friendly
+imageboard software package, ViChan. ViQa is written in PHP and has few dependencies. It aims to expand upon the current structure of ViChan to provide expanded functionality.
+
+On December 2018, ECHibiki started this repo to expose the source of /qa/'s Kissu.moe
 
 In November 2017, Marcin Łabanowski (@czaks) retired as maintainer for personal reasons. His retirement may be temporary, but in his absence, Fredrick Brennan (@ctrlcctrlv), co-maintainer since 2013, and #3 in terms of number of commits, took his place as interim sole maintianer and point of contact. (See [issue #266](https://github.com/vichan-devel/vichan/issues/266))
 
 *Security problems can be reported to Fredrick Brennan at his email: COPYPASTE \<AT\> KITTENS \<DOT\> PH.*
 	
-Vichan is still accepting patches, but there is at the moment no active development besides fixing security problems and other serious bugs as they emerge. Given the lack of active development, we strongly urge you to consider other imageboard packages. It is the opinion of the vichan development team that no new vichan imageboards should be deployed, and other imageboard packages, such as lynxchan, used instead.
-
 History
 ------------
 vichan is a fork of (now defunc'd) [Tinyboard](http://github.com/savetheinternet/Tinyboard),

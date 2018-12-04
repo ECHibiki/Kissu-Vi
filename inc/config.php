@@ -777,6 +777,7 @@
 	$config['allowed_ext'][] = 'bmp';
 	$config['allowed_ext'][] = 'gif';
 	$config['allowed_ext'][] = 'png';
+
 	// $config['allowed_ext'][] = 'svg';
 
 	// Allowed extensions for OP. Inherits from the above setting if set to false. Otherwise, it overrides both allowed_ext and
@@ -813,7 +814,7 @@
 	$config['minimum_copy_resize'] = false;
 
 	// Maximum image upload size in bytes.
-	$config['max_filesize'] = 10 * 1024 * 1024; // 10MB
+	$config['max_filesize'] = 20 * 1024 * 1024; // 10MB
 	// Maximum image dimensions.
 	$config['max_width'] = 10000;
 	$config['max_height'] = $config['max_width'];
@@ -1027,8 +1028,8 @@
  */
 
 	// Additional Javascript files to include on board index and thread pages. See js/ for available scripts.
-	$config['additional_javascript'][] = 'js/jquery.min.js';
-	$config['additional_javascript'][] = 'js/inline-expanding.js';
+	// $config['additional_javascript'][] = 'js/jquery.min.js';
+	// $config['additional_javascript'][] = 'js/inline-expanding.js';
 	// $config['additional_javascript'][] = 'js/local-time.js';
 
 	// Some scripts require jQuery. Check the comments in script files to see what's needed. When enabling
@@ -1047,7 +1048,7 @@
 	// $config['additional_javascript_url'] = 'http://static.example.org/tinyboard-javascript-stuff/';
 
 	// Compile all additional scripts into one file ($config['file_script']) instead of including them seperately.
-	$config['additional_javascript_compile'] = false;
+	$config['additional_javascript_compile'] = true;
 
 	// Minify Javascript using http://code.google.com/p/minify/.
 	$config['minify_js'] = false;
@@ -1139,8 +1140,8 @@
 	$config['error']['unknownext']		= _('Unknown file extension.');
 	$config['error']['filesize']		= _('Maximum file size: %maxsz% bytes<br>Your file\'s size: %filesz% bytes');
 	$config['error']['maxsize']		= _('The file was too big.');
-	$config['error']['genwebmerror']	= _('There was a problem processing your webm.');
-	$config['error']['webmerror'] 		= _('There was a problem processing your webm.');//Is this error used anywhere ?
+	$config['error']['genwebmerror']	= _('There was a problem processing your webm .1.');
+	$config['error']['webmerror'] 		= _('There was a problem processing your webm .2.');//Is this error used anywhere ?
 	$config['error']['invalidwebm'] 	= _('Invalid webm uploaded.');
 	$config['error']['webmhasaudio'] 	= _('The uploaded webm contains an audio or another type of additional stream.');
 	$config['error']['webmtoolong'] 	= _('The uploaded webm is longer than ' . $config['webm']['max_length'] . ' seconds.');
@@ -1360,21 +1361,21 @@
 	$config['capcode'] = ' <span class="capcode">## %s</span>';
 
 	// "## Custom" becomes lightgreen, italic and bold:
-	//$config['custom_capcode']['Custom'] ='<span class="capcode" style="color:lightgreen;font-style:italic;font-weight:bold"> ## %s</span>';
+	$config['custom_capcode']['Custom'] ='<span class="capcode" style="color:lightgreen;font-style:italic;font-weight:bold"> ## %s</span>';
 
 	// "## Mod" makes everything purple, including the name and tripcode:
-	//$config['custom_capcode']['Mod'] = array(
-	//	'<span class="capcode" style="color:purple"> ## %s</span>',
-	//	'color:purple', // Change name style; optional
-	//	'color:purple' // Change tripcode style; optional
-	//);
+	$config['custom_capcode']['Mod'] = array(
+		'<span class="capcode" style="color:purple"> ## %s</span>',
+		'color:purple', // Change name style; optional
+		'color:purple' // Change tripcode style; optional
+	);
 
 	// "## Admin" makes everything red and bold, including the name and tripcode:
-	//$config['custom_capcode']['Admin'] = array(
-	//	'<span class="capcode" style="color:red;font-weight:bold"> ## %s</span>',
-	//	'color:red;font-weight:bold', // Change name style; optional
-	//	'color:red;font-weight:bold' // Change tripcode style; optional
-	//);
+	$config['custom_capcode']['Admin'] = array(
+		'<span class="capcode" style="color:red;font-weight:bold"> ## %s</span>',
+		'color:red;font-weight:bold', // Change name style; optional
+		'color:red;font-weight:bold' // Change tripcode style; optional
+	);
 
 	// Enable the moving of single replies
 	$config['move_replies'] = false;

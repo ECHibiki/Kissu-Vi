@@ -1,3 +1,9 @@
+#boards
+/b/*
+/qa/*
+/ignore/*
+/test/*
+
 # static html and json
 /*/*.html
 /*/*.json
@@ -6,6 +12,9 @@
 /*/thumb
 /*/config.php
 /*.html
+
+#password files
+secrets.php
 
 # include some files though
 !/templates/*.html
@@ -21,7 +30,10 @@
 /.installed
 
 # script file
-/main.js
+#/main.js
+
+# rss
+*.rss
 
 # templates cache
 /templates/cache

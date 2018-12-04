@@ -1,0 +1,13 @@
+
+
+2018-12-01 10:14:27 apctest 3.14.14 (31 May 2016) debian
+Checking configuration ...
+sharenet.type = Network & ShareUPS Disabled
+cable.type = USB Cable
+mode.type = USB UPS Driver
+Setting up the port ...
+apctest FATAL ERROR in apctest.c at line 321
+Unable to open UPS device.
+  If apcupsd or apctest is already running,
+  please stop it and run this program again.
+apctest error termination completed

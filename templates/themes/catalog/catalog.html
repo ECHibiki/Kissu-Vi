@@ -83,7 +83,10 @@
 			{% endraw %}
 			{% for name, uri in config.stylesheets %}{% raw %}'{% endraw %}{{ name|addslashes }}{% raw %}' : '{% endraw %}/stylesheets/{{ uri|addslashes }}{% raw %}',
 			{% endraw %}{% endfor %}{% raw %}
-		}; onready(init);
+		}; 
+		if(is_style_select == false){
+			onready(init);
+		}
 	{% endraw %}</script>
 
 	<script type="text/javascript">{% raw %}

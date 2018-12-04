@@ -132,12 +132,12 @@ function imageHoverStart(e) { //Pashe, anonish, WTFPL
 	var fullUrl;
 	if ($this.parent().attr("href").match("src")) {
 		fullUrl = $this.parent().attr("href");
-	} else if (isOnCatalog()) {
+	} else if (isOnCatalog() && $this.parent().attr("href").match("src")) {
 		fullUrl = $this.attr("data-fullimage");
 		if (!isImage(getFileExtension(fullUrl))) {fullUrl = $this.attr("src");}
 	}
-	
-	if (isVideo(getFileExtension(fullUrl))) {return;}
+	if (fullUrl == undefined || isVideo(getFileExtension(fullUrl))) {return;}
+
 	
 	hoverImage = $('<img id="chx_hoverImage" src="'+fullUrl+'" />');
 

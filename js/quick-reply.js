@@ -216,6 +216,10 @@
 	
 				// Upload section
 				if ($td.find('input[type="file"]').length) {
+					if($td.find('input[name="file"]').length){
+						$file = $td.find('input[name="file"]');
+						$file.attr("style","width:90%");
+					}
 					if ($td.find('input[name="file_url"]').length) {
 						$file_url = $td.find('input[name="file_url"]');
 						

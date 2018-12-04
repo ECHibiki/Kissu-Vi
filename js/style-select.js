@@ -13,8 +13,8 @@
  *   $config['additional_javascript'][] = 'js/style-select.js';
  *
  */
-
-onready(function(){
+var is_style_select = true;
+onready(function(){	
 	var stylesDiv = $('div.styles');
 	var stylesSelect = $('<select></select>');
 	
