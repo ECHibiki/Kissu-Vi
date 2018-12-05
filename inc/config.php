@@ -356,6 +356,14 @@
 	$config['flood_time_ip'] = 120;
 	// Same as above but by a different IP address. (Same content, not necessarily same IP address.)
 	$config['flood_time_same'] = 30;
+	// Minimum time between each post on the website
+	$config['global_flood_active'] = false;
+	$config['global_flood_time'] = 60;
+	
+	// Decide the result of a flood detection
+	// possible: 'reject' or 'captcha'
+	$config['flood_reject'] = 'reject';
+	$config['flood_captcha'] = 'captcha';
 
 	// Minimum time between posts by the same IP address (all boards).
 	$config['filters'][] = array(
@@ -363,7 +371,7 @@
 			'flood-match' => array('ip'), // Only match IP address
 			'flood-time' => &$config['flood_time']
 		),
-		'action' => 'reject',
+		'action' => $config['flood_reject'],
 		'message' => &$config['error']['flood']
 	);
 
@@ -374,7 +382,7 @@
 			'flood-time' => &$config['flood_time_ip'],
 			'!body' => '/^$/', // Post body is NOT empty
 		),
-		'action' => 'reject',
+		'action' => $config['flood_reject'],
 		'message' => &$config['error']['flood']
 	);
 
@@ -384,7 +392,17 @@
 			'flood-match' => array('body'), // Match only post body
 			'flood-time' => &$config['flood_time_same']
 		),
-		'action' => 'reject',
+		'action' => $config['flood_reject'],
+		'message' => &$config['error']['flood']
+	);
+	
+	// Minimum time between each post on the website
+	$config['filters'][] = array(
+		'condition' => array(
+			'flood-match' => array(''), // Match only post body
+			'flood-time' => &$config['global_flood_time']
+		),
+		'action' => $config['flood_reject'],
 		'message' => &$config['error']['flood']
 	);
 

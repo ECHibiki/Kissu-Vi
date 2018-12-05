@@ -1,0 +1,10 @@
+services: docker
+script:
+  - docker build -t tests .
+  - docker run tests go test --race ./...
+notifications:
+  email:
+    recipients:
+      - scorpid33@gmail.com
+    on_success: never
+    on_failure: always

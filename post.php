@@ -15,6 +15,7 @@ $dropped_post = false;
 
 // Is it a post coming from NNTP? Let's extract it and pretend it's a normal post.
 if (isset($_GET['Newsgroups']) && $config['nntpchan']['enabled']) {
+	
 	if ($_SERVER['REMOTE_ADDR'] != $config['nntpchan']['trusted_peer']) {
 		error("NNTPChan: Forbidden. $_SERVER[REMOTE_ADDR] is not a trusted peer");
 	}
