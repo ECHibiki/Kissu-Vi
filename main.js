@@ -808,51 +808,6 @@ $(function(){
 
 }();
 /*
- * style-select.js
- * https://github.com/savetheinternet/Tinyboard/blob/master/js/style-select.js
- *
- * Changes the stylesheet chooser links to a <select>
- *
- * Released under the MIT license
- * Copyright (c) 2013 Michael Save <savetheinternet@tinyboard.org>
- * Copyright (c) 2013-2014 Marcin Łabanowski <marcin@6irc.net> 
- *
- * Usage:
- *   $config['additional_javascript'][] = 'js/jquery.min.js';
- *   $config['additional_javascript'][] = 'js/style-select.js';
- *
- */
-// var is_style_select = true;
-onready(function(){	
-	var stylesDiv = $('div.styles');
-	var stylesSelect = $('<select></select>');
-	
-	var i = 1;
-	stylesDiv.children().each(function() {
-		var opt = $('<option></option>')
-			.html(this.innerHTML.replace(/(^\[|\]$)/g, ''))
-			.val(i);
-		if ($(this).hasClass('selected'))
-			opt.attr('selected', true);
-		stylesSelect.append(opt);
-		$(this).attr('id', 'style-select-' + i);
-		i++;
-	});
-	
-	stylesSelect.change(function() {
-		$('#style-select-' + $(this).val()).click();
-	});
-	
-	stylesDiv.hide();
-	
-	stylesDiv.after(
-		$('<div id="style-select" style="float:right;margin-bottom:10px"></div>')
-			.text(_('Style: '))
-			.append(stylesSelect)
-	);
-});
-
-/*
  * options/general.js - general settings tab for options panel
  *
  * Copyright (c) 2014 Marcin Łabanowski <marcin@6irc.net>
@@ -1139,6 +1094,51 @@ if (settingsMenu_webm.addEventListener && !window.Options) {
         settingsMenu_webm.getElementsByTagName("div")[0].style.display = "none";
     }, false);
 }
+/*
+ * style-select.js
+ * https://github.com/savetheinternet/Tinyboard/blob/master/js/style-select.js
+ *
+ * Changes the stylesheet chooser links to a <select>
+ *
+ * Released under the MIT license
+ * Copyright (c) 2013 Michael Save <savetheinternet@tinyboard.org>
+ * Copyright (c) 2013-2014 Marcin Łabanowski <marcin@6irc.net> 
+ *
+ * Usage:
+ *   $config['additional_javascript'][] = 'js/jquery.min.js';
+ *   $config['additional_javascript'][] = 'js/style-select.js';
+ *
+ */
+// var is_style_select = true;
+onready(function(){	
+	var stylesDiv = $('div.styles');
+	var stylesSelect = $('<select></select>');
+	
+	var i = 1;
+	stylesDiv.children().each(function() {
+		var opt = $('<option></option>')
+			.html(this.innerHTML.replace(/(^\[|\]$)/g, ''))
+			.val(i);
+		if ($(this).hasClass('selected'))
+			opt.attr('selected', true);
+		stylesSelect.append(opt);
+		$(this).attr('id', 'style-select-' + i);
+		i++;
+	});
+	
+	stylesSelect.change(function() {
+		$('#style-select-' + $(this).val()).click();
+	});
+	
+	stylesDiv.hide();
+	
+	stylesDiv.after(
+		$('<div id="style-select" style="float:right;margin-bottom:10px"></div>')
+			.text(_('Style: '))
+			.append(stylesSelect)
+	);
+});
+
 /*
  * ajax-post-controls.js
  * https://github.com/savetheinternet/Tinyboard/blob/master/js/ajax-post-controls.js
@@ -2370,25 +2370,25 @@ var defaultSettings_audio = {
 };
 
 // Non-persistent settings for when localStorage is absent/disabled
-var tempSettings = {};
+var tempSettings_audio = {};
 
 // Scripts obtain settings by calling this function
-function setting(name) {
+function setting_audio(name) {
     if (localStorage) {
         if (localStorage[name] === undefined) return defaultSettings_audio[name];
         return JSON.parse(localStorage[name]);
     } else {
-        if (tempSettings[name] === undefined) return defaultSettings_audio[name];
-        return tempSettings[name];
+        if (tempSettings_audio[name] === undefined) return defaultSettings_audio[name];
+        return tempSettings_audio[name];
     }
 }
 
 // Settings should be changed with this function
-function changeSetting(name, value) {
+function changeSetting_audio(name, value) {
     if (localStorage) {
         localStorage[name] = JSON.stringify(value);
     } else {
-        tempSettings[name] = value;
+        tempSettings_audio[name] = value;
     }
 }
 
@@ -2414,14 +2414,14 @@ settingsMenu.innerHTML = prefix
     + '<label><input type="range" name="audiovolume" min="0" max="1" step="0.01" style="width: 4em; height: 1ex; vertical-align: middle; margin: 0px;">'+_('Default volume')+'</label><br>'
     + suffix;
 
-function refreshSettings() {
-    var settingsItems = settingsMenu.getElementsByTagName("input");
-    for (var i = 0; i < settingsItems.length; i++) {
-        var control = settingsItems[i];
+function refreshSettings_audio() {
+    var settingsItems_audio = settingsMenu.getElementsByTagName("input");
+    for (var i = 0; i < settingsItems_audio.length; i++) {
+        var control = settingsItems_audio[i];
         if (control.type == "checkbox") {
-            control.checked = setting(control.name);
+            control.checked = setting_audio(control.name);
         } else if (control.type == "range") {
-            control.value = setting(control.name);
+            control.value = setting_audio(control.name);
         }
     }
 }
@@ -2429,22 +2429,22 @@ function refreshSettings() {
 function setupControl(control) {
     if (control.addEventListener) control.addEventListener("change", function(e) {
         if (control.type == "checkbox") {
-            changeSetting(control.name, control.checked);
+            changeSetting_audio(control.name, control.checked);
         } else if (control.type == "range") {
-            changeSetting(control.name, control.value);
+            changeSetting_audio(control.name, control.value);
         }
     }, false);
 }
 
-refreshSettings();
-var settingsItems = settingsMenu.getElementsByTagName("input");
-for (var i = 0; i < settingsItems.length; i++) {
-    setupControl(settingsItems[i]);
+refreshSettings_audio();
+var settingsItems_audio = settingsMenu.getElementsByTagName("input");
+for (var i = 0; i < settingsItems_audio.length; i++) {
+    setupControl(settingsItems_audio[i]);
 }
 
 if (settingsMenu.addEventListener && !window.Options) {
     settingsMenu.addEventListener("mouseover", function(e) {
-        refreshSettings();
+        refreshSettings_audio();
         settingsMenu.getElementsByTagName("a")[0].style.fontWeight = "bold";
         settingsMenu.getElementsByTagName("div")[0].style.display = "block";
     }, false);
@@ -2457,7 +2457,6 @@ if (settingsMenu.addEventListener && !window.Options) {
 //------------
 
 function setupAudio(thumb, url) {
-	console.log(thumb.audioAlreadySetUp);
     if (thumb.audioAlreadySetUp) return;
     thumb.audioAlreadySetUp = true;
 
@@ -2535,7 +2534,7 @@ function setupAudio(thumb, url) {
 
     // Clicking on thumbnail expands audio
     thumb.addEventListener("click", function(e) {
-        if (setting("audioexpand") && !e.shiftKey && !e.ctrlKey && !e.altKey && !e.metaKey) {
+        if (setting_audio("audioexpand") && !e.shiftKey && !e.ctrlKey && !e.altKey && !e.metaKey) {
             getAudio();
             expanded = true;
             hovering = false;
@@ -2549,8 +2548,8 @@ function setupAudio(thumb, url) {
             audio.parentNode.parentNode.removeAttribute('style');
             thumb.style.display = "none";
 
-            audio.muted = (setting("audiovolume") == 0);
-            audio.volume = setting("audiovolume");
+            audio.muted = (setting_audio("audiovolume") == 0);
+            audio.volume = setting_audio("audiovolume");
             audio.controls = true;
             if (audio.readyState == 0) {
                 audio.addEventListener("loadedmetadata", expand2, false);
@@ -2570,13 +2569,13 @@ function setupAudio(thumb, url) {
             window.scrollBy(0, bottom - window.innerHeight);
         }
         // work around Firefox volume control bug
-        audio.volume = Math.max(setting("audiovolume") - 0.001, 0);
-        audio.volume = setting("audiovolume");
+        audio.volume = Math.max(setting_audio("audiovolume") - 0.001, 0);
+        audio.volume = setting_audio("audiovolume");
     }
 
     // Hovering over thumbnail displays audio
     thumb.addEventListener("mouseover", function(e) {
-        if (setting("audiohover")) {
+        if (setting_audio("audiohover")) {
             getAudio();
             expanded = false;
             hovering = true;
@@ -2600,8 +2599,8 @@ function setupAudio(thumb, url) {
             audioContainer.style.display = "inline";
             audioContainer.style.position = "fixed";
 
-            audio.muted = (setting("audiovolume") == 0);
-            audio.volume = setting("audiovolume");
+            audio.muted = (setting_audio("audiovolume") == 0);
+            audio.volume = setting_audio("audiovolume");
             audio.controls = false;
             audio.play();
         }
@@ -2611,8 +2610,8 @@ function setupAudio(thumb, url) {
 
     // Scroll wheel on thumbnail adjusts default volume
     thumb.addEventListener("wheel", function(e) {
-        if (setting("audiohover")) {
-            var volume = setting("audiovolume");
+        if (setting_audio("audiohover")) {
+            var volume = setting_audio("audiovolume");
             if (e.deltaY > 0) volume -= 0.1;
             if (e.deltaY < 0) volume += 0.1;
             if (volume < 0) volume = 0;
@@ -2621,7 +2620,7 @@ function setupAudio(thumb, url) {
                 audio.muted = (volume == 0);
                 audio.volume = volume;
             }
-            changeSetting("audiovolume", volume);
+            changeSetting_audio("audiovolume", volume);
             e.preventDefault();
         }
     }, false);
@@ -2658,14 +2657,12 @@ function setupAudioIn(element) {
     for (var i = 0; i < thumbs.length; i++) {
         if (/\.mp3$|\.flac$/.test(thumbs[i].pathname)) {
             setupAudio(thumbs[i], thumbs[i].href);
-			console.log('aa');
         } else {
             var m = thumbs[i].search.match(/\bv=([^&]*)/);
             if (m != null) {
                 var url = decodeURIComponent(m[1]);
                 if (/\.mp3$|\.flac$/.test(url)){
 					setupAudio(thumbs[i], url);
-					console.log('ab');
 				}
             }
         }
@@ -2783,7 +2780,6 @@ function setupVideo(thumb, url) {
 
     // Clicking on thumbnail expands video
     thumb.addEventListener("click", function(e) {
-			console.log(setting_webm("videoexpand") );
         if (setting_webm("videoexpand") && !e.shiftKey && !e.ctrlKey && !e.altKey && !e.metaKey) {
             getVideo();
             expanded = true;
@@ -2907,14 +2903,12 @@ function setupVideosIn(element) {
     for (var i = 0; i < thumbs.length; i++) {
         if (/\.webm$|\.mp4$/.test(thumbs[i].pathname)) {
             setupVideo(thumbs[i], thumbs[i].href);
-			console.log('va');
         } else {
             var m = thumbs[i].search.match(/\bv=([^&]*)/);
             if (m != null) {
                 var url = decodeURIComponent(m[1]);
                 if (/\.webm$|\.mp4$/.test(url)){
 					setupVideo(thumbs[i], url);
-					console.log('vb');
 				}
             }
         }

@@ -105,7 +105,6 @@ if (settingsMenu.addEventListener && !window.Options) {
 //------------
 
 function setupAudio(thumb, url) {
-	console.log(thumb.audioAlreadySetUp);
     if (thumb.audioAlreadySetUp) return;
     thumb.audioAlreadySetUp = true;
 
@@ -306,14 +305,12 @@ function setupAudioIn(element) {
     for (var i = 0; i < thumbs.length; i++) {
         if (/\.mp3$|\.flac$/.test(thumbs[i].pathname)) {
             setupAudio(thumbs[i], thumbs[i].href);
-			console.log('aa');
         } else {
             var m = thumbs[i].search.match(/\bv=([^&]*)/);
             if (m != null) {
                 var url = decodeURIComponent(m[1]);
                 if (/\.mp3$|\.flac$/.test(url)){
 					setupAudio(thumbs[i], url);
-					console.log('ab');
 				}
             }
         }

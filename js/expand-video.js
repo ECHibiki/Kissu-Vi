@@ -83,7 +83,6 @@ function setupVideo(thumb, url) {
 
     // Clicking on thumbnail expands video
     thumb.addEventListener("click", function(e) {
-			console.log(setting_webm("videoexpand") );
         if (setting_webm("videoexpand") && !e.shiftKey && !e.ctrlKey && !e.altKey && !e.metaKey) {
             getVideo();
             expanded = true;
@@ -207,14 +206,12 @@ function setupVideosIn(element) {
     for (var i = 0; i < thumbs.length; i++) {
         if (/\.webm$|\.mp4$/.test(thumbs[i].pathname)) {
             setupVideo(thumbs[i], thumbs[i].href);
-			console.log('va');
         } else {
             var m = thumbs[i].search.match(/\bv=([^&]*)/);
             if (m != null) {
                 var url = decodeURIComponent(m[1]);
                 if (/\.webm$|\.mp4$/.test(url)){
 					setupVideo(thumbs[i], url);
-					console.log('vb');
 				}
             }
         }
