@@ -26,7 +26,7 @@
 	$config['allowed_ext_op'] = [true];
 	
 	$config['spoiler_images'] = true;
-	$config['global_flood_active'] = true;
+	// $config['global_flood_active'] = true;
 	
 	// $config['file_script'] = 'main.js';
 	$config['additional_javascript'][] = 'js/jquery.min.js';

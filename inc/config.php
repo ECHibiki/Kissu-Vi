@@ -357,13 +357,13 @@
 	// Same as above but by a different IP address. (Same content, not necessarily same IP address.)
 	$config['flood_time_same'] = 30;
 	// Minimum time between each post on the website
-	$config['global_flood_active'] = false;
-	$config['global_flood_time'] = 60;
+	// $config['global_flood_active'] = false;
+	// $config['global_flood_time'] = 60;
 	
 	// Decide the result of a flood detection
 	// possible: 'reject' or 'captcha'
 	$config['flood_reject'] = 'reject';
-	$config['flood_captcha'] = 'captcha';
+	// $config['flood_captcha'] = 'captcha';
 
 	// Minimum time between posts by the same IP address (all boards).
 	$config['filters'][] = array(
@@ -397,14 +397,14 @@
 	);
 	
 	// Minimum time between each post on the website
-	$config['filters'][] = array(
-		'condition' => array(
-			'flood-match' => array(''), // Match only post body
-			'flood-time' => &$config['global_flood_time']
-		),
-		'action' => $config['flood_reject'],
-		'message' => &$config['error']['flood']
-	);
+	// $config['filters'][] = array(
+		// 'condition' => array(
+			// 'flood-match' => array(''), // Match only post body
+			// 'flood-time' => &$config['global_flood_time']
+		// ),
+		// 'action' => $config['flood_reject'],
+		// 'message' => &$config['error']['flood']
+	// );
 
 	// Example: Minimum time between posts with the same file hash.
 	// $config['filters'][] = array(
