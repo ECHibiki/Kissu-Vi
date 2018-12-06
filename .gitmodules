@@ -7,6 +7,3 @@
 	path = inc/lib/parsedown
 	url = https://github.com/vichan-devel/parsedown
 	branch = master
-[submodule "captchouli"]
-	path = captchouli
-	url = git@github.com:bakape/captchouli.git
