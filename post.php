@@ -266,7 +266,8 @@ if (isset($_POST['delete'])) {
 
 	rebuildThemes('post-delete', $board['uri']);
 
-} elseif (isset($_POST['report'])) {
+} 
+elseif (isset($_POST['report'])) {
 	if (!isset($_POST['board'], $_POST['reason']))
 		error($config['error']['bot']);
 	
@@ -349,7 +350,9 @@ if (isset($_POST['delete'])) {
 		header('Content-Type: text/json');
 		echo json_encode(array('success' => true));
 	}
-} elseif (isset($_POST['post']) || $dropped_post) {
+} 
+elseif (isset($_POST['post']) || $dropped_post) {
+
 	if (!isset($_POST['body'], $_POST['board']) && !$dropped_post)
 		error($config['error']['bot']);
 
@@ -420,7 +423,7 @@ if (isset($_POST['delete'])) {
 		if ($config['referer_match'] !== false &&
 			(!isset($_SERVER['HTTP_REFERER']) || !preg_match($config['referer_match'], rawurldecode($_SERVER['HTTP_REFERER']))))
 			error($config['error']['referer']);
-	
+	//DNS black list
 		checkDNSBL();
 		
 
@@ -841,6 +844,7 @@ if (isset($_POST['delete'])) {
 		}
 	}
 
+	//Check if passes filter 
 	if (!hasPermission($config['mod']['bypass_filters'], $board['uri']) && !$dropped_post) {
 		require_once 'inc/filters.php';
 
@@ -1227,7 +1231,8 @@ if (isset($_POST['delete'])) {
 	else
 		rebuildThemes('post', $board['uri']);
 	
-} elseif (isset($_POST['appeal'])) {
+}
+elseif (isset($_POST['appeal'])) {
 	if (!isset($_POST['ban_id']))
 		error($config['error']['bot']);
 	

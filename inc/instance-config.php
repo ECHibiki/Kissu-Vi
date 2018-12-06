@@ -26,8 +26,11 @@
 	$config['allowed_ext_op'] = [true];
 	
 	$config['spoiler_images'] = true;
-	// $config['global_flood_active'] = true;
+	$config['enable_embedding'] =true;
+	$config['allow_upload_by_url'] = true;
 	
+	$config['flood_board_active'] = true;
+
 	// $config['file_script'] = 'main.js';
 	$config['additional_javascript'][] = 'js/jquery.min.js';
 	$config['additional_javascript'][] = 'js/jquery.mixitup.min.js';
@@ -71,8 +74,8 @@
 	$config['webm']['ffprobe_path'] = 'ffprobe';
 	
 	$config['boards'] = array(
-		array('b'),
-		array('qa'),
+		array('home' => '/'),
+		array('b','qa'),
 		array('verniy' => 'https://github.com/ECHibiki/ViQa-Kissu/')
 	);
 	
@@ -157,3 +160,13 @@ $config['syslog'] = false;
 // Changes made via web editor by "verniy" @ Sun, 02 Dec 2018 15:51:53 -0800:
 $config['dns_system'] = false;
 $config['proxy_save'] = true;
+// Changes made via web editor by "verniy" @ Wed, 05 Dec 2018 20:23:06 -0500:
+$config['recaptcha'] = true;
+$config['recaptcha_public'] = '6LcbFH8UAAAAAA_8qhW2AwsOebJl3oZEXKdZR290';
+$config['recaptcha_private'] = '6LcbFH8UAAAAAKg0Z9OqZkxl-0lbVuugkJeGmGn7';
+$config['new_thread_capt'] = true;
+
+
+// Changes made via web editor by "verniy" @ Wed, 05 Dec 2018 21:00:38 -0500:
+$config['new_thread_capt'] = false;
+

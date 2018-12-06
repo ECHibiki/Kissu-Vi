@@ -348,22 +348,24 @@
 	 * still exist for backwards-compatability and general convenience.
 	 *
 	 * Read more: https://web.archive.org/web/20121003095807/http://tinyboard.org/docs/?p=Config/Flood_filters
+	 * handled in: inc/filters.php
 	 */
 
 	// Minimum time between between each post by the same IP address.
 	$config['flood_time'] = 10;
 	// Minimum time between between each post with the exact same content AND same IP address.
-	$config['flood_time_ip'] = 120;
+	$config['flood_time_ip'] = 60;
 	// Same as above but by a different IP address. (Same content, not necessarily same IP address.)
-	$config['flood_time_same'] = 30;
-	// Minimum time between each post on the website
-	// $config['global_flood_active'] = false;
-	// $config['global_flood_time'] = 60;
+	$config['flood_time_same'] = 120;
+	// Minimum time between each post on the board
+	$config['flood_board_active'] = false;
+	$config['flood_board_time'] = 60;
 	
 	// Decide the result of a flood detection
-	// possible: 'reject' or 'captcha'
+	// possible: 'reject', 'ban' or 'captcha'
 	$config['flood_reject'] = 'reject';
-	// $config['flood_captcha'] = 'captcha';
+	$config['flood_ban'] = 'ban'; // note: bans require a reason and a time. Search this bellow for examples
+	$config['flood_captcha'] = 'captcha';
 
 	// Minimum time between posts by the same IP address (all boards).
 	$config['filters'][] = array(
@@ -372,7 +374,7 @@
 			'flood-time' => &$config['flood_time']
 		),
 		'action' => $config['flood_reject'],
-		'message' => &$config['error']['flood']
+		'message' => &$config['error']['flood']['ip']
 	);
 
 	// Minimum time between posts by the same IP address with the same text.
@@ -383,7 +385,7 @@
 			'!body' => '/^$/', // Post body is NOT empty
 		),
 		'action' => $config['flood_reject'],
-		'message' => &$config['error']['flood']
+		'message' => &$config['error']['flood']['repeat']
 	);
 
 	// Minimum time between posts with the same text. (Same content, but not always the same IP address.)
@@ -393,18 +395,18 @@
 			'flood-time' => &$config['flood_time_same']
 		),
 		'action' => $config['flood_reject'],
-		'message' => &$config['error']['flood']
+		'message' => &$config['error']['flood']['repeat']
 	);
 	
-	// Minimum time between each post on the website
-	// $config['filters'][] = array(
-		// 'condition' => array(
-			// 'flood-match' => array(''), // Match only post body
-			// 'flood-time' => &$config['global_flood_time']
-		// ),
-		// 'action' => $config['flood_reject'],
-		// 'message' => &$config['error']['flood']
-	// );
+	// Minimum time between each post on the board
+	$config['filters'][] = array(
+		'condition' => array(
+			'flood-match' => array('board'), // Match anything
+			'flood-time' => &$config['flood_board_time']
+		),
+		'action' => $config['flood_captcha'],
+		'message' => &$config['error']['flood']['fast']
+	);
 
 	// Example: Minimum time between posts with the same file hash.
 	// $config['filters'][] = array(
@@ -1141,7 +1143,9 @@
 	$config['error']['reply_hard_limit']	= _('Thread has reached its maximum reply limit.');
 	$config['error']['image_hard_limit']	= _('Thread has reached its maximum image limit.');
 	$config['error']['nopost']		= _('You didn\'t make a post.');
-	$config['error']['flood']		= _('Flood detected; Post discarded.');
+	$config['error']['flood']['ip']		= _('Flood detected; Same IP posting too fast.');
+	$config['error']['flood']['repeat']		= _('Flood detected; Same message.');
+	$config['error']['flood']['fast']		= _('Flood detected; Board is too fast.');
 	$config['error']['spam']		= _('Your request looks automated; Post discarded.');
 	$config['error']['unoriginal']		= _('Unoriginal content!');
 	$config['error']['muted']		= _('Unoriginal content! You have been muted for %d seconds.');

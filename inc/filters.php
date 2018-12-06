@@ -65,7 +65,6 @@ class Filter {
 					}
 					$flood_check_matched[] = $flood_post;
 				}
-				
 				$this->flood_check = $flood_check_matched;
 				
 				return !empty($this->flood_check);
@@ -143,30 +142,37 @@ class Filter {
 	                $query->bindValue(':body', "Autoban message: ".$this->post['body']);
 	                $query->execute() or error(db_error($query));
 		}				
-		if (isset ($this->action)) switch($this->action) {
-			case 'reject':
-				error(isset($this->message) ? $this->message : 'Posting throttled by filter.');
-			case 'ban':
-				if (!isset($this->reason))
-					error('The ban action requires a reason.');
-				
-				$this->expires = isset($this->expires) ? $this->expires : false;
-				$this->reject = isset($this->reject) ? $this->reject : true;
-				$this->all_boards = isset($this->all_boards) ? $this->all_boards : false;
-				
-				Bans::new_ban($_SERVER['REMOTE_ADDR'], $this->reason, $this->expires, $this->all_boards ? false : $board['uri'], -1);
-
-				if ($this->reject) {
-					if (isset($this->message))
-						error($message);
+		if (isset ($this->action)){ 
+			switch($this->action) {
+				case 'reject':
+					error(isset($this->message) ? $this->message : 'Posting throttled by filter.');
+					break;
+				case 'ban':
+					if (!isset($this->reason))
+						error('The ban action requires a reason.');
 					
-					checkBan($board['uri']);
-					exit;
-				}
-				
-				break;
-			default:
-				error('Unknown filter action: ' . $this->action);
+					$this->expires = isset($this->expires) ? $this->expires : false;
+					$this->reject = isset($this->reject) ? $this->reject : true;
+					$this->all_boards = isset($this->all_boards) ? $this->all_boards : false;
+					
+					Bans::new_ban($_SERVER['REMOTE_ADDR'], $this->reason, $this->expires, $this->all_boards ? false : $board['uri'], -1);
+
+					if ($this->reject) {
+						if (isset($this->message))
+							error($message);
+						
+						checkBan($board['uri']);
+						exit;
+					}
+					
+					break;
+				case 'captcha':
+					error(isset($this->message) ? $this->message : 'Captcha Required.');
+					//store post details in temp(on expiration timer) and await a captcha fill out to retrieve them
+					break;
+				default:
+					error('Unknown filter action: ' . $this->action);
+			}
 		}
 	}
 	
@@ -219,17 +225,20 @@ function do_filters(array $post) {
 			break;
 		}
 	}
-	
 	if (isset($has_flood)) {
 		if ($post['has_file']) {
 			$query = prepare("SELECT * FROM ``flood`` WHERE `ip` = :ip OR `posthash` = :posthash OR `filehash` = :filehash");
 			$query->bindValue(':ip', $_SERVER['REMOTE_ADDR']);
 			$query->bindValue(':posthash', make_comment_hex($post['body_nomarkup']));
 			$query->bindValue(':filehash', $post['filehash']);
-		} else {
+		} else if(!$config['board_flood_active']){
 			$query = prepare("SELECT * FROM ``flood`` WHERE `ip` = :ip OR `posthash` = :posthash");
 			$query->bindValue(':ip', $_SERVER['REMOTE_ADDR']);
 			$query->bindValue(':posthash', make_comment_hex($post['body_nomarkup']));
+		}
+		else if($config['board_flood_active']){
+			$query = prepare("SELECT * FROM ``flood`` WHERE `board` = :board");
+			$query->bindValue(':board', $post['board']);
 		}
 		$query->execute() or error(db_error($query));
 		$flood_check = $query->fetchAll(PDO::FETCH_ASSOC);
