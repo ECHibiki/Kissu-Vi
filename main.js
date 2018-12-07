@@ -109,7 +109,7 @@ function alert(a, do_confirm, confirm_ok_action, confirm_cancel_action) {
 var saved = {};
 
 
-var selectedstyle = 'Yotsuba B';
+var selectedstyle = 'dark';
 var styles = {
 	
 	'Yotsuba B' : '',
@@ -899,7 +899,14 @@ $(function(){
   });
 
 
-  $("#style-select").clone().css({float:"none","margin-bottom":0}).appendTo(tab.content);
+  //adapted to have both in options and bellow page
+  var copy_style = $("#style-select").clone(true);
+  copy_style.css({float:"none","margin-bottom":0}).appendTo(tab.content);
+  // copy_style.change(function() {
+	  // console.log($(this).val())
+    // $('#style-select-' + $(this).val()).click();
+  // });
+  
 });
 
 }();

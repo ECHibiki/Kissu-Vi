@@ -58,7 +58,7 @@
 	$config['additional_javascript'][] = 'js/quick-post-controls.js';
 	$config['additional_javascript'][] = 'js/treeview.js';
 	$config['additional_javascript'][] = 'js/youtube.js';
-	
+		
 		//hack
 	$config['additional_javascript'][] = 'js/local-time.js';
 	
@@ -124,6 +124,8 @@
 	$config['stylesheets']['testorange'] = 'testorange.css';
 	$config['stylesheets']['v8ch'] = 'v8ch.css';
 	$config['stylesheets']['wasabi'] = 'wasabi.css';
+	
+	$config['default_stylesheet'] = array('dark', $config['stylesheets']['dark']);
 	
 	$config['flood_time'] = 10;
 	$config['flood_time_ip'] = 120;

@@ -45,7 +45,9 @@ $(function(){
   });
 
 
-  $("#style-select").clone().css({float:"none","margin-bottom":0}).appendTo(tab.content);
+  //adapted to have both in options and bellow page
+  var copy_style = $("#style-select").clone(true);
+  copy_style.css({float:"none","margin-bottom":0}).appendTo(tab.content);  
 });
 
 }();
