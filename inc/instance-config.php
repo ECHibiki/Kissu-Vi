@@ -15,8 +15,6 @@
 	// $config['thumb_method'] = 'gm+gifsicle';
 	// $config['gnu_md5'] = '1';
 	
-	require("secrets.php"); // contains above config files
-	
 	$config['timezone'] = 'America/New_York';
 	
 	$config['allowed_ext_files'][] = 'webm';
@@ -30,6 +28,8 @@
 	$config['allow_upload_by_url'] = true;
 	
 	$config['flood_board_active'] = true;
+	$config['flood_recaptcha'] = true;
+	$config['flood_captchouli'] = true;
 
 	// $config['file_script'] = 'main.js';
 	$config['additional_javascript'][] = 'js/jquery.min.js';
@@ -76,7 +76,7 @@
 	$config['boards'] = array(
 		array('home' => '/'),
 		array('b','qa'),
-		array('verniy' => 'https://github.com/ECHibiki/ViQa-Kissu/')
+		array('ViQa' => 'https://github.com/ECHibiki/ViQa-Kissu/')
 	);
 	
 	$config['capcode'] = ' <span class="capcode">## %s</span>';
@@ -125,8 +125,6 @@
 	$config['stylesheets']['v8ch'] = 'v8ch.css';
 	$config['stylesheets']['wasabi'] = 'wasabi.css';
 	
-	$config['cookies']['mod'] = 'mod';
-	$config['cookies']['salt'] = 'OSSL.4nVghVWXBA4pJq9EbC11kViYMrcZ0Zj4SNr4Dq6CjDXtw5d5q1k7q8EnwGWLJpHql8OKrjO2iPlTC2w4UazFJnZMeKg9gLpfndVWkwNPLROMnxwD/ZCmC7i3NnBDwH0R6P9/P43PJUP8RINiDlSa0bYtHNnbLYpwE6gvm0659So=';
 	$config['flood_time'] = 10;
 	$config['flood_time_ip'] = 120;
 	$config['flood_time_same'] = 30;
@@ -142,6 +140,10 @@
 	$config['max_pages'] = 10;
 	$config['threads_preview'] = 5;
 	$config['root'] = '/';
+
+//real values hidden in secrets.php
+	$config['cookies']['mod'] = 'mod';
+	$config['cookies']['salt'] = 'OSSL.4nVghVWXBA4pJq9EbC11kViYMrcZ0Zj4SNr4Dq6CjDXtw5d5q1k7q8EnwGWLJpHql8OKrjO2iPlTC2w4UazFJnZMeKg9gLpfndVWkwNPLROMnxwD/ZCmC7i3NnBDwH0R6P9/P43PJUP8RINiDlSa0bYtHNnbLYpwE6gvm0659So=';
 	$config['secure_trip_salt'] = 'OSSL.xW22/q5Meo8MXBOlhBlvw+UlBpFt0sRuoBLynIw2MOsQ19zgb8adpAcRGBdz8vlVpOOq0s5AVe51rZ73mA1lIBcJAvKtjR3LlYrOkoEJIyruQA/AVen9tyIg4GREGyXKe9t1KqPSZQY1+UwFjAldvpQRwe/GbTCkEqB74KqofmU=';
 
 // Changes made via web editor by "verniy" @ Sun, 02 Dec 2018 15:34:22 -0800:
@@ -162,6 +164,8 @@ $config['dns_system'] = false;
 $config['proxy_save'] = true;
 // Changes made via web editor by "verniy" @ Wed, 05 Dec 2018 20:23:06 -0500:
 $config['recaptcha'] = true;
+
+//real values hidden in secrets.php
 $config['recaptcha_public'] = '6LcbFH8UAAAAAA_8qhW2AwsOebJl3oZEXKdZR290';
 $config['recaptcha_private'] = '6LcbFH8UAAAAAKg0Z9OqZkxl-0lbVuugkJeGmGn7';
 $config['new_thread_capt'] = true;
@@ -170,3 +174,8 @@ $config['new_thread_capt'] = true;
 // Changes made via web editor by "verniy" @ Wed, 05 Dec 2018 21:00:38 -0500:
 $config['new_thread_capt'] = false;
 
+
+// Changes made via web editor by "verniy" @ Thu, 06 Dec 2018 15:52:27 -0500:
+$config['recaptcha'] = false;
+
+require("secrets.php"); // contains confidential files

@@ -300,7 +300,11 @@
 
 	// Enable reCaptcha to make spam even harder. Rarely necessary.
 	$config['recaptcha'] = false;
-
+	
+	//captcha flood bypass
+	$config['flood_recaptcha'] = false;
+	$config['flood_captchouli'] = false;
+	
 	// Public and private key pair from https://www.google.com/recaptcha/admin/create
 	$config['recaptcha_public'] = '6LcXTcUSAAAAAKBxyFWIt2SO8jwx4W7wcSMRoN3f';
 	$config['recaptcha_private'] = '6LcXTcUSAAAAAOGVbVdhmEM1_SyRF4xTKe8jbzf_';
@@ -354,12 +358,15 @@
 	// Minimum time between between each post by the same IP address.
 	$config['flood_time'] = 10;
 	// Minimum time between between each post with the exact same content AND same IP address.
-	$config['flood_time_ip'] = 60;
+	$config['flood_time_ip'] = 80;
 	// Same as above but by a different IP address. (Same content, not necessarily same IP address.)
 	$config['flood_time_same'] = 120;
 	// Minimum time between each post on the board
 	$config['flood_board_active'] = false;
 	$config['flood_board_time'] = 60;
+	
+	// Time until posts held for captcha verification expire
+	$config['captcha_flood_hold_time'] = 121;
 	
 	// Decide the result of a flood detection
 	// possible: 'reject', 'ban' or 'captcha'
@@ -373,7 +380,7 @@
 			'flood-match' => array('ip'), // Only match IP address
 			'flood-time' => &$config['flood_time']
 		),
-		'action' => $config['flood_reject'],
+		'action' => $config['flood_captcha'],
 		'message' => &$config['error']['flood']['ip']
 	);
 
@@ -384,7 +391,7 @@
 			'flood-time' => &$config['flood_time_ip'],
 			'!body' => '/^$/', // Post body is NOT empty
 		),
-		'action' => $config['flood_reject'],
+		'action' => $config['flood_captcha'],
 		'message' => &$config['error']['flood']['repeat']
 	);
 
@@ -394,7 +401,7 @@
 			'flood-match' => array('body'), // Match only post body
 			'flood-time' => &$config['flood_time_same']
 		),
-		'action' => $config['flood_reject'],
+		'action' => $config['flood_captcha'],
 		'message' => &$config['error']['flood']['repeat']
 	);
 	
