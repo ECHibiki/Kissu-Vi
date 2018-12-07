@@ -4,7 +4,7 @@ ViQa-Kissu - An expanded lightweight and full featured PHP imageboard.
 About
 ------------
 ViQa-Kissu is an expansion on top of the free light-weight, fast, highly configurable and user-friendly
-imageboard software package, ViChan. ViQa is written in PHP and has few dependencies. It aims to expand upon the current structure of ViChan to provide expanded functionality.
+imageboard software package, ViChan. ViQa is written in PHP and has few dependencies. It aims to expand upon the current structure of ViChan to provide expanded functionality with a focus on more democratic and powerful system of moderation to beat spam while staying liked by your users.
 
 On December 2018, ECHibiki started this repo to expose the source of /qa/'s Kissu.moe
 
