@@ -358,6 +358,7 @@ elseif (isset($_POST['post']) || $dropped_post) {
 
 	$post = array('board' => $_POST['board'], 'files' => array());
 
+	
 	// Check if board exists
 	if (!openBoard($post['board']))
 		error($config['error']['noboard']);
@@ -1234,22 +1235,57 @@ elseif(isset($_POST['release'])){
 	//reference
 	//board
 	//release
+	
+	//how's the captcha...
+	if($config['flood_recaptcha']){
+		//https://stackoverflow.com/questions/5647461/how-do-i-send-a-post-request-with-php
+		$url = 'https://www.google.com/recaptcha/api/siteverify?secret=' . $config['recaptcha_private'] . '&response=' . $_POST['recaptcha'] . '&remoteip=' . $_SERVER['HTTP_REFERER'];
+		$data = array(
+			'secret' => $config['recaptcha_private'],
+			'response ' => $_POST['recaptcha'],
+			'remoteip' => $_SERVER['HTTP_REFERER']	
+		);
+		$options = array('http'=>array(
+			'header'  => "Content-type: application/x-www-form-urlencoded\r\n",
+			'method'  => 'POST'
+		));
+		$context = stream_context_create($options);
+		$result= file_get_contents($url);
+		if($result === false){
+			error('Bad URL');
+		}
+		else{
+			$result = json_decode($result, true);
+			if(isset($result['success'])){
+				if($result['success']){	}
+				else if(isset($result['error-codes'])){
+					error('Bad captcha: ' . implode(', ', $result['error-codes']));
+				}
+			}
+			else{
+				error('Captcha API error');
+			}
+		}
+	}
+	else{
+		
+	}
+	
 	global $board;
 	$reference = $_POST['reference'];
 	$query = prepare("SELECT * FROM `withheld` WHERE `reference`='$reference'") or error(db_error());
-	$query->execute();
-	
+	$query->execute();	
 	$post = $query->fetchAll()[0];
+	$query = prepare("DELETE FROM `withheld` WHERE `reference`='$reference'") or error(db_error());
+	$query->execute();
 	
 	if(sizeof($post) == 0){
 		error("Captcha expired");
 	}
 	
-	$board['uri'] = $post['board'];
-	$board['dir'] = $post['board'] . "/";
-	$board['url'] = "/" .$post['board'] . "/";
-	$board['name'] = $post['board'];
 	$post['files'] = json_decode($post['files'], true);
+	
+	openBoard($post['board']);
 	
 	if($post['num_files'] > 0) $post['has_file'] = true;
 	else $post['has_file'] = false;
@@ -1262,9 +1298,6 @@ elseif(isset($_POST['release'])){
 		$noko = false;
 		$post['email'] = '';
 	} else $noko = $config['always_noko'];
-	
-	$query = prepare("DELETE FROM ``withheld`` WHERE `reference`=$reference") or error(db_error());
-	$query->execute();
 	
 	$post['op'] = true;
 	if(isset($post['thread'])){

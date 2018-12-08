@@ -169,12 +169,12 @@ class Filter {
 					break;
 				case 'captcha':
 					if($config['flood_recaptcha']){
-						$holding_id = hash('sha256', rand(0,1000) . time());
+						$holding_id = hash('sha256', rand(0,100) . time());
 						buildHoldingTable($this->post, $holding_id );
-						error(isset($this->message) ? $this->message .
+						captcha(isset($this->message) ? $this->message .
 							"<hr style='width:40%'/>
 							<form action='/post.php' method='post'><iframe style='height:423px;width:302px' src='https://www.google.com/recaptcha/api/fallback?k=" . $config['recaptcha_public'] . "'></iframe>
-							<textarea style='height:50px;width:302px' name='recaptcha'></textarea>
+							<textarea style='height:50px;width:302px' name='recaptcha' placeholder='Captcha goes here' required></textarea>
 							<input name='reference' type='hidden' value='".  $holding_id . "'>
 							<input name='release' type='hidden' value='submit'>
 							<input name='board' type='hidden' value='".  $this->post['board'] . "'><br/>
@@ -209,7 +209,7 @@ class Filter {
 }
 
 function buildHoldingTable($post, $holding_id){
-	global $config;
+	global $config, $board;
 	
 	$post['reference'] = $holding_id;
 	$post['num_files'] = sizeof($post['files']);
@@ -373,7 +373,7 @@ function buildHoldingTable($post, $holding_id){
 			}
 		}
 		
-		if (!isset($dont_copy_file) || !$dont_copy_file) {
+		if (!isset($dont_copy_file) || !$dont_copy_file) {	
 			if (isset($file['file_tmp'])) {
 				if (!@rename($file['tmp_name'], $file['file']))
 					error($config['error']['nomove']);
@@ -409,11 +409,11 @@ function buildHoldingTable($post, $holding_id){
 						))
 				));
 			}
+		}	
 		}
-		}
 	
 	
-	
+
 	withhold($post);
 		
 	$time = time() - $config['captcha_flood_hold_time'];

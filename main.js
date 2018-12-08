@@ -70,8 +70,8 @@ var datelocale =
         };
 
 
-function alert(a, do_confirm, confirm_ok_action, confirm_cancel_action) {
-      var handler, div, bg, closebtn, okbtn;
+function alert(a, do_confirm, confirm_ok_action, confirm_cancel_action, no_ok) {
+            var handler, div, bg, closebtn, okbtn;
       var close = function() {
               handler.fadeOut(400, function() { handler.remove(); });
               return false;
@@ -87,8 +87,9 @@ function alert(a, do_confirm, confirm_ok_action, confirm_cancel_action) {
 
       $("<div id='alert_message'></div>").html(a).appendTo(div);
 
-      okbtn = $("<button class='button alert_button'>"+_("OK")+"</button>").appendTo(div);
-
+	  if(!no_ok){
+		okbtn = $("<button class='button alert_button'>"+_("OK")+"</button>").appendTo(div);
+	  }
       if (do_confirm) {
               confirm_ok_action = (typeof confirm_ok_action !== "function") ? function(){} : confirm_ok_action;
               confirm_cancel_action = (typeof confirm_cancel_action !== "function") ? function(){} : confirm_cancel_action;
@@ -100,7 +101,9 @@ function alert(a, do_confirm, confirm_ok_action, confirm_cancel_action) {
       }
 
       bg.click(close);
-      okbtn.click(close);
+	  if(!no_ok){
+		okbtn.click(close);
+	  }
       closebtn.click(close);
 
       handler.fadeIn(400);
@@ -549,7 +552,12 @@ $(window).ready(function() {
 									.replaceWith($('<input type="button">').val(submit_txt));
 							});
 							$(form).submit();
-						} else {
+						} else if(post_response.captcha) {
+							alert(post_response.error, null, null, null, true);
+							$(form).find('input[type="submit"]').val(submit_txt);
+							$(form).find('input[type="submit"]').removeAttr('disabled');
+						}
+						else{
 							alert(post_response.error);
 							$(form).find('input[type="submit"]').val(submit_txt);
 							$(form).find('input[type="submit"]').removeAttr('disabled');

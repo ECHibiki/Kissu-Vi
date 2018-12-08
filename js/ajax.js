@@ -69,7 +69,12 @@ $(window).ready(function() {
 									.replaceWith($('<input type="button">').val(submit_txt));
 							});
 							$(form).submit();
-						} else {
+						} else if(post_response.captcha) {
+							alert(post_response.error, null, null, null, true);
+							$(form).find('input[type="submit"]').val(submit_txt);
+							$(form).find('input[type="submit"]').removeAttr('disabled');
+						}
+						else{
 							alert(post_response.error);
 							$(form).find('input[type="submit"]').val(submit_txt);
 							$(form).find('input[type="submit"]').removeAttr('disabled');
