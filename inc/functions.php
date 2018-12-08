@@ -1213,7 +1213,6 @@ function post(array $post) {
 	else {
 		$query->bindValue(':slug', NULL);
 	}
-
 	if (!$query->execute()) {
 		undoImage($post);
 		error(db_error($query));

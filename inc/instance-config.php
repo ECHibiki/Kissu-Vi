@@ -41,7 +41,7 @@
 	$config['additional_javascript'][] = 'js/style-select.js';
 	$config['additional_javascript'][] = 'js/options/general.js';
 	$config['additional_javascript'][] = 'js/options/user-css.js';
-	$config['additional_javascript'][] = 'js/options/user-js.js';
+	$config['additional_javascript'][] = 'js/options/user-js.js'; 	//contribute to the site instead...
 	$config['additional_javascript'][] = 'js/webm-settings.js';
 	
 	$config['additional_javascript'][] = 'js/ajax-post-controls.js';
@@ -76,6 +76,7 @@
 	$config['boards'] = array(
 		array('home' => '/'),
 		array('b','qa'),
+		array('xmas'),
 		array('ViQa' => 'https://github.com/ECHibiki/ViQa-Kissu/')
 	);
 	
@@ -164,13 +165,10 @@ $config['syslog'] = false;
 // Changes made via web editor by "verniy" @ Sun, 02 Dec 2018 15:51:53 -0800:
 $config['dns_system'] = false;
 $config['proxy_save'] = true;
-// Changes made via web editor by "verniy" @ Wed, 05 Dec 2018 20:23:06 -0500:
-$config['recaptcha'] = true;
 
 //real values hidden in secrets.php
 $config['recaptcha_public'] = '6LcbFH8UAAAAAA_8qhW2AwsOebJl3oZEXKdZR290';
 $config['recaptcha_private'] = '6LcbFH8UAAAAAKg0Z9OqZkxl-0lbVuugkJeGmGn7';
-$config['new_thread_capt'] = true;
 
 
 // Changes made via web editor by "verniy" @ Wed, 05 Dec 2018 21:00:38 -0500:

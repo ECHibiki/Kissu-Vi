@@ -901,12 +901,7 @@ $(function(){
 
   //adapted to have both in options and bellow page
   var copy_style = $("#style-select").clone(true);
-  copy_style.css({float:"none","margin-bottom":0}).appendTo(tab.content);
-  // copy_style.change(function() {
-	  // console.log($(this).val())
-    // $('#style-select-' + $(this).val()).click();
-  // });
-  
+  copy_style.css({float:"none","margin-bottom":0}).appendTo(tab.content);  
 });
 
 }();

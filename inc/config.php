@@ -300,6 +300,8 @@
 
 	// Enable reCaptcha to make spam even harder. Rarely necessary.
 	$config['recaptcha'] = false;
+	// - currently not set up - Enable captchouli to make spam even harder.
+	$config['captchouli'] = false;
 	
 	//captcha flood bypass
 	$config['flood_recaptcha'] = false;

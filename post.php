@@ -382,7 +382,6 @@ elseif (isset($_POST['post']) || $dropped_post) {
 
 
 	if (!$dropped_post) {
-
 		// Check if banned
 		checkBan($board['uri']);
 
@@ -847,10 +846,10 @@ elseif (isset($_POST['post']) || $dropped_post) {
 	//Check if passes filter 
 	if (!hasPermission($config['mod']['bypass_filters'], $board['uri']) && !$dropped_post) {
 		require_once 'inc/filters.php';
-
+		// Captcha flood Bypass done in here
 		do_filters($post);
 	}
-
+//conditional copied into filters.php => withhold
 	if ($post['has_file']) {
 		foreach ($post['files'] as $key => &$file) {
 		if ($file['is_an_image']) {
@@ -1192,7 +1191,7 @@ elseif (isset($_POST['post']) || $dropped_post) {
 		$redirect = $root . $board['dir'] . $config['file_index'];
 		
 	}
-
+	
 	buildThread($post['op'] ? $id : $post['thread']);
 	
 	if ($config['syslog'])
@@ -1219,10 +1218,229 @@ elseif (isset($_POST['post']) || $dropped_post) {
 		clean($id);
 	
 	event('post-after', $post);
+	buildIndex();
+	
+	// We are already done, let's continue our heavy-lifting work in the background (if we run off FastCGI)
+	if (function_exists('fastcgi_finish_request'))
+		@fastcgi_finish_request();
+
+	if ($post['op'])
+		rebuildThemes('post-thread', $board['uri']);
+	else
+		rebuildThemes('post', $board['uri']);	
+
+}
+elseif(isset($_POST['release'])){
+	//reference
+	//board
+	//release
+	global $board;
+	$reference = $_POST['reference'];
+	$query = prepare("SELECT * FROM `withheld` WHERE `reference`='$reference'") or error(db_error());
+	$query->execute();
+	
+	$post = $query->fetchAll()[0];
+	
+	if(sizeof($post) == 0){
+		error("Captcha expired");
+	}
+	
+	$board['uri'] = $post['board'];
+	$board['dir'] = $post['board'] . "/";
+	$board['url'] = "/" .$post['board'] . "/";
+	$board['name'] = $post['board'];
+	$post['files'] = json_decode($post['files'], true);
+	
+	if($post['num_files'] > 0) $post['has_file'] = true;
+	else $post['has_file'] = false;
+	
+		$noko = false;
+	if (strtolower($post['email']) == 'noko') {
+		$noko = true;
+		$post['email'] = '';
+	} elseif (strtolower($post['email']) == 'nonoko'){
+		$noko = false;
+		$post['email'] = '';
+	} else $noko = $config['always_noko'];
+	
+	$query = prepare("DELETE FROM ``withheld`` WHERE `reference`=$reference") or error(db_error());
+	$query->execute();
+	
+	$post['op'] = true;
+	if(isset($post['thread'])){
+		$post['op'] = false;
+	}
+	$thread['sage'] = $post['sage'];
+	$thread['cycle'] = $post['cycle'];
+	if (!$post['op']) {
+		$numposts = numPosts($post['thread']);
+	}
+    $post['mod'] = isset($_POST['mod']);
+	if (!$post['mod']) {
+		// $post['antispam_hash'] = checkSpam(array($board['uri'], isset($post['thread']) ? $post['thread'] : ($config['try_smarter'] && isset($_POST['page']) ? 0 - (int)$_POST['page'] : null)));
+		// if ($post['antispam_hash'] === true)
+			// error($config['error']['spam']);
+	}
+		
+		// Remove board directories before inserting them into the database.
+	if ($post['has_file']) {
+		foreach ($post['files'] as $key => &$file) {
+			$file['file_path'] = $file['file'];
+			$file['thumb_path'] = $file['thumb'];
+			$file['file'] = mb_substr($file['file'], mb_strlen($board['dir'] . $config['dir']['img']));
+			if ($file['is_an_image'] && $file['thumb'] != 'spoiler')
+				$file['thumb'] = mb_substr($file['thumb'], mb_strlen($board['dir'] . $config['dir']['thumb']));
+		}
+	}
+		
+	if (!hasPermission($config['mod']['postunoriginal'], $board['uri']) && $config['robot_enable'] && checkRobot($post['body_nomarkup']) && !$dropped_post) {
+		undoImage($post);
+		if ($config['robot_mute']) {
+			error(sprintf($config['error']['muted'], mute()));
+		} else {
+			error($config['error']['unoriginal']);
+		}
+	}
+
+	$post['id'] = $id = post($post);
+
+	$post['slug'] = slugify($post);
+	
+	if ($dropped_post && $dropped_post['from_nntp']) {
+	        $query = prepare("INSERT INTO ``nntp_references`` (`board`, `id`, `message_id`, `message_id_digest`, `own`, `headers`) VALUES ".
+	                                                         "(:board , :id , :message_id , :message_id_digest , false, :headers)");
+
+		$query->bindValue(':board', $dropped_post['board']);
+		$query->bindValue(':id', $id);
+		$query->bindValue(':message_id', $dropped_post['msgid']);
+		$query->bindValue(':message_id_digest', sha1($dropped_post['msgid']));
+		$query->bindValue(':headers', $dropped_post['headers']);
+		$query->execute() or error(db_error($query));
+	}	// ^^^^^ For inbound posts  ^^^^^
+	elseif ($config['nntpchan']['enabled'] && $config['nntpchan']['group']) {
+		// vvvvv For outbound posts vvvvv
+
+		require_once('inc/nntpchan/nntpchan.php');
+		$msgid = gen_msgid($post['board'], $post['id']);
+
+		list($headers, $files) = post2nntp($post, $msgid);
+
+		$message = gen_nntp($headers, $files);
+
+	        $query = prepare("INSERT INTO ``nntp_references`` (`board`, `id`, `message_id`, `message_id_digest`, `own`, `headers`) VALUES ".
+	                                                         "(:board , :id , :message_id , :message_id_digest , true , :headers)");
+
+		$query->bindValue(':board', $post['board']);
+                $query->bindValue(':id', $post['id']);
+                $query->bindValue(':message_id', $msgid);
+                $query->bindValue(':message_id_digest', sha1($msgid));
+                $query->bindValue(':headers', json_encode($headers));
+                $query->execute() or error(db_error($query));
+
+		// Let's broadcast it!
+		nntp_publish($message, $msgid);
+	}
+
+	insertFloodPost($post);
+
+	// Handle cyclical threads
+	if (!$post['op'] && isset($thread['cycle']) && $thread['cycle']) {
+		// Query is a bit weird due to "This version of MariaDB doesn't yet support 'LIMIT & IN/ALL/ANY/SOME subquery'" (MariaDB Ver 15.1 Distrib 10.0.17-MariaDB, for Linux (x86_64))
+		$query = prepare(sprintf('DELETE FROM ``posts_%s`` WHERE `thread` = :thread AND `id` NOT IN (SELECT `id` FROM (SELECT `id` FROM ``posts_%s`` WHERE `thread` = :thread ORDER BY `id` DESC LIMIT :limit) i)', $board['uri'], $board['uri']));
+		$query->bindValue(':thread', $post['thread']);
+		$query->bindValue(':limit', $config['cycle_limit'], PDO::PARAM_INT);
+		$query->execute() or error(db_error($query));
+	}
+	
+	if (isset($post['antispam_hash'])) {
+		incrementSpamHash($post['antispam_hash']);
+	}
+	
+	if (isset($post['tracked_cites']) && !empty($post['tracked_cites'])) {
+		$insert_rows = array();
+		foreach ($post['tracked_cites'] as $cite) {
+			$insert_rows[] = '(' .
+				$pdo->quote($board['uri']) . ', ' . (int)$id . ', ' .
+				$pdo->quote($cite[0]) . ', ' . (int)$cite[1] . ')';
+		}
+		query('INSERT INTO ``cites`` VALUES ' . implode(', ', $insert_rows)) or error(db_error());
+	}
+	
+	if (!$post['op'] && strtolower($post['email']) != 'sage' && !$thread['sage'] && ($config['reply_limit'] == 0 || $numposts['replies']+1 < $config['reply_limit'])) {
+		bumpThread($post['thread']);
+	}
+	
+		print_r($post['files']);
+
+	
+	if (isset($_SERVER['HTTP_REFERER'])) {
+		// Tell Javascript that we posted successfully
+		if (isset($_COOKIE[$config['cookies']['js']]))
+			$js = json_decode($_COOKIE[$config['cookies']['js']]);
+		else
+			$js = (object) array();
+		// Tell it to delete the cached post for referer
+		$js->{$_SERVER['HTTP_REFERER']} = true;
+		// Encode and set cookie
+		setcookie($config['cookies']['js'], json_encode($js), 0, $config['cookies']['jail'] ? $config['cookies']['path'] : '/', null, false, false);
+	}
+	
+	$root = $post['mod'] ? $config['root'] . $config['file_mod'] . '?/' : $config['root'];
+	
+	if ($noko) {
+		$redirect = $root . $board['dir'] . $config['dir']['res'] .
+			link_for($post, false, false, $thread) . (!$post['op'] ? '#' . $id : '');
+
+		if (!$post['op'] && isset($_SERVER['HTTP_REFERER'])) {
+			$regex = array(
+				'board' => str_replace('%s', '(\w{1,8})', preg_quote($config['board_path'], '/')),
+				'page' => str_replace('%d', '(\d+)', preg_quote($config['file_page'], '/')),
+				'page50' => '(' . str_replace('%d', '(\d+)', preg_quote($config['file_page50'], '/')) . '|' .
+						  str_replace(array('%d', '%s'), array('(\d+)', '[a-z0-9-]+'), preg_quote($config['file_page50_slug'], '/')) . ')',
+				'res' => preg_quote($config['dir']['res'], '/'),
+			);
+
+			if (preg_match('/\/' . $regex['board'] . $regex['res'] . $regex['page50'] . '([?&].*)?$/', $_SERVER['HTTP_REFERER'])) {
+				$redirect = $root . $board['dir'] . $config['dir']['res'] .
+					link_for($post, true, false, $thread) . (!$post['op'] ? '#' . $id : '');
+			}
+		}
+	} else {
+		$redirect = $root . $board['dir'] . $config['file_index'];
+		
+	}
+			   	
+	buildThread($post['op'] ? $id : $post['thread']);
+
+	if ($config['syslog'])
+		_syslog(LOG_INFO, 'New post: /' . $board['dir'] . $config['dir']['res'] .
+			link_for($post) . (!$post['op'] ? '#' . $id : ''));
+	
+	if (!$post['mod']) header('X-Associated-Content: "' . $redirect . '"');
+
+	if (!isset($_POST['json_response'])) {
+		header('Location: ' . $redirect, true, $config['redirect_http']);
+	} else {
+		header('Content-Type: text/json; charset=utf-8');
+		echo json_encode(array(
+			'redirect' => $redirect,
+			'noko' => $noko,
+			'id' => $id
+		));
+	}
+	
+	if ($config['try_smarter'] && $post['op'])
+		$build_pages = range(1, $config['max_pages']);
+	
+	if ($post['op'])
+		clean($id);
+	
+	event('post-after', $post);
+
 	
 	buildIndex();
 
-	// We are already done, let's continue our heavy-lifting work in the background (if we run off FastCGI)
+	// // We are already done, let's continue our heavy-lifting work in the background (if we run off FastCGI)
 	if (function_exists('fastcgi_finish_request'))
 		@fastcgi_finish_request();
 

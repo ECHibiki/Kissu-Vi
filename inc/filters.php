@@ -173,11 +173,13 @@ class Filter {
 						buildHoldingTable($this->post, $holding_id );
 						error(isset($this->message) ? $this->message .
 							"<hr style='width:40%'/>
-							<form><iframe style='height:423px;width:302px' src='https://www.google.com/recaptcha/api/fallback?k=" . $config['recaptcha_public'] . "'></iframe>
+							<form action='/post.php' method='post'><iframe style='height:423px;width:302px' src='https://www.google.com/recaptcha/api/fallback?k=" . $config['recaptcha_public'] . "'></iframe>
 							<textarea style='height:50px;width:302px' name='recaptcha'></textarea>
 							<input name='reference' type='hidden' value='".  $holding_id . "'>
-							<input name='board' type='hidden' value='".  $this->post['board'] . "'>
-							<br/>
+							<input name='release' type='hidden' value='submit'>
+							<input name='board' type='hidden' value='".  $this->post['board'] . "'><br/>
+							<input type='submit'>
+							<br/><hr/>
 							</form>" : 'Captcha Required.');
 					}
 					else{
