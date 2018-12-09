@@ -79,8 +79,7 @@
 		array('home' => '/'),
 		array('b','qa'),
 		array('xmas'),
-		array('f'=>'http://swfchan.org/', 'qa4' => 'https://boards.4channel.org/qa/'),
-		array('ViQa' => 'https://github.com/ECHibiki/ViQa-Kissu/')
+		array('f'=>'http://swfchan.org/', 'qa4' => 'https://boards.4channel.org/qa/', 'ViQa' => 'https://github.com/ECHibiki/ViQa-Kissu/')
 	);
 	
 	$config['capcode'] = ' <span class="capcode">## %s</span>';
