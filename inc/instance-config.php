@@ -30,6 +30,8 @@
 	$config['flood_board_active'] = true;
 	$config['flood_recaptcha'] = true;
 	$config['flood_captchouli'] = true;
+	
+	$config['markup'][] = array("/^[ |\t]*\[spoiler\](.+?)\[\/spoiler\][ |\t]*$/m", "<span class=\"spoiler\">\$1</span>");
 
 	// $config['file_script'] = 'main.js';
 	$config['additional_javascript'][] = 'js/jquery.min.js';
@@ -77,6 +79,7 @@
 		array('home' => '/'),
 		array('b','qa'),
 		array('xmas'),
+		array('f'=>'http://swfchan.org/', 'qa4' => 'https://boards.4channel.org/qa/'),
 		array('ViQa' => 'https://github.com/ECHibiki/ViQa-Kissu/')
 	);
 	

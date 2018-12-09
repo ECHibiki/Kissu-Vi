@@ -851,6 +851,7 @@ elseif (isset($_POST['post']) || $dropped_post) {
 		do_filters($post);
 	}
 //conditional copied into filters.php => withhold
+//file posting method doesn't handle URL redirects
 	if ($post['has_file']) {
 		foreach ($post['files'] as $key => &$file) {
 		if ($file['is_an_image']) {

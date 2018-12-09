@@ -22,8 +22,7 @@ Support and announcements: https://engine.vichan.net/
 
 Requirements
 ------------
-1.	PHP >= 5.4 (we still try to keep compatibility with php 5.3 as much as possible)
-        PHP 7.0 is explicitly supported. PHP 7.2 works as well, but may cause as yet unreported bugs.
+1.	PHP >= PHP 7.2.
 2.	MySQL/MariaDB server
 3.	[mbstring](http://www.php.net/manual/en/mbstring.installation.php) 
 4.	[PHP GD](http://www.php.net/manual/en/intro.image.php)
