@@ -357,7 +357,10 @@ elseif (isset($_POST['post']) || $dropped_post) {
 		error($config['error']['bot']);
 
 	$post = array('board' => $_POST['board'], 'files' => array());
-
+	
+	if(isset($_POST['captype'])){
+		$post['captype'] = $_POST['captype'];
+	}
 	
 	// Check if board exists
 	if (!openBoard($post['board']))
