@@ -272,6 +272,7 @@
 
 	// Always update this when adding new valid fields to the post form, or EVERYTHING WILL BE DETECTED AS SPAM!
 	$config['spam']['valid_inputs'] = array(
+		'captype',
 		'hash',
 		'board',
 		'thread',

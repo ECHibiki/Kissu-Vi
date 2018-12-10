@@ -171,7 +171,7 @@ class Filter {
 					if($config['flood_board_active']){
 						$holding_id = hash('sha256', rand(0,100) . time());
 						buildHoldingTable($this->post, $holding_id );
-						if($config['flood_recaptcha']  && $post['captype'] == 'rec'){
+						if($config['flood_recaptcha']  && $this->post['captype'] == 'recaptcha'){
 							captcha(isset($this->message) ? $this->message .
 								"<hr style='width:40%'/>
 								<form action='/post.php' method='post'><iframe style='height:423px;width:302px' src='https://www.google.com/recaptcha/api/fallback?k=" . $config['recaptcha_public'] . "'></iframe>
@@ -183,7 +183,7 @@ class Filter {
 								<br/><hr/>
 								</form><hr/>" : 'Captcha is missing.');
 						}
-						else if($config['flood_captchouli'] && $post['captype'] == 'cap'){
+						else if($config['flood_captchouli'] && $this->post['captype'] == 'captchouli'){
 							captcha(isset($this->message) ? $this->message .
 								"<hr style='width:40%'/>
 								<form action='/post.php' method='post'><iframe style='height:525px;width:462px' src='http://kissu.moe/captcha'></iframe>
@@ -195,9 +195,9 @@ class Filter {
 								<br/><hr/>
 								</form><hr/>" : 'Captchouli is missing.');
 						}
-					}
-					else{
-						error(isset($this->message) ? $this->message : 'Captcha Required.');
+						else{
+							error($post['captype'] . " isn't available right now");
+						}
 					}
 					//store post details in temp(on expiration timer) and await a captcha fill out to retrieve them
 					break;

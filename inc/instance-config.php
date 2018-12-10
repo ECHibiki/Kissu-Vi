@@ -42,7 +42,7 @@
 	
 	$config['flood_board_active'] = true;
 	$config['flood_recaptcha'] = true;
-	$config['flood_captchouli'] = false;
+	$config['flood_captchouli'] = true;
 	
 	$config['markup'][] = array("/^[ |\t]*\[spoiler\](.+?)\[\/spoiler\][ |\t]*$/m", "<span class=\"spoiler\">\$1</span>");
 
@@ -245,4 +245,20 @@ $config['global_message'] = 'Try out the ne nightmare captcha(now with less nigh
 
 // Changes made via web editor by "verniy" @ Sun, 09 Dec 2018 16:15:02 -0500:
 $config['global_message'] = 'Try out the new nightmare captcha(now with less nightmares!): <a href="http://kissu.moe/captcha">http://kissu.moe/captcha</a><br/><a href="http://kissu.moe/b/res/198.html">http://kissu.moe/b/res/198.html</a>';
+
+
+// Changes made via web editor by "verniy" @ Sun, 09 Dec 2018 19:56:39 -0500:
+$config['global_message'] = 'New captcha is building';
+
+
+// Changes made via web editor by "verniy" @ Mon, 10 Dec 2018 03:56:03 -0500:
+$config['global_message'] = 'qr box moves and you can like set the captcha';
+
+
+// Changes made via web editor by "verniy" @ Mon, 10 Dec 2018 03:56:07 -0500:
+$config['global_message'] = 'New captcha is building';
+
+
+// Changes made via web editor by "verniy" @ Mon, 10 Dec 2018 03:56:18 -0500:
+$config['global_message'] = 'qr box moves and you can like set the captcha';
 
