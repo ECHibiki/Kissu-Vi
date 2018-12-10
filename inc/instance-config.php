@@ -49,6 +49,8 @@
 	// $config['file_script'] = 'main.js';
 	$config['additional_javascript'][] = 'js/jquery.min.js';
 	$config['additional_javascript'][] = 'js/jquery.mixitup.min.js';
+	$config['additional_javascript'][] = 'js/jquery-ui.custom.min.js';
+	
 	$config['additional_javascript'][] = 'js/strftime.min.js';	
 	$config['additional_javascript'][] = 'js/ajax.js';
 	$config['additional_javascript'][] = 'js/settings.js';

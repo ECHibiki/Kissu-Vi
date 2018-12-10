@@ -220,17 +220,24 @@
 						$file = $td.find('input[name="file"]');
 						$file.attr("style","width:90%");
 					}
+					
+					//captcha stuff
+					var $captcha_span = $td.find('span[name="captchasel"]');
+					var $caprow = $('<tr><td colspan="2"></td></tr>');
+					$captcha_span.clone().appendTo($caprow.find('td'));
+					$caprow.insertBefore(this);
+					
 					if ($td.find('input[name="file_url"]').length) {
 						$file_url = $td.find('input[name="file_url"]');
 						
-						if (settings.get('show_remote', false)) {
+						//if (settings.get('show_remote', false)) {
 							// Make a new row for it
 							var $newRow = $('<tr><td colspan="2"></td></tr>');
 						
 							$file_url.clone().attr('placeholder', _('Upload URL')).appendTo($newRow.find('td'));
 						
-							$newRow.insertBefore(this);
-						}
+							$newRow.insertAfter(this);
+						//}
 						$file_url.parent().remove();
 
 						
@@ -245,11 +252,17 @@
 						$td.removeAttr('colspan');
 					}
 				}
-
-				// Disable embedding if configured so
-				if (!settings.get('show_embed', false) && $td.find('input[name="embed"]').length) {
-					$(this).remove();
+				
+								
+				//captcha controlls
+				if($td.find('input[name=captype]').length > 0){
+					
 				}
+				
+				// Disable embedding if configured so
+				// if (!settings.get('show_embed', false) && $td.find('input[name="embed"]').length) {
+					// $(this).remove();
+				// }
 
 				// Remove oekaki if existent
 				if ($(this).is('#oekaki')) {
@@ -392,6 +405,7 @@
 		if ($(this).width() <= 400)
 			return;
 		show_quick_reply();
+		captchaSetup();
 		if (with_link) {
 			$(document).ready(function() {
 				if ($('#' + id).length) {

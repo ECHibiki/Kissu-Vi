@@ -1,3 +1,11 @@
+/* http://kissu.moe/b/res/198.html#q290 */
+.reply .post-image {
+max-width: 150px;
+max-height: 150px;
+width: auto !important;
+height: auto !important;
+}
+
 .box-wrap {
 	max-width: 670px;
 	min-width: 300px;

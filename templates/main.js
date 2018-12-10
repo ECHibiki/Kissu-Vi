@@ -308,6 +308,46 @@ function citeReply(id, with_link) {
 	return false;
 }
 
+function captchaSetup(){
+	$(".cap").click(function(e, handl){
+		if(localStorage.getItem("captcha") == "cap"){
+			return;
+		}
+		localStorage.setItem("captcha",  "cap");
+		$(".cap").each(function(index, el){
+			if(el != e.currentTarget){
+				el.click();
+			}	
+		});
+	});
+	$(".rec").click(function(e, handl){
+		if(localStorage.getItem("captcha") == "rec"){
+			return;
+		}
+		localStorage.setItem("captcha", "rec"); 
+		$(".rec").each(function(index, el){
+			if(el != e.currentTarget){
+				el.click();
+			}
+		});
+	});
+	
+	var captcha_val = localStorage.getItem("captcha");
+	console.log()
+	if(captcha_val == null || captcha_val == "cap"){
+		var cap = $(".cap");
+		for(var i = 0 ; i < cap.length ; i++){
+			cap[i].setAttribute("checked", true)
+		}
+	}
+	else{
+		var rec = $(".rec");
+		for(var i = 0 ; i < rec.length ; i++){
+			rec[i].setAttribute("checked", true)
+		}
+	}
+}
+
 function rememberStuff() {
 	if (document.forms.post) {
 		if (document.forms.post.password) {
@@ -372,6 +412,7 @@ function init() {
 	
 	if (window.location.hash.indexOf('q') != 1 && window.location.hash.substring(1))
 		highlightReply(window.location.hash.substring(1));
+	captchaSetup();
 }
 
 var RecaptchaOptions = {
