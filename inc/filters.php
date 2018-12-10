@@ -171,7 +171,9 @@ class Filter {
 					if($config['flood_board_active']){
 						$holding_id = hash('sha256', rand(0,100) . time());
 						buildHoldingTable($this->post, $holding_id );
+						
 						if($config['flood_recaptcha']  && $this->post['captype'] == 'recaptcha'){
+												
 							captcha(isset($this->message) ? $this->message .
 								"<hr style='width:40%'/>
 								<form action='/post.php' method='post'><iframe style='height:423px;width:302px' src='https://www.google.com/recaptcha/api/fallback?k=" . $config['recaptcha_public'] . "'></iframe>
@@ -196,7 +198,7 @@ class Filter {
 								</form><hr/>" : 'Captchouli is missing.');
 						}
 						else{
-							error($post['captype'] . " isn't available right now");
+							error($this->post['captype'] . " isn't available right now");
 						}
 					}
 					//store post details in temp(on expiration timer) and await a captcha fill out to retrieve them

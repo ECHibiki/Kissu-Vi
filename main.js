@@ -322,8 +322,6 @@ function captchaSetup(){
 		localStorage.setItem("captcha",  "cap");
 		$(".cap").each(function(index, el){
 			if(el != e.currentTarget){
-				console.log(el);
-				console.log(e.currentTarget);
 				el.click();
 			}	
 		});
@@ -335,8 +333,6 @@ function captchaSetup(){
 		localStorage.setItem("captcha", "rec"); 
 		$(".rec").each(function(index, el){
 			if(el != e.currentTarget){
-				console.log(el);
-				console.log(e.currentTarget);
 				el.click();
 			}
 		});
