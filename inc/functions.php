@@ -1370,9 +1370,9 @@ function deletePost($id, $error_if_doesnt_exist=true, $rebuild_after=true) {
 	$query->execute() or error(db_error($query));
 
 	// Delete filehash entries for thread from filehash table
-	$query = prepare(sprintf("DELETE FROM ``filehashes`` WHERE ( `thread` = :id OR `post` = :id ) AND `board` = '%s'", $board['uri']));
-	$query->bindValue(':id', $id, PDO::PARAM_INT);
-	$query->execute() or error(db_error($query));
+	// $query = prepare(sprintf("DELETE FROM ``filehashes`` WHERE ( `thread` = :id OR `post` = :id ) AND `board` = '%s'", $board['uri']));
+	// $query->bindValue(':id', $id, PDO::PARAM_INT);
+	// $query->execute() or error(db_error($query));
 
 	// Update bump order
 	if (isset($thread_id))
