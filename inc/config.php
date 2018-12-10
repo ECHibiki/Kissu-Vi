@@ -303,8 +303,8 @@
 	// - currently not set up - Enable captchouli to make spam even harder.
 	$config['captchouli'] = false;
 	
-	//captcha flood bypass
-	$config['flood_recaptcha'] = false;
+	//captcha flood bypass. //if both true defaults to recaptcha
+	$config['flood_recaptcha'] = false; 
 	$config['flood_captchouli'] = false;
 	
 	// Public and private key pair from https://www.google.com/recaptcha/admin/create

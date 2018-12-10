@@ -168,19 +168,33 @@ class Filter {
 					
 					break;
 				case 'captcha':
-					if($config['flood_recaptcha']){
+					if($config['flood_board_active']){
 						$holding_id = hash('sha256', rand(0,100) . time());
 						buildHoldingTable($this->post, $holding_id );
-						captcha(isset($this->message) ? $this->message .
-							"<hr style='width:40%'/>
-							<form action='/post.php' method='post'><iframe style='height:423px;width:302px' src='https://www.google.com/recaptcha/api/fallback?k=" . $config['recaptcha_public'] . "'></iframe>
-							<textarea style='height:50px;width:302px' name='recaptcha' placeholder='Captcha goes here' required></textarea>
-							<input name='reference' type='hidden' value='".  $holding_id . "'>
-							<input name='release' type='hidden' value='submit'>
-							<input name='board' type='hidden' value='".  $this->post['board'] . "'><br/>
-							<input type='submit'>
-							<br/><hr/>
-							</form>" : 'Captcha Required.');
+						if($config['flood_recaptcha'] ){
+							captcha(isset($this->message) ? $this->message .
+								"<hr style='width:40%'/>
+								<form action='/post.php' method='post'><iframe style='height:423px;width:302px' src='https://www.google.com/recaptcha/api/fallback?k=" . $config['recaptcha_public'] . "'></iframe>
+								<textarea style='height:50px;width:302px' name='recaptcha' placeholder='Captcha code goes here' required></textarea>
+								<input name='reference' type='hidden' value='".  $holding_id . "'>
+								<input name='release' type='hidden' value='submit'>
+								<input name='board' type='hidden' value='".  $this->post['board'] . "'><br/>
+								<input type='submit'>
+								<br/><hr/>
+								</form><hr/>" : 'Captcha is missing.');
+						}
+						else if($config['flood_captchouli']){
+							captcha(isset($this->message) ? $this->message .
+								"<hr style='width:40%'/>
+								<form action='/post.php' method='post'><iframe style='height:525px;width:462px' src='http://kissu.moe/captcha'></iframe>
+								<textarea style='height:50px;width:302px' name='captchouli' placeholder='Captcha code goes here' required></textarea>
+								<input name='reference' type='hidden' value='".  $holding_id . "'>
+								<input name='release' type='hidden' value='submit'>
+								<input name='board' type='hidden' value='".  $this->post['board'] . "'><br/>
+								<input type='submit'>
+								<br/><hr/>
+								</form><hr/>" : 'Captchouli is missing.');
+						}
 					}
 					else{
 						error(isset($this->message) ? $this->message : 'Captcha Required.');

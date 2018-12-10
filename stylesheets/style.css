@@ -1,3 +1,11 @@
+/* http://kissu.moe/b/res/198.html#q290 */
+.reply .post-image {
+max-width: 175px;
+max-height: 175px;
+width: auto !important;
+height: auto !important;
+}
+
 body {
   background: #EEF2FF url('img/fade-blue.png') repeat-x 50% 0%;
   color: black;

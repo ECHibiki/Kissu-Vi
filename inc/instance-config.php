@@ -23,13 +23,26 @@
 	$config['allowed_ext_files'][] = 'flac';
 	$config['allowed_ext_op'] = [true];
 	
+	// Thumbnail to use for the non-image file uploads.
+	// $config['file_icons']['default'] = 'file.png';
+	// $config['file_icons']['zip'] = 'zip.png';
+	// $config['file_icons']['webm'] = 'video.png';
+	// $config['file_icons']['mp4'] = 'video.png';
+	// Example: Custom thumbnail for certain file extension.
+	// $config['file_icons']['extension'] = 'some_file.png';
+
+	// Location of thumbnail to use for spoiler images.
+	$config['spoiler_image'] = 'static/spoiler-kissu.png';
+	// Location of thumbnail to use for deleted images.
+	$config['image_deleted'] = 'static/deleted.png';
+	
 	$config['spoiler_images'] = true;
 	$config['enable_embedding'] =true;
 	$config['allow_upload_by_url'] = true;
 	
 	$config['flood_board_active'] = true;
 	$config['flood_recaptcha'] = true;
-	$config['flood_captchouli'] = true;
+	$config['flood_captchouli'] = false;
 	
 	$config['markup'][] = array("/^[ |\t]*\[spoiler\](.+?)\[\/spoiler\][ |\t]*$/m", "<span class=\"spoiler\">\$1</span>");
 
@@ -168,6 +181,31 @@ $config['syslog'] = false;
 $config['dns_system'] = false;
 $config['proxy_save'] = true;
 
+// Changes made via web editor by "verniy" @ Tue, 04 Dec 2018 17:30:30 -0500:
+$config['global_message'] = 'Site should be stable for the next week while anti-spam is developing';
+
+
+// Changes made via web editor by "verniy" @ Tue, 04 Dec 2018 17:30:58 -0500:
+$config['global_message'] = 'Site should be stable for the next week while anti-spam is in development';
+
+
+// Changes made via web editor by "verniy" @ Wed, 05 Dec 2018 04:27:03 -0500:
+$config['global_message'] = 'http://kissu.moe/b/res/198.html';
+
+
+// Changes made via web editor by "verniy" @ Wed, 05 Dec 2018 04:27:39 -0500:
+$config['global_message'] = '<a href="http://kissu.moe/b/res/198.html">http://kissu.moe/b/res/198.html</a>';
+
+
+// Changes made via web editor by "verniy" @ Wed, 05 Dec 2018 04:28:48 -0500:
+$config['global_message'] = 'http://kissu.moe/b/res/198.html';
+
+
+// Changes made via web editor by "verniy" @ Wed, 05 Dec 2018 04:28:58 -0500:
+$config['global_message'] = '<a href="http://kissu.moe/b/res/198.html">http://kissu.moe/b/res/198.html</a>';
+
+
+
 //real values hidden in secrets.php
 $config['recaptcha_public'] = '6LcbFH8UAAAAAA_8qhW2AwsOebJl3oZEXKdZR290';
 $config['recaptcha_private'] = '6LcbFH8UAAAAAKg0Z9OqZkxl-0lbVuugkJeGmGn7';
@@ -181,3 +219,28 @@ $config['new_thread_capt'] = false;
 $config['recaptcha'] = false;
 
 require("secrets.php"); // contains confidential files
+
+
+// Changes made via web editor by "verniy" @ Sun, 09 Dec 2018 07:41:28 -0500:
+$config['global_message'] = 'Try out the ne nightmare captcha: http://kissu.moe:8003<br/><a href="http://kissu.moe/b/res/198.html">http://kissu.moe/b/res/198.html</a>';
+
+
+// Changes made via web editor by "verniy" @ Sun, 09 Dec 2018 15:30:45 -0500:
+$config['global_message'] = 'Try out the new nightmare captcha(now with less nightmares): http://kissu.moe/captcha<br/><a href="http://kissu.moe/b/res/198.html">http://kissu.moe/b/res/198.html</a>';
+
+
+// Changes made via web editor by "verniy" @ Sun, 09 Dec 2018 15:31:35 -0500:
+$config['global_message'] = 'Try out the ne nightmare captcha(now with less nightmares!): <a href="http://kissu.moe/captcha">http://kissu.moe/captcha</a><br/><a href="http://kissu.moe/b/res/198.html">http://kissu.moe/b/res/198.html</a>';
+
+
+// Changes made via web editor by "verniy" @ Sun, 09 Dec 2018 15:31:39 -0500:
+$config['global_message'] = 'Try out the new nightmare captcha(now with less nightmares): http://kissu.moe/captcha<br/><a href="http://kissu.moe/b/res/198.html">http://kissu.moe/b/res/198.html</a>';
+
+
+// Changes made via web editor by "verniy" @ Sun, 09 Dec 2018 15:32:57 -0500:
+$config['global_message'] = 'Try out the ne nightmare captcha(now with less nightmares!): <a href="http://kissu.moe/captcha">http://kissu.moe/captcha</a><br/><a href="http://kissu.moe/b/res/198.html">http://kissu.moe/b/res/198.html</a>';
+
+
+// Changes made via web editor by "verniy" @ Sun, 09 Dec 2018 16:15:02 -0500:
+$config['global_message'] = 'Try out the new nightmare captcha(now with less nightmares!): <a href="http://kissu.moe/captcha">http://kissu.moe/captcha</a><br/><a href="http://kissu.moe/b/res/198.html">http://kissu.moe/b/res/198.html</a>';
+

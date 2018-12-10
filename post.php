@@ -1238,7 +1238,7 @@ elseif(isset($_POST['release'])){
 	//release
 	
 	//how's the captcha...
-	if($config['flood_recaptcha']){
+	if($config['flood_recaptcha'] && isset($_POST['recaptcha'])){
 		//https://stackoverflow.com/questions/5647461/how-do-i-send-a-post-request-with-php
 		$url = 'https://www.google.com/recaptcha/api/siteverify?secret=' . $config['recaptcha_private'] . '&response=' . $_POST['recaptcha'] . '&remoteip=' . $_SERVER['HTTP_REFERER'];
 		$data = array(
@@ -1268,9 +1268,21 @@ elseif(isset($_POST['release'])){
 			}
 		}
 	}
-	else{
+	elseif ($config['flood_captchouli'] && isset($_POST['captchouli'])){
 		
+		$kissu = curl_init('http://kissu.moe/status?captchouli-id=' . $_POST['captchouli']);
+		$result = curl_exec($kissu);
+		if($result === false){
+			error('Bad URL');
+		}
+		else{
+			if ($result == "true"){	}
+			else{
+				error('Bad captcha: ' . $result);
+			}
+		}
 	}
+
 	
 	global $board;
 	$reference = $_POST['reference'];
