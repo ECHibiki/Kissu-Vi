@@ -77,6 +77,7 @@ $pages = array(
 	'/(\%b)/move_reply/(\d+)'			=> 'secure_POST move_reply',		// move reply
 	'/(\%b)/edit(_raw)?/(\d+)'		=> 'secure_POST edit_post',	// edit post
 	'/(\%b)/delete/(\d+)'			=> 'secure delete',		// delete post
+	'/(\%b)/delete_keeporder/(\d+)'			=> 'secure delete_keeporder',		// delete post no catalog update
 	'/(\%b)/deletefile/(\d+)/(\d+)'		=> 'secure deletefile',		// delete file from post
 	'/(\%b+)/spoiler/(\d+)/(\d+)'			=> 'secure spoiler_image',	// spoiler file
 	'/(\%b)/deletebyip/(\d+)(/global)?'	=> 'secure deletebyip',		// delete all posts by IP address

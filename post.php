@@ -238,7 +238,7 @@ if (isset($_POST['delete'])) {
 				modLog("User deleted file from his own post #$id");
 			} else {
 				// Delete entire post
-				deletePost($id);
+				deletePostKeepOrder($id);
 				modLog("User deleted his own post #$id");
 			}
 

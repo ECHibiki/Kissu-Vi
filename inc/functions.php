@@ -1311,7 +1311,75 @@ function rebuildPost($id) {
 	return true;
 }
 
-// Delete a post (reply or thread)
+// Delete a post (reply or thread) and do not update bump order. original  8b46905ea9
+function deletePostKeepOrder($id, $error_if_doesnt_exist=true, $rebuild_after=true) {
+		global $board, $config;
+	// Select post and replies (if thread) in one query
+	$query = prepare(sprintf("SELECT `id`,`thread`,`files`,`slug` FROM ``posts_%s`` WHERE `id` = :id OR `thread` = :id", $board['uri']));
+	$query->bindValue(':id', $id, PDO::PARAM_INT);
+	$query->execute() or error(db_error($query));
+	if ($query->rowCount() < 1) {
+		if ($error_if_doesnt_exist)
+			error($config['error']['invalidpost']);
+		else return false;
+	}
+	$ids = array();
+	// Delete posts and maybe replies
+	while ($post = $query->fetch(PDO::FETCH_ASSOC)) {
+		event('delete', $post);
+		
+		if (!$post['thread']) {
+			// Delete thread HTML page
+			file_unlink($board['dir'] . $config['dir']['res'] . link_for($post) );
+			file_unlink($board['dir'] . $config['dir']['res'] . link_for($post, true) ); // noko50
+			file_unlink($board['dir'] . $config['dir']['res'] . sprintf('%d.json', $post['id']));
+			$antispam_query = prepare('DELETE FROM ``antispam`` WHERE `board` = :board AND `thread` = :thread');
+			$antispam_query->bindValue(':board', $board['uri']);
+			$antispam_query->bindValue(':thread', $post['id']);
+			$antispam_query->execute() or error(db_error($antispam_query));
+		} elseif ($query->rowCount() == 1) {
+			// Rebuild thread
+			$rebuild = &$post['thread'];
+		}
+		if ($post['files']) {
+			// Delete file
+			foreach (json_decode($post['files']) as $i => $f) {
+				if ($f->file !== 'deleted') {
+					file_unlink($board['dir'] . $config['dir']['img'] . $f->file);
+					file_unlink($board['dir'] . $config['dir']['thumb'] . $f->thumb);
+				}
+			}
+		}
+		$ids[] = (int)$post['id'];
+	}
+	$query = prepare(sprintf("DELETE FROM ``posts_%s`` WHERE `id` = :id OR `thread` = :id", $board['uri']));
+	$query->bindValue(':id', $id, PDO::PARAM_INT);
+	$query->execute() or error(db_error($query));
+	$query = prepare("SELECT `board`, `post` FROM ``cites`` WHERE `target_board` = :board AND (`target` = " . implode(' OR `target` = ', $ids) . ") ORDER BY `board`");
+	$query->bindValue(':board', $board['uri']);
+	$query->execute() or error(db_error($query));
+	while ($cite = $query->fetch(PDO::FETCH_ASSOC)) {
+		if ($board['uri'] != $cite['board']) {
+			if (!isset($tmp_board))
+				$tmp_board = $board['uri'];
+			openBoard($cite['board']);
+		}
+		rebuildPost($cite['post']);
+	}
+	if (isset($tmp_board))
+		openBoard($tmp_board);
+	$query = prepare("DELETE FROM ``cites`` WHERE (`target_board` = :board AND (`target` = " . implode(' OR `target` = ', $ids) . ")) OR (`board` = :board AND (`post` = " . implode(' OR `post` = ', $ids) . "))");
+	$query->bindValue(':board', $board['uri']);
+	$query->execute() or error(db_error($query));
+	
+	if (isset($rebuild) && $rebuild_after) {
+		buildThread($rebuild);
+		buildIndex();
+	}
+	return true;
+}
+
+// Delete a post (reply or thread) and update bump order
 function deletePost($id, $error_if_doesnt_exist=true, $rebuild_after=true) {
 	global $board, $config;
 
@@ -1421,6 +1489,8 @@ function deletePost($id, $error_if_doesnt_exist=true, $rebuild_after=true) {
 
 	return true;
 }
+
+
 
 function clean($pid = false) {
 	global $board, $config;
