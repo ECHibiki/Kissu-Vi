@@ -61,6 +61,7 @@
 	$config['additional_javascript'][] = 'js/options/user-js.js'; 	//contribute to the site instead...
 	$config['additional_javascript'][] = 'js/webm-settings.js';
 	
+	$config['additional_javascript'][] = 'js/expand.js';
 	$config['additional_javascript'][] = 'js/ajax-post-controls.js';
 	$config['additional_javascript'][] = 'js/inline-expanding.js';
 	$config['additional_javascript'][] = 'js/post-hover.js'; 
