@@ -58,7 +58,7 @@
 	$config['additional_javascript'][] = 'js/style-select.js';
 	$config['additional_javascript'][] = 'js/options/general.js';
 	$config['additional_javascript'][] = 'js/options/user-css.js';
-	$config['additional_javascript'][] = 'js/options/user-js.js'; 	//contribute to the site instead...
+	// $config['additional_javascript'][] = 'js/options/user-js.js'; 	//contribute to the site instead...
 	$config['additional_javascript'][] = 'js/webm-settings.js';
 	
 	$config['additional_javascript'][] = 'js/expand.js';
