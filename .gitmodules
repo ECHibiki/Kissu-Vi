@@ -10,3 +10,6 @@
 [submodule "inc/captchouli"]
 	path = inc/captchouli
 	url = git@github.com:bakape/captchouli.git
+[submodule "parsedown"]
+	path = parsedown
+	url = https://github.com/vichan-devel/parsedown
