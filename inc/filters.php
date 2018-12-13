@@ -168,38 +168,36 @@ class Filter {
 					
 					break;
 				case 'captcha':
-					if($config['flood_board_active']){
-						$holding_id = hash('sha256', rand(0,100) . time());
-						buildHoldingTable($this->post, $holding_id );
-						
-						if($config['flood_recaptcha']  && $this->post['captype'] == 'recaptcha'){
-												
-							captcha(isset($this->message) ? $this->message .
-								"<hr style='width:40%'/>
-								<form action='/post.php' method='post'><iframe style='height:423px;width:302px' src='https://www.google.com/recaptcha/api/fallback?k=" . $config['recaptcha_public'] . "'></iframe>
-								<textarea style='height:50px;width:302px' name='recaptcha' placeholder='Captcha code goes here' required></textarea>
-								<input name='reference' type='hidden' value='".  $holding_id . "'>
-								<input name='release' type='hidden' value='submit'>
-								<input name='board' type='hidden' value='".  $this->post['board'] . "'><br/>
-								<input type='submit'>
-								<br/><hr/>
-								</form><hr/>" : 'Captcha is missing.');
-						}
-						else if($config['flood_captchouli'] && $this->post['captype'] == 'captchouli'){
-							captcha(isset($this->message) ? $this->message .
-								"<hr style='width:40%'/>
-								<form action='/post.php' method='post'><iframe style='height:525px;width:462px' src='https://kissu.moe/captcha'><!-- god i hate cloudflare --></iframe>
-								<textarea style='height:50px;width:302px' name='captchouli' placeholder='Captcha code goes here' required></textarea>
-								<input name='reference' type='hidden' value='".  $holding_id . "'>
-								<input name='release' type='hidden' value='submit'>
-								<input name='board' type='hidden' value='".  $this->post['board'] . "'><br/>
-								<input type='submit'>
-								<br/><hr/>
-								</form><hr/>" : 'Captchouli is missing.');
-						}
-						else{
-							error($this->post['captype'] . " isn't available right now");
-						}
+					$holding_id = hash('sha256', rand(0,100) . time());
+					buildHoldingTable($this->post, $holding_id );
+					
+					if($config['flood_recaptcha']  && $this->post['captype'] == 'recaptcha'){
+											
+						captcha(isset($this->message) ? $this->message .
+							"<hr style='width:40%'/>
+							<form action='/post.php' method='post'><iframe style='height:423px;width:302px' src='https://www.google.com/recaptcha/api/fallback?k=" . $config['recaptcha_public'] . "'></iframe>
+							<textarea style='height:50px;width:302px' name='recaptcha' placeholder='Captcha code goes here' required></textarea>
+							<input name='reference' type='hidden' value='".  $holding_id . "'>
+							<input name='release' type='hidden' value='submit'>
+							<input name='board' type='hidden' value='".  $this->post['board'] . "'><br/>
+							<input type='submit'>
+							<br/><hr/>
+							</form><hr/>" : 'Captcha is missing.');
+					}
+					else if($config['flood_captchouli'] && $this->post['captype'] == 'captchouli'){
+						captcha(isset($this->message) ? $this->message .
+							"<hr style='width:40%'/>
+							<form action='/post.php' method='post'><iframe style='height:525px;width:462px' src='https://kissu.moe/captcha'><!-- god i hate cloudflare --></iframe>
+							<textarea style='height:50px;width:302px' name='captchouli' placeholder='Captcha code goes here' required></textarea>
+							<input name='reference' type='hidden' value='".  $holding_id . "'>
+							<input name='release' type='hidden' value='submit'>
+							<input name='board' type='hidden' value='".  $this->post['board'] . "'><br/>
+							<input type='submit'>
+							<br/><hr/>
+							</form><hr/>" : 'Captchouli is missing.');
+					}
+					else{
+						error($this->post['captype'] . " isn't available right now");
 					}
 					//store post details in temp(on expiration timer) and await a captcha fill out to retrieve them
 					break;
@@ -480,15 +478,19 @@ function do_filters(array $post) {
 		}
 	}
 	if (isset($has_flood)) {
-		if ($post['has_file']) {
-			$query = prepare("SELECT * FROM ``flood`` WHERE `ip` = :ip OR `posthash` = :posthash OR `filehash` = :filehash");
-			$query->bindValue(':ip', $_SERVER['REMOTE_ADDR']);
-			$query->bindValue(':posthash', make_comment_hex($post['body_nomarkup']));
-			$query->bindValue(':filehash', $post['filehash']);
-		} else if(!$config['flood_board_active']){
-			$query = prepare("SELECT * FROM ``flood`` WHERE `ip` = :ip OR `posthash` = :posthash");
-			$query->bindValue(':ip', $_SERVER['REMOTE_ADDR']);
-			$query->bindValue(':posthash', make_comment_hex($post['body_nomarkup']));
+		//stager down specificity
+		if(!$config['flood_board_active']){
+			if ($post['has_file']) {
+				$query = prepare("SELECT * FROM ``flood`` WHERE `ip` = :ip OR `posthash` = :posthash OR `filehash` = :filehash");
+				$query->bindValue(':ip', $_SERVER['REMOTE_ADDR']);
+				$query->bindValue(':posthash', make_comment_hex($post['body_nomarkup']));
+				$query->bindValue(':filehash', $post['filehash']);
+			}
+			else{
+				$query = prepare("SELECT * FROM ``flood`` WHERE `ip` = :ip OR `posthash` = :posthash");
+				$query->bindValue(':ip', $_SERVER['REMOTE_ADDR']);
+				$query->bindValue(':posthash', make_comment_hex($post['body_nomarkup']));
+			}
 		}
 		else if($config['flood_board_active']){
 			$query = prepare("SELECT * FROM ``flood`` WHERE `board` = :board");
