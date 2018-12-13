@@ -374,7 +374,7 @@
 	// Decide the result of a flood detection
 	// possible: 'reject', 'ban' or 'captcha'
 	$config['flood_reject'] = 'reject';
-	$config['flood_ban'] = 'ban'; // note: bans require a reason and a time. Search this bellow for examples
+	$config['flood_ban'] = 'ban'; // note: bans require a reason and a time. Search below for examples
 	$config['flood_captcha'] = 'captcha';
 
 	// Minimum time between posts by the same IP address (all boards).
@@ -538,10 +538,10 @@
 	// How long after posting should you have to wait before being able to delete that post? (In seconds.)
 	$config['delete_time'] = 10;
 	// Reply limit (stops bumping thread when this is reached).
-	$config['reply_limit'] = 250;
+	$config['reply_limit'] = 100;
 
 	// Image hard limit (stops allowing new image replies when this is reached if not zero).
-	$config['image_hard_limit'] = 0;
+	$config['image_hard_limit'] = 150;
 	// Reply hard limit (stops allowing new replies when this is reached if not zero).
 	$config['reply_hard_limit'] = 0;
 
@@ -1531,7 +1531,7 @@
 
 	// Capcode permissions.
 	$config['mod']['capcode'] = array(
-	//	JANITOR		=> array('Janitor'),
+		JANITOR		=> array('Janitor'),
 		MOD		=> array('Mod'),
 		ADMIN		=> true
 	);
@@ -1581,7 +1581,7 @@
 	// Edit posts
 	$config['mod']['editpost'] = ADMIN;
 	// "Move" a thread to another board (EXPERIMENTAL; has some known bugs)
-	$config['mod']['move'] = DISABLED;
+	$config['mod']['move'] = MOD;
 	// Bypass "field_disable_*" (forced anonymity, etc.)
 	$config['mod']['bypass_field_disable'] = MOD;
 	// Post bypass unoriginal content check on robot-enabled boards

@@ -12,8 +12,21 @@
 	$config['db']['user'] = '';
 	$config['db']['password'] = '';
 	
+	
+	
+	
+	
 	// $config['thumb_method'] = 'gm+gifsicle';
 	// $config['gnu_md5'] = '1';
+	
+	$config['thumb_method'] = 'gm+gifsicle';
+	
+	// Set this to true if you're using Linux and you can execute `md5sum` binary.
+	$config['gnu_md5'] = false;
+	
+	
+	
+	
 	
 	$config['timezone'] = 'America/New_York';
 	
@@ -22,6 +35,48 @@
 	$config['allowed_ext_files'][] = 'mp3';
 	$config['allowed_ext_files'][] = 'flac';
 	$config['allowed_ext_op'] = [true];
+	
+	// For resizing, maximum thumbnail dimensions.
+	$config['thumb_width'] = 175;
+	$config['thumb_height'] = 175;
+	
+	$config['minimum_copy_resize'] = true;
+
+	// Require users to see the ban page at least once for a ban even if it has since expired.
+	$config['require_ban_view'] = true;
+
+	// Show the post the user was banned for on the "You are banned" page.
+	$config['ban_show_post'] = true;
+
+	// Optional HTML to append to "You are banned" pages. For example, you could include instructions and/or
+	// a link to an email address or IRC chat room to appeal the ban.
+	$config['ban_page_extra'] = '';
+
+	// Allow users to appeal bans through Tinyboard.
+	$config['ban_appeals'] = true;
+
+	// Do not allow users to appeal bans that are shorter than this length (in seconds).
+	$config['ban_appeals_min_length'] = 60 * 60 * 6; // 6 hours
+
+	// How many ban appeals can be made for a single ban?
+	$config['ban_appeals_max'] = 1;
+
+	// Show moderator name on ban page.
+	$config['show_modname'] = true;
+	
+	
+	// Maximum amount of threads to display per page.
+	$config['threads_per_page'] = 10;
+	// Maximum number of pages. Content past the last page is automatically purged.
+	$config['max_pages'] = 10;
+	// Replies to show per thread on the board index page.
+	$config['threads_preview'] = 5;
+	// Same as above, but for stickied threads.
+	$config['threads_preview_sticky'] = 3;
+	
+	// Additional lines added to the footer of all pages.
+	$config['footer'][] = _('Concerns to the gmail of ECVerniy');
+
 	
 	// Thumbnail to use for the non-image file uploads.
 	// $config['file_icons']['default'] = 'file.png';
@@ -58,7 +113,7 @@
 	$config['additional_javascript'][] = 'js/style-select.js';
 	$config['additional_javascript'][] = 'js/options/general.js';
 	$config['additional_javascript'][] = 'js/options/user-css.js';
-	$config['additional_javascript'][] = 'js/options/user-js.js'; 	//contribute to the site instead...
+	// $config['additional_javascript'][] = 'js/options/user-js.js'; 	//contribute to the site instead...
 	$config['additional_javascript'][] = 'js/webm-settings.js';
 	
 	$config['additional_javascript'][] = 'js/expand.js';

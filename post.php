@@ -178,13 +178,15 @@ elseif (isset($_GET['Newsgroups'])) {
 
 if (isset($_POST['delete'])) {
 	// Delete
+	$mod = false;
+	if(isset($_POST['mod']))	$mod = true;
 	
 	if (!isset($_POST['board'], $_POST['password']))
 		error($config['error']['bot']);
 	
 	$password = &$_POST['password'];
 	
-	if ($password == '')
+	if ($password == '' && !$mod)
 		error($config['error']['invalidpassword']);
 	
 	$delete = array();
@@ -217,7 +219,7 @@ if (isset($_POST['delete'])) {
 		
 		if ($post = $query->fetch(PDO::FETCH_ASSOC)) {
 			$thread = false;
-			if ($config['user_moderation'] && $post['thread']) {
+			if (!$mod && $config['user_moderation'] && $post['thread']) {
 				$thread_query = prepare(sprintf("SELECT `time`,`password` FROM ``posts_%s`` WHERE `id` = :id", $board['uri']));
 				$thread_query->bindValue(':id', $post['thread'], PDO::PARAM_INT);
 				$thread_query->execute() or error(db_error($query));
@@ -225,21 +227,23 @@ if (isset($_POST['delete'])) {
 				$thread = $thread_query->fetch(PDO::FETCH_ASSOC);	
 			}
 
-			if ($password != '' && $post['password'] != $password && (!$thread || $thread['password'] != $password))
+			if (!$mod && $password != '' && $post['password'] != $password && (!$thread || $thread['password'] != $password))
 				error($config['error']['invalidpassword']);
 			
-			if ($post['time'] > time() - $config['delete_time'] && (!$thread || $thread['password'] != $password)) {
+			if (!$mod &&$post['time'] > time() - $config['delete_time'] && (!$thread || $thread['password'] != $password)) {
 				error(sprintf($config['error']['delete_too_soon'], until($post['time'] + $config['delete_time'])));
 			}
 			
 			if (isset($_POST['file'])) {
 				// Delete just the file
 				deleteFile($id);
-				modLog("User deleted file from his own post #$id");
+				if(!$mod) modLog("User deleted file from his own post #$id");
+				else modLog("Mod deleted file from post #$id");
 			} else {
 				// Delete entire post
 				deletePostKeepOrder($id);
-				modLog("User deleted his own post #$id");
+				if(!$mod) modLog("User deleted his own post #$id");
+				else modLog("Mod deleted file from post #$id");
 			}
 
 			_syslog(LOG_INFO, 'Deleted post: ' .
