@@ -263,3 +263,15 @@ $config['global_message'] = 'New captcha is building';
 // Changes made via web editor by "verniy" @ Mon, 10 Dec 2018 03:56:18 -0500:
 $config['global_message'] = 'qr box moves and you can like set the captcha';
 
+
+// Changes made via web editor by "verniy" @ Wed, 12 Dec 2018 19:13:27 -0500:
+$config['global_message'] = 'https://kissu.moe/b/sitedev.html';
+
+
+// Changes made via web editor by "verniy" @ Wed, 12 Dec 2018 19:15:09 -0500:
+$config['global_message'] = 'Dec13th-18th: Mod tools stuff<br/>Dec19th-23rd: Cosmetic Things<br/>Details:https://kissu.moe/b/sitedev.html';
+
+
+// Changes made via web editor by "verniy" @ Wed, 12 Dec 2018 19:15:53 -0500:
+$config['global_message'] = 'Dec13th-18th: Mod tools stuff<br/>Dec19th-23rd: Cosmetic Things<br/>Details: <a href=\'https://kissu.moe/b/sitedev.html\'>https://kissu.moe/b/sitedev.html</a>';
+
