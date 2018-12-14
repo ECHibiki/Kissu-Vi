@@ -12,10 +12,6 @@
 	$config['db']['user'] = '';
 	$config['db']['password'] = '';
 	
-	
-	
-	
-	
 	// $config['thumb_method'] = 'gm+gifsicle';
 	// $config['gnu_md5'] = '1';
 	
@@ -25,7 +21,7 @@
 	$config['gnu_md5'] = false;
 	
 	
-	
+	$config['url_favicon'] = '/static/favicon.png';
 	
 	
 	$config['timezone'] = 'America/New_York';
