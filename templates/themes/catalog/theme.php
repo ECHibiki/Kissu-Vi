@@ -19,7 +19,7 @@
 
 				$action = generation_strategy("sb_catalog", array($board));
 				if ($action == 'delete') {
-					file_unlink($config['dir']['home'] . $board . '/catalog.html');
+					file_unlink($config['dir']['home'] . $board . '/catalog.php');
 					file_unlink($config['dir']['home'] . $board . '/index.rss');
 				}
 				elseif ($action == 'rebuild') {
@@ -31,7 +31,7 @@
 
 			$action = generation_strategy("sb_catalog", array($board));
 			if ($action == 'delete') {
-				file_unlink($config['dir']['home'] . $board . '/catalog.html');
+				file_unlink($config['dir']['home'] . $board . '/catalog.php');
 				file_unlink($config['dir']['home'] . $board . '/index.rss');
 			}
 			elseif ($action == 'rebuild') {
@@ -109,7 +109,7 @@
 					$config['additional_javascript'][] = $s;
 			}
 
-			file_write($config['dir']['home'] . $board_name . '/catalog.html', Element('themes/catalog/catalog.html', Array(
+			file_write($config['dir']['home'] . $board_name . '/catalog.php', Element('themes/catalog/catalog.php', Array(
 				'settings' => $settings,
 				'config' => $config,
 				'boardlist' => createBoardlist(),

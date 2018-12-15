@@ -22,20 +22,19 @@
 				copy('templates/themes/index/' . $settings['basecss'], $config['dir']['home'] . $settings['css']);
 			}
 			
-			
 			$this->excluded = explode(' ', $settings['exclude']);
 			
 			if ($action == 'all' || $action == 'post' || $action == 'post-thread' || $action == 'post-delete') {
 				$action = generation_strategy('sb_index', array());
 				if ($action == 'delete') {
-					file_unlink($config['dir']['home'] . $settings['html']);
+					file_unlink($config['dir']['home'] . $settings['PHP']);
 			    }
 			    elseif ($action == 'rebuild') {
-					file_write($config['dir']['home'] . $settings['html'], $this->homepage($settings));
+					file_write($config['dir']['home'] . $settings['PHP'], $this->homepage($settings));
 				}
 			}
 			if ($action == 'all' || $action == 'news' || $action == 'boards'){
-				file_write($config['dir']['home'] . $settings['html'], $this->homepage($settings));
+				file_write($config['dir']['home'] . $settings['PHP'], $this->homepage($settings));
 			}
 		}
 			
@@ -159,7 +158,7 @@
 			$query = query("SELECT * FROM ``news`` ORDER BY `time` DESC" . ($settings['no_recent'] ? ' LIMIT ' . $settings['no_recent'] : '')) or error(db_error());
 			$news = $query->fetchAll(PDO::FETCH_ASSOC);
 			
-			return Element('themes/index/index.html', Array(
+			return Element('themes/index/index.php', Array(
 				'settings' => $settings,
 				'config' => $config,
 				'boardlist' => createBoardlist(),

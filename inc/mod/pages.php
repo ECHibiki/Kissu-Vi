@@ -750,7 +750,7 @@ function mod_view_board($boardName, $page_no = 1) {
 	$page['mod'] = true;
 	$page['config'] = $config;
 	
-	echo Element('index.html', $page);
+	echo Element('index.php', $page);
 }
 
 function mod_view_thread($boardName, $thread) {
@@ -2655,7 +2655,7 @@ function mod_theme_configure($theme_name) {
 		// Check if everything is submitted
 		foreach ($theme['config'] as &$conf) {
 			if (!isset($_POST[$conf['name']]) && $conf['type'] != 'checkbox')
-				error(sprintf($config['error']['required'], $c['title']));
+				error(sprintf($config['error']['required'], $conf['title']));
 		}
 		
 		// Clear previous settings

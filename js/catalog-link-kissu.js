@@ -15,7 +15,7 @@
 function catalog() {
 var board = $("input[name='board']");
 
-var catalog_url = configRoot + board.first().val() + "/catalog.html";
+var catalog_url = configRoot + board.first().val() + "/catalog.php";
 
 var pages = document.getElementsByClassName('pages')[0];
 var bottom = document.getElementsByClassName('boardlist bottom')[0]

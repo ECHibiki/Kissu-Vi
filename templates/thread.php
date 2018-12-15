@@ -1,3 +1,5 @@
+{% include 'checkban.php' %}
+
 <!doctype html>
 <html>
 <head>

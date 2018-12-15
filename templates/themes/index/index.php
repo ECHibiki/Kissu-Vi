@@ -1,3 +1,5 @@
+{% include 'checkban.php' %}
+
 {% filter remove_whitespace %}
 <!doctype html>
 <html>

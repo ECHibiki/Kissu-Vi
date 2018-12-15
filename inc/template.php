@@ -69,7 +69,6 @@ function Element($templateFile, array $options) {
 		if ($config['minify_html'] && preg_match('/\.html$/', $templateFile)) {
 			$body = trim(preg_replace("/[\t\r\n]/", '', $body));
 		}
-		
 		return $body;
 	} else {
 		throw new Exception("Template file '${templateFile}' does not exist or is empty in '{$config['dir']['template']}'!");

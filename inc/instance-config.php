@@ -37,6 +37,10 @@
 	$config['thumb_height'] = 175;
 	
 	$config['minimum_copy_resize'] = true;
+	
+	$config['always_noko'] = true;
+	$config['file_index'] = 'index.php';
+	$config['file_page'] = '%d.php';
 
 	// Require users to see the ban page at least once for a ban even if it has since expired.
 	$config['require_ban_view'] = true;
@@ -161,15 +165,16 @@
 		'color:red;font-weight:bold', // Change name style; optional
 		'color:red;font-weight:bold' // Change tripcode style; optional
 	);
-	$config['stylesheets']['Yotsuba B'] = ''; // Default; there is no additional/custom stylesheet for this.
+	$config['stylesheets']['Kissu+Dark'] = 'kissu.css'; // Default;
+	$config['stylesheets']['Yotsuba B'] = ''; //Default; there is no additional/custom stylesheet for this.
 	$config['stylesheets']['Yotsuba'] = 'yotsuba.css';
+	$config['stylesheets']['Dark'] = 'dark.css';
+	$config['stylesheets']['Futaba'] = 'futaba.css';
 	$config['stylesheets']['Burichan'] = 'burichan.css';
 	$config['stylesheets']['caffe'] = 'caffe.css';
 	$config['stylesheets']['confraria'] = 'confraria.css';
-	$config['stylesheets']['dark'] = 'dark.css';
 	$config['stylesheets']['dark_roach'] = 'dark_roach.css';
 	$config['stylesheets']['favela'] = 'favela.css';
-	$config['stylesheets']['Futaba'] = 'futaba.css';
 	$config['stylesheets']['futaba+vichan'] = 'futaba+vichan.css';
 	$config['stylesheets']['futaba-light'] = 'futaba-light.css';
 	$config['stylesheets']['gentoochan'] = 'gentoochan.css';
@@ -195,7 +200,7 @@
 	$config['stylesheets']['v8ch'] = 'v8ch.css';
 	$config['stylesheets']['wasabi'] = 'wasabi.css';
 	
-	$config['default_stylesheet'] = array('dark', $config['stylesheets']['dark']);
+	$config['default_stylesheet'] = array('Kissu+Dark', $config['stylesheets']['Kissu+Dark']);
 	
 	$config['flood_time'] = 10;
 	$config['flood_time_ip'] = 120;
@@ -313,4 +318,9 @@ $config['global_message'] = 'New captcha is building';
 
 // Changes made via web editor by "verniy" @ Mon, 10 Dec 2018 03:56:18 -0500:
 $config['global_message'] = 'qr box moves and you can like set the captcha';
+
+
+// Changes made via web editor by "verniy" @ Fri, 14 Dec 2018 17:40:06 -0500:
+$config['global_message'] = 'Stylesheet, PHP pages, Ban Checking, removing the file extensions soon';
+$config['debug'] = true;
 

@@ -112,18 +112,19 @@ function alert(a, do_confirm, confirm_ok_action, confirm_cancel_action, no_ok) {
 var saved = {};
 
 
-var selectedstyle = 'dark';
+var selectedstyle = 'Kissu+Dark';
 var styles = {
 	
 	'Yotsuba B' : '',
 	'Yotsuba' : '/stylesheets/yotsuba.css',
+	'Kissu+Dark' : '/stylesheets/kissu.css',
+	'Dark' : '/stylesheets/dark.css',
+	'Futaba' : '/stylesheets/futaba.css',
 	'Burichan' : '/stylesheets/burichan.css',
 	'caffe' : '/stylesheets/caffe.css',
 	'confraria' : '/stylesheets/confraria.css',
-	'dark' : '/stylesheets/dark.css',
 	'dark_roach' : '/stylesheets/dark_roach.css',
 	'favela' : '/stylesheets/favela.css',
-	'Futaba' : '/stylesheets/futaba.css',
 	'futaba+vichan' : '/stylesheets/futaba+vichan.css',
 	'futaba-light' : '/stylesheets/futaba-light.css',
 	'gentoochan' : '/stylesheets/gentoochan.css',
@@ -1665,7 +1666,7 @@ onready(function(){
 function catalog() {
 var board = $("input[name='board']");
 
-var catalog_url = configRoot + board.first().val() + "/catalog.html";
+var catalog_url = configRoot + board.first().val() + "/catalog.php";
 
 var pages = document.getElementsByClassName('pages')[0];
 var bottom = document.getElementsByClassName('boardlist bottom')[0]
