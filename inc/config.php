@@ -304,8 +304,13 @@
 	// - currently not set up - Enable captchouli to make spam even harder.
 	$config['captchouli'] = false;
 	
-	//captcha flood bypass. //if both true defaults to recaptcha
+	// ReCaptcha flood bypass. 
+	// Use to set a captcha for floods
+	// If both true defaults to recaptcha
 	$config['flood_recaptcha'] = false; 
+	// Captchouli flood bypass. 
+	// Use to set a captcha for floods
+	// If both true defaults to recaptcha
 	$config['flood_captchouli'] = false;
 	
 	// Public and private key pair from https://www.google.com/recaptcha/admin/create
@@ -313,15 +318,15 @@
 	$config['recaptcha_private'] = '6LcXTcUSAAAAAOGVbVdhmEM1_SyRF4xTKe8jbzf_';
 
 	// Enable Custom Captcha you need to change a couple of settings 
-	//Read more at: /captcha/instructions.md
+	// Read more at: /captcha/instructions.md
 	 $config['captcha'] = array();
 
 	// Enable custom captcha provider
 	$config['captcha']['enabled'] = false;
 
-	//New thread captcha
- 	//Require solving a captcha to post a thread. 
- 	//Default off.
+	// New thread captcha
+ 	// Require solving a captcha to post a thread. 
+ 	// Default off.
  	 $config['new_thread_capt'] = false;
 
 	// Custom captcha get provider path (if not working get the absolute path aka your url.)
@@ -565,7 +570,8 @@
 
 	// Optional URL prefix for links (eg. "http://anonym.to/?").
 	$config['link_prefix'] = ''; 
-	$config['url_ads'] = &$config['link_prefix'];	 // leave alias
+	// leave alias
+	$config['url_ads'] = &$config['link_prefix'];
 	
 	// Allow "uploading" images via URL as well. Users can enter the URL of the image and then Tinyboard will
 	// download it. Not usually recommended.
@@ -1470,8 +1476,10 @@
 	// Automatically dismiss all reports regarding a thread when it is locked.
 	$config['mod']['dismiss_reports_on_lock'] = true;
 
-	// Replace ?/config with a simple text editor for editing inc/instance-config.php.
-	$config['mod']['config_editor_php'] = false;
+	// Use ?/config with a simple text editor for editing inc/instance-config.php.
+	$config['mod']['config_editor_php'] = true;
+	// Use  ?/config with a reduced editor for editing inc/instance-config.php.
+	$config['mod']['simplified_editor_php'] = true;
 
 /*
  * ====================
@@ -1875,10 +1883,7 @@
 	$config['board_regex'] = '[0-9a-zA-Z$_\x{0080}-\x{FFFF}]{1,58}';
 
 	// Youtube.js embed HTML code
-	$config['youtube_js_html'] = '<div class="video-container" data-video="$2">'.
-		'<a href="https://youtu.be/$2" target="_blank" class="file">'.
-		'<img style="width:360px;height:270px;" src="//img.youtube.com/vi/$2/0.jpg" class="post-image"/>'.
-		'</a></div>';
+	$config['youtube_js_html'] = '<div class="video-container" data-video="$2"><a href="https://youtu.be/$2" target="_blank" class="file"><img style="width:360px;height:270px;" src="//img.youtube.com/vi/$2/0.jpg" class="post-image"/></a></div>';
 
 	// Password hashing function
 	//

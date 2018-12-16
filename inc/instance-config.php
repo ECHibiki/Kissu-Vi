@@ -324,3 +324,7 @@ $config['global_message'] = 'qr box moves and you can like set the captcha';
 $config['global_message'] = 'Stylesheet, PHP pages, Ban Checking, removing the file extensions soon';
 $config['debug'] = true;
 
+
+// Changes made via web editor by "verniy" @ Sun, 16 Dec 2018 04:50:05 -0500:
+$config['youtube_js_html'] = '<div class="video-container" data-video="$2">\'. 		\'<a href="https://youtu.be/$2" target="_blank" class="file">\'. 		\'<img style="" src="//img.youtube.com/vi/$2/0.jpg" class="post-image"/>\'. 		\'</a></div>';
+
