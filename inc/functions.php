@@ -2572,7 +2572,7 @@ function buildThread50($id, $return = false, $mod = false, $thread = null, $anti
 
 	$hasnoko50 = $thread->postCount() >= $config['noko50_min'];		
 
-	$body = Element('thread.html', array(
+	$body = Element('thread.php', array(
 		'board' => $board,
 		'thread' => $thread,
 		'body' => $thread->build(false, true),

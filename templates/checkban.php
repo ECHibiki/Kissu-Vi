@@ -1,7 +1,7 @@
 <?php
 	$t = explode(" ", microtime())[0];
 	$expresion = '/(C:\\\xampp\\\htdocs\\\[a-zA-Z]|\/var\/www\/html\/inc\/[a-zA-Z]+)/';
-	if(preg_match("$expresion", getcwd())){
+	while(preg_match("$expresion", getcwd())){
 		chdir ('../');
 	}
 	require_once ('inc/functions.php');

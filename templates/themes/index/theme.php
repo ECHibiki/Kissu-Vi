@@ -21,7 +21,6 @@
 			if ($action == 'all') {
 				copy('templates/themes/index/' . $settings['basecss'], $config['dir']['home'] . $settings['css']);
 			}
-			
 			$this->excluded = explode(' ', $settings['exclude']);
 			
 			if ($action == 'all' || $action == 'post' || $action == 'post-thread' || $action == 'post-delete') {

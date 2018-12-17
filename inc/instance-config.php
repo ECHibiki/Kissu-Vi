@@ -15,7 +15,7 @@
 	// $config['thumb_method'] = 'gm+gifsicle';
 	// $config['gnu_md5'] = '1';
 	
-	$config['thumb_method'] = 'gm+gifsicle';
+	// $config['thumb_method'] = 'gm+gifsicle';
 	
 	// Set this to true if you're using Linux and you can execute `md5sum` binary.
 	$config['gnu_md5'] = false;
