@@ -2,7 +2,6 @@
 <head>
 <script src='main.js'></script>
 <script src='js/jquery.min.js'></script>
-<script src='js/mobile-style.js'></script>
 <script src='js/strftime.min.js'></script>
 <script src='js/longtable/longtable.js'></script>
 <script src='js/mod/ban-list.js'></script>
@@ -11,9 +10,13 @@
 </head>
 <body>
 	<form action="?/proxy" method="post" class="banform" style="padding:40px;width:75%">
-		<label>Frequency: <input type='text' name='frequency'></label><br/>
-		<label>Command Line Statements: <br/><textarea type='text' name='statements' rows=50 cols=10></textarea></label>
-		<input type='submit'>
+		<label>Frequency: <input type='text' name='frequency' value= '{{ frequency }}'></label><br/>
+		<label>Websites: <br/><textarea type='text' name='statements' rows=50 cols=10>
+		{% for item in lines %}
+			{{ item.site }}&#13;&#10			
+		{% endfor %}
+		</textarea></label>
+		<input type='submit' name='submit'>
 	</form>
 </body>
 </html>

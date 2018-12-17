@@ -38,7 +38,7 @@
 	
 	$config['minimum_copy_resize'] = true;
 	
-	$config['always_noko'] = true;
+	$config['always_noko'] = false;
 	$config['file_index'] = 'index.php';
 	$config['file_page'] = '%d.php';
 
@@ -332,3 +332,7 @@ $config['youtube_js_html'] = '<div class="video-container" data-video="$2">\'. 	
 // Changes made via web editor by "verniy" @ Mon, 17 Dec 2018 06:09:42 -0500:
 $config['youtube_js_html'] = '<div class="video-container" data-video="$2">\'. \'<a href="https://youtu.be/$2" target="_blank" class="file">\'. \'<img style="" src="//img.youtube.com/vi/$2/0.jpg" class="post-image"/>\'. \'</a></div>';
 
+
+
+// Changes made via web editor
+$config["proxy_scan_rate"] = 25;

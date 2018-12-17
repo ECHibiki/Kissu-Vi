@@ -29,8 +29,37 @@ function mod_page($title, $template, $args, $subtitle = false) {
 function mod_proxy(){
 	global $config;
 	global $mod;
-	
-	mod_page(_('Proxy Sites'), 'mod/proxy_scrape.html', array());
+	if(isset($_POST['submit'])){
+		if($_POST['frequency'] != "".$config['proxy_scan_rate']){
+			$inconf = fopen ("inc/instance-config.php", 'a');
+			fwrite($inconf,  PHP_EOL . '// Changes made via web editor' . PHP_EOL  .'$config["proxy_scan_rate"] = ' . $_POST['frequency'] .';' .  PHP_EOL);
+		}
+		$lines = array();
+		$lines_copy = explode("\n", $_POST['statements']);
+		foreach ($lines_copy as $index => $line){
+			$line = trim($line);
+			if($line != ""){
+				$lines[$index]["site"] = $line;
+			}
+		}
+		$query = prepare('TRUNCATE TABLE `proxy-sites`');
+		$query->execute() or error(db_error($query));
+		foreach ($lines as $line){
+			$query = prepare('INSERT IGNORE INTO `proxy-sites` VALUES (:line)');
+			$query->bindValue(':line', $line['site'], PDO::PARAM_STR);
+			$query->execute() or error(db_error($query));
+		}
+		mod_page(_('Proxy Sites'), 'mod/proxy_scrape.html', array('frequency'=>$_POST['frequency'], 'lines' => $lines));
+	}
+	else{
+		$frequency = $config['proxy_scan_rate'];
+		
+		$query = prepare("SELECT `site` FROM `proxy-sites` ORDER BY `site`");
+		$query->execute() or error(db_error($query));
+		$lines = $query->fetchAll(PDO::FETCH_ASSOC);
+
+		mod_page(_('Proxy Sites'), 'mod/proxy_scrape.html', array('frequency'=>$frequency, 'lines' => $lines));
+	}
 }
 
 function mod_login($redirect = false) {
