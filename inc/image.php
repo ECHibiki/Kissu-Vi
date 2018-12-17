@@ -363,7 +363,7 @@ class ImageConvert extends ImageBase {
 					$this->width,
 					$this->height,
 					escapeshellarg($this->temp)))) || !file_exists($this->temp)) {
-var_dump(!file_exists($this->temp));
+						
 					if (strpos($error, "known incorrect sRGB profile") === false &&
                                             strpos($error, "iCCP: Not recognizing known sRGB profile that has been edited") === false) {
 						$this->destroy();
