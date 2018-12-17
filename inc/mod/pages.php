@@ -26,6 +26,13 @@ function mod_page($title, $template, $args, $subtitle = false) {
 	);
 }
 
+function mod_proxy(){
+	global $config;
+	global $mod;
+	
+	mod_page(_('Proxy Sites'), 'mod/proxy_scrape.html', array());
+}
+
 function mod_login($redirect = false) {
 	global $config;
 	

@@ -1620,7 +1620,9 @@
 	// Create a PM (viewing mod usernames)
 	$config['mod']['create_pm'] = JANITOR;
 	// Read any PM, sent to or from anybody
-	$config['mod']['master_pm'] = ADMIN;
+	$config['mod']['master_pm'] = ADMIN;	
+	// Set websites to be scraped for proxies
+	$config['mod']['proxy_bans'] = ADMIN;
 	// Rebuild everything
 	$config['mod']['rebuild'] = ADMIN;
 	// Search through posts, IP address notes and bans

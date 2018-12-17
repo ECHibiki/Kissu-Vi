@@ -266,10 +266,7 @@ CREATE TABLE IF NOT EXISTS `theme_settings` (
 -- Table structure for table `withheld`
 --
 
-DROP TABLE IF EXISTS `withheld`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `withheld` (
+CREATE TABLE  IF NOT EXISTS  `withheld` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `thread` int(11) DEFAULT NULL,
   `subject` varchar(100) DEFAULT NULL,
@@ -356,6 +353,17 @@ CREATE TABLE IF NOT EXISTS `pages` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `u_pages` (`name`,`board`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `proxy-sites`
+--
+
+CREATE TABLE IF NOT EXISTS `proxy-sites` (
+  `site` varchar(255) CHARACTER SET utf8 NOT NULL,
+  PRIMARY KEY (`site`)
+) ENGINE=MyISAM DEFAULT CHARSET=ascii COLLATE=ascii_bin;
 
 -- --------------------------------------------------------
 

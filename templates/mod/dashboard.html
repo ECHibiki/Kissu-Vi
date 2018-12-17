@@ -92,6 +92,9 @@
 		{% if config.ban_appeals and mod|hasPermission(config.mod.view_ban_appeals) %}
 			<li><a href="?/ban-appeals">{% trans 'Ban appeals' %}</a></li>
 		{% endif %}
+		{% if mod|hasPermission(config.mod.proxy_bans) %}
+			<li><a href="?/proxy">{% trans 'Proxy Sites' %}</a></li>
+		{% endif %}
 		{% if mod|hasPermission(config.mod.manageusers) %}
 			<li><a href="?/users">{% trans 'Manage users' %}</a></li>
 		{% elseif mod|hasPermission(config.mod.change_password) %}
