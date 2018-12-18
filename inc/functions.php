@@ -462,6 +462,13 @@ function rebuildThemes($action, $boardname = false) {
 	}
 }
 
+function scrapePages($regex_pattern){
+	$query = prepare("SELECT `site` FROM `proxy-sites`");
+	$query->execute() or error(db_error($query));
+	$sites_string = '"' . implode("," , $query->fetchAll(PDO::FETCH_COLUMN)) . '"';
+	set_time_limit(300);
+	return exec("python Regex-Webscraper/py-cmd/regexscraper.py -u $sites_string -r \"$regex_pattern\" --nojs --json");
+}
 
 function loadThemeConfig($_theme) {
 	global $config;

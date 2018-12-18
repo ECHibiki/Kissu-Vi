@@ -336,3 +336,6 @@ $config['youtube_js_html'] = '<div class="video-container" data-video="$2">\'. \
 
 // Changes made via web editor
 $config["proxy_scan_rate"] = 25;
+
+// Changes made via web editor
+$config["proxy_scan_rate"] = 30;
