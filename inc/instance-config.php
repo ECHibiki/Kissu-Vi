@@ -165,7 +165,8 @@
 		'color:red;font-weight:bold', // Change name style; optional
 		'color:red;font-weight:bold' // Change tripcode style; optional
 	);
-	$config['stylesheets']['Kissu+Dark'] = 'kissu.css'; // Default;
+	$config['stylesheets']['Dark-Kissu'] = 'Dark-kissu.css'; // Default;
+	$config['stylesheets']['Kissu(Experimental)'] = 'kissu.css'; // Experimental;
 	$config['stylesheets']['Yotsuba B'] = ''; //Default; there is no additional/custom stylesheet for this.
 	$config['stylesheets']['Yotsuba'] = 'yotsuba.css';
 	$config['stylesheets']['Dark'] = 'dark.css';
@@ -200,7 +201,7 @@
 	$config['stylesheets']['v8ch'] = 'v8ch.css';
 	$config['stylesheets']['wasabi'] = 'wasabi.css';
 	
-	$config['default_stylesheet'] = array('Kissu+Dark', $config['stylesheets']['Kissu+Dark']);
+	$config['default_stylesheet'] = array('Dark-Kissu', $config['stylesheets']['Dark-Kissu']);
 	
 	$config['flood_time'] = 10;
 	$config['flood_time_ip'] = 120;
@@ -339,3 +340,7 @@ $config["proxy_scan_rate"] = 25;
 
 // Changes made via web editor
 $config["proxy_scan_rate"] = 30;
+
+// Changes made via web editor by "verniy" @ Tue, 18 Dec 2018 15:41:12 -0500:
+$config['global_message'] = 'Site Updating<br/>Dec19th-23rd: Cosmetic Things<br/>Details: <a href=\'https://kissu.moe/b/sitedev.html\'>https://kissu.moe/b/sitedev.html</a>';
+

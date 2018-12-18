@@ -112,12 +112,13 @@ function alert(a, do_confirm, confirm_ok_action, confirm_cancel_action, no_ok) {
 var saved = {};
 
 
-var selectedstyle = 'Kissu+Dark';
+var selectedstyle = 'Dark-Kissu';
 var styles = {
 	
 	'Yotsuba B' : '',
 	'Yotsuba' : '/stylesheets/yotsuba.css',
-	'Kissu+Dark' : '/stylesheets/kissu.css',
+	'Dark-Kissu' : '/stylesheets/Dark-kissu.css',
+	'Kissu(Experimental)' : '/stylesheets/kissu.css',
 	'Dark' : '/stylesheets/dark.css',
 	'Futaba' : '/stylesheets/futaba.css',
 	'Burichan' : '/stylesheets/burichan.css',
