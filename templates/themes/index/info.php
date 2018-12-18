@@ -97,11 +97,11 @@
 	);
 	
 	$theme['config'][] = Array(
-		'title' => 'HTML file',
-		'name' => 'html',
+		'title' => 'PHP file',
+		'name' => 'PHP',
 		'type' => 'text',
-		'default' => 'index.html',
-		'comment' => '(eg. "index.html")'
+		'default' => 'index.php',
+		'comment' => '(eg. "index.php")'
 	);
 	
 	$theme['config'][] = Array(

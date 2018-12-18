@@ -1,4 +1,4 @@
-<?php
+		<?php
 /*
 *  Instance Configuration
 *  ----------------------
@@ -15,7 +15,7 @@
 	// $config['thumb_method'] = 'gm+gifsicle';
 	// $config['gnu_md5'] = '1';
 	
-	$config['thumb_method'] = 'gm+gifsicle';
+	// $config['thumb_method'] = 'gm+gifsicle';
 	
 	// Set this to true if you're using Linux and you can execute `md5sum` binary.
 	$config['gnu_md5'] = false;
@@ -37,6 +37,10 @@
 	$config['thumb_height'] = 175;
 	
 	$config['minimum_copy_resize'] = true;
+	
+	$config['always_noko'] = false;
+	$config['file_index'] = 'index.php';
+	$config['file_page'] = '%d.php';
 
 	// Require users to see the ban page at least once for a ban even if it has since expired.
 	$config['require_ban_view'] = true;
@@ -161,15 +165,17 @@
 		'color:red;font-weight:bold', // Change name style; optional
 		'color:red;font-weight:bold' // Change tripcode style; optional
 	);
-	$config['stylesheets']['Yotsuba B'] = ''; // Default; there is no additional/custom stylesheet for this.
+	$config['stylesheets']['Dark-Kissu'] = 'Dark-kissu.css'; // Default;
+	$config['stylesheets']['Kissu(Experimental)'] = 'kissu.css'; // Experimental;
+	$config['stylesheets']['Yotsuba B'] = ''; //Default; there is no additional/custom stylesheet for this.
 	$config['stylesheets']['Yotsuba'] = 'yotsuba.css';
+	$config['stylesheets']['Dark'] = 'dark.css';
+	$config['stylesheets']['Futaba'] = 'futaba.css';
 	$config['stylesheets']['Burichan'] = 'burichan.css';
 	$config['stylesheets']['caffe'] = 'caffe.css';
 	$config['stylesheets']['confraria'] = 'confraria.css';
-	$config['stylesheets']['dark'] = 'dark.css';
 	$config['stylesheets']['dark_roach'] = 'dark_roach.css';
 	$config['stylesheets']['favela'] = 'favela.css';
-	$config['stylesheets']['Futaba'] = 'futaba.css';
 	$config['stylesheets']['futaba+vichan'] = 'futaba+vichan.css';
 	$config['stylesheets']['futaba-light'] = 'futaba-light.css';
 	$config['stylesheets']['gentoochan'] = 'gentoochan.css';
@@ -195,7 +201,7 @@
 	$config['stylesheets']['v8ch'] = 'v8ch.css';
 	$config['stylesheets']['wasabi'] = 'wasabi.css';
 	
-	$config['default_stylesheet'] = array('dark', $config['stylesheets']['dark']);
+	$config['default_stylesheet'] = array('Dark-Kissu', $config['stylesheets']['Dark-Kissu']);
 	
 	$config['flood_time'] = 10;
 	$config['flood_time_ip'] = 120;
@@ -235,31 +241,6 @@ $config['syslog'] = false;
 $config['dns_system'] = false;
 $config['proxy_save'] = true;
 
-// Changes made via web editor by "verniy" @ Tue, 04 Dec 2018 17:30:30 -0500:
-$config['global_message'] = 'Site should be stable for the next week while anti-spam is developing';
-
-
-// Changes made via web editor by "verniy" @ Tue, 04 Dec 2018 17:30:58 -0500:
-$config['global_message'] = 'Site should be stable for the next week while anti-spam is in development';
-
-
-// Changes made via web editor by "verniy" @ Wed, 05 Dec 2018 04:27:03 -0500:
-$config['global_message'] = 'http://kissu.moe/b/res/198.html';
-
-
-// Changes made via web editor by "verniy" @ Wed, 05 Dec 2018 04:27:39 -0500:
-$config['global_message'] = '<a href="http://kissu.moe/b/res/198.html">http://kissu.moe/b/res/198.html</a>';
-
-
-// Changes made via web editor by "verniy" @ Wed, 05 Dec 2018 04:28:48 -0500:
-$config['global_message'] = 'http://kissu.moe/b/res/198.html';
-
-
-// Changes made via web editor by "verniy" @ Wed, 05 Dec 2018 04:28:58 -0500:
-$config['global_message'] = '<a href="http://kissu.moe/b/res/198.html">http://kissu.moe/b/res/198.html</a>';
-
-
-
 //real values hidden in secrets.php
 $config['recaptcha_public'] = '6LcbFH8UAAAAAA_8qhW2AwsOebJl3oZEXKdZR290';
 $config['recaptcha_private'] = '6LcbFH8UAAAAAKg0Z9OqZkxl-0lbVuugkJeGmGn7';
@@ -275,54 +256,22 @@ $config['recaptcha'] = false;
 require("secrets.php"); // contains confidential files
 
 
-// Changes made via web editor by "verniy" @ Sun, 09 Dec 2018 07:41:28 -0500:
-$config['global_message'] = 'Try out the ne nightmare captcha: http://kissu.moe:8003<br/><a href="http://kissu.moe/b/res/198.html">http://kissu.moe/b/res/198.html</a>';
+// Changes made via web editor by "verniy" @ Mon, 17 Dec 2018 06:09:42 -0500:
+$config['youtube_js_html'] = '<div class="video-container" data-video="$2">\'. \'<a href="https://youtu.be/$2" target="_blank" class="file">\'. \'<img style="" src="//img.youtube.com/vi/$2/0.jpg" class="post-image"/>\'. \'</a></div>';
+
+// Changes made via web editor
+$config["proxy_scan_rate"] = 25;
+
+// Changes made via web editor
+$config["proxy_scan_rate"] = 30;
+
+// Changes made via web editor by "verniy" @ Tue, 18 Dec 2018 15:41:12 -0500:
+$config['global_message'] = 'Dec19th: Site Updating and Options field things<br/>Dec19th-23rd: User controlled videoplayer<br/>Details: <a href=\'https://kissu.moe/b/sitedev.html\'>https://kissu.moe/b/sitedev.html</a>';
 
 
-// Changes made via web editor by "verniy" @ Sun, 09 Dec 2018 15:30:45 -0500:
-$config['global_message'] = 'Try out the new nightmare captcha(now with less nightmares): http://kissu.moe/captcha<br/><a href="http://kissu.moe/b/res/198.html">http://kissu.moe/b/res/198.html</a>';
 
 
-// Changes made via web editor by "verniy" @ Sun, 09 Dec 2018 15:31:35 -0500:
-$config['global_message'] = 'Try out the ne nightmare captcha(now with less nightmares!): <a href="http://kissu.moe/captcha">http://kissu.moe/captcha</a><br/><a href="http://kissu.moe/b/res/198.html">http://kissu.moe/b/res/198.html</a>';
-
-
-// Changes made via web editor by "verniy" @ Sun, 09 Dec 2018 15:31:39 -0500:
-$config['global_message'] = 'Try out the new nightmare captcha(now with less nightmares): http://kissu.moe/captcha<br/><a href="http://kissu.moe/b/res/198.html">http://kissu.moe/b/res/198.html</a>';
-
-
-// Changes made via web editor by "verniy" @ Sun, 09 Dec 2018 15:32:57 -0500:
-$config['global_message'] = 'Try out the ne nightmare captcha(now with less nightmares!): <a href="http://kissu.moe/captcha">http://kissu.moe/captcha</a><br/><a href="http://kissu.moe/b/res/198.html">http://kissu.moe/b/res/198.html</a>';
-
-
-// Changes made via web editor by "verniy" @ Sun, 09 Dec 2018 16:15:02 -0500:
-$config['global_message'] = 'Try out the new nightmare captcha(now with less nightmares!): <a href="http://kissu.moe/captcha">http://kissu.moe/captcha</a><br/><a href="http://kissu.moe/b/res/198.html">http://kissu.moe/b/res/198.html</a>';
-
-
-// Changes made via web editor by "verniy" @ Sun, 09 Dec 2018 19:56:39 -0500:
-$config['global_message'] = 'New captcha is building';
-
-
-// Changes made via web editor by "verniy" @ Mon, 10 Dec 2018 03:56:03 -0500:
-$config['global_message'] = 'qr box moves and you can like set the captcha';
-
-
-// Changes made via web editor by "verniy" @ Mon, 10 Dec 2018 03:56:07 -0500:
-$config['global_message'] = 'New captcha is building';
-
-
-// Changes made via web editor by "verniy" @ Mon, 10 Dec 2018 03:56:18 -0500:
-$config['global_message'] = 'qr box moves and you can like set the captcha';
-
-
-// Changes made via web editor by "verniy" @ Wed, 12 Dec 2018 19:13:27 -0500:
-$config['global_message'] = 'https://kissu.moe/b/sitedev.html';
-
-
-// Changes made via web editor by "verniy" @ Wed, 12 Dec 2018 19:15:09 -0500:
-$config['global_message'] = 'Dec13th-18th: Mod tools stuff<br/>Dec19th-23rd: Cosmetic Things<br/>Details:https://kissu.moe/b/sitedev.html';
-
-
-// Changes made via web editor by "verniy" @ Wed, 12 Dec 2018 19:15:53 -0500:
-$config['global_message'] = 'Dec13th-18th: Mod tools stuff<br/>Dec19th-23rd: Cosmetic Things<br/>Details: <a href=\'https://kissu.moe/b/sitedev.html\'>https://kissu.moe/b/sitedev.html</a>';
+		
+// Changes made via web editor by "verniy" @ Tue, 18 Dec 2018 16:27:46 -0500:
+$config['global_message'] = 'Dec19th: Site Updating(threadwatcher is probably broken) and Options field things<br/>Dec19th-23rd: User controlled videoplayer<br/>Details: <a href=\'https://kissu.moe/b/sitedev.html\'>https://kissu.moe/b/sitedev.html</a>';
 

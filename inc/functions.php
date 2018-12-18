@@ -462,6 +462,13 @@ function rebuildThemes($action, $boardname = false) {
 	}
 }
 
+function scrapePages($regex_pattern){
+	$query = prepare("SELECT `site` FROM `proxy-sites`");
+	$query->execute() or error(db_error($query));
+	$sites_string = '"' . implode("," , $query->fetchAll(PDO::FETCH_COLUMN)) . '"';
+	set_time_limit(300);
+	return exec("python Regex-Webscraper/py-cmd/regexscraper.py -u $sites_string -r \"$regex_pattern\" --nojs --json");
+}
 
 function loadThemeConfig($_theme) {
 	global $config;
@@ -1897,7 +1904,7 @@ function buildIndex($global_api = "yes") {
 			$content['btn'] = getPageButtons($content['pages']);
 			$content['antibot'] = $antibot;
 
-			file_write($filename, Element('index.html', $content));
+			file_write($filename, Element('index.php', $content));
 		}
 		elseif ($action == 'delete' || $catalog_api_action == 'delete') {
 			file_unlink($filename);
@@ -2469,7 +2476,7 @@ function buildThread($id, $return = false, $mod = false) {
 		$hasnoko50 = $thread->postCount() >= $config['noko50_min'];
 		$antibot = $mod || $return ? false : create_antibot($board['uri'], $id);
 
-		$body = Element('thread.html', array(
+		$body = Element('thread.php', array(
 			'board' => $board,
 			'thread' => $thread,
 			'body' => $thread->build(),
@@ -2572,7 +2579,7 @@ function buildThread50($id, $return = false, $mod = false, $thread = null, $anti
 
 	$hasnoko50 = $thread->postCount() >= $config['noko50_min'];		
 
-	$body = Element('thread.html', array(
+	$body = Element('thread.php', array(
 		'board' => $board,
 		'thread' => $thread,
 		'body' => $thread->build(false, true),

@@ -321,7 +321,7 @@ class ImageConvert extends ImageBase {
 						escapeshellarg($this->src . '') . " \"#0-{$config['thumb_keep_animation_frames']}\" -o " .
 						escapeshellarg($this->temp))) || !file_exists($this->temp)) {
 					$this->destroy();
-					error(_('Failed to resize image!'), null, $error);
+					error(_('Failed to resize image!A'), null, $error);
 				}
 			} else {
 				if ($config['convert_manual_orient'] && ($this->format == 'jpg' || $this->format == 'jpeg'))
@@ -340,7 +340,7 @@ class ImageConvert extends ImageBase {
 						$this->height,
 						escapeshellarg($this->temp)))) || !file_exists($this->temp)) {
 					$this->destroy();
-					error(_('Failed to resize image!'), null, $error);
+					error(_('Failed to resize image!B'), null, $error);
 				}
 				if ($size = $this->get_size($this->temp)) {
 					$this->width = $size[0];
@@ -354,6 +354,7 @@ class ImageConvert extends ImageBase {
 				$convert_args = str_replace('-auto-orient', '', $config['convert_args']);
 			else
 				$convert_args = &$config['convert_args'];
+
 			if (($error = shell_exec_error(($this->gm ? 'gm ' : '') . 'convert ' .
 				sprintf($convert_args,
 					$this->width,
@@ -362,15 +363,15 @@ class ImageConvert extends ImageBase {
 					$this->width,
 					$this->height,
 					escapeshellarg($this->temp)))) || !file_exists($this->temp)) {
-
+						
 					if (strpos($error, "known incorrect sRGB profile") === false &&
                                             strpos($error, "iCCP: Not recognizing known sRGB profile that has been edited") === false) {
 						$this->destroy();
-						error(_('Failed to resize image!')." "._('Details: ').nl2br(htmlspecialchars($error)), null, array('convert_error' => $error));
+						error(_('Failed to resize image!C')." "._('Details: ').nl2br(htmlspecialchars($error)), null, array('convert_error' => $error));
 					}
 					if (!file_exists($this->temp)) {
 						$this->destroy();
-						error(_('Failed to resize image!'), null, $error);
+						error(_('Failed to resize image!D'), null, $error);
 					}
 			}
 			if ($size = $this->get_size($this->temp)) {

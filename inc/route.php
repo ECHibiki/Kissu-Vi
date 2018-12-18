@@ -30,9 +30,9 @@ function route($path) { global $config;
   }
 
   $entrypoints['/*/']              = 'sb_ukko';
-  $entrypoints['/*/index.html']    = 'sb_ukko';
-  $entrypoints['/recent.html']     = 'sb_recent';
-  $entrypoints['/%b/catalog.html'] = 'sb_catalog';
+  $entrypoints['/*/index.php']    = 'sb_ukko';
+  $entrypoints['/recent.php']     = 'sb_recent';
+  $entrypoints['/%b/catalog.php'] = 'sb_catalog';
   $entrypoints['/%b/index.rss']    = 'sb_catalog';
   $entrypoints['/sitemap.xml']     = 'sb_sitemap';
 

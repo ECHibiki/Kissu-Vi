@@ -26,6 +26,42 @@ function mod_page($title, $template, $args, $subtitle = false) {
 	);
 }
 
+function mod_proxy(){
+	global $config;
+	global $mod;
+	if(isset($_POST['submit'])){
+		if($_POST['frequency'] != "".$config['proxy_scan_rate']){
+			$inconf = fopen ("inc/instance-config.php", 'a');
+			fwrite($inconf,  PHP_EOL . '// Changes made via web editor' . PHP_EOL  .'$config["proxy_scan_rate"] = ' . $_POST['frequency'] .';' .  PHP_EOL);
+		}
+		$lines = array();
+		$lines_copy = explode("\n", $_POST['statements']);
+		foreach ($lines_copy as $index => $line){
+			$line = trim($line);
+			if($line != ""){
+				$lines[$index]["site"] = $line;
+			}
+		}
+		$query = prepare('TRUNCATE TABLE `proxy-sites`');
+		$query->execute() or error(db_error($query));
+		foreach ($lines as $line){
+			$query = prepare('INSERT IGNORE INTO `proxy-sites` VALUES (:line)');
+			$query->bindValue(':line', $line['site'], PDO::PARAM_STR);
+			$query->execute() or error(db_error($query));
+		}
+		mod_page(_('Proxy Sites'), 'mod/proxy_scrape.html', array('frequency'=>$_POST['frequency'], 'lines' => $lines));
+	}
+	else{
+		$frequency = $config['proxy_scan_rate'];
+		
+		$query = prepare("SELECT `site` FROM `proxy-sites` ORDER BY `site`");
+		$query->execute() or error(db_error($query));
+		$lines = $query->fetchAll(PDO::FETCH_ASSOC);
+
+		mod_page(_('Proxy Sites'), 'mod/proxy_scrape.html', array('frequency'=>$frequency, 'lines' => $lines));
+	}
+}
+
 function mod_login($redirect = false) {
 	global $config;
 	
@@ -750,7 +786,7 @@ function mod_view_board($boardName, $page_no = 1) {
 	$page['mod'] = true;
 	$page['config'] = $config;
 	
-	echo Element('index.html', $page);
+	echo Element('index.php', $page);
 }
 
 function mod_view_thread($boardName, $thread) {
@@ -2478,6 +2514,100 @@ function mod_config($board_config = false) {
 	
 	$config_file = $board_config ? $board['dir'] . 'config.php' : 'inc/instance-config.php';
 	
+	
+	if($config['mod']['simplified_editor_php']){
+		require_once 'inc/mod/config-editor.php';
+		
+		$conf = config_vars();
+		foreach ($conf as &$var) {
+			if (is_array($var['name'])) {
+				$c = &$config;
+				foreach ($var['name'] as $n)
+					$c = &$c[$n];
+			} else {
+				$c = @$config[$var['name']];
+			}
+			
+			$var['value'] = $c;
+		}
+		unset($var);
+		
+		if (isset($_POST['save'])) {
+			$config_append = '';
+			
+			foreach ($conf as $var) {
+				$field_name = 'cf_' . (is_array($var['name']) ? implode('/', $var['name']) : $var['name']);
+				
+				if ($var['type'] == 'boolean')
+					$value = isset($_POST[$field_name]);
+				elseif (isset($_POST[$field_name]))
+					$value = $_POST[$field_name];
+				else
+					continue; // ???
+				
+				if (!settype($value, $var['type']))
+					continue; // invalid
+				
+				if ($value != $var['value']) {
+					// This value has been changed.
+					
+					$config_append .= '$config';
+					
+					if (is_array($var['name'])) {
+						foreach ($var['name'] as $name)
+							$config_append .= '[' . var_export($name, true) . ']';
+					} else {
+						$config_append .= '[' . var_export($var['name'], true) . ']';
+					}
+					
+					
+					$config_append .= ' = ';
+					if (@$var['permissions'] && isset($config['mod']['groups'][$value])) {
+						$config_append .= $config['mod']['groups'][$value];
+					} else {
+						$config_append .= var_export($value, true);
+					}
+					$config_append .= ";\n";
+				}
+			}
+			
+			if (!empty($config_append)) {
+				$config_append = "\n// Changes made via web editor by \"" . $mod['username'] . "\" @ " . date('r') . ":\n" . $config_append . "\n";
+				if (!is_file($config_file))
+					$config_append = "<?php\n\n$config_append";
+				if (!@file_put_contents($config_file, $config_append, FILE_APPEND)) {
+					$config_append = htmlentities($config_append);
+					
+					if ($config['minify_html'])
+						$config_append = str_replace("\n", '&#010;', $config_append);
+					$page = array();
+					$page['title'] = 'Cannot write to file!';
+					$page['config'] = $config;
+					$page['body'] = '
+						<p style="text-align:center">Tinyboard could not write to <strong>' . $config_file . '</strong> with the ammended configuration, probably due to a permissions error.</p>
+						<p style="text-align:center">You may proceed with these changes manually by copying and pasting the following code to the end of <strong>' . $config_file . '</strong>:</p>
+						<textarea style="width:700px;height:370px;margin:auto;display:block;background:white;color:black" readonly>' . $config_append . '</textarea>
+					';
+					echo Element('page.html', $page);
+					exit;
+				}
+			}
+			
+			header('Location: ?/config' . ($board_config ? '/' . $board_config : ''), true, $config['redirect_http']);
+			
+			exit;
+		}
+
+		mod_page(_('Config editor') . ($board_config ? ': ' . sprintf($config['board_abbreviation'], $board_config) : ''),
+			'mod/config-editor.html', array(
+				'boards' => listBoards(),
+				'board' => $board_config,
+				'conf' => $conf,
+				'file' => $config_file,
+				'token' => make_secure_link_token('config' . ($board_config ? '/' . $board_config : ''))
+		));
+	}
+	
 	if ($config['mod']['config_editor_php']) {
 		$readonly = !(is_file($config_file) ? is_writable($config_file) : is_writable(dirname($config_file)));
 		
@@ -2511,100 +2641,7 @@ function mod_config($board_config = false) {
 			'file' => $config_file,
 			'token' => make_secure_link_token('config' . ($board_config ? '/' . $board_config : ''))
 		));
-		return;
 	}
-	
-	require_once 'inc/mod/config-editor.php';
-	
-	$conf = config_vars();
-	
-	foreach ($conf as &$var) {
-		if (is_array($var['name'])) {
-			$c = &$config;
-			foreach ($var['name'] as $n)
-				$c = &$c[$n];
-		} else {
-			$c = @$config[$var['name']];
-		}
-		
-		$var['value'] = $c;
-	}
-	unset($var);
-	
-	if (isset($_POST['save'])) {
-		$config_append = '';
-		
-		foreach ($conf as $var) {
-			$field_name = 'cf_' . (is_array($var['name']) ? implode('/', $var['name']) : $var['name']);
-			
-			if ($var['type'] == 'boolean')
-				$value = isset($_POST[$field_name]);
-			elseif (isset($_POST[$field_name]))
-				$value = $_POST[$field_name];
-			else
-				continue; // ???
-			
-			if (!settype($value, $var['type']))
-				continue; // invalid
-			
-			if ($value != $var['value']) {
-				// This value has been changed.
-				
-				$config_append .= '$config';
-				
-				if (is_array($var['name'])) {
-					foreach ($var['name'] as $name)
-						$config_append .= '[' . var_export($name, true) . ']';
-				} else {
-					$config_append .= '[' . var_export($var['name'], true) . ']';
-				}
-				
-				
-				$config_append .= ' = ';
-				if (@$var['permissions'] && isset($config['mod']['groups'][$value])) {
-					$config_append .= $config['mod']['groups'][$value];
-				} else {
-					$config_append .= var_export($value, true);
-				}
-				$config_append .= ";\n";
-			}
-		}
-		
-		if (!empty($config_append)) {
-			$config_append = "\n// Changes made via web editor by \"" . $mod['username'] . "\" @ " . date('r') . ":\n" . $config_append . "\n";
-			if (!is_file($config_file))
-				$config_append = "<?php\n\n$config_append";
-			if (!@file_put_contents($config_file, $config_append, FILE_APPEND)) {
-				$config_append = htmlentities($config_append);
-				
-				if ($config['minify_html'])
-					$config_append = str_replace("\n", '&#010;', $config_append);
-				$page = array();
-				$page['title'] = 'Cannot write to file!';
-				$page['config'] = $config;
-				$page['body'] = '
-					<p style="text-align:center">Tinyboard could not write to <strong>' . $config_file . '</strong> with the ammended configuration, probably due to a permissions error.</p>
-					<p style="text-align:center">You may proceed with these changes manually by copying and pasting the following code to the end of <strong>' . $config_file . '</strong>:</p>
-					<textarea style="width:700px;height:370px;margin:auto;display:block;background:white;color:black" readonly>' . $config_append . '</textarea>
-				';
-				echo Element('page.html', $page);
-				exit;
-			}
-		}
-		
-		header('Location: ?/config' . ($board_config ? '/' . $board_config : ''), true, $config['redirect_http']);
-		
-		exit;
-	}
-
-	mod_page(_('Config editor') . ($board_config ? ': ' . sprintf($config['board_abbreviation'], $board_config) : ''),
-		'mod/config-editor.html', array(
-			'boards' => listBoards(),
-			'board' => $board_config,
-			'conf' => $conf,
-			'file' => $config_file,
-			'token' => make_secure_link_token('config' . ($board_config ? '/' . $board_config : ''))
-	));
 }
 
 function mod_themes_list() {
@@ -2655,7 +2692,7 @@ function mod_theme_configure($theme_name) {
 		// Check if everything is submitted
 		foreach ($theme['config'] as &$conf) {
 			if (!isset($_POST[$conf['name']]) && $conf['type'] != 'checkbox')
-				error(sprintf($config['error']['required'], $c['title']));
+				error(sprintf($config['error']['required'], $conf['title']));
 		}
 		
 		// Clear previous settings

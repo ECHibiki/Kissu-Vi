@@ -64,11 +64,11 @@ function config_vars() {
 			$var['comment'][] = $temp_comment;
 			$temp_comment = false;
 		}
-		
+
 		if (preg_match('!^\s*// ([^$].*)$!', $line, $matches)) {
 			if ($var['default'] !== false) {
-				$line = '';
 				$temp_comment = $matches[1];
+				$line = '';
 			} else {
 				$var['comment'][] = $matches[1];
 			}
@@ -84,19 +84,21 @@ function config_vars() {
 			} else {
 				foreach ($var['name'] as &$i)
 					$i = preg_replace('/^\'(.*)\'$/', '$1', $i);
-			}
-			
-			if (isset($matches[3]))
+			}			
+			if (isset($matches[3])){
 				$var['default'] = $matches[2];
-			else
+			}
+			else{
 				$var['default_temp'] = $matches[2];
+			}
 		}
 		
 		if ($var['name'] !== false) {
 			if ($var['default_temp'])
 				$var['default'] = $var['default_temp'];
-			if ($var['default'][0] == '&')
+			if ($var['default'][0] == '&'){
 				continue; // This is just an alias.
+			}
 			if (!preg_match('/^array|\[\]|function/', $var['default']) && !preg_match('/^Example: /', trim(implode(' ', $var['comment'])))) {
 				$syntax_error = true;
 				$temp = eval('$syntax_error = false;return @' . $var['default'] . ';');
@@ -149,7 +151,6 @@ function config_vars() {
 		
 		$line_no++;
 	}
-	
 	return $conf;
 }
 

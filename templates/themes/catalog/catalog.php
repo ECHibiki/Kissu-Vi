@@ -1,3 +1,4 @@
+{% include 'checkban.php' %}
 {% filter remove_whitespace %}
 <!doctype html>
 <html>
@@ -11,6 +12,9 @@
 	<title>{{ board }} - Catalog</title>
 </head>
 <body class="8chan vichan {% if mod %}is-moderator{% else %}is-not-moderator{% endif %} theme-catalog active-catalog" data-stylesheet="{% if config.default_stylesheet.1 != '' %}{{ config.default_stylesheet.1 }}{% else %}default{% endif %}">
+
+
+	
 	{{ boardlist.top }}
 	<header>
 		<h1>{{ settings.title }} (<a href="{{link}}">/{{ board }}/</a>)</h1>
@@ -70,7 +74,6 @@
                 {% endfor %}
                 </div>
         </div>
-	
 	<hr/>
 	<footer>
 		<p class="unimportant" style="margin-top:20px;text-align:center;">- Tinyboard + 

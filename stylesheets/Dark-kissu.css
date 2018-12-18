@@ -194,3 +194,58 @@ div.report {
 #quick-reply table {
 	background: none repeat scroll 0% 0% #333 !important;
 }
+
+
+/* Yotgo/Cool Dude's (WIP) cool sheet 
+* For Kissu.moe
+*/
+
+
+form {
+	margin-bottom: 4em;
+}
+form table {
+	margin: auto;
+}
+form table input {
+	height: auto;
+}
+input[type="text"], input[type="password"], textarea {
+	border: 2px solid #65627f;
+        background-color: #2f3454;
+	text-indent: 0;
+        color:#ECD5DA;
+	text-shadow: none;
+	text-transform: none;
+	word-spacing: normal;
+	box-shadow: 10px 5px 20px 1px rgba(0,0,0,1);
+	border-radius: 10px;
+}
+form table tr td {
+	text-align: left;
+	margin: 0;
+	padding: 0;
+}
+form table.mod tr td {
+	padding: 2px;
+}
+form table tr th {
+	text-align: left;
+	padding: 4px;
+}
+form table tr th {
+	background: #000000;
+}
+form table tr td div {
+	text-align: center;
+	float: left;
+	padding-left: 3px;
+}
+form table tr td div input {
+	display: block;
+	margin: 2px auto 0 auto;
+	border-radius: 10px;
+}
+form table tr td div label {
+	font-size: 10px;
+}

@@ -309,4 +309,73 @@ class Bans {
 
 		return $pdo->lastInsertId();
 	}
+
+	static public function new_ban_multiple($masks, $reason, $length = false, $ban_board = false, $mod_id = false, $post = false) {
+		global $mod, $pdo, $board;
+		
+		foreach($masks as $mask){
+			if ($mod_id === false) {
+				$mod_id = isset($mod['id']) ? $mod['id'] : -1;
+			}
+					
+			$range = self::parse_range($mask);
+			$mask = self::range_to_string($range);
+			
+			$query = prepare("INSERT INTO ``bans`` VALUES (NULL, :ipstart, :ipend, :time, :expires, :board, :mod, :reason, 0, :post)");
+			
+			$query->bindValue(':ipstart', $range[0]);
+			if ($range[1] !== false && $range[1] != $range[0])
+				$query->bindValue(':ipend', $range[1]);
+			else
+				$query->bindValue(':ipend', null, PDO::PARAM_NULL);
+			
+			$query->bindValue(':mod', $mod_id);
+			$query->bindValue(':time', time());
+			
+			if ($reason !== '') {
+				$reason = escape_markup_modifiers($reason);
+				markup($reason);
+				$query->bindValue(':reason', $reason);
+			} else
+				$query->bindValue(':reason', null, PDO::PARAM_NULL);
+			
+			if ($length) {
+				if (is_int($length) || ctype_digit($length)) {
+					$length = time() + $length;
+				} else {
+					$length = self::parse_time($length);
+				}
+				$query->bindValue(':expires', $length);
+			} else {
+				$query->bindValue(':expires', null, PDO::PARAM_NULL);
+			}
+			
+			if ($ban_board)
+				$query->bindValue(':board', $ban_board);
+			else
+				$query->bindValue(':board', null, PDO::PARAM_NULL);
+			
+			if ($post) {
+				$post['board'] = $board['uri'];
+				$query->bindValue(':post', json_encode($post));
+			} else
+				$query->bindValue(':post', null, PDO::PARAM_NULL);
+			
+			$query->execute() or error(db_error($query));
+			
+			if (isset($mod['id']) && $mod['id'] == $mod_id) {
+				modLog('Created a new ' .
+					($length > 0 ? preg_replace('/^(\d+) (\w+?)s?$/', '$1-$2', until($length)) : 'permanent') .
+					' ban on ' .
+					($ban_board ? '/' . $ban_board . '/' : 'all boards') .
+					' for ' .
+					(filter_var($mask, FILTER_VALIDATE_IP) !== false ? "<a href=\"?/IP/$mask\">$mask</a>" : $mask) .
+					' (<small>#' . $pdo->lastInsertId() . '</small>)' .
+					' with ' . ($reason ? 'reason: ' . utf8tohtml($reason) . '' : 'no reason'));
+			}
+		}
+		rebuildThemes('bans');
+
+		return $pdo->lastInsertId();
+	}
 }

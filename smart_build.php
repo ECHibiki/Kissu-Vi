@@ -42,7 +42,7 @@ function die_404() { global $config;
 
 if ($reached) {
   if ($request[strlen($request)-1] == '/') {
-    $request .= 'index.html';
+    $request .= 'index.php';
   }
   $request = '.'.$request;
 
