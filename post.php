@@ -1158,7 +1158,7 @@ elseif (isset($_POST['post']) || $dropped_post) {
 		query('INSERT INTO ``cites`` VALUES ' . implode(', ', $insert_rows)) or error(db_error());
 	}
 	
-	if (!$post['op'] && preg_match('/sage/', strtolower($post['email'])) && !$thread['sage'] && ($config['reply_limit'] == 0 || $numposts['replies']+1 < $config['reply_limit'])) {
+	if (!$post['op'] && !preg_match('/sage/', strtolower($post['email'])) && !$thread['sage'] && ($config['reply_limit'] == 0 || $numposts['replies']+1 < $config['reply_limit'])) {
 		bumpThread($post['thread']);
 	}
 	
@@ -1308,13 +1308,11 @@ elseif(isset($_POST['release'])){
 	if($post['num_files'] > 0) $post['has_file'] = true;
 	else $post['has_file'] = false;
 	
-		$noko = false;
-	if (strtolower($post['email']) == 'noko') {
+	$noko = false;
+	if (preg_match('/noko/', strtolower($post['email']))) {
 		$noko = true;
-		$post['email'] = '';
-	} elseif (strtolower($post['email']) == 'nonoko'){
+	} elseif (preg_match('/nonoko/', strtolower($post['email']))){
 		$noko = false;
-		$post['email'] = '';
 	} else $noko = $config['always_noko'];
 	
 	$post['op'] = true;
@@ -1417,13 +1415,10 @@ elseif(isset($_POST['release'])){
 		query('INSERT INTO ``cites`` VALUES ' . implode(', ', $insert_rows)) or error(db_error());
 	}
 	
-	if (!$post['op'] && preg_match('/sage/', strtolower($post['email'])) && !$thread['sage'] && ($config['reply_limit'] == 0 || $numposts['replies']+1 < $config['reply_limit'])) {
+	if (!$post['op'] && !preg_match('/sage/', strtolower($post['email'])) && !$thread['sage'] && ($config['reply_limit'] == 0 || $numposts['replies']+1 < $config['reply_limit'])) {
 		bumpThread($post['thread']);
 	}
-	
-		print_r($post['files']);
-
-	
+		
 	if (isset($_SERVER['HTTP_REFERER'])) {
 		// Tell Javascript that we posted successfully
 		if (isset($_COOKIE[$config['cookies']['js']]))

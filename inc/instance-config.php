@@ -307,3 +307,15 @@ $config['global_message'] = 'Modifying the site directly... Weird things may hap
 // Changes made via web editor by "verniy" @ Wed, 19 Dec 2018 04:20:06 -0500:
 $config['global_message'] = ' Improvements on the Options field<br/>Two new Styles In the select bar<br/><br/>Details: <a href=\'https://kissu.moe/b/sitedev.html\'>https://kissu.moe/b/sitedev.html</a>';
 
+
+// Changes made via web editor by "verniy" @ Wed, 19 Dec 2018 04:46:14 -0500:
+$config['max_pages'] = 30;
+
+
+// Changes made via web editor by "verniy" @ Wed, 19 Dec 2018 04:47:29 -0500:
+$config['url_banner'] = 'https://files.catbox.moe/o13b3s.png';
+
+
+// Changes made via web editor by "verniy" @ Wed, 19 Dec 2018 05:03:05 -0500:
+$config['url_banner'] = '/static/banner-kissu.png';
+
