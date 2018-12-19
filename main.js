@@ -407,9 +407,15 @@ var script_settings = function(script_name) {
 	}
 };
 
+
+
 function init() {
 	init_stylechooser();
 
+	$("#option_simplifier").change(function(e){
+		$("#option_input").val($("#option_input").val() + " " + $( "#option_simplifier option:selected" ).val());
+	});
+	
 		
 		if (document.forms.postcontrols) {
 		document.forms.postcontrols.password.value = localStorage.password;

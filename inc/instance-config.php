@@ -1,4 +1,4 @@
-<?php
+		<?php
 /*
 *  Instance Configuration
 *  ----------------------
@@ -241,31 +241,6 @@ $config['syslog'] = false;
 $config['dns_system'] = false;
 $config['proxy_save'] = true;
 
-// Changes made via web editor by "verniy" @ Tue, 04 Dec 2018 17:30:30 -0500:
-$config['global_message'] = 'Site should be stable for the next week while anti-spam is developing';
-
-
-// Changes made via web editor by "verniy" @ Tue, 04 Dec 2018 17:30:58 -0500:
-$config['global_message'] = 'Site should be stable for the next week while anti-spam is in development';
-
-
-// Changes made via web editor by "verniy" @ Wed, 05 Dec 2018 04:27:03 -0500:
-$config['global_message'] = 'http://kissu.moe/b/res/198.html';
-
-
-// Changes made via web editor by "verniy" @ Wed, 05 Dec 2018 04:27:39 -0500:
-$config['global_message'] = '<a href="http://kissu.moe/b/res/198.html">http://kissu.moe/b/res/198.html</a>';
-
-
-// Changes made via web editor by "verniy" @ Wed, 05 Dec 2018 04:28:48 -0500:
-$config['global_message'] = 'http://kissu.moe/b/res/198.html';
-
-
-// Changes made via web editor by "verniy" @ Wed, 05 Dec 2018 04:28:58 -0500:
-$config['global_message'] = '<a href="http://kissu.moe/b/res/198.html">http://kissu.moe/b/res/198.html</a>';
-
-
-
 //real values hidden in secrets.php
 $config['recaptcha_public'] = '6LcbFH8UAAAAAA_8qhW2AwsOebJl3oZEXKdZR290';
 $config['recaptcha_private'] = '6LcbFH8UAAAAAKg0Z9OqZkxl-0lbVuugkJeGmGn7';
@@ -281,59 +256,8 @@ $config['recaptcha'] = false;
 require("secrets.php"); // contains confidential files
 
 
-// Changes made via web editor by "verniy" @ Sun, 09 Dec 2018 07:41:28 -0500:
-$config['global_message'] = 'Try out the ne nightmare captcha: http://kissu.moe:8003<br/><a href="http://kissu.moe/b/res/198.html">http://kissu.moe/b/res/198.html</a>';
-
-
-// Changes made via web editor by "verniy" @ Sun, 09 Dec 2018 15:30:45 -0500:
-$config['global_message'] = 'Try out the new nightmare captcha(now with less nightmares): http://kissu.moe/captcha<br/><a href="http://kissu.moe/b/res/198.html">http://kissu.moe/b/res/198.html</a>';
-
-
-// Changes made via web editor by "verniy" @ Sun, 09 Dec 2018 15:31:35 -0500:
-$config['global_message'] = 'Try out the ne nightmare captcha(now with less nightmares!): <a href="http://kissu.moe/captcha">http://kissu.moe/captcha</a><br/><a href="http://kissu.moe/b/res/198.html">http://kissu.moe/b/res/198.html</a>';
-
-
-// Changes made via web editor by "verniy" @ Sun, 09 Dec 2018 15:31:39 -0500:
-$config['global_message'] = 'Try out the new nightmare captcha(now with less nightmares): http://kissu.moe/captcha<br/><a href="http://kissu.moe/b/res/198.html">http://kissu.moe/b/res/198.html</a>';
-
-
-// Changes made via web editor by "verniy" @ Sun, 09 Dec 2018 15:32:57 -0500:
-$config['global_message'] = 'Try out the ne nightmare captcha(now with less nightmares!): <a href="http://kissu.moe/captcha">http://kissu.moe/captcha</a><br/><a href="http://kissu.moe/b/res/198.html">http://kissu.moe/b/res/198.html</a>';
-
-
-// Changes made via web editor by "verniy" @ Sun, 09 Dec 2018 16:15:02 -0500:
-$config['global_message'] = 'Try out the new nightmare captcha(now with less nightmares!): <a href="http://kissu.moe/captcha">http://kissu.moe/captcha</a><br/><a href="http://kissu.moe/b/res/198.html">http://kissu.moe/b/res/198.html</a>';
-
-
-// Changes made via web editor by "verniy" @ Sun, 09 Dec 2018 19:56:39 -0500:
-$config['global_message'] = 'New captcha is building';
-
-
-// Changes made via web editor by "verniy" @ Mon, 10 Dec 2018 03:56:03 -0500:
-$config['global_message'] = 'qr box moves and you can like set the captcha';
-
-
-// Changes made via web editor by "verniy" @ Mon, 10 Dec 2018 03:56:07 -0500:
-$config['global_message'] = 'New captcha is building';
-
-
-// Changes made via web editor by "verniy" @ Mon, 10 Dec 2018 03:56:18 -0500:
-$config['global_message'] = 'qr box moves and you can like set the captcha';
-
-
-// Changes made via web editor by "verniy" @ Fri, 14 Dec 2018 17:40:06 -0500:
-$config['global_message'] = 'Stylesheet, PHP pages, Ban Checking, removing the file extensions soon';
-$config['debug'] = true;
-
-
-// Changes made via web editor by "verniy" @ Sun, 16 Dec 2018 04:50:05 -0500:
-$config['youtube_js_html'] = '<div class="video-container" data-video="$2">\'. 		\'<a href="https://youtu.be/$2" target="_blank" class="file">\'. 		\'<img style="" src="//img.youtube.com/vi/$2/0.jpg" class="post-image"/>\'. 		\'</a></div>';
-
-
 // Changes made via web editor by "verniy" @ Mon, 17 Dec 2018 06:09:42 -0500:
 $config['youtube_js_html'] = '<div class="video-container" data-video="$2">\'. \'<a href="https://youtu.be/$2" target="_blank" class="file">\'. \'<img style="" src="//img.youtube.com/vi/$2/0.jpg" class="post-image"/>\'. \'</a></div>';
-
-
 
 // Changes made via web editor
 $config["proxy_scan_rate"] = 25;
@@ -342,5 +266,56 @@ $config["proxy_scan_rate"] = 25;
 $config["proxy_scan_rate"] = 30;
 
 // Changes made via web editor by "verniy" @ Tue, 18 Dec 2018 15:41:12 -0500:
-$config['global_message'] = 'Site Updating<br/>Dec19th-23rd: Cosmetic Things<br/>Details: <a href=\'https://kissu.moe/b/sitedev.html\'>https://kissu.moe/b/sitedev.html</a>';
+$config['global_message'] = 'Dec19th: Site Updating and Options field things<br/>Dec19th-23rd: User controlled videoplayer<br/>Details: <a href=\'https://kissu.moe/b/sitedev.html\'>https://kissu.moe/b/sitedev.html</a>';
+
+
+
+
+		
+// Changes made via web editor by "verniy" @ Tue, 18 Dec 2018 16:27:46 -0500:
+$config['global_message'] = 'Dec19th: Site Updating(threadwatcher is probably broken) and Options field things<br/>Dec19th-23rd: User controlled videoplayer<br/>Details: <a href=\'https://kissu.moe/b/sitedev.html\'>https://kissu.moe/b/sitedev.html</a>';
+
+
+// Changes made via web editor by "verniy" @ Tue, 18 Dec 2018 23:11:21 -0500:
+$config['global_message'] = 'Site Updated...Successfully?<br/>Two new Styles and Improvements on the Options field tonight<br/>Dec19th-23rd: User controlled videoplayer<br/>Details: <a href=\'https://kissu.moe/b/sitedev.html\'>https://kissu.moe/b/sitedev.html</a>';
+
+
+// Changes made via web editor by "verniy" @ Tue, 18 Dec 2018 23:12:17 -0500:
+$config['global_message'] = 'Site Updated...Successfully?<br/>Two new Styles In the select bar</hr> Improvements on the Options field tonight<br/>Dec19th-23rd: User controlled videoplayer<br/>Details: <a href=\'https://kissu.moe/b/sitedev.html\'>https://kissu.moe/b/sitedev.html</a>';
+
+
+// Changes made via web editor by "verniy" @ Tue, 18 Dec 2018 23:13:49 -0500:
+$config['global_message'] = 'Site Updated...Successfully?<br/>Two new Styles In the select bar</br> Improvements on the Options field tonight<br/>Dec19th-23rd: User controlled videoplayer<br/>Details: <a href=\'https://kissu.moe/b/sitedev.html\'>https://kissu.moe/b/sitedev.html</a>';
+
+
+// Changes made via web editor by "verniy" @ Tue, 18 Dec 2018 23:14:21 -0500:
+$config['global_message'] = 'Site Updated...Successfully?<br/>Two new Styles In the select bar<hr/> Improvements on the Options field tonight<br/>Dec19th-23rd: User controlled videoplayer<br/>Details: <a href=\'https://kissu.moe/b/sitedev.html\'>https://kissu.moe/b/sitedev.html</a>';
+
+
+// Changes made via web editor by "verniy" @ Tue, 18 Dec 2018 23:14:34 -0500:
+$config['global_message'] = 'Site Updated...Successfully?<br/>Two new Styles In the select bar<br/> Improvements on the Options field tonight<br/>Dec19th-23rd: User controlled videoplayer<br/>Details: <a href=\'https://kissu.moe/b/sitedev.html\'>https://kissu.moe/b/sitedev.html</a>';
+
+
+// Changes made via web editor by "verniy" @ Tue, 18 Dec 2018 23:15:51 -0500:
+$config['global_message'] = 'Site Updated...Successfully?<br/>Two new Styles In the select bar<br/> Improvements on the Options field tonight next a f***ing videoplayer..<br/>Details: <a href=\'https://kissu.moe/b/sitedev.html\'>https://kissu.moe/b/sitedev.html</a>';
+
+
+// Changes made via web editor by "verniy" @ Wed, 19 Dec 2018 03:49:57 -0500:
+$config['global_message'] = 'Modifying the site directly... Weird things may happen<br/>Two new Styles In the select bar<br/> Improvements on the Options field tonight next a f***ing videoplayer..<br/>Details: <a href=\'https://kissu.moe/b/sitedev.html\'>https://kissu.moe/b/sitedev.html</a>';
+
+
+// Changes made via web editor by "verniy" @ Wed, 19 Dec 2018 04:20:06 -0500:
+$config['global_message'] = ' Improvements on the Options field<br/>Two new Styles In the select bar<br/><br/>Details: <a href=\'https://kissu.moe/b/sitedev.html\'>https://kissu.moe/b/sitedev.html</a>';
+
+
+// Changes made via web editor by "verniy" @ Wed, 19 Dec 2018 04:46:14 -0500:
+$config['max_pages'] = 30;
+
+
+// Changes made via web editor by "verniy" @ Wed, 19 Dec 2018 04:47:29 -0500:
+$config['url_banner'] = 'https://files.catbox.moe/o13b3s.png';
+
+
+// Changes made via web editor by "verniy" @ Wed, 19 Dec 2018 05:03:05 -0500:
+$config['url_banner'] = '/static/banner-kissu.png';
 

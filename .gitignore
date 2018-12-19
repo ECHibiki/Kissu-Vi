@@ -5,6 +5,9 @@
 /ignore/*
 /test/*
 
+#logs
+*.loh
+
 # static html and json
 /*/*.html
 /*/*.json
