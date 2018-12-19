@@ -674,6 +674,8 @@
 * ====================
 */
 
+	//JSON compress ban list(Breaks chrome sometimes)
+	$config['JSON_ban_compression'] = false;
 	// Require users to see the ban page at least once for a ban even if it has since expired.
 	$config['require_ban_view'] = true;
 

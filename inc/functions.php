@@ -463,11 +463,21 @@ function rebuildThemes($action, $boardname = false) {
 }
 
 function scrapePages($regex_pattern){
+	global $config;
 	$query = prepare("SELECT `site` FROM `proxy-sites`");
 	$query->execute() or error(db_error($query));
 	$sites_string = '"' . implode("," , $query->fetchAll(PDO::FETCH_COLUMN)) . '"';
+	if($sites_string == '""'){
+		error("No sites in Table 'proxy-sites' list");
+	}
 	set_time_limit(300);
-	return exec("python Regex-Webscraper/py-cmd/regexscraper.py -u $sites_string -r \"$regex_pattern\" --nojs --json");
+	if(preg_match("/Linux/", php_uname())){
+		// return shell_exec("xvfb-run python3 Regex-Webscraper/py-cmd/regexscraper.py -u $sites_string -r \"$regex_pattern\" --nojs --json");
+		return shell_exec("/usr/bin/sudo xvfb-run python3 Regex-Webscraper/py-cmd/regexscraper.py -u $sites_string -r \"$regex_pattern\" --nojs --json");
+	}
+	else{
+		return exec("python Regex-Webscraper/py-cmd/regexscraper.py -u $sites_string -r \"$regex_pattern\" --nojs --json");
+	}
 }
 
 function loadThemeConfig($_theme) {

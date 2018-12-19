@@ -27,7 +27,8 @@ Requirements
 3.	[mbstring](http://www.php.net/manual/en/mbstring.installation.php) 
 4.	[PHP GD](http://www.php.net/manual/en/intro.image.php)
 5.	[PHP PDO](http://www.php.net/manual/en/intro.pdo.php)
-6.	A Unix-like OS, preferrably FreeBSD or Linux
+6.	A Unix-like OS, preferrably FreeBSD or Linux. 
+Notes. ViQa was developed on Windows7 with an Ubuntu18.04 VPS Server
 
 We try to make sure vichan is compatible with all major web servers. vichan does not include an Apache ```.htaccess``` file nor does it need one.
 
