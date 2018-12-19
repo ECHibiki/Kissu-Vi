@@ -86,3 +86,27 @@
 1545189337290	Marionette	INFO	Listening on port 41272
 1545189337350	Marionette	WARN	TLS certificate errors will be ignored for this session
 1545189341490	Marionette	INFO	Stopped listening on port 41272
+1545192107565	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile.JcypaSVLgc6q"
+1545192108256	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid host permission: resource://pdf.js/
+1545192108257	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid host permission: about:reader*
+
+(firefox:5874): LIBDBUSMENU-GLIB-WARNING **: 23:01:50.018: Unable to get session bus: Failed to execute child process ?dbus-launch? (No such file or directory)
+1545192111355	Marionette	INFO	Listening on port 33212
+1545192111436	Marionette	WARN	TLS certificate errors will be ignored for this session
+1545192119161	Marionette	INFO	Stopped listening on port 33212
+1545196590006	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile.DktMGBjoQHPH"
+1545196590707	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid host permission: resource://pdf.js/
+1545196590707	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid host permission: about:reader*
+
+(firefox:6827): LIBDBUSMENU-GLIB-WARNING **: 00:16:32.601: Unable to get session bus: Failed to execute child process ?dbus-launch? (No such file or directory)
+1545196593842	Marionette	INFO	Listening on port 45396
+1545196594093	Marionette	WARN	TLS certificate errors will be ignored for this session
+console.error: BroadcastService: 
+  receivedBroadcastMessage: handler for
+  remote-settings/monitor_changes
+  threw error:
+  Message: Error: Polling for changes failed: NetworkError when attempting to fetch resource..
+  Stack:
+    remoteSettingsFunction/remoteSettings.pollChanges@resource://services-settings/remote-settings.js:750:13
+
+1545196631699	Marionette	INFO	Stopped listening on port 45396

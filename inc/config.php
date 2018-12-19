@@ -1026,7 +1026,7 @@
 	$config['page_nav_top'] = false;
 
 	// Show "Catalog" link in page navigation. Use with the Catalog theme. Set to false to disable.
-	$config['catalog_link'] = 'catalog.html';
+	$config['catalog_link'] = 'catalog.php';
 
 	// Board categories. Only used in the "Categories" theme.
 	// $config['categories'] = array(

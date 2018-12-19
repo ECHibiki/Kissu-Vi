@@ -275,3 +275,35 @@ $config['global_message'] = 'Dec19th: Site Updating and Options field things<br/
 // Changes made via web editor by "verniy" @ Tue, 18 Dec 2018 16:27:46 -0500:
 $config['global_message'] = 'Dec19th: Site Updating(threadwatcher is probably broken) and Options field things<br/>Dec19th-23rd: User controlled videoplayer<br/>Details: <a href=\'https://kissu.moe/b/sitedev.html\'>https://kissu.moe/b/sitedev.html</a>';
 
+
+// Changes made via web editor by "verniy" @ Tue, 18 Dec 2018 23:11:21 -0500:
+$config['global_message'] = 'Site Updated...Successfully?<br/>Two new Styles and Improvements on the Options field tonight<br/>Dec19th-23rd: User controlled videoplayer<br/>Details: <a href=\'https://kissu.moe/b/sitedev.html\'>https://kissu.moe/b/sitedev.html</a>';
+
+
+// Changes made via web editor by "verniy" @ Tue, 18 Dec 2018 23:12:17 -0500:
+$config['global_message'] = 'Site Updated...Successfully?<br/>Two new Styles In the select bar</hr> Improvements on the Options field tonight<br/>Dec19th-23rd: User controlled videoplayer<br/>Details: <a href=\'https://kissu.moe/b/sitedev.html\'>https://kissu.moe/b/sitedev.html</a>';
+
+
+// Changes made via web editor by "verniy" @ Tue, 18 Dec 2018 23:13:49 -0500:
+$config['global_message'] = 'Site Updated...Successfully?<br/>Two new Styles In the select bar</br> Improvements on the Options field tonight<br/>Dec19th-23rd: User controlled videoplayer<br/>Details: <a href=\'https://kissu.moe/b/sitedev.html\'>https://kissu.moe/b/sitedev.html</a>';
+
+
+// Changes made via web editor by "verniy" @ Tue, 18 Dec 2018 23:14:21 -0500:
+$config['global_message'] = 'Site Updated...Successfully?<br/>Two new Styles In the select bar<hr/> Improvements on the Options field tonight<br/>Dec19th-23rd: User controlled videoplayer<br/>Details: <a href=\'https://kissu.moe/b/sitedev.html\'>https://kissu.moe/b/sitedev.html</a>';
+
+
+// Changes made via web editor by "verniy" @ Tue, 18 Dec 2018 23:14:34 -0500:
+$config['global_message'] = 'Site Updated...Successfully?<br/>Two new Styles In the select bar<br/> Improvements on the Options field tonight<br/>Dec19th-23rd: User controlled videoplayer<br/>Details: <a href=\'https://kissu.moe/b/sitedev.html\'>https://kissu.moe/b/sitedev.html</a>';
+
+
+// Changes made via web editor by "verniy" @ Tue, 18 Dec 2018 23:15:51 -0500:
+$config['global_message'] = 'Site Updated...Successfully?<br/>Two new Styles In the select bar<br/> Improvements on the Options field tonight next a f***ing videoplayer..<br/>Details: <a href=\'https://kissu.moe/b/sitedev.html\'>https://kissu.moe/b/sitedev.html</a>';
+
+
+// Changes made via web editor by "verniy" @ Wed, 19 Dec 2018 03:49:57 -0500:
+$config['global_message'] = 'Modifying the site directly... Weird things may happen<br/>Two new Styles In the select bar<br/> Improvements on the Options field tonight next a f***ing videoplayer..<br/>Details: <a href=\'https://kissu.moe/b/sitedev.html\'>https://kissu.moe/b/sitedev.html</a>';
+
+
+// Changes made via web editor by "verniy" @ Wed, 19 Dec 2018 04:20:06 -0500:
+$config['global_message'] = ' Improvements on the Options field<br/>Two new Styles In the select bar<br/><br/>Details: <a href=\'https://kissu.moe/b/sitedev.html\'>https://kissu.moe/b/sitedev.html</a>';
+

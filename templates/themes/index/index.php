@@ -1,5 +1,3 @@
-{% include 'checkban.php' %}
-
 {% filter remove_whitespace %}
 <!doctype html>
 <html>
@@ -14,6 +12,7 @@
 	{% include 'header.html' %}
 </head>
 <body>
+{% include 'checkban.php' %}
 	{{ boardlist.top }}
 	<header>
 	    <img class="icon" src="{{ settings.icon }}">

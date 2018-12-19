@@ -1,4 +1,4 @@
-{% include 'checkban.php' %}
+
 {% filter remove_whitespace %}
 <!doctype html>
 <html>
@@ -13,7 +13,7 @@
 </head>
 <body class="8chan vichan {% if mod %}is-moderator{% else %}is-not-moderator{% endif %} theme-catalog active-catalog" data-stylesheet="{% if config.default_stylesheet.1 != '' %}{{ config.default_stylesheet.1 }}{% else %}default{% endif %}">
 
-
+{% include 'checkban.php' %}
 	
 	{{ boardlist.top }}
 	<header>
