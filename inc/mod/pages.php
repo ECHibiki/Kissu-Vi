@@ -1004,7 +1004,6 @@ function mod_ban() {
 function mod_bans() {
 	global $config;
 	global $mod;
-	
 	if (!hasPermission($config['mod']['view_banlist']))
 		error($config['error']['noaccess']);
 	
@@ -1043,9 +1042,14 @@ function mod_bans_json() {
                 error($config['error']['noaccess']);
 
 	// Compress the json for faster loads
-	if (substr_count($_SERVER['HTTP_ACCEPT_ENCODING'], 'gzip')) ob_start("ob_gzhandler");
-
-	Bans::stream_json(false, false, !hasPermission($config['mod']['view_banstaff']), $mod['boards']);
+	//be able to turn it off when it doesn't work
+	if($config['JSON_ban_compression']){
+		if (substr_count($_SERVER['HTTP_ACCEPT_ENCODING'], 'gzip')) ob_start("ob_gzhandler");
+		Bans::stream_json(false, false, !hasPermission($config['mod']['view_banstaff']), $mod['boards']);
+	}
+	else{
+		Bans::stream_json(false, false, !hasPermission($config['mod']['view_banstaff']), $mod['boards']);
+	}
 }
 
 function mod_ban_appeals() {
