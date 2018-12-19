@@ -1026,7 +1026,7 @@
 	$config['page_nav_top'] = false;
 
 	// Show "Catalog" link in page navigation. Use with the Catalog theme. Set to false to disable.
-	$config['catalog_link'] = 'catalog.html';
+	$config['catalog_link'] = 'catalog.php';
 
 	// Board categories. Only used in the "Categories" theme.
 	// $config['categories'] = array(
@@ -1116,6 +1116,7 @@
 			array(
 				'/^https?:\/\/(\w+\.)?youtube\.com\/watch\?v=([a-zA-Z0-9\-_]{10,11})(&.+)?$/i',
 				'<iframe style="float: left;margin: 10px 20px;" width="%%tb_width%%" height="%%tb_height%%" frameborder="0" id="ytplayer" src="https://www.youtube.com/embed/$2" allowfullscreen></iframe>'
+
 			),
 			array(
 				'/^https?:\/\/(\w+\.)?vimeo\.com\/(\d{2,10})(\?.+)?$/i',

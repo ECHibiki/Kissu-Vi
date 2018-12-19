@@ -1,6 +1,6 @@
 <?php
 	$t = explode(" ", microtime())[0];
-	$expresion = '/(C:\\\xampp\\\htdocs\\\[a-zA-Z]|\/var\/www\/html\/inc\/[a-zA-Z]+)/';
+	$expresion = '/(C:\\\xampp\\\htdocs\\\[a-zA-Z]+|\/var\/www\/html\/[a-zA-Z]+)/';
 	while(preg_match("$expresion", getcwd())){
 		chdir ('../');
 	}
