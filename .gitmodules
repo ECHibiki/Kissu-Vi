@@ -11,10 +11,6 @@
 	path = inc/captchouli
 	url = git@github.com:bakape/captchouli.git
 
-[submodule "parsedown"]
-	path = parsedown
-	url = https://github.com/vichan-devel/parsedown
-
 [submodule "Regex-Webscraper"]
 	path = Regex-Webscraper
 	url = https://github.com/ECHibiki/Regex-Webscraper
