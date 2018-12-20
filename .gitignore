@@ -8,6 +8,9 @@
 #logs
 *.loh
 
+#sql files
+*.sql
+
 # static html and json
 /*/*.html
 /*/*.json
