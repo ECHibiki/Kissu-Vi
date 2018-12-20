@@ -1,4 +1,4 @@
-{% filter remove_whitespace %}
+
 <!doctype html>
 <html>
 <head>
@@ -107,4 +107,3 @@
 	</footer>
 </body>
 </html>
-{% endfilter %}

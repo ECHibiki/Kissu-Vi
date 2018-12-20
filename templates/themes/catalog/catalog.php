@@ -1,5 +1,3 @@
-
-{% filter remove_whitespace %}
 <!doctype html>
 <html>
 <head>
@@ -97,4 +95,3 @@
 	{% endraw %}</script>
 </body>
 </html>
-{% endfilter %}
