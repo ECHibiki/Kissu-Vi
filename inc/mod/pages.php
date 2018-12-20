@@ -1026,7 +1026,7 @@ function mod_bans() {
 		header('Location: ?/bans', true, $config['redirect_http']);
 		return;
 	}
-	
+	var_dump(json_encode($mod));
 	mod_page(_('Ban list'), 'mod/ban_list.html', array(
 		'mod' => $mod,
 		'boards' => json_encode($mod['boards']),
