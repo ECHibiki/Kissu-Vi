@@ -1,8 +1,0 @@
-1545267083992	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile.ErEmZZ1r6uWF"
-1545267084966	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid host permission: resource://pdf.js/
-1545267084967	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid host permission: about:reader*
-
-(firefox:24379): LIBDBUSMENU-GLIB-WARNING **: 19:51:27.116: Unable to get session bus: Failed to execute child process ?dbus-launch? (No such file or directory)
-1545267088703	Marionette	INFO	Listening on port 41776
-1545267088754	Marionette	WARN	TLS certificate errors will be ignored for this session
-1545267106352	Marionette	INFO	Stopped listening on port 41776

@@ -6,7 +6,7 @@
 /test/*
 
 #logs
-*.loh
+*.log
 
 #sql files
 *.sql
