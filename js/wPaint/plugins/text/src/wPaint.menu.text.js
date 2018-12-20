@@ -6,13 +6,13 @@
     items: {
       bold: {
         icon: 'toggle',
-        title: 'Bold',
+        title: _('Bold'),
         index: 0,
         callback: function (toggle) { this.setFontBold(toggle); }
       },
       italic: {
         icon: 'toggle',
-        title: 'Italic',
+        title: _('Italic'),
         index: 1,
         callback: function (toggle) { this.setFontItalic(toggle); }
       },
@@ -23,7 +23,7 @@
         callback: function (toggle) { this.setFontUnderline(toggle); }
       },*/
       fontSize: {
-        title: 'Font Size',
+        title: _('Font Size'),
         icon: 'select',
         range: [8, 9, 10, 12, 14, 16, 20, 24, 30],
         value: 12,
@@ -31,7 +31,7 @@
       },
       fontFamily: {
         icon: 'select',
-        title: 'Font Family',
+        title: _('Font Family'),
         range: ['Arial', 'Courier', 'Times', 'Verdana'],
         useRange: true,
         value: 'Arial',

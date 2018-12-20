@@ -6,73 +6,80 @@
     items: {
       undo: {
         icon: 'generic',
-        title: 'Undo',
+        title: _('Undo'),
+        keybind: 'alt+z',
         index: 0,
         callback: function () { this.undo(); }
       },
       redo: {
         icon: 'generic',
-        title: 'Redo',
+        title: _('Redo'),
+        keybind: 'alt+shift+z,alt+r',
         index: 1,
         callback: function () { this.redo(); }
       },
       clear: {
         icon: 'generic',
-        title: 'Clear',
+        title: _('Clear'),
+        keybind: 'alt+x',
         index: 2,
         callback: function () { this.clear(); }
       },
       rectangle: {
         icon: 'activate',
-        title: 'Rectangle',
+        title: _('Rectangle'),
         index: 3,
         callback: function () { this.setMode('rectangle'); }
       },
       ellipse: {
         icon: 'activate',
-        title: 'Ellipse',
+        title: _('Ellipse'),
         index: 4,
         callback: function () { this.setMode('ellipse'); }
       },
       line: {
         icon: 'activate',
-        title: 'Line',
+        title: _('Line'),
+        keybind: 'alt+l',
         index: 5,
         callback: function () { this.setMode('line'); }
       },
       pencil: {
         icon: 'activate',
-        title: 'Pencil',
+        title: _('Pencil'),
+        keybind: 'alt+p',
         index: 6,
         callback: function () { this.setMode('pencil'); }
       },
       eraser: {
         icon: 'activate',
-        title: 'Eraser',
+        title: _('Eraser'),
+        keybind: 'alt+e',
         index: 8,
         callback: function () { this.setMode('eraser'); }
       },
       bucket: {
         icon: 'activate',
-        title: 'Bucket',
+        title: _('Bucket'),
+        keybind: 'alt+b',
         index: 9,
         callback: function () { this.setMode('bucket'); }
       },
       fillStyle: {
-        title: 'Fill Color',
+        title: _('Fill Color'),
         icon: 'colorPicker',
         callback: function (color) { this.setFillStyle(color); }
       },
       lineWidth: {
         icon: 'select',
-        title: 'Stroke Width',
+        title: _('Stroke Width'),
         range: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
         value: 2,
         callback: function (width) { this.setLineWidth(width); }
       },
       strokeStyle: {
         icon: 'colorPicker',
-        title: 'Stroke Color',
+        title: _('Stroke Color'),
         callback: function (color) { this.setStrokeStyle(color); }
       }      
     }

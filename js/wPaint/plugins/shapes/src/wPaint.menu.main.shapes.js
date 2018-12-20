@@ -9,7 +9,7 @@
     roundedRect: {
       icon: 'activate',
       group: 'shapes',
-      title: 'Rounded Rectangle',
+      title: _('Rounded Rectangle'),
       img: img,
       index: 0,
       callback: function () { this.setMode('roundedRect'); }
@@ -17,7 +17,7 @@
     square: {
       icon: 'activate',
       group: 'shapes',
-      title: 'Square',
+      title: _('Square'),
       img: img,
       index: 1,
       callback: function () { this.setMode('square'); }
@@ -25,7 +25,7 @@
     roundedSquare: {
       icon: 'activate',
       group: 'shapes',
-      title: 'Rounded Square',
+      title: _('Rounded Square'),
       img: img,
       index: 2,
       callback: function () { this.setMode('roundedSquare'); }
@@ -33,7 +33,7 @@
     diamond: {
       icon: 'activate',
       group: 'shapes',
-      title: 'Diamond',
+      title: _('Diamond'),
       img: img,
       index: 4,
       callback: function () { this.setMode('diamond'); }
@@ -45,7 +45,7 @@
     circle: {
       icon: 'activate',
       group: 'shapes2',
-      title: 'Circle',
+      title: _('Circle'),
       img: img,
       index: 3,
       callback: function () { this.setMode('circle'); }
@@ -53,7 +53,7 @@
     pentagon: {
       icon: 'activate',
       group: 'shapes2',
-      title: 'Pentagon',
+      title: _('Pentagon'),
       img: img,
       index: 5,
       callback: function () { this.setMode('pentagon'); }
@@ -61,7 +61,7 @@
     hexagon: {
       icon: 'activate',
       group: 'shapes2',
-      title: 'Hexagon',
+      title: _('Hexagon'),
       img: img,
       index: 6,
       callback: function () { this.setMode('hexagon'); }

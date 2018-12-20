@@ -2,8 +2,33 @@
 
 A jQuery paint plugin for a simple drawing surface that you can easily pop into your pages, similar to the basic windows paint program.
 
-* [View the wPaint demo](http://wpaint.websanova.com)
-* [Download the lastest version of wPaint](https://github.com/websanova/wPaint/tags)
+This project seems to be abandoned by the original developer, [websanova](https://github.com/websanova). 
+
+This fork provides:
+
+* internationalization support
+* drop in replacement for wColorPicker
+* keybinds for major functions
+
+This fork gave up on:
+
+* spaces instead of tabs 
+* crazy pedantic jshint library
+
+This fork should be a drop in replacement for wPaint. Scripts for 2ch.net and 8ch.net are provided. Build by doing:
+
+```
+npm install
+grunt --force
+```
+
+Pictures say a thousand words:
+
+Old, limiting color chooser:
+![0](http://a.pomf.se/egxfjd.png)
+
+New dynamic color chooser that uses two HTML5 canvases, saves history and has 4 modes (also showing keybind for clear):
+![0](http://a.pomf.se/cvjnph.png)
 
 
 ## Related Plugins

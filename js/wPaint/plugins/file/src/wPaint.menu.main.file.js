@@ -5,7 +5,7 @@
   $.extend(true, $.fn.wPaint.menus.main.items, {
     save: {
       icon: 'generic',
-      title: 'Save Image',
+      title: _('Save Image'),
       img: img,
       index: 0,
       callback: function () {
@@ -15,7 +15,7 @@
     loadBg: {
       icon: 'generic',
       group: 'loadImg',
-      title: 'Load Image to Foreground',
+      title: _('Load Image to Foreground'),
       img: img,
       index: 2,
       callback: function () {
@@ -25,7 +25,7 @@
     loadFg: {
       icon: 'generic',
       group: 'loadImg',
-      title: 'Load Image to Background',
+      title: _('Load Image to Background'),
       img: img,
       index: 1,
       callback: function () {
