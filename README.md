@@ -1,6 +1,9 @@
 ViQa-Kissu - An expanded lightweight and full featured PHP imageboard.
 ========================================================
 
+## This repo is a working directory and not intended for reuse. It's missing a good majority of files.
+### If interested in using this software for your own imageboard, a version should be around sometime between Christmas and early January on a release/master branch and tag.
+
 About
 ------------
 ViQa-Kissu is an expansion on top of the free light-weight, fast, highly configurable and user-friendly
