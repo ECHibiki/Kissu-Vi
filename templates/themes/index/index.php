@@ -12,8 +12,8 @@
 	{% include 'header.html' %}
 </head>
 <body>
-{% include 'checkban.php' %}
 	{{ boardlist.top }}
+{% include 'checkban.php' %}
 	<header>
 	    <img class="icon" src="{{ settings.icon }}">
 		<h1>{{ settings.title }}</h1>

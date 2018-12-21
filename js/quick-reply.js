@@ -234,7 +234,8 @@
 							// Make a new row for it
 							var $newRow = $('<tr><td colspan="2"></td></tr>');
 						
-							$file_url.clone().attr('placeholder', _('Upload URL')).appendTo($newRow.find('td'));
+							$file_url.clone().attr('placeholder', _('\
+			    Upload URL')).appendTo($newRow.find('td'));
 						
 							$newRow.insertAfter(this);
 						//}
