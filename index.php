@@ -17,6 +17,7 @@
 					<script type="text/javascript" src="/main.js"></script>
 							</head>
 <body>
+	<div class="boardlist"><span class="sub" data-description="0">[ <a href="/">home</a> ]</span>  <span class="sub" data-description="1">[ <a href="/b/">b</a> / <a href="/qa/">qa</a> ]</span>  <span class="sub" data-description="2">[ <a href="/xmas/">xmas</a> ]</span>  <span class="sub" data-description="3">[ <a href="http://swfchan.org/">f</a> / <a href="https://boards.4channel.org/qa/">qa4</a> / <a href="https://github.com/ECHibiki/ViQa-Kissu/">ViQa</a> ]</span></div><script type='text/javascript'>if (typeof do_boardlist != 'undefined') do_boardlist();</script>
 <?php
 	$t = explode(" ", microtime())[0];
 	$expresion = '/(C:\\\xampp\\\htdocs\\\[a-zA-Z]+|\/var\/www\/html\/[a-zA-Z]+)/';
@@ -30,8 +31,7 @@
 	checkDNSBL();
 	checkBan();
 	echo explode(" ", microtime())[0] - $t;
-?>	<div class="boardlist"><span class="sub" data-description="0">[ <a href="/">home</a> ]</span>  <span class="sub" data-description="1">[ <a href="/b/index.php" title="Boson Tests">b</a> / <a href="/qa/index.php" title="/qa/">qa</a> ]</span>  <span class="sub" data-description="2">[ <a href="/xmas/index.php" title="Merri Christmasu!">xmas</a> ]</span>  <span class="sub" data-description="3">[ <a href="http://swfchan.org/">f</a> / <a href="https://boards.4channel.org/qa/">qa4</a> / <a href="https://github.com/ECHibiki/ViQa-Kissu/">ViQa</a> ]</span></div><script type='text/javascript'>if (typeof do_boardlist != 'undefined') do_boardlist();</script>
-	<header>
+?>	<header>
 	    <img class="icon" src="../templates/themes/index/hikichanIcon.png">
 		<h1>Kissu.moe</h1>
 		<div class="subtitle">100% fun</div>
@@ -96,73 +96,78 @@
 		<div class="box image">
 			<ul>
 									<li>
-						<a href="/qa/res/277.php#284">
-							<img src="/qa/thumb/1545279507814.png" style="width:255px;height:155px" alt="">
+						<a href="/b/res/52.php#640">
+							<img src="/b/thumb/1545370655618.png" style="width:255px;height:25px" alt="">
 						</a>
 					</li>
 									<li>
-						<a href="/b/res/4.php#626">
-							<img src="/b/thumb/1545276593858.png" style="width:177px;height:255px" alt="">
+						<a href="/xmas/res/26.php#26">
+							<img src="/xmas/thumb/1545348163159.png" style="width:181px;height:255px" alt="">
 						</a>
 					</li>
 									<li>
-						<a href="/qa/res/277.php#281">
-							<img src="/qa/thumb/1545273524507.png" style="width:255px;height:150px" alt="">
+						<a href="/qa/res/194.php#329">
+							<img src="/qa/thumb/1545346166732.png" style="width:80px;height:80px" alt="">
 						</a>
 					</li>
 									<li>
-						<a href="/qa/res/277.php#277">
-							<img src="/qa/thumb/1545271540202.png" style="width:255px;height:191px" alt="">
+						<a href="/qa/res/124.php#325">
+							<img src="/qa/thumb/1545342439919.png" style="width:188px;height:255px" alt="">
 						</a>
 					</li>
 									<li>
-						<a href="/qa/res/274.php#274">
-							<img src="/qa/thumb/1545269919911.png" style="width:255px;height:255px" alt="">
+						<a href="/qa/res/194.php#323">
+							<img src="/qa/thumb/1545341130286.png" style="width:255px;height:48px" alt="">
 						</a>
 					</li>
 									<li>
-						<a href="/qa/res/265.php#273">
-							<img src="/qa/thumb/1545267947419.png" style="width:255px;height:255px" alt="">
+						<a href="/qa/res/321.php#321">
+							<img src="/qa/thumb/1545339983075.png" style="width:255px;height:143px" alt="">
 						</a>
 					</li>
 									<li>
-						<a href="/b/res/4.php#623">
-							<img src="/b/thumb/1545266341791.png" style="width:255px;height:191px" alt="">
+						<a href="/qa/res/194.php#316">
+							<img src="/qa/thumb/1545336217916.png" style="width:40px;height:40px" alt="">
 						</a>
 					</li>
 									<li>
-						<a href="/qa/res/262.php#269">
-							<img src="/qa/thumb/1545265893777.png" style="width:255px;height:255px" alt="">
+						<a href="/qa/res/312.php#312">
+							<img src="/qa/thumb/1545335208259.png" style="width:255px;height:143px" alt="">
 						</a>
 					</li>
 									<li>
-						<a href="/qa/res/262.php#268">
-							<img src="/qa/thumb/1545262739693.png" style="width:254px;height:255px" alt="">
+						<a href="/qa/res/307.php#307">
+							<img src="/qa/thumb/1545333921240.png" style="width:255px;height:255px" alt="">
 						</a>
 					</li>
 									<li>
-						<a href="/qa/res/265.php#265">
-							<img src="/qa/thumb/1545259765066.png" style="width:255px;height:245px" alt="">
+						<a href="/qa/res/301.php#304">
+							<img src="/qa/thumb/1545331830102.png" style="width:154px;height:127px" alt="">
 						</a>
 					</li>
 									<li>
-						<a href="/qa/res/262.php#262">
-							<img src="/qa/thumb/1545257330919.png" style="width:255px;height:255px" alt="">
+						<a href="/qa/res/301.php#301">
+							<img src="/qa/thumb/1545330938819.png" style="width:151px;height:254px" alt="">
 						</a>
 					</li>
 									<li>
-						<a href="/b/res/618.php#619">
-							<img src="/b/thumb/1545251327279.jpg" style="width:255px;height:143px" alt="">
+						<a href="/qa/res/298.php#298">
+							<img src="/qa/thumb/1545329019426.png" style="width:255px;height:197px" alt="">
 						</a>
 					</li>
 									<li>
-						<a href="/b/res/618.php#618">
-							<img src="/b/thumb/1545250940066.jpg" style="width:255px;height:143px" alt="">
+						<a href="/b/res/635.php#635">
+							<img src="/b/thumb/1545327871065.png" style="width:255px;height:143px" alt="">
 						</a>
 					</li>
 									<li>
-						<a href="/qa/res/243.php#255">
-							<img src="static/spoiler-kissu.png" style="width:275px;height:250px" alt="">
+						<a href="/b/res/4.php#634">
+							<img src="/b/thumb/1545322997696.png" style="width:181px;height:255px" alt="">
+						</a>
+					</li>
+									<li>
+						<a href="/qa/res/293.php#293">
+							<img src="/qa/thumb/1545321189553.png" style="width:255px;height:143px" alt="">
 						</a>
 					</li>
 							</ul>
@@ -171,183 +176,183 @@
 			<h2>Latest Posts</h2>
 			<ul>
 									<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/277.php#284">
-							<em>It's just an one liner that ta&hellip;</em>
-						</a>
-					</li>
-									<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/124.php#283">
-							<em>nearly fell asleep joing</em>
+						<strong>Boson Tests</strong>: 
+						<a href="/b/res/52.php#641">
+							<em>&gt;&gt;479</em>
 						</a>
 					</li>
 									<li>
 						<strong>Boson Tests</strong>: 
-						<a href="/b/res/4.php#626">
-							<em>https://exhentai.org/g/1326952&hellip;</em>
+						<a href="/b/res/52.php#640">
+							<em>Removing the extensions throug&hellip;</em>
+						</a>
+					</li>
+									<li>
+						<strong>Boson Tests</strong>: 
+						<a href="/b/res/1.php#639">
+							<em>&gt;&gt;622  test</em>
 						</a>
 					</li>
 									<li>
 						<strong>/qa/</strong>: 
-						<a href="/qa/res/277.php#282">
-							<em>&gt;&gt;281  Oh nice, how does it wo&hellip;</em>
+						<a href="/qa/res/124.php#331">
+							<em>  css is wierd</em>
 						</a>
 					</li>
 									<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/277.php#281">
-							<em>I made one for my startpage</em>
-						</a>
-					</li>
-									<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/29.php#280">
+						<strong>Merri Christmasu!</strong>: 
+						<a href="/xmas/res/26.php#26">
 							<em>(no comment)</em>
 						</a>
 					</li>
 									<li>
 						<strong>/qa/</strong>: 
-						<a href="/qa/res/124.php#279">
-							<em>stfu teenmin is baste</em>
+						<a href="/qa/res/124.php#330">
+							<em>tried to make a stylesheet thi&hellip;</em>
 						</a>
 					</li>
 									<li>
 						<strong>/qa/</strong>: 
-						<a href="/qa/res/124.php#278">
-							<em>I'm glad we finally have a spi&hellip;</em>
+						<a href="/qa/res/194.php#329">
+							<em>&gt;&gt;324  I stole a lot of them f&hellip;</em>
 						</a>
 					</li>
 									<li>
 						<strong>/qa/</strong>: 
-						<a href="/qa/res/277.php#277">
-							<em>(no comment)</em>
+						<a href="/qa/res/124.php#328">
+							<em>hope all worknorms die</em>
 						</a>
 					</li>
 									<li>
 						<strong>/qa/</strong>: 
-						<a href="/qa/res/274.php#276">
-							<em>how 2 maek post</em>
+						<a href="/qa/res/194.php#327">
+							<em>&gt;&gt;323  A three monitor setup? &hellip;</em>
 						</a>
 					</li>
 									<li>
 						<strong>/qa/</strong>: 
-						<a href="/qa/res/274.php#275">
-							<em>You did it!</em>
+						<a href="/qa/res/124.php#326">
+							<em>__you die if you work__</em>
 						</a>
 					</li>
 									<li>
 						<strong>/qa/</strong>: 
-						<a href="/qa/res/274.php#274">
-							<em>Wanted to post here but I didn&hellip;</em>
+						<a href="/qa/res/124.php#325">
+							<em>working on christmas this year</em>
 						</a>
 					</li>
 									<li>
 						<strong>/qa/</strong>: 
-						<a href="/qa/res/265.php#273">
-							<em>I want to make a patchy css, b&hellip;</em>
+						<a href="/qa/res/194.php#324">
+							<em>&gt;&gt;290  can u post a tiled patt&hellip;</em>
 						</a>
 					</li>
 									<li>
 						<strong>/qa/</strong>: 
-						<a href="/qa/res/262.php#272">
-							<em>&gt;&gt;271  4koma adaptations seem &hellip;</em>
-						</a>
-					</li>
-									<li>
-						<strong>Boson Tests</strong>: 
-						<a href="/b/res/4.php#625">
-							<em>&gt;&gt;623  wonder if there's any g&hellip;</em>
+						<a href="/qa/res/194.php#323">
+							<em>Currently this. I tend to keep&hellip;</em>
 						</a>
 					</li>
 									<li>
 						<strong>/qa/</strong>: 
-						<a href="/qa/res/262.php#271">
-							<em>&gt;&gt;269  I hope it sells well… i&hellip;</em>
-						</a>
-					</li>
-									<li>
-						<strong>Boson Tests</strong>: 
-						<a href="/b/res/482.php#624">
-							<em>&gt;&gt;514  That was probably the b&hellip;</em>
-						</a>
-					</li>
-									<li>
-						<strong>Boson Tests</strong>: 
-						<a href="/b/res/4.php#623">
-							<em>/jp/ on the back, kissu in the&hellip;</em>
+						<a href="/qa/res/194.php#322">
+							<em>I don't actually have a backgr&hellip;</em>
 						</a>
 					</li>
 									<li>
 						<strong>/qa/</strong>: 
-						<a href="/qa/res/262.php#270">
-							<em>&gt;&gt;268  sluten</em>
+						<a href="/qa/res/321.php#321">
+							<em>fookin… Ive been doin bit of p&hellip;</em>
 						</a>
 					</li>
 									<li>
 						<strong>/qa/</strong>: 
-						<a href="/qa/res/262.php#269">
-							<em>The three new Witch series, th&hellip;</em>
-						</a>
-					</li>
-									<li>
-						<strong>Boson Tests</strong>: 
-						<a href="/b/res/1.php#622">
-							<em>tests</em>
+						<a href="/qa/res/307.php#320">
+							<em>&gt;&gt;319  I'm sorry to have to br&hellip;</em>
 						</a>
 					</li>
 									<li>
 						<strong>/qa/</strong>: 
-						<a href="/qa/res/262.php#268">
-							<em>I'd say Code Geass, but that's&hellip;</em>
+						<a href="/qa/res/307.php#319">
+							<em>&gt;&gt;317  If you can't say it I'l&hellip;</em>
 						</a>
 					</li>
 									<li>
 						<strong>/qa/</strong>: 
-						<a href="/qa/res/56.php#267">
-							<em>&gt;&gt;264  And the 8pl spam… and t&hellip;</em>
-						</a>
-					</li>
-									<li>
-						<strong>Boson Tests</strong>: 
-						<a href="/b/res/515.php#621">
-							<em>Something else to note is that&hellip;</em>
+						<a href="/qa/res/312.php#318">
+							<em>This show could've found a muc&hellip;</em>
 						</a>
 					</li>
 									<li>
 						<strong>/qa/</strong>: 
-						<a href="/qa/res/262.php#266">
-							<em>The madoka mobage anime adapta&hellip;</em>
+						<a href="/qa/res/307.php#317">
+							<em>&gt;&gt;315  I'm not being ironic, I&hellip;</em>
 						</a>
 					</li>
 									<li>
 						<strong>/qa/</strong>: 
-						<a href="/qa/res/265.php#265">
-							<em>patchy</em>
+						<a href="/qa/res/194.php#316">
+							<em>i dont like complex images i j&hellip;</em>
 						</a>
 					</li>
 									<li>
 						<strong>/qa/</strong>: 
-						<a href="/qa/res/56.php#264">
-							<em>&gt;&gt;258  Not sure, but at that t&hellip;</em>
+						<a href="/qa/res/307.php#315">
+							<em>&gt;&gt;313  Keep hiding under your &hellip;</em>
 						</a>
 					</li>
 									<li>
 						<strong>/qa/</strong>: 
-						<a href="/qa/res/262.php#263">
-							<em>I'm just now about to start S.&hellip;</em>
+						<a href="/qa/res/307.php#314">
+							<em>&gt;&gt;311  Forgive me, I thought t&hellip;</em>
 						</a>
 					</li>
 									<li>
 						<strong>/qa/</strong>: 
-						<a href="/qa/res/262.php#262">
-							<em>What are some future shows you&hellip;</em>
+						<a href="/qa/res/312.php#312">
+							<em>Huh?</em>
 						</a>
 					</li>
 									<li>
 						<strong>/qa/</strong>: 
-						<a href="/qa/res/56.php#261">
-							<em>The captcha is what killed it.&hellip;</em>
+						<a href="/qa/res/307.php#311">
+							<em>&gt;&gt;309  Purposefully acting stu&hellip;</em>
+						</a>
+					</li>
+									<li>
+						<strong>/qa/</strong>: 
+						<a href="/qa/res/307.php#310">
+							<em>You can't get the code of a di&hellip;</em>
+						</a>
+					</li>
+									<li>
+						<strong>/qa/</strong>: 
+						<a href="/qa/res/307.php#309">
+							<em>Is there any difference betwee&hellip;</em>
+						</a>
+					</li>
+									<li>
+						<strong>/qa/</strong>: 
+						<a href="/qa/res/307.php#307">
+							<em>Is there any difference betwee&hellip;</em>
+						</a>
+					</li>
+									<li>
+						<strong>/qa/</strong>: 
+						<a href="/qa/res/124.php#306">
+							<em>how do you fuck up three trays&hellip;</em>
+						</a>
+					</li>
+									<li>
+						<strong>/qa/</strong>: 
+						<a href="/qa/res/262.php#305">
+							<em>Was Boogiepop Phantom s2 slate&hellip;</em>
+						</a>
+					</li>
+									<li>
+						<strong>/qa/</strong>: 
+						<a href="/qa/res/301.php#304">
+							<em>already there</em>
 						</a>
 					</li>
 							</ul>
@@ -355,9 +360,9 @@
 		<div class="mainBox">
 			<h2>Stats</h2>
 			<ul>
-				<li>Total posts: 934</li>
-				<li>Unique posters: 65</li>
-				<li>Active content: 487.46 MB</li>
+				<li>Total posts: 998</li>
+				<li>Unique posters: 76</li>
+				<li>Active content: 499.17 MB</li>
 			</ul>
 		</div>
 	</div>
