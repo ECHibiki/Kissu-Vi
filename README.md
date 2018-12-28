@@ -64,45 +64,8 @@ Installation
 	default username and password combination: **admin / password**.
 
 Please remember to change the administrator account password.
-
 See also: [Configuration Basics](https://web.archive.org/web/20121003095922/http://tinyboard.org/docs/?p=Config).
 
-Sample rewrite_mod
-'''
-<Directory /var/www/html>
-    <IfModule mod_rewrite.c>
-		RewriteEngine On
-
-		RewriteCond %{HTTPS} off
-		RewriteRule  (.*) https://%{SERVER_NAME}/$1 [R,L]
-
-		RewriteCond %{REQUEST_FILENAME} -d
-		RewriteRule (.*) $1 [L]
-	
-		RewriteCond %{THE_REQUEST} (.*)\.php
-		RewriteRule (.*)\.php /$1/ [R,L]
-		
-		RewriteCond %{THE_REQUEST} (.*)\.html
-		RewriteRule (.*)\.html /$1/ [R,L]			
-		
-		RewriteRule ^(.*)/$ $1.php [L]
-		RewriteCond %{REQUEST_FILENAME} !-f
-		RewriteRule ^(.*)\.php$ $1.html [L]
-		
-		RewriteCond %{REQUEST_FILENAME} !-f
-		RewriteRule (.*) $1.php [L]
-		
-    </IfModule>
-
-    <IfModule mod_expires.c>
-        ...
-
-        <IfModule mod_headers.c>
-            ...
-        </IfModule>
-    </IfModule>
-</Directory>
-'''
 
 Upgrade
 -------
