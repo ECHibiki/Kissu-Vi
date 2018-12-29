@@ -64,6 +64,61 @@
 		<div class="box image">
 			<ul>
 									<li>
+						<a href="/b/res/1.php#704">
+							<img src="/b/thumb/1546077216837.png" style="width:112px;height:175px" alt="">
+						</a>
+					</li>
+									<li>
+						<a href="/b/res/1.php#703">
+							<img src="/b/thumb/1546077173325.png" style="width:175px;height:122px" alt="">
+						</a>
+					</li>
+									<li>
+						<a href="/b/res/1.php#702">
+							<img src="/b/thumb/1546077149836.png" style="width:124px;height:175px" alt="">
+						</a>
+					</li>
+									<li>
+						<a href="/b/res/1.php#701">
+							<img src="/b/thumb/1546077124498.png" style="width:131px;height:175px" alt="">
+						</a>
+					</li>
+									<li>
+						<a href="/b/res/671.php#695">
+							<img src="/b/thumb/1546074614717.png" style="width:175px;height:91px" alt="">
+						</a>
+					</li>
+									<li>
+						<a href="/b/res/693.php#693">
+							<img src="/b/thumb/1546070847499.png" style="width:255px;height:142px" alt="">
+						</a>
+					</li>
+									<li>
+						<a href="/qa/res/555.php#584">
+							<img src="/qa/thumb/1546066523924.png" style="width:175px;height:131px" alt="">
+						</a>
+					</li>
+									<li>
+						<a href="/qa/res/578.php#583">
+							<img src="/qa/thumb/1546066231053.png" style="width:175px;height:98px" alt="">
+						</a>
+					</li>
+									<li>
+						<a href="/qa/res/571.php#582">
+							<img src="/qa/thumb/1546065436295.png" style="width:175px;height:98px" alt="">
+						</a>
+					</li>
+									<li>
+						<a href="/qa/res/578.php#578">
+							<img src="/qa/thumb/1546064517089.png" style="width:255px;height:143px" alt="">
+						</a>
+					</li>
+									<li>
+						<a href="/b/res/671.php#692">
+							<img src="/b/thumb/1546058329973.png" style="width:175px;height:105px" alt="">
+						</a>
+					</li>
+									<li>
 						<a href="/qa/res/573.php#573">
 							<img src="/qa/thumb/1546051862548.png" style="width:255px;height:194px" alt="">
 						</a>
@@ -83,66 +138,161 @@
 							<img src="/b/thumb/1546027365833.png" style="width:175px;height:82px" alt="">
 						</a>
 					</li>
-									<li>
-						<a href="/b/res/671.php#671">
-							<img src="/b/thumb/1546022728007.png" style="width:255px;height:86px" alt="">
-						</a>
-					</li>
-									<li>
-						<a href="/qa/res/559.php#559">
-							<img src="/qa/thumb/1546020410766.png" style="width:255px;height:143px" alt="">
-						</a>
-					</li>
-									<li>
-						<a href="/qa/res/555.php#555">
-							<img src="/qa/thumb/1545994079801.png" style="width:170px;height:255px" alt="">
-						</a>
-					</li>
-									<li>
-						<a href="/qa/res/554.php#554">
-							<img src="/qa/thumb/1545991987884.png" style="width:173px;height:255px" alt="">
-						</a>
-					</li>
-									<li>
-						<a href="/qa/res/547.php#547">
-							<img src="/qa/thumb/1545984171371.png" style="width:255px;height:191px" alt="">
-						</a>
-					</li>
-									<li>
-						<a href="/qa/res/544.php#544">
-							<img src="/qa/thumb/1545980915314.png" style="width:135px;height:255px" alt="">
-						</a>
-					</li>
-									<li>
-						<a href="/qa/res/540.php#542">
-							<img src="/qa/thumb/1545976763337.png" style="width:175px;height:126px" alt="">
-						</a>
-					</li>
-									<li>
-						<a href="/qa/res/540.php#540">
-							<img src="/qa/thumb/1545973831051.png" style="width:196px;height:255px" alt="">
-						</a>
-					</li>
-									<li>
-						<a href="/qa/res/124.php#537">
-							<img src="/qa/thumb/1545969810919.png" style="width:175px;height:163px" alt="">
-						</a>
-					</li>
-									<li>
-						<a href="/b/res/4.php#668">
-							<img src="/b/thumb/1545964826211.png" style="width:123px;height:175px" alt="">
-						</a>
-					</li>
-									<li>
-						<a href="/qa/res/525.php#527">
-							<img src="/qa/thumb/1545955865945.png" style="width:160px;height:175px" alt="">
-						</a>
-					</li>
 							</ul>
 		</div>
 		<div class="mainBox">
 			<h2>Latest Posts</h2>
 			<ul>
+									<li>
+						<strong>Boson Tests</strong>: 
+						<a href="/b/res/1.php#704">
+							<em>(no comment)</em>
+						</a>
+					</li>
+									<li>
+						<strong>Boson Tests</strong>: 
+						<a href="/b/res/1.php#703">
+							<em>(no comment)</em>
+						</a>
+					</li>
+									<li>
+						<strong>Boson Tests</strong>: 
+						<a href="/b/res/1.php#702">
+							<em>(no comment)</em>
+						</a>
+					</li>
+									<li>
+						<strong>Boson Tests</strong>: 
+						<a href="/b/res/1.php#701">
+							<em>(no comment)</em>
+						</a>
+					</li>
+									<li>
+						<strong>Boson Tests</strong>: 
+						<a href="/b/res/1.php#700">
+							<em>&gt;&gt;667</em>
+						</a>
+					</li>
+									<li>
+						<strong>Boson Tests</strong>: 
+						<a href="/b/res/655.php#699">
+							<em>&gt;&gt;696  I moved it to later</em>
+						</a>
+					</li>
+									<li>
+						<strong>Boson Tests</strong>: 
+						<a href="/b/res/671.php#698">
+							<em>https://en.wikipedia.org/wiki/&hellip;</em>
+						</a>
+					</li>
+									<li>
+						<strong>Boson Tests</strong>: 
+						<a href="/b/res/671.php#697">
+							<em>&gt;&gt;695  Grande has too much ser&hellip;</em>
+						</a>
+					</li>
+									<li>
+						<strong>Boson Tests</strong>: 
+						<a href="/b/res/655.php#696">
+							<em>S2's done right?  ¥test  ¥test</em>
+						</a>
+					</li>
+									<li>
+						<strong>Boson Tests</strong>: 
+						<a href="/b/res/671.php#695">
+							<em>&gt;&gt;694  Odd, this is what Lucid&hellip;</em>
+						</a>
+					</li>
+									<li>
+						<strong>Boson Tests</strong>: 
+						<a href="/b/res/671.php#694">
+							<em>&gt;&gt;687  Currently Lucida Sans U&hellip;</em>
+						</a>
+					</li>
+									<li>
+						<strong>/qa/</strong>: 
+						<a href="/qa/res/124.php#585">
+							<em>downloading label packs on rut&hellip;</em>
+						</a>
+					</li>
+									<li>
+						<strong>Boson Tests</strong>: 
+						<a href="/b/res/693.php#693">
+							<em>catapost test</em>
+						</a>
+					</li>
+									<li>
+						<strong>/qa/</strong>: 
+						<a href="/qa/res/555.php#584">
+							<em>You can't really blame evoluti&hellip;</em>
+						</a>
+					</li>
+									<li>
+						<strong>/qa/</strong>: 
+						<a href="/qa/res/578.php#583">
+							<em>imouto's really cute as well</em>
+						</a>
+					</li>
+									<li>
+						<strong>/qa/</strong>: 
+						<a href="/qa/res/571.php#582">
+							<em>&gt;&gt;576  We must</em>
+						</a>
+					</li>
+									<li>
+						<strong>/qa/</strong>: 
+						<a href="/qa/res/124.php#581">
+							<em>try to find ways to hit it big&hellip;</em>
+						</a>
+					</li>
+									<li>
+						<strong>/qa/</strong>: 
+						<a href="/qa/res/262.php#580">
+							<em>It's not slated for any time s&hellip;</em>
+						</a>
+					</li>
+									<li>
+						<strong>/qa/</strong>: 
+						<a href="/qa/res/578.php#579">
+							<em>  Aside from my main complaint&hellip;</em>
+						</a>
+					</li>
+									<li>
+						<strong>/qa/</strong>: 
+						<a href="/qa/res/578.php#578">
+							<em>I've decided that I want to ou&hellip;</em>
+						</a>
+					</li>
+									<li>
+						<strong>/qa/</strong>: 
+						<a href="/qa/res/124.php#577">
+							<em>really wish i could be alone. &hellip;</em>
+						</a>
+					</li>
+									<li>
+						<strong>/qa/</strong>: 
+						<a href="/qa/res/571.php#576">
+							<em>NO! NEVER!</em>
+						</a>
+					</li>
+									<li>
+						<strong>Boson Tests</strong>: 
+						<a href="/b/res/671.php#692">
+							<em>&gt;&gt;686  &gt;&gt;687  We have to choos&hellip;</em>
+						</a>
+					</li>
+									<li>
+						<strong>/qa/</strong>: 
+						<a href="/qa/res/573.php#575">
+							<em>I have a nice heated mattress &hellip;</em>
+						</a>
+					</li>
+									<li>
+						<strong>Boson Tests</strong>: 
+						<a href="/b/res/655.php#691">
+							<em>[aa]  　　　　　                   &hellip;</em>
+						</a>
+					</li>
 									<li>
 						<strong>Boson Tests</strong>: 
 						<a href="/b/res/655.php#690">
@@ -171,156 +321,6 @@
 						<strong>Boson Tests</strong>: 
 						<a href="/b/res/655.php#688">
 							<em>(no comment)</em>
-						</a>
-					</li>
-									<li>
-						<strong>Boson Tests</strong>: 
-						<a href="/b/res/671.php#687">
-							<em>&gt;&gt;686  On Oneechan the fonts I&hellip;</em>
-						</a>
-					</li>
-									<li>
-						<strong>Boson Tests</strong>: 
-						<a href="/b/res/671.php#686">
-							<em>More importantly though. The v&hellip;</em>
-						</a>
-					</li>
-									<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/124.php#572">
-							<em>soft is cute</em>
-						</a>
-					</li>
-									<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/571.php#571">
-							<em>When's the /qa/ Elfen Lied str&hellip;</em>
-						</a>
-					</li>
-									<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/124.php#570">
-							<em>no idea what you're talking ab&hellip;</em>
-						</a>
-					</li>
-									<li>
-						<strong>Boson Tests</strong>: 
-						<a href="/b/res/655.php#685">
-							<em>test</em>
-						</a>
-					</li>
-									<li>
-						<strong>Boson Tests</strong>: 
-						<a href="/b/res/655.php#684">
-							<em>Yes!      bold    italics    u&hellip;</em>
-						</a>
-					</li>
-									<li>
-						<strong>Boson Tests</strong>: 
-						<a href="/b/res/655.php#683">
-							<em>Yes!      bold    italics    u&hellip;</em>
-						</a>
-					</li>
-									<li>
-						<strong>Boson Tests</strong>: 
-						<a href="/b/res/655.php#682">
-							<em>test  test</em>
-						</a>
-					</li>
-									<li>
-						<strong>Boson Tests</strong>: 
-						<a href="/b/res/655.php#681">
-							<em>test</em>
-						</a>
-					</li>
-									<li>
-						<strong>Boson Tests</strong>: 
-						<a href="/b/res/655.php#680">
-							<em>test</em>
-						</a>
-					</li>
-									<li>
-						<strong>Boson Tests</strong>: 
-						<a href="/b/res/655.php#679">
-							<em>[pink]test[/pink]</em>
-						</a>
-					</li>
-									<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/124.php#568">
-							<em>i wish male protagonists in an&hellip;</em>
-						</a>
-					</li>
-									<li>
-						<strong>Boson Tests</strong>: 
-						<a href="/b/res/655.php#678">
-							<em>test</em>
-						</a>
-					</li>
-									<li>
-						<strong>Boson Tests</strong>: 
-						<a href="/b/res/655.php#677">
-							<em>test2</em>
-						</a>
-					</li>
-									<li>
-						<strong>Boson Tests</strong>: 
-						<a href="/b/res/655.php#676">
-							<em>test</em>
-						</a>
-					</li>
-									<li>
-						<strong>Boson Tests</strong>: 
-						<a href="/b/res/655.php#675">
-							<em>test</em>
-						</a>
-					</li>
-									<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/124.php#567">
-							<em>&gt;reminder  unless you mean my &hellip;</em>
-						</a>
-					</li>
-									<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/124.php#566">
-							<em>&gt;&gt;553  yep. seems the guy real&hellip;</em>
-						</a>
-					</li>
-									<li>
-						<strong>Boson Tests</strong>: 
-						<a href="/b/res/671.php#674">
-							<em>wanted to test out banner rota&hellip;</em>
-						</a>
-					</li>
-									<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/506.php#565">
-							<em>Her room looks comfy.</em>
-						</a>
-					</li>
-									<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/124.php#564">
-							<em>&gt;&gt;561  isn't there usually a r&hellip;</em>
-						</a>
-					</li>
-									<li>
-						<strong>Boson Tests</strong>: 
-						<a href="/b/res/655.php#673">
-							<em>test</em>
-						</a>
-					</li>
-									<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/124.php#563">
-							<em>test</em>
-						</a>
-					</li>
-									<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/559.php#562">
-							<em>the audience is entirely kids</em>
 						</a>
 					</li>
 							</ul>
@@ -366,9 +366,9 @@
 		<div class="mainBox">
 			<h2>Stats</h2>
 			<ul>
-				<li>Total posts: 1,316</li>
-				<li>Unique posters: 107</li>
-				<li>Active content: 564.96 MB</li>
+				<li>Total posts: 1,341</li>
+				<li>Unique posters: 108</li>
+				<li>Active content: 569.66 MB</li>
 			</ul>
 		</div>
 	</div>

@@ -518,6 +518,10 @@
 	$config['strip_superfluous_returns'] = true;
 	// Strip combining characters from Unicode strings (eg. "Zalgo").
 	$config['strip_combining_chars'] = true;
+	
+	// A regex pattern that referers must match. 
+	// Prevents. posts originating from fishy locations.
+	$config['referer_match'] = false;
 
 	// Maximum post body length.
 	$config['max_body'] = 1800;

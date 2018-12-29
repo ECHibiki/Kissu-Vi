@@ -108,15 +108,18 @@
 				if (!in_array($s, $config['additional_javascript']))
 					$config['additional_javascript'][] = $s;
 			}
+			
+			$antibot = create_antibot($board['uri']);
 
 			file_write($config['dir']['home'] . $board_name . '/catalog.php', Element('themes/catalog/catalog.php', Array(
+				'antibot' => $antibot,
 				'settings' => $settings,
 				'config' => $config,
 				'boardlist' => createBoardlist(),
 				'recent_images' => $recent_images,
 				'recent_posts' => $recent_posts,
 				'stats' => $stats,
-				'board' => $board_name,
+				'board' => $board,
 				'link' => $config['root'] . $board['dir']
 			)));
 

@@ -4,10 +4,10 @@
 	<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
 	<script type='text/javascript'>
 		var active_page = "catalog"
-		  , board_name = "{{ board }}";
+		  , board_name = "{{ board.uri }}";
 	</script>
 	{% include 'header.html' %}
-	<title>{{ board }} - Catalog</title>
+	<title>{{ board.uri }} - Catalog</title>
 </head>
 <body class="8chan vichan {% if mod %}is-moderator{% else %}is-not-moderator{% endif %} theme-catalog active-catalog" data-stylesheet="{% if config.default_stylesheet.1 != '' %}{{ config.default_stylesheet.1 }}{% else %}default{% endif %}">
 
@@ -18,7 +18,7 @@
 	{% if config.url_banner %}<img class="board_image" src="{{ config.url_banner }}" {% if config.banner_width or config.banner_height %}style="{% if config.banner_width %}width:{{ config.banner_width }}px{% endif %};{% if config.banner_width %}height:{{ config.banner_height }}px{% endif %}" {% endif %}alt="" />{% endif %}
 	
 	<header>
-		<h1>{{ settings.title }} (<a href="{{link}}">/{{ board }}/</a>)</h1>
+		<h1>{{ settings.title }} (<a href="{{link}}">/{{ board.uri }}/</a>)</h1>
 		<div class="subtitle">{{ settings.subtitle }}</div>
 	</header>
 	
@@ -58,15 +58,15 @@
 	<input type="hidden" name="board" value="{{ board.uri }}" />
 	{% if mod %}<input type="hidden" name="mod" value="1" />{% endif %}
 	{{ body }}
-	{% include 'report_delete.html' %}
-	</form>
 
+	</form>
+	<div id='catalog_options'>
         <span>{% trans 'Sort by' %}: </span>
         <select id="sort_by" style="display: inline-block">
                 <option selected value="bump:desc">{% trans 'Bump order' %}</option>
                 <option value="time:desc">{% trans 'Creation date' %}</option>
                 <option value="reply:desc">{% trans 'Reply count' %}</option>
-                <option value="random:desc">{% trans 'Random' %}</option>
+                <!--<option value="random:desc">{% trans 'Random' %}</option>-->
         </select>
  
         <span>{% trans 'Image size' %}: </span>
@@ -75,6 +75,7 @@
                 <option value="small" selected>{% trans 'Small' %}</option>
                 <option value="large">{% trans 'Large' %}</option>
         </select>
+		</div>
 		<br/>
         <div class="threads">
                 <div id="Grid">
