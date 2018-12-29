@@ -6,6 +6,21 @@ width: auto !important;
 height: auto !important;
 }
 
+/* Nen markup tags */
+
+span.glowpink{
+	text-shadow: 0px 0px 6px #ff08c2;
+    color: #fff0f5;
+}
+span.glowblue{
+	text-shadow: -1px 0px 4px #00A1FF, 1px 1px 1px #0056FF, 2px 0px 10px #00B8FF;
+    color: #E8FEFF;
+}
+span.glowgold{
+	text-shadow: -1px 0px 4px #FFA500, 1px 1px 1px #C5AE09, 2px 0px 10px rgb(255, 224, 0);
+    color: #FDFFEF;
+}
+
 body {
   background: #EEF2FF url('img/fade-blue.png') repeat-x 50% 0%;
   color: black;
@@ -634,7 +649,7 @@ pre {
   max-height: 150px;
   max-width: 200px;
   box-shadow: 0 0 4px rgba(0,0,0,0.55);
-  border: 2px solid rgba(153,153,153,0);
+  /* border: 2px solid rgba(153,153,153,0); */
 }
 
 .theme-catalog div.thread {
@@ -651,8 +666,8 @@ pre {
   position: relative;
   font-size: 11px;
   max-height: 300px;
-  background: rgba(182,182,182,0.12);
-  border: 2px solid rgba(111,111,111,0.34);
+  /* background: rgba(182,182,182,0.12); */
+  /* border: 2px solid rgba(111,111,111,0.34); */
 }
 
 .theme-catalog div.thread strong {
@@ -680,7 +695,7 @@ pre {
 }
 
 .theme-catalog div.grid-size-small img {
-  max-height: 33%;
+  max-height: 55%;
   max-width: 95%
 }
 
@@ -690,7 +705,7 @@ pre {
 }
 
 .theme-catalog div.grid-size-large img {
-  max-height: 40%;
+  max-height: 60%;
   max-width: 95%
 }
 

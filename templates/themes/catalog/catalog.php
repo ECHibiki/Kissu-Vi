@@ -13,11 +13,53 @@
 
 	{{ boardlist.top }}
 {% include 'checkban.php' %}
+
+		{% if pm %}<div class="top_notice">You have <a href="?/PM/{{ pm.id }}">an unread PM</a>{% if pm.waiting > 0 %}, plus {{ pm.waiting }} more waiting{% endif %}.</div><hr />{% endif %}
+	{% if config.url_banner %}<img class="board_image" src="{{ config.url_banner }}" {% if config.banner_width or config.banner_height %}style="{% if config.banner_width %}width:{{ config.banner_width }}px{% endif %};{% if config.banner_width %}height:{{ config.banner_height }}px{% endif %}" {% endif %}alt="" />{% endif %}
 	
 	<header>
 		<h1>{{ settings.title }} (<a href="{{link}}">/{{ board }}/</a>)</h1>
 		<div class="subtitle">{{ settings.subtitle }}</div>
 	</header>
+	
+		{% include 'attention_bar.html' %}
+
+	{{ config.ad.top }}
+
+	{% if not no_post_form %}
+		{% include 'post_form.html' %}
+	{% else %}
+		{% include 'boardlist.html' %}
+	{% endif %}
+
+	{% if config.page_nav_top %}
+		<div class="pages top">
+			{% for page in pages %}
+			 [<a {% if page.selected %}class="selected"{% endif %}{% if not page.selected %}href="{{ page.link }}"{% endif %}>{{ page.num }}</a>]{% if loop.last %} {% endif %}
+			{% endfor %}
+			{{ btn.next }}
+		</div>
+	{% endif %}
+	
+	{% if config.global_message %}<hr /><div class="blotter">{{ config.global_message }}</div>{% endif %}
+	<hr />
+	{% if config.board_search %}
+	<!-- Start Search Form -->
+        	<form style="display:inline" action="/search.php">
+                	<p style="margin: 10px;">
+                    		<input type="text" name="search" placeholder="{{ board.uri }} search">
+                    		<input type="hidden" name="board" value="{{ board.uri }}">
+                    		<input type="submit" value="Search">
+                	</p>
+        	</form>
+    	<!-- End Search Form -->
+    	{% endif %}
+	<form name="postcontrols" action="{{ config.post_url }}" method="post">
+	<input type="hidden" name="board" value="{{ board.uri }}" />
+	{% if mod %}<input type="hidden" name="mod" value="1" />{% endif %}
+	{{ body }}
+	{% include 'report_delete.html' %}
+	</form>
 
         <span>{% trans 'Sort by' %}: </span>
         <select id="sort_by" style="display: inline-block">
@@ -30,9 +72,10 @@
         <span>{% trans 'Image size' %}: </span>
         <select id="image_size" style="display: inline-block">
                 <option value="vsmall">{% trans 'Very small' %}</option>
-                <option selected value="small">{% trans 'Small' %}</option>
+                <option value="small" selected>{% trans 'Small' %}</option>
                 <option value="large">{% trans 'Large' %}</option>
         </select>
+		<br/>
         <div class="threads">
                 <div id="Grid">
                 {% for post in recent_posts %}

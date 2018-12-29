@@ -499,6 +499,8 @@ class ImageBMP extends ImageBase {
 
 class Post_ImageProcessing{
 	static public function proccess($post){
+		global $config;
+		
 		if ($post['has_file']) {
 		foreach ($post['files'] as $key => &$file) {
 		if ($file['is_an_image']) {

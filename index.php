@@ -36,7 +36,7 @@
 		<h1>Kissu.moe</h1>
 		<div class="subtitle">100% fun</div>
 	</header>
-	<img class="board_image" src="/static/banner-kissu.png" alt="" />	
+	<img class="board_image" src="/banner-art.php" alt="" />	
 	<div class="box-wrap">
 	    <!--<fieldset>
 		<legend>Boards</legend>
@@ -63,6 +63,21 @@
 	    <h1>Recent Images</h1>
 		<div class="box image">
 			<ul>
+									<li>
+						<a href="/qa/res/573.php#573">
+							<img src="/qa/thumb/1546051862548.png" style="width:255px;height:194px" alt="">
+						</a>
+					</li>
+									<li>
+						<a href="/qa/res/571.php#571">
+							<img src="/qa/thumb/1546048905062.png" style="width:255px;height:143px" alt="">
+						</a>
+					</li>
+									<li>
+						<a href="/qa/res/124.php#570">
+							<img src="/qa/thumb/1546048470235.png" style="width:175px;height:117px" alt="">
+						</a>
+					</li>
 									<li>
 						<a href="/b/res/671.php#672">
 							<img src="/b/thumb/1546027365833.png" style="width:175px;height:82px" alt="">
@@ -123,26 +138,125 @@
 							<img src="/qa/thumb/1545955865945.png" style="width:160px;height:175px" alt="">
 						</a>
 					</li>
-									<li>
-						<a href="/qa/res/525.php#525">
-							<img src="/qa/thumb/1545953335233.png" style="width:143px;height:255px" alt="">
-						</a>
-					</li>
-									<li>
-						<a href="/qa/res/522.php#522">
-							<img src="/qa/thumb/1545952676551.png" style="width:255px;height:143px" alt="">
-						</a>
-					</li>
-									<li>
-						<a href="/qa/res/353.php#508">
-							<img src="/qa/thumb/1545906013767.png" style="width:175px;height:99px" alt="">
-						</a>
-					</li>
 							</ul>
 		</div>
 		<div class="mainBox">
 			<h2>Latest Posts</h2>
 			<ul>
+									<li>
+						<strong>Boson Tests</strong>: 
+						<a href="/b/res/655.php#690">
+							<em>test</em>
+						</a>
+					</li>
+									<li>
+						<strong>/qa/</strong>: 
+						<a href="/qa/res/124.php#574">
+							<em>&gt;&gt;570  maybe in the 80s</em>
+						</a>
+					</li>
+									<li>
+						<strong>/qa/</strong>: 
+						<a href="/qa/res/573.php#573">
+							<em>Winter can be harsh and cold, &hellip;</em>
+						</a>
+					</li>
+									<li>
+						<strong>Boson Tests</strong>: 
+						<a href="/b/res/655.php#689">
+							<em>(no comment)</em>
+						</a>
+					</li>
+									<li>
+						<strong>Boson Tests</strong>: 
+						<a href="/b/res/655.php#688">
+							<em>(no comment)</em>
+						</a>
+					</li>
+									<li>
+						<strong>Boson Tests</strong>: 
+						<a href="/b/res/671.php#687">
+							<em>&gt;&gt;686  On Oneechan the fonts I&hellip;</em>
+						</a>
+					</li>
+									<li>
+						<strong>Boson Tests</strong>: 
+						<a href="/b/res/671.php#686">
+							<em>More importantly though. The v&hellip;</em>
+						</a>
+					</li>
+									<li>
+						<strong>/qa/</strong>: 
+						<a href="/qa/res/124.php#572">
+							<em>soft is cute</em>
+						</a>
+					</li>
+									<li>
+						<strong>/qa/</strong>: 
+						<a href="/qa/res/571.php#571">
+							<em>When's the /qa/ Elfen Lied str&hellip;</em>
+						</a>
+					</li>
+									<li>
+						<strong>/qa/</strong>: 
+						<a href="/qa/res/124.php#570">
+							<em>no idea what you're talking ab&hellip;</em>
+						</a>
+					</li>
+									<li>
+						<strong>Boson Tests</strong>: 
+						<a href="/b/res/655.php#685">
+							<em>test</em>
+						</a>
+					</li>
+									<li>
+						<strong>Boson Tests</strong>: 
+						<a href="/b/res/655.php#684">
+							<em>Yes!      bold    italics    u&hellip;</em>
+						</a>
+					</li>
+									<li>
+						<strong>Boson Tests</strong>: 
+						<a href="/b/res/655.php#683">
+							<em>Yes!      bold    italics    u&hellip;</em>
+						</a>
+					</li>
+									<li>
+						<strong>Boson Tests</strong>: 
+						<a href="/b/res/655.php#682">
+							<em>test  test</em>
+						</a>
+					</li>
+									<li>
+						<strong>Boson Tests</strong>: 
+						<a href="/b/res/655.php#681">
+							<em>test</em>
+						</a>
+					</li>
+									<li>
+						<strong>Boson Tests</strong>: 
+						<a href="/b/res/655.php#680">
+							<em>test</em>
+						</a>
+					</li>
+									<li>
+						<strong>Boson Tests</strong>: 
+						<a href="/b/res/655.php#679">
+							<em>[pink]test[/pink]</em>
+						</a>
+					</li>
+									<li>
+						<strong>/qa/</strong>: 
+						<a href="/qa/res/124.php#568">
+							<em>i wish male protagonists in an&hellip;</em>
+						</a>
+					</li>
+									<li>
+						<strong>Boson Tests</strong>: 
+						<a href="/b/res/655.php#678">
+							<em>test</em>
+						</a>
+					</li>
 									<li>
 						<strong>Boson Tests</strong>: 
 						<a href="/b/res/655.php#677">
@@ -209,120 +323,6 @@
 							<em>the audience is entirely kids</em>
 						</a>
 					</li>
-									<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/124.php#561">
-							<em>forgot to eat today</em>
-						</a>
-					</li>
-									<li>
-						<strong>Boson Tests</strong>: 
-						<a href="/b/res/671.php#672">
-							<em>If you're fine with unconventi&hellip;</em>
-						</a>
-					</li>
-									<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/29.php#560">
-							<em>What dialect is this? Sounds l&hellip;</em>
-						</a>
-					</li>
-									<li>
-						<strong>Boson Tests</strong>: 
-						<a href="/b/res/671.php#671">
-							<em>It's time for me to figurative&hellip;</em>
-						</a>
-					</li>
-									<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/559.php#559">
-							<em>I don't get it, they nearly fu&hellip;</em>
-						</a>
-					</li>
-									<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/506.php#558">
-							<em>sdoigh</em>
-						</a>
-					</li>
-									<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/525.php#557">
-							<em>you really had to slap your na&hellip;</em>
-						</a>
-					</li>
-									<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/554.php#556">
-							<em>Why bother? It's not like you &hellip;</em>
-						</a>
-					</li>
-									<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/555.php#555">
-							<em>You know, with evolution and a&hellip;</em>
-						</a>
-					</li>
-									<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/554.php#554">
-							<em>How to count score in jong?</em>
-						</a>
-					</li>
-									<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/124.php#553">
-							<em>wait they sincerely say that? &hellip;</em>
-						</a>
-					</li>
-									<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/547.php#552">
-							<em>I used to have close friends b&hellip;</em>
-						</a>
-					</li>
-									<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/124.php#551">
-							<em>ended up reading a thread on r&hellip;</em>
-						</a>
-					</li>
-									<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/547.php#550">
-							<em>If family counts, then yes. Ou&hellip;</em>
-						</a>
-					</li>
-									<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/547.php#549">
-							<em>&gt;&gt;548  does that mean you try &hellip;</em>
-						</a>
-					</li>
-									<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/547.php#548">
-							<em>&gt;&gt;547  Not really. I try to be&hellip;</em>
-						</a>
-					</li>
-									<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/547.php#547">
-							<em>Do you guys have any friends o&hellip;</em>
-						</a>
-					</li>
-									<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/540.php#546">
-							<em>&gt;&gt;545  Pay them no mind and tr&hellip;</em>
-						</a>
-					</li>
-									<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/540.php#545">
-							<em>KLK was pretty good but I know&hellip;</em>
-						</a>
-					</li>
 							</ul>
 		</div>
 		<div class="mainBox">
@@ -366,9 +366,9 @@
 		<div class="mainBox">
 			<h2>Stats</h2>
 			<ul>
-				<li>Total posts: 1,296</li>
+				<li>Total posts: 1,316</li>
 				<li>Unique posters: 107</li>
-				<li>Active content: 564.61 MB</li>
+				<li>Active content: 564.96 MB</li>
 			</ul>
 		</div>
 	</div>

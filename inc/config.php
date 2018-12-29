@@ -706,14 +706,26 @@
 
 	// "Wiki" markup syntax ($config['wiki_markup'] in pervious versions):
 	$config['markup'][] = array("/'''(.+?)'''/", "<strong>\$1</strong>");
+	$config['markup'][] = array("/\[b\](.+?)\[\/b\]/", "<strong>\$1</strong>");
 	$config['markup'][] = array("/''(.+?)''/", "<em>\$1</em>");
+	$config['markup'][] = array("/\[i\](.+?)\[\/i\]/", "<em>\$1</em>");
 	$config['markup'][] = array("/\*\*(.+?)\*\*/", "<span class=\"spoiler\">\$1</span>");
-	$config['markup'][] = array("/^[ |\t]*==(.+?)==[ |\t]*$/m", "<span class=\"heading\">\$1</span>");
+	$config['markup'][] = array("/\[u\](.+?)\[\/u\]/", "<u>\$1</u>");
+	$config['markup'][] = array("/\[spoiler\](.+?)\[\/spoiler\]/", "<span class=\"spoiler\">\$1</span>");
+	$config['markup'][] = array("/\[spoilers\](.+?)\[\/spoilers\]/", "<span class=\"spoiler\">\$1</span>");
+	$config['markup'][] = array("/==(.+?)==/", "<span class=\"heading\">\$1</span>");
+	$config['markup'][] = array("/\[header\](.+?)\[\/header\]/", "<span class=\"heading\">\$1</span>");
+	
+	// Markup from Nen
+	$config['markup'][] = array("/\[pink\](.+?)\[\/pink\]/", "<span class=\"glowpink\">\$1</span>");
+	$config['markup'][] = array("/\[blue\](.+?)\[\/blue\]/", "<span class=\"glowblue\">\$1</span>");
+	$config['markup'][] = array("/\[gold\](.+?)\[\/gold\]/", "<span class=\"glowgold\">\$1</span>");
+	
 
 	// Code markup. This should be set to a regular expression, using tags you want to use. Examples:
 	// "/\[code\](.*?)\[\/code\]/is"
 	// "/```([a-z0-9-]{0,20})\n(.*?)\n?```\n?/s"
-	$config['markup_code'] = false;
+	$config['markup_code'] = "/\[code\](.*?)\[\/code\]/";
 
 	// Repair markup with HTML Tidy. This may be slower, but it solves nesting mistakes. Tinyboad, at the
 	// time of writing this, can not prevent out-of-order markup tags (eg. "**''test**'') without help from
@@ -1116,7 +1128,10 @@
 			array(
 				'/^https?:\/\/(\w+\.)?youtube\.com\/watch\?v=([a-zA-Z0-9\-_]{10,11})(&.+)?$/i',
 				'<iframe style="float: left;margin: 10px 20px;" width="%%tb_width%%" height="%%tb_height%%" frameborder="0" id="ytplayer" src="https://www.youtube.com/embed/$2" allowfullscreen></iframe>'
-
+			),
+			array(
+				'/^https?:\/\/(\w+\.)?youtu\.be\/([a-zA-Z0-9\-_]{10,11})?(.+)?$/i',
+				'<iframe style="float: left;margin: 10px 20px;" width="%%tb_width%%" height="%%tb_height%%" frameborder="0" id="ytplayer" src="https://www.youtube.com/embed/$2" allowfullscreen></iframe>'
 			),
 			array(
 				'/^https?:\/\/(\w+\.)?vimeo\.com\/(\d{2,10})(\?.+)?$/i',
