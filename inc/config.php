@@ -1484,7 +1484,7 @@
 	$config['mod']['dismiss_reports_on_lock'] = true;
 
 	// Use ?/config with a simple text editor for editing inc/instance-config.php.
-	$config['mod']['config_editor_php'] = true;
+	$config['mod']['config_editor_php'] = false;
 	// Use  ?/config with a reduced editor for editing inc/instance-config.php.
 	$config['mod']['simplified_editor_php'] = true;
 

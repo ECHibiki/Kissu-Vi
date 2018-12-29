@@ -2497,7 +2497,7 @@ function buildThread($id, $return = false, $mod = false) {
 			'isnoko50' => false,
 			'antibot' => $antibot,
 			'boardlist' => createBoardlist($mod),
-			'return' => ($mod ? '?' . $board['url'] . $config['file_index'] : $config['root'] . $board['dir'] . $config['file_index'])
+			'return' => ($mod ? '?' . $board['url'] : $config['root'] . $board['dir'])
 		));
 
 		// json api

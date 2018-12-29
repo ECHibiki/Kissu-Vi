@@ -22,7 +22,7 @@
 	{% if config.url_banner %}<img class="board_image" src="{{ config.url_banner }}" {% if config.banner_width or config.banner_height %}style="{% if config.banner_width %}width:{{ config.banner_width }}px{% endif %};{% if config.banner_width %}height:{{ config.banner_height }}px{% endif %}" {% endif %}alt="" />{% endif %}
 	
 	<div class="box-wrap">
-	    <fieldset>
+	    <!--<fieldset>
 		<legend>Boards</legend>
 		<ul>
 			{% for board in boards %}
@@ -33,9 +33,35 @@
 				</li>
 			{% endfor %}
 		</ul>
-	    </fieldset>
+	    </fieldset>-->
 	    <br>
-	    <div class="mainBox">
+
+	    <h1>Recent Images</h1>
+		<div class="box image">
+			<ul>
+				{% for post in recent_images %}
+					<li>
+						<a href="{{ post.link }}">
+							<img src="{{ post.src }}" style="width:{{ post.thumbwidth }}px;height:{{ post.thumbheight }}px" alt="">
+						</a>
+					</li>
+				{% endfor %}
+			</ul>
+		</div>
+		<div class="mainBox">
+			<h2>Latest Posts</h2>
+			<ul>
+				{% for post in recent_posts %}
+					<li>
+						<strong>{{ post.board_name }}</strong>: 
+						<a href="{{ post.link }}">
+							{{ post.snippet }}
+						</a>
+					</li>
+				{% endfor %}
+			</ul>
+		</div>
+		<div class="mainBox">
 	        <br>
 	        <div class="description">{{ settings.description }}</div>
 	        <br>
@@ -63,31 +89,6 @@
 			{% endfor %}
 		{% endif %}
 	    </div>
-	    <h1>Recent Images</h1>
-		<div class="box image">
-			<ul>
-				{% for post in recent_images %}
-					<li>
-						<a href="{{ post.link }}">
-							<img src="{{ post.src }}" style="width:{{ post.thumbwidth }}px;height:{{ post.thumbheight }}px" alt="">
-						</a>
-					</li>
-				{% endfor %}
-			</ul>
-		</div>
-		<div class="mainBox">
-			<h2>Latest Posts</h2>
-			<ul>
-				{% for post in recent_posts %}
-					<li>
-						<strong>{{ post.board_name }}</strong>: 
-						<a href="{{ post.link }}">
-							{{ post.snippet }}
-						</a>
-					</li>
-				{% endfor %}
-			</ul>
-		</div>
 		<div class="mainBox">
 			<h2>Stats</h2>
 			<ul>

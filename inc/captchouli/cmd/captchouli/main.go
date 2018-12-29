@@ -23,12 +23,13 @@ var easy = [...]string{
 
 var medium  = [...]string{ 
 	"anastasia_(idolmaster)", "hibiki_(kantai_collection)", "shiro_(dennou_shoujo_youtuber_shiro)", "illyasviel_von_einzbern",	
-	"usada_hikaru", "touwa_erio", "nepgear", "shirasaka_koume",  "arcueid_brunestud",  "artoria_pendragon_(all)", "hoshi_shouko",
+	"usada_hikaru", "touwa_erio", "nepgear","koshimizu_sachiko" , "shirasaka_koume",  "arcueid_brunestud",  "artoria_pendragon_(all)", "hoshi_shouko",
 	"konpaku_youmu", "izayoi_sakuya", "suguri_(character)",
 }
 
 func main() {
 	address := flag.String("a", ":2087", "address for server to listen on")
+	//addressSSL := flag.String("a", ":4087", "address for server to listen on")
 	explicit := flag.Bool("e", false,
 		"allow explicit rating images in the pool")
 	tags := flag.String("t", strings.Join(medium[:], ","),
@@ -65,6 +66,7 @@ Note that only tags that are detectable from the character's face should be used
 	}
 	defer captchouli.Close()
 
-	log.Println("listening on " + *address)
-	log.Println(http.ListenAndServeTLS(*address, string("/etc/letsencrypt/live/kissu.moe/fullchain.pem"), string("/etc/letsencrypt/live/kissu.moe/privkey.pem"),  s.Router()))
+	//log.Println("listening on " + *address + " & " + *addressSSL)
+	log.Println(http.ListenAndServe(*address,  s.Router()))
+	//log.Println(http.ListenAndServeTLS(*addressSSL, string("/etc/letsencrypt/live/kissu.moe-0001/fullchain.pem"), string("/etc/letsencrypt/live/kissu.moe-0001/privkey.pem"),  s.Router()))
 }
