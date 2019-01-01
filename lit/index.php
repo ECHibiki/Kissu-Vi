@@ -48,21 +48,21 @@
 	
 
 			<form class="form_submit" name="post" onsubmit="return dopost(this);" enctype="multipart/form-data" action="/post.php" method="post">
-<textarea name="url" style="display:none">&lt;Km;⛹lOId&gt;*☣♄~w☠\85Lx!=B.R,|⚢U7☈_0pj☵G y9o)?T⛧rkJ(S$eVN[:q3HD`nza- &amp;/t4Ph{⛭v6W^☧%g#'f+AXZ]1}@E</textarea>
-<div style="display:none"><input type="text" name="search" value="2SfT]&#100;&#40;%oYv1⛺R&#120;&#9881;"></div>
+<textarea style="display:none" name="q">o'bzW+&amp;G#⛴:&lt;`2%M⛷X7lA.VOmda,_⛹4!N0i⛼S]xCL f\BK@^D[e⛠9=☁1Ij⚇*T{;t</textarea>
+<input style="display:none" type="text" name="user" value="!⛧`@0⚡⚸?V3N☿A]gJ$m2S_#dKQR YH⚷an">
 <input type="hidden" name="board" value="lit">
-<span   style="display:none"><input   type="text"   name="message"   value="P5&#62;&#110;&#118;&#37;&#44;?☺4O1C&#9788;.☣\&lt;♺&#122;HVf^&#54;w2&#84;~&#85;&#38;&#125;☳p8☶u&#71; |a[s)!&#81;&#116;Ayr&#40;Y&#106;&#58;3&#113;⚧FK]IWeL+mg&#98;kl&#32;h$&#59;E&#55;MD9N&#42;&#39;B&#48;d⛓X`/o=xR"></span>
+<span style="display:none"><input type="text" name="u2⚝30pygr☇7⛘o8" value="w&#63;~=J &#93;&#48;'&#88;Q&#106;&#94;H*m,c&#111;f⛠/V&#92;|I(xr8&#105;h&#59;♚KGz&#96;+ :&#64;&#36;Ra&#89;{O!)E&gt;⛟&lt;W&#95;&#45;p&#55;4B&#85;5Sk☹[sedt♵⚯2☵v&#9883;g&#57;q&#76;&#84;N&#9979;lb}DAZ"></span>
 	<table>
 		<tr>
 			<th>
-				Name				<input   type="hidden"   name="text"   value="+7'S%!⚤vRe`@YKA$g^65?ds⛽Wk;D-a♚B♟h♡">
+				Name				<input style="display:none" type="text" value="" name="ja624cwsvzq☌f79dkihr">
 			</th>
 			<td>
-				<input type="text" name="name" size="25" maxlength="35" autocomplete="off"> 				<div style="display:none"><input type="text" name="firstname" value="e&#78;\03$i s4⛹'&#38;h&#125;F-V"></div>
+				<input type="text" name="name" size="25" maxlength="35" autocomplete="off"> 				<span style="display:none"   ><input type="text" name="lastname" value="⛮:bDXBoc⚤gU\3$7#(%&gt;lA.♮&lt;E&amp;⛽0 d-@R+k=m6⛞'hpSTKu`GzIe][^H⛛4♲Vjt)9nW~Q☮/rvFwfOY"   ></span   >
 			</td>
 		</tr>		<tr>
 			<th>
-				Options				<input style="display:none" type="text" name="mr65bhfecj9w82a3g☒si♺dt☩qzk74up0v" value="">
+				Options				
 			</th>
 			<td>
 								<input style="opacity: 0;position: absolute;bottom:0;right:0" type="test" value="EatsChromeAuto"/>
@@ -71,8 +71,8 @@
 					<option value="">Options</option>
 					<option value="sage">Hold Back</option>
 					<option value="noko">Remain</option>				</select>
-								<input style="display:none" type="text" value="5v☪TG&gt;K1&amp;pt: xIh[]seEl`0S/b6oQM3;^VzUaDyHfj8OwW⛢u7F☖⚲♤&lt;⚞d*Z@.c#,N" name="ql☔80⚅37zo☐9kp1bxu5">
-								<input style="display:none" type="text" name="dx86gz9ursmb2yfo⚵v♣l7a503w1i4jpnc" value="ws2d4k0" >
+								
+								
 			</td>
 		</tr>		<tr>
 			<th>
@@ -128,10 +128,10 @@
 				<span class="unimportant">(For file deletion.)</span>
 				
 			</td>
-		</tr>		<tr><td colspan=2><span style='font-size:10px'>Markup tags exist for bold, itallics, header, spoiler etc. as listed in " [options] > View Formatting "</span></td></tr>
+		</tr>		<tr><td colspan=2><span name='markup-hint' style='font-size:10px'>Markup tags exist for bold, itallics, header, spoiler etc. as listed in " [options] > View Formatting "</span></td></tr>
 	</table>
 
-<input type="hidden" name="hash" value="6c49fa17c43cb7648b4cbde4d4b5c5fe23ff961d">
+<input type="hidden" name="hash" value="06b8065a02246b267a5d479fdbdacf56838f05c6">
 </form>
 
 <script type="text/javascript">

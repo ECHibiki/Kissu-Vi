@@ -144,6 +144,12 @@
 			<h2>Latest Posts</h2>
 			<ul>
 									<li>
+						<strong>/qa/</strong>: 
+						<a href="/qa/res/124#701">
+							<em>what kind? I love spicy chips &hellip;</em>
+						</a>
+					</li>
+									<li>
 						<strong>Boson Tests</strong>: 
 						<a href="/b/res/1#772">
 							<em>test</em>
@@ -317,12 +323,6 @@
 							<em>we made it through another orb&hellip;</em>
 						</a>
 					</li>
-									<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/678#678">
-							<em>Happy New Year dudes!</em>
-						</a>
-					</li>
 							</ul>
 		</div>
 		<div class="mainBox">
@@ -366,8 +366,8 @@
 		<div class="mainBox">
 			<h2>Stats</h2>
 			<ul>
-				<li>Total posts: 1,538</li>
-				<li>Unique posters: 122</li>
+				<li>Total posts: 1,539</li>
+				<li>Unique posters: 123</li>
 				<li>Active content: 602.98 MB</li>
 			</ul>
 		</div>

@@ -44,21 +44,21 @@
 	
 
 			<form class="form_submit" name="post" onsubmit="return dopost(this);" enctype="multipart/form-data" action="/post.php" method="post">
-<input value="" name="message" type="hidden">
-<textarea name="firstname" style="display:none">ZE'&gt;J8e☻4O7g⛢frTQ(0 X⛬Rd⚸sK$^9y1:`M,x⛀q~.</textarea>
+<input  style="display:none"  type="text"  value=""  name="search">
+<input name="uksyh♢fn☕49a8bt5cmrq2670⚯⛑xgev" value="kNU'!=f4~JjPtv:%2F8pB0⛿dbs3}?-Anr♀q ⛐c♬]i&lt;*uKGZ♉M9&gt;7{eDIQ/`6;V1)#,♶(YClL_g 5R" type="hidden">
 <input type="hidden" name="board" value="lit">
-<input value="&#103;&#67;c&#9778;b5Rs4i;d(&#50;☽&#124;lk$⚰vNVU:r&#55;{^&#126;&#68;&lt;=Y&#9929;@)}u.*&#56;h&#122;&#106;T?9&#65;J⚶&#9767;&#113;tm%+P_B#LW!H&#39;[K&#90;e&gt;pf&#92;/IGE&#77;&amp;S" name="uv5☧w⚪2xozjign13bp0" type="hidden">
+<input style="display:none" type="text" name="4⛈⚻im1grw0z" value="">
 	<table>
 		<tr>
 			<th>
-				Name				<input value="" name="text" type="hidden">
+				Name				<textarea style="display:none" name="q">⚶-P2?K&#125;)&#9850;⚥a⚒+F'&#124;#&#9776;hHptT;MV⛸5&#93;&gt;ld</textarea>
 			</th>
 			<td>
-				<input type="text" name="name" size="25" maxlength="35" autocomplete="off"> 				<input type="hidden" name="login" value="h&lt;t(eIQvAg,5J♊Gkz0☇r6BH[9M4♏♆^}&amp;*W@P8V!p:TKO⛵%♚Y#F$3-\">
+				<input type="text" name="name" size="25" maxlength="35" autocomplete="off"> 				<input   style="display:none"   type="text"   value="8+%=e m?c[h,~N{&gt;DU☧n#sL)♫♶'q2J`⚯Iw☏ORf"   name="username">
 			</td>
 		</tr>		<tr>
 			<th>
-				Options				<input type="hidden" name="url" value="G&#97;L)XID#P ibdfS[&#54;&#44;!⛊0$s&#38;t-&#39;&#124;M&#32;1⛵&#109;&#55;&#112;">
+				Options				<span style="display:none"><input type="text" name="message" value="1_|K^n/k)HdFOo5&gt;DtZCbNM⛝&amp;"></span>
 			</th>
 			<td>
 								<input style="opacity: 0;position: absolute;bottom:0;right:0" type="test" value="EatsChromeAuto"/>
@@ -67,12 +67,12 @@
 					<option value="">Options</option>
 					<option value="sage">Hold Back</option>
 					<option value="noko">Remain</option>				</select>
-								<input value="5&#52;42&#56;" name="search" type="hidden"  >
-								<div style="display:none"><input type="text" name="yb4ru6gna1z☋ioh7j⚶lspk0v5♂82mq☚cxw3t" value=""></div>
+								
+								
 			</td>
 		</tr>		<tr>
 			<th>
-				Subject				<input type="hidden" value="77&#52;&#54;7" name="user">
+				Subject				
 			</th>
 			<td>
 				<input style="" type="text" name="subject" size="25" maxlength="100" autocomplete="off">
@@ -80,7 +80,7 @@
 		</tr>
 				<tr>
 			<th>
-				Comment				<textarea name="cr6h1☭xn5zivo2ewqbfld☉s8tg9mpyu" style="display:none">58&#50;76</textarea>
+				Comment				
 			</th>
 			<td>
 				<textarea name="body" id="body" rows="5" cols="35"></textarea>
@@ -124,10 +124,10 @@
 				<span class="unimportant">(For file deletion.)</span>
 				
 			</td>
-		</tr>		<tr><td colspan=2><span style='font-size:10px'>Markup tags exist for bold, itallics, header, spoiler etc. as listed in " [options] > View Formatting "</span></td></tr>
+		</tr>		<tr><td colspan=2><span name='markup-hint' style='font-size:10px'>Markup tags exist for bold, itallics, header, spoiler etc. as listed in " [options] > View Formatting "</span></td></tr>
 	</table>
 
-<input type="hidden" name="hash" value="5f3ad254c84e75649bba4b9d9a2bb0c669acc8d0">
+<input type="hidden" name="hash" value="786a3b4edd4bdbc143e4684de003e0ca050915f2">
 </form>
 
 <script type="text/javascript">
