@@ -17,7 +17,7 @@
 					<script type="text/javascript" src="/main.js"></script>
 							</head>
 <body>
-	<div class="boardlist"><span class="sub" data-description="0">[ <a href="/">home</a> ]</span>  <span class="sub" data-description="1">[ <a href="/b/">b</a> / <a href="/qa/">qa</a> ]</span>  <span class="sub" data-description="2">[ <a href="http://swfchan.org/">f</a> / <a href="https://boards.4channel.org/qa/">qa4</a> / <a href="https://github.com/ECHibiki/ViQa-Kissu/">ViQa</a> ]</span></div><script type='text/javascript'>if (typeof do_boardlist != 'undefined') do_boardlist();</script>
+	<div class="boardlist"><span class="sub" data-description="0">[ <a href="/">home</a> ]</span>  <span class="sub" data-description="1">[ <a href="/b/">b</a> / <a href="/qa/">qa</a> / <a href="/lit/">lit</a> ]</span>  <span class="sub" data-description="2">[ <a href="http://swfchan.org/">f</a> / <a href="https://boards.4channel.org/qa/">qa4</a> / <a href="https://github.com/ECHibiki/ViQa-Kissu/">ViQa</a> ]</span></div><script type='text/javascript'>if (typeof do_boardlist != 'undefined') do_boardlist();</script>
 <?php
 	$t = explode(" ", microtime())[0];
 	$expresion = '/(C:\\\xampp\\\htdocs\\\[a-zA-Z]+|\/var\/www\/html\/[a-zA-Z]+)/';
@@ -47,6 +47,11 @@
 					</a>
 				</li>
 							<li class="boardlinksurl">
+					<a href="lit/">
+						Literature
+					</a>
+				</li>
+							<li class="boardlinksurl">
 					<a href="qa/">
 						/qa/
 					</a>
@@ -64,78 +69,73 @@
 		<div class="box image">
 			<ul>
 									<li>
-						<a href="/b/res/1.php#704">
-							<img src="/b/thumb/1546077216837.png" style="width:112px;height:175px" alt="">
+						<a href="/qa/res/678#697">
+							<img src="/qa/thumb/1546355200574.png" style="width:124px;height:175px" alt="">
 						</a>
 					</li>
 									<li>
-						<a href="/b/res/1.php#703">
-							<img src="/b/thumb/1546077173325.png" style="width:175px;height:122px" alt="">
+						<a href="/lit/res/12#14">
+							<img src="/lit/thumb/1546345136005.png" style="width:175px;height:175px" alt="">
 						</a>
 					</li>
 									<li>
-						<a href="/b/res/1.php#702">
-							<img src="/b/thumb/1546077149836.png" style="width:124px;height:175px" alt="">
+						<a href="/lit/res/12#13">
+							<img src="/lit/thumb/1546342853997.png" style="width:175px;height:124px" alt="">
 						</a>
 					</li>
 									<li>
-						<a href="/b/res/1.php#701">
-							<img src="/b/thumb/1546077124498.png" style="width:131px;height:175px" alt="">
+						<a href="/qa/res/124#692">
+							<img src="/qa/thumb/1546333345574.png" style="width:124px;height:175px" alt="">
 						</a>
 					</li>
 									<li>
-						<a href="/b/res/671.php#695">
-							<img src="/b/thumb/1546074614717.png" style="width:175px;height:91px" alt="">
+						<a href="/lit/res/12#12">
+							<img src="/lit/thumb/1546325635750.png" style="width:239px;height:255px" alt="">
 						</a>
 					</li>
 									<li>
-						<a href="/b/res/693.php#693">
-							<img src="/b/thumb/1546070847499.png" style="width:255px;height:142px" alt="">
+						<a href="/qa/res/678#686">
+							<img src="/qa/thumb/1546324544080.png" style="width:175px;height:131px" alt="">
 						</a>
 					</li>
 									<li>
-						<a href="/qa/res/555.php#584">
-							<img src="/qa/thumb/1546066523924.png" style="width:175px;height:131px" alt="">
+						<a href="/qa/res/194#682">
+							<img src="/qa/thumb/1546321852730.png" style="width:175px;height:98px" alt="">
 						</a>
 					</li>
 									<li>
-						<a href="/qa/res/578.php#583">
-							<img src="/qa/thumb/1546066231053.png" style="width:175px;height:98px" alt="">
+						<a href="/qa/res/194#681">
+							<img src="/qa/thumb/1546320826411.png" style="width:175px;height:49px" alt="">
 						</a>
 					</li>
 									<li>
-						<a href="/qa/res/571.php#582">
-							<img src="/qa/thumb/1546065436295.png" style="width:175px;height:98px" alt="">
+						<a href="/qa/res/678#679">
+							<img src="/qa/thumb/1546319068615.png" style="width:131px;height:175px" alt="">
 						</a>
 					</li>
 									<li>
-						<a href="/qa/res/578.php#578">
-							<img src="/qa/thumb/1546064517089.png" style="width:255px;height:143px" alt="">
+						<a href="/qa/res/678#678">
+							<img src="/qa/thumb/1546318803494.png" style="width:243px;height:255px" alt="">
 						</a>
 					</li>
 									<li>
-						<a href="/b/res/671.php#692">
-							<img src="/b/thumb/1546058329973.png" style="width:175px;height:105px" alt="">
+						<a href="/lit/res/11#11">
+							<img src="/lit/thumb/1546315852920.png" style="width:255px;height:143px" alt="">
 						</a>
 					</li>
 									<li>
-						<a href="/qa/res/573.php#573">
-							<img src="/qa/thumb/1546051862548.png" style="width:255px;height:194px" alt="">
+						<a href="/qa/res/194#669">
+							<img src="/qa/thumb/1546299302495.png" style="width:175px;height:76px" alt="">
 						</a>
 					</li>
 									<li>
-						<a href="/qa/res/571.php#571">
-							<img src="/qa/thumb/1546048905062.png" style="width:255px;height:143px" alt="">
+						<a href="/qa/res/667#667">
+							<img src="/qa/thumb/1546296264204.png" style="width:255px;height:180px" alt="">
 						</a>
 					</li>
 									<li>
-						<a href="/qa/res/124.php#570">
-							<img src="/qa/thumb/1546048470235.png" style="width:175px;height:117px" alt="">
-						</a>
-					</li>
-									<li>
-						<a href="/b/res/671.php#672">
-							<img src="/b/thumb/1546027365833.png" style="width:175px;height:82px" alt="">
+						<a href="/qa/res/662#662">
+							<img src="/qa/thumb/1546286234606.png" style="width:255px;height:245px" alt="">
 						</a>
 					</li>
 							</ul>
@@ -145,182 +145,182 @@
 			<ul>
 									<li>
 						<strong>Boson Tests</strong>: 
-						<a href="/b/res/1.php#704">
-							<em>(no comment)</em>
+						<a href="/b/res/1#772">
+							<em>test</em>
 						</a>
 					</li>
 									<li>
 						<strong>Boson Tests</strong>: 
-						<a href="/b/res/1.php#703">
-							<em>(no comment)</em>
+						<a href="/b/res/1#771">
+							<em>&gt;&gt;770  test</em>
 						</a>
 					</li>
 									<li>
 						<strong>Boson Tests</strong>: 
-						<a href="/b/res/1.php#702">
-							<em>(no comment)</em>
-						</a>
-					</li>
-									<li>
-						<strong>Boson Tests</strong>: 
-						<a href="/b/res/1.php#701">
-							<em>(no comment)</em>
-						</a>
-					</li>
-									<li>
-						<strong>Boson Tests</strong>: 
-						<a href="/b/res/1.php#700">
-							<em>&gt;&gt;667</em>
-						</a>
-					</li>
-									<li>
-						<strong>Boson Tests</strong>: 
-						<a href="/b/res/655.php#699">
-							<em>&gt;&gt;696  I moved it to later</em>
-						</a>
-					</li>
-									<li>
-						<strong>Boson Tests</strong>: 
-						<a href="/b/res/671.php#698">
-							<em>https://en.wikipedia.org/wiki/&hellip;</em>
-						</a>
-					</li>
-									<li>
-						<strong>Boson Tests</strong>: 
-						<a href="/b/res/671.php#697">
-							<em>&gt;&gt;695  Grande has too much ser&hellip;</em>
-						</a>
-					</li>
-									<li>
-						<strong>Boson Tests</strong>: 
-						<a href="/b/res/655.php#696">
-							<em>S2's done right?  ¥test  ¥test</em>
-						</a>
-					</li>
-									<li>
-						<strong>Boson Tests</strong>: 
-						<a href="/b/res/671.php#695">
-							<em>&gt;&gt;694  Odd, this is what Lucid&hellip;</em>
-						</a>
-					</li>
-									<li>
-						<strong>Boson Tests</strong>: 
-						<a href="/b/res/671.php#694">
-							<em>&gt;&gt;687  Currently Lucida Sans U&hellip;</em>
-						</a>
-					</li>
-									<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/124.php#585">
-							<em>downloading label packs on rut&hellip;</em>
-						</a>
-					</li>
-									<li>
-						<strong>Boson Tests</strong>: 
-						<a href="/b/res/693.php#693">
-							<em>catapost test</em>
-						</a>
-					</li>
-									<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/555.php#584">
-							<em>You can't really blame evoluti&hellip;</em>
-						</a>
-					</li>
-									<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/578.php#583">
-							<em>imouto's really cute as well</em>
-						</a>
-					</li>
-									<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/571.php#582">
-							<em>&gt;&gt;576  We must</em>
-						</a>
-					</li>
-									<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/124.php#581">
-							<em>try to find ways to hit it big&hellip;</em>
-						</a>
-					</li>
-									<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/262.php#580">
-							<em>It's not slated for any time s&hellip;</em>
-						</a>
-					</li>
-									<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/578.php#579">
-							<em>  Aside from my main complaint&hellip;</em>
-						</a>
-					</li>
-									<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/578.php#578">
-							<em>I've decided that I want to ou&hellip;</em>
-						</a>
-					</li>
-									<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/124.php#577">
-							<em>really wish i could be alone. &hellip;</em>
-						</a>
-					</li>
-									<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/571.php#576">
-							<em>NO! NEVER!</em>
-						</a>
-					</li>
-									<li>
-						<strong>Boson Tests</strong>: 
-						<a href="/b/res/671.php#692">
-							<em>&gt;&gt;686  &gt;&gt;687  We have to choos&hellip;</em>
-						</a>
-					</li>
-									<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/573.php#575">
-							<em>I have a nice heated mattress &hellip;</em>
-						</a>
-					</li>
-									<li>
-						<strong>Boson Tests</strong>: 
-						<a href="/b/res/655.php#691">
-							<em>[aa]  　　　　　                   &hellip;</em>
-						</a>
-					</li>
-									<li>
-						<strong>Boson Tests</strong>: 
-						<a href="/b/res/655.php#690">
+						<a href="/b/res/1#770">
 							<em>test</em>
 						</a>
 					</li>
 									<li>
 						<strong>/qa/</strong>: 
-						<a href="/qa/res/124.php#574">
-							<em>&gt;&gt;570  maybe in the 80s</em>
+						<a href="/qa/res/124#700">
+							<em>ate some chips didnt believe t&hellip;</em>
 						</a>
 					</li>
 									<li>
 						<strong>/qa/</strong>: 
-						<a href="/qa/res/573.php#573">
-							<em>Winter can be harsh and cold, &hellip;</em>
+						<a href="/qa/res/124#699">
+							<em>i think the related works tab &hellip;</em>
 						</a>
 					</li>
 									<li>
-						<strong>Boson Tests</strong>: 
-						<a href="/b/res/655.php#689">
+						<strong>/qa/</strong>: 
+						<a href="/qa/res/124#698">
+							<em>&gt;&gt;692  pixiv, just follow arti&hellip;</em>
+						</a>
+					</li>
+									<li>
+						<strong>/qa/</strong>: 
+						<a href="/qa/res/678#697">
+							<em>happy new year!</em>
+						</a>
+					</li>
+									<li>
+						<strong>/qa/</strong>: 
+						<a href="/qa/res/124#696">
+							<em>watched liz and the blue bird &hellip;</em>
+						</a>
+					</li>
+									<li>
+						<strong>/qa/</strong>: 
+						<a href="/qa/res/124#695">
+							<em>finally catched up on threads &hellip;</em>
+						</a>
+					</li>
+									<li>
+						<strong>/qa/</strong>: 
+						<a href="/qa/res/29#694">
 							<em>(no comment)</em>
 						</a>
 					</li>
 									<li>
+						<strong>Literature</strong>: 
+						<a href="/lit/res/12#14">
+							<em>Do H-doujinshi count as litera&hellip;</em>
+						</a>
+					</li>
+									<li>
+						<strong>/qa/</strong>: 
+						<a href="/qa/res/29#693">
+							<em>https://corekrave.bandcamp.com&hellip;</em>
+						</a>
+					</li>
+									<li>
+						<strong>Literature</strong>: 
+						<a href="/lit/res/12#13">
+							<em>Evvvvvvverything is literature</em>
+						</a>
+					</li>
+									<li>
 						<strong>Boson Tests</strong>: 
-						<a href="/b/res/655.php#688">
-							<em>(no comment)</em>
+						<a href="/b/res/515#769">
+							<em>yeah, it was a new years speci&hellip;</em>
+						</a>
+					</li>
+									<li>
+						<strong>/qa/</strong>: 
+						<a href="/qa/res/124#692">
+							<em>where can i find some real qua&hellip;</em>
+						</a>
+					</li>
+									<li>
+						<strong>/qa/</strong>: 
+						<a href="/qa/res/124#691">
+							<em>i do really well in that state&hellip;</em>
+						</a>
+					</li>
+									<li>
+						<strong>/qa/</strong>: 
+						<a href="/qa/res/678#689">
+							<em>Life changes fast, sometimes i&hellip;</em>
+						</a>
+					</li>
+									<li>
+						<strong>Boson Tests</strong>: 
+						<a href="/b/res/515#768">
+							<em>the site's new css is overwrit&hellip;</em>
+						</a>
+					</li>
+									<li>
+						<strong>Literature</strong>: 
+						<a href="/lit/res/12#12">
+							<em>Do VNs count as literature?</em>
+						</a>
+					</li>
+									<li>
+						<strong>/qa/</strong>: 
+						<a href="/qa/res/124#688">
+							<em>we must guard our purity of es&hellip;</em>
+						</a>
+					</li>
+									<li>
+						<strong>/qa/</strong>: 
+						<a href="/qa/res/124#687">
+							<em>&gt;&gt;676  &gt;&gt;685  i havent since t&hellip;</em>
+						</a>
+					</li>
+									<li>
+						<strong>/qa/</strong>: 
+						<a href="/qa/res/678#686">
+							<em>&gt;&gt;683  he took an awkward tumb&hellip;</em>
+						</a>
+					</li>
+									<li>
+						<strong>/qa/</strong>: 
+						<a href="/qa/res/124#685">
+							<em>&gt;&gt;676  haven't in 3 days and s&hellip;</em>
+						</a>
+					</li>
+									<li>
+						<strong>/qa/</strong>: 
+						<a href="/qa/res/124#684">
+							<em>playing the longest poker game&hellip;</em>
+						</a>
+					</li>
+									<li>
+						<strong>/qa/</strong>: 
+						<a href="/qa/res/678#683">
+							<em>&gt;&gt;679  nice filename loser</em>
+						</a>
+					</li>
+									<li>
+						<strong>/qa/</strong>: 
+						<a href="/qa/res/194#682">
+							<em>&gt;&gt;681  probably, really love c&hellip;</em>
+						</a>
+					</li>
+									<li>
+						<strong>/qa/</strong>: 
+						<a href="/qa/res/194#681">
+							<em>Mine looks a bit strange when &hellip;</em>
+						</a>
+					</li>
+									<li>
+						<strong>/qa/</strong>: 
+						<a href="/qa/res/678#680">
+							<em>When is New Years actually?</em>
+						</a>
+					</li>
+									<li>
+						<strong>/qa/</strong>: 
+						<a href="/qa/res/678#679">
+							<em>we made it through another orb&hellip;</em>
+						</a>
+					</li>
+									<li>
+						<strong>/qa/</strong>: 
+						<a href="/qa/res/678#678">
+							<em>Happy New Year dudes!</em>
 						</a>
 					</li>
 							</ul>
@@ -366,9 +366,9 @@
 		<div class="mainBox">
 			<h2>Stats</h2>
 			<ul>
-				<li>Total posts: 1,341</li>
-				<li>Unique posters: 108</li>
-				<li>Active content: 569.66 MB</li>
+				<li>Total posts: 1,538</li>
+				<li>Unique posters: 122</li>
+				<li>Active content: 602.98 MB</li>
 			</ul>
 		</div>
 	</div>

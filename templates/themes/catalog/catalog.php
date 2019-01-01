@@ -54,12 +54,20 @@
         	</form>
     	<!-- End Search Form -->
     	{% endif %}
-	<form name="postcontrols" action="{{ config.post_url }}" method="post">
+	{% if mod %}<form name="postcontrols" action="{{ config.post_url }}" method="post">
 	<input type="hidden" name="board" value="{{ board.uri }}" />
-	{% if mod %}<input type="hidden" name="mod" value="1" />{% endif %}
+	<input type="hidden" name="mod" value="1" />
 	{{ body }}
-
-	</form>
+	</form>{% endif %}
+	
+	<span id="thread-links-top">
+		<a id="thread-return-top" href="{{ return }}">[{% trans %}Refresh{% endtrans %}]</a>
+		<a id="thread-bottom" href="#bottom">[{% trans %}Bottom{% endtrans %}]</a>
+				{% if config.catalog_link %}
+			<a id="thread-catalog-top" href="{{ config.root }}{{ board.dir }}">[{% trans %}Index{% endtrans %}]</a>
+				{% endif %}
+	</span>
+	<br/><hr/>
 	<div id='catalog_options'>
         <span>{% trans 'Sort by' %}: </span>
         <select id="sort_by" style="display: inline-block">
@@ -117,6 +125,16 @@
                 </div>
         </div>
 	<hr/>
+	
+	<span id="thread-links">
+		<a id="thread-return" href="{{ return }}">[{% trans %}Refresh{% endtrans %}]</a>
+		<a id="thread-top" href="#top">[{% trans %}Top{% endtrans %}]</a>
+				{% if config.catalog_link %}
+			<a id="thread-catalog" href="{{ config.root }}{{ board.dir }}">[{% trans %}Index{% endtrans %}]</a>
+				{% endif %}
+	</span>
+	<br/><hr/>
+	<a name='bottom'></a>
 	<footer>
 		<p class="unimportant" style="margin-top:20px;text-align:center;">- Tinyboard + 
 			<a href="https://engine.vichan.net/">vichan</a> {{ config.version }} -
@@ -133,7 +151,7 @@
 			<!-- onready(init); -->
 		<!-- } -->
 	<!-- {% endraw %}</script> -->
-
+	
 	<script type="text/javascript">{% raw %}
 		ready();
 	{% endraw %}</script>

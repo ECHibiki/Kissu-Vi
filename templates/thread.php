@@ -53,6 +53,14 @@
 
 	{% if config.global_message %}<hr /><div class="blotter">{{ config.global_message }}</div>{% endif %}
 	<hr />
+		<span id="thread-links-top">
+		<a id="thread-return-top" href="{{ return }}">[{% trans %}Return{% endtrans %}]</a>
+		<a id="thread-bottom" href="#bottom">[{% trans %}Bottom{% endtrans %}]</a>
+				{% if config.catalog_link %}
+			<a id="thread-catalog-top" href="{{ config.root }}{{ board.dir }}{{ config.catalog_link }}">[{% trans %}Catalog{% endtrans %}]</a>
+				{% endif %}
+	</span>
+	<br/><hr/>
 	<form name="postcontrols" action="{{ config.post_url }}" method="post">
 		<input type="hidden" name="board" value="{{ board.uri }}" />
 		{% if mod %}<input type="hidden" name="mod" value="1" />{% endif %}
@@ -62,7 +70,7 @@
 		<div id="thread-interactions">
 			<span id="thread-links">
 				<a id="thread-return" href="{{ return }}">[{% trans %}Return{% endtrans %}]</a>
-				<a id="thread-top" href="#top">[{% trans %}Go to top{% endtrans %}]</a>
+				<a id="thread-top" href="#top">[{% trans %}Top{% endtrans %}]</a>
                 		{% if config.catalog_link %}
 					<a id="thread-catalog" href="{{ config.root }}{{ board.dir }}{{ config.catalog_link }}">[{% trans %}Catalog{% endtrans %}]</a>
 		                {% endif %}

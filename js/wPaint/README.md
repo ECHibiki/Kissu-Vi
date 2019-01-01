@@ -1,3 +1,5 @@
+This directory originates from https://github.com/vichan-devel/wPaint which is a fork of https://github.com/websanova/wPaint
+
 # wPaint.js
 
 A jQuery paint plugin for a simple drawing surface that you can easily pop into your pages, similar to the basic windows paint program.

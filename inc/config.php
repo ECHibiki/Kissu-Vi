@@ -342,7 +342,8 @@
 	 $config['captcha']['extra'] = 'abcdefghijklmnopqrstuvwxyz';
 	
 	// Ability to lock a board for normal users and still allow mods to post.  Could also be useful for making an archive board
-	$config['board_locked'] = false;
+	// Input regex pattern of board code
+	$config['board_locked'] = "";
 
 	// If poster's proxy supplies X-Forwarded-For header, check if poster's real IP is banned.
 	$config['proxy_check'] = false;
@@ -1042,7 +1043,7 @@
 	$config['page_nav_top'] = false;
 
 	// Show "Catalog" link in page navigation. Use with the Catalog theme. Set to false to disable.
-	$config['catalog_link'] = 'catalog.php';
+	$config['catalog_link'] = 'catalog';
 
 	// Board categories. Only used in the "Categories" theme.
 	// $config['categories'] = array(
@@ -1268,6 +1269,7 @@
 	// Location of files.
 	$config['file_index'] = 'index.html';
 	$config['file_page'] = '%d.html'; // NB: page is both an index page and a thread
+	$config['remove_ext'] = false;
 	$config['file_page50'] = '%d+50.html';
 	$config['file_page_slug'] = '%d-%s.html';
 	$config['file_page50_slug'] = '%d-%s+50.html';

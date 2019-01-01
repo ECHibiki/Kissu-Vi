@@ -71,8 +71,13 @@
                 if ($files[0]->file == 'deleted' || $files[0]->thumb == 'file') continue;
 				
 				// board settings won't be available in the template file, so generate links now
-				$post['link'] = $config['root'] . $board['dir'] . $config['dir']['res']
-				  . link_for($post) . '#' . $post['id'];
+				if($config['remove_ext']){
+					$post['link'] = preg_replace('/\\.[^.\\s]{3,4}$/', '', $config['root'] . $board['dir'] . $config['dir']['res'] . link_for($post));
+					$post['link'] = $post['link'] . '#' . $post['id'];
+				}
+				else{
+					$post['link'] = $config['root'] . $board['dir'] . $config['dir']['res'] . link_for($post) . '#' . $post['id'];
+				}
 
 				if ($files) {
 					if ($files[0]->thumb == 'spoiler') {
@@ -104,7 +109,13 @@
 			while ($post = $query->fetch(PDO::FETCH_ASSOC)) {
 				openBoard($post['board']);
 				
-				$post['link'] = $config['root'] . $board['dir'] . $config['dir']['res'] . link_for($post) . '#' . $post['id'];
+				if($config['remove_ext']){
+					$post['link'] = preg_replace('/\\.[^.\\s]{3,4}$/', '', $config['root'] . $board['dir'] . $config['dir']['res'] . link_for($post));
+					$post['link'] = $post['link'] . '#' . $post['id'];
+				}
+				else{
+					$post['link'] = $config['root'] . $board['dir'] . $config['dir']['res'] . link_for($post) . '#' . $post['id'];
+				}
 				if ($post['body'] != "")
 					$post['snippet'] = pm_snippet($post['body'], 30);
 				else

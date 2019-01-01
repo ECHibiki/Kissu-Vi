@@ -69,13 +69,38 @@
         	</form>
     	<!-- End Search Form -->
     	{% endif %}
+		
+	<span id="thread-links-top">
+		<a id="thread-return-top" href="{{ return }}">[{% trans %}Refresh{% endtrans %}]</a>
+		<a id="thread-bottom" href="#bottom">[{% trans %}Bottom{% endtrans %}]</a>
+				{% if config.catalog_link %}
+			<a id="thread-catalog-top" href="{{ config.root }}{{ board.dir }}{{ config.catalog_link }}">[{% trans %}Catalog{% endtrans %}]</a>
+				{% endif %}
+	</span>
+	<br/><hr/>
+	
+	
 	<form name="postcontrols" action="{{ config.post_url }}" method="post">
 	<input type="hidden" name="board" value="{{ board.uri }}" />
 	{% if mod %}<input type="hidden" name="mod" value="1" />{% endif %}
 	{{ body }}
 	{% include 'report_delete.html' %}
+	
+	
+			<span id="thread-links">
+				<a id="thread-return" href="{{ return }}">[{% trans %}Refresh{% endtrans %}]</a>
+				<a id="thread-top" href="#top">[{% trans %}Top{% endtrans %}]</a>
+                		{% if config.catalog_link %}
+					<a id="thread-catalog" href="{{ config.root }}{{ board.dir }}{{ config.catalog_link }}">[{% trans %}Catalog{% endtrans %}]</a>
+		                {% endif %}
+			</span>
+			
+			<span id="thread-quick-reply">
+				<a id="link-quick-reply" href="#">[{% trans %}Post a Reply{% endtrans %}]</a>
+			</span>
 	</form>
 	
+	{{ boardlist.bottom }}
 	<div class="pages">
 		{{ btn.prev }} {% for page in pages %}
 		 [<a {% if page.selected %}class="selected"{% endif %}{% if not page.selected %}href="{{ page.link }}"{% endif %}>{{ page.num }}</a>]{% if loop.last %} {% endif %}
@@ -85,7 +110,6 @@
 		{% endif %}
 	</div>
 	
-	{{ boardlist.bottom }}
 
 	{{ config.ad.bottom }}
 

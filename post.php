@@ -8,7 +8,7 @@ require_once 'inc/anti-bot.php';
 require_once 'inc/bans.php';
 require_once 'inc/image.php';
 
-if ((!isset($_POST['mod']) || !$_POST['mod']) && $config['board_locked']) {
+if ((!isset($_POST['mod']) || !$_POST['mod']) && preg_match($config['board_locked'], $_POST['board'])) {
     error("Board is locked");
 }
 
@@ -1000,8 +1000,12 @@ elseif (isset($_POST['post']) || $dropped_post) {
 			}
 		}
 	} else {
-		$redirect = $root . $board['dir'] . $config['file_index'];
-		
+		if($config["remove_ext"]){
+			$redirect = preg_replace('/\\.[^.\\s]{3,4}$/', '', $root . $board['dir'] . $config['file_index']);
+		}
+		else{
+			$redirect = $root . $board['dir'] . $config['file_index'];
+		}		
 	}
 	
 	buildThread($post['op'] ? $id : $post['thread']);
@@ -1257,8 +1261,12 @@ elseif(isset($_POST['release'])){
 			}
 		}
 	} else {
-		$redirect = $root . $board['dir'] . $config['file_index'];
-		
+		if($config["remove_ext"]){
+			$redirect = preg_replace('/\\.[^.\\s]{3,4}$/', '', $root . $board['dir'] . $config['file_index']);
+		}
+		else{
+			$redirect = $root . $board['dir'] . $config['file_index'];
+		}
 	}
 			   	
 	buildThread($post['op'] ? $id : $post['thread']);

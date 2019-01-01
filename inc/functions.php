@@ -2471,6 +2471,8 @@ function buildThread($id, $return = false, $mod = false) {
 		$query->bindValue(':id', $id, PDO::PARAM_INT);
 		$query->execute() or error(db_error($query));
 
+
+		
 		while ($post = $query->fetch(PDO::FETCH_ASSOC)) {
 			if (!isset($thread)) {
 				$thread = new Thread($post, $mod ? '?/' : $config['root'], $mod);
@@ -2485,7 +2487,7 @@ function buildThread($id, $return = false, $mod = false) {
 	
 		$hasnoko50 = $thread->postCount() >= $config['noko50_min'];
 		$antibot = $mod || $return ? false : create_antibot($board['uri'], $id);
-
+			
 		$body = Element('thread.php', array(
 			'board' => $board,
 			'thread' => $thread,

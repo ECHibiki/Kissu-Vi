@@ -1,3 +1,5 @@
+This Directory origonates from ECHibiki's https://github.com/ECHibiki/Regex-Webscraper
+
 # Regex-WebScrapper
 A CLI for retrieving info from web pages done on python3.7 <br/><br/>
 python3 regexscraper -u "https://example.com" -r "(t|r)est"<br/>

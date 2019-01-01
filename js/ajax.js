@@ -114,6 +114,9 @@ $(window).ready(function() {
 						$(form).find('input[type="submit"]').val(_('Posted...'));
 						$(document).trigger("ajax_after_post", post_response);
 					} else {
+						console.log(post_response.redirect);
+						console.log(post_response.id);
+						console.log(post_response);
 						alert(_('An unknown error occured when posting!'));
 						$(form).find('input[type="submit"]').val(submit_txt);
 						$(form).find('input[type="submit"]').removeAttr('disabled');

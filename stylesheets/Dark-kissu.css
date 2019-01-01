@@ -187,17 +187,7 @@ body {
 	color: #999999;
 	font-family: Lucida Sans Unicode, Arial, sans-serif;
 	font-size: 12.5px;
-	line-height: 140%;
-}
-
-div.title, h1 {
-	color: #32DD72;
-	font-family: Lucida Sans Unicode, Arial, sans-serif;
-}
-
-div.blotter {
-	font-family: Verdana, sans-serif;
-	font-size: 12px;
+	/* line-height: 140%; */
 }
 
 a:link, a:visited, .intro a.email span.name {
@@ -210,6 +200,27 @@ a:link:hover, a:visited:hover {
 	color: #fff;
 	font-family: Verdana, Arial, sans-serif;
 	text-decoration: none;
+	font-size: 12px;
+}
+
+div.title, h1{
+	color: #32DD72;
+	font-family: Lucida Sans Unicode, Arial, sans-serif;
+}
+h1 a:link, h1 a:visited{
+	color: #CCCCCC;
+	font-size: 20pt;
+	font-family: Lucida Sans Unicode, Arial, sans-serif;
+}
+h1 a:link:hover, h1 a:visited:hover {
+	color: #fff;
+	font-size: 20pt;
+	font-family: Lucida Sans Unicode, Arial, sans-serif;
+}
+
+
+div.blotter {
+	font-family: Verdana, sans-serif;
 	font-size: 12px;
 }
 
@@ -233,6 +244,11 @@ input[type="text"], input[type="password"], textarea {
 	box-shadow: 10px 5px 20px 1px rgba(0,0,0,1);
 	border-radius: 10px;
 }
+
+.dialog, .suboption-list > div:last-of-type, :root.catalog-hover-expand .catalog-container:hover > .post{
+	background: #1E1E1E;
+}
+
 form table tr td {
 	text-align: left;
 	margin: 0;
