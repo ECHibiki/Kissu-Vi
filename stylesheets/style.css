@@ -1,4 +1,6 @@
-
+.intro{
+	display: inline-block;
+}
 
 /* http://kissu.moe/b/res/198.html#q290 */
 .reply .post-image {
@@ -22,6 +24,8 @@ span.glowgold{
 	text-shadow: -1px 0px 4px #FFA500, 1px 1px 1px #C5AE09, 2px 0px 10px rgb(255, 224, 0);
     color: #FDFFEF;
 }
+
+/* Original CSS */
 
 body {
   background: #EEF2FF url('img/fade-blue.png') repeat-x 50% 0%;
