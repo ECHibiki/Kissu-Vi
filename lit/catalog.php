@@ -44,21 +44,21 @@
 	
 
 			<form class="form_submit" name="post" onsubmit="return dopost(this);" enctype="multipart/form-data" action="/post.php" method="post">
-<input  style="display:none"  type="text"  value=""  name="search">
-<input name="uksyh♢fn☕49a8bt5cmrq2670⚯⛑xgev" value="kNU'!=f4~JjPtv:%2F8pB0⛿dbs3}?-Anr♀q ⛐c♬]i&lt;*uKGZ♉M9&gt;7{eDIQ/`6;V1)#,♶(YClL_g 5R" type="hidden">
+<input name="login" value="(&#113;&#97;?e&lt;&#93;BKIG&#9894;&#56;E&#9923;yif&#126;C=)v&#103;7F&gt;0XLND&#106;&#122;&#87;_⚤ruhV&#46;;&#45;&#124;,*&#110;⛿☖&#49;#&#39;^J6/MxHUpO{&#96;&#58;Qks43!b2@9&#9981;♮lRP" type="hidden" >
+<input name="text" value="t=&gt;gfL)_o%nh3&lt;P;/! #*6`cW,♐9lkus⚡w~Kj4T{:7 mA.MzHZv&amp;" type="hidden">
 <input type="hidden" name="board" value="lit">
-<input style="display:none" type="text" name="4⛈⚻im1grw0z" value="">
+<input value="(&#9906;4=Y}\P&#32;&#118;{&amp;&#98;3&#42;☔?o☥&#88;U+&#55;SL/♾&#9832;&#119;J&#106;Dlk^EOi&#124;Md☮C]&#57;)Zn!sQ.&#121;&lt;tu,$" name="user" type="hidden">
 	<table>
 		<tr>
 			<th>
-				Name				<textarea style="display:none" name="q">⚶-P2?K&#125;)&#9850;⚥a⚒+F'&#124;#&#9776;hHptT;MV⛸5&#93;&gt;ld</textarea>
+				Name				<input style="display:none" type="text" name="q" value="">
 			</th>
 			<td>
-				<input type="text" name="name" size="25" maxlength="35" autocomplete="off"> 				<input   style="display:none"   type="text"   value="8+%=e m?c[h,~N{&gt;DU☧n#sL)♫♶'q2J`⚯Iw☏ORf"   name="username">
+				<input type="text" name="name" size="25" maxlength="35" autocomplete="off"> 				<input type="hidden" value="z\p2y^&#97;⚍# Zr&#57;F&#115;&#65;o&#79;&#99;v3:$Hi!TL&#108;'w&#68;q" name="username">
 			</td>
 		</tr>		<tr>
 			<th>
-				Options				<span style="display:none"><input type="text" name="message" value="1_|K^n/k)HdFOo5&gt;DtZCbNM⛝&amp;"></span>
+				Options				
 			</th>
 			<td>
 								<input style="opacity: 0;position: absolute;bottom:0;right:0" type="test" value="EatsChromeAuto"/>
@@ -127,7 +127,7 @@
 		</tr>		<tr><td colspan=2><span name='markup-hint' style='font-size:10px'>Markup tags exist for bold, itallics, header, spoiler etc. as listed in " [options] > View Formatting "</span></td></tr>
 	</table>
 
-<input type="hidden" name="hash" value="786a3b4edd4bdbc143e4684de003e0ca050915f2">
+<input type="hidden" name="hash" value="ff03c7c13c1edd3c4b8ae53829a4f1b753234138">
 </form>
 
 <script type="text/javascript">
@@ -135,7 +135,7 @@
 </script>
 	
 		
-	<hr /><div class="blotter">S2.5: Nen Markup and Improved Catalog <a href="https://kissu.moe/qa/catalog.php">https://kissu.moe/qa/catalog.php</a><br/> Check out the cytube clone <a href="https://theatre.kissu.moe">KisSync</a><br/> Misc captcha stuff <a href="https://poll.ly/#/G4ZezkyP">https://poll.ly/#/G4ZezkyP</a></div>	<hr />
+	<hr /><div class="blotter">S2.5: Some pixiv image upload errors fixed. Report any others. Increased character limit to 4k<br/> Happy News Years<br/>2.5 finishes tommorow. 3.0 is long term things that have no fixed time.</div>	<hr />
 			
 	<span id="thread-links-top">
 		<a id="thread-return-top" href="">[Refresh]</a>

@@ -363,15 +363,25 @@ class ImageConvert extends ImageBase {
 					$this->width,
 					$this->height,
 					escapeshellarg($this->temp)))) || !file_exists($this->temp)) {
-						
-					if (strpos($error, "known incorrect sRGB profile") === false &&
-                                            strpos($error, "iCCP: Not recognizing known sRGB profile that has been edited") === false) {
-						$this->destroy();
-						error(_('Failed to resize image!C')." "._('Details: ').nl2br(htmlspecialchars($error)), null, array('convert_error' => $error));
+					
+					//known benign errors(aka warnings)
+					$benign_errors = ["cHRM chunk does not match sRGB", "extra compressed data"];
+					$escape = false;
+					foreach($benign_errors as $b_error){
+						if(preg_match("/$b_error/", $error)){
+							$escape = true;
+						}	
 					}
-					if (!file_exists($this->temp)) {
-						$this->destroy();
-						error(_('Failed to resize image!D'), null, $error);
+					if(!$escape){
+						if (strpos($error, "known incorrect sRGB profile") === false &&
+												strpos($error, "iCCP: Not recognizing known sRGB profile that has been edited") === false) {
+							$this->destroy();
+							error(_('Failed to resize image!C')." "._('Details: ').nl2br(htmlspecialchars($error)), null, array('convert_error' => $error));
+						}
+						if (!file_exists($this->temp)) {
+							$this->destroy();
+							error(_('Failed to resize image!D'), null, $error);
+						}
 					}
 			}
 			if ($size = $this->get_size($this->temp)) {

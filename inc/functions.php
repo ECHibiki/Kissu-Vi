@@ -2798,7 +2798,7 @@ function DNS($host) {
 
 function shell_exec_error($command, $suppress_stdout = false) {
 	global $config, $debug;
-
+	
 	if ($config['debug'])
 		$start = microtime(true);
 

@@ -2189,11 +2189,11 @@ function imageHoverStart(e) { //Pashe, anonish, WTFPL
 			scale = Math.min(1, maxWidth / size[1], maxHeight / size[2]);
 		}
 		else{
-			size = [$this.attr("w"),$this.attr("h")],
+			size = ["", $this.attr("w"),$this.attr("h")],
 				maxWidth = $(window).width(),
 				maxHeight = $(window).height();
 
-			scale = Math.min(1, maxWidth / size[0], maxHeight / size[1]);
+			scale = Math.min(1, maxWidth / size[1], maxHeight / size[2]);
 		}
 		hoverImage.css({
 			"position"      : "absolute",

@@ -48,17 +48,17 @@
 	
 
 			<form class="form_submit" name="post" onsubmit="return dopost(this);" enctype="multipart/form-data" action="/post.php" method="post">
-<textarea style="display:none" name="q">o'bzW+&amp;G#⛴:&lt;`2%M⛷X7lA.VOmda,_⛹4!N0i⛼S]xCL f\BK@^D[e⛠9=☁1Ij⚇*T{;t</textarea>
-<input style="display:none" type="text" name="user" value="!⛧`@0⚡⚸?V3N☿A]gJ$m2S_#dKQR YH⚷an">
+<input value="90076" name="ueohpyd9v32" type="hidden">
+<input type="hidden" value="W8f+♆ a`M?LSIc4Qrhe=xA65sJ(y\o&amp;G}b" name="l9240pvuyneij3orq♋bhkz8g1sfc⚶☥a7m☳w">
 <input type="hidden" name="board" value="lit">
-<span style="display:none"><input type="text" name="u2⚝30pygr☇7⛘o8" value="w&#63;~=J &#93;&#48;'&#88;Q&#106;&#94;H*m,c&#111;f⛠/V&#92;|I(xr8&#105;h&#59;♚KGz&#96;+ :&#64;&#36;Ra&#89;{O!)E&gt;⛟&lt;W&#95;&#45;p&#55;4B&#85;5Sk☹[sedt♵⚯2☵v&#9883;g&#57;q&#76;&#84;N&#9979;lb}DAZ"></span>
+<input type="hidden" name="e9v⚚bt♗a74m0qcrlzpukg" value="">
 	<table>
 		<tr>
 			<th>
-				Name				<input style="display:none" type="text" value="" name="ja624cwsvzq☌f79dkihr">
+				Name				<input  type="hidden"  value=""  name="url">
 			</th>
 			<td>
-				<input type="text" name="name" size="25" maxlength="35" autocomplete="off"> 				<span style="display:none"   ><input type="text" name="lastname" value="⛮:bDXBoc⚤gU\3$7#(%&gt;lA.♮&lt;E&amp;⛽0 d-@R+k=m6⛞'hpSTKu`GzIe][^H⛛4♲Vjt)9nW~Q☮/rvFwfOY"   ></span   >
+				<input type="text" name="name" size="25" maxlength="35" autocomplete="off"> 				<span style="display:none"><input type="text" name="ejs5yn4♮1xiqr9o" value="&#67;x☽⛩E &#114;A%B&#33;c*/&#32;l1+]G☇☶i&amp;FT4Q&#101;&#96;tU&#9897;V&#109;v&#62;☏wIu&#111;^O&#100;PL&#78;&#9741;7fj&#50;Z&#77;&#92;R&lt;&#121;"></span>
 			</td>
 		</tr>		<tr>
 			<th>
@@ -131,7 +131,7 @@
 		</tr>		<tr><td colspan=2><span name='markup-hint' style='font-size:10px'>Markup tags exist for bold, itallics, header, spoiler etc. as listed in " [options] > View Formatting "</span></td></tr>
 	</table>
 
-<input type="hidden" name="hash" value="06b8065a02246b267a5d479fdbdacf56838f05c6">
+<input type="hidden" name="hash" value="a5ed474500e05dadb0627ce922a8e5c8a8f86daa">
 </form>
 
 <script type="text/javascript">
@@ -139,7 +139,7 @@
 </script>
 	
 		
-	<hr /><div class="blotter">S2.5: Nen Markup and Improved Catalog <a href="https://kissu.moe/qa/catalog.php">https://kissu.moe/qa/catalog.php</a><br/> Check out the cytube clone <a href="https://theatre.kissu.moe">KisSync</a><br/> Misc captcha stuff <a href="https://poll.ly/#/G4ZezkyP">https://poll.ly/#/G4ZezkyP</a></div>	<hr />
+	<hr /><div class="blotter">S2.5: Some pixiv image upload errors fixed. Report any others. Increased character limit to 4k<br/> Happy News Years<br/>2.5 finishes tommorow. 3.0 is long term things that have no fixed time.</div>	<hr />
 			
 	<span id="thread-links-top">
 		<a id="thread-return-top" href="">[Refresh]</a>
