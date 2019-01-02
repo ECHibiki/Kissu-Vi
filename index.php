@@ -69,6 +69,21 @@
 		<div class="box image">
 			<ul>
 									<li>
+						<a href="/b/res/783#783">
+							<img src="/b/thumb/1546471131225.jpg" style="width:255px;height:143px" alt="">
+						</a>
+					</li>
+									<li>
+						<a href="/qa/res/29#718">
+							<img src="/qa/thumb/1546467011829.jpg" style="width:175px;height:98px" alt="">
+						</a>
+					</li>
+									<li>
+						<a href="/qa/res/713#713">
+							<img src="/qa/thumb/1546455539642.png" style="width:255px;height:255px" alt="">
+						</a>
+					</li>
+									<li>
 						<a href="/b/res/1#779">
 							<img src="/b/thumb/1546417469805.png" style="width:175px;height:108px" alt="">
 						</a>
@@ -123,26 +138,113 @@
 							<img src="/qa/thumb/1546319068615.png" style="width:131px;height:175px" alt="">
 						</a>
 					</li>
-									<li>
-						<a href="/qa/res/678#678">
-							<img src="/qa/thumb/1546318803494.png" style="width:243px;height:255px" alt="">
-						</a>
-					</li>
-									<li>
-						<a href="/lit/res/11#11">
-							<img src="/lit/thumb/1546315852920.png" style="width:255px;height:143px" alt="">
-						</a>
-					</li>
-									<li>
-						<a href="/qa/res/194#669">
-							<img src="/qa/thumb/1546299302495.png" style="width:175px;height:76px" alt="">
-						</a>
-					</li>
 							</ul>
 		</div>
 		<div class="mainBox">
 			<h2>Latest Posts</h2>
 			<ul>
+									<li>
+						<strong>/qa/</strong>: 
+						<a href="/qa/res/29#723">
+							<em>There was a youtube channel fu&hellip;</em>
+						</a>
+					</li>
+									<li>
+						<strong>/qa/</strong>: 
+						<a href="/qa/res/662#722">
+							<em>Most posters are americans.</em>
+						</a>
+					</li>
+									<li>
+						<strong>Boson Tests</strong>: 
+						<a href="/b/res/783#783">
+							<em>for u</em>
+						</a>
+					</li>
+									<li>
+						<strong>/qa/</strong>: 
+						<a href="/qa/res/721#721">
+							<em>(no comment)</em>
+						</a>
+					</li>
+									<li>
+						<strong>/qa/</strong>: 
+						<a href="/qa/res/662#720">
+							<em>&gt;&gt;666  well it's probably hard&hellip;</em>
+						</a>
+					</li>
+									<li>
+						<strong>/qa/</strong>: 
+						<a href="/qa/res/713#719">
+							<em>It's cute watching the all gro&hellip;</em>
+						</a>
+					</li>
+									<li>
+						<strong>Boson Tests</strong>: 
+						<a href="/b/res/671#782">
+							<em>test</em>
+						</a>
+					</li>
+									<li>
+						<strong>/qa/</strong>: 
+						<a href="/qa/res/29#718">
+							<em>Keep posting, i'll actually li&hellip;</em>
+						</a>
+					</li>
+									<li>
+						<strong>/qa/</strong>: 
+						<a href="/qa/res/29#717">
+							<em>&gt;&gt;716  Sakurano sensei!</em>
+						</a>
+					</li>
+									<li>
+						<strong>/qa/</strong>: 
+						<a href="/qa/res/29#716">
+							<em>(no comment)</em>
+						</a>
+					</li>
+									<li>
+						<strong>/qa/</strong>: 
+						<a href="/qa/res/713#715">
+							<em>/a/ has always been a board fo&hellip;</em>
+						</a>
+					</li>
+									<li>
+						<strong>/qa/</strong>: 
+						<a href="/qa/res/124#714">
+							<em>already have an account, was j&hellip;</em>
+						</a>
+					</li>
+									<li>
+						<strong>/qa/</strong>: 
+						<a href="/qa/res/713#713">
+							<em>Took a look at /a/ today. It's&hellip;</em>
+						</a>
+					</li>
+									<li>
+						<strong>/qa/</strong>: 
+						<a href="/qa/res/194#712">
+							<em>&gt;&gt;668  Now that I've been usin&hellip;</em>
+						</a>
+					</li>
+									<li>
+						<strong>/qa/</strong>: 
+						<a href="/qa/res/124#711">
+							<em>they did, i think they even hi&hellip;</em>
+						</a>
+					</li>
+									<li>
+						<strong>/qa/</strong>: 
+						<a href="/qa/res/124#710">
+							<em>thought i remembered reading s&hellip;</em>
+						</a>
+					</li>
+									<li>
+						<strong>/qa/</strong>: 
+						<a href="/qa/res/124#709">
+							<em>madokami isnt dead guys</em>
+						</a>
+					</li>
 									<li>
 						<strong>Boson Tests</strong>: 
 						<a href="/b/res/1#780">
@@ -221,108 +323,6 @@
 							<em>&gt;&gt;770  test</em>
 						</a>
 					</li>
-									<li>
-						<strong>Boson Tests</strong>: 
-						<a href="/b/res/1#770">
-							<em>test</em>
-						</a>
-					</li>
-									<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/124#700">
-							<em>ate some chips didnt believe t&hellip;</em>
-						</a>
-					</li>
-									<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/124#699">
-							<em>i think the related works tab &hellip;</em>
-						</a>
-					</li>
-									<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/124#698">
-							<em>&gt;&gt;692  pixiv, just follow arti&hellip;</em>
-						</a>
-					</li>
-									<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/678#697">
-							<em>happy new year!</em>
-						</a>
-					</li>
-									<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/124#696">
-							<em>watched liz and the blue bird &hellip;</em>
-						</a>
-					</li>
-									<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/124#695">
-							<em>finally catched up on threads &hellip;</em>
-						</a>
-					</li>
-									<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/29#694">
-							<em>(no comment)</em>
-						</a>
-					</li>
-									<li>
-						<strong>Literature</strong>: 
-						<a href="/lit/res/12#14">
-							<em>Do H-doujinshi count as litera&hellip;</em>
-						</a>
-					</li>
-									<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/29#693">
-							<em>https://corekrave.bandcamp.com&hellip;</em>
-						</a>
-					</li>
-									<li>
-						<strong>Literature</strong>: 
-						<a href="/lit/res/12#13">
-							<em>Evvvvvvverything is literature</em>
-						</a>
-					</li>
-									<li>
-						<strong>Boson Tests</strong>: 
-						<a href="/b/res/515#769">
-							<em>yeah, it was a new years speci&hellip;</em>
-						</a>
-					</li>
-									<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/124#691">
-							<em>i do really well in that state&hellip;</em>
-						</a>
-					</li>
-									<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/678#689">
-							<em>Life changes fast, sometimes i&hellip;</em>
-						</a>
-					</li>
-									<li>
-						<strong>Boson Tests</strong>: 
-						<a href="/b/res/515#768">
-							<em>the site's new css is overwrit&hellip;</em>
-						</a>
-					</li>
-									<li>
-						<strong>Literature</strong>: 
-						<a href="/lit/res/12#12">
-							<em>Do VNs count as literature?</em>
-						</a>
-					</li>
-									<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/124#688">
-							<em>we must guard our purity of es&hellip;</em>
-						</a>
-					</li>
 							</ul>
 		</div>
 		<div class="mainBox">
@@ -366,9 +366,9 @@
 		<div class="mainBox">
 			<h2>Stats</h2>
 			<ul>
-				<li>Total posts: 1,554</li>
-				<li>Unique posters: 124</li>
-				<li>Active content: 605.25 MB</li>
+				<li>Total posts: 1,572</li>
+				<li>Unique posters: 126</li>
+				<li>Active content: 633.13 MB</li>
 			</ul>
 		</div>
 	</div>

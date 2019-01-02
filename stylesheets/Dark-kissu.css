@@ -26,11 +26,11 @@ a.post_no:hover {
 }
 div.post.reply {
 	background: #333333;
-	border: #555555 1px solid;
-        -webkit-border-radius: 10px;
-        -khtml-border-radius: 10px;
-        -moz-border-radius: 10px;
-        border-radius: 10px;
+	/* border: #555555 1px solid; */
+        /* -webkit-border-radius: 10px; */
+        /* -khtml-border-radius: 10px; */
+        /* -moz-border-radius: 10px; */
+        /* border-radius: 10px; */
 
 }
 div.post.reply.highlighted {
