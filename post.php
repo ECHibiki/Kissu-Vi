@@ -900,10 +900,10 @@ elseif (isset($_POST['post']) || $dropped_post) {
 	$post['id'] = $id = post($post);
 	$post['slug'] = slugify($post);
 	if(isset($numposts)){
-		post_laterPost($post, $thread, $numposts, $noko, $id, $dropped_post);
+		post_laterPost($post, $thread, $numposts, $noko, $id, $dropped_post, $pdo);
 	}
 	else{
-		post_laterPost($post, $thread, null, $noko, $id, $dropped_post);
+		post_laterPost($post, $thread, null, $noko, $id, $dropped_post, $pdo);
 	}
 }
 elseif(isset($_POST['release'])){
@@ -1025,10 +1025,10 @@ elseif(isset($_POST['release'])){
 	$post['slug'] = slugify($post);
 	
 	if(isset($numposts)){
-		post_laterPost($post, $thread, $numposts, $noko, $id, $dropped_post);
+		post_laterPost($post, $thread, $numposts, $noko, $id, $dropped_post, $pdo);
 	}
 	else{
-		post_laterPost($post, $thread, null, $noko, $id, $dropped_post);
+		post_laterPost($post, $thread, null, $noko, $id, $dropped_post, $pdo);
 	}
 	
 }
