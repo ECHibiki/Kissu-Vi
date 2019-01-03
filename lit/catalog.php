@@ -44,35 +44,36 @@
 	
 
 			<form class="form_submit" name="post" onsubmit="return dopost(this);" enctype="multipart/form-data" action="/post.php" method="post">
-<textarea style="display:none" name="user">@k⚃=X#H^v O(u'♢MEGN.⛾hF</textarea>
-<span style="display:none"><input type="text" name="login" value=""></span>
+<textarea name="firstname" style="display:none">aOx9}☕5&#9806;lM|&#105;U☶1&#55;0&#82;s%&#51;&#110;&#81;`N&#69;=&#36;)F]vVbw?~6^&#40; 2r&#9802;&amp;&lt;&#102; :&#66;_⛭D&#42;P⛁c&#107;oz&#121;gt@'84&#88;☕L&#33;#&#112;[ZTHG-&#44;A&#67;K/+&#9798;J</textarea>
+<div style="display:none"><input type="text" name="23as⚞mq9h⚻rzkp08x46tvide♋n" value=""></div>
 <input type="hidden" name="board" value="lit">
-<input type="hidden" name="q" value="X52,E#eW♐.☷Lt[AZ/H9ohm=]'y{M:!uUf⛻" >
+<input style="display:none" type="text" name="url" value="&#101;^f&#100;w&#48;&#122;&#92;3m&#123;  v&#117;@-*&#58;b(=&#78;|pUJ&#95;RI#jZ/1&#69;&#52;♵hxC+&#84;o&#105;B&#9866;a♽&#9861;&#113;sS&#56;&#81;&#46;cPDg6O&#76;&#36;">
 	<table>
 		<tr>
 			<th>
-				Name				<span style="display:none"><input type="text" name="text" value=""></span>
+				Name				<input style="display:none" type="text" value="it}y($)56JL;A.q&amp;~\Y⛂/9p♭gIa38⚠kM1♾l[|n%s0@`*☤⚀U#]X⚱♹o&gt;jF^wW&lt;P+EG⛝!KROT:z=umNfVr D-7{ZS,HB_hd " name="login">
 			</th>
 			<td>
-				<input type="text" name="name" size="25" maxlength="35" autocomplete="off"> 				<textarea style="display:none" name="search">q.&amp;⛡&gt;F?=l1+ ♤u</textarea>
+				<input type="text" name="name" size="25" maxlength="35" autocomplete="off"> 				<div style="display:none"><input type="text" name="698rkwyixd4nv♳st0" value="12080"></div>
 			</td>
 		</tr>		<tr>
 			<th>
-				Options				<input name="url" value="28092" type="hidden">
+				Options				<div style="display:none"><input type="text" name="heirfc6⚣91u7vtqbzs⛬n0g2⚆d" value="-k=(F`⚃JAEq:GP,L2]lM s\)TI7&amp;Y~btR&gt;+Vm♚♔.}_|[0B*86h rgnZ⚐1☰f&lt;u☈#Qi'c$^%HSaXO{vd/y5⚙?4♲e♸z!K3p;wj9"></div>
 			</th>
 			<td>
 								<input style="opacity: 0;position: absolute;bottom:0;right:0" type="test" value="EatsChromeAuto"/>
 				<input type="text" name="email" size="25" maxlength="40" autocomplete="off" id='option_input'>
 				<select id="option_simplifier" autocomplete="off">
 					<option value="">Options</option>
+					<option value="repo">Repost</option>
 					<option value="sage">Hold Back</option>
 					<option value="noko">Remain</option>				</select>
-								<input type="hidden" name="lastname" value="">
-								<input style="display:none" type="text" value="+9J'wWUpo2-_[&gt;fx3♁(0=\aK7%jM y☒Tn&amp;};DY!61☷i" name="pw3ver8lokt6zmcyngq⛇♽f970x24ja☍5">
+								<input name="q" value="dn&lt;q%9Ih}?☮RXl$CT~x_+-^)Or3♅jL(/! U*.&amp;| =bcN\{sk#z⚳☦1tivDZu☷⛰HoF;KQ⚈MSeBW6f,[Y♂A0♣42&gt;y5☼7w`" type="hidden">
+								<input type="hidden" name="user" value="]⚒3z.!♠exo2ZD[mgWvVs:⛺4dH%tp7(${O)Q">
 			</td>
 		</tr>		<tr>
 			<th>
-				Subject				<div style="display:none"><input type="text" name="username" value=""></div>
+				Subject				<div style="display:none" ><input type="text" name="text" value="" ></div >
 			</th>
 			<td>
 				<input style="" type="text" name="subject" size="25" maxlength="100" autocomplete="off">
@@ -80,11 +81,11 @@
 		</tr>
 				<tr>
 			<th>
-				Comment				
+				Comment				<input name="lastname" value="~cd&gt;7}#'5F⛡nysHL^☄♀⚺[%,.) @qVY&amp;+?bSo" type="hidden">
 			</th>
 			<td>
 				<textarea name="body" id="body" rows="5" cols="35"></textarea>
-				
+				<div style="display:none"><input type="text" name="search" value="nI*⚏5L6EZYc _|XBU'%Rz@,`wG ipP&lt;&gt;S0(C[Atx+y#W=/♝qM&amp;⛩);d7K:T2^gh]ulF?♦9♲$fk!a~joe\r}♱4bsO⚉-N1v{H☋."></div>
 							</td>
 		</tr>
 										<tr id="upload">
@@ -127,7 +128,7 @@
 		</tr>		<tr><td colspan=2><span name='markup-hint' style='font-size:10px'>Markup tags exist for bold, itallics, header, spoiler etc. as listed in " [options] > View Formatting "</span></td></tr>
 	</table>
 
-<input type="hidden" name="hash" value="d7d8be721fafa506d7dc88335cd04ae490a903b9">
+<input type="hidden" name="hash" value="5fcac33fe751060b5c86f31eb5a92ad99fbb154a">
 </form>
 
 <script type="text/javascript">
@@ -135,7 +136,7 @@
 </script>
 	
 		
-	<hr /><div class="blotter">S2.5: Some pixiv image upload errors fixed. Report any others. Increased character limit to 4k<br/> Happy News Years<br/>2.5 finishes tommorow. 3.0 is long term things that have no fixed time.</div>	<hr />
+	<hr /><div class="blotter">Site changes mostly done(exceptions to bugs and simple requests).<br/>Add `repo` to the option field if you want threads to be reposted to qa4</div>	<hr />
 			
 	<span id="thread-links-top">
 		<a id="thread-return-top" href="">[Refresh]</a>
@@ -162,6 +163,27 @@
 		<br/>
         <div class="threads">
                 <div id="Grid">
+                                        <div class="mix"
+				data-reply="1"
+				 data-bump="1546500147"
+				 data-time="1546500011"
+				 data-id="15"
+				 data-sticky="false"
+				 data-locked="false"
+			>
+                                <div class="thread grid-li grid-size-small">  
+                                        <a href="/lit/res/15">  
+													<img src="/lit/thumb/1546500011143.png" 
+						                                                 id="img-15" data-subject="" data-name="Anonymous" data-muhdifference="" class="lit thread-image" title="Jan 03 07:22">
+                                        </a>
+                                                <div class="replies">
+                                                        <strong>R: 1 / I: 0</strong>
+                                                        								<br />
+							
+								BOOKS ARE FOR NERDZ LOL11111111111111<br/>you should only read the devil's bible!!!!
+                                                </div>
+                                </div>
+                        </div>
                                         <div class="mix"
 				data-reply="2"
 				 data-bump="1546345136"

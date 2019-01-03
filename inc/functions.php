@@ -978,7 +978,6 @@ function checkBan($board = false) {
 
 function post_laterPost($post, $thread, $numposts, $noko, $id, $dropped_post){
 		global $config, $board;
-		
 	if ($dropped_post && $dropped_post['from_nntp']) {
 	        $query = prepare("INSERT INTO ``nntp_references`` (`board`, `id`, `message_id`, `message_id_digest`, `own`, `headers`) VALUES ".
 	                                                         "(:board , :id , :message_id , :message_id_digest , false, :headers)");

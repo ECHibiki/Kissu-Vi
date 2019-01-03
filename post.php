@@ -482,8 +482,7 @@ elseif (isset($_POST['post']) || $dropped_post) {
 	else {
 		$thread = false;
 	}
-		
-	
+			
 	// Check for an embed field
 	if ($config['enable_embedding'] && isset($_POST['embed']) && !empty($_POST['embed'])) {
 		// yep; validate it
@@ -604,7 +603,7 @@ elseif (isset($_POST['post']) || $dropped_post) {
 	}
 	else {
 		if (!$post['op']) {
-                        $numposts = numPosts($post['thread']);
+			$numposts = numPosts($post['thread']);
 		}
 	}
 		
@@ -900,9 +899,12 @@ elseif (isset($_POST['post']) || $dropped_post) {
 	
 	$post['id'] = $id = post($post);
 	$post['slug'] = slugify($post);
-	
-post_laterPost($post, $thread, $numposts, $noko, $id, $dropped_post);
-
+	if(isset($numposts)){
+		post_laterPost($post, $thread, $numposts, $noko, $id, $dropped_post);
+	}
+	else{
+		post_laterPost($post, $thread, null, $noko, $id, $dropped_post);
+	}
 }
 elseif(isset($_POST['release'])){
 	//reference
@@ -1022,7 +1024,12 @@ elseif(isset($_POST['release'])){
 
 	$post['slug'] = slugify($post);
 	
-	post_laterPost($post, $thread, $numposts, $noko, $id, $dropped_post);
+	if(isset($numposts)){
+		post_laterPost($post, $thread, $numposts, $noko, $id, $dropped_post);
+	}
+	else{
+		post_laterPost($post, $thread, null, $noko, $id, $dropped_post);
+	}
 	
 }
 elseif (isset($_POST['appeal'])) {
