@@ -155,11 +155,9 @@ span.quote {
 
 div.post.reply {
 	margin-right: 20px;
-	margin-bottom: 5px;
+	margin-bottom: 3px;
 	padding: 5px;
-	border: 1px #804C99 outset;
 	background: rgba(79, 48, 103, 0.8) !important;
-	box-shadow: 2px 2px 2px #000000;
 	display: inline-block;
 	border-radius: 10px;
 }
