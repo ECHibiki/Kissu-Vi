@@ -435,10 +435,12 @@ class Post {
 				$this->body
 			);
 	}
-	public function link($pre = '', $page = false) {
+	public function link($pre = '', $page = false, $remove_ext = false, $no_hash = false) {
 		global $config, $board;
-		
-		return $this->root . $board['dir'] . $config['dir']['res'] . link_for((array)$this, $page == '50') . '#' . $pre . $this->id;
+		$link = $this->root . $board['dir'] . $config['dir']['res'] . link_for((array)$this, $page == '50') ;
+		if($remove_ext)$link = preg_replace('/\\.[^.\\s]{3,4}$/', '', $link);
+		if(!$no_hash) $link  = $link . '#' . $pre . $this->id;
+		return $link;
 	}
 	
 	public function build($index=false) {
@@ -490,10 +492,12 @@ class Thread {
 				$this->body
 			);
 	}
-	public function link($pre = '', $page = false) {
+	public function link($pre = '', $page = false, $remove_ext = false, $no_hash = false) {
 		global $config, $board;
-		
-		return $this->root . $board['dir'] . $config['dir']['res'] . link_for((array)$this, $page == '50') . '#' . $pre . $this->id;
+		$link = $this->root . $board['dir'] . $config['dir']['res'] . link_for((array)$this, $page == '50') ;
+		if($remove_ext)$link = preg_replace('/\\.[^.\\s]{3,4}$/', '', $link);
+		if(!$no_hash) $link  = $link . '#' . $pre . $this->id;
+		return $link;
 	}
 	public function add(Post $post) {
 		$this->posts[] = $post;
@@ -507,7 +511,7 @@ class Thread {
 		$hasnoko50 = $this->postCount() >= $config['noko50_min'];
 		
 		event('show-thread', $this);
-
+		
 		$file = ($index && $config['file_board']) ? 'post_thread_fileboard.html' : 'post_thread.html';
 		$built = Element($file, array('config' => $config, 'board' => $board, 'post' => &$this, 'index' => $index, 'hasnoko50' => $hasnoko50, 'isnoko50' => $isnoko50, 'mod' => $this->mod));
 		

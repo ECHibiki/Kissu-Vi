@@ -119,6 +119,7 @@ var styles = {
 	'Yotsuba' : '/stylesheets/yotsuba.css',
 	'Dark-Kissu' : '/stylesheets/Dark-kissu.css',
 	'Kissu(Experimental)' : '/stylesheets/kissu.css',
+	'new-years-theme' : '/stylesheets/new-years-theme.css',
 	'Dark' : '/stylesheets/dark.css',
 	'Futaba' : '/stylesheets/futaba.css',
 	'Burichan' : '/stylesheets/burichan.css',
@@ -417,8 +418,13 @@ function init() {
 	});
 	
 		
-		if (document.forms.postcontrols) {
-		document.forms.postcontrols.password.value = localStorage.password;
+		if(document.forms.postcontrols != undefined){
+		if (document.forms.postcontrols.password) {
+			if (!localStorage.password)
+				var password = generatePassword();
+			document.forms.postcontrols.password.value = password;
+			localStorage.password = password;
+		}
 	}
 		
 	
@@ -651,6 +657,9 @@ $(window).ready(function() {
 						$(form).find('input[type="submit"]').val(_('Posted...'));
 						$(document).trigger("ajax_after_post", post_response);
 					} else {
+						console.log(post_response.redirect);
+						console.log(post_response.id);
+						console.log(post_response);
 						alert(_('An unknown error occured when posting!'));
 						$(form).find('input[type="submit"]').val(submit_txt);
 						$(form).find('input[type="submit"]').removeAttr('disabled');
@@ -819,9 +828,9 @@ Options.extend_tab = function(id, content) {
   if (typeof content == "string") {
     content = $("<div>"+content+"</div>");
   }
-
-  content.appendTo(options_tabs[id].content);
-
+	if(options_tabs[id] != undefined){
+		content.appendTo(options_tabs[id].content);
+	}
   return options_tabs[id];
 };
 
@@ -1270,6 +1279,275 @@ $(window).ready(function() {
 	});
 });
 /*
+ * titlebar-notifications.js - a library for showing number of new events in titlebar
+ * https://github.com/vichan-devel/Tinyboard/blob/master/js/titlebar-notifications.js
+ *
+ * Released under the MIT license
+ * Copyright (c) 2014 Marcin Łabanowski <marcin@6irc.net>
+ *
+ * Usage:
+ *   $config['additional_javascript'][] = 'js/titlebar-notifications.js';
+ *   //$config['additional_javascript'][] = 'js/auto-reload.js';
+ *   //$config['additional_javascript'][] = 'js/watch.js';
+ *
+ */
+
+var orig_title = document.title;
+
+$(function(){
+  orig_title = document.title;
+});
+
+update_title = function() {
+  var updates = 0;
+  for(var i in title_collectors) {
+    updates += title_collectors[i]();
+  }
+  document.title = (updates ? "("+updates+") " : "") + orig_title;
+};
+
+var title_collectors = [];
+add_title_collector = function(f) {
+  title_collectors.push(f);
+};
+/*
+ * auto-reload.js
+ * https://github.com/savetheinternet/Tinyboard/blob/master/js/auto-reload.js
+ *
+ * Brings AJAX to Tinyboard.
+ *
+ * Released under the MIT license
+ * Copyright (c) 2012 Michael Save <savetheinternet@tinyboard.org>
+ * Copyright (c) 2013-2014 Marcin Łabanowski <marcin@6irc.net>
+ * Copyright (c) 2013 undido <firekid109@hotmail.com>
+ * Copyright (c) 2014 Fredrick Brennan <admin@8chan.co>
+ *
+ * Usage:
+ *   $config['additional_javascript'][] = 'js/jquery.min.js';
+ *   //$config['additional_javascript'][] = 'js/titlebar-notifications.js';
+ *   $config['additional_javascript'][] = 'js/auto-reload.js';
+ *
+ */
+
+
+auto_reload_enabled = true; // for watch.js to interop
+
+$(document).ready(function(){
+	if($('div.banner').length == 0)
+		return; // not index
+		
+	if($(".post.op").size() != 1)
+		return; //not thread page
+	
+	var countdown_interval;
+
+	// Add an update link
+	$('#thread-interactions').prev().after("<span id='updater'><a href='#' id='update_thread' style='padding-left:10px'>["+_("Update")+"]</a>&nbsp&nbsp&nbsp(<input type='checkbox' id='auto_update_status' checked> "+_("Auto")+") <span id='update_secs'></span></span>");
+
+	// Grab the settings
+	var settings = new script_settings('auto-reload');
+	var poll_interval_mindelay        = settings.get('min_delay_bottom', 5000);
+	var poll_interval_maxdelay        = settings.get('max_delay', 600000);
+	var poll_interval_errordelay      = settings.get('error_delay', 30000);
+
+	// number of ms to wait before reloading
+	var poll_interval_delay = poll_interval_mindelay;
+	var poll_current_time = poll_interval_delay;
+
+	var end_of_page = false;
+
+        var new_posts = 0;
+	var first_new_post = null;
+	
+	var title = document.title;
+
+	if (typeof update_title == "undefined") {
+	   var update_title = function() { 
+	   	if (new_posts) {
+	   		document.title = "("+new_posts+") "+title;
+	   	} else {
+	   		document.title = title;
+	   	}
+	   };
+	}
+
+	if (typeof add_title_collector != "undefined")
+	add_title_collector(function(){
+	  return new_posts;
+	});
+
+	var window_active = true;
+	$(window).focus(function() {
+		window_active = true;
+		recheck_activated();
+
+		// Reset the delay if needed
+		if(settings.get('reset_focus', true)) {
+			poll_interval_delay = poll_interval_mindelay;
+		}
+	});
+	$(window).blur(function() {
+		window_active = false;
+	});
+	
+
+	$('#auto_update_status').click(function() {
+		if($("#auto_update_status").is(':checked')) {
+			auto_update(poll_interval_mindelay);
+		} else {
+			stop_auto_update();
+			$('#update_secs').text("");
+		}
+
+	});
+	
+
+	var decrement_timer = function() {
+		poll_current_time = poll_current_time - 1000;
+		$('#update_secs').text(poll_current_time/1000);
+		
+		if (poll_current_time <= 0) {
+			poll(manualUpdate = false);
+		}
+	}
+
+	var recheck_activated = function() {
+		if (new_posts && window_active &&
+			$(window).scrollTop() + $(window).height() >=
+			$('div.boardlist.bottom').position().top) {
+
+			new_posts = 0;
+		}
+		update_title();
+		first_new_post = null;
+	};
+	
+	// automatically updates the thread after a specified delay
+	var auto_update = function(delay) {
+		clearInterval(countdown_interval);
+
+		poll_current_time = delay;		
+		countdown_interval = setInterval(decrement_timer, 1000);
+		$('#update_secs').text(poll_current_time/1000);		
+	}
+	
+	var stop_auto_update = function() {
+		clearInterval(countdown_interval);
+	}
+		
+    	var epoch = (new Date).getTime();
+    	var epochold = epoch;
+    	
+	var timeDiff = function (delay) {
+		if((epoch-epochold) > delay) {
+			epochold = epoch = (new Date).getTime();
+			return true;
+		}else{
+			epoch = (new Date).getTime();
+			return;
+		}
+	}
+	
+	var poll = function(manualUpdate) {
+		stop_auto_update();
+		$('#update_secs').text(_("Updating..."));
+	
+		$.ajax({
+			url: document.location,
+			success: function(data) {
+				var loaded_posts = 0;	// the number of new posts loaded in this update
+				$(data).find('div.post.reply').each(function() {
+					var id = $(this).attr('id');
+					if($('#' + id).length == 0) {
+						if (!new_posts) {
+							first_new_post = this;
+						}
+						$(this).insertAfter($('div.post:last').next()).after('<br class="clear">');
+						new_posts++;
+						loaded_posts++;
+						$(document).trigger('new_post', this);
+						recheck_activated();
+					}
+				});
+				time_loaded = Date.now(); // interop with watch.js
+				
+				
+				if ($('#auto_update_status').is(':checked')) {
+					// If there are no new posts, double the delay. Otherwise set it to the min.
+					if(loaded_posts == 0) {
+						// if the update was manual, don't increase the delay
+						if (manualUpdate == false) {
+							poll_interval_delay *= 2;
+				
+							// Don't increase the delay beyond the maximum
+							if(poll_interval_delay > poll_interval_maxdelay) {
+								poll_interval_delay = poll_interval_maxdelay;
+							}
+						}
+					} else {
+						poll_interval_delay = poll_interval_mindelay;
+					}
+					
+					auto_update(poll_interval_delay);
+				} else {
+					// Decide the message to show if auto update is disabled
+					if (loaded_posts > 0)
+						$('#update_secs').text(fmt(_("Thread updated with {0} new post(s)"), [loaded_posts]));
+					else
+						$('#update_secs').text(_("No new posts found"));
+				}
+			},
+			error: function(xhr, status_text, error_text) {
+				if (status_text == "error") {
+					if (error_text == "Not Found") {
+						$('#update_secs').text(_("Thread deleted or pruned"));
+						$('#auto_update_status').prop('checked', false);
+						$('#auto_update_status').prop('disabled', true); // disable updates if thread is deleted
+						return;
+					} else {
+						$('#update_secs').text("Error: "+error_text);
+					}
+				} else if (status_text) {
+					$('#update_secs').text(_("Error: ")+status_text);
+				} else {
+					$('#update_secs').text(_("Unknown error"));
+				}
+				
+				// Keep trying to update
+				if ($('#auto_update_status').is(':checked')) {
+					poll_interval_delay = poll_interval_errordelay;
+					auto_update(poll_interval_delay);
+				}
+			}
+		});
+		
+		return false;
+	};
+	
+	$(window).scroll(function() {
+		recheck_activated();
+		
+		// if the newest post is not visible
+		if($(this).scrollTop() + $(this).height() <
+			$('div.post:last').position().top + $('div.post:last').height()) {
+			end_of_page = false;
+			return;
+		} else {
+			if($("#auto_update_status").is(':checked') && timeDiff(poll_interval_mindelay)) {
+				poll(manualUpdate = true);
+			}
+			end_of_page = true;
+		}
+	});
+
+	$('#update_thread').on('click', function() { poll(manualUpdate = true); return false; });
+
+	if($("#auto_update_status").is(':checked')) {
+		auto_update(poll_interval_delay);
+	}
+});
+
+/*
  * inline-expanding.js
  * https://github.com/savetheinternet/Tinyboard/blob/master/js/inline-expanding.js
  *
@@ -1656,77 +1934,6 @@ onready(function(){
 	});
 });
 
-/*
- * catalog-link.js - This script puts a link to the catalog below the board
- *                   subtitle and next to the board list.
- * https://github.com/vichan-devel/Tinyboard/blob/master/js/catalog-link.js
- *
- * Released under the MIT license
- * Copyright (c) 2013 copypaste <wizardchan@hush.com>
- * Copyright (c) 2013-2014 Marcin Łabanowski <marcin@6irc.net>
- *
- * Usage:
- *   $config['additional_javascript'][] = 'js/jquery.min.js';
- *   $config['additional_javascript'][] = 'js/catalog-link.js';
- */
-
-function catalog() {
-var board = $("input[name='board']");
-
-var catalog_url = configRoot + board.first().val() + "/catalog.php";
-
-var pages = document.getElementsByClassName('pages')[0];
-var bottom = document.getElementsByClassName('boardlist bottom')[0]
-var subtitle = document.getElementsByClassName('subtitle')[0];
-
-var link = document.createElement('a');
-link.href = catalog_url;
-
-try{
-	var a_nodes = pages.getElementsByTagName("A");
-	for(var node = 0; node < a_nodes.length ; node++){
-		if (a_nodes[node].textContent == "Catalog"){
-			pages.removeChild(a_nodes[node]);
-		}
-	}
-}
-catch(err){
-	console.log(err);
-	
-}
-
-if (pages) {
-	link.textContent = _('Catalog');
-	link.style.color = '#F10000';
-	link.style.padding = '4px';
-	link.style.paddingLeft = '9px';
-	link.style.borderLeft = '1px solid'
-	link.style.borderLeftColor = '#A8A8A8';
-	link.style.textDecoration = "underline";
-
-	pages.appendChild(link)
-}
-else {
-	link.textContent = '['+_('Catalog')+']';
-	link.style.paddingLeft = '10px';
-	link.style.textDecoration = "underline";
-	document.body.insertBefore(link, bottom);
-}
-
-if (subtitle) { 
-	var link2 = document.createElement('a');
-	link2.textContent = _('Catalog');
-	link2.href = catalog_url;
-
-	var br = document.createElement('br');
-	subtitle.appendChild(br);
-	subtitle.appendChild(link2);	
-}
-}
-
-if (active_page == 'thread' || active_page == 'index') {
-	$(document).ready(catalog);
-}
 if (active_page == 'catalog') $(function(){
 	if (localStorage.catalog !== undefined) {
 		var catalog = JSON.parse(localStorage.catalog);
@@ -1775,396 +1982,42 @@ if (active_page == 'catalog') $(function(){
 		}
 	});
 });
-/*
- * comment-toolbar.js
- *   - Adds a toolbar above the commenting area containing most of 8Chan's formatting options
- *   - Press Esc to close quick-reply window when it's in focus
- * 
- * Usage:
- *   $config['additional_javascript'][] = 'js/jquery.min.js';
- *   $config['additional_javascript'][] = 'js/comment-toolbar.js';
- */
-if (active_page == 'thread' || active_page == 'index') {
-	var formatText = (function($){
-		"use strict";
-		var self = {};
-		self.rules = {
-			spoiler: {
-				text: _('Spoiler'),
-				key: 's',
-				multiline: false, 
-				exclusiveline: false, 
-				prefix:'**',
-				suffix:'**'
-			},
-			italics: {
-				text: _('Italics'),
-				key: 'i',
-				multiline: false, 
-				exclusiveline: false, 
-				prefix: "''",
-				suffix: "''"
-			},
-			bold: {
-				text: _('Bold'),
-				key: 'b',
-				multiline: false, 
-				exclusiveline: false, 
-				prefix: "'''",
-				suffix: "'''"
-			},
-			underline: {
-				text: _('Underline'),
-				key: 'u',
-				multiline: false, 
-				exclusiveline: false, 
-				prefix:'__',
-				suffix:'__'
-			},
-			code: {
-				text: _('Code'),
-				key: 'f',
-				multiline: true, 
-				exclusiveline: false, 
-				prefix: '[code]',
-				suffix: '[/code]'
-			},
-			strike: {
-				text: _('Strike'),
-				key: 'd',
-				multiline:false, 
-				exclusiveline:false, 
-				prefix:'~~',
-				suffix:'~~'
-			},
-			heading: {
-				text: _('Heading'),
-				key: 'r',
-				multiline:false, 
-				exclusiveline:true, 
-				prefix:'==',
-				suffix:'=='
-			}
-		};
-		
-		self.toolbar_wrap = function(node) {
-			var parent = $(node).parents('form[name="post"]');
-			self.wrap(parent.find('#body')[0],'textarea[name="body"]', parent.find('.format-text > select')[0].value, false);
-		};
-	
-		self.wrap = function(ref, target, option, expandedwrap) {
-			// clean and validate arguments
-			if (ref == null) return;
-			var settings = {multiline: false, exclusiveline: false, prefix:'', suffix: null};
-			$.extend(settings,JSON.parse(localStorage.formatText_rules)[option]);
-			
-			// resolve targets into array of proper node elements
-			// yea, this is overly verbose, oh well.
-			var res = [];
-			if (target instanceof Array) {
-				for (var indexa in target) {
-					if (target.hasOwnProperty(indexa)) {
-						if (typeof target[indexa] == 'string') {
-							var nodes = $(target[indexa]);
-							for (var indexb in nodes) {
-								if (indexa.hasOwnProperty(indexb)) res.push(nodes[indexb]);
-							}
-						} else {
-							res.push(target[indexa]);
-						}
-					}
-				}
-			} else {
-				if (typeof target == 'string') {
-					var nodes = $(target);
-					for (var index in nodes) {
-						if (nodes.hasOwnProperty(index)) res.push(nodes[index]);
-					}
-				} else {
-					res.push(target);
-				}
-			}
-			target = res;
-			//record scroll top to restore it later.
-			var scrollTop = ref.scrollTop;
-
-			//We will restore the selection later, so record the current selection
-			var selectionStart = ref.selectionStart;
-			var selectionEnd = ref.selectionEnd;
-
-			var text = ref.value;
-			var before = text.substring(0, selectionStart);
-			var selected = text.substring(selectionStart, selectionEnd);
-			var after = text.substring(selectionEnd);
-			var whiteSpace = [" ","\t"];
-			var breakSpace = ["\r","\n"];
-			var cursor;
-			
-			// handles multiline selections on formatting that doesn't support spanning over multiple lines
-			if (!settings.multiline) selected = selected.replace(/(\r|\n|\r\n)/g,settings.suffix +"$1"+ settings.prefix);
-			
-			// handles formatting that requires it to be on it's own line OR if the user wishes to expand the wrap to the nearest linebreak
-			if (settings.exclusiveline || expandedwrap) {
-				// buffer the begining of the selection until a linebreak
-				cursor = before.length -1;
-				while (cursor >= 0 && breakSpace.indexOf(before.charAt(cursor)) == -1) {
-					cursor--;
-				}
-				selected = before.substring(cursor +1) + selected;
-				before = before.substring(0, cursor +1);
-				
-				// buffer the end of the selection until a linebreak
-				cursor = 0;
-				while (cursor < after.length && breakSpace.indexOf(after.charAt(cursor)) == -1) {
-					cursor++;
-				}
-				selected += after.substring(0, cursor);
-				after = after.substring(cursor);
-			}
-			
-			// set values
-			var res = before + settings.prefix + selected + settings.suffix + after;
-			$(target).val(res);
-			
-			// restore the selection area and scroll of the reference
-			ref.selectionEnd = before.length + settings.prefix.length + selected.length;
-			if (selectionStart === selectionEnd) {
-				ref.selectionStart = ref.selectionEnd;
-			} else {
-				ref.selectionStart = before.length + settings.prefix.length;
-			}
-			ref.scrollTop = scrollTop;
-		};
-		
-		self.build_toolbars = function(){
-			if (localStorage.formatText_toolbar == 'true'){
-				// remove existing toolbars
-				if ($('.format-text').length > 0) $('.format-text').remove();
-				
-				// Place toolbar above each textarea input
-				var name, options = '', rules = JSON.parse(localStorage.formatText_rules);
-				for (var index in rules) {
-					if (!rules.hasOwnProperty(index)) continue;
-					name = rules[index].text;
-
-					//add hint if key exists
-					if (rules[index].key) {
-						name += ' (CTRL + '+ rules[index].key.toUpperCase() +')';
-					}
-					options += '<option value="'+ index +'">'+ name +'</option>';
-				}
-				$('[name="body"]').before('<div class="format-text"><a href="javascript:;" onclick="formatText.toolbar_wrap(this);">Wrap</a><select>'+ options +'</select></div>');
-				$('body').append('<style>#quick-reply .format-text>a{width:15%;display:inline-block;text-align:center;}#quick-reply .format-text>select{width:85%;};</style>');
-			}
-		};
-		
-		self.add_rule = function(rule, index){
-			if (rule === undefined) rule = {
-				text: 'New Rule',
-				key: '',
-				multiline:false, 
-				exclusiveline:false, 
-				prefix:'',
-				suffix:''
-			}
-			
-			// generate an id for the rule
-			if (index === undefined) {
-				var rules = JSON.parse(localStorage.formatText_rules);
-				while (rules[index] || index === undefined) {
-					index = ''
-					index +='abcdefghijklmnopqrstuvwxyz'.substr(Math.floor(Math.random()*26),1);
-					index +='abcdefghijklmnopqrstuvwxyz'.substr(Math.floor(Math.random()*26),1);
-					index +='abcdefghijklmnopqrstuvwxyz'.substr(Math.floor(Math.random()*26),1);
-				}
-			}
-			if (window.Options && Options.get_tab('formatting')){
-				var html = $('<div class="format_rule" name="'+ index +'"></div>').html('\
-				<input type="text" name="text" class="format_option" size="10" value=\"'+ rule.text.replace(/"/g, '&quot;') +'\">\
-				<input type="checkbox" name="multiline" class="format_option" '+ (rule.multiline ? 'checked' : '') +'>\
-				<input type="checkbox" name="exclusiveline" class="format_option" '+ (rule.exclusiveline ? 'checked' : '') +'>\
-				<input type="text" name="prefix" class="format_option" size="8" value=\"'+ (rule.prefix ? rule.prefix.replace(/"/g, '&quot;') : '') +'\">\
-				<input type="text" name="suffix" class="format_option" size="8" value=\"'+ (rule.suffix ? rule.suffix.replace(/"/g, '&quot;') : '') +'\">\
-				<input type="text" name="key" class="format_option" size="2" maxlength="1" value=\"'+ rule.key +'\">\
-				<input type="button" value="X" onclick="if(confirm(\'Do you wish to remove the '+ rule.text +' formatting rule?\'))$(this).parent().remove();">\
-				');
-				
-				if ($('.format_rule').length > 0) {
-					$('.format_rule').last().after(html);
-				} else {
-					Options.extend_tab('formatting', html);
-				}
-			}
-		};
-		
-		self.save_rules = function(){
-			var rule, newrules = {}, rules = $('.format_rule');
-			for (var index=0;rules[index];index++) {
-				rule = $(rules[index]);
-				newrules[rule.attr('name')] = {
-					text: rule.find('[name="text"]').val(),
-					key: rule.find('[name="key"]').val(),
-					prefix: rule.find('[name="prefix"]').val(),
-					suffix: rule.find('[name="suffix"]').val(),
-					multiline: rule.find('[name="multiline"]').is(':checked'),
-					exclusiveline: rule.find('[name="exclusiveline"]').is(':checked')
-				};
-			}
-			localStorage.formatText_rules = JSON.stringify(newrules);
-			self.build_toolbars();
-		};
-		
-		self.reset_rules = function(to_default) {
-			$('.format_rule').remove();
-			var rules;
-			if (to_default) rules = self.rules;
-			else rules = JSON.parse(localStorage.formatText_rules);
-			for (var index in rules){
-				if (!rules.hasOwnProperty(index)) continue;
-				self.add_rule(rules[index], index);
-			}
-		};
-		
-		// setup default rules for customizing
-		if (!localStorage.formatText_rules) localStorage.formatText_rules = JSON.stringify(self.rules);
-		
-		// setup code to be ran when page is ready (work around for main.js compilation).
-		$(document).ready(function(){
-			// Add settings to Options panel general tab
-			if (window.Options && Options.get_tab('general')) {
-				var s1 = '#formatText_keybinds>input', s2 = '#formatText_toolbar>input', e = 'change';
-				Options.extend_tab('general', '\
-					<fieldset>\
-						<legend>Formatting Options</legend>\
-						<label id="formatText_keybinds"><input type="checkbox">' + _('Enable formatting keybinds') + '</label>\
-						<label id="formatText_toolbar"><input type="checkbox">' + _('Show formatting toolbar') + '</label>\
-					</fieldset>\
-				');
-			} else {
-				var s1 = '#formatText_keybinds', s2 = '#formatText_toolbar', e = 'click';
-				$('hr:first').before('<div id="formatText_keybinds" style="text-align:right"><a class="unimportant" href="javascript:void(0)">'+ _('Enable formatting keybinds') +'</a></div>');
-				$('hr:first').before('<div id="formatText_toolbar" style="text-align:right"><a class="unimportant" href="javascript:void(0)">'+ _('Show formatting toolbar') +'</a></div>');
-			}
-			
-			// add the tab for customizing the format settings
-			if (window.Options && !Options.get_tab('formatting')) {
-				Options.add_tab('formatting', 'angle-right', _('Customize Formatting'));
-				Options.extend_tab('formatting', '\
-				<style>\
-					.format_option{\
-						margin-right:5px;\
-						overflow:initial;\
-						font-size:15px;\
-					}\
-					.format_option[type="text"]{\
-						text-align:center;\
-						padding-bottom: 2px;\
-						padding-top: 2px;\
-					}\
-					.format_option:last-child{\
-						margin-right:0;\
-					}\
-					fieldset{\
-						margin-top:5px;\
-					}\
-				</style>\
-				');
-				
-				// Data control row
-				Options.extend_tab('formatting', '\
-				<button onclick="formatText.add_rule();">'+_('Add Rule')+'</button>\
-				<button onclick="formatText.save_rules();">'+_('Save Rules')+'</button>\
-				<button onclick="formatText.reset_rules(false);">'+_('Revert')+'</button>\
-				<button onclick="formatText.reset_rules(true);">'+_('Reset to Default')+'</button>\
-				');
-				
-				// Descriptor row
-				Options.extend_tab('formatting', '\
-					<span class="format_option" style="margin-left:25px;">Name</span>\
-					<span class="format_option" style="margin-left:45px;" title="Multi-line: Allow formatted area to contain linebreaks.">ML</span>\
-					<span class="format_option" style="margin-left:0px;" title="Exclusive-line: Require formatted area to start after and end before a linebreak.">EL</span>\
-					<span class="format_option" style="margin-left:25px;" title="Text injected at the start of a format area.">Prefix</span>\
-					<span class="format_option" style="margin-left:60px;" title="Text injected at the end of a format area.">Suffix</span>\
-					<span class="format_option" style="margin-left:40px;" title="Optional keybind value to allow keyboard shortcut access.">Key</span>\
-				');
-				
-				// Rule rows
-				var rules = JSON.parse(localStorage.formatText_rules);
-				for (var index in rules){
-					if (!rules.hasOwnProperty(index)) continue;
-					self.add_rule(rules[index], index);
-				}
-			}
-		
-			// setting for enabling formatting keybinds
-			$(s1).on(e, function(e) {
-				console.log('Keybind');
-				if (!localStorage.formatText_keybinds || localStorage.formatText_keybinds == 'false') {
-					localStorage.formatText_keybinds = 'true';
-					if (window.Options && Options.get_tab('general')) e.target.checked = true;
-				} else {
-					localStorage.formatText_keybinds = 'false';
-					if (window.Options && Options.get_tab('general')) e.target.checked = false;
-				}
-			});
-			
-			// setting for toolbar injection
-			$(s2).on(e, function(e) {
-				console.log('Toolbar');
-				if (!localStorage.formatText_toolbar || localStorage.formatText_toolbar == 'false') {
-					localStorage.formatText_toolbar = 'true';
-					if (window.Options && Options.get_tab('general')) e.target.checked = true;
-					formatText.build_toolbars();
-				} else {
-					localStorage.formatText_toolbar = 'false';
-					if (window.Options && Options.get_tab('general')) e.target.checked = false;
-					$('.format-text').remove();
-				}
-			});
-			
-			// make sure the tab settings are switch properly at loadup
-			if (window.Options && Options.get_tab('general')) {
-				if (localStorage.formatText_keybinds == 'true') $(s1)[0].checked = true;
-				else $(s1)[0].checked = false;
-				if (localStorage.formatText_toolbar == 'true') $(s2)[0].checked = true;
-				else $(s2)[0].checked = false;
-			}
-			
-			// Initial toolbar injection
-			formatText.build_toolbars();
-			
-			//attach listener to <body> so it also works on quick-reply box
-			$('body').on('keydown', '[name="body"]', function(e) {
-				if (!localStorage.formatText_keybinds || localStorage.formatText_keybinds == 'false') return;
-				var key = String.fromCharCode(e.which).toLowerCase();
-				var rules = JSON.parse(localStorage.formatText_rules);
-				for (var index in rules) {
-					if (!rules.hasOwnProperty(index)) continue;
-					if (key === rules[index].key && e.ctrlKey) {
-						e.preventDefault();
-						if (e.shiftKey) {
-							formatText.wrap(e.target, 'textarea[name="body"]', index, true);
-						} else {
-							formatText.wrap(e.target, 'textarea[name="body"]', index, false);
-						}
-					}
-				}
-			});
-			
-			// Signal that comment-toolbar loading has completed.
-			$(document).trigger('formatText');
-		});
-		
-		return self;
-    })(jQuery);
-}
-/* image-hover.js 
+	$(document).ready(function(){		
+		// add the tab for viewing the format settings
+		if (window.Options && !Options.get_tab('formatting')) {
+			Options.add_tab('view_formatting', 'angle-right', _('View Formatting'));
+			Options.extend_tab('view_formatting', '\
+			The Following is an expansion on <a href="https://kakashi-nenpo.com/faq.php#q08">https://kakashi-nenpo.com/faq.php#q08</a><hr/>\
+			[b] bold [/b]<br/>\
+			\'\'\' bold \'\'\'<br/>\
+			[i] italics [/i]<br/>\
+			\'\' italics \'\'<br/>\
+			[u] underline [/u]<br/>\
+			[header] header [/header]<br/>\
+			== header ==<br/>\
+			[pink] pink [/pink]<br/>\
+			[blue] blue [/blue]<br/>\
+			[gold] gold [/gold]<br/>\
+			[spoiler] spoiler [/spoiler]<br/>\
+			[spoilers] spoiler [/spoilers] <br/>\
+			** spoiler ** <br/>\
+			<br/>\
+			However, they only work with one line of text.<br/>\
+			So if you want your whole post to be bold, you need to <br/>\
+			[b] use [/b]<br/>\
+			[b] the tags [/b]<br/>\
+			[b] separately [/b]<br/>\
+			[b] on every line. [/b]<br/>\
+			\
+			');	
+		}		
+});/* image-hover.js 
  * This script is copied almost verbatim from https://github.com/Pashe/8chanX/blob/2-0/8chan-x.user.js
  * All I did was remove the sprintf dependency and integrate it into 8chan's Options as opposed to Pashe's.
  * I also changed initHover() to also bind on new_post.
  * Thanks Pashe for using WTFPL.
  */
-
+ 
 if (active_page === "catalog" || active_page === "thread" || active_page === "index") {
 $(document).on('ready', function(){
 
@@ -2185,7 +2038,7 @@ $('.image-hover').on('change', function(){
 
 if (!localStorage.imageHover || !localStorage.catalogImageHover || !localStorage.imageHoverFollowCursor) {
 	localStorage.imageHover = 'true';
-	localStorage.catalogImageHover = 'true';
+	localStorage.catalogImageHover = 'false';
 	localStorage.imageHoverFollowCursor = 'true';
 }
 
@@ -2232,6 +2085,28 @@ function initImageHover() { //Pashe, influenced by tux, et al, WTFPL
 	if (getSetting("catalogImageHover") && isOnCatalog()) {
 		selectors.push(".thread-image");
 		$(".theme-catalog div.thread").css("position", "inherit");
+
+		cat_thread_imgs = $(".thread-image");
+		
+		const BOARD = $("h1 a")[0].text;
+		console.log(BOARD);
+		
+		//from API give each an indicator of origin file source
+		var catalog_json = jQuery.parseJSON($.ajax({
+				type: "GET",
+				url: "https://kissu.moe" + BOARD + "catalog.json",
+				async: false
+		}).responseText);
+		//start from max, go down
+		var thread_no = 0;
+		
+		cat_thread_imgs.each(function(){
+			thread_json = catalog_json[Math.floor(thread_no / 10)].threads[thread_no % 10];
+			cat_thread_imgs.get(thread_no).setAttribute('origin_source', "https://kissu.moe" + BOARD + "src/" + thread_json.tim + thread_json.ext);
+			cat_thread_imgs.get(thread_no).setAttribute('h', thread_json.h);
+			cat_thread_imgs.get(thread_no).setAttribute('w', thread_json.w);
+			thread_no++;
+		});
 	}
 	
 	function bindEvents(el) {
@@ -2254,7 +2129,7 @@ function initImageHover() { //Pashe, influenced by tux, et al, WTFPL
 
 function imageHoverStart(e) { //Pashe, anonish, WTFPL
 	var hoverImage = $("#chx_hoverImage");
-	
+
 	if (hoverImage.length) {
 		if (getSetting("imageHoverFollowCursor")) {
 			var scrollTop = $(window).scrollTop();
@@ -2290,23 +2165,36 @@ function imageHoverStart(e) { //Pashe, anonish, WTFPL
 	var $this = $(this);
 	
 	var fullUrl;
-	if ($this.parent().attr("href").match("src")) {
-		fullUrl = $this.parent().attr("href");
-	} else if (isOnCatalog() && $this.parent().attr("href").match("src")) {
-		fullUrl = $this.attr("data-fullimage");
-		if (!isImage(getFileExtension(fullUrl))) {fullUrl = $this.attr("src");}
+	if(!isOnCatalog()){
+		if ($this.parent().attr("href").match("src")) {
+			fullUrl = $this.parent().attr("href");
+		} else if (isOnCatalog() && $this.parent().attr("href").match("src")) {
+			fullUrl = $this.attr("data-fullimage");
+			if (!isImage(getFileExtension(fullUrl))) {fullUrl = $this.attr("src");}
+		}
+		if (fullUrl == undefined || isVideo(getFileExtension(fullUrl))) {return;}
 	}
-	if (fullUrl == undefined || isVideo(getFileExtension(fullUrl))) {return;}
-
-	
+	else{
+		fullUrl = $this.attr("origin_source");
+	}
 	hoverImage = $('<img id="chx_hoverImage" src="'+fullUrl+'" />');
 
 	if (getSetting("imageHoverFollowCursor")) {
-		var size = $this.parents('.file').find('.unimportant').text().match(/\b(\d+)x(\d+)\b/),
-			maxWidth = $(window).width(),
-			maxHeight = $(window).height();
+		var size, scale;
+		if(!isOnCatalog()){
+			size = $this.parents('.file').find('.unimportant').text().match(/\b(\d+)x(\d+)\b/),
+				maxWidth = $(window).width(),
+				maxHeight = $(window).height();
 
-		var scale = Math.min(1, maxWidth / size[1], maxHeight / size[2]);
+			scale = Math.min(1, maxWidth / size[1], maxHeight / size[2]);
+		}
+		else{
+			size = ["", $this.attr("w"),$this.attr("h")],
+				maxWidth = $(window).width(),
+				maxHeight = $(window).height();
+
+			scale = Math.min(1, maxWidth / size[1], maxHeight / size[2]);
+		}
 		hoverImage.css({
 			"position"      : "absolute",
 			"z-index"       : 101,
@@ -2318,7 +2206,8 @@ function imageHoverStart(e) { //Pashe, anonish, WTFPL
 			'left'          : e.pageX,
 			'top'           : imgTop,
 		});
-	} else {
+	} 
+	else {
 		hoverImage.css({
 			"position"      : "fixed",
 			"top"           : 0,
@@ -3146,14 +3035,14 @@ onready(function(){
 						.removeAttr('size')
 						.attr('placeholder', $th.clone().children().remove().end().text());
 				}
-	
+						
 				// Move anti-spam nonsense and remove <th>
 				$th.contents().filter(function() {
 					return this.nodeType == 3; // Node.TEXT_NODE
 				}).remove();
 				$th.contents().appendTo($dummyStuff);
 				$th.remove();
-	
+						
 				if ($td.find('input[name="password"]').length) {
 					// Hide password field
 					$(this).hide();
@@ -3209,7 +3098,7 @@ onready(function(){
 					
 					$newRow.insertAfter(this);
 				}
-	
+
 				// Upload section
 				if ($td.find('input[type="file"]').length) {
 					if($td.find('input[name="file"]').length){
@@ -3251,11 +3140,11 @@ onready(function(){
 				}
 				
 								
-				//captcha controlls
+				//captcha controls
 				if($td.find('input[name=captype]').length > 0){
 					
 				}
-				
+							
 				// Disable embedding if configured so
 				// if (!settings.get('show_embed', false) && $td.find('input[name="embed"]').length) {
 					// $(this).remove();
@@ -3291,8 +3180,11 @@ onready(function(){
 				
 				$td.find('small').hide();
 			}
+			if($td.find('[name="markup-hint"]').length){
+				$td.remove();
+			}
 		});
-		
+				
 		$postForm.find('textarea[name="body"]').removeAttr('id').removeAttr('cols').attr('placeholder', _('Comment'));
 	
 		$postForm.find('textarea:not([name="body"]),input[type="hidden"]:not(.captcha_cookie)').removeAttr('id').appendTo($dummyStuff);

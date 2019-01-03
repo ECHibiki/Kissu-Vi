@@ -1,6 +1,4 @@
-.intro{
-	display: inline-block;
-}
+
 
 /* http://kissu.moe/b/res/198.html#q290 */
 .reply .post-image {
@@ -24,8 +22,6 @@ span.glowgold{
 	text-shadow: -1px 0px 4px #FFA500, 1px 1px 1px #C5AE09, 2px 0px 10px rgb(255, 224, 0);
     color: #FDFFEF;
 }
-
-/* Original CSS */
 
 body {
   background: #EEF2FF url('img/fade-blue.png') repeat-x 50% 0%;
@@ -316,14 +312,6 @@ div.post {
 div.post div.body {
   word-wrap: break-word;
   white-space: pre-wrap;
-}
-
-div.post.reply {
-  background: #D6DAF0;
-  margin: 0.2em 4px;
-  padding: 0.2em 0.3em 0.5em 0.6em;
-  display: inline-block;
-  max-width: 94%!important;
 }
 
 span.trip {
@@ -1231,4 +1219,41 @@ table.fileboard .intro a {
 }
 div.mix {
 	display: inline-block;
+}
+
+
+
+
+
+
+
+
+
+
+body{
+	  background: rgb(237,246,255);
+	background-image:url("https://kissu.moe/ccb1d5187dbc74456fb16441e7482a89.jpg");  
+	background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: left -24px bottom -346px;
+  color:black;
+}
+
+div.post.reply {
+	background: rgba(237,246,255,0.75);
+	color:black;
+  margin: 0.2em 4px;
+  padding: 0.2em 0.3em 0.5em 0.6em;
+  border-width: 1px;
+  border-style: none solid solid none;
+  border-color: #B7C5D9;
+  display: inline-block;
+  max-width: 94%!important;
+}
+
+.thread{
+	color:black;
+}
+a:link {
+	color:orange;
 }

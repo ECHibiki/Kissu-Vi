@@ -17,7 +17,7 @@
 					<script type="text/javascript" src="/main.js"></script>
 							</head>
 <body>
-	<div class="boardlist"><span class="sub" data-description="0">[ <a href="/">home</a> ]</span>  <span class="sub" data-description="1">[ <a href="/b/">b</a> / <a href="/qa/">qa</a> ]</span>  <span class="sub" data-description="2">[ <a href="/xmas/">xmas</a> ]</span>  <span class="sub" data-description="3">[ <a href="http://swfchan.org/">f</a> / <a href="https://boards.4channel.org/qa/">qa4</a> / <a href="https://github.com/ECHibiki/ViQa-Kissu/">ViQa</a> ]</span></div><script type='text/javascript'>if (typeof do_boardlist != 'undefined') do_boardlist();</script>
+	<div class="boardlist"><span class="sub" data-description="0">[ <a href="/">home</a> ]</span>  <span class="sub" data-description="1">[ <a href="/b/">b</a> / <a href="/qa/">qa</a> / <a href="/lit/">lit</a> ]</span>  <span class="sub" data-description="2">[ <a href="http://swfchan.org/">f</a> / <a href="https://boards.4channel.org/qa/">qa4</a> / <a href="https://github.com/ECHibiki/ViQa-Kissu/">ViQa</a> ]</span></div><script type='text/javascript'>if (typeof do_boardlist != 'undefined') do_boardlist();</script>
 <?php
 	$t = explode(" ", microtime())[0];
 	$expresion = '/(C:\\\xampp\\\htdocs\\\[a-zA-Z]+|\/var\/www\/html\/[a-zA-Z]+)/';
@@ -36,14 +36,19 @@
 		<h1>Kissu.moe</h1>
 		<div class="subtitle">100% fun</div>
 	</header>
-	<img class="board_image" src="/static/banner-kissu.png" alt="" />	
+	<img class="board_image" src="/banner-art.php" alt="" />	
 	<div class="box-wrap">
-	    <fieldset>
+	    <!--<fieldset>
 		<legend>Boards</legend>
 		<ul>
 							<li class="boardlinksurl">
 					<a href="b/">
 						Boson Tests
+					</a>
+				</li>
+							<li class="boardlinksurl">
+					<a href="lit/">
+						Literature
 					</a>
 				</li>
 							<li class="boardlinksurl">
@@ -57,9 +62,270 @@
 					</a>
 				</li>
 					</ul>
-	    </fieldset>
+	    </fieldset>-->
 	    <br>
-	    <div class="mainBox">
+
+	    <h1>Recent Images</h1>
+		<div class="box image">
+			<ul>
+									<li>
+						<a href="/b/res/783#783">
+							<img src="/b/thumb/1546471131225.jpg" style="width:255px;height:143px" alt="">
+						</a>
+					</li>
+									<li>
+						<a href="/qa/res/29#718">
+							<img src="/qa/thumb/1546467011829.jpg" style="width:175px;height:98px" alt="">
+						</a>
+					</li>
+									<li>
+						<a href="/qa/res/713#713">
+							<img src="/qa/thumb/1546455539642.png" style="width:255px;height:255px" alt="">
+						</a>
+					</li>
+									<li>
+						<a href="/b/res/1#779">
+							<img src="/b/thumb/1546417469805.png" style="width:175px;height:108px" alt="">
+						</a>
+					</li>
+									<li>
+						<a href="/b/res/1#778">
+							<img src="/b/thumb/1546417413135.png" style="width:124px;height:175px" alt="">
+						</a>
+					</li>
+									<li>
+						<a href="/qa/res/702#702">
+							<img src="/qa/thumb/1546388282147.png" style="width:255px;height:144px" alt="">
+						</a>
+					</li>
+									<li>
+						<a href="/qa/res/678#697">
+							<img src="/qa/thumb/1546355200574.png" style="width:124px;height:175px" alt="">
+						</a>
+					</li>
+									<li>
+						<a href="/lit/res/12#14">
+							<img src="/lit/thumb/1546345136005.png" style="width:175px;height:175px" alt="">
+						</a>
+					</li>
+									<li>
+						<a href="/lit/res/12#13">
+							<img src="/lit/thumb/1546342853997.png" style="width:175px;height:124px" alt="">
+						</a>
+					</li>
+									<li>
+						<a href="/lit/res/12#12">
+							<img src="/lit/thumb/1546325635750.png" style="width:239px;height:255px" alt="">
+						</a>
+					</li>
+									<li>
+						<a href="/qa/res/678#686">
+							<img src="/qa/thumb/1546324544080.png" style="width:175px;height:131px" alt="">
+						</a>
+					</li>
+									<li>
+						<a href="/qa/res/194#682">
+							<img src="/qa/thumb/1546321852730.png" style="width:175px;height:98px" alt="">
+						</a>
+					</li>
+									<li>
+						<a href="/qa/res/194#681">
+							<img src="/qa/thumb/1546320826411.png" style="width:175px;height:49px" alt="">
+						</a>
+					</li>
+									<li>
+						<a href="/qa/res/678#679">
+							<img src="/qa/thumb/1546319068615.png" style="width:131px;height:175px" alt="">
+						</a>
+					</li>
+							</ul>
+		</div>
+		<div class="mainBox">
+			<h2>Latest Posts</h2>
+			<ul>
+									<li>
+						<strong>/qa/</strong>: 
+						<a href="/qa/res/29#723">
+							<em>There was a youtube channel fu&hellip;</em>
+						</a>
+					</li>
+									<li>
+						<strong>/qa/</strong>: 
+						<a href="/qa/res/662#722">
+							<em>Most posters are americans.</em>
+						</a>
+					</li>
+									<li>
+						<strong>Boson Tests</strong>: 
+						<a href="/b/res/783#783">
+							<em>for u</em>
+						</a>
+					</li>
+									<li>
+						<strong>/qa/</strong>: 
+						<a href="/qa/res/721#721">
+							<em>(no comment)</em>
+						</a>
+					</li>
+									<li>
+						<strong>/qa/</strong>: 
+						<a href="/qa/res/662#720">
+							<em>&gt;&gt;666  well it's probably hard&hellip;</em>
+						</a>
+					</li>
+									<li>
+						<strong>/qa/</strong>: 
+						<a href="/qa/res/713#719">
+							<em>It's cute watching the all gro&hellip;</em>
+						</a>
+					</li>
+									<li>
+						<strong>Boson Tests</strong>: 
+						<a href="/b/res/671#782">
+							<em>test</em>
+						</a>
+					</li>
+									<li>
+						<strong>/qa/</strong>: 
+						<a href="/qa/res/29#718">
+							<em>Keep posting, i'll actually li&hellip;</em>
+						</a>
+					</li>
+									<li>
+						<strong>/qa/</strong>: 
+						<a href="/qa/res/29#717">
+							<em>&gt;&gt;716  Sakurano sensei!</em>
+						</a>
+					</li>
+									<li>
+						<strong>/qa/</strong>: 
+						<a href="/qa/res/29#716">
+							<em>(no comment)</em>
+						</a>
+					</li>
+									<li>
+						<strong>/qa/</strong>: 
+						<a href="/qa/res/713#715">
+							<em>/a/ has always been a board fo&hellip;</em>
+						</a>
+					</li>
+									<li>
+						<strong>/qa/</strong>: 
+						<a href="/qa/res/124#714">
+							<em>already have an account, was j&hellip;</em>
+						</a>
+					</li>
+									<li>
+						<strong>/qa/</strong>: 
+						<a href="/qa/res/713#713">
+							<em>Took a look at /a/ today. It's&hellip;</em>
+						</a>
+					</li>
+									<li>
+						<strong>/qa/</strong>: 
+						<a href="/qa/res/194#712">
+							<em>&gt;&gt;668  Now that I've been usin&hellip;</em>
+						</a>
+					</li>
+									<li>
+						<strong>/qa/</strong>: 
+						<a href="/qa/res/124#711">
+							<em>they did, i think they even hi&hellip;</em>
+						</a>
+					</li>
+									<li>
+						<strong>/qa/</strong>: 
+						<a href="/qa/res/124#710">
+							<em>thought i remembered reading s&hellip;</em>
+						</a>
+					</li>
+									<li>
+						<strong>/qa/</strong>: 
+						<a href="/qa/res/124#709">
+							<em>madokami isnt dead guys</em>
+						</a>
+					</li>
+									<li>
+						<strong>Boson Tests</strong>: 
+						<a href="/b/res/1#780">
+							<em>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa&hellip;</em>
+						</a>
+					</li>
+									<li>
+						<strong>Boson Tests</strong>: 
+						<a href="/b/res/1#779">
+							<em>(no comment)</em>
+						</a>
+					</li>
+									<li>
+						<strong>Boson Tests</strong>: 
+						<a href="/b/res/1#778">
+							<em>(no comment)</em>
+						</a>
+					</li>
+									<li>
+						<strong>/qa/</strong>: 
+						<a href="/qa/res/124#708">
+							<em>use batoto</em>
+						</a>
+					</li>
+									<li>
+						<strong>/qa/</strong>: 
+						<a href="/qa/res/124#707">
+							<em>mangadex is broken and i wante&hellip;</em>
+						</a>
+					</li>
+									<li>
+						<strong>/qa/</strong>: 
+						<a href="/qa/res/702#706">
+							<em>4chan will definitely not last&hellip;</em>
+						</a>
+					</li>
+									<li>
+						<strong>/qa/</strong>: 
+						<a href="/qa/res/667#705">
+							<em>Wish we had miko here.</em>
+						</a>
+					</li>
+									<li>
+						<strong>/qa/</strong>: 
+						<a href="/qa/res/702#704">
+							<em>I've certainely been more bore&hellip;</em>
+						</a>
+					</li>
+									<li>
+						<strong>/qa/</strong>: 
+						<a href="/qa/res/702#703">
+							<em>&gt;in popularity or at least inf&hellip;</em>
+						</a>
+					</li>
+									<li>
+						<strong>/qa/</strong>: 
+						<a href="/qa/res/702#702">
+							<em>Anyone feel that 4chan's been &hellip;</em>
+						</a>
+					</li>
+									<li>
+						<strong>/qa/</strong>: 
+						<a href="/qa/res/124#701">
+							<em>what kind? I love spicy chips &hellip;</em>
+						</a>
+					</li>
+									<li>
+						<strong>Boson Tests</strong>: 
+						<a href="/b/res/1#772">
+							<em>test</em>
+						</a>
+					</li>
+									<li>
+						<strong>Boson Tests</strong>: 
+						<a href="/b/res/1#771">
+							<em>&gt;&gt;770  test</em>
+						</a>
+					</li>
+							</ul>
+		</div>
+		<div class="mainBox">
 	        <br>
 	        <div class="description">Now serving You!</div>
 	        <br>
@@ -71,7 +337,12 @@
 	        <br>
 	    </div>
 	    <div class="ban">
-									<h2 id="10">
+									<h2 id="11">
+											S2 Finished. Fixing up the code for new stuff later
+										<span class="unimportant"> &mdash; by verniy at 12/24/18 (Mon) 09:53:26</span>
+				</h2>
+				<p>S2 goals have been finished.<br/><br/>The site software now has some good tools against spammers and ban evaders that can be used to lock out people from the site if they use proxies, VPNs or Tor. A few other mod tools as well.<br/><br/>On the cosmetic side, the CSS(kissu.css) is being worked on and optimized to cause less of a slowdown on browsers.<br/>The site code needs to be refactored and the github cleaned up a little.<br/>User experience needslots of improving. Things like the catalog need to be fixed up and the main posting behavior needs additions(such as the update box like 4chan has).<br/><br/>Other than that, the site is looking great. No complaints and as far as I can tell current features seem to be appreciated by current members.</p>
+							<h2 id="10">
 											S2 Site Code done
 										<span class="unimportant"> &mdash; by verniy at 12/19/18 (Wed) 09:45:41</span>
 				</h2>
@@ -92,277 +363,12 @@
 				</h2>
 				<p>Updates to be made before more official release(S1):<br/>* Vichan Setup and Configuration<br/>* CSS configuration<br/>* Antiflood block supplemented or replaced with encouraging captcha<br/>* User Requested UI Improvements<br/><br/>Future(S2):<br/>* Post to Rizon+Steam<br/>* More customization of layout, UI and CSS for unique board feel<br/>* Establish a democratic system of transparent, but powerful moderation<br/>* More mod tools to give better ability to handle problems in the future instead of as they arise<br/>* Small online games similar to what GNFOS did<br/><br/>Future(S3):<br/>* Post to /qa/<br/>* Evaluate effectiveness of mod tool, current moderation structure<br/><br/>Any opinions can be posted in the various ways possible to contact me.</p>
 						    </div>
-	    <h1>Recent Images</h1>
-		<div class="box image">
-			<ul>
-									<li>
-						<a href="/b/res/52.php#640">
-							<img src="/b/thumb/1545370655618.png" style="width:255px;height:25px" alt="">
-						</a>
-					</li>
-									<li>
-						<a href="/xmas/res/26.php#26">
-							<img src="/xmas/thumb/1545348163159.png" style="width:181px;height:255px" alt="">
-						</a>
-					</li>
-									<li>
-						<a href="/qa/res/194.php#329">
-							<img src="/qa/thumb/1545346166732.png" style="width:80px;height:80px" alt="">
-						</a>
-					</li>
-									<li>
-						<a href="/qa/res/124.php#325">
-							<img src="/qa/thumb/1545342439919.png" style="width:188px;height:255px" alt="">
-						</a>
-					</li>
-									<li>
-						<a href="/qa/res/194.php#323">
-							<img src="/qa/thumb/1545341130286.png" style="width:255px;height:48px" alt="">
-						</a>
-					</li>
-									<li>
-						<a href="/qa/res/321.php#321">
-							<img src="/qa/thumb/1545339983075.png" style="width:255px;height:143px" alt="">
-						</a>
-					</li>
-									<li>
-						<a href="/qa/res/194.php#316">
-							<img src="/qa/thumb/1545336217916.png" style="width:40px;height:40px" alt="">
-						</a>
-					</li>
-									<li>
-						<a href="/qa/res/312.php#312">
-							<img src="/qa/thumb/1545335208259.png" style="width:255px;height:143px" alt="">
-						</a>
-					</li>
-									<li>
-						<a href="/qa/res/307.php#307">
-							<img src="/qa/thumb/1545333921240.png" style="width:255px;height:255px" alt="">
-						</a>
-					</li>
-									<li>
-						<a href="/qa/res/301.php#304">
-							<img src="/qa/thumb/1545331830102.png" style="width:154px;height:127px" alt="">
-						</a>
-					</li>
-									<li>
-						<a href="/qa/res/301.php#301">
-							<img src="/qa/thumb/1545330938819.png" style="width:151px;height:254px" alt="">
-						</a>
-					</li>
-									<li>
-						<a href="/qa/res/298.php#298">
-							<img src="/qa/thumb/1545329019426.png" style="width:255px;height:197px" alt="">
-						</a>
-					</li>
-									<li>
-						<a href="/b/res/635.php#635">
-							<img src="/b/thumb/1545327871065.png" style="width:255px;height:143px" alt="">
-						</a>
-					</li>
-									<li>
-						<a href="/b/res/4.php#634">
-							<img src="/b/thumb/1545322997696.png" style="width:181px;height:255px" alt="">
-						</a>
-					</li>
-									<li>
-						<a href="/qa/res/293.php#293">
-							<img src="/qa/thumb/1545321189553.png" style="width:255px;height:143px" alt="">
-						</a>
-					</li>
-							</ul>
-		</div>
-		<div class="mainBox">
-			<h2>Latest Posts</h2>
-			<ul>
-									<li>
-						<strong>Boson Tests</strong>: 
-						<a href="/b/res/52.php#641">
-							<em>&gt;&gt;479</em>
-						</a>
-					</li>
-									<li>
-						<strong>Boson Tests</strong>: 
-						<a href="/b/res/52.php#640">
-							<em>Removing the extensions throug&hellip;</em>
-						</a>
-					</li>
-									<li>
-						<strong>Boson Tests</strong>: 
-						<a href="/b/res/1.php#639">
-							<em>&gt;&gt;622  test</em>
-						</a>
-					</li>
-									<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/124.php#331">
-							<em>  css is wierd</em>
-						</a>
-					</li>
-									<li>
-						<strong>Merri Christmasu!</strong>: 
-						<a href="/xmas/res/26.php#26">
-							<em>(no comment)</em>
-						</a>
-					</li>
-									<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/124.php#330">
-							<em>tried to make a stylesheet thi&hellip;</em>
-						</a>
-					</li>
-									<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/194.php#329">
-							<em>&gt;&gt;324  I stole a lot of them f&hellip;</em>
-						</a>
-					</li>
-									<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/124.php#328">
-							<em>hope all worknorms die</em>
-						</a>
-					</li>
-									<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/194.php#327">
-							<em>&gt;&gt;323  A three monitor setup? &hellip;</em>
-						</a>
-					</li>
-									<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/124.php#326">
-							<em>__you die if you work__</em>
-						</a>
-					</li>
-									<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/124.php#325">
-							<em>working on christmas this year</em>
-						</a>
-					</li>
-									<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/194.php#324">
-							<em>&gt;&gt;290  can u post a tiled patt&hellip;</em>
-						</a>
-					</li>
-									<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/194.php#323">
-							<em>Currently this. I tend to keep&hellip;</em>
-						</a>
-					</li>
-									<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/194.php#322">
-							<em>I don't actually have a backgr&hellip;</em>
-						</a>
-					</li>
-									<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/321.php#321">
-							<em>fookin… Ive been doin bit of p&hellip;</em>
-						</a>
-					</li>
-									<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/307.php#320">
-							<em>&gt;&gt;319  I'm sorry to have to br&hellip;</em>
-						</a>
-					</li>
-									<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/307.php#319">
-							<em>&gt;&gt;317  If you can't say it I'l&hellip;</em>
-						</a>
-					</li>
-									<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/312.php#318">
-							<em>This show could've found a muc&hellip;</em>
-						</a>
-					</li>
-									<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/307.php#317">
-							<em>&gt;&gt;315  I'm not being ironic, I&hellip;</em>
-						</a>
-					</li>
-									<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/194.php#316">
-							<em>i dont like complex images i j&hellip;</em>
-						</a>
-					</li>
-									<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/307.php#315">
-							<em>&gt;&gt;313  Keep hiding under your &hellip;</em>
-						</a>
-					</li>
-									<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/307.php#314">
-							<em>&gt;&gt;311  Forgive me, I thought t&hellip;</em>
-						</a>
-					</li>
-									<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/312.php#312">
-							<em>Huh?</em>
-						</a>
-					</li>
-									<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/307.php#311">
-							<em>&gt;&gt;309  Purposefully acting stu&hellip;</em>
-						</a>
-					</li>
-									<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/307.php#310">
-							<em>You can't get the code of a di&hellip;</em>
-						</a>
-					</li>
-									<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/307.php#309">
-							<em>Is there any difference betwee&hellip;</em>
-						</a>
-					</li>
-									<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/307.php#307">
-							<em>Is there any difference betwee&hellip;</em>
-						</a>
-					</li>
-									<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/124.php#306">
-							<em>how do you fuck up three trays&hellip;</em>
-						</a>
-					</li>
-									<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/262.php#305">
-							<em>Was Boogiepop Phantom s2 slate&hellip;</em>
-						</a>
-					</li>
-									<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/301.php#304">
-							<em>already there</em>
-						</a>
-					</li>
-							</ul>
-		</div>
 		<div class="mainBox">
 			<h2>Stats</h2>
 			<ul>
-				<li>Total posts: 998</li>
-				<li>Unique posters: 76</li>
-				<li>Active content: 499.17 MB</li>
+				<li>Total posts: 1,572</li>
+				<li>Unique posters: 126</li>
+				<li>Active content: 633.13 MB</li>
 			</ul>
 		</div>
 	</div>

@@ -4,7 +4,7 @@
  * I also changed initHover() to also bind on new_post.
  * Thanks Pashe for using WTFPL.
  */
-
+ 
 if (active_page === "catalog" || active_page === "thread" || active_page === "index") {
 $(document).on('ready', function(){
 
@@ -25,7 +25,7 @@ $('.image-hover').on('change', function(){
 
 if (!localStorage.imageHover || !localStorage.catalogImageHover || !localStorage.imageHoverFollowCursor) {
 	localStorage.imageHover = 'true';
-	localStorage.catalogImageHover = 'true';
+	localStorage.catalogImageHover = 'false';
 	localStorage.imageHoverFollowCursor = 'true';
 }
 
@@ -72,6 +72,28 @@ function initImageHover() { //Pashe, influenced by tux, et al, WTFPL
 	if (getSetting("catalogImageHover") && isOnCatalog()) {
 		selectors.push(".thread-image");
 		$(".theme-catalog div.thread").css("position", "inherit");
+
+		cat_thread_imgs = $(".thread-image");
+		
+		const BOARD = $("h1 a")[0].text;
+		console.log(BOARD);
+		
+		//from API give each an indicator of origin file source
+		var catalog_json = jQuery.parseJSON($.ajax({
+				type: "GET",
+				url: "https://kissu.moe" + BOARD + "catalog.json",
+				async: false
+		}).responseText);
+		//start from max, go down
+		var thread_no = 0;
+		
+		cat_thread_imgs.each(function(){
+			thread_json = catalog_json[Math.floor(thread_no / 10)].threads[thread_no % 10];
+			cat_thread_imgs.get(thread_no).setAttribute('origin_source', "https://kissu.moe" + BOARD + "src/" + thread_json.tim + thread_json.ext);
+			cat_thread_imgs.get(thread_no).setAttribute('h', thread_json.h);
+			cat_thread_imgs.get(thread_no).setAttribute('w', thread_json.w);
+			thread_no++;
+		});
 	}
 	
 	function bindEvents(el) {
@@ -94,7 +116,7 @@ function initImageHover() { //Pashe, influenced by tux, et al, WTFPL
 
 function imageHoverStart(e) { //Pashe, anonish, WTFPL
 	var hoverImage = $("#chx_hoverImage");
-	
+
 	if (hoverImage.length) {
 		if (getSetting("imageHoverFollowCursor")) {
 			var scrollTop = $(window).scrollTop();
@@ -130,23 +152,36 @@ function imageHoverStart(e) { //Pashe, anonish, WTFPL
 	var $this = $(this);
 	
 	var fullUrl;
-	if ($this.parent().attr("href").match("src")) {
-		fullUrl = $this.parent().attr("href");
-	} else if (isOnCatalog() && $this.parent().attr("href").match("src")) {
-		fullUrl = $this.attr("data-fullimage");
-		if (!isImage(getFileExtension(fullUrl))) {fullUrl = $this.attr("src");}
+	if(!isOnCatalog()){
+		if ($this.parent().attr("href").match("src")) {
+			fullUrl = $this.parent().attr("href");
+		} else if (isOnCatalog() && $this.parent().attr("href").match("src")) {
+			fullUrl = $this.attr("data-fullimage");
+			if (!isImage(getFileExtension(fullUrl))) {fullUrl = $this.attr("src");}
+		}
+		if (fullUrl == undefined || isVideo(getFileExtension(fullUrl))) {return;}
 	}
-	if (fullUrl == undefined || isVideo(getFileExtension(fullUrl))) {return;}
-
-	
+	else{
+		fullUrl = $this.attr("origin_source");
+	}
 	hoverImage = $('<img id="chx_hoverImage" src="'+fullUrl+'" />');
 
 	if (getSetting("imageHoverFollowCursor")) {
-		var size = $this.parents('.file').find('.unimportant').text().match(/\b(\d+)x(\d+)\b/),
-			maxWidth = $(window).width(),
-			maxHeight = $(window).height();
+		var size, scale;
+		if(!isOnCatalog()){
+			size = $this.parents('.file').find('.unimportant').text().match(/\b(\d+)x(\d+)\b/),
+				maxWidth = $(window).width(),
+				maxHeight = $(window).height();
 
-		var scale = Math.min(1, maxWidth / size[1], maxHeight / size[2]);
+			scale = Math.min(1, maxWidth / size[1], maxHeight / size[2]);
+		}
+		else{
+			size = ["", $this.attr("w"),$this.attr("h")],
+				maxWidth = $(window).width(),
+				maxHeight = $(window).height();
+
+			scale = Math.min(1, maxWidth / size[1], maxHeight / size[2]);
+		}
 		hoverImage.css({
 			"position"      : "absolute",
 			"z-index"       : 101,
@@ -158,7 +193,8 @@ function imageHoverStart(e) { //Pashe, anonish, WTFPL
 			'left'          : e.pageX,
 			'top'           : imgTop,
 		});
-	} else {
+	} 
+	else {
 		hoverImage.css({
 			"position"      : "fixed",
 			"top"           : 0,

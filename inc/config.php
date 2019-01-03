@@ -342,7 +342,8 @@
 	 $config['captcha']['extra'] = 'abcdefghijklmnopqrstuvwxyz';
 	
 	// Ability to lock a board for normal users and still allow mods to post.  Could also be useful for making an archive board
-	$config['board_locked'] = false;
+	// Input regex pattern of board code
+	$config['board_locked'] = "";
 
 	// If poster's proxy supplies X-Forwarded-For header, check if poster's real IP is banned.
 	$config['proxy_check'] = false;
@@ -518,6 +519,10 @@
 	$config['strip_superfluous_returns'] = true;
 	// Strip combining characters from Unicode strings (eg. "Zalgo").
 	$config['strip_combining_chars'] = true;
+	
+	// A regex pattern that referers must match. 
+	// Prevents. posts originating from fishy locations.
+	$config['referer_match'] = false;
 
 	// Maximum post body length.
 	$config['max_body'] = 1800;
@@ -706,14 +711,26 @@
 
 	// "Wiki" markup syntax ($config['wiki_markup'] in pervious versions):
 	$config['markup'][] = array("/'''(.+?)'''/", "<strong>\$1</strong>");
+	$config['markup'][] = array("/\[b\](.+?)\[\/b\]/", "<strong>\$1</strong>");
 	$config['markup'][] = array("/''(.+?)''/", "<em>\$1</em>");
+	$config['markup'][] = array("/\[i\](.+?)\[\/i\]/", "<em>\$1</em>");
 	$config['markup'][] = array("/\*\*(.+?)\*\*/", "<span class=\"spoiler\">\$1</span>");
-	$config['markup'][] = array("/^[ |\t]*==(.+?)==[ |\t]*$/m", "<span class=\"heading\">\$1</span>");
+	$config['markup'][] = array("/\[u\](.+?)\[\/u\]/", "<u>\$1</u>");
+	$config['markup'][] = array("/\[spoiler\](.+?)\[\/spoiler\]/", "<span class=\"spoiler\">\$1</span>");
+	$config['markup'][] = array("/\[spoilers\](.+?)\[\/spoilers\]/", "<span class=\"spoiler\">\$1</span>");
+	$config['markup'][] = array("/==(.+?)==/", "<span class=\"heading\">\$1</span>");
+	$config['markup'][] = array("/\[header\](.+?)\[\/header\]/", "<span class=\"heading\">\$1</span>");
+	
+	// Markup from Nen
+	$config['markup'][] = array("/\[pink\](.+?)\[\/pink\]/", "<span class=\"glowpink\">\$1</span>");
+	$config['markup'][] = array("/\[blue\](.+?)\[\/blue\]/", "<span class=\"glowblue\">\$1</span>");
+	$config['markup'][] = array("/\[gold\](.+?)\[\/gold\]/", "<span class=\"glowgold\">\$1</span>");
+	
 
 	// Code markup. This should be set to a regular expression, using tags you want to use. Examples:
 	// "/\[code\](.*?)\[\/code\]/is"
 	// "/```([a-z0-9-]{0,20})\n(.*?)\n?```\n?/s"
-	$config['markup_code'] = false;
+	$config['markup_code'] = "/\[code\](.*?)\[\/code\]/";
 
 	// Repair markup with HTML Tidy. This may be slower, but it solves nesting mistakes. Tinyboad, at the
 	// time of writing this, can not prevent out-of-order markup tags (eg. "**''test**'') without help from
@@ -1026,7 +1043,7 @@
 	$config['page_nav_top'] = false;
 
 	// Show "Catalog" link in page navigation. Use with the Catalog theme. Set to false to disable.
-	$config['catalog_link'] = 'catalog.php';
+	$config['catalog_link'] = 'catalog';
 
 	// Board categories. Only used in the "Categories" theme.
 	// $config['categories'] = array(
@@ -1116,7 +1133,10 @@
 			array(
 				'/^https?:\/\/(\w+\.)?youtube\.com\/watch\?v=([a-zA-Z0-9\-_]{10,11})(&.+)?$/i',
 				'<iframe style="float: left;margin: 10px 20px;" width="%%tb_width%%" height="%%tb_height%%" frameborder="0" id="ytplayer" src="https://www.youtube.com/embed/$2" allowfullscreen></iframe>'
-
+			),
+			array(
+				'/^https?:\/\/(\w+\.)?youtu\.be\/([a-zA-Z0-9\-_]{10,11})?(.+)?$/i',
+				'<iframe style="float: left;margin: 10px 20px;" width="%%tb_width%%" height="%%tb_height%%" frameborder="0" id="ytplayer" src="https://www.youtube.com/embed/$2" allowfullscreen></iframe>'
 			),
 			array(
 				'/^https?:\/\/(\w+\.)?vimeo\.com\/(\d{2,10})(\?.+)?$/i',
@@ -1249,6 +1269,7 @@
 	// Location of files.
 	$config['file_index'] = 'index.html';
 	$config['file_page'] = '%d.html'; // NB: page is both an index page and a thread
+	$config['remove_ext'] = false;
 	$config['file_page50'] = '%d+50.html';
 	$config['file_page_slug'] = '%d-%s.html';
 	$config['file_page50_slug'] = '%d-%s+50.html';
@@ -1484,7 +1505,7 @@
 	$config['mod']['dismiss_reports_on_lock'] = true;
 
 	// Use ?/config with a simple text editor for editing inc/instance-config.php.
-	$config['mod']['config_editor_php'] = true;
+	$config['mod']['config_editor_php'] = false;
 	// Use  ?/config with a reduced editor for editing inc/instance-config.php.
 	$config['mod']['simplified_editor_php'] = true;
 

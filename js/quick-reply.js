@@ -150,14 +150,14 @@
 						.removeAttr('size')
 						.attr('placeholder', $th.clone().children().remove().end().text());
 				}
-	
+						
 				// Move anti-spam nonsense and remove <th>
 				$th.contents().filter(function() {
 					return this.nodeType == 3; // Node.TEXT_NODE
 				}).remove();
 				$th.contents().appendTo($dummyStuff);
 				$th.remove();
-	
+						
 				if ($td.find('input[name="password"]').length) {
 					// Hide password field
 					$(this).hide();
@@ -213,7 +213,7 @@
 					
 					$newRow.insertAfter(this);
 				}
-	
+
 				// Upload section
 				if ($td.find('input[type="file"]').length) {
 					if($td.find('input[name="file"]').length){
@@ -255,11 +255,11 @@
 				}
 				
 								
-				//captcha controlls
+				//captcha controls
 				if($td.find('input[name=captype]').length > 0){
 					
 				}
-				
+							
 				// Disable embedding if configured so
 				// if (!settings.get('show_embed', false) && $td.find('input[name="embed"]').length) {
 					// $(this).remove();
@@ -295,8 +295,11 @@
 				
 				$td.find('small').hide();
 			}
+			if($td.find('[name="markup-hint"]').length){
+				$td.remove();
+			}
 		});
-		
+				
 		$postForm.find('textarea[name="body"]').removeAttr('id').removeAttr('cols').attr('placeholder', _('Comment'));
 	
 		$postForm.find('textarea:not([name="body"]),input[type="hidden"]:not(.captcha_cookie)').removeAttr('id').appendTo($dummyStuff);

@@ -2471,6 +2471,8 @@ function buildThread($id, $return = false, $mod = false) {
 		$query->bindValue(':id', $id, PDO::PARAM_INT);
 		$query->execute() or error(db_error($query));
 
+
+		
 		while ($post = $query->fetch(PDO::FETCH_ASSOC)) {
 			if (!isset($thread)) {
 				$thread = new Thread($post, $mod ? '?/' : $config['root'], $mod);
@@ -2485,7 +2487,7 @@ function buildThread($id, $return = false, $mod = false) {
 	
 		$hasnoko50 = $thread->postCount() >= $config['noko50_min'];
 		$antibot = $mod || $return ? false : create_antibot($board['uri'], $id);
-
+			
 		$body = Element('thread.php', array(
 			'board' => $board,
 			'thread' => $thread,
@@ -2497,7 +2499,7 @@ function buildThread($id, $return = false, $mod = false) {
 			'isnoko50' => false,
 			'antibot' => $antibot,
 			'boardlist' => createBoardlist($mod),
-			'return' => ($mod ? '?' . $board['url'] . $config['file_index'] : $config['root'] . $board['dir'] . $config['file_index'])
+			'return' => ($mod ? '?' . $board['url'] : $config['root'] . $board['dir'])
 		));
 
 		// json api
@@ -2796,7 +2798,7 @@ function DNS($host) {
 
 function shell_exec_error($command, $suppress_stdout = false) {
 	global $config, $debug;
-
+	
 	if ($config['debug'])
 		$start = microtime(true);
 

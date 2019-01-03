@@ -62,7 +62,12 @@
 			$board_name, $board_name, $board_name, $board_name, $board_name)) or error(db_error());
 			
 			while ($post = $query->fetch(PDO::FETCH_ASSOC)) {
-				$post['link'] = $config['root'] . $board['dir'] . $config['dir']['res'] . link_for($post);
+				if($config['remove_ext']){
+					$post['link'] = preg_replace('/\\.[^.\\s]{3,4}$/', '', $config['root'] . $board['dir'] . $config['dir']['res'] . link_for($post));
+				}
+				else{
+					$post['link'] = $config['root'] . $board['dir'] . $config['dir']['res'] . link_for($post);
+				}
 				$post['board_name'] = $board['name'];
 
 				if ($post['embed'] && preg_match('/^https?:\/\/(\w+\.)?(?:youtube\.com\/watch\?v=|youtu\.be\/)([a-zA-Z0-9\-_]{10,11})(&.+)?$/i', $post['embed'], $matches)) {
@@ -108,15 +113,18 @@
 				if (!in_array($s, $config['additional_javascript']))
 					$config['additional_javascript'][] = $s;
 			}
+			
+			$antibot = create_antibot($board['uri']);
 
 			file_write($config['dir']['home'] . $board_name . '/catalog.php', Element('themes/catalog/catalog.php', Array(
+				'antibot' => $antibot,
 				'settings' => $settings,
 				'config' => $config,
 				'boardlist' => createBoardlist(),
 				'recent_images' => $recent_images,
 				'recent_posts' => $recent_posts,
 				'stats' => $stats,
-				'board' => $board_name,
+				'board' => $board,
 				'link' => $config['root'] . $board['dir']
 			)));
 

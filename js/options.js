@@ -72,9 +72,9 @@ Options.extend_tab = function(id, content) {
   if (typeof content == "string") {
     content = $("<div>"+content+"</div>");
   }
-
-  content.appendTo(options_tabs[id].content);
-
+	if(options_tabs[id] != undefined){
+		content.appendTo(options_tabs[id].content);
+	}
   return options_tabs[id];
 };
 

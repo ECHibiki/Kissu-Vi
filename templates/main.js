@@ -410,8 +410,13 @@ function init() {
 	
 	{% endraw %}	
 	{% if config.allow_delete %}
-	if (document.forms.postcontrols) {
-		document.forms.postcontrols.password.value = localStorage.password;
+	if(document.forms.postcontrols != undefined){
+		if (document.forms.postcontrols.password) {
+			if (!localStorage.password)
+				var password = generatePassword();
+			document.forms.postcontrols.password.value = password;
+			localStorage.password = password;
+		}
 	}
 	{% endif %}
 	{% raw %}

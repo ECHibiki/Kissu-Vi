@@ -9,14 +9,24 @@ import json
 browser = None
 nojs = False
 output_json = False
+log_results = False
 
 def print_matches(matches):
-    global output_json
+    global output_json, log_results
     if output_json:
         print(json.dumps(matches))
+        if log_results:
+            with open('regex-log.json', 'a+') as log_file:
+                log_file.write(json.dumps(matches) + "\n")
+                log_file.close()
     else:
         for match in matches:
             print (match)
+        if log_results:
+            with open('regex-log.txt', 'a+') as log_file:
+                for match in matches:
+                    log_file.write(match + "\n")
+                log_file.close()
 
 def init():
     # On ubuntu/linux initialize with xvfb-run python3 Regex-Webscraper/py-cmd/regexscraper.py -u $sites_string -r \"$regex_pattern\" --nojs --json
@@ -24,6 +34,7 @@ def init():
     ff_profile = webdriver.FirefoxProfile()
     ff_profile.DEFAULT_PREFERENCES['frozen']['javascript.enabled'] = not nojs
     ff_profile.set_preference("app.update.auto", False)
+    # ff_profile.set_preference("dom.webaudio.enabled", False)
     ff_profile.set_preference("app.update.enabled", False)
     ff_profile.update_preferences()
     browser = webdriver.Firefox(firefox_profile=ff_profile)
@@ -63,6 +74,9 @@ if __name__ == "__main__":
                     pass
                 elif arg == "--json":
                     output_json = True
+                    pass
+                elif arg == "--log":
+                    log_results = True
                     pass
                 else:
                     print("Invalid Command Line Argument: " + arg)
