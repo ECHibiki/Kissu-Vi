@@ -82,6 +82,8 @@ function generate_salt() {
 function login($username, $password) {
 	global $mod, $config;
 	
+	echo "$username $password";
+	
 	$query = prepare("SELECT `id`, `type`, `boards`, `password`, `version` FROM ``mods`` WHERE BINARY `username` = :username");
 	$query->bindValue(':username', $username);
 	$query->execute() or error(db_error($query));
@@ -90,6 +92,7 @@ function login($username, $password) {
 		list($version, $ok) = test_password($user['password'], $user['version'], $password);
 
 		if ($ok) {
+			echo "was OK";
 			if ($config['password_crypt_version'] > $version) {
 				// It's time to upgrade the password hashing method!
 				list ($user['version'], $user['password']) = crypt_password($password);
