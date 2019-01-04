@@ -53,6 +53,7 @@ function crypt_password($password) {
 }
 
 function test_password($password, $salt, $test) {
+	
 	global $config;
 
 	// Version = 0 denotes an old password hashing schema. In the same column, the
@@ -64,6 +65,8 @@ function test_password($password, $salt, $test) {
 	}
 	else {
 		$comp = crypt($test, $password);
+		//echo $password . "<br/>" . $comp;
+		
 	}
 	return array($version, hash_equals($password, $comp));
 }
@@ -81,9 +84,7 @@ function generate_salt() {
 
 function login($username, $password) {
 	global $mod, $config;
-	
-	echo "$username $password";
-	
+
 	$query = prepare("SELECT `id`, `type`, `boards`, `password`, `version` FROM ``mods`` WHERE BINARY `username` = :username");
 	$query->bindValue(':username', $username);
 	$query->execute() or error(db_error($query));

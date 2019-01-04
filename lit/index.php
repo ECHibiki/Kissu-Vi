@@ -48,22 +48,21 @@
 	
 
 			<form class="form_submit" name="post" onsubmit="return dopost(this);" enctype="multipart/form-data" action="/post.php" method="post">
-<input   type="hidden"   value="☋/&#35;GX}Izf&#36;'xmSKFdQ*swa&#92;Z^&#48;h☇8.6AtW&#32;!Ri☽);⚱]v|,U&#64;♻&#79;&#9927;H&#58;"   name="text">
-<input value="C|E?Phfa_*WAoN:9QjOv♛♾{♶Vc X=☇&amp;7]" name="search" type="hidden">
+<div style="display:none"><input type="text" name="text" value="2l]\#,f+dQKD1&gt; 7&amp;FvS[⚔GM!C⚤^V_3ni`r)zR@ZPh b"></div>
+<div style="display:none"><input type="text" name="message" value=""></div>
 <input type="hidden" name="board" value="lit">
-<div  style="display:none"><input  type="text"  name="login"  value=""></div>
-	<input type="hidden" name="page" value="1">
+<input value="F&gt;%⛆:A}Nr*{T'^&lt;[&amp;dXJ!a⚀g63GO;C⛑" name="user" type="hidden">
 	<table>
 		<tr>
 			<th>
-				Name				<input type="hidden" name="ga6⚖fylts4⛦uohn" value="">
+				Name				<input style="display:none" type="text" value="" name="login">
 			</th>
 			<td>
-				<input type="text" name="name" size="25" maxlength="35" autocomplete="off"> 				<input style="display:none" type="text" value="&#9759;B29#&#76;q&#94;&#90;ip-,&#75;&#41;aw&#98;%&#9887;$ue|&#32;{⚉&gt;](&#9887;y41AT&#78;&#55;R&#103;'&#92;⚸&#89;+d&#86;f&#9866;sQ5&#9797;&#96;c&#9882;@h=/xPGvXC:*&#9913;06lOI.Uz&#125;M!J&amp;;WSjm&#56;E " name="message">
+				<input type="text" name="name" size="25" maxlength="35" autocomplete="off"> 				<input type="hidden" name="3cmzhf8i☉uaw02⚝" value="">
 			</td>
 		</tr>		<tr>
 			<th>
-				Options				<span style="display:none" ><input type="text" name="q" value="b&#63;&#121;n&#123;_Q♲h2q⚘&#55;&#108;&#9857;6☉+s9,&#120;&#109;@&#122;U}v^&#61;Z  A|(I⛢;&#86;[&#126;&#102;&#114;c3C*a-jg:&#111;.&#119;p&#101;ku&#78;G&#77;&#68;d&#36;Y&#47;0T`☹☢FL8⛏" ></span >
+				Options				<textarea   style="display:none"   name="♎⛈ar3h☆z2ospwj17">8888&#55;</textarea>
 			</th>
 			<td>
 								<input style="opacity: 0;position: absolute;bottom:0;right:0" type="test" value="EatsChromeAuto"/>
@@ -73,7 +72,7 @@
 					<option value="repo">Repost</option>
 					<option value="sage">Hold Back</option>
 					<option value="noko">Remain</option>				</select>
-								<input type="hidden" name="username" value="Nu0gmnR;ryLU^1?*♆_:⚅V46&lt;I,⚵Q7pE&gt;"  >
+								<input type="hidden" name="q" value="">
 								
 			</td>
 		</tr>		<tr>
@@ -133,7 +132,7 @@
 		</tr>		<tr><td colspan=2><span name='markup-hint' style='font-size:10px'>Markup tags exist for bold, itallics, header, spoiler etc. as listed in " [options] > View Formatting "</span></td></tr>
 	</table>
 
-<input type="hidden" name="hash" value="4bcd316697d25db1fa1f6a4b5b1032865ce58539">
+<input type="hidden" name="hash" value="5889e0f21529c0beb9b31357e199fd6a6bd58b00">
 </form>
 
 <script type="text/javascript">

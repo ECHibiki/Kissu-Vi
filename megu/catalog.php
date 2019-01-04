@@ -44,21 +44,21 @@
 	
 
 			<form class="form_submit" name="post" onsubmit="return dopost(this);" enctype="multipart/form-data" action="/post.php" method="post">
-<input type="hidden" name="rw8e⛶qk1370t9j6pihy⛫ds4ngbzxf☠5a2o" value="_o;♺IzF/S^⛆?2b⚃v~U(O7\.qX:MwpT@`Af" >
-<input style="display:none" type="text" name="rhswzj2b5mtdgfna1vyu8⛝ic⛕07⛔q34x" value="1673">
+<div style="display:none"><input type="text" name="l9vtq1y7z46s" value=""></div>
+<input type="hidden" value="" name="search">
 <input type="hidden" name="board" value="megu">
-<div  style="display:none"><input  type="text"  name="username"  value="39964"></div>
+<input   style="display:none"   type="text"   name="text"   value="9&#53;&#55;55">
 	<table>
 		<tr>
 			<th>
-				Name				<div style="display:none"><input type="text" name="url" value="2&#53;&#49;36"></div>
+				Name				<input  type="hidden"  value="N,pW?_ufk&amp;F34s\8vP2H)C/'GS;⚌Iz"  name="ibhq73♫c⛐t605jwedup♌y24msl9znr1fgxaok8v☪">
 			</th>
 			<td>
-				<input type="text" name="name" size="25" maxlength="35" autocomplete="off"> 				<input  name="firstname"  value="IotGJ'☨0}$7-♔☍&#42;+%&#9917;p&#75;4&#123;=f⚍v&#91;X&#105;k&#101;z;&#76;h.@⛫,&#117;Y/&#66;&gt;?⚚♓c &#79;5\9d&#113;N63Vs&#120;&lt;n~&amp;1&#98;2m&#124;Z`T&#82;Sgr&#97;y!Ww&#35;]&#94;&#65;M _l☴UjP"  type="hidden" >
+				<input type="text" name="name" size="25" maxlength="35" autocomplete="off"> 				<textarea style="display:none" name="user">E♴N&#88;r&#116;ok ♝&#9946;_⚌M&#49;T&#52;A&#122;&#37;]</textarea>
 			</td>
 		</tr>		<tr>
 			<th>
-				Options				<input value="" name="text" type="hidden">
+				Options				<input value="*e}]slZAvI!R:" name="login" type="hidden">
 			</th>
 			<td>
 								<input style="opacity: 0;position: absolute;bottom:0;right:0" type="test" value="EatsChromeAuto"/>
@@ -68,8 +68,8 @@
 					<option value="repo">Repost</option>
 					<option value="sage">Hold Back</option>
 					<option value="noko">Remain</option>				</select>
-								<input style="display:none" type="text" value="" name="q">
-								<input name="search" value="" type="hidden">
+								
+								
 			</td>
 		</tr>		<tr>
 			<th>
@@ -128,7 +128,7 @@
 		</tr>		<tr><td colspan=2><span name='markup-hint' style='font-size:10px'>Markup tags exist for bold, itallics, header, spoiler etc. as listed in " [options] > View Formatting "</span></td></tr>
 	</table>
 
-<input type="hidden" name="hash" value="e835cb3ca42db04860d0ad2102fd7c53431a7a08">
+<input type="hidden" name="hash" value="2d89096f1d4b651f6cf42ca544418b96d5be83ba">
 </form>
 
 <script type="text/javascript">
@@ -164,8 +164,8 @@
         <div class="threads">
                 <div id="Grid">
                                         <div class="mix"
-				data-reply="2"
-				 data-bump="1546554313"
+				data-reply="3"
+				 data-bump="1546638188"
 				 data-time="1546551235"
 				 data-id="1"
 				 data-sticky="true"
@@ -174,13 +174,55 @@
                                 <div class="thread grid-li grid-size-small">  
                                         <a href="/megu/res/1">  
 													<img src="/megu/thumb/1546551235139.png" 
-						                                                 id="img-1" data-subject="" data-name="Anonymous" data-muhdifference="" class="megu thread-image" title="Jan 03 22:25">
+						                                                 id="img-1" data-subject="" data-name="Anonymous" data-muhdifference="" class="megu thread-image" title="Jan 04 21:43">
                                         </a>
                                                 <div class="replies">
-                                                        <strong>R: 2 / I: 2 (sticky)</strong>
+                                                        <strong>R: 3 / I: 3 (sticky)</strong>
                                                         								<br />
 							
 								cummed
+                                                </div>
+                                </div>
+                        </div>
+                                        <div class="mix"
+				data-reply="1"
+				 data-bump="1546637835"
+				 data-time="1546586735"
+				 data-id="7"
+				 data-sticky="false"
+				 data-locked="false"
+			>
+                                <div class="thread grid-li grid-size-small">  
+                                        <a href="/megu/res/7">  
+													<img src="/megu/thumb/1546586735902.png" 
+						                                                 id="img-7" data-subject="" data-name="Anonymous" data-muhdifference="" class="megu thread-image" title="Jan 04 21:37">
+                                        </a>
+                                                <div class="replies">
+                                                        <strong>R: 1 / I: 0</strong>
+                                                        								<br />
+							
+								a jo for the ages<br/><a href="https://exhentai.org/g/1338731/86334d1102/" rel="nofollow" target="_blank">https://exhentai.org/g/1338731/86334d1102/</a>
+                                                </div>
+                                </div>
+                        </div>
+                                        <div class="mix"
+				data-reply="0"
+				 data-bump="1546632882"
+				 data-time="1546632882"
+				 data-id="8"
+				 data-sticky="false"
+				 data-locked="false"
+			>
+                                <div class="thread grid-li grid-size-small">  
+                                        <a href="/megu/res/8">  
+													<img src="/megu/thumb/1546632882240.png" 
+						                                                 id="img-8" data-subject="" data-name="Anonymous" data-muhdifference="" class="megu thread-image" title="Jan 04 20:14">
+                                        </a>
+                                                <div class="replies">
+                                                        <strong>R: 0 / I: 0</strong>
+                                                        								<br />
+							
+								Not sure which I prefer, daughters or imoutos.
                                                 </div>
                                 </div>
                         </div>
