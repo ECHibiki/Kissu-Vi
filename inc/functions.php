@@ -976,9 +976,13 @@ function checkBan($board = false) {
 		cache::set('purged_bans_last', time());
 }
 
-function post_laterPost($post, $thread, $numposts, $noko, $id, $dropped_post){
+function post_laterPost($post, $thread, $numposts, $noko, $id, $dropped_post, $pdo){
+	
+		require_once 'inc/anti-bot.php';
+		require_once 'inc/bans.php';
+		require_once 'inc/image.php';
+	
 		global $config, $board;
-		
 	if ($dropped_post && $dropped_post['from_nntp']) {
 	        $query = prepare("INSERT INTO ``nntp_references`` (`board`, `id`, `message_id`, `message_id_digest`, `own`, `headers`) VALUES ".
 	                                                         "(:board , :id , :message_id , :message_id_digest , false, :headers)");
@@ -1018,6 +1022,7 @@ function post_laterPost($post, $thread, $numposts, $noko, $id, $dropped_post){
 
 	// Handle cyclical threads
 	if (!$post['op'] && isset($thread['cycle']) && $thread['cycle']) {
+				
 		// Query is a bit weird due to "This version of MariaDB doesn't yet support 'LIMIT & IN/ALL/ANY/SOME subquery'" (MariaDB Ver 15.1 Distrib 10.0.17-MariaDB, for Linux (x86_64))
 		$query = prepare(sprintf('DELETE FROM ``posts_%s`` WHERE `thread` = :thread AND `id` NOT IN (SELECT `id` FROM (SELECT `id` FROM ``posts_%s`` WHERE `thread` = :thread ORDER BY `id` DESC LIMIT :limit) i)', $board['uri'], $board['uri']));
 		$query->bindValue(':thread', $post['thread']);

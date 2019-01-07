@@ -789,7 +789,7 @@ function mod_view_thread($boardName, $thread) {
 	
 	if (!openBoard($boardName))
 		error($config['error']['noboard']);
-	
+	var_dump($thread);
 	$page = buildThread($thread, true, $mod);
 	echo $page;
 }

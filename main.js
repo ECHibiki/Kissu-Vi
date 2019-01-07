@@ -2099,12 +2099,13 @@ function initImageHover() { //Pashe, influenced by tux, et al, WTFPL
 		}).responseText);
 		//start from max, go down
 		var thread_no = 0;
-		
 		cat_thread_imgs.each(function(){
-			thread_json = catalog_json[Math.floor(thread_no / 10)].threads[thread_no % 10];
-			cat_thread_imgs.get(thread_no).setAttribute('origin_source', "https://kissu.moe" + BOARD + "src/" + thread_json.tim + thread_json.ext);
-			cat_thread_imgs.get(thread_no).setAttribute('h', thread_json.h);
-			cat_thread_imgs.get(thread_no).setAttribute('w', thread_json.w);
+			if(catalog_json[Math.floor(thread_no / 10)] != undefined){
+				thread_json = catalog_json[Math.floor(thread_no / 10)].threads[thread_no % 10];
+				cat_thread_imgs.get(thread_no).setAttribute('origin_source', "https://kissu.moe" + BOARD + "src/" + thread_json.tim + thread_json.ext);
+				cat_thread_imgs.get(thread_no).setAttribute('h', thread_json.h);
+				cat_thread_imgs.get(thread_no).setAttribute('w', thread_json.w);
+			}
 			thread_no++;
 		});
 	}
