@@ -132,7 +132,6 @@ var styles = {
 	'gentoochan' : '/stylesheets/gentoochan.css',
 	'greendark' : '/stylesheets/greendark.css',
 	'jungle' : '/stylesheets/jungle.css',
-	'luna' : '/stylesheets/luna.css',
 	'miku' : '/stylesheets/miku.css',
 	'nigrachan' : '/stylesheets/nigrachan.css',
 	'northboard_cb' : '/stylesheets/northboard_cb.css',
@@ -268,7 +267,7 @@ function dopost(form) {
 		localStorage.name = form.elements['name'].value.replace(/( |^)## .+$/, '');
 	}
 	if (form.elements['password']) {
-		localStorage.password = form.elements['password'].value;
+		localStorage.setItem(password, form.elements['password'].value);
 	}
 	if (form.elements['email'] && form.elements['email'].value != 'sage') {
 		localStorage.email = form.elements['email'].value;
@@ -358,11 +357,12 @@ function captchaSetup(){
 }
 
 function rememberStuff() {
+	console.log(localStorage.getItem("password"));
 	if (document.forms.post) {
 		if (document.forms.post.password) {
-			if (!localStorage.password)
-				localStorage.password = generatePassword();
-			document.forms.post.password.value = localStorage.password;
+			if (!localStorage.getItem("password") || localStorage.getItem("password") == "undefined")
+				localStorage.setItem("password", generatePassword());
+			document.forms.post.password.value = localStorage.getItem("password");
 		}
 		
 		if (localStorage.name && document.forms.post.elements['name'])
@@ -420,10 +420,11 @@ function init() {
 		
 		if(document.forms.postcontrols != undefined){
 		if (document.forms.postcontrols.password) {
-			if (!localStorage.password)
+			if (!localStorage.getItem("password") || localStorage.getItem("password") == "undefined"){
 				var password = generatePassword();
-			document.forms.postcontrols.password.value = password;
-			localStorage.password = password;
+				localStorage.setItem("password" , password);
+				document.forms.postcontrols.password.value = password;
+			}
 		}
 	}
 		
