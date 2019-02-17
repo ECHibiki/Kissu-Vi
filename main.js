@@ -357,7 +357,6 @@ function captchaSetup(){
 }
 
 function rememberStuff() {
-	console.log(localStorage.getItem("password"));
 	if (document.forms.post) {
 		if (document.forms.post.password) {
 			if (!localStorage.getItem("password") || localStorage.getItem("password") == "undefined")

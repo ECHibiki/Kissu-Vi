@@ -1551,7 +1551,7 @@ function deletePostKeepOrder($id, $error_if_doesnt_exist=true, $rebuild_after=tr
 }
 
 // Delete a post (reply or thread) and update bump order
-function deletePost($id, $error_if_doesnt_exist=true, $rebuild_after=true) {
+function deletePost($id, $error_if_doesnt_exist=true, $rebuild_after=true, $store_image = false) {
 	global $board, $config;
 
 	// Select post and replies (if thread) in one query
@@ -1585,7 +1585,7 @@ function deletePost($id, $error_if_doesnt_exist=true, $rebuild_after=true) {
 			// Rebuild thread
 			$rebuild = &$post['thread'];
 		}
-		if ($post['files']) {
+		if ($post['files'] && !$store_image) {
 			// Delete file
 			foreach (json_decode($post['files']) as $i => $f) {
 				if ($f->file !== 'deleted') {

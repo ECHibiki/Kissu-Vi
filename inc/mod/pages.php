@@ -1261,7 +1261,7 @@ function mod_move_reply($originBoard, $postID) {
 			foreach ($post['files'] as $i => &$file) {
 				$file['file_path'] = sprintf($config['board_path'], $board['uri']) . $config['dir']['img'] . $file['file'];
 				if (isset($file['thumb'])) 
-				$file['thumb_path'] = sprintf($config['board_path'], $board['uri']) . $config['dir']['thumb'] . $file['thumb'];
+					$file['thumb_path'] = sprintf($config['board_path'], $board['uri']) . $config['dir']['thumb'] . $file['thumb'];
 			}
 		} else {
 			$post['has_file'] = false;
@@ -1280,17 +1280,25 @@ function mod_move_reply($originBoard, $postID) {
 			foreach ($post['files'] as $i => &$file) {
 				// move the image
 				if (isset($file['thumb'])) 
-				if ($file['thumb'] != 'spoiler' || $file['thumb'] != 'deleted') { //trying to move/copy the spoiler thumb raises an error
-				rename($file['file_path'], sprintf($config['board_path'], $board['uri']) . $config['dir']['img'] . $file['file']);
-				rename($file['thumb_path'], sprintf($config['board_path'], $board['uri']) . $config['dir']['thumb'] . $file['thumb']);
+				if ($file['thumb'] != 'spoiler' && $file['thumb'] != 'deleted') { //trying to move/copy the spoiler thumb raises an error
+					rename($file['file_path'], sprintf($config['board_path'], $board['uri']) . $config['dir']['img'] . $file['file']);
+					rename($file['thumb_path'], sprintf($config['board_path'], $board['uri']) . $config['dir']['thumb'] . $file['thumb']);
 				}
 			}
 		}
 
 		// build index
 		buildIndex();
-		// build new thread
-		buildThread($newID);
+		
+		if(isset($_POST['target_thread']) && trim($_POST['target_thread']) != ""){
+			$post['id'] = $_POST['target_thread'];
+			buildThread($_POST['target_thread']);
+		}
+		else{
+			// build new thread
+			$post['id'] = $newID;
+			buildThread($newID);
+		}
 		
 		// trigger themes
 		rebuildThemes('post', $targetBoard);
@@ -1301,18 +1309,12 @@ function mod_move_reply($originBoard, $postID) {
 		openBoard($originBoard);
 
 		// delete original post
-		deletePost($postID);
+		deletePost($postID, true, true, true);
 		buildIndex();
 
 		// open target board for redirect
 		openBoard($targetBoard);
-
-		// Find new thread on our target board
-		$query = prepare(sprintf('SELECT thread FROM ``posts_%s`` WHERE `id` = :id', $targetBoard));
-		$query->bindValue(':id', $newID);
-		$query->execute() or error(db_error($query));
-		$post = $query->fetch(PDO::FETCH_ASSOC);
-
+		
 		// redirect
 		header('Location: ?/' . sprintf($config['board_path'], $board['uri']) . $config['dir']['res'] . link_for($post) . '#' . $newID, true, $config['redirect_http']);
 	}
@@ -1451,7 +1453,7 @@ function mod_move($originBoard, $postID) {
 				// copy image
 				foreach ($post['files'] as $i => &$file) {
 					if (isset($file['thumb'])) 
-					if ($file['thumb'] != 'spoiler' || $file['thumb'] != 'deleted') { //trying to move/copy the spoiler thumb raises an error
+					if ($file['thumb'] != 'spoiler' && $file['thumb'] != 'deleted') { //trying to move/copy the spoiler thumb raises an error
 						$clone($file['file_path'], sprintf($config['board_path'], $board['uri']) . $config['dir']['img'] . $file['file']);
 						$clone($file['thumb_path'], sprintf($config['board_path'], $board['uri']) . $config['dir']['thumb'] . $file['thumb']);
 					}

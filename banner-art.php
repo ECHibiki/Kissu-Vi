@@ -1,7 +1,13 @@
 <?php
-
-	$banner_dir_size = new FilesystemIterator(__dir__ . "/static/banners/", FilesystemIterator::SKIP_DOTS);
-	$r = rand(1,iterator_count($banner_dir_size));
-	$file = __dir__ . "/static/banners/banner-kissu-$r.png";
-	header('Content-Type: image/png');
-	readfile($file);
+	
+	$banners = scandir(__dir__ . "/static/banners/");
+	$r = rand(2,sizeof($banners) - 1);
+	$banner = __dir__ . "/static/banners/" . $banners[$r];
+	$ext = [];
+		
+	preg_match("/\..+$/", $banner, $ext);
+	
+	$ext_proc = substr($ext[0], 1);
+	
+	header('Content-Type: image/' . $ext_proc);
+	readfile($banner);
