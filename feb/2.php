@@ -21,7 +21,7 @@
 								<title>/feb/ - We got here in February</title>
 </head>
 <body class="8chan vichan is-not-moderator active-index" data-stylesheet="Dark-kissu.css">
-	<div class="boardlist"><span class="sub" data-description="0">[ <a href="/">home</a> ]</span>  <span class="sub" data-description="1">[ <a href="/b/">b</a> / <a href="/qa/">qa</a> / <a href="/lit/">lit</a> / <a href="/megu/">megu</a> ]</span>  <span class="sub" data-description="2">[ <a href="https://theatre.kissu.moe">sync</a> ]</span>  <span class="sub" data-description="3">[ <a href="http://swfchan.org/">f</a> / <a href="https://boards.4channel.org/qa/">qa4</a> / <a href="https://github.com/ECHibiki/ViQa-Kissu/">ViQa</a> ]</span></div><script type='text/javascript'>if (typeof do_boardlist != 'undefined') do_boardlist();</script>
+	<div class="boardlist"><span class="sub" data-description="0">[ <a href="/">home</a> ]</span>  <span class="sub" data-description="1">[ <a href="/b/">b</a> / <a href="/qa/">qa</a> / <a href="/lit/">lit</a> / <a href="/megu/">megu</a> ]</span>  <span class="sub" data-description="2">[ <a href="https://theatre.kissu.moe">sync</a> ]</span>  <span class="sub" data-description="3">[ <a href="https://konatachan.org/">k</a> / <a href="https://boards.4channel.org/qa/">qa4</a> / <a href="https://github.com/ECHibiki/ViQa-Kissu/">ViQa</a> ]</span></div><script type='text/javascript'>if (typeof do_boardlist != 'undefined') do_boardlist();</script>
 	<?php
 	$t = explode(" ", microtime())[0];
 	$expresion = '/(C:\\\xampp\\\htdocs\\\[a-zA-Z]+|\/var\/www\/html\/[a-zA-Z]+)/';
@@ -32,9 +32,12 @@
 	require_once ('inc/bans.php');
 
 	loadConfig();
+	if($config['ban_block']){
 	checkDNSBL();
 	checkBan();
+	}
 	echo explode(" ", microtime())[0] - $t;
+	
 ?>	
 		<img class="board_image" src="/banner-art.php" alt="" />	
 	<header>
@@ -48,21 +51,21 @@
 	
 
 			<form class="form_submit" name="post" onsubmit="return dopost(this);" enctype="multipart/form-data" action="/post.php" method="post">
-<div   style="display:none"><input   type="text"   name="2z0h♝a4glb☨y695k⚑xvjmdr"   value="5&#52;&#57;31"></div>
-<input value="C`5♛n}c#⛥Hu⚊XF⚞jdtsK⚮69w\Wz⛯&gt;Pa(xO qJ|e&amp;i]R'YQ,y*=8&lt;G_gfr^ " name="firstname" type="hidden">
+<input style="display:none" type="text" name="tkh3⚪gri1jpequczsxloa⛳6" value="">
+<input name="url" value="" type="hidden">
 <input type="hidden" name="board" value="feb">
-<input  style="display:none"  type="text"  name="text"  value="ox+/&gt; Nf7w(Q">
+<span style="display:none"><input type="text" name="lastname" value=""></span>
 	<table>
 		<tr>
 			<th>
-				Name				<input style="display:none" type="text" name="ti28vwmelrp⛝♊5h6o0⚌f4qky1d3" value="ZiPy⚎6@&amp;I!`⚒JFT)$r2VBH D+-g]⚟b9Lq^z1⚬j7xo0WS ">
+				Name				<input value="v^M8K0☏V♤9☝!☗%♸t♢Eld#'OPepm6FRA5Q nT4aWI(7y?xg +3Z{],♂U)1" name="user" type="hidden">
 			</th>
 			<td>
-				<input type="text" name="name" size="25" maxlength="35" autocomplete="off"> 				<input style="display:none" type="text" value="z&#9806;&#118;W&#41;Z.&#38;}s9g&#75;Q^&#49;pt⛖_&#61;C(JSi&#123;&#101; U+0&#9933;&#89;M%" name="suowz☈c♏2fa⚖">
+				<input type="text" name="name" size="25" maxlength="35" autocomplete="off"> 				<div style="display:none"><input type="text" name="q" value=""></div>
 			</td>
 		</tr>		<tr>
 			<th>
-				Options				<input style="display:none" type="text" value="Tdp⚟J=S:t5q |R" name="message">
+				Options				
 			</th>
 			<td>
 								<input style="opacity: 0;position: absolute;bottom:0;right:0" type="test" value="EatsChromeAuto"/>
@@ -132,7 +135,7 @@
 		</tr>		<tr><td colspan=2><span name='markup-hint' style='font-size:10px'>Markup tags exist for bold, itallics, header, spoiler etc. as listed in " [options] > View Formatting "</span></td></tr>
 	</table>
 
-<input type="hidden" name="hash" value="a37b606e916da9294debf2bf8db51e1420b0c11a">
+<input type="hidden" name="hash" value="e1d44067f9834b9e8691c06a3451a0b4cfc7bab4">
 </form>
 
 <script type="text/javascript">
@@ -179,7 +182,7 @@
 			</span>
 	</form>
 	
-	<div class="boardlist bottom"><span class="sub" data-description="0">[ <a href="/">home</a> ]</span>  <span class="sub" data-description="1">[ <a href="/b/">b</a> / <a href="/qa/">qa</a> / <a href="/lit/">lit</a> / <a href="/megu/">megu</a> ]</span>  <span class="sub" data-description="2">[ <a href="https://theatre.kissu.moe">sync</a> ]</span>  <span class="sub" data-description="3">[ <a href="http://swfchan.org/">f</a> / <a href="https://boards.4channel.org/qa/">qa4</a> / <a href="https://github.com/ECHibiki/ViQa-Kissu/">ViQa</a> ]</span></div>
+	<div class="boardlist bottom"><span class="sub" data-description="0">[ <a href="/">home</a> ]</span>  <span class="sub" data-description="1">[ <a href="/b/">b</a> / <a href="/qa/">qa</a> / <a href="/lit/">lit</a> / <a href="/megu/">megu</a> ]</span>  <span class="sub" data-description="2">[ <a href="https://theatre.kissu.moe">sync</a> ]</span>  <span class="sub" data-description="3">[ <a href="https://konatachan.org/">k</a> / <a href="https://boards.4channel.org/qa/">qa4</a> / <a href="https://github.com/ECHibiki/ViQa-Kissu/">ViQa</a> ]</span></div>
 	<div class="pages">
 		<form action="/feb/index.php" method="get"><input type="submit" value="Previous" /></form> 		 [<a href="/feb/index.php">1</a>]				 [<a class="selected">2</a>] 		 Next
 					 | <a href="/feb/catalog">Catalog</a>

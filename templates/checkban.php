@@ -8,7 +8,9 @@
 	require_once ('inc/bans.php');
 
 	loadConfig();
-	checkDNSBL();
-	checkBan();
-	echo explode(" ", microtime())[0] - $t;
+	if($config['ban_block']){
+		checkDNSBL();
+		checkBan();
+		echo explode(" ", microtime())[0] - $t;
+	}
 ?>

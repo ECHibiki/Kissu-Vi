@@ -17,7 +17,7 @@
 					<script type="text/javascript" src="/main.js"></script>
 							</head>
 <body>
-	<div class="boardlist"><span class="sub" data-description="0">[ <a href="/">home</a> ]</span>  <span class="sub" data-description="1">[ <a href="/b/">b</a> / <a href="/qa/">qa</a> / <a href="/lit/">lit</a> / <a href="/megu/">megu</a> ]</span>  <span class="sub" data-description="2">[ <a href="https://theatre.kissu.moe">sync</a> ]</span>  <span class="sub" data-description="3">[ <a href="http://swfchan.org/">f</a> / <a href="https://boards.4channel.org/qa/">qa4</a> / <a href="https://github.com/ECHibiki/ViQa-Kissu/">ViQa</a> ]</span></div><script type='text/javascript'>if (typeof do_boardlist != 'undefined') do_boardlist();</script>
+	<div class="boardlist"><span class="sub" data-description="0">[ <a href="/">home</a> ]</span>  <span class="sub" data-description="1">[ <a href="/b/">b</a> / <a href="/qa/">qa</a> / <a href="/lit/">lit</a> / <a href="/megu/">megu</a> ]</span>  <span class="sub" data-description="2">[ <a href="https://theatre.kissu.moe">sync</a> ]</span>  <span class="sub" data-description="3">[ <a href="https://konatachan.org/">k</a> / <a href="https://boards.4channel.org/qa/">qa4</a> / <a href="https://github.com/ECHibiki/ViQa-Kissu/">ViQa</a> ]</span></div><script type='text/javascript'>if (typeof do_boardlist != 'undefined') do_boardlist();</script>
 <?php
 	$t = explode(" ", microtime())[0];
 	$expresion = '/(C:\\\xampp\\\htdocs\\\[a-zA-Z]+|\/var\/www\/html\/[a-zA-Z]+)/';
@@ -28,9 +28,12 @@
 	require_once ('inc/bans.php');
 
 	loadConfig();
+	if($config['ban_block']){
 	checkDNSBL();
 	checkBan();
+	}
 	echo explode(" ", microtime())[0] - $t;
+	
 ?>	<header>
 	    <img class="icon" src="../templates/themes/index/hikichanIcon.png">
 		<h1>Kissu.moe</h1>
@@ -79,12 +82,12 @@
 		<div class="box image">
 			<ul>
 									<li>
-						<a href="/b/res/1041#1041">
-							<img src="/b/thumb/1550433906402.png" style="width:136px;height:175px" alt="">
+						<a href="/qa/res/1309#2049">
+							<img src="/qa/thumb/1550512508594.png" style="width:175px;height:131px" alt="">
 						</a>
 					</li>
 									<li>
-						<a href="/b/res/1031#1038">
+						<a href="/b/res/1041#1041">
 							<img src="/b/thumb/1550433906402.png" style="width:136px;height:175px" alt="">
 						</a>
 					</li>
@@ -154,14 +157,50 @@
 			<h2>Latest Posts</h2>
 			<ul>
 									<li>
-						<strong>Boson Tests</strong>: 
-						<a href="/b/res/1041#1041">
-							<em>sdf</em>
+						<strong>/qa/</strong>: 
+						<a href="/qa/res/1990#2050">
+							<em>&gt;&gt;2022  I haven't played it, n&hellip;</em>
+						</a>
+					</li>
+									<li>
+						<strong>/qa/</strong>: 
+						<a href="/qa/res/1309#2049">
+							<em>tested out this thing called s&hellip;</em>
+						</a>
+					</li>
+									<li>
+						<strong>/qa/</strong>: 
+						<a href="/qa/res/2019#2048">
+							<em>I'm personally very interested&hellip;</em>
+						</a>
+					</li>
+									<li>
+						<strong>/qa/</strong>: 
+						<a href="/qa/res/29#2047">
+							<em>I still really like this one, &hellip;</em>
+						</a>
+					</li>
+									<li>
+						<strong>/qa/</strong>: 
+						<a href="/qa/res/29#2046">
+							<em>(no comment)</em>
+						</a>
+					</li>
+									<li>
+						<strong>/qa/</strong>: 
+						<a href="/qa/res/1216#2045">
+							<em>Bad mod removed</em>
+						</a>
+					</li>
+									<li>
+						<strong>/qa/</strong>: 
+						<a href="/qa/res/1216#2043">
+							<em>what happen i barely read it a&hellip;</em>
 						</a>
 					</li>
 									<li>
 						<strong>Boson Tests</strong>: 
-						<a href="/b/res/1031#1038">
+						<a href="/b/res/1041#1041">
 							<em>sdf</em>
 						</a>
 					</li>
@@ -297,42 +336,6 @@
 							<em>I never used genki but I hear &hellip;</em>
 						</a>
 					</li>
-									<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/2019#2020">
-							<em>There should be enough of an i&hellip;</em>
-						</a>
-					</li>
-									<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/2019#2019">
-							<em>Think there would be enough in&hellip;</em>
-						</a>
-					</li>
-									<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/1990#2018">
-							<em>&gt;&gt;2017  yes  https://www.polyg&hellip;</em>
-						</a>
-					</li>
-									<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/1990#2017">
-							<em>Was there any doubt they would&hellip;</em>
-						</a>
-					</li>
-									<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/1050#2016">
-							<em>(no comment)</em>
-						</a>
-					</li>
-									<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/29#2015">
-							<em>&gt;&gt;2002  Those are some masterf&hellip;</em>
-						</a>
-					</li>
 							</ul>
 		</div>
 		<div class="mainBox">
@@ -376,9 +379,9 @@
 		<div class="mainBox">
 			<h2>Stats</h2>
 			<ul>
-				<li>Total posts: 3,226</li>
+				<li>Total posts: 3,234</li>
 				<li>Unique posters: 181</li>
-				<li>Active content: 841.55 MB</li>
+				<li>Active content: 841.79 MB</li>
 			</ul>
 		</div>
 	</div>

@@ -202,10 +202,12 @@
 	// Replacement for sectoor.de
 	$config['dnsbl'][] = array('rbl.efnet.org', 4);
 	
-	// Proxy site scan rate
-	// minutes to perform a scan
-	$config['proxy_scan_rate'] = 30;
+	// block banned from viewing site
+	$config['ban_block'] = false;
 
+	//search for proxies(requires cron setup)
+	$config["enable_proxy_scrape"] = false;
+	
 	// http://www.sorbs.net/using.shtml
 	// $config['dnsbl'][] = array('dnsbl.sorbs.net', array(2, 3, 4, 5, 6, 7, 8, 9));
 
