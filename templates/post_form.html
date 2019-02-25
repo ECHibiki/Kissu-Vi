@@ -33,7 +33,6 @@
 					{% if not config.always_noko %}<option value="noko">Remain</option>{% endif %}
 				</select>
 				{% else %}
-				<input style="opacity: 0;position: absolute;bottom:0;right:0" type="test" value="EatsChromeAuto"/>
 				<input type="text" name="email" size="25" maxlength="40" autocomplete="off" id='option_input'>
 				<select id="option_simplifier" autocomplete="off">
 					<option value="">Options</option>
@@ -161,7 +160,6 @@
 				{{ antibot.html() }}
 			</th>
 			<td>
-				<input style="opacity: 0;position: absolute;right:0;bottom:0" type="test" value="EatsChromeAuto"/>
 				<input type="text" name="embed" value="" size="30" maxlength="120" autocomplete="off">
 			</td>
 		</tr>
@@ -193,8 +191,7 @@
 				{{ antibot.html() }}
 			</th>
 			<td>
-				<input style="opacity: 0;position: absolute;right:0;bottom:0" type="password" value="EatsChromeAuto"/>
-				<input type="password" name="password" value="" size="12" maxlength="18" autocomplete="off"> 
+				<input type="password" name="password" value="" size="12" maxlength="18" autocomplete="new-password"> 
 				<span class="unimportant">{% trans %}(For file deletion.){% endtrans %}</span>
 				{{ antibot.html() }}
 			</td>

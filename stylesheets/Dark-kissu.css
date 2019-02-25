@@ -60,6 +60,15 @@ div.post.reply div.body a:link:hover, div.post.reply div.body a:visited:hover {
 .intro a.email, p.intro a.email span.name, p.intro a.email:hover, p.intro a.email:hover span.name {
 	color: #32ddaf;
 }
+.intro a.noko, p.intro a.noko span.name, p.intro a.noko:hover, p.intro a.noko:hover span.name {
+	color: #8c7bce;
+}
+.intro a.sage, p.intro a.sage span.name, p.intro a.noko:hover, p.intro a.noko:hover span.name {
+	color: #98982f;
+}
+.intro a.repo, p.intro a.repo span.name, p.intro a.repo:hover, p.intro a.repo:hover span.name {
+	color: #b14c23;
+}
 input[type="text"], textarea, select {
 	background: #333333;
 	color: #CCCCCC;
@@ -191,6 +200,24 @@ body {
 }
 
 a:link, a:visited, .intro a.email span.name {
+	color: #CCCCCC;
+	text-decoration: none;
+	font-family: Verdana, Arial, sans-serif;
+	font-size: 12px;
+}
+a:link, a:visited, .intro a.noko span.name {
+	color: #CCCCCC;
+	text-decoration: none;
+	font-family: Verdana, Arial, sans-serif;
+	font-size: 12px;
+}
+a:link, a:visited, .intro a.sage span.name {
+	color: #CCCCCC;
+	text-decoration: none;
+	font-family: Verdana, Arial, sans-serif;
+	font-size: 12px;
+}
+a:link, a:visited, .intro a.repo span.name {
 	color: #CCCCCC;
 	text-decoration: none;
 	font-family: Verdana, Arial, sans-serif;
