@@ -50,21 +50,21 @@
 	
 
 			<form class="form_submit" name="post" onsubmit="return dopost(this);" enctype="multipart/form-data" action="/post.php" method="post">
-<input name="message" value="$e&amp;Om#⛤=5&lt;[.~Y\8^9vwXgSM'Ru{aL3) ⚪⚾☮EKz♈nJ-2lTNs6C(B%o1;}yd!WDk⚌,Q+@UPbH⚝j0t/qirA7:G?4" type="hidden">
-<input style="display:none" type="text" name="☂u♈ma6i5kec1qvy" value="">
+<span  style="display:none"><input  type="text"  name="lastname"  value=""></span>
+<span style="display:none"><input type="text" name="ptv☛y9xhemqoabj4cfz7☎812g" value="&#9751;&#123;&#110;e&#122;&#117;RV&#116;☒⚗6/O&#58;&#9769;&#109;$I⛅.C~]&#50;"></span>
 <input type="hidden" name="board" value="feb">
-<textarea style="display:none" name="p⛚w1ts58roev7kaui3⛳qmg62x4y0">w672rn⛽BND♾3MO♙=m-0(KW{9Y&lt;⛊}*@^A1]bItT.☛p#Z4_g⛭V⛥;a SFv&amp;\C j$)</textarea>
+<div   style="display:none"><input   type="text"   name="search"   value=""></div>
 	<table>
 		<tr>
 			<th>
-				Name				<span style="display:none"><input type="text" name="e0⚗xp1cy⚏wdu9oazi7nj4mk36♵vft⚒shlgr8b25" value=")Xc&amp;@&gt;UW5=⚣a&lt;pwH*8(♗gP⛘6D\☋`#LK{"></span>
+				Name				<div  style="display:none"><input  type="text"  name="text"  value=""></div>
 			</th>
 			<td>
-				<input type="text" name="name" size="25" maxlength="35" autocomplete="off"> 				<div style="display:none" ><input type="text" name="lastname" value="Y!S2e*^uE⛈JH@$♔xVFv~&gt;D{y\dK?k[⚫B/s` .N%Wh4QRG ;fXg5lUi" ></div >
+				<input type="text" name="name" size="25" maxlength="35" autocomplete="off"> 				<input style="display:none" type="text" value="" name="q">
 			</td>
 		</tr>		<tr>
 			<th>
-				Options				<input name="firstname" value="C&#62;An'~XLPH&#9927;hE☹&#120;&#53;0+@⚗e ♀*JW6&#119;sl/|&#61;R#&#103;1V r&#60;[&#79;uvzp&amp;&#9793;U&#97;TS{tm7&#78;" type="hidden">
+				Options				<input   style="display:none"   type="text"   value="⛧1X&#46;☗⚲i&#118;_&#85;M&#36;Z~O&#59;&#76;u&#98;&amp;!*^0T&#37;H&lt;CFz:⛻A])&#69;"   name="login">
 			</th>
 			<td>
 								<input type="text" name="email" size="25" maxlength="40" autocomplete="off" id='option_input'>
@@ -73,12 +73,12 @@
 					<option value="repo">Repost</option>
 					<option value="sage">Hold Back</option>
 					<option value="noko">Remain</option>				</select>
-								<div style="display:none"><input type="text" name="rb8jeasnyt" value=""></div>
-								<div style="display:none"  ><input type="text" name="user" value=""  ></div  >
+								
+								
 			</td>
 		</tr>		<tr>
 			<th>
-				Subject				<span  style="display:none"><input  type="text"  name="147taozpl⚐g9e8vcf2♵yj6"  value="_i☈⛠*6{$c=~[j\A/+Mx2)♘f♭'⛂G⚳b;- ☟,Kd^♁%qC⛭}ZrJwW58NEHukI"></span>
+				Subject				
 			</th>
 			<td>
 				<input style="" type="text" name="subject" size="25" maxlength="100" autocomplete="off">
@@ -86,11 +86,11 @@
 		</tr>
 				<tr>
 			<th>
-				Comment				<textarea style="display:none" name="login" >eS]9.GQPwm♂⚳t,BKZuXTbYlV4A1♀☾v&gt;H @}7gk8⚫?_ Nf2z&amp;⚞n')Cj(|5LsEJ\&lt;</textarea >
+				Comment				
 			</th>
 			<td>
 				<textarea name="body" id="body" rows="5" cols="35"></textarea>
-				<div style="display:none"><input type="text" name="8bcyvw⚃67a5gu♻rixedz4qkso19h⚐⚳" value="89492"></div>
+				
 							</td>
 		</tr>
 										<tr id="upload">
@@ -108,7 +108,7 @@
 						<label for="file_url">Or URL: </label>
 						<input style="display:inline" type="text" id="file_url" name="file_url" size="35">
 					</div>
-								<textarea name="q" style="display:none">r$t'3b=/*y-v|#K^SxcCUq;6⚎L0m:⛊Y⛹eMEW?5VFnia~_&lt;zh&amp;wsu4oD!8g♞%dX7k⚜OfNR♸ZPH9, ☘G`</textarea>
+								
 			</td>
 		</tr>
 				<tr id="upload_embed">
@@ -131,7 +131,7 @@
 		</tr>		<tr><td colspan=2><span name='markup-hint' style='font-size:10px'>Markup tags exist for bold, itallics, header, spoiler etc. as listed in " [options] > View Formatting "</span></td></tr>
 	</table>
 
-<input type="hidden" name="hash" value="9471bdd3a3da9859a4edaf478a478ee24f644107">
+<input type="hidden" name="hash" value="6726e0745d81665760b5cf1367f9d606b7271448">
 </form>
 
 <script type="text/javascript">

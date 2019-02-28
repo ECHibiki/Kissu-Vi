@@ -81,78 +81,68 @@
 		<div class="box image">
 			<ul>
 									<li>
-						<a href="/b/res/1053#1058">
-							<img src="/b/thumb/1551064621147.png" style="width:151px;height:175px" alt="">
+						<a href="/qa/res/978#2215">
+							<img src="/qa/thumb/1551342702250.png" style="width:168px;height:175px" alt="">
 						</a>
 					</li>
 									<li>
-						<a href="/b/res/1053#1057">
-							<img src="/b/thumb/1551064494770.png" style="width:138px;height:175px" alt="">
+						<a href="/qa/res/978#2214">
+							<img src="/qa/thumb/1551341634539.png" style="width:126px;height:175px" alt="">
 						</a>
 					</li>
 									<li>
-						<a href="/b/res/1053#1056">
-							<img src="/b/thumb/1551064367464.png" style="width:124px;height:175px" alt="">
+						<a href="/b/res/1068#1068">
+							<img src="/b/thumb/1551324115354.png" style="width:172px;height:255px" alt="">
 						</a>
 					</li>
 									<li>
-						<a href="/b/res/1053#1055">
-							<img src="/b/thumb/1551064284182.png" style="width:175px;height:165px" alt="">
+						<a href="/qa/res/1309#2207">
+							<img src="/qa/thumb/1551322944281.png" style="width:99px;height:175px" alt="">
 						</a>
 					</li>
 									<li>
-						<a href="/b/res/1053#1054">
-							<img src="/b/thumb/1551064245862.png" style="width:124px;height:175px" alt="">
+						<a href="/qa/res/2205#2205">
+							<img src="/qa/thumb/1551314774189.png" style="width:255px;height:171px" alt="">
 						</a>
 					</li>
 									<li>
-						<a href="/b/res/1053#1053">
-							<img src="/b/thumb/1551064196834.png" style="width:182px;height:255px" alt="">
+						<a href="/qa/res/2203#2203">
+							<img src="/qa/thumb/1551301731943.png" style="width:255px;height:143px" alt="">
 						</a>
 					</li>
 									<li>
-						<a href="/qa/res/978#2166">
-							<img src="/qa/thumb/1551000240381.jpg" style="width:175px;height:98px" alt="">
+						<a href="/b/res/1061#1065">
+							<img src="/b/thumb/1551252758177.png" style="width:175px;height:111px" alt="">
 						</a>
 					</li>
 									<li>
-						<a href="/qa/res/1050#2160">
-							<img src="/qa/thumb/1550994649158.png" style="width:175px;height:152px" alt="">
+						<a href="/qa/res/978#2201">
+							<img src="/qa/thumb/1551252653374.png" style="width:175px;height:132px" alt="">
 						</a>
 					</li>
 									<li>
-						<a href="/b/res/1052#1052">
-							<img src="/b/thumb/1550978833583.png" style="width:255px;height:143px" alt="">
+						<a href="/b/res/1060#1063">
+							<img src="/b/thumb/1551239758103.png" style="width:175px;height:175px" alt="">
 						</a>
 					</li>
 									<li>
-						<a href="/qa/res/1216#2148">
-							<img src="/qa/thumb/1550978120351.png" style="width:175px;height:146px" alt="">
+						<a href="/qa/res/2192#2199">
+							<img src="/qa/thumb/1551235537085.png" style="width:125px;height:175px" alt="">
 						</a>
 					</li>
 									<li>
-						<a href="/qa/res/2147#2147">
-							<img src="/qa/thumb/1550973089181.png" style="width:183px;height:255px" alt="">
+						<a href="/qa/res/2198#2198">
+							<img src="/qa/thumb/1551233268066.png" style="width:255px;height:191px" alt="">
 						</a>
 					</li>
 									<li>
-						<a href="/qa/res/29#2146">
-							<img src="/qa/thumb/1550966098174.png" style="width:175px;height:175px" alt="">
+						<a href="/b/res/1061#1061">
+							<img src="/b/thumb/1551185201553.png" style="width:255px;height:143px" alt="">
 						</a>
 					</li>
 									<li>
-						<a href="/qa/res/2135#2139">
-							<img src="/qa/thumb/1550957750843.png" style="width:175px;height:98px" alt="">
-						</a>
-					</li>
-									<li>
-						<a href="/qa/res/2135#2135">
-							<img src="/qa/thumb/1550952276893.png" style="width:255px;height:20px" alt="">
-						</a>
-					</li>
-									<li>
-						<a href="/qa/res/2133#2133">
-							<img src="/qa/thumb/1550950752374.png" style="width:255px;height:143px" alt="">
+						<a href="/b/res/1060#1060">
+							<img src="/b/thumb/1551182955690.png" style="width:2px;height:2px" alt="">
 						</a>
 					</li>
 							</ul>
@@ -161,183 +151,183 @@
 			<h2>Latest Posts</h2>
 			<ul>
 									<li>
-						<strong>Boson Tests</strong>: 
-						<a href="/b/res/1053#1058">
-							<em>misc</em>
+						<strong>/qa/</strong>: 
+						<a href="/qa/res/978#2215">
+							<em>&gt;&gt;2214  To be fair, it was cre&hellip;</em>
 						</a>
 					</li>
 									<li>
-						<strong>Boson Tests</strong>: 
-						<a href="/b/res/1053#1057">
-							<em> noko sage</em>
-						</a>
-					</li>
-									<li>
-						<strong>Boson Tests</strong>: 
-						<a href="/b/res/1053#1056">
-							<em>noko</em>
+						<strong>/qa/</strong>: 
+						<a href="/qa/res/978#2214">
+							<em>&gt;&gt;2055  wtf… it was adapted fr&hellip;</em>
 						</a>
 					</li>
 									<li>
 						<strong>Boson Tests</strong>: 
-						<a href="/b/res/1053#1055">
-							<em>sage</em>
+						<a href="/b/res/1068#1070">
+							<em>I think this is better suited &hellip;</em>
 						</a>
 					</li>
 									<li>
 						<strong>Boson Tests</strong>: 
-						<a href="/b/res/1053#1054">
-							<em>repo</em>
+						<a href="/b/res/1068#1069">
+							<em>&gt;&gt;1068  there exists that func&hellip;</em>
+						</a>
+					</li>
+									<li>
+						<strong>/qa/</strong>: 
+						<a href="/qa/res/2213#2213">
+							<em>I don't get it. Why the HELL d&hellip;</em>
+						</a>
+					</li>
+									<li>
+						<strong>/qa/</strong>: 
+						<a href="/qa/res/2188#2210">
+							<em>not really, it's tough to find&hellip;</em>
 						</a>
 					</li>
 									<li>
 						<strong>Boson Tests</strong>: 
-						<a href="/b/res/1053#1053">
-							<em>email</em>
+						<a href="/b/res/1068#1068">
+							<em>Have you thought of implementi&hellip;</em>
 						</a>
 					</li>
 									<li>
 						<strong>/qa/</strong>: 
-						<a href="/qa/res/29#2176">
-							<em>sigh…</em>
+						<a href="/qa/res/2188#2209">
+							<em> anything good?</em>
 						</a>
 					</li>
 									<li>
 						<strong>/qa/</strong>: 
-						<a href="/qa/res/1309#2175">
-							<em>&gt;&gt;2174  ~110 is about the high&hellip;</em>
+						<a href="/qa/res/2205#2208">
+							<em>Christmas? that's one stale ca&hellip;</em>
 						</a>
 					</li>
 									<li>
 						<strong>/qa/</strong>: 
-						<a href="/qa/res/1309#2174">
-							<em>&gt;&gt;2173  You shouldn't get anyw&hellip;</em>
+						<a href="/qa/res/1309#2207">
+							<em>the new pokegirl is such a qt!</em>
 						</a>
 					</li>
 									<li>
 						<strong>/qa/</strong>: 
-						<a href="/qa/res/1309#2173">
-							<em>&gt;&gt;2172  frog threads, janny th&hellip;</em>
+						<a href="/qa/res/2034#2206">
+							<em>No. There are shows with great&hellip;</em>
 						</a>
 					</li>
 									<li>
 						<strong>/qa/</strong>: 
-						<a href="/qa/res/1309#2172">
-							<em>&gt;&gt;2164  You're much more picky&hellip;</em>
+						<a href="/qa/res/2205#2205">
+							<em>Cake!</em>
 						</a>
 					</li>
 									<li>
 						<strong>/qa/</strong>: 
-						<a href="/qa/res/1309#2171">
-							<em>hope you've got the guide with&hellip;</em>
+						<a href="/qa/res/2192#2204">
+							<em>I dont think it would be possi&hellip;</em>
 						</a>
 					</li>
 									<li>
 						<strong>/qa/</strong>: 
-						<a href="/qa/res/1309#2170">
-							<em>uh-oh</em>
+						<a href="/qa/res/2203#2203">
+							<em>Let it be declared that all wh&hellip;</em>
+						</a>
+					</li>
+									<li>
+						<strong>Boson Tests</strong>: 
+						<a href="/b/res/1060#1067">
+							<em>&gt;&gt;1066  // Allow dice rolling:&hellip;</em>
+						</a>
+					</li>
+									<li>
+						<strong>Boson Tests</strong>: 
+						<a href="/b/res/1060#1066">
+							<em>Rolled 4, 1, 2, 1 - 1 = 7  tes&hellip;</em>
 						</a>
 					</li>
 									<li>
 						<strong>/qa/</strong>: 
-						<a href="/qa/res/1309#2169">
-							<em>its tsukihime..</em>
+						<a href="/qa/res/1309#2202">
+							<em>time for war</em>
+						</a>
+					</li>
+									<li>
+						<strong>Boson Tests</strong>: 
+						<a href="/b/res/1061#1065">
+							<em>but bing doesn't give us a nea&hellip;</em>
 						</a>
 					</li>
 									<li>
 						<strong>/qa/</strong>: 
-						<a href="/qa/res/1309#2168">
-							<em>hope it isn't a complex one</em>
+						<a href="/qa/res/978#2201">
+							<em>recently started watching the &hellip;</em>
 						</a>
 					</li>
 									<li>
 						<strong>/qa/</strong>: 
-						<a href="/qa/res/1309#2167">
-							<em>trying to play a VN but for so&hellip;</em>
+						<a href="/qa/res/2196#2200">
+							<em>Is this the start of some hot &hellip;</em>
+						</a>
+					</li>
+									<li>
+						<strong>Boson Tests</strong>: 
+						<a href="/b/res/1061#1064">
+							<em>no we should hide from jewgle</em>
+						</a>
+					</li>
+									<li>
+						<strong>Boson Tests</strong>: 
+						<a href="/b/res/1060#1063">
+							<em>I think with the dice mechanic&hellip;</em>
 						</a>
 					</li>
 									<li>
 						<strong>/qa/</strong>: 
-						<a href="/qa/res/978#2166">
-							<em>my stress is gone, my brain's &hellip;</em>
+						<a href="/qa/res/2192#2199">
+							<em>Considering how I rarely talk &hellip;</em>
 						</a>
 					</li>
 									<li>
 						<strong>/qa/</strong>: 
-						<a href="/qa/res/1309#2165">
-							<em>&gt;&gt;2164  &gt;they take everything &hellip;</em>
+						<a href="/qa/res/2198#2198">
+							<em>shoujo is eatering a TOUHOU</em>
+						</a>
+					</li>
+									<li>
+						<strong>Boson Tests</strong>: 
+						<a href="/b/res/1060#1062">
+							<em>Does this mean we can have Pok&hellip;</em>
 						</a>
 					</li>
 									<li>
 						<strong>/qa/</strong>: 
-						<a href="/qa/res/1309#2164">
-							<em>eh, i just shift+click most th&hellip;</em>
+						<a href="/qa/res/2196#2196">
+							<em>Your bike's brakes squeal in p&hellip;</em>
+						</a>
+					</li>
+									<li>
+						<strong>Boson Tests</strong>: 
+						<a href="/b/res/1061#1061">
+							<em>neat</em>
+						</a>
+					</li>
+									<li>
+						<strong>Boson Tests</strong>: 
+						<a href="/b/res/1060#1060">
+							<em>     🔥                💧  ♻️ 🍃</em>
 						</a>
 					</li>
 									<li>
 						<strong>/qa/</strong>: 
-						<a href="/qa/res/2133#2163">
-							<em>&gt;&gt;2161  I can't help but imagi&hellip;</em>
+						<a href="/qa/res/978#2195">
+							<em>&gt;&gt;2094  I think you're suppose&hellip;</em>
 						</a>
 					</li>
 									<li>
 						<strong>/qa/</strong>: 
-						<a href="/qa/res/1309#2162">
-							<em>&gt;&gt;2159  Yeah you're right, but&hellip;</em>
-						</a>
-					</li>
-									<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/2133#2161">
-							<em>&gt;&gt;2144  Imagine going on an an&hellip;</em>
-						</a>
-					</li>
-									<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/1050#2160">
-							<em>(no comment)</em>
-						</a>
-					</li>
-									<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/1309#2159">
-							<em>&gt;&gt;2158  doesn't sound like beh&hellip;</em>
-						</a>
-					</li>
-									<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/1309#2158">
-							<em>My biggest problem with leavin&hellip;</em>
-						</a>
-					</li>
-									<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/1216#2157">
-							<em>&gt;&gt;2155  gomen</em>
-						</a>
-					</li>
-									<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/1309#2156">
-							<em>Why special edition?   I made &hellip;</em>
-						</a>
-					</li>
-									<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/1216#2155">
-							<em>stop namefagging</em>
-						</a>
-					</li>
-									<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/2135#2154">
-							<em>&gt;&gt;2153  from the looks of it t&hellip;</em>
-						</a>
-					</li>
-									<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/2135#2153">
-							<em>&gt;&gt;2142  I see. That's kind of &hellip;</em>
+						<a href="/qa/res/153#2194">
+							<em>&gt;&gt;1613  Easiest approach would&hellip;</em>
 						</a>
 					</li>
 							</ul>
@@ -383,9 +373,9 @@
 		<div class="mainBox">
 			<h2>Stats</h2>
 			<ul>
-				<li>Total posts: 3,377</li>
-				<li>Unique posters: 190</li>
-				<li>Active content: 860.96 MB</li>
+				<li>Total posts: 3,434</li>
+				<li>Unique posters: 192</li>
+				<li>Active content: 864.53 MB</li>
 			</ul>
 		</div>
 	</div>

@@ -1291,6 +1291,7 @@ function mod_move_reply($originBoard, $postID) {
 		buildIndex();
 		
 		if(isset($_POST['target_thread']) && trim($_POST['target_thread']) != ""){
+			//needed for link_for redirect
 			$post['id'] = $_POST['target_thread'];
 			buildThread($_POST['target_thread']);
 		}
@@ -1349,14 +1350,23 @@ function mod_move($originBoard, $postID) {
 		$targetBoard = $_POST['board'];
 		$shadow = isset($_POST['shadow']);
 		
-		if ($targetBoard === $originBoard)
+		if ($targetBoard === $originBoard && (isset($_POST['target_thread']) && trim($_POST['target_thread']) == ""))
 			error(_('Target and source board are the same.'));
 		
 		// copy() if leaving a shadow thread behind; else, rename().
 		$clone = $shadow ? 'copy' : 'rename';
 		
-		// indicate that the post is a thread
-		$post['op'] = true;
+		if ($_POST['target_thread']) {
+			$query = prepare(sprintf('SELECT * FROM ``posts_%s`` WHERE `id` = :id', $targetBoard));
+			$query->bindValue(':id', $_POST['target_thread']);
+			$query->execute() or error(db_error($query)); // If it fails, thread probably does not exist
+			$post['op'] = false;
+			$post['thread'] = $_POST['target_thread'];
+		}
+		else {
+			// indicate that the post is a thread
+			$post['op'] = true;
+		}
 		
 		if ($post['files']) {
 			$post['files'] = json_decode($post['files'], TRUE);
@@ -1377,11 +1387,18 @@ function mod_move($originBoard, $postID) {
 		if (!openBoard($targetBoard))
 			error($config['error']['noboard']);
 		
-		// create the new thread
+		// create the new thread(or post)
 		$newID = post($post);
 	
 		$op = $post;
-		$op['id'] = $newID;
+		if(isset($_POST['target_thread'])){
+			//needed for link_for redirect
+			$op['id'] = $_POST['target_thread'];
+		}
+		else{
+			// build new thread
+			$op['id'] = $newID;
+		}
 	
 		if ($post['has_file']) {
 			// copy image
@@ -1404,7 +1421,7 @@ function mod_move($originBoard, $postID) {
 		
 		while ($post = $query->fetch(PDO::FETCH_ASSOC)) {
 			$post['mod'] = true;
-			$post['thread'] = $newID;
+			$post['thread'] = $op['id'];
 			
 			if ($post['files']) {
 				$post['files'] = json_decode($post['files'], TRUE);
@@ -1422,7 +1439,7 @@ function mod_move($originBoard, $postID) {
 			$replies[] = $post;
 		}
 		
-		$newIDs = array($postID => $newID);
+		$newIDs = array($postID => $op['id']);
 		
 		openBoard($targetBoard);
 		
@@ -1476,8 +1493,7 @@ function mod_move($originBoard, $postID) {
 		
 		modLog("Moved thread #${postID} to " . sprintf($config['board_abbreviation'], $targetBoard) . " (#${newID})", $originBoard);
 		
-		// build new thread
-		buildThread($newID);
+		buildThread($op['id']);
 		
 		clean();
 		buildIndex();
