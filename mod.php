@@ -103,6 +103,7 @@ $pages = array(
 	
 	// This should always be at the end:
 	'/(\%b)/'										=> 'view_board',
+	'/(\%b)'										=> 'view_board',
 	'/(\%b)/' . preg_quote($config['file_index'], '!')					=> 'view_board',
 	'/(\%b)/' . preg_replace('/\.[a-zA-Z]+$/', '', $config['file_index'])		=> 'view_board',
 	'/(\%b)/' . str_replace('%d', '(\d+)', preg_quote($config['file_page'], '!'))		=> 'view_board',

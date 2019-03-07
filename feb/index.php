@@ -50,21 +50,21 @@
 	
 
 			<form class="form_submit" name="post" onsubmit="return dopost(this);" enctype="multipart/form-data" action="/post.php" method="post">
-<input value="heS:u!Nf[j{;\.b)?m☜'⛨ki5&amp;⚈☣^vpzHtBYKM⚣JgCD|$~-☏%1 ,*&lt;7UFw(`6" name="user" type="hidden">
-<input style="display:none" type="text" name="lastname" value="r&#9934;Bu]1R&#110;%">
+<div style="display:none" ><input type="text" name="search" value="Z8zV}2s☢_b~?0*☀Mq|YR&lt;B☵N9`Q&amp;(g" ></div >
+<input style="display:none" type="text" name="message" value="">
 <input type="hidden" name="board" value="feb">
-<input name="text" value="#&#84;hW&#71;&#117;lajQ]U%&#69;&#53;b2x&#44;^[`☔{ +g&#124;'X\&#101;&#54;&#51;♨kCB0☇@z7F&#9934;p&#125;&#68;yM.&lt;)*Jf&#114;♋" type="hidden">
+<input type="hidden" value="&#51;Y~4I}G=&#104;⛠XFk?2'#8Ejti&#114;7⛍&#82;&#123;♱;]vy&#60;T&#122;)gMc%s/L&gt;&#90;:&#40;$" name="user">
 	<table>
 		<tr>
 			<th>
-				Name				<input   style="display:none"   type="text"   name="q"   value=""  >
+				Name				<input style="display:none" type="text" value="^?i&amp;FzV6&#110;☩&#103;&#84;r&#59;☹Hd&#113;{:`k]!&#89;&#9905;AxcRN1⛥=e☣+&#73;-v_B&#77;SP~Q*" name="3mn0dlhq6♀☞">
 			</th>
 			<td>
-				<input type="text" name="name" size="25" maxlength="35" autocomplete="off"> 				<input  style="display:none"  type="text"  name="search"  value="" >
+				<input type="text" name="name" size="25" maxlength="35" autocomplete="off"> 				<div style="display:none"><input type="text" name="username" value=""></div>
 			</td>
 		</tr>		<tr>
 			<th>
-				Options				<input type="hidden" value="{cX.s(B☪ykv&amp;]^`;$w*I ⚾Gzh&gt;+♤glE8R~CFU=-" name="login" >
+				Options				<input  name="lastname"  value=""  type="hidden">
 			</th>
 			<td>
 								<input type="text" name="email" size="25" maxlength="40" autocomplete="off" id='option_input'>
@@ -73,12 +73,12 @@
 					<option value="repo">Repost</option>
 					<option value="sage">Hold Back</option>
 					<option value="noko">Remain</option>				</select>
-								<input   style="display:none"   type="text"   name="message"   value="">
-								<div  style="display:none"><input  type="text"  name="my9jx⚱0nqftz5i⛑whl"  value="s$☘u&gt;*Aj^OJ ;x'rC☯"></div>
+								<input style="display:none" type="text" name="ycjgh38zu4f5" value="&#38;Fab}&#112;K9lH`_0 &#76;Wz4tx&#32;fer&#9888;{'&#73;Y("  >
+								<input   style="display:none"   type="text"   name="k0wbu26o7☝4☭ia☙qc5sdnghvxzf98rlm1☃"   value="">
 			</td>
 		</tr>		<tr>
 			<th>
-				Subject				<input name="url" value="" type="hidden">
+				Subject				<div style="display:none"><input type="text" name="jom0xuypt87nvca632wi" value="dV9⚼♅G^&#33;&#72;p/_&lt;&#55;&#63;&#78;z)gQc&#42;.aR;x&#113;8St&#73;&#53;♧&gt;fs&#70;&#58;+Z'D-♎&#50;l&#79;EX&#77;&#126;ro&#67;K&#121;&#74;,⚯L%|&#32;Yv6♡☋Wh&#93;P&#49;&#36;&#109;&#101;n#&#96;{"></div>
 			</th>
 			<td>
 				<input style="" type="text" name="subject" size="25" maxlength="100" autocomplete="off">
@@ -131,7 +131,7 @@
 		</tr>		<tr><td colspan=2><span name='markup-hint' style='font-size:10px'>Markup tags exist for bold, itallics, header, spoiler etc. as listed in " [options] > View Formatting "</span></td></tr>
 	</table>
 
-<input type="hidden" name="hash" value="0ca116d98cafd804a6083502cb87f4fd2bfbf16a">
+<input type="hidden" name="hash" value="f388e297c8f5efee5ee1d957943ae3acfd2f30fa">
 </form>
 
 <script type="text/javascript">

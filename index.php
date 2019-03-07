@@ -81,6 +81,31 @@
 		<div class="box image">
 			<ul>
 									<li>
+						<a href="/b/res/1#1150">
+							<img src="/b/thumb/m1551943744012.png" style="width:160px;height:175px" alt="">
+						</a>
+					</li>
+									<li>
+						<a href="/b/res/1#1145">
+							<img src="/b/thumb/m1551943711464.png" style="width:158px;height:255px" alt="">
+						</a>
+					</li>
+									<li>
+						<a href="/b/res/1#1148">
+							<img src="/b/thumb/m1551943711464.png" style="width:158px;height:255px" alt="">
+						</a>
+					</li>
+									<li>
+						<a href="/b/res/1#1100">
+							<img src="/b/thumb/1551940465939.png" style="width:186px;height:255px" alt="">
+						</a>
+					</li>
+									<li>
+						<a href="/b/res/1094#1098">
+							<img src="/b/thumb/1551940254497.png" style="width:149px;height:175px" alt="">
+						</a>
+					</li>
+									<li>
 						<a href="/lit/res/41#41">
 							<img src="/lit/thumb/1551935672854.png" style="width:180px;height:255px" alt="">
 						</a>
@@ -125,36 +150,59 @@
 							<img src="/qa/thumb/1551763602627.png" style="width:255px;height:143px" alt="">
 						</a>
 					</li>
-									<li>
-						<a href="/b/res/1090#1091">
-							<img src="/b/thumb/1551741805881.png" style="width:175px;height:98px" alt="">
-						</a>
-					</li>
-									<li>
-						<a href="/b/res/1090#1090">
-							<img src="/b/thumb/1551741331777.jpg" style="width:241px;height:255px" alt="">
-						</a>
-					</li>
-									<li>
-						<a href="/qa/res/2269#2269">
-							<img src="/qa/thumb/1551652700868.png" style="width:181px;height:255px" alt="">
-						</a>
-					</li>
-									<li>
-						<a href="/qa/res/2268#2268">
-							<img src="/qa/thumb/1551638424983.png" style="width:255px;height:193px" alt="">
-						</a>
-					</li>
-									<li>
-						<a href="/qa/res/1197#2262">
-							<img src="/qa/thumb/1551592599365.png" style="width:175px;height:82px" alt="">
-						</a>
-					</li>
 							</ul>
 		</div>
 		<div class="mainBox">
 			<h2>Latest Posts</h2>
 			<ul>
+									<li>
+						<strong>Megumin</strong>: 
+						<a href="/megu/res/1#267">
+							<em>did I fill goshujin sama's req&hellip;</em>
+						</a>
+					</li>
+									<li>
+						<strong>Boson Tests</strong>: 
+						<a href="/b/res/1#1150">
+							<em>(no comment)</em>
+						</a>
+					</li>
+									<li>
+						<strong>Boson Tests</strong>: 
+						<a href="/b/res/1#1149">
+							<em>Moved to &gt;&gt;&gt;/b/1145.</em>
+						</a>
+					</li>
+									<li>
+						<strong>Boson Tests</strong>: 
+						<a href="/b/res/1#1145">
+							<em>test</em>
+						</a>
+					</li>
+									<li>
+						<strong>Boson Tests</strong>: 
+						<a href="/b/res/1#1148">
+							<em>test</em>
+						</a>
+					</li>
+									<li>
+						<strong>Megumin</strong>: 
+						<a href="/megu/res/260#260">
+							<em>think I'm starting to get dimi&hellip;</em>
+						</a>
+					</li>
+									<li>
+						<strong>Boson Tests</strong>: 
+						<a href="/b/res/1#1100">
+							<em>test</em>
+						</a>
+					</li>
+									<li>
+						<strong>Boson Tests</strong>: 
+						<a href="/b/res/1094#1098">
+							<em>&gt;&gt;1096</em>
+						</a>
+					</li>
 									<li>
 						<strong>Megumin</strong>: 
 						<a href="/megu/res/17#257">
@@ -287,54 +335,6 @@
 							<em>Yeah, if it's interfering with&hellip;</em>
 						</a>
 					</li>
-									<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/2225#2278">
-							<em>running OBS and the applicatio&hellip;</em>
-						</a>
-					</li>
-									<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/2225#2277">
-							<em>&gt;&gt;2276  How high-spec can a sc&hellip;</em>
-						</a>
-					</li>
-									<li>
-						<strong>Boson Tests</strong>: 
-						<a href="/b/res/1094#1097">
-							<em>&gt;&gt;1096  It'd be nice I think, &hellip;</em>
-						</a>
-					</li>
-									<li>
-						<strong>Boson Tests</strong>: 
-						<a href="/b/res/1094#1096">
-							<em>I'd also like to add a way for&hellip;</em>
-						</a>
-					</li>
-									<li>
-						<strong>Boson Tests</strong>: 
-						<a href="/b/res/1094#1095">
-							<em>not in it's current state</em>
-						</a>
-					</li>
-									<li>
-						<strong>Boson Tests</strong>: 
-						<a href="/b/res/1094#1094">
-							<em>Is there a way to include /meg&hellip;</em>
-						</a>
-					</li>
-									<li>
-						<strong>Megumin</strong>: 
-						<a href="/megu/res/231#255">
-							<em>&gt;&gt;235  it probably does too mu&hellip;</em>
-						</a>
-					</li>
-									<li>
-						<strong>Megumin</strong>: 
-						<a href="/megu/res/236#254">
-							<em>ftfy</em>
-						</a>
-					</li>
 							</ul>
 		</div>
 		<div class="mainBox">
@@ -378,9 +378,9 @@
 		<div class="mainBox">
 			<h2>Stats</h2>
 			<ul>
-				<li>Total posts: 3,796</li>
+				<li>Total posts: 3,859</li>
 				<li>Unique posters: 195</li>
-				<li>Active content: 1001.57 MB</li>
+				<li>Active content: 1002.42 MB</li>
 			</ul>
 		</div>
 	</div>

@@ -1374,8 +1374,13 @@ function mod_move($originBoard, $postID) {
 			foreach ($post['files'] as $i => &$file) {
 				if ($file['file'] === 'deleted') 
 					continue;
-				$file['file_path'] = sprintf($config['board_path'], $board['uri']) . $config['dir']['img'] . $file['file'];
-				$file['thumb_path'] = sprintf($config['board_path'], $board['uri']) . $config['dir']['thumb'] . $file['thumb'];
+				$clone($file['file_path'], sprintf($config['board_path'], $board['uri']) . $config['dir']['img'] . 'm' . $file['file']);
+				$file['file_path'] = sprintf($config['board_path'], $board['uri']) . $config['dir']['img'] . 'm' . $file['file'];
+				$file['file'] = 'm' . $file['file'];
+				$file['file_id'] = 'm' . $file['file'];
+				$clone($file['thumb_path'],sprintf($config['board_path'], $board['uri']) . $config['dir']['thumb'] . 'm' . $file['thumb']);
+				$file['thumb_path'] = sprintf($config['board_path'], $board['uri']) . $config['dir']['thumb'] . 'm' . $file['thumb'];
+				$file['thumb'] =  'm' . $file['thumb'];
 			}
 		} else {
 			$post['has_file'] = false;
@@ -1429,8 +1434,9 @@ function mod_move($originBoard, $postID) {
 				foreach ($post['files'] as $i => &$file) {
 					$file['file_path'] = sprintf($config['board_path'], $board['uri']) . $config['dir']['img'] . $file['file'];
 
-					if (isset($file['thumb'])) 
+					if (isset($file['thumb'])) {
 						$file['thumb_path'] = sprintf($config['board_path'], $board['uri']) . $config['dir']['thumb'] . $file['thumb'];
+					}
 				}
 			} else {
 				$post['has_file'] = false;
@@ -1467,12 +1473,20 @@ function mod_move($originBoard, $postID) {
 			$post['tracked_cites'] = markup($post['body'], true);
 			
 			if ($post['has_file']) {
-				// copy image
+				// copy or rename image
 				foreach ($post['files'] as $i => &$file) {
 					if (isset($file['thumb'])) 
 					if ($file['thumb'] != 'spoiler' && $file['thumb'] != 'deleted') { //trying to move/copy the spoiler thumb raises an error
-						$clone($file['file_path'], sprintf($config['board_path'], $board['uri']) . $config['dir']['img'] . $file['file']);
-						$clone($file['thumb_path'], sprintf($config['board_path'], $board['uri']) . $config['dir']['thumb'] . $file['thumb']);
+						$new_file = sprintf($config['board_path'], $board['uri']) . $config['dir']['img'] . 'm' . $file['file'];
+						$clone($file['file_path'], $new_file);
+						$file['file_path'] = $new_file;
+						$file['file_id'] = 'm' . $file['file'];
+						$file['file'] = 'm' . $file['file'];
+						
+						$new_thumb = sprintf($config['board_path'], $board['uri']) . $config['dir']['thumb'] . 'm'. $file['thumb'] ;
+						$clone($file['thumb_path'], $new_thumb);
+						$file['thumb_path'] = $new_thumb;
+						$file['thumb'] = 'm' . $file['thumb'];
 					}
 				}
 			}
