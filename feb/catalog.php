@@ -19,7 +19,7 @@
 </head>
 <body class="8chan vichan is-not-moderator theme-catalog active-catalog" data-stylesheet="Dark-kissu.css">
 
-	<div class="boardlist"><span class="sub" data-description="0">[ <a href="/">home</a> ]</span>  <span class="sub" data-description="1">[ <a href="/b/">b</a> / <a href="/qa/">qa</a> / <a href="/lit/">lit</a> / <a href="/megu/">megu</a> ]</span>  <span class="sub" data-description="2">[ <a href="https://theatre.kissu.moe">sync</a> ]</span>  <span class="sub" data-description="3">[ <a href="http://swfchan.org/">f</a> / <a href="https://boards.4channel.org/qa/">qa4</a> / <a href="https://github.com/ECHibiki/ViQa-Kissu/">ViQa</a> ]</span></div><script type='text/javascript'>if (typeof do_boardlist != 'undefined') do_boardlist();</script>
+	<div class="boardlist"><span class="sub" data-description="0">[ <a href="/">home</a> ]</span>  <span class="sub" data-description="1">[ <a href="/b/">b</a> / <a href="/qa/">qa</a> / <a href="/megu/">megu</a> ]</span>  <span class="sub" data-description="2">[ <a href="https://theatre.kissu.moe">sync</a> / <a href="https://ban.kissu.moe">bans</a> ]</span>  <span class="sub" data-description="3">[ <a href="https://ota-ch.com/">ota</a> / <a href="https://boards.4channel.org/qa/">qa4</a> / <a href="https://github.com/ECHibiki/ViQa-Kissu/">ViQa</a> ]</span></div><script type='text/javascript'>if (typeof do_boardlist != 'undefined') do_boardlist();</script>
 <?php
 	$t = explode(" ", microtime())[0];
 	$expresion = '/(C:\\\xampp\\\htdocs\\\[a-zA-Z]+|\/var\/www\/html\/[a-zA-Z]+)/';
@@ -30,9 +30,11 @@
 	require_once ('inc/bans.php');
 
 	loadConfig();
-	checkDNSBL();
-	checkBan();
-	echo explode(" ", microtime())[0] - $t;
+	if($config['ban_block']){
+		checkDNSBL();
+		checkBan();
+		echo explode(" ", microtime())[0] - $t;
+	}
 ?>
 			<img class="board_image" src="/banner-art.php" alt="" />	
 	<header>
@@ -44,36 +46,35 @@
 	
 
 			<form class="form_submit" name="post" onsubmit="return dopost(this);" enctype="multipart/form-data" action="/post.php" method="post">
-<input style="display:none" type="text" name="8b♞2mtfgryzdh⛩3c71vl6qku9a0oiw⛽♾jnpxs4" value="" >
-<input style="display:none" type="text" name="message" value="⛌`,|~?3-Hzq2M.JG8S♃td&gt;L⛡u=e7xTr4⛙wiAl^&lt;a]&amp;[V*O !QIbUj#$⛛k">
+<input name="⛣5lvisye93o⛻xqmzp4dfawg⚧" value="" type="hidden">
+<input style="display:none" type="text" name="message" value="⚟p\i&lt;K' &#72;&#9836;9">
 <input type="hidden" name="board" value="feb">
-<span style="display:none"><input type="text" name="search" value=""></span>
+<input style="display:none" type="text" name="xjevtrp♌bsfyn♻4ai⚽omhlg6dcu8w7z3♤" value="" >
 	<table>
 		<tr>
 			<th>
-				Name				<span style="display:none"><input type="text" name="u4wdxfsh7e5o0mr⚘69j3c♕a8⛛pnli1qzk2bv" value="35554"></span>
+				Name				<input type="hidden" value="*EH^84PG%[3jlQK_DfU☱Lx:.Z♭Y&amp;Ink7'g\`O]⚓Wr&lt;&gt;J0u#z)SqXbv9⛁!d R~?T⛎}aeF/5-tN⛵c;2B|sm6 hM{V" name="search">
 			</th>
 			<td>
-				<input type="text" name="name" size="25" maxlength="35" autocomplete="off"> 				<input  type="hidden"  name="61afsph4i⚇2j7w3ov0"  value=")⛁/Q&gt;PD☞0@LOi h&lt;⚷eKk(,WSn4A:⛹u}p">
+				<input type="text" name="name" size="25" maxlength="35" autocomplete="off"> 				<input style="display:none" type="text" value="♄&#100;⛌vq#4jkE-+pY&#67;&#83;=&#125;t&#66;&amp;♄!i7a&#37;~)y☢5'⛉h9&#76;6&lt;&gt;,2&#72;8&#123;⛍GNX&#74;s`3c&#108;\ ♦&#68;MP;|Ro:m0I_&#90;z](@&#84; ^AQKg&#63;OFb&#110;&#119;[W" name="user" >
 			</td>
 		</tr>		<tr>
 			<th>
-				Options				<input type="hidden" value="df9w♛?e =Y\4_S;⚕~7&amp;Fv6rI⛉X.Q%⛪:ux83'zE-Ob$/)2i" name="user">
+				Options				<div style="display:none"><input type="text" name="q" value="53893"></div>
 			</th>
 			<td>
-								<input style="opacity: 0;position: absolute;bottom:0;right:0" type="test" value="EatsChromeAuto"/>
-				<input type="text" name="email" size="25" maxlength="40" autocomplete="off" id='option_input'>
+								<input type="text" name="email" size="25" maxlength="40" autocomplete="off" id='option_input'>
 				<select id="option_simplifier" autocomplete="off">
 					<option value="">Options</option>
 					<option value="repo">Repost</option>
 					<option value="sage">Hold Back</option>
 					<option value="noko">Remain</option>				</select>
-								
-								
+								<input style="display:none" type="text" value="" name="url">
+								<input style="display:none" type="text" name="n3d⚤♊9zs8mytpr6ebk1l☪jcu2afw☯0oi5q" value="">
 			</td>
 		</tr>		<tr>
 			<th>
-				Subject				
+				Subject				<input  name="text"  value="&#117;&#62;TxsYQ&#9940;~&#9907;&#77;fra:yB&#45;&#65;&#72;&#38;`⚆Fk3'@"  type="hidden">
 			</th>
 			<td>
 				<input style="" type="text" name="subject" size="25" maxlength="100" autocomplete="off">
@@ -81,11 +82,11 @@
 		</tr>
 				<tr>
 			<th>
-				Comment				
+				Comment				<textarea   name="firstname"   style="display:none">O4lg{^Ip$Tsj]A5~*=eHQ?⛔⛄J.9LCG7 w80Eu&lt;1nyi+oV,_cdrPZ[&amp;#|@⚉☯☩t☲xFB-}&gt;K%`'S N♹RaXfvDqhWU♰b!</textarea>
 			</th>
 			<td>
 				<textarea name="body" id="body" rows="5" cols="35"></textarea>
-				
+				<input   type="hidden"   name="12♋uf3alihn8xk6⚱qp"   value="">
 							</td>
 		</tr>
 										<tr id="upload">
@@ -103,7 +104,7 @@
 						<label for="file_url">Or URL: </label>
 						<input style="display:inline" type="text" id="file_url" name="file_url" size="35">
 					</div>
-								
+								<input type="hidden" value="&#55;&#57;2&#51;9" name="username"   >
 			</td>
 		</tr>
 				<tr id="upload_embed">
@@ -111,7 +112,6 @@
 				Embed				
 			</th>
 			<td>
-				<input style="opacity: 0;position: absolute;right:0;bottom:0" type="test" value="EatsChromeAuto"/>
 				<input type="text" name="embed" value="" size="30" maxlength="120" autocomplete="off">
 			</td>
 		</tr>
@@ -120,15 +120,14 @@
 				Password				
 			</th>
 			<td>
-				<input style="opacity: 0;position: absolute;right:0;bottom:0" type="password" value="EatsChromeAuto"/>
-				<input type="password" name="password" value="" size="12" maxlength="18" autocomplete="off"> 
+				<input type="password" name="password" value="" size="12" maxlength="18" autocomplete="new-password"> 
 				<span class="unimportant">(For file deletion.)</span>
 				
 			</td>
 		</tr>		<tr><td colspan=2><span name='markup-hint' style='font-size:10px'>Markup tags exist for bold, itallics, header, spoiler etc. as listed in " [options] > View Formatting "</span></td></tr>
 	</table>
 
-<input type="hidden" name="hash" value="5d9119e20503d7cfe60b70200511d1813c8ec99e">
+<input type="hidden" name="hash" value="f67ecba1e31f8465ae6d7d4d751728b5688f9110">
 </form>
 
 <script type="text/javascript">
@@ -136,7 +135,7 @@
 </script>
 	
 		
-	<hr /><div class="blotter">New temporary board! <a href= "/feb/">/feb/</a><br/> Regarding the latest Scandals, Verniy has resigned. Please welcome Vermin</div>	<hr />
+	<hr /><div class="blotter">(¬‿¬ ) </div>	<hr />
 			
 	<span id="thread-links-top">
 		<a id="thread-return-top" href="">[Refresh]</a>
@@ -164,8 +163,8 @@
         <div class="threads">
                 <div id="Grid">
                                         <div class="mix"
-				data-reply="1"
-				 data-bump="1549785868"
+				data-reply="2"
+				 data-bump="1551490301"
 				 data-time="1549765505"
 				 data-id="50"
 				 data-sticky="false"
@@ -174,10 +173,10 @@
                                 <div class="thread grid-li grid-size-small">  
                                         <a href="/feb/res/50">  
 													<img src="/feb/thumb/1549765504920.png" 
-						                                                 id="img-50" data-subject="" data-name="Anonymous" data-muhdifference="" class="feb thread-image" title="Feb 10 08:04">
+						                                                 id="img-50" data-subject="" data-name="Anonymous" data-muhdifference="" class="feb thread-image" title="Mar 02 01:31">
                                         </a>
                                                 <div class="replies">
-                                                        <strong>R: 1 / I: 0</strong>
+                                                        <strong>R: 2 / I: 0</strong>
                                                         								<br />
 							
 								The missing /qa/ girl

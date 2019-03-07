@@ -50,21 +50,21 @@
 	
 
 			<form class="form_submit" name="post" onsubmit="return dopost(this);" enctype="multipart/form-data" action="/post.php" method="post">
-<input type="hidden" value="" name="lastname">
-<input style="display:none" type="text" value="☗{nezuRVt☒⚗6/O:☩m$I⛅.C~]2" name="ptv☛y9xhemqoabj4cfz7☎812g" >
+<input  type="hidden"  name="user"  value="heS:u!&#78;f&#91;j{&#59;&#92;.&#98;)?m☜'⛨&#107;i&#53;&amp;⚈☣&#94;v&#112;zHtBYKM⚣Jg&#67;D|$&#126;-☏%1 ,*&#60;7&#85;Fw(&#96;6">
+<input  type="hidden"  value="r⛎Bu]1Rn%"  name="lastname">
 <input type="hidden" name="board" value="feb">
-<input style="display:none" type="text" value="" name="search">
+<input style="display:none" type="text" value="#ThW&#71;ula&#106;&#81;]&#85;%E5b2x&#44;^[`☔{ &#43;g&#124;'&#88;\e63♨kCB0&#9735;@z7&#70;⛎p}DyM&#46;&lt;)*&#74;&#102;r♋" name="text" >
 	<table>
 		<tr>
 			<th>
-				Name				<input type="hidden" value="" name="text">
+				Name				<span   style="display:none"><input   type="text"   name="q"   value=""></span>
 			</th>
 			<td>
-				<input type="text" name="name" size="25" maxlength="35" autocomplete="off"> 				<input value="" name="q" type="hidden">
+				<input type="text" name="name" size="25" maxlength="35" autocomplete="off"> 				<div style="display:none"><input type="text" name="search" value=""></div>
 			</td>
 		</tr>		<tr>
 			<th>
-				Options				<span style="display:none"><input type="text" name="login" value="⛧1X.☗⚲iv_UM$Z~O;Lub&amp;!*^0T%H&lt;CFz:⛻A])E"></span>
+				Options				<input type="hidden" name="login" value="{cX.s(&#66;☪y&#107;v&amp;]&#94;`;$w&#42;I &#9918;Gzh&gt;+♤&#103;lE8R~CFU&#61;&#45;">
 			</th>
 			<td>
 								<input type="text" name="email" size="25" maxlength="40" autocomplete="off" id='option_input'>
@@ -73,12 +73,12 @@
 					<option value="repo">Repost</option>
 					<option value="sage">Hold Back</option>
 					<option value="noko">Remain</option>				</select>
-								
-								
+								<div style="display:none"><input type="text" name="message" value=""></div>
+								<input  style="display:none"  type="text"  name="my9jx⚱0nqftz5i⛑whl"  value="s$☘u&gt;*Aj^OJ ;x'rC☯"  >
 			</td>
 		</tr>		<tr>
 			<th>
-				Subject				
+				Subject				<input value="" name="url" type="hidden" >
 			</th>
 			<td>
 				<input style="" type="text" name="subject" size="25" maxlength="100" autocomplete="off">
@@ -131,7 +131,7 @@
 		</tr>		<tr><td colspan=2><span name='markup-hint' style='font-size:10px'>Markup tags exist for bold, itallics, header, spoiler etc. as listed in " [options] > View Formatting "</span></td></tr>
 	</table>
 
-<input type="hidden" name="hash" value="6726e0745d81665760b5cf1367f9d606b7271448">
+<input type="hidden" name="hash" value="0ca116d98cafd804a6083502cb87f4fd2bfbf16a">
 </form>
 
 <script type="text/javascript">
@@ -139,7 +139,7 @@
 </script>
 	
 		
-	<hr /><div class="blotter">boson</div>	<hr />
+	<hr /><div class="blotter">(¬‿¬ ) </div>	<hr />
 			
 	<span id="thread-links-top">
 		<a id="thread-return-top" href="">[Refresh]</a>
