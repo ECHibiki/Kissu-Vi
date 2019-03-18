@@ -121,7 +121,7 @@
 					$post['snippet'] = pm_snippet($post['body'], 30);
 				else
 					$post['snippet'] = "<em>" . _("(no comment)") . "</em>";
-				$post['board_name'] = $board['name'];
+				$post['board_name'] = "/" . $board['uri'] . "/";
 				
 				$recent_posts[] = $post;
 			}

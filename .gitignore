@@ -6,6 +6,9 @@
 /megu/*
 /ignore/*
 /test/*
+/feb/*
+/all/*
+/g/*
 
 #logs
 *.log

@@ -14,10 +14,10 @@
 		$action = generation_strategy('sb_ukko', array());
 
 		if ($action == 'delete') {
-			file_unlink($settings['uri'] . '/index.html');
+			file_unlink($settings['uri'] . '/index.php');
 		}
 		elseif ($action == 'rebuild') {
-			file_write($settings['uri'] . '/index.html', $ukko->build());
+			file_write($settings['uri'] . '/index.php', $ukko->build());
 		}
 	}
 	
@@ -101,7 +101,7 @@
 			$body .= '<script> var overflow = ' . json_encode($overflow) . '</script>';
 			$body .= '<script type="text/javascript" src="/'.$this->settings['uri'].'/ukko.js"></script>';
 
-			return Element('index.html', array(
+			return Element('index.php', array(
 				'config' => $config,
 				'board' => $board,
 				'no_post_form' => true,

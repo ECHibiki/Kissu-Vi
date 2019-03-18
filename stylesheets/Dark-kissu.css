@@ -91,7 +91,7 @@ form table tr th {
 	padding: 0;
 }
 div.banner {
-	background: #32DD72;
+	background: #7064d0;
 	color: #000;
 	text-align: center;
 	width: 250px;
@@ -149,7 +149,7 @@ div.ban {
 }
 div.ban h2 {
 	background: transparent;
-	color: lime;
+	color: #975fec;
 	font-size: 12px;
 }
 table.modlog tr th {
@@ -231,7 +231,7 @@ a:link:hover, a:visited:hover {
 }
 
 div.title, h1{
-	color: #32DD72;
+	color: #7d75a9;
 	font-family: Lucida Sans Unicode, Arial, sans-serif;
 }
 h1 a:link, h1 a:visited{
