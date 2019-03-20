@@ -630,7 +630,8 @@
 	$config['field_disable_reply_subject'] = false;
 	// When true, a blank password will be used for files (not usable for deletion).
 	$config['field_disable_password'] = false;
-
+	// Hide password from users
+	$config['field_hide_password'] = false;
 	// When true, users are instead presented a selectbox for email. Contains, blank, noko and sage.
 	$config['field_email_selectbox'] = false;
 
@@ -639,6 +640,7 @@
 
 	// Don't display user's email when it's not "sage"
 	$config['hide_email'] = false;
+	
 
 	// Attach country flags to posts.
 	$config['country_flags'] = false;

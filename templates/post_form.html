@@ -65,7 +65,7 @@
 				{{ antibot.html() }}
 			</th>
 			<td>
-				<textarea name="body" id="body" rows="5" cols="35"></textarea>
+				<textarea name="body" id="body" rows="3" cols="40"></textarea>
 				{{ antibot.html() }}
 				{% if not (not (config.field_disable_subject or (id and config.field_disable_reply_subject)) or (mod and post.mod|hasPermission(config.mod.bypass_field_disable, board.uri))) %}
 				{% if not (not config.field_disable_email or (mod and post.mod|hasPermission(config.mod.bypass_field_disable, board.uri))) %}
@@ -185,12 +185,13 @@
 			</td>
 		</tr>
 		{% endif %}
-		{% if not config.field_disable_password or (mod and post.mod|hasPermission(config.mod.bypass_field_disable, board.uri)) %}<tr>
+		{% if not config.field_disable_password or (mod and post.mod|hasPermission(config.mod.bypass_field_disable, board.uri)) %}
+		<tr {% if config.field_hide_password %} style="display: none;" {% endif %}>
 			<th>
 				{% trans %}Password{% endtrans %}
 				{{ antibot.html() }}
 			</th>
-			<td>
+			<td >
 				<input type="password" name="password" value="" size="12" maxlength="18" autocomplete="new-password"> 
 				<span class="unimportant">{% trans %}(For file deletion.){% endtrans %}</span>
 				{{ antibot.html() }}

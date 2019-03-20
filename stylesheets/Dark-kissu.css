@@ -94,7 +94,7 @@ div.banner {
 	background: #7064d0;
 	color: #000;
 	text-align: center;
-	width: 250px;
+	width: 300px;
 	padding: 4px;
 	padding-left: 12px;
 	padding-right: 12px;
@@ -251,6 +251,34 @@ div.blotter {
 	font-size: 12px;
 }
 
+#topcontainer{
+    display: block;
+	margin: -4em 0em -7em;
+	place-content: space-evenly;
+	flex-flow:row wrap;
+	align-items: end;
+	opacity: 0.3;
+	transform: scale(0.5,0.5);
+}
+#topcontainer:hover{
+	 opacity: 1.0;
+	 transform: scale(1.0,1.0);
+	margin: 1em 0em 0em;
+}
+header{
+	padding: 2em 0em;
+
+}
+
+
+div.subtitle {
+    font-size: 8pt;
+}
+div.subtitle {
+    color: #AF0A0F;
+    text-align: center;
+}
+
 form {
 	margin-bottom: 4em;
 }
@@ -270,6 +298,10 @@ input[type="text"], input[type="password"], textarea {
 	word-spacing: normal;
 	box-shadow: 10px 5px 20px 1px rgba(0,0,0,1);
 	border-radius: 10px;
+}
+
+textarea {
+	width:auto;
 }
 
 .dialog, .suboption-list > div:last-of-type, :root.catalog-hover-expand .catalog-container:hover > .post{
