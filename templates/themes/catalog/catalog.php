@@ -10,28 +10,41 @@
 	<title>{{ board.uri }} - Catalog</title>
 </head>
 <body class="8chan vichan {% if mod %}is-moderator{% else %}is-not-moderator{% endif %} theme-catalog active-catalog" data-stylesheet="{% if config.default_stylesheet.1 != '' %}{{ config.default_stylesheet.1 }}{% else %}default{% endif %}">
-
-	{{ boardlist.top }}
-{% include 'checkban.php' %}
-
-		{% if pm %}<div class="top_notice">You have <a href="?/PM/{{ pm.id }}">an unread PM</a>{% if pm.waiting > 0 %}, plus {{ pm.waiting }} more waiting{% endif %}.</div><hr />{% endif %}
-	{% if config.url_banner %}<img class="board_image" src="{{ config.url_banner }}" {% if config.banner_width or config.banner_height %}style="{% if config.banner_width %}width:{{ config.banner_width }}px{% endif %};{% if config.banner_width %}height:{{ config.banner_height }}px{% endif %}" {% endif %}alt="" />{% endif %}
-	
+<div id="uppercontents">
+	<div id="subuppercontents">
+	{% include 'checkban.php' %}
+		{{ boardlist.top }}
+	<a name="top"></a>
+	{% if pm %}<div class="top_notice">You have <a href="?/PM/{{ pm.id }}">an unread PM</a>{% if pm.waiting > 0 %}, plus {{ pm.waiting }} more waiting{% endif %}.</div><hr />{% endif %}
+		{% if config.url_banner %}<img class="board_image" src="{{ config.url_banner }}" {% if config.banner_width or config.banner_height %}style="{% if config.banner_width %}width:{{ config.banner_width }}px{% endif %};{% if config.banner_width %}height:{{ config.banner_height }}px{% endif %}" {% endif %}alt="" />{% endif %}
 	<header>
-		<h1>{{ settings.title }} (<a href="{{link}}">/{{ board.uri }}/</a>)</h1>
-		<div class="subtitle">{{ settings.subtitle }}</div>
+	<h1 style="padding-top:10px;">{{ board.url }} - {{ board.title|e }}</h1>
+	<div class="subtitle">
+		{% if board.subtitle %}
+			{% if config.allow_subtitle_html %}
+				{{ board.subtitle }}
+			{% else %}
+				{{ board.subtitle|e }}
+			{% endif %}
+		{% endif %}
+		{% if mod %}<p><a href="?/">{% trans %}Return to dashboard{% endtrans %}</a></p>{% endif %}
+	</div>
 	</header>
-	
-		{% include 'attention_bar.html' %}
+	<div id="topcontainer">
+	{% include 'attention_bar.html' %}
 
 	{{ config.ad.top }}
 
+	<div>
 	{% if not no_post_form %}
 		{% include 'post_form.html' %}
 	{% else %}
 		{% include 'boardlist.html' %}
 	{% endif %}
-
+	</div>
+	</div>
+	</div>
+	</div>
 	{% if config.page_nav_top %}
 		<div class="pages top">
 			{% for page in pages %}

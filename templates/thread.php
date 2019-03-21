@@ -24,6 +24,8 @@
 	<title>{{ board.url }} - {{ meta_subject }}</title>
 </head>
 <body class="8chan vichan {% if mod %}is-moderator{% else %}is-not-moderator{% endif %} active-thread" data-stylesheet="{% if config.default_stylesheet.1 != '' %}{{ config.default_stylesheet.1 }}{% else %}default{% endif %}">
+	<div id="uppercontents">
+	<div id="subuppercontents">
 	{{ boardlist.top }}
 	{% include 'checkban.php' %}
 	<a name="top"></a>
@@ -41,16 +43,19 @@
 			{% endif %}
 			{% if mod %}<p><a href="?/">{% trans %}Return to dashboard{% endtrans %}</a></p>{% endif %}
 		</div>
+			{% include 'attention_bar.html' %}
+		<div class="banner">{% trans %}Posting mode: Reply{% endtrans %} <a class="unimportant" href="{{ return }}">[{% trans %}Return{% endtrans %}]</a> <a class="unimportant" href="#bottom">[{% trans %}Go to bottom {% endtrans %}]</a></div>
+
 	</header>
 
-	{% include 'attention_bar.html' %}
-		<div class="banner">{% trans %}Posting mode: Reply{% endtrans %} <a class="unimportant" href="{{ return }}">[{% trans %}Return{% endtrans %}]</a> <a class="unimportant" href="#bottom">[{% trans %}Go to bottom {% endtrans %}]</a></div>
 
 <div id="topcontainer">
 
 	{{ config.ad.top }}
 
 	{% include 'post_form.html' %}
+</div>
+</div>
 </div>
 	{% if config.global_message %}<hr /><div class="blotter">{{ config.global_message }}</div>{% endif %}
 	<hr />
