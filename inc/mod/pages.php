@@ -1396,7 +1396,7 @@ function mod_move($originBoard, $postID) {
 		$newID = post($post);
 	
 		$op = $post;
-		if(isset($_POST['target_thread'])){
+		if(isset($_POST['target_thread']) && trim($_POST['target_thread']) != ""){
 			//needed for link_for redirect
 			$op['id'] = $_POST['target_thread'];
 		}
