@@ -7,8 +7,9 @@ require_once 'inc/functions.php';
 require_once 'inc/anti-bot.php';
 require_once 'inc/bans.php';
 require_once 'inc/image.php';
-
-if ((!isset($_POST['mod']) || !$_POST['mod']) && preg_match($config['board_locked'], $_POST['board'])) {
+openBoard($_POST['board']);
+loadConfig();
+if ((!isset($_POST['mod']) || !$_POST['mod']) && $config['board_locked']) {
     error("Board is locked");
 }
 

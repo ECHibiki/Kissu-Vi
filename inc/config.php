@@ -344,8 +344,8 @@
 	 $config['captcha']['extra'] = 'abcdefghijklmnopqrstuvwxyz';
 	
 	// Ability to lock a board for normal users and still allow mods to post.  Could also be useful for making an archive board
-	// Input regex pattern of board code
-	$config['board_locked'] = "";
+	// Do on a per board entry
+	$config['board_locked'] = false;
 
 	// If poster's proxy supplies X-Forwarded-For header, check if poster's real IP is banned.
 	$config['proxy_check'] = false;

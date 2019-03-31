@@ -119,7 +119,9 @@ var styles = {
 	'Yotsuba' : '/stylesheets/yotsuba.css',
 	'Dark-Kissu' : '/stylesheets/Dark-kissu.css',
 	'Kissu(Experimental)' : '/stylesheets/kissu.css',
-	'new-years-theme' : '/stylesheets/new-years-theme.css',
+	'New-Years' : '/stylesheets/new-years-theme.css',
+	'Nen' : '/stylesheets/hatate.css',
+	'Trevor' : '/stylesheets/trevor.css',
 	'Dark' : '/stylesheets/dark.css',
 	'Futaba' : '/stylesheets/futaba.css',
 	'Burichan' : '/stylesheets/burichan.css',
@@ -1278,6 +1280,37 @@ $(window).ready(function() {
 		setup_form($(form));
 	});
 });
+// index-updater.js
+// Free use script from kissu.moe
+
+var new_posts = 0;
+var previous_time = Math.floor(Date.now() / 1000);
+function checkUpdates(){
+  if(!(/^\/[a-zA-Z0-9]+\/res/.test(window.location.pathname))){
+    var response = $.ajax({
+        type: 'GET',
+        url: window.location.origin + window.location.pathname.substring(0,window.location.pathname.lastIndexOf("/")+1)
+          + "threads.json",
+        dataType:"json",
+        success: function(json_data){
+          json_data.forEach(function(data){
+            $.each(data.threads, function(index, thread){
+              if(thread.last_modified > previous_time+10){
+				var title = document.title.replace(`(${new_posts})`, "");
+				new_posts++;
+                document.title = `(${new_posts}) ` + title
+                previous_time = Math.floor(Date.now() / 1000);
+              }
+            });
+          });
+        },
+        fail:function(a,b,error){
+          console.log(error);
+        }
+      });
+    }
+}
+setInterval(checkUpdates, 30000);
 /*
  * titlebar-notifications.js - a library for showing number of new events in titlebar
  * https://github.com/vichan-devel/Tinyboard/blob/master/js/titlebar-notifications.js
@@ -2088,7 +2121,7 @@ function initImageHover() { //Pashe, influenced by tux, et al, WTFPL
 
 		cat_thread_imgs = $(".thread-image");
 		
-		const BOARD = $("h1 a")[0].text;
+		const BOARD = "/" + window.location.pathname.substring(1,window.location.pathname.lastIndexOf("/")) + "/";
 		console.log(BOARD);
 		
 		//from API give each an indicator of origin file source
