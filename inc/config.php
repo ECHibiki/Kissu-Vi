@@ -1522,13 +1522,14 @@
 	// Probably best not to change this unless you are smart enough to figure out what you're doing. If you
 	// decide to change it, remember that it is impossible to redefinite/overwrite groups; you may only add
 	// new ones.
-	$config['mod']['groups'] = array(
-		10	=> 'Janitor',
-		20	=> 'Mod',
-		30	=> 'Admin',
-		// 98	=> 'God',
-		99	=> 'Disabled'
-	);
+$config['mod']['groups'] = array(
+  5   => 'Bot',
+  10	=> 'Janitor',
+  20	=> 'Mod',
+  30	=> 'Admin',
+  // 98	=> 'God',
+  99	=> 'Disabled'
+);
 
 	// If you add stuff to the above, you'll need to call this function immediately after.
 	define_groups();
@@ -1538,11 +1539,12 @@
 	// define_groups();
 
 	// Capcode permissions.
-	$config['mod']['capcode'] = array(
-		JANITOR		=> array('Janitor'),
-		MOD		=> array('Mod'),
-		ADMIN		=> true
-	);
+$config['mod']['capcode'] = array(
+  BOT   => array('Bot'),
+  JANITOR		=> array('Janitor'),
+  MOD		=> array('Mod'),
+  ADMIN		=> true
+);
 
 	// Example: Allow mods to post with "## Moderator" as well
 	// $config['mod']['capcode'][MOD][] = 'Moderator';
@@ -1656,7 +1658,7 @@
 	// Set websites to be scraped for proxies
 	$config['mod']['proxy_bans'] = ADMIN;
 	// Rebuild everything
-	$config['mod']['rebuild'] = ADMIN;
+$config['mod']['rebuild'] = BOT;
 	// Search through posts, IP address notes and bans
 	$config['mod']['search'] = JANITOR;
 	// Allow searching posts (can be used with board configuration file to disallow searching through a

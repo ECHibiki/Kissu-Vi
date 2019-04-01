@@ -112,46 +112,13 @@ function alert(a, do_confirm, confirm_ok_action, confirm_cancel_action, no_ok) {
 var saved = {};
 
 
-var selectedstyle = 'Dark-Kissu';
+var selectedstyle = 'Nen';
 var styles = {
 	
 	'Yotsuba B' : '',
 	'Yotsuba' : '/stylesheets/yotsuba.css',
-	'Dark-Kissu' : '/stylesheets/Dark-kissu.css',
-	'Kissu(Experimental)' : '/stylesheets/kissu.css',
-	'New-Years' : '/stylesheets/new-years-theme.css',
 	'Nen' : '/stylesheets/hatate.css',
 	'Trevor' : '/stylesheets/trevor.css',
-	'Dark' : '/stylesheets/dark.css',
-	'Futaba' : '/stylesheets/futaba.css',
-	'Burichan' : '/stylesheets/burichan.css',
-	'caffe' : '/stylesheets/caffe.css',
-	'confraria' : '/stylesheets/confraria.css',
-	'dark_roach' : '/stylesheets/dark_roach.css',
-	'favela' : '/stylesheets/favela.css',
-	'futaba+vichan' : '/stylesheets/futaba+vichan.css',
-	'futaba-light' : '/stylesheets/futaba-light.css',
-	'gentoochan' : '/stylesheets/gentoochan.css',
-	'greendark' : '/stylesheets/greendark.css',
-	'jungle' : '/stylesheets/jungle.css',
-	'miku' : '/stylesheets/miku.css',
-	'nigrachan' : '/stylesheets/nigrachan.css',
-	'northboard_cb' : '/stylesheets/northboard_cb.css',
-	'notsuba' : '/stylesheets/notsuba.css',
-	'novo_jungle' : '/stylesheets/novo_jungle.css',
-	'photon' : '/stylesheets/photon.css',
-	'piwnichan' : '/stylesheets/piwnichan.css',
-	'ricechan' : '/stylesheets/ricechan.css',
-	'roach' : '/stylesheets/roach.css',
-	'rugby' : '/stylesheets/rugby.css',
-	'sharp' : '/stylesheets/sharp.css',
-	'stripes' : '/stylesheets/stripes.css',
-	'style' : '/stylesheets/style.css',
-	'szalet' : '/stylesheets/szalet.css',
-	'terminal2' : '/stylesheets/terminal2.css',
-	'testorange' : '/stylesheets/testorange.css',
-	'v8ch' : '/stylesheets/v8ch.css',
-	'wasabi' : '/stylesheets/wasabi.css',
 	
 };
 
@@ -1282,6 +1249,7 @@ $(window).ready(function() {
 });
 // index-updater.js
 // Free use script from kissu.moe
+// Polls threads.json every 30 seconds for updates
 
 var new_posts = 0;
 var previous_time = Math.floor(Date.now() / 1000);
@@ -1295,14 +1263,14 @@ function checkUpdates(){
         success: function(json_data){
           json_data.forEach(function(data){
             $.each(data.threads, function(index, thread){
-              if(thread.last_modified > previous_time+10){
+              if(thread.last_modified > previous_time){
 				var title = document.title.replace(`(${new_posts})`, "");
 				new_posts++;
                 document.title = `(${new_posts}) ` + title
-                previous_time = Math.floor(Date.now() / 1000);
               }
             });
           });
+		  previous_time = Math.floor(Date.now() / 1000);
         },
         fail:function(a,b,error){
           console.log(error);

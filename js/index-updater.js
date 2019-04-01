@@ -1,5 +1,6 @@
 // index-updater.js
 // Free use script from kissu.moe
+// Polls threads.json every 30 seconds for updates
 
 var new_posts = 0;
 var previous_time = Math.floor(Date.now() / 1000);
@@ -13,14 +14,14 @@ function checkUpdates(){
         success: function(json_data){
           json_data.forEach(function(data){
             $.each(data.threads, function(index, thread){
-              if(thread.last_modified > previous_time+10){
+              if(thread.last_modified > previous_time){
 				var title = document.title.replace(`(${new_posts})`, "");
 				new_posts++;
                 document.title = `(${new_posts}) ` + title
-                previous_time = Math.floor(Date.now() / 1000);
               }
             });
           });
+		  previous_time = Math.floor(Date.now() / 1000);
         },
         fail:function(a,b,error){
           console.log(error);

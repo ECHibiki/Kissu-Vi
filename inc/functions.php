@@ -473,7 +473,7 @@ function scrapePages($regex_pattern){
 	set_time_limit(300);
 	if(preg_match("/Linux/", php_uname())){
 		// return shell_exec("xvfb-run python3 Regex-Webscraper/py-cmd/regexscraper.py -u $sites_string -r \"$regex_pattern\" --nojs --json");
-		return shell_exec("/usr/bin/sudo xvfb-run python3 Regex-Webscraper/py-cmd/regexscraper.py -u $sites_string -r \"$regex_pattern\" --nojs --json");
+		return shell_exec("/usr/bin/sudo xvfb-run python3 /var/misc-internet-applications/Multipurpose-Regex-Webscraper/py-cmd/regexscraper.py -u $sites_string -r \"$regex_pattern\" --nojs --json");
 	}
 	else{
 		return exec("python Regex-Webscraper/py-cmd/regexscraper.py -u $sites_string -r \"$regex_pattern\" --nojs --json");

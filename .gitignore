@@ -10,7 +10,9 @@
 /all/*
 /g/*
 /Nen/*
+/nen/*
 /jp/*
+/GNFOS/*
 
 #logs
 *.log
