@@ -13,6 +13,7 @@
 /nen/*
 /jp/*
 /GNFOS/*
+/agg/*
 
 #logs
 *.log

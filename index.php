@@ -3,13 +3,13 @@
 <html>
 <head>
     <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
-	<title>Kakashi-Nenpo</title>
+	<title>Kissu.moe</title>
 	<link rel="stylesheet" media="screen" href="/stylesheets/style.css"/>
 	<link rel="stylesheet" media="screen" href="/index.css"/>
-	<link rel="shortcut icon" href="/static/nen.ico" />	<link rel="stylesheet" type="text/css" id="stylesheet" href="/stylesheets/hatate.css">	<link rel="stylesheet" href="/stylesheets/font-awesome/css/font-awesome.min.css">			<link rel="stylesheet" media="screen" href="/stylesheets/style.css">
-		<link rel="shortcut icon" href="/static/nen.ico">		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<link rel="shortcut icon" href="/static/favicon.png" />	<link rel="stylesheet" type="text/css" id="stylesheet" href="/stylesheets/Dark-kissu.css">	<link rel="stylesheet" href="/stylesheets/font-awesome/css/font-awesome.min.css">			<link rel="stylesheet" media="screen" href="/stylesheets/style.css">
+		<link rel="shortcut icon" href="/static/favicon.png">		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes">
-				<link rel="stylesheet" type="text/css" id="stylesheet" href="/stylesheets/hatate.css">		<link rel="stylesheet" href="/stylesheets/font-awesome/css/font-awesome.min.css">		<link rel="stylesheet" href="/static/flags/flags.css">		<script type="text/javascript">
+				<link rel="stylesheet" type="text/css" id="stylesheet" href="/stylesheets/Dark-kissu.css">		<link rel="stylesheet" href="/stylesheets/font-awesome/css/font-awesome.min.css">		<link rel="stylesheet" href="/static/flags/flags.css">		<script type="text/javascript">
 			var configRoot="/";
 			var inMod = false;
 			var modRoot="/"+(inMod ? "mod.php?/" : "");
@@ -17,7 +17,7 @@
 					<script type="text/javascript" src="/main.js"></script>
 							</head>
 <body>
-	<div class="boardlist"><span class="sub" data-description="0">[ <a href="/">home</a> ]</span>  <span class="sub" data-description="1">[ <a href="/b/">g</a> / <a href="/qa/">qa</a> / <a href="/megu/">megu</a> ]</span>  <span class="sub" data-description="2">[ <a href="https://theatre.kissu.moe">sync</a> / <a href="https://ban.kissu.moe">bans</a> / <a href="/all/">all</a> ]</span>  <span class="sub" data-description="3">[ <a href="https://kakashi-nenpo.com/">nen</a> / <a href="https://boards.4channel.org/qa/">qa4</a> / <a href="https://github.com/ECHibiki/ViQa-Kissu/">ViQa</a> ]</span></div><script type='text/javascript'>if (typeof do_boardlist != 'undefined') do_boardlist();</script>
+	<div class="boardlist"><span class="sub" data-description="0">[ <a href="/">home</a> / <a href="/agg/">agg</a> / <a href="/all/">all</a> ]</span>  <span class="sub" data-description="1">[ <a href="/b/">g</a> / <a href="/qa/">qa</a> / <a href="/megu/">megu</a> ]</span>  <span class="sub" data-description="2">[ <a href="https://theatre.kissu.moe">sync</a> / <a href="https://ban.kissu.moe">text</a> ]</span>  <span class="sub" data-description="3">[ <a href="http://bunbunmaru.com/wakaba/general/">bun</a> / <a href="https://boards.4channel.org/qa/">qa4</a> / <a href="https://github.com/ECHibiki/ViQa-Kissu/">ViQa</a> ]</span></div><script type='text/javascript'>if (typeof do_boardlist != 'undefined') do_boardlist();</script>
 <?php
 	$t = explode(" ", microtime())[0];
 	$expresion = '/(C:\\\xampp\\\htdocs\\\[a-zA-Z]+|\/var\/www\/html\/[a-zA-Z]+)/';
@@ -35,14 +35,19 @@
 	}
 ?>	<header>
 	    <img class="icon" src="../templates/themes/index/hikichanIcon.png">
-		<h1>Kakashi-Nenpo</h1>
-		<div class="subtitle">花果子念報</div>
+		<h1>Kissu.moe</h1>
+		<div class="subtitle">100% Fun!</div>
 	</header>
 	<img class="board_image" src="/banner-art.php" alt="" />	
 	<div class="box-wrap">
 	    <!--<fieldset>
 		<legend>Boards</legend>
 		<ul>
+							<li class="boardlinksurl">
+					<a href="agg/">
+						Spinoff Aggregate
+					</a>
+				</li>
 							<li class="boardlinksurl">
 					<a href="b/">
 						Boson Technology
@@ -91,78 +96,73 @@
 		<div class="box image">
 			<ul>
 									<li>
-						<a href="/GNFOS/res/2381#2381">
-							<img src="/GNFOS/thumb/1554141328461.jpg" style="width:361px;height:240px" alt="">
+						<a href="/qa/res/3108#3108">
+							<img src="/qa/thumb/1554350292181.png" style="width:255px;height:241px" alt="">
 						</a>
 					</li>
 									<li>
-						<a href="/GNFOS/res/2380#2380">
-							<img src="/GNFOS/thumb/1554135725638.jpg" style="width:135px;height:240px" alt="">
+						<a href="/qa/res/3006#3105">
+							<img src="/qa/thumb/1554349497670.png" style="width:125px;height:175px" alt="">
 						</a>
 					</li>
 									<li>
-						<a href="/GNFOS/res/2379#2379">
-							<img src="/GNFOS/thumb/1554135385108.png" style="width:427px;height:240px" alt="">
+						<a href="/qa/res/3006#3104">
+							<img src="/qa/thumb/1554348733890.png" style="width:127px;height:175px" alt="">
 						</a>
 					</li>
 									<li>
-						<a href="/GNFOS/res/2378#2378">
-							<img src="/GNFOS/thumb/1554133798696.webm" style="width:427px;height:240px" alt="">
+						<a href="/qa/res/3006#3101">
+							<img src="/qa/thumb/1554347920815.png" style="width:124px;height:175px" alt="">
 						</a>
 					</li>
 									<li>
-						<a href="/GNFOS/res/2376#2376">
-							<img src="/GNFOS/thumb/1554133146669.jpg" style="width:168px;height:240px" alt="">
+						<a href="/qa/res/3093#3096">
+							<img src="/qa/thumb/1554346698575.png" style="width:150px;height:150px" alt="">
 						</a>
 					</li>
 									<li>
-						<a href="/GNFOS/res/2377#2377">
-							<img src="/GNFOS/thumb/1554129616993.png" style="width:182px;height:240px" alt="">
+						<a href="/qa/res/3093#3093">
+							<img src="/qa/thumb/1554344235867.png" style="width:255px;height:143px" alt="">
 						</a>
 					</li>
 									<li>
-						<a href="/GNFOS/res/2373#2373">
-							<img src="/GNFOS/thumb/1554114747280.jpg" style="width:170px;height:240px" alt="">
+						<a href="/qa/res/3057#3089">
+							<img src="/qa/thumb/1554342299729.png" style="width:175px;height:157px" alt="">
 						</a>
 					</li>
 									<li>
-						<a href="/GNFOS/res/2374#2374">
-							<img src="/GNFOS/thumb/1554114942063.jpg" style="width:160px;height:240px" alt="">
+						<a href="/qa/res/2322#3088">
+							<img src="/qa/thumb/1554339779931.png" style="width:124px;height:175px" alt="">
 						</a>
 					</li>
 									<li>
-						<a href="/GNFOS/res/2375#2375">
-							<img src="/GNFOS/thumb/1554130318425.jpg" style="width:173px;height:239px" alt="">
+						<a href="/qa/res/2322#3084">
+							<img src="/qa/thumb/1554336654514.png" style="width:125px;height:175px" alt="">
 						</a>
 					</li>
 									<li>
-						<a href="/GNFOS/res/2370#2370">
-							<img src="/GNFOS/thumb/1554106074639.jpeg" style="width:320px;height:240px" alt="">
+						<a href="/qa/res/3064#3082">
+							<img src="/qa/thumb/1554334980747.png" style="width:126px;height:175px" alt="">
 						</a>
 					</li>
 									<li>
-						<a href="/GNFOS/res/2372#2372">
-							<img src="/GNFOS/thumb/1554112977011.jpg" style="width:427px;height:240px" alt="">
+						<a href="/qa/res/3072#3081">
+							<img src="/qa/thumb/1554334036018.png" style="width:175px;height:160px" alt="">
 						</a>
 					</li>
 									<li>
-						<a href="/nen/res/34#34">
-							<img src="/nen/thumb/1553054489166.png" style="width:175px;height:255px" alt="">
+						<a href="/qa/res/3072#3072">
+							<img src="/qa/thumb/1554323850679.png" style="width:182px;height:255px" alt="">
 						</a>
 					</li>
 									<li>
-						<a href="/nen/res/35#35">
-							<img src="/nen/thumb/1552068463022.png" style="width:255px;height:150px" alt="">
+						<a href="/qa/res/3071#3071">
+							<img src="/qa/thumb/1554321223188.png" style="width:180px;height:255px" alt="">
 						</a>
 					</li>
 									<li>
-						<a href="/nen/res/33#33">
-							<img src="/nen/thumb/1553065568784.png" style="width:255px;height:221px" alt="">
-						</a>
-					</li>
-									<li>
-						<a href="/nen/res/30#30">
-							<img src="/nen/thumb/1549060899071.png" style="width:255px;height:144px" alt="">
+						<a href="/qa/res/3064#3068">
+							<img src="/qa/thumb/1554320780992.png" style="width:125px;height:175px" alt="">
 						</a>
 					</li>
 							</ul>
@@ -171,183 +171,183 @@
 			<h2>Latest Posts</h2>
 			<ul>
 									<li>
-						<strong>/GNFOS/</strong>: 
-						<a href="/GNFOS/res/2381#2381">
-							<em>merorin was here, you guys are&hellip;</em>
+						<strong>/megu/</strong>: 
+						<a href="/megu/res/381#381">
+							<em>translate it weebs</em>
 						</a>
 					</li>
 									<li>
-						<strong>/GNFOS/</strong>: 
-						<a href="/GNFOS/res/2380#2380">
-							<em>Spotlight uh moonlight uh  htt&hellip;</em>
+						<strong>/qa/</strong>: 
+						<a href="/qa/res/3108#3108">
+							<em>I am the beam of my eyelids.  &hellip;</em>
 						</a>
 					</li>
 									<li>
-						<strong>/GNFOS/</strong>: 
-						<a href="/GNFOS/res/2379#2379">
-							<em>Fixed your shitty site  https:&hellip;</em>
+						<strong>/qa/</strong>: 
+						<a href="/qa/res/2999#3107">
+							<em>don't compliment. I heard peop&hellip;</em>
 						</a>
 					</li>
 									<li>
-						<strong>/GNFOS/</strong>: 
-						<a href="/GNFOS/res/2378#2378">
-							<em>Are you willing to make the ul&hellip;</em>
+						<strong>/qa/</strong>: 
+						<a href="/qa/res/2999#3106">
+							<em>| You have 1 day to respond!  &hellip;</em>
 						</a>
 					</li>
 									<li>
-						<strong>/GNFOS/</strong>: 
-						<a href="/GNFOS/res/2376#2376">
-							<em>cummed  https://GNFOS.com/jp/r&hellip;</em>
+						<strong>/qa/</strong>: 
+						<a href="/qa/res/3006#3105">
+							<em>&gt;&gt;3103  well tshit decided to &hellip;</em>
 						</a>
 					</li>
 									<li>
-						<strong>/GNFOS/</strong>: 
-						<a href="/GNFOS/res/2377#2377">
-							<em>I don&amp;#39;t feel like this pla&hellip;</em>
+						<strong>/qa/</strong>: 
+						<a href="/qa/res/3006#3104">
+							<em>&gt;&gt;3102  thanks</em>
 						</a>
 					</li>
 									<li>
-						<strong>/GNFOS/</strong>: 
-						<a href="/GNFOS/res/2373#2373">
-							<em>falling asleep...  https://GNF&hellip;</em>
+						<strong>/qa/</strong>: 
+						<a href="/qa/res/3006#3103">
+							<em>I like your images and taste i&hellip;</em>
 						</a>
 					</li>
 									<li>
-						<strong>/GNFOS/</strong>: 
-						<a href="/GNFOS/res/2374#2374">
-							<em>Why is Ron Pauler allowed to h&hellip;</em>
+						<strong>/qa/</strong>: 
+						<a href="/qa/res/3006#3102">
+							<em>&gt;&gt;3101  sure</em>
 						</a>
 					</li>
 									<li>
-						<strong>/GNFOS/</strong>: 
-						<a href="/GNFOS/res/2375#2375">
-							<em>I don&amp;#39;t feel like this pla&hellip;</em>
+						<strong>/qa/</strong>: 
+						<a href="/qa/res/3006#3101">
+							<em>anyway unban me pissman</em>
 						</a>
 					</li>
 									<li>
-						<strong>/GNFOS/</strong>: 
-						<a href="/GNFOS/res/2370#2370">
-							<em>Tap water is so gross  https:/&hellip;</em>
+						<strong>/qa/</strong>: 
+						<a href="/qa/res/3006#3100">
+							<em>&gt;&gt;3009  i hate it actually bec&hellip;</em>
 						</a>
 					</li>
 									<li>
-						<strong>/GNFOS/</strong>: 
-						<a href="/GNFOS/res/2371#2371">
-							<em>The Rose of Versailles  https:&hellip;</em>
+						<strong>/qa/</strong>: 
+						<a href="/qa/res/3007#3099">
+							<em>&gt;&gt;3013  i.e. an incel bro</em>
 						</a>
 					</li>
 									<li>
-						<strong>/GNFOS/</strong>: 
-						<a href="/GNFOS/res/2372#2372">
-							<em>So fucking tired of this faggo&hellip;</em>
+						<strong>/qa/</strong>: 
+						<a href="/qa/res/2999#3098">
+							<em>HOLY FUCK DOES BUMBLE NOTIFY T&hellip;</em>
 						</a>
 					</li>
 									<li>
-						<strong>/nen/</strong>: 
-						<a href="/nen/res/35#36">
-							<em>Good mornen, everynyan!</em>
+						<strong>/qa/</strong>: 
+						<a href="/qa/res/3041#3097">
+							<em>&gt;&gt;3058  Because the browser st&hellip;</em>
 						</a>
 					</li>
 									<li>
-						<strong>/nen/</strong>: 
-						<a href="/nen/res/34#34">
-							<em>Gurren Lagann.  https://kakash&hellip;</em>
+						<strong>/qa/</strong>: 
+						<a href="/qa/res/3093#3096">
+							<em>But isn't green tea green?</em>
 						</a>
 					</li>
 									<li>
-						<strong>/nen/</strong>: 
-						<a href="/nen/res/35#35">
-							<em>The princess of taking it easy&hellip;</em>
+						<strong>/qa/</strong>: 
+						<a href="/qa/res/3057#3095">
+							<em>&gt;&gt;3092  Stabilizing the camera&hellip;</em>
 						</a>
 					</li>
 									<li>
-						<strong>/nen/</strong>: 
-						<a href="/nen/res/33#33">
-							<em>https://kakashi-nenpo.com/jp/r&hellip;</em>
+						<strong>/megu/</strong>: 
+						<a href="/megu/res/375#380">
+							<em>&gt;&gt;379  those are my favorite k&hellip;</em>
 						</a>
 					</li>
 									<li>
-						<strong>/nen/</strong>: 
-						<a href="/nen/res/30#30">
-							<em>How do I properly self insert &hellip;</em>
+						<strong>/qa/</strong>: 
+						<a href="/qa/res/3093#3094">
+							<em>uhhh I think you need to drink&hellip;</em>
 						</a>
 					</li>
 									<li>
-						<strong>/nen/</strong>: 
-						<a href="/nen/res/31#31">
-							<em>try your best  https://kakashi&hellip;</em>
+						<strong>/qa/</strong>: 
+						<a href="/qa/res/3093#3093">
+							<em>green tea looks like pissu</em>
 						</a>
 					</li>
 									<li>
-						<strong>/nen/</strong>: 
-						<a href="/nen/res/32#32">
-							<em>So many nice old threads gone &hellip;</em>
+						<strong>/qa/</strong>: 
+						<a href="/qa/res/3057#3092">
+							<em>&gt;&gt;3091  Are you sure about tha&hellip;</em>
 						</a>
 					</li>
 									<li>
-						<strong>/nen/</strong>: 
-						<a href="/nen/res/28#28">
-							<em>What are /nen/&amp;#39;s favorite &hellip;</em>
+						<strong>/qa/</strong>: 
+						<a href="/qa/res/3057#3091">
+							<em>&gt;&gt;3089  You don't notice it si&hellip;</em>
 						</a>
 					</li>
 									<li>
-						<strong>/nen/</strong>: 
-						<a href="/nen/res/29#29">
-							<em>Does /nen/ like horns?  https:&hellip;</em>
+						<strong>/megu/</strong>: 
+						<a href="/megu/res/375#379">
+							<em>it's a scene from Tales of And&hellip;</em>
 						</a>
 					</li>
 									<li>
-						<strong>/nen/</strong>: 
-						<a href="/nen/res/27#27">
-							<em>get fizzy  https://kakashi-nen&hellip;</em>
+						<strong>/qa/</strong>: 
+						<a href="/qa/res/3032#3090">
+							<em>one day I hope to eat a baked &hellip;</em>
 						</a>
 					</li>
 									<li>
-						<strong>/nen/</strong>: 
-						<a href="/nen/res/26#26">
-							<em>Why doesn&amp;#39;t nen have a coo&hellip;</em>
+						<strong>/qa/</strong>: 
+						<a href="/qa/res/3057#3089">
+							<em>I think there needs to be some&hellip;</em>
 						</a>
 					</li>
 									<li>
-						<strong>/nen/</strong>: 
-						<a href="/nen/res/25#25">
-							<em>rabbit rabbit rabbit!  I may h&hellip;</em>
+						<strong>/qa/</strong>: 
+						<a href="/qa/res/2322#3088">
+							<em>i know you are but what am I</em>
 						</a>
 					</li>
 									<li>
-						<strong>/nen/</strong>: 
-						<a href="/nen/res/24#24">
-							<em>Letty is ready for winter!  ht&hellip;</em>
+						<strong>/qa/</strong>: 
+						<a href="/qa/res/2322#3087">
+							<em>&gt;&gt;3084  What do you think, ret&hellip;</em>
 						</a>
 					</li>
 									<li>
-						<strong>/nen/</strong>: 
-						<a href="/nen/res/23#23">
-							<em>Happy birthday, /nen/!  I can&amp;&hellip;</em>
+						<strong>/qa/</strong>: 
+						<a href="/qa/res/2322#3086">
+							<em>&gt;&gt;3084  It's post-irony.</em>
 						</a>
 					</li>
 									<li>
-						<strong>/nen/</strong>: 
-						<a href="/nen/res/22#22">
-							<em>The art of taking it easy!  ht&hellip;</em>
+						<strong>/qa/</strong>: 
+						<a href="/qa/res/3064#3085">
+							<em>del'd on own post</em>
 						</a>
 					</li>
 									<li>
-						<strong>/nen/</strong>: 
-						<a href="/nen/res/21#21">
-							<em>Any doujin goes as long as it&amp;&hellip;</em>
+						<strong>/qa/</strong>: 
+						<a href="/qa/res/2322#3084">
+							<em>Is Trevor actually "ironically&hellip;</em>
 						</a>
 					</li>
 									<li>
-						<strong>/nen/</strong>: 
-						<a href="/nen/res/20#20">
-							<em>Good morning ごきげんよう  Today is &hellip;</em>
+						<strong>/qa/</strong>: 
+						<a href="/qa/res/3032#3083">
+							<em>ate potato (curry form)</em>
 						</a>
 					</li>
 									<li>
-						<strong>/nen/</strong>: 
-						<a href="/nen/res/19#19">
-							<em>What&amp;#39;s /nen/&amp;#39;s nen?  h&hellip;</em>
+						<strong>/qa/</strong>: 
+						<a href="/qa/res/3064#3082">
+							<em>The question is, which corrupt&hellip;</em>
 						</a>
 					</li>
 							</ul>
@@ -393,9 +393,9 @@
 		<div class="mainBox">
 			<h2>Stats</h2>
 			<ul>
-				<li>Total posts: 2,520</li>
-				<li>Unique posters: 37</li>
-				<li>Active content: 446.11 MB</li>
+				<li>Total posts: 4,824</li>
+				<li>Unique posters: 242</li>
+				<li>Active content: 964.43 MB</li>
 			</ul>
 		</div>
 	</div>
