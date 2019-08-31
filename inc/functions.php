@@ -469,11 +469,11 @@ function scrapePages($regex_pattern){
 	$sites_string = '"' . implode("," , $query->fetchAll(PDO::FETCH_COLUMN)) . '"';
 	if($sites_string == '""'){
 		error("No sites in Table 'proxy-sites' list");
-	}
+	} 
 	set_time_limit(300);
 	if(preg_match("/Linux/", php_uname())){
 		// return shell_exec("xvfb-run python3 Regex-Webscraper/py-cmd/regexscraper.py -u $sites_string -r \"$regex_pattern\" --nojs --json");
-		return shell_exec("/usr/bin/sudo xvfb-run python3 /var/misc-internet-applications/Multipurpose-Regex-Webscraper/py-cmd/regexscraper.py -u $sites_string -r \"$regex_pattern\" --nojs --json");
+		return shell_exec("/usr/bin/sudo xvfb-run python3 /var/misc-internet-applications/Multipurpose-Regex-Webscraper/py-cmd/regexscraper.py -u $sites_string -r \"$regex_pattern\" --raw --json");
 	}
 	else{
 		return exec("python Regex-Webscraper/py-cmd/regexscraper.py -u $sites_string -r \"$regex_pattern\" --nojs --json");
@@ -1018,6 +1018,7 @@ function post_laterPost($post, $thread, $numposts, $noko, $id, $dropped_post, $p
 		nntp_publish($message, $msgid);
 	}
 
+	
 	insertFloodPost($post);
 
 	// Handle cyclical threads
@@ -2013,6 +2014,7 @@ function checkMute() {
 	}
 }
 
+// TODO: Fix missing thread on pages
 function buildIndex($global_api = "yes") {
 	global $board, $config, $build_pages;
 

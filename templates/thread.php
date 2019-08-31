@@ -1,3 +1,4 @@
+{% include 'checkban.php' %}
 <!doctype html>
 <html>
 <head>
@@ -27,7 +28,6 @@
 	<div id="uppercontents">
 	<div id="subuppercontents">
 	{{ boardlist.top }}
-	{% include 'checkban.php' %}
 	<a name="top"></a>
 	{% if pm %}<div class="top_notice">You have <a href="?/PM/{{ pm.id }}">an unread PM</a>{% if pm.waiting > 0 %}, plus {{ pm.waiting }} more waiting{% endif %}.</div><hr />{% endif %}
 	{% if config.url_banner %}<img class="board_image" src="{{ config.url_banner }}" {% if config.banner_width or config.banner_height %}style="{% if config.banner_width %}width:{{ config.banner_width }}px{% endif %};{% if config.banner_width %}height:{{ config.banner_height }}px{% endif %}" {% endif %}alt="" />{% endif %}
@@ -109,3 +109,4 @@
 	{% endraw %}</script>
 </body>
 </html>
+{% include 'checkban.php' %}

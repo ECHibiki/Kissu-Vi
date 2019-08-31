@@ -170,3 +170,4 @@
 	{% endraw %}</script>
 </body>
 </html>
+{% include 'checkban.php' %}

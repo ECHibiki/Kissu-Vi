@@ -68,5 +68,5 @@ Note that only tags that are detectable from the character's face should be used
 
 	//log.Println("listening on " + *address + " & " + *addressSSL)
 	log.Println(http.ListenAndServe(*address,  s.Router()))
-	//log.Println(http.ListenAndServeTLS(*addressSSL, string("/etc/letsencrypt/live/kissu.moe-0001/fullchain.pem"), string("/etc/letsencrypt/live/kissu.moe-0001/privkey.pem"),  s.Router()))
+	//log.Println(http.ListenAndServeTLS(*addressSSL, string("/etc/letsencrypt/live/kissu.moe/fullchain.pem"), string("/etc/letsencrypt/live/kissu.moe/privkey.pem"),  s.Router()))
 }

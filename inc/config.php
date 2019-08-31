@@ -205,7 +205,7 @@
 	// block banned from viewing site
 	$config['ban_block'] = false;
 
-	//search for proxies(requires cron setup)
+	//search for proxies requires cron setup
 	$config["enable_proxy_scrape"] = false;
 	
 	// http://www.sorbs.net/using.shtml
@@ -877,7 +877,7 @@
 	$config['minimum_copy_resize'] = false;
 
 	// Maximum image upload size in bytes.
-	$config['max_filesize'] = 20 * 1024 * 1024; // 10MB
+	$config['max_filesize'] = 40 * 1024 * 1024; // 10MB
 	// Maximum image dimensions.
 	$config['max_width'] = 10000;
 	$config['max_height'] = $config['max_width'];
@@ -1177,6 +1177,7 @@
 
 	// Error messages
 	$config['error']['bot']			= _('You look like a bot.');
+	$config['error']['remove_bot_err'] = true;
 	$config['error']['referer']		= _('Your browser sent an invalid or no HTTP referer.');
 	$config['error']['toolong']		= _('The %s field was too long.');
 	$config['error']['toolong_body']	= _('The body was too long.');
@@ -1452,7 +1453,7 @@
 	);
 
 	// Enable the moving of single replies
-	$config['move_replies'] = false;
+	//--$config['move_replies'] = false;
 
 	// How often (minimum) to purge the ban list of expired bans (which have been seen). Only works when
 	//  $config['cache'] is enabled and working.

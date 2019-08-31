@@ -6,10 +6,13 @@
 	if($config["enable_proxy_scrape"]){
 		$ip_string = scrapePages('\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}');
 		$ip_arr = (json_decode($ip_string));
+		var_dump($ip_arr); 
+		echo("-----");
 		if($ip_arr != null){
 			$ip_arr = array_unique($ip_arr);
 			foreach ($ip_arr as $index=>$ip) {
-				if(!preg_match("/((([0-1]{0,1}[0-9]{0,2}|25[0-5]|2[0-4][0-9])\.){3}([0-1]{0,1}[0-9]{0,2}|25[0-5]|2[0-4][0-9]))/", $ip)){
+				if(!preg_match("/^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/", $ip)){
+					echo("....." . $ip_arr[$index]);
 					unset($ip_arr[$index]);
 					continue;
 				}	
@@ -17,7 +20,8 @@
 				foreach ($bans as &$ban) {
 					if ($ban['expires'] && $ban['expires'] < time()) {
 						Bans::delete($ban['id']);
-					} 
+					}
+					echo("+++++" . $ip_arr[$index]);					
 					unset($ip_arr[$index]);
 					continue;
 				}	
