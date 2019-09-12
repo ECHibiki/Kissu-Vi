@@ -120,11 +120,10 @@ $pages = array(
 			str_replace(array('%d','%s'), array('(\d+)', '[a-z0-9-]+'), preg_quote($config['file_page_slug'], '!'))	=> 'view_thread',
 );
 
-
 if (!$mod) {
 	$pages = array('!^(.+)?$!' => 'login');
-} elseif (isset($_GET['status'], $_GET['r'])) {
-	header('Location: ' . $_GET['r'], true, (int)$_GET['status']);
+} elseif (isset($_GET['status'], $_GET['r'])) {	
+header('Location: ' . $_GET['r'], true, (int)$_GET['status']);
 	exit;
 }
 
@@ -187,6 +186,7 @@ foreach ($pages as $uri => $handler) {
 		}
 		
 		if (is_string($handler)) {
+//echo substr($handler, 1); echo "<br/><pre>";print_r($_SERVER); die;
 			if ($handler[0] == ':') {
 				header('Location: ' . substr($handler, 1),  true, $config['redirect_http']);
 			} elseif (is_callable("mod_page_$handler")) {

@@ -223,7 +223,7 @@ function get_cookie(cookie_name) {
 		return null;
 }
 
-function highlightReply(id) {
+function highlightReply(id, evt) {
 	if (typeof window.event != "undefined" && event.which == 2) {
 		// don't highlight on middle click
 		return true;
@@ -241,7 +241,15 @@ function highlightReply(id) {
 			post.className += ' highlighted';
 			window.location.hash = id;
 	}
-	return true;
+        if (evt == undefined) 
+             return true;
+        else{
+            left = evt.target.href.split("/");
+            left.pop();
+            right = window.location.href.split("/");
+            right.pop();
+            return JSON.stringify(left) != JSON.stringify(right); // evt.target.href.split("/").pop().split(".").pop() == window.location.href.split("/").pop().split(".").pop();
+        }
 }
 
 function generatePassword() {

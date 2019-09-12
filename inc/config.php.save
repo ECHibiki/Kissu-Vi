@@ -729,9 +729,7 @@
 	$config['markup'][] = array("/\[pink\](.+?)\[\/pink\]/", "<span class=\"glowpink\">\$1</span>");
 	$config['markup'][] = array("/\[blue\](.+?)\[\/blue\]/", "<span class=\"glowblue\">\$1</span>");
 	$config['markup'][] = array("/\[gold\](.+?)\[\/gold\]/", "<span class=\"glowgold\">\$1</span>");
-        
-	//kissu markup
-	$config['markup'][] = array("/~~(.+?)~~/", "<strike>\$1</strike>");
+	
 
 	// Code markup. This should be set to a regular expression, using tags you want to use. Examples:
 	// "/\[code\](.*?)\[\/code\]/is"
@@ -746,7 +744,6 @@
 	// Always regenerate markup. This isn't recommended and should only be used for debugging; by default,
 	// Tinyboard only parses post markup when it needs to, and keeps post-markup HTML in the database. This
 	// will significantly impact performance when enabled.
-	// briefly enable this to apply markup changes to older posts.
 	$config['always_regenerate_markup'] = false;
 
 /*
@@ -1020,7 +1017,10 @@
 	// Make stylesheet selections board-specific.
 	$config['stylesheets_board'] = false;
 
-	// Use Font-Awesome for displaying lock and pin icons, instead of the images in static/.
+	// Use Font-Awesome for displaying lock and pin ic
+
+
+ons, instead of the images in static/.
 	// http://fortawesome.github.io/Font-Awesome/icon/pushpin/
 	// http://fortawesome.github.io/Font-Awesome/icon/lock/
 	$config['font_awesome'] = true;
@@ -1276,11 +1276,9 @@
 
 	// Location of files.
 	$config['file_index'] = 'index.html';
-        $config['file_index_no_ext'] = 'index';
 	$config['file_page'] = '%d.html'; // NB: page is both an index page and a thread
 	$config['remove_ext'] = false;
-	$config['file_page_no_ext'] = '%d';
-        $config['file_page50'] = '%d+50.html';
+	$config['file_page50'] = '%d+50.html';
 	$config['file_page_slug'] = '%d-%s.html';
 	$config['file_page50_slug'] = '%d-%s+50.html';
 	$config['file_mod'] = 'mod.php';

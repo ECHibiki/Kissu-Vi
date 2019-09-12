@@ -2394,7 +2394,7 @@ function markup(&$body, $track_cites = false, $op = false) {
 			if (isset($cited_posts[$cite])) {
 				$replacement = '<a onclick="return highlightReply(\''.$cite.'\', event);" href="' .
 					$config['root'] . $board['dir'] . $config['dir']['res'] .
-					link_for(array('id' => $cite, 'thread' => $cited_posts[$cite]),false,false,false, $remove_ext=$config['remove_ext']) . '#' . $cite . '">' .
+					link_for(array('id' => $cite, 'thread' => $cited_posts[$cite]), $remove_ext=true) . '#' . $cite . '">' .
 					'&gt;&gt;' . $cite .
 					'</a>';
 
@@ -2465,11 +2465,11 @@ function markup(&$body, $track_cites = false, $op = false) {
 				
 				while ($cite = $query->fetch(PDO::FETCH_ASSOC)) {
 					$cited_posts[$_board][$cite['id']] = $config['root'] . $board['dir'] . $config['dir']['res'] .
-						link_for($cite,false,false,false, $remove_ext=$config['remove_ext']) . '#' . $cite['id'];
+						link_for($cite) . '#' . $cite['id'];
 				}
 			}
 			
-			$crossboard_indexes[$_board] = $config['remove_ext'] ?  ($config['root'] . $board['dir']): ($config['root'] . $board['dir'] . $config['file_index']);
+			$crossboard_indexes[$_board] = $config['root'] . $board['dir'] . $config['file_index'];
 		}
 		
 		// Restore old board
@@ -2488,7 +2488,7 @@ function markup(&$body, $track_cites = false, $op = false) {
 			if ($cite) {
 				if (isset($cited_posts[$_board][$cite])) {
 					$link = $cited_posts[$_board][$cite];
-		                        
+					
 					$replacement = '<a ' .
 						($_board == $board['uri'] ?
 							'onclick="return highlightReply(\''.$cite.'\', event);" '
@@ -3074,7 +3074,7 @@ function slugify($post) {
 }
 
 function link_for($post, $page50 = false, $foreignlink = false, $thread = false, $remove_ext = false) {
-        global $config, $board;
+	global $config, $board;
 
 	$post = (array)$post;
 
@@ -3114,6 +3114,7 @@ function link_for($post, $page50 = false, $foreignlink = false, $thread = false,
 	else if ( $page50 && !$slug)  $tpl = $config['file_page50'];
 	else if (!$page50 && !$slug && $remove_ext)  $tpl = $config['file_page_no_ext'];
 	else if (!$page50 && !$slug && !$remove_ext)  $tpl = $config['file_page'];
+var_dumpsprintf($tpl, $id, $slug))
 	return sprintf($tpl, $id, $slug);
 }
 
