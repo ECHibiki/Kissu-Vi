@@ -1828,9 +1828,9 @@ function getPageButtons($pages, $mod=false) {
 			} else {
 				$loc = ($mod ? '?/' . $board['uri'] . '/' : '') .
 					($num == 1 ?
-						$config['file_index']
+						($config['remove_ext'] ? $config['file_index_no_ext'] : $config['file_index'])
 					:
-						sprintf($config['file_page'], $num)
+						sprintf(($config['remove_ext'] ? $config['file_page_no_ext'] : $config['file_page']), $num)
 					);
 
 				$btn['prev'] = '<form action="' . ($mod ? '' : $root . $loc) . '" method="get">' .
@@ -1845,7 +1845,7 @@ function getPageButtons($pages, $mod=false) {
 				// There is no next page.
 				$btn['next'] = _('Next');
 			} else {
-				$loc = ($mod ? '?/' . $board['uri'] . '/' : '') . sprintf($config['file_page'], $num + 2);
+				$loc = ($mod ? '?/' . $board['uri'] . '/' : '') . sprintf(($config['remove_ext'] ? $config['file_page_no_ext'] : $config['file_page']), $num + 2);
 
 				$btn['next'] = '<form action="' . ($mod ? '' : $root . $loc) . '" method="get">' .
 					($mod ?
@@ -1878,7 +1878,7 @@ function getPages($mod=false) {
 	for ($x=0;$x<$count && $x<$config['max_pages'];$x++) {
 		$pages[] = array(
 			'num' => $x+1,
-			'link' => $x==0 ? ($mod ? '?/' : $config['root']) . $board['dir'] . $config['file_index'] : ($mod ? '?/' : $config['root']) . $board['dir'] . ($config['remove_ext'] ? sprintf($x+1) : sprintf($config['file_page'], $x+1))
+			'link' => $x==0 ? ($mod ? '?/' : $config['root']) . $board['dir'] . ($config['remove_ext'] ? $config['file_index_no_ext'] : $config['file_index']) : ($mod ? '?/' : $config['root']) . $board['dir'] . ($config['remove_ext'] ? sprintf($x+1) : sprintf($config['file_page'], $x+1))
 		);
 	}
 

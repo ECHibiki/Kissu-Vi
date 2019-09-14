@@ -44,7 +44,7 @@
 		<h1>Kissu.moe</h1>
 		<div class="subtitle">100% Fun!</div>
 	</header>
-	<img class="board_image" src="/static/banners/banner-kissu-24.png" alt="" />	
+	<img class="board_image" src="/static/banners/banner-kissu-8.gif" alt="" />	
 	<div class="box-wrap">
 	    <!--<fieldset>
 		<legend>Boards</legend>
@@ -102,6 +102,31 @@
 		<div class="box image">
 			<ul>
 									<li>
+						<a href="/qa/res/8669#8787">
+							<img src="/qa/thumb/1568494363213.png" style="width:146px;height:175px" alt="">
+						</a>
+					</li>
+									<li>
+						<a href="/qa/res/8403#8786">
+							<img src="/qa/thumb/1568494317877.png" style="width:175px;height:98px" alt="">
+						</a>
+					</li>
+									<li>
+						<a href="/b/res/1415#1645">
+							<img src="/b/thumb/1568494010228.jpg" style="width:175px;height:98px" alt="">
+						</a>
+					</li>
+									<li>
+						<a href="/qa/res/8775#8782">
+							<img src="/qa/thumb/1568493968089.png" style="width:124px;height:175px" alt="">
+						</a>
+					</li>
+									<li>
+						<a href="/qa/res/8403#8781">
+							<img src="/qa/thumb/1568493532247.png" style="width:175px;height:131px" alt="">
+						</a>
+					</li>
+									<li>
 						<a href="/qa/res/8775#8775">
 							<img src="/qa/thumb/1568486546263.png" style="width:180px;height:255px" alt="">
 						</a>
@@ -151,36 +176,83 @@
 							<img src="/qa/thumb/1568479287781.png" style="width:175px;height:119px" alt="">
 						</a>
 					</li>
-									<li>
-						<a href="/qa/res/8734#8760">
-							<img src="/qa/thumb/1568477915703.png" style="width:149px;height:175px" alt="">
-						</a>
-					</li>
-									<li>
-						<a href="/qa/res/8669#8758">
-							<img src="/qa/thumb/1568476868717.png" style="width:174px;height:100px" alt="">
-						</a>
-					</li>
-									<li>
-						<a href="/qa/res/8734#8757">
-							<img src="/qa/thumb/1568476761350.png" style="width:175px;height:175px" alt="">
-						</a>
-					</li>
-									<li>
-						<a href="/qa/res/8734#8756">
-							<img src="/qa/thumb/1568476256261.png" style="width:142px;height:175px" alt="">
-						</a>
-					</li>
-									<li>
-						<a href="/qa/res/8734#8755">
-							<img src="/qa/thumb/1568473356929.png" style="width:131px;height:175px" alt="">
-						</a>
-					</li>
 							</ul>
 		</div>
 		<div class="mainBox">
 			<h2>Latest Posts</h2>
 			<ul>
+									<li>
+						<strong>/qa/</strong>: 
+						<a href="/qa/res/8669#8790">
+							<em>not that i'd lie, but that i'd&hellip;</em>
+						</a>
+					</li>
+									<li>
+						<strong>/qa/</strong>: 
+						<a href="/qa/res/8669#8789">
+							<em>what benefit is there to lying&hellip;</em>
+						</a>
+					</li>
+									<li>
+						<strong>/qa/</strong>: 
+						<a href="/qa/res/8669#8788">
+							<em>wish i could post in this thre&hellip;</em>
+						</a>
+					</li>
+									<li>
+						<strong>/qa/</strong>: 
+						<a href="/qa/res/8669#8787">
+							<em>oh, woke up 30 minutes ago and&hellip;</em>
+						</a>
+					</li>
+									<li>
+						<strong>/qa/</strong>: 
+						<a href="/qa/res/8403#8786">
+							<em>&gt;&gt;8784  i think its a mod</em>
+						</a>
+					</li>
+									<li>
+						<strong>/qa/</strong>: 
+						<a href="/qa/res/8775#8785">
+							<em>&gt;&gt;8780  There are four banana-&hellip;</em>
+						</a>
+					</li>
+									<li>
+						<strong>/qa/</strong>: 
+						<a href="/qa/res/8403#8784">
+							<em>&gt;&gt;8781  is this real? it looks&hellip;</em>
+						</a>
+					</li>
+									<li>
+						<strong>/b/</strong>: 
+						<a href="/b/res/1415#1645">
+							<em>is this a glitch or a feature</em>
+						</a>
+					</li>
+									<li>
+						<strong>/qa/</strong>: 
+						<a href="/qa/res/8775#8782">
+							<em>&gt;&gt;8780  Honestly, going by the&hellip;</em>
+						</a>
+					</li>
+									<li>
+						<strong>/qa/</strong>: 
+						<a href="/qa/res/8403#8781">
+							<em>&gt;&gt;8413</em>
+						</a>
+					</li>
+									<li>
+						<strong>/qa/</strong>: 
+						<a href="/qa/res/8775#8780">
+							<em>is this mint-chocolate-chip-ic&hellip;</em>
+						</a>
+					</li>
+									<li>
+						<strong>/qa/</strong>: 
+						<a href="/qa/res/8767#8779">
+							<em>&gt;&gt;8776  but it won't get used &hellip;</em>
+						</a>
+					</li>
 									<li>
 						<strong>/qa/</strong>: 
 						<a href="/qa/res/8767#8778">
@@ -289,78 +361,6 @@
 							<em>(no comment)</em>
 						</a>
 					</li>
-									<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/8734#8762">
-							<em>(no comment)</em>
-						</a>
-					</li>
-									<li>
-						<strong>/b/</strong>: 
-						<a href="/b/res/1550#1643">
-							<em>Is there a way to have captcho&hellip;</em>
-						</a>
-					</li>
-									<li>
-						<strong>/megu/</strong>: 
-						<a href="/megu/res/504#818">
-							<em>(no comment)</em>
-						</a>
-					</li>
-									<li>
-						<strong>/b/</strong>: 
-						<a href="/b/res/1550#1642">
-							<em>maybe captcouli doesn't even n&hellip;</em>
-						</a>
-					</li>
-									<li>
-						<strong>/b/</strong>: 
-						<a href="/b/res/1550#1641">
-							<em>&gt;&gt;1640  the face recognition a&hellip;</em>
-						</a>
-					</li>
-									<li>
-						<strong>/b/</strong>: 
-						<a href="/b/res/1550#1640">
-							<em>&gt;&gt;1638  that's kemomimi chan, &hellip;</em>
-						</a>
-					</li>
-									<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/8734#8761">
-							<em>(no comment)</em>
-						</a>
-					</li>
-									<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/8734#8760">
-							<em>(no comment)</em>
-						</a>
-					</li>
-									<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/8722#8759">
-							<em>&gt;&gt;8723  Not hard, but if you'r&hellip;</em>
-						</a>
-					</li>
-									<li>
-						<strong>/megu/</strong>: 
-						<a href="/megu/res/817#817">
-							<em>ano mazui kimochi when you wan&hellip;</em>
-						</a>
-					</li>
-									<li>
-						<strong>/megu/</strong>: 
-						<a href="/megu/res/504#816">
-							<em>(no comment)</em>
-						</a>
-					</li>
-									<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/8669#8758">
-							<em>bleh its already morning who m&hellip;</em>
-						</a>
-					</li>
 							</ul>
 		</div>
 		<div class="mainBox">
@@ -404,9 +404,9 @@
 		<div class="mainBox">
 			<h2>Stats</h2>
 			<ul>
-				<li>Total posts: 11,344</li>
+				<li>Total posts: 11,357</li>
 				<li>Unique posters: 474</li>
-				<li>Active content: 5.62 GB</li>
+				<li>Active content: 5.63 GB</li>
 			</ul>
 		</div>
 	</div>
