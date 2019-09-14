@@ -997,8 +997,13 @@
 	// Characters used to generate a random password (with Javascript).
 	$config['genpassword_chars'] = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_+';
 
-	// Optional banner image at the top of every page.
-	// $config['url_banner'] = '/banner.php';
+        // List of banners sepperated by `,`
+        $config['url_banner_list'] = "https://impatientprogrammer.net/wp-content/uploads/2017/12/BlogBanner_Cpp_Basics-1035x270.jpg,http://www.iucedu.com/images/c-c-plus-training-institute-in-chennai.jpg";
+
+        // Exists for legacy purposes
+	// Banners should be set by 'url_banner_list' instead
+	//$config['url_banner'] = array_rand($config['url_banner_list']);
+
 	// Banner dimensions are also optional. As the banner loads after the rest of the page, everything may be
 	// shifted down a few pixels when it does. Making the banner a fixed size will prevent this.
 	// $config['banner_width'] = 300;
