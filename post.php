@@ -6,6 +6,7 @@
  require_once 'inc/functions.php';
 require_once 'inc/anti-bot.php';
 require_once 'inc/bans.php';
+
 require_once 'inc/image.php';
 if(isset($_POST['board']))
 	openBoard($_POST['board']);
@@ -204,6 +205,10 @@ if (isset($_POST['delete'])) {
 	// Check if board exists
 	if (!openBoard($_POST['board']))
 		error($config['error']['noboard']);
+
+	if ((!isset($_POST['mod']) || !$_POST['mod']) && $config['board_locked']) {
+    	error("Board is locked");
+	}
 	
 	// Check if banned
 	checkBan($board['uri']);
@@ -290,6 +295,10 @@ elseif (isset($_POST['report'])) {
 	// Check if board exists
 	if (!openBoard($_POST['board']))
 		error($config['error']['noboard']);
+
+	if ((!isset($_POST['mod']) || !$_POST['mod']) && $config['board_locked']) {
+   		error("Board is locked");
+	}
 	
 	// Check if banned
 	checkBan($board['uri']);
@@ -372,6 +381,10 @@ elseif (isset($_POST['post']) || $dropped_post) {
 	// Check if board exists
 	if (!openBoard($post['board']))
 		error($config['error']['noboard']);
+
+	if ((!isset($_POST['mod']) || !$_POST['mod']) && $config['board_locked']) {
+    	error("Board is locked");
+	}
 	
 	if (!isset($_POST['name']))
 		$_POST['name'] = $config['anonymous'];

@@ -38,13 +38,13 @@
 		}
 	}
 
-?><div class="boardlist"><span class="sub" data-description="0">[ <a href="/">home</a> / <a href="/agg/">agg</a> / <a href="/all/">all</a> ]</span>  <span class="sub" data-description="1">[ <a href="/b/">g</a> / <a href="/qa/">qa</a> / <a href="/megu/">megu</a> ]</span>  <span class="sub" data-description="2">[ <a href="https://theatre.kissu.moe">sync</a> / <a href="https://ban.kissu.moe">text</a> ]</span>  <span class="sub" data-description="3">[ <a href="http://what-ch.mooo.com/what/">what</a> / <a href="https://boards.4channel.org/qa/">qa4</a> / <a href="https://github.com/ECHibiki/ViQa-Kissu/">ViQa</a> ]</span></div><script type='text/javascript'>if (typeof do_boardlist != 'undefined') do_boardlist();</script>
+?><div class="boardlist"><span class="sub" data-description="0">[ <a href="/">home</a> / <a href="/agg/">agg</a> / <a href="/all/">all</a> ]</span>  <span class="sub" data-description="1">[ <a href="/b/">g</a> / <a href="/qa/">qa</a> / <a href="/megu/">megu</a> ]</span>  <span class="sub" data-description="2">[ <a href="https://theatre.kissu.moe">sync</a> / <a href="https://ban.kissu.moe">text</a> ]</span>  <span class="sub" data-description="3">[ <a href="https://kakashi-nenpo.com/">nen</a> / <a href="https://boards.4channel.org/qa/">qa4</a> / <a href="https://github.com/ECHibiki/ViQa-Kissu/">ViQa</a> ]</span></div><script type='text/javascript'>if (typeof do_boardlist != 'undefined') do_boardlist();</script>
 	<header>
 	    <img class="icon" src="../static/kissu-card.png">
 		<h1>Kissu.moe</h1>
 		<div class="subtitle">100% Fun!</div>
 	</header>
-	<img class="board_image" src="/static/banners/banner-kissu-17.png" alt="" />	
+	<img class="board_image" src="/static/banners/banner-kissu-24.png" alt="" />	
 	<div class="box-wrap">
 	    <!--<fieldset>
 		<legend>Boards</legend>
@@ -181,6 +181,18 @@
 		<div class="mainBox">
 			<h2>Latest Posts</h2>
 			<ul>
+									<li>
+						<strong>/qa/</strong>: 
+						<a href="/qa/res/9085#9098">
+							<em>&gt;&gt;9093  same, the concept has &hellip;</em>
+						</a>
+					</li>
+									<li>
+						<strong>/qa/</strong>: 
+						<a href="/qa/res/9096#9097">
+							<em>You have, and that's Ok</em>
+						</a>
+					</li>
 									<li>
 						<strong>/qa/</strong>: 
 						<a href="/qa/res/9096#9096">
@@ -349,18 +361,6 @@
 							<em>&gt;&gt;9068  &gt;endchan  the people t&hellip;</em>
 						</a>
 					</li>
-									<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/9047#9068">
-							<em>&gt;/a/  Tohno, endchan /AM/  &gt;/j&hellip;</em>
-						</a>
-					</li>
-									<li>
-						<strong>/b/</strong>: 
-						<a href="/b/res/1415#1651">
-							<em>going to be cherry picking in &hellip;</em>
-						</a>
-					</li>
 							</ul>
 		</div>
 		<div class="mainBox">
@@ -404,7 +404,7 @@
 		<div class="mainBox">
 			<h2>Stats</h2>
 			<ul>
-				<li>Total posts: 11,703</li>
+				<li>Total posts: 11,705</li>
 				<li>Unique posters: 426</li>
 				<li>Active content: 3.49 GB</li>
 			</ul>
