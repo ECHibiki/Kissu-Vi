@@ -8,12 +8,12 @@ require_once 'inc/anti-bot.php';
 require_once 'inc/bans.php';
 
 require_once 'inc/image.php';
-if(isset($_POST['board']))
-	openBoard($_POST['board']);
-loadConfig();
-if ((!isset($_POST['mod']) || !$_POST['mod']) && $config['board_locked']) {
-    error("Board is locked");
-}
+//if(isset($_POST['board']))
+//	openBoard($_POST['board']);
+//loadConfig();
+//if ((!isset($_POST['mod']) || !$_POST['mod']) && $config['board_locked']) {
+ //   error("Board is locked");
+//}
 
 $dropped_post = false;
 

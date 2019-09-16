@@ -44,7 +44,7 @@
 		<h1>Kissu.moe</h1>
 		<div class="subtitle">100% Fun!</div>
 	</header>
-	<img class="board_image" src="/static/banners/banner-kissu-24.png" alt="" />	
+	<img class="board_image" src="/static/banners/banner-kissu-25.jpg" alt="" />	
 	<div class="box-wrap">
 	    <!--<fieldset>
 		<legend>Boards</legend>
@@ -102,6 +102,56 @@
 		<div class="box image">
 			<ul>
 									<li>
+						<a href="/qa/res/7825#9122">
+							<img src="/qa/thumb/1568666176862.jpg" style="width:175px;height:98px" alt="">
+						</a>
+					</li>
+									<li>
+						<a href="/qa/res/7825#9121">
+							<img src="/qa/thumb/1568666163298.jpg" style="width:175px;height:98px" alt="">
+						</a>
+					</li>
+									<li>
+						<a href="/qa/res/9120#9120">
+							<img src="/qa/thumb/1568665724394.png" style="width:255px;height:144px" alt="">
+						</a>
+					</li>
+									<li>
+						<a href="/qa/res/9096#9118">
+							<img src="/qa/thumb/1568665550365.png" style="width:119px;height:175px" alt="">
+						</a>
+					</li>
+									<li>
+						<a href="/qa/res/9115#9115">
+							<img src="/qa/thumb/1568665335502.png" style="width:255px;height:147px" alt="">
+						</a>
+					</li>
+									<li>
+						<a href="/qa/res/9114#9114">
+							<img src="/qa/thumb/1568665131652.png" style="width:255px;height:143px" alt="">
+						</a>
+					</li>
+									<li>
+						<a href="/b/res/1415#1657">
+							<img src="/b/thumb/1568664536868.png" style="width:175px;height:68px" alt="">
+						</a>
+					</li>
+									<li>
+						<a href="/qa/res/9102#9104">
+							<img src="/qa/thumb/1568663372724.png" style="width:175px;height:144px" alt="">
+						</a>
+					</li>
+									<li>
+						<a href="/qa/res/9102#9102">
+							<img src="/qa/thumb/1568663149119.png" style="width:255px;height:203px" alt="">
+						</a>
+					</li>
+									<li>
+						<a href="/qa/res/9096#9099">
+							<img src="/qa/thumb/1568662117270.png" style="width:175px;height:99px" alt="">
+						</a>
+					</li>
+									<li>
 						<a href="/qa/res/9096#9096">
 							<img src="/qa/thumb/1568661136094.png" style="width:210px;height:255px" alt="">
 						</a>
@@ -126,61 +176,167 @@
 							<img src="static/kissu-spoiler.png" style="width:275px;height:250px" alt="">
 						</a>
 					</li>
-									<li>
-						<a href="/qa/res/9047#9054">
-							<img src="/qa/thumb/1568626552517.png" style="width:146px;height:175px" alt="">
-						</a>
-					</li>
-									<li>
-						<a href="/qa/res/9047#9050">
-							<img src="/qa/thumb/1568624299323.png" style="width:175px;height:175px" alt="">
-						</a>
-					</li>
-									<li>
-						<a href="/qa/res/9049#9049">
-							<img src="/qa/thumb/1568624267475.png" style="width:255px;height:78px" alt="">
-						</a>
-					</li>
-									<li>
-						<a href="/qa/res/9047#9047">
-							<img src="/qa/thumb/1568622569104.png" style="width:184px;height:255px" alt="">
-						</a>
-					</li>
-									<li>
-						<a href="/qa/res/8653#9046">
-							<img src="/qa/thumb/1568621955576.png" style="width:175px;height:104px" alt="">
-						</a>
-					</li>
-									<li>
-						<a href="/qa/res/9032#9045">
-							<img src="/qa/thumb/1568621639783.png" style="width:98px;height:175px" alt="">
-						</a>
-					</li>
-									<li>
-						<a href="/qa/res/8669#9044">
-							<img src="/qa/thumb/1568620804680.png" style="width:114px;height:175px" alt="">
-						</a>
-					</li>
-									<li>
-						<a href="/qa/res/8920#9043">
-							<img src="/qa/thumb/1568620741499.png" style="width:98px;height:175px" alt="">
-						</a>
-					</li>
-									<li>
-						<a href="/qa/res/9032#9035">
-							<img src="/qa/thumb/1568607797439.png" style="width:175px;height:99px" alt="">
-						</a>
-					</li>
-									<li>
-						<a href="/qa/res/9032#9032">
-							<img src="/qa/thumb/1568606872834.png" style="width:255px;height:143px" alt="">
-						</a>
-					</li>
 							</ul>
 		</div>
 		<div class="mainBox">
 			<h2>Latest Posts</h2>
 			<ul>
+									<li>
+						<strong>/b/</strong>: 
+						<a href="/b/res/1415#1658">
+							<em>should be fixed now</em>
+						</a>
+					</li>
+									<li>
+						<strong>/qa/</strong>: 
+						<a href="/qa/res/7825#9122">
+							<em>(no comment)</em>
+						</a>
+					</li>
+									<li>
+						<strong>/qa/</strong>: 
+						<a href="/qa/res/7825#9121">
+							<em>(no comment)</em>
+						</a>
+					</li>
+									<li>
+						<strong>/qa/</strong>: 
+						<a href="/qa/res/9120#9120">
+							<em>&gt;/qa/</em>
+						</a>
+					</li>
+									<li>
+						<strong>/qa/</strong>: 
+						<a href="/qa/res/9115#9119">
+							<em>feel like I've heard that word&hellip;</em>
+						</a>
+					</li>
+									<li>
+						<strong>/qa/</strong>: 
+						<a href="/qa/res/9096#9118">
+							<em>It makes sense for characters &hellip;</em>
+						</a>
+					</li>
+									<li>
+						<strong>/qa/</strong>: 
+						<a href="/qa/res/9114#9117">
+							<em>It's back!</em>
+						</a>
+					</li>
+									<li>
+						<strong>/qa/</strong>: 
+						<a href="/qa/res/9096#9116">
+							<em>what's wrong with a succubus</em>
+						</a>
+					</li>
+									<li>
+						<strong>/qa/</strong>: 
+						<a href="/qa/res/9115#9115">
+							<em>new word.  p*nis + wiener = pe&hellip;</em>
+						</a>
+					</li>
+									<li>
+						<strong>/qa/</strong>: 
+						<a href="/qa/res/9114#9114">
+							<em>&gt;No realms are currently avail&hellip;</em>
+						</a>
+					</li>
+									<li>
+						<strong>/qa/</strong>: 
+						<a href="/qa/res/9102#9113">
+							<em>&gt;&gt;9110  In theory.</em>
+						</a>
+					</li>
+									<li>
+						<strong>/b/</strong>: 
+						<a href="/b/res/1415#1657">
+							<em>fucking vichan</em>
+						</a>
+					</li>
+									<li>
+						<strong>/qa/</strong>: 
+						<a href="/qa/res/9096#9112">
+							<em>&gt;&gt;9109  They’re all 2DPD. 2D c&hellip;</em>
+						</a>
+					</li>
+									<li>
+						<strong>/qa/</strong>: 
+						<a href="/qa/res/9102#9111">
+							<em>&gt;&gt;9110  Only 1% of the time.  &hellip;</em>
+						</a>
+					</li>
+									<li>
+						<strong>/qa/</strong>: 
+						<a href="/qa/res/9102#9110">
+							<em>&gt;&gt;9108  Oh that goes on in the&hellip;</em>
+						</a>
+					</li>
+									<li>
+						<strong>/qa/</strong>: 
+						<a href="/qa/res/9096#9109">
+							<em>I'm not too bothered by 2D slu&hellip;</em>
+						</a>
+					</li>
+									<li>
+						<strong>/qa/</strong>: 
+						<a href="/qa/res/9102#9108">
+							<em>&gt;&gt;9106  Pointing out translati&hellip;</em>
+						</a>
+					</li>
+									<li>
+						<strong>/qa/</strong>: 
+						<a href="/qa/res/9096#9107">
+							<em>it's always been that way for &hellip;</em>
+						</a>
+					</li>
+									<li>
+						<strong>/qa/</strong>: 
+						<a href="/qa/res/9102#9106">
+							<em>for what purpose would i subje&hellip;</em>
+						</a>
+					</li>
+									<li>
+						<strong>/qa/</strong>: 
+						<a href="/qa/res/9102#9105">
+							<em>but i refuse</em>
+						</a>
+					</li>
+									<li>
+						<strong>/qa/</strong>: 
+						<a href="/qa/res/9102#9104">
+							<em>Take a shot for every fbi meme&hellip;</em>
+						</a>
+					</li>
+									<li>
+						<strong>/qa/</strong>: 
+						<a href="/qa/res/9096#9103">
+							<em>&gt;&gt;9101  I wish!</em>
+						</a>
+					</li>
+									<li>
+						<strong>/qa/</strong>: 
+						<a href="/qa/res/9102#9102">
+							<em>read some mangadex comments</em>
+						</a>
+					</li>
+									<li>
+						<strong>/qa/</strong>: 
+						<a href="/qa/res/9096#9101">
+							<em>&gt;&gt;9100  youre a gay virgin, ya&hellip;</em>
+						</a>
+					</li>
+									<li>
+						<strong>/qa/</strong>: 
+						<a href="/qa/res/9096#9100">
+							<em>&gt;&gt;9099  Anime girls are gay vi&hellip;</em>
+						</a>
+					</li>
+									<li>
+						<strong>/qa/</strong>: 
+						<a href="/qa/res/9096#9099">
+							<em>But, that would be, like, all &hellip;</em>
+						</a>
+					</li>
 									<li>
 						<strong>/qa/</strong>: 
 						<a href="/qa/res/9085#9098">
@@ -203,162 +359,6 @@
 						<strong>/qa/</strong>: 
 						<a href="/qa/res/9049#9095">
 							<em>&gt;&gt;9094  Duh.</em>
-						</a>
-					</li>
-									<li>
-						<strong>/b/</strong>: 
-						<a href="/b/res/1415#1656">
-							<em>seems to be that whenever a ne&hellip;</em>
-						</a>
-					</li>
-									<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/9049#9094">
-							<em>wait are they really making a &hellip;</em>
-						</a>
-					</li>
-									<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/9085#9093">
-							<em>Im kind of sick of monstergirl&hellip;</em>
-						</a>
-					</li>
-									<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/9047#9092">
-							<em>&gt;&gt;9090  4/sp/ and the spinoff &hellip;</em>
-						</a>
-					</li>
-									<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/9085#9091">
-							<em>shaking breasts</em>
-						</a>
-					</li>
-									<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/9047#9090">
-							<em>&gt;&gt;9084  Reputation similar to &hellip;</em>
-						</a>
-					</li>
-									<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/9012#9089">
-							<em>&gt;&gt;9088  Pretty sure you can ge&hellip;</em>
-						</a>
-					</li>
-									<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/9012#9088">
-							<em>Are H-Games worth installing w&hellip;</em>
-						</a>
-					</li>
-									<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/8860#9087">
-							<em>she's just a huge clutz</em>
-						</a>
-					</li>
-									<li>
-						<strong>/b/</strong>: 
-						<a href="/b/res/1415#1655">
-							<em>Not sure what change caused it&hellip;</em>
-						</a>
-					</li>
-									<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/9085#9086">
-							<em>demihumans</em>
-						</a>
-					</li>
-									<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/9085#9085">
-							<em>What do you call things like c&hellip;</em>
-						</a>
-					</li>
-									<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/9047#9084">
-							<em>&gt;&gt;9072  Endchan just has a bad&hellip;</em>
-						</a>
-					</li>
-									<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/9012#9082">
-							<em>&gt;&gt;9034  Hope it’s old illusion&hellip;</em>
-						</a>
-					</li>
-									<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/9012#9081">
-							<em>&gt;&gt;9034  imagining a collaborat&hellip;</em>
-						</a>
-					</li>
-									<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/9049#9080">
-							<em>&gt;&gt;9078  There's a 3rd season c&hellip;</em>
-						</a>
-					</li>
-									<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/9049#9079">
-							<em>&gt;&gt;9076  Being non-anonymous is&hellip;</em>
-						</a>
-					</li>
-									<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/9049#9078">
-							<em>Got excited for more Gochiusa &hellip;</em>
-						</a>
-					</li>
-									<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/9049#9076">
-							<em>&gt;&gt;9075  The IRCs need love too&hellip;</em>
-						</a>
-					</li>
-									<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/9049#9075">
-							<em>&gt;&gt;9074  drop wow, post on kiss&hellip;</em>
-						</a>
-					</li>
-									<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/9049#9074">
-							<em>Wish I had motivation to watch&hellip;</em>
-						</a>
-					</li>
-									<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/8920#9073">
-							<em>Weened real hard today.</em>
-						</a>
-					</li>
-									<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/9047#9072">
-							<em>&gt;&gt;9069  I only browsed /AM/ an&hellip;</em>
-						</a>
-					</li>
-									<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/9012#9071">
-							<em>&gt;&gt;9041  I've always thought of&hellip;</em>
-						</a>
-					</li>
-									<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/9047#9070">
-							<em>&gt;&gt;9047  Never understood why s&hellip;</em>
-						</a>
-					</li>
-									<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/9047#9069">
-							<em>&gt;&gt;9068  &gt;endchan  the people t&hellip;</em>
 						</a>
 					</li>
 							</ul>
@@ -404,9 +404,9 @@
 		<div class="mainBox">
 			<h2>Stats</h2>
 			<ul>
-				<li>Total posts: 11,705</li>
-				<li>Unique posters: 426</li>
-				<li>Active content: 3.49 GB</li>
+				<li>Total posts: 11,731</li>
+				<li>Unique posters: 423</li>
+				<li>Active content: 3.51 GB</li>
 			</ul>
 		</div>
 	</div>

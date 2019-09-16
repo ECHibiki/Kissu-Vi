@@ -982,7 +982,7 @@ function post_laterPost($post, $thread, $numposts, $noko, $id, $dropped_post, $p
 		require_once 'inc/bans.php';
 		require_once 'inc/image.php';
 	
-		global $config, $board;
+		global $config, $board, $build_pages;
 	if ($dropped_post && $dropped_post['from_nntp']) {
 	        $query = prepare("INSERT INTO ``nntp_references`` (`board`, `id`, `message_id`, `message_id_digest`, `own`, `headers`) VALUES ".
 	                                                         "(:board , :id , :message_id , :message_id_digest , false, :headers)");
