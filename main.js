@@ -2163,9 +2163,37 @@ if (active_page == 'catalog') $(function(){
 
 onready(function(){
 	if($('body').hasClass('active-ukko')) return;
+        var unmatched_backlinks = new Object();
 	var showBackLinks = function() {
 		var reply_id = $(this).attr('id').replace(/(^reply_)|(^op_)/, '');
-		
+console.log(unmatched_backlinks[reply_id]);
+               if(unmatched_backlinks[reply_id] != undefined){
+                    $.each(unmatched_backlinks[reply_id], function(index,id){
+			$post = $('#reply_' + reply_id);
+                        if($post.length == 0){
+                                $post = $('#op_' + reply_id);
+                                if($post.length == 0)
+                                        return;
+                        }
+                
+                        $mentioned = $post.find('p.intro span.mentioned');
+                        if($mentioned.length == 0)
+                                $mentioned = $('<span class="mentioned unimportant"></span>').appendTo($post.find('p.intro'));
+                        
+                        if ($mentioned.find('a.mentioned-' + id).length != 0)
+                                return;
+
+                        var $link = $('<a class="mentioned-' + id + '" onclick="highlightReply(\'' + id + '\');" href="#' + id + '">&gt;&gt;' +
+                                id + '</a>');
+                        $link.appendTo($mentioned)
+                        
+                        if (window.init_hover) {
+                                $link.each(init_hover);
+                        }
+
+		});
+               }
+
 		$(this).find('div.body a:not([rel="nofollow"])').each(function() {
 			var id, post, $mentioned;
 		
@@ -2177,8 +2205,12 @@ onready(function(){
 			$post = $('#reply_' + id);
 			if($post.length == 0){
 				$post = $('#op_' + id);
-				if($post.length == 0)
+				if($post.length == 0){
+					if(unmatched_backlinks[id] == undefined)
+						unmatched_backlinks[id] = Array();
+					unmatched_backlinks[id].push(reply_id);
 					return;
+				}
 			}
 		
 			$mentioned = $post.find('p.intro span.mentioned');
@@ -2187,11 +2219,28 @@ onready(function(){
 			
 			if ($mentioned.find('a.mentioned-' + reply_id).length != 0)
 				return;
-			
+
 			var $link = $('<a class="mentioned-' + reply_id + '" onclick="highlightReply(\'' + reply_id + '\');" href="#' + reply_id + '">&gt;&gt;' +
 				reply_id + '</a>');
-			$link.appendTo($mentioned)
-			
+
+
+sorted_backlinks  = $mentioned.children().sort(function(a, b){
+return parseInt(a.className.replace("mentioned-", ""), 10) - parseInt(b.className.replace("mentioned-", ""), 10); 
+});
+//console.log(sorted_backlinks)
+
+inserted = false;
+sorted_backlinks.each(function(ind, val){
+if(parseInt(val.className.replace("mentioned-", ""), 10) > reply_id){
+$mentioned.before($link);	
+//console.log(val.className + " " + reply_id);	
+        inserted = true;
+	return false;
+}
+});
+if(!inserted){
+$link.appendTo($mentioned)
+}			
 			if (window.init_hover) {
 				$link.each(init_hover);
 			}
@@ -3495,8 +3544,8 @@ var default_spread = "";
      var generateBannerOptionData = function (){	
 		// add the tab for viewing the format settings
 		if (window.Options && !Options.get_tab('Styling & Mascots')) {
-			Options.add_tab('view_formatting', '500px', _('Styling & Mascots'));
-			Options.extend_tab('view_formatting', '\
+			Options.add_tab('custom_styling', '500px', _('Styling & Mascots'));
+			Options.extend_tab('custom_styling', '\
 				Post Reply BG URL: <input type=text id="spreadbg-input">\
 				 <button onclick="" id="spreadbg-button">Set BG</button><br/>\
 				A decent sample idea https://kissu.moe/static/spreads/7e31-.png <br/>\

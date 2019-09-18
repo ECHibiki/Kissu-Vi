@@ -9,8 +9,8 @@ var default_spread = "";
      var generateBannerOptionData = function (){	
 		// add the tab for viewing the format settings
 		if (window.Options && !Options.get_tab('Styling & Mascots')) {
-			Options.add_tab('view_formatting', '500px', _('Styling & Mascots'));
-			Options.extend_tab('view_formatting', '\
+			Options.add_tab('custom_styling', '500px', _('Styling & Mascots'));
+			Options.extend_tab('custom_styling', '\
 				Post Reply BG URL: <input type=text id="spreadbg-input">\
 				 <button onclick="" id="spreadbg-button">Set BG</button><br/>\
 				A decent sample idea https://kissu.moe/static/spreads/7e31-.png <br/>\
