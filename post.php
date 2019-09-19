@@ -745,10 +745,12 @@ elseif (isset($_POST['post']) || $dropped_post) {
 	
 	$post['body'] = escape_markup_modifiers($post['body']);
 	
+//why is this in here???
+/*
 	if ($mod && isset($post['raw']) && $post['raw']) {
 		$post['body'] .= "\n<tinyboard raw html>1</tinyboard>";
 	}
-	
+*/	
 	if (!$dropped_post)
 	if (($config['country_flags'] && !$config['allow_no_country']) || ($config['country_flags'] && $config['allow_no_country'] && !isset($_POST['no_country']))) {
 		require 'inc/lib/geoip/geoip.inc';

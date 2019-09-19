@@ -554,8 +554,9 @@
 	// How long after posting should you have to wait before being able to delete that post? (In seconds.)
 	$config['delete_time'] = 10;
 	// Reply limit (stops bumping thread when this is reached).
-	$config['reply_limit'] = 100;
-
+	$config['reply_limit'] = 151;
+	// At this point cycled threads will delete older posts as new ones come in.
+	$config['cycle_limit'] = 149;
 	// Image hard limit (stops allowing new image replies when this is reached if not zero).
 	$config['image_hard_limit'] = 150;
 	// Reply hard limit (stops allowing new replies when this is reached if not zero).
@@ -1590,7 +1591,6 @@ $config['mod']['capcode'] = array(
 	$config['mod']['sticky'] = MOD;
 	// Cycle a thread
 	$config['mod']['cycle'] = MOD;
-	$config['cycle_limit'] = &$config['reply_limit'];
 	// Lock a thread
 	$config['mod']['lock'] = MOD;
 	// Post in a locked thread

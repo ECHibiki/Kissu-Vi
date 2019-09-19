@@ -151,7 +151,7 @@ var styles = {
 	'terminal2' : '/stylesheets/terminal2.css',
 	'testorange' : '/stylesheets/testorange.css',
 	'v8ch' : '/stylesheets/v8ch.css',
-	'wasabi' : '/stylesheets/wasabi?.css',
+	'wasabi' : '/stylesheets/wasabi.css',
 	
 };
 
@@ -2166,7 +2166,6 @@ onready(function(){
         var unmatched_backlinks = new Object();
 	var showBackLinks = function() {
 		var reply_id = $(this).attr('id').replace(/(^reply_)|(^op_)/, '');
-console.log(unmatched_backlinks[reply_id]);
                if(unmatched_backlinks[reply_id] != undefined){
                     $.each(unmatched_backlinks[reply_id], function(index,id){
 			$post = $('#reply_' + reply_id);
@@ -2224,23 +2223,20 @@ console.log(unmatched_backlinks[reply_id]);
 				reply_id + '</a>');
 
 
-sorted_backlinks  = $mentioned.children().sort(function(a, b){
-return parseInt(a.className.replace("mentioned-", ""), 10) - parseInt(b.className.replace("mentioned-", ""), 10); 
-});
-//console.log(sorted_backlinks)
-
-inserted = false;
-sorted_backlinks.each(function(ind, val){
-if(parseInt(val.className.replace("mentioned-", ""), 10) > reply_id){
-$mentioned.before($link);	
-//console.log(val.className + " " + reply_id);	
-        inserted = true;
-	return false;
-}
-});
-if(!inserted){
-$link.appendTo($mentioned)
-}			
+			sorted_backlinks  = $mentioned.children().sort(function(a, b){
+				return parseInt(a.className.replace("mentioned-", ""), 10) - parseInt(b.className.replace("mentioned-", ""), 10); 
+			});
+			inserted = false;
+			sorted_backlinks.each(function(ind, val){
+				if(parseInt(val.className.replace("mentioned-", ""), 10) > reply_id){
+					$mentioned.before($link);	
+        				inserted = true;
+					return false;
+				}
+			});
+			if(!inserted){
+				$link.appendTo($mentioned)
+			}			
 			if (window.init_hover) {
 				$link.each(init_hover);
 			}

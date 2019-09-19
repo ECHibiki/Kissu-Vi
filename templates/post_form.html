@@ -28,9 +28,9 @@
 				{% if config.field_email_selectbox %}
 				<select name="email" id="email_selectbox" autocomplete="off">
 					<option value="Add Options"></option>
-					<option value="sage">Hold Back</option>
+					<option value="sage">Sageru</option>
 					<option value="repo">Repost</option>
-					{% if not config.always_noko %}<option value="noko">Remain</option>{% endif %}
+					{# % if not config.always_noko % #}<option value="noko">Remain</option>{#% endif %#}
 				</select>
 				{% else %}
 				<input type="text" name="email" size="25" maxlength="40" autocomplete="off" id='option_input'>
@@ -38,7 +38,7 @@
 					<option value="">Options</option>
 					<option value="repo">Repost</option>
 					<option value="sage">Hold Back</option>
-					{% if not config.always_noko %}<option value="noko">Remain</option>{% endif %}
+					{# % if not config.always_noko % #}<option value="noko">Remain</option>{#% endif %#}
 				</select>
 				{% endif %}
 				{{ antibot.html() }}
