@@ -57,6 +57,7 @@
 </div>
 </div>
 </div>
+<div id="lowercontents">
 	{% if config.global_message %}<hr /><div class="blotter">{{ config.global_message }}</div>{% endif %}
 	<hr />
 		<span id="thread-links-top">
@@ -107,6 +108,7 @@
 	<script type="text/javascript">{% raw %}
 		ready();
 	{% endraw %}</script>
+</div>
 </body>
 </html>
 {% include 'checkban.php' %}

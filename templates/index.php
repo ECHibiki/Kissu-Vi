@@ -58,7 +58,7 @@
 			{{ btn.next }}
 		</div>
 	{% endif %}
-	
+	<div id="lowercontents">
 	{% if config.global_message %}<hr /><div class="blotter">{{ config.global_message }}</div>{% endif %}
 	<hr />
 	{% if config.board_search %}
@@ -127,7 +127,7 @@
 	<script type="text/javascript">{% raw %}
 		ready();
 	{% endraw %}</script>
-	
+	</div>
 </body>
 </html>
 {% include 'checkban.php' %}

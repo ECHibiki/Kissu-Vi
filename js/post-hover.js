@@ -141,22 +141,21 @@ onready(function(){
 			var $hover = $('#post-hover-' + id + '[data-board="' + board + '"]');
 			if($hover.length == 0)
 				return;
-
+/*
 			var scrollTop = $(window).scrollTop();
 			if ($link.is("[data-thread]")) scrollTop = 0;
 			var epy = e.pageY;
 			if ($link.is("[data-thread]")) epy -= $(window).scrollTop();			
 
-			var top = (epy ? epy : hovered_at['y']) - 10;
+			var top = (epy ? epy : hovered_at['y']) - 450;
 			
 			if(epy < scrollTop + 15) {
 				top = scrollTop;
 			} else if(epy > scrollTop + $(window).height() - $hover.height() - 15) {
 				top = scrollTop + $(window).height() - $hover.height() - 15;
 			}
-			
-			
-			$hover.css('left', (e.pageX ? e.pageX : hovered_at['x'])).css('top', top);
+*/	
+			$hover.css('left', (e.pageX ? e.pageX : hovered_at['x'])).css('top', e.currentTarget.offsetTop);
 		});
 	};
 	

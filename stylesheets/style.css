@@ -1,3 +1,26 @@
+#style-select{
+	position:relative;
+	z-index: 2;
+}
+
+.axisfield{
+ width: 3em;
+}
+
+#uppercontents{
+    z-index: 0;
+    position:relative;
+    background-repeat: no-repeat;
+    background-position: -5.3em -0.5em;
+    margin: -0.3%;
+    padding: 1px;
+}
+
+#lowercontents{
+	z-index:2;
+	position:relative;
+}
+
 .intro{
 	display: inline-block;
 }
@@ -23,6 +46,12 @@ span.glowblue{
 span.glowgold{
 	text-shadow: -1px 0px 4px #FFA500, 1px 1px 1px #C5AE09, 2px 0px 10px rgb(255, 224, 0);
     color: #FDFFEF;
+}
+
+/* Mascots */
+#mascot-img {
+  position: fixed;
+  z-index: -10;
 }
 
 /* Original CSS */
