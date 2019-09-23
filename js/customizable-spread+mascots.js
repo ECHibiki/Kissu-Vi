@@ -72,7 +72,7 @@ try{
                         $("#mascotimg-X").val(localStorage.MascotIMG_X);
 }
 catch(e){
-alert("Exception thrown, do you have localstorage support?");
+	alert("Exception thrown, do you have localstorage support?");
 }
 		}		
      }
@@ -112,6 +112,7 @@ alert("Exception thrown, do you have localstorage support?");
 		$("#mascot-img").css("max-width", "50%");
 		$("#mascot-img").css("max-height", "50%");
 		$("#mascot-img").css("z-index", "1");
+		$("#mascot-img").css("position", "fixed");
 	}
 unset_mascot=false;
     }

@@ -277,6 +277,7 @@ div.blotter {
 	margin: 0.3%;
 }
 
+/* Use this for an expanding and shrinking post field
 #topcontainer{
     display: block;
     margin: auto;
@@ -291,6 +292,7 @@ div.blotter {
 	position:relative;
 	left: -2.2em;
 }
+
 #topcontainer:hover, #topcontainer:focus, #topcontainer:target{
 	 opacity: 1.0;
 	 transform: scale(1.0,1.0);
@@ -299,6 +301,18 @@ div.blotter {
 	position:relative;
 	left: 2em;
 }
+*/
+
+
+#topcontainer{
+	 opacity: 1.0;
+	 transform: scale(1.0,1.0);
+	margin: 0em 0em 0em;
+	width: 100%;
+	position:relative;
+	margin-bottom: -4em;
+}
+
 header{
 	padding: 0em 0em;
 }

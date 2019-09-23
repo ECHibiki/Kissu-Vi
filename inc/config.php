@@ -607,6 +607,9 @@
 	// Advanced raplcement (regular expressions):
 	// $config['wordfilters'][] = array('/ca[rt]/', 'dog', true); // 'true' means it's a regular expression
 
+	// Expandable and retractable post form for more compact appearance
+	$config['advanced_post_form'] = false;
+
 	// Always act as if the user had typed "noko" into the email field.
 	$config['always_noko'] = false;
 
@@ -1012,8 +1015,8 @@
 
 	// Custom stylesheets available for the user to choose. See the "stylesheets/" folder for a list of
 	// available stylesheets (or create your own).
-	$config['stylesheets']['Yotsuba B'] = ''; // Default; there is no additional/custom stylesheet for this.
-	$config['stylesheets']['Yotsuba'] = 'yotsuba.css';
+	//$config['stylesheets']['Yotsuba B'] = ''; // Default; there is no additional/custom stylesheet for this.
+	//$config['stylesheets']['Yotsuba'] = 'yotsuba.css';
 	// $config['stylesheets']['Futaba'] = 'futaba.css';
 	// $config['stylesheets']['Dark'] = 'dark.css';
 
@@ -1021,7 +1024,7 @@
 	// $config['uri_stylesheets'] = 'http://static.example.org/stylesheets/';
 
 	// The default stylesheet to use.
-	$config['default_stylesheet'] = array('Yotsuba B', $config['stylesheets']['Yotsuba B']);
+//	$config['default_stylesheet'] = array('Yotsuba B', $config['stylesheets']['Yotsuba B']);
 
 	// Make stylesheet selections board-specific.
 	$config['stylesheets_board'] = false;

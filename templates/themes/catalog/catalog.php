@@ -30,14 +30,18 @@
 		{% if mod %}<p><a href="?/">{% trans %}Return to dashboard{% endtrans %}</a></p>{% endif %}
 	</div>
 	</header>
+	<h1>New Thread</h1>
 	<div id="topcontainer">
 	{% include 'attention_bar.html' %}
 
 	{{ config.ad.top }}
-
 	<div>
 	{% if not no_post_form %}
-		{% include 'post_form.html' %}
+		{% if config.advanced_post_form  %}			
+			{% include 'post_form_advanced.html' %}
+		{% else %}
+			{% include 'post_form.html' %}
+		{% endif %}
 	{% else %}
 		{% include 'boardlist.html' %}
 	{% endif %}

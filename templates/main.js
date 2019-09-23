@@ -280,10 +280,14 @@ function dopost(form) {
 }
 
 function citeReply(id, with_link) {
-	var textarea = document.getElementById('body');
-
-	if (!textarea) return false;
-	
+	var textarea;
+	if(document.getElementById('index-body') != undefined)
+		textarea = document.getElementById('index-body');
+	else
+        	textarea = document.getElementById('body');
+	if (!textarea){
+		 return false;
+	}
 	if (document.selection) {
 		// IE
 		textarea.focus();

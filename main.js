@@ -112,16 +112,16 @@ function alert(a, do_confirm, confirm_ok_action, confirm_cancel_action, no_ok) {
 var saved = {};
 
 
-var selectedstyle = 'Dark-Kissu';
+var selectedstyle = 'Dark-Kissu(Saturated)';
 var styles = {
 	
-	'Yotsuba B' : '',
-	'Yotsuba' : '/stylesheets/yotsuba.css',
-	'Dark-Kissu' : '/stylesheets/Dark-kissu.css',
+	'Yotsu Kissu B' : '/stylesheets/yotsuba-kissu-b.css',
+	'Dark-Kissu(Saturated)' : '/stylesheets/Dark-kissu.css',
 	'Kissu(Experimental)' : '/stylesheets/kissu.css',
 	'New-Years' : '/stylesheets/new-years-theme.css',
 	'Nen' : '/stylesheets/hatate.css',
 	'Trevor' : '/stylesheets/trevor.css',
+	'Yotsuba' : '/stylesheets/yotsuba.css',
 	'Dark' : '/stylesheets/dark.css',
 	'Futaba' : '/stylesheets/futaba.css',
 	'Burichan' : '/stylesheets/burichan.css',
@@ -290,10 +290,14 @@ function dopost(form) {
 }
 
 function citeReply(id, with_link) {
-	var textarea = document.getElementById('body');
-
-	if (!textarea) return false;
-	
+	var textarea;
+	if(document.getElementById('index-body') != undefined)
+		textarea = document.getElementById('index-body');
+	else
+        	textarea = document.getElementById('body');
+	if (!textarea){
+		 return false;
+	}
 	if (document.selection) {
 		// IE
 		textarea.focus();
@@ -2969,9 +2973,14 @@ onready(function(){
 		</style>').appendTo($('head'));
 	};
 	
-	var show_quick_reply = function(){
-		if($('div.banner').length == 0)
-			return;
+	var show_quick_reply = function(target_id){
+
+if($('div.banner').length == 0){
+var thread_id = $("#reply_" + target_id + ",#op_"+target_id).closest("[id*=thread_").attr("id").replace("thread_", "");
+			var in_index = true;
+		}
+else
+			var in_index = false;
 		if($('#quick-reply').length != 0)
 			return;
 		
@@ -2979,8 +2988,7 @@ onready(function(){
 		
 		var $postForm = $('form[name="post"]').clone();
 		
-		$postForm.clone();
-		
+		$postForm.clone();	
 		$dummyStuff = $('<div class="nonsense"></div>').appendTo($postForm);
 		
 		$postForm.find('table tr').each(function() {
@@ -3162,29 +3170,36 @@ onready(function(){
 		$postForm.appendTo($('body')).hide();
 		$origPostForm = $('form[name="post"]:first');
 		
-		// Synchronise body text with original post form
-		$origPostForm.find('textarea[name="body"]').on('change input propertychange', function() {
-			$postForm.find('textarea[name="body"]').val($(this).val());
-		});
-		$postForm.find('textarea[name="body"]').on('change input propertychange', function() {
-			$origPostForm.find('textarea[name="body"]').val($(this).val());
-		});
-		$postForm.find('textarea[name="body"]').focus(function() {
-			$origPostForm.find('textarea[name="body"]').removeAttr('id');
-			$(this).attr('id', 'body');
-		});
-		$origPostForm.find('textarea[name="body"]').focus(function() {
-			$postForm.find('textarea[name="body"]').removeAttr('id');
-			$(this).attr('id', 'body');
-		});
-		// Synchronise other inputs
-		$origPostForm.find('input[type="text"],select').on('change input propertychange', function() {
-			$postForm.find('[name="' + $(this).attr('name') + '"]').val($(this).val());
-		});
-		$postForm.find('input[type="text"],select').on('change input propertychange', function() {
-			$origPostForm.find('[name="' + $(this).attr('name') + '"]').val($(this).val());
-		});
-
+		// insert the thread that this post will be placed in and modify fields
+		if(in_index){
+			$("#quick-reply textarea").attr("id", "index-body");
+			$("<input type='hidden' name='thread' value='" + thread_id + "'></input>").appendTo($("#quick-reply"));
+			$("#quick-reply .handle").append(document.createTextNode("(" + thread_id + ")"));
+		}
+		// otherwise synchronise body text with original post form
+		else if(!in_index){
+			$origPostForm.find('textarea[name="body"]').on('change input propertychange', function() {
+				$postForm.find('textarea[name="body"]').val($(this).val());
+			});
+			$postForm.find('textarea[name="body"]').on('change input propertychange', function() {
+				$origPostForm.find('textarea[name="body"]').val($(this).val());
+			});
+			$postForm.find('textarea[name="body"]').focus(function() {
+				$origPostForm.find('textarea[name="body"]').removeAttr('id');
+				$(this).attr('id', 'body');
+			});
+			$origPostForm.find('textarea[name="body"]').focus(function() {
+				$postForm.find('textarea[name="body"]').removeAttr('id');
+				$(this).attr('id', 'body');
+			});
+			// Synchronise other inputs
+			$origPostForm.find('input[type="text"],select').on('change input propertychange', function() {
+				$postForm.find('[name="' + $(this).attr('name') + '"]').val($(this).val());
+			});
+			$postForm.find('input[type="text"],select').on('change input propertychange', function() {
+				$origPostForm.find('[name="' + $(this).attr('name') + '"]').val($(this).val());
+			});
+		}
 		if (typeof $postForm.draggable != 'undefined') {	
 			if (localStorage.quickReplyPosition) {
 				var offset = JSON.parse(localStorage.quickReplyPosition);
@@ -3226,9 +3241,8 @@ onready(function(){
 		$postForm.hide();
 		
 		$(window).trigger('quick-reply');
-	
 		$(window).ready(function() {
-			if (settings.get('hide_at_top', true)) {
+			if (!in_index && settings.get('hide_at_top', true)) {
 				$(window).scroll(function() {
 					if ($(this).width() <= 400)
 						return;
@@ -3249,11 +3263,14 @@ onready(function(){
 			});
 		});
 	};
-	
+
 	$(window).on('cite', function(e, id, with_link) {
 		if ($(this).width() <= 400)
 			return;
-		show_quick_reply();
+		var origin_id = id;
+		// find the thread id for a cite if citereply call is done in index
+		// pass in null if not found, it won't be evaluated in show_quick_reply
+		show_quick_reply(origin_id);
 		captchaSetup();
 		if (with_link) {
 			$(document).ready(function() {
@@ -3602,7 +3619,7 @@ try{
                         $("#mascotimg-X").val(localStorage.MascotIMG_X);
 }
 catch(e){
-alert("Exception thrown, do you have localstorage support?");
+	alert("Exception thrown, do you have localstorage support?");
 }
 		}		
      }
@@ -3642,6 +3659,7 @@ alert("Exception thrown, do you have localstorage support?");
 		$("#mascot-img").css("max-width", "50%");
 		$("#mascot-img").css("max-height", "50%");
 		$("#mascot-img").css("z-index", "1");
+		$("#mascot-img").css("position", "fixed");
 	}
 unset_mascot=false;
     }
