@@ -70,7 +70,7 @@ func ExtractID(r *http.Request) (id [64]byte, err error) {
 	if err != nil {
 		return
 	}
-	return DecodeID(r.Form.Get(common.IDKey))
+        return DecodeID(strings.Replace(r.Form.Get(common.IDKey), " ", "+", -1))
 }
 
 // Decode captcha ID from base64 string

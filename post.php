@@ -976,17 +976,25 @@ elseif(isset($_POST['release'])){
 	}
 	elseif ($config['flood_captchouli'] && isset($_POST['captchouli'])){
 		
-		$kissu = curl_init('http://kissu.moe/status?captchouli-id=' . $_POST['captchouli']);
+		$kissu = curl_init('https://kissu.moe/status?captchouli-id=' . $_POST['captchouli']);
+		curl_setopt($kissu, CURLOPT_RETURNTRANSFER, true);
 		$result = curl_exec($kissu);
+
 		if($result === false){
 			error('Bad URL');
 		}
 		else{
 			if ($result == "true"){	}
 			else{
-				error('Bad captcha: ' . $result);
+				if($result == "false")
+					error('Bad captcha: Moldy captcha');
+				else
+					error('Bad captcha: ' . $result);
 			}
 		}
+	}
+	else{
+		error("where is your captcha?");
 	}
 
 	

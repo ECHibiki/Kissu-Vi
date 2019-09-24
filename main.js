@@ -121,6 +121,7 @@ var styles = {
 	'New-Years' : '/stylesheets/new-years-theme.css',
 	'Nen' : '/stylesheets/hatate.css',
 	'Trevor' : '/stylesheets/trevor.css',
+	'Yotsuba B' : '/stylesheets/style.css',
 	'Yotsuba' : '/stylesheets/yotsuba.css',
 	'Dark' : '/stylesheets/dark.css',
 	'Futaba' : '/stylesheets/futaba.css',
@@ -146,7 +147,6 @@ var styles = {
 	'rugby' : '/stylesheets/rugby.css',
 	'sharp' : '/stylesheets/sharp.css',
 	'stripes' : '/stylesheets/stripes.css',
-	'style' : '/stylesheets/style.css',
 	'szalet' : '/stylesheets/szalet.css',
 	'terminal2' : '/stylesheets/terminal2.css',
 	'testorange' : '/stylesheets/testorange.css',
@@ -3175,6 +3175,7 @@ else
 			$("#quick-reply textarea").attr("id", "index-body");
 			$("<input type='hidden' name='thread' value='" + thread_id + "'></input>").appendTo($("#quick-reply"));
 			$("#quick-reply .handle").append(document.createTextNode("(" + thread_id + ")"));
+			$("#quick-reply .form_submit").attr("value", "New Reply");
 		}
 		// otherwise synchronise body text with original post form
 		else if(!in_index){
@@ -3669,6 +3670,26 @@ unset_mascot=false;
 		setupMascotIMG();
 });
 
+onready(function(){
+	if(typeof localStorage.firstLoad == "undefined" || localStorage.firstLoad != 3){
+	localStorage.firstLoad = 3;
+	alert(
+	"<h1>Welcome to kissu.moe!</h1><br/>\
+        <h2>Message Of the Day</h2>\
+	<p><strong>Bored and Gay...</strong></p>\
+	<h2>Boards</h2>\
+	<ul style='text-align: left;'><li>/qa/ - Random content(NSFW spoilered)</li><li>/b/ - Site Developement</li><li>/megu/ - NSFW content</li></ul>\
+	<h2>Select Default Theme</h2>\
+	Other options are selectable later in options<br/><br/>\
+	<label>Default Theme: <select onchange='$(\"#style-select-\" + $(this).val()).click();'><option value='1'>Light</option><option selected='selected' value='2'>Dark</option><option value='3'>Special</option></select></label><br/>\
+	<h2>Rules</h2>\
+	<p>Don't post obnoxious stuff. Bans are only reserved for the worst cases of people. A deletion does not mean it's personal</p><hr/>\
+	<br/>Contact Vermin for issues, site bugs and feedback</p>\
+	"
+	);
+		
+	}
+});
 /*
  * local-time.js
  * https://github.com/savetheinternet/Tinyboard/blob/master/js/local-time.js

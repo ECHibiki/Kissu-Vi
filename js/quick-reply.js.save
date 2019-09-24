@@ -125,13 +125,16 @@
 	};
 	
 	var show_quick_reply = function(target_id){
-
+console.log("op");		
 if($('div.banner').length == 0){
 var thread_id = $("#reply_" + target_id + ",#op_"+target_id).closest("[id*=thread_").attr("id").replace("thread_", "");
+
+alert("this doesnt work yet " + target_id+ " " + thread_id);
 			var in_index = true;
 		}
 else
 			var in_index = false;
+console.log(in_index);
 		if($('#quick-reply').length != 0)
 			return;
 		
@@ -321,12 +324,10 @@ else
 		$postForm.appendTo($('body')).hide();
 		$origPostForm = $('form[name="post"]:first');
 		
-		// insert the thread that this post will be placed in and modify fields
+		// insert the thread that this post will be placed in
 		if(in_index){
-			$("#quick-reply textarea").attr("id", "index-body");
-			$("<input type='hidden' name='thread' value='" + thread_id + "'></input>").appendTo($("#quick-reply"));
-			$("#quick-reply .handle").append(document.createTextNode("(" + thread_id + ")"));
-			$("#quick-reply .form_submit").attr("value", "New Reply");
+		//thread_id
+
 		}
 		// otherwise synchronise body text with original post form
 		else if(!in_index){
