@@ -44,7 +44,7 @@
 		<h1>Kissu.moe</h1>
 		<div class="subtitle">100% Fun!</div>
 	</header>
-	<img class="board_image" src="/static/banners/banner-kissu-14.gif" alt="" />	
+	<img class="board_image" src="/static/banners/banner-kissu-2.png" alt="" />	
 	<div class="box-wrap">
 	    <!--<fieldset>
 		<legend>Boards</legend>
@@ -102,8 +102,8 @@
 		<div class="box image">
 			<ul>
 									<li>
-						<a href="/qa/res/10458#10458">
-							<img src="/qa/thumb/1569366673924.png" style="width:200px;height:255px" alt="">
+						<a href="/qa/res/10454#10454">
+							<img src="/qa/thumb/1569368507689.png" style="width:255px;height:79px" alt="">
 						</a>
 					</li>
 									<li>
@@ -178,32 +178,8 @@
 			<ul>
 									<li>
 						<strong>/qa/</strong>: 
-						<a href="/qa/res/10458#10458">
-							<em>Theres a 90% probability im go&hellip;</em>
-						</a>
-					</li>
-									<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/10364#10457">
-							<em>&gt;&gt;10451  lazyness to add the c&hellip;</em>
-						</a>
-					</li>
-									<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/10431#10456">
-							<em>I the the varied colors and ar&hellip;</em>
-						</a>
-					</li>
-									<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/10431#10455">
-							<em>at least i'm safe inside my mi&hellip;</em>
-						</a>
-					</li>
-									<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/10431#10454">
-							<em>its like reading a book, but i&hellip;</em>
+						<a href="/qa/res/10454#10454">
+							<em>yrdy</em>
 						</a>
 					</li>
 									<li>
@@ -356,6 +332,30 @@
 							<em>so tired  kill me</em>
 						</a>
 					</li>
+									<li>
+						<strong>/qa/</strong>: 
+						<a href="/qa/res/10064#10422">
+							<em>&gt;&gt;10419  Oh, and Vinland is pr&hellip;</em>
+						</a>
+					</li>
+									<li>
+						<strong>/qa/</strong>: 
+						<a href="/qa/res/10415#10421">
+							<em>where's the flash support..</em>
+						</a>
+					</li>
+									<li>
+						<strong>/qa/</strong>: 
+						<a href="/qa/res/10221#10420">
+							<em>&gt;&gt;10418  Think of how many men&hellip;</em>
+						</a>
+					</li>
+									<li>
+						<strong>/qa/</strong>: 
+						<a href="/qa/res/10064#10419">
+							<em>I just watched the stuff in th&hellip;</em>
+						</a>
+					</li>
 							</ul>
 		</div>
 		<div class="mainBox">
@@ -399,8 +399,8 @@
 		<div class="mainBox">
 			<h2>Stats</h2>
 			<ul>
-				<li>Total posts: 13,326</li>
-				<li>Unique posters: 400</li>
+				<li>Total posts: 13,322</li>
+				<li>Unique posters: 399</li>
 				<li>Active content: 5.65 GB</li>
 			</ul>
 		</div>
