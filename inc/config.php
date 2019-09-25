@@ -288,7 +288,7 @@
 		'subject',
 		'post',
 		'body',
-		'password',
+		'pswrd',
 		'sticky',
 		'lock',
 		'raw',

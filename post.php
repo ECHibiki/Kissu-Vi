@@ -185,10 +185,10 @@ if (isset($_POST['delete'])) {
 	$mod = false;
 	if(isset($_POST['mod']))	$mod = true;
 	
-	if (!isset($_POST['board'], $_POST['password']))
+	if (!isset($_POST['board'], $_POST['pswrd']))
 		error($config['error']['bot']);
 	
-	$password = &$_POST['password'];
+	$password = &$_POST['pswrd'];
 	
 	if ($password == '' && !$mod)
 		error($config['error']['invalidpassword']);
@@ -395,8 +395,8 @@ elseif (isset($_POST['post']) || $dropped_post) {
 	if (!isset($_POST['subject']))
 		$_POST['subject'] = '';
 	
-	if (!isset($_POST['password']))
-		$_POST['password'] = '';	
+	if (!isset($_POST['pswrd']))
+		$_POST['pswrd'] = '';	
 	
 	if (isset($_POST['thread'])) {
 		$post['op'] = false;
@@ -524,7 +524,7 @@ elseif (isset($_POST['post']) || $dropped_post) {
 			$_POST['email'] = '';
 	
 		if ($config['field_disable_password'])
-			$_POST['password'] = '';
+			$_POST['pswrd'] = '';
 	
 		if ($config['field_disable_subject'] || (!$post['op'] && $config['field_disable_reply_subject']))
 			$_POST['subject'] = '';
@@ -589,7 +589,7 @@ elseif (isset($_POST['post']) || $dropped_post) {
 	$post['subject'] = $_POST['subject'];
 	$post['email'] = str_replace(' ', '%20', htmlspecialchars($_POST['email']));
 	$post['body'] = $_POST['body'];
-	$post['password'] = $_POST['password'];
+	$post['password'] = $_POST['pswrd'];
 	$post['has_file'] = (!isset($post['embed']) && (($post['op'] && !isset($post['no_longer_require_an_image_for_op']) && $config['force_image_op']) || count($_FILES) > 0));
 	
 	if (!$dropped_post) {

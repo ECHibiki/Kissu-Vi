@@ -274,12 +274,14 @@ function generatePassword() {
 
 function dopost(form) {
 	if (form.elements['name']) {
-		localStorage.name = form.elements['name'].value.replace(/( |^)## .+$/, '');
+		//disabled, name storage is inconvinient for it's usage with the hidden post form
+		//localStorage.name = form.elements['name'].value.replace(/( |^)## .+$/, '');
 	}
-	if (form.elements['password']) {
-		localStorage.setItem(password, form.elements['password'].value);
+	if (form.elements['pswrd']) {
+		localStorage.setItem(pswrd, form.elements['pswrd'].value);
 	}
-	if (form.elements['email'] && form.elements['email'].value != 'sage') {
+
+	if (form.elements['email'] /*&& form.elements['email'].value != 'sage'*/) {
 		localStorage.email = form.elements['email'].value;
 	}
 	
@@ -372,14 +374,14 @@ function captchaSetup(){
 
 function rememberStuff() {
 	if (document.forms.post) {
-		if (document.forms.post.password) {
-			if (!localStorage.getItem("password") || localStorage.getItem("password") == "undefined")
-				localStorage.setItem("password", generatePassword());
-			document.forms.post.password.value = localStorage.getItem("password");
+		if (document.forms.post.pswrd) {
+			if (!localStorage.getItem("pswrd") || localStorage.getItem("pswrd") == "undefined")
+				localStorage.setItem("pswrd", generatePassword());
+			document.forms.post.pswrd.value = localStorage.getItem("pswrd");
 		}
-		
-		if (localStorage.name && document.forms.post.elements['name'])
-			document.forms.post.elements['name'].value = localStorage.name;
+		// inconvinient with hidden post form
+		//if (localStorage.name && document.forms.post.elements['name'])
+		//	document.forms.post.elements['name'].value = localStorage.name;
 		if (localStorage.email && document.forms.post.elements['email'])
 			document.forms.post.elements['email'].value = localStorage.email;
 		
@@ -432,11 +434,11 @@ function init() {
 	
 		
 		if(document.forms.postcontrols != undefined){
-		if (document.forms.postcontrols.password) {
-			if (!localStorage.getItem("password") || localStorage.getItem("password") == "undefined"){
-				var password = generatePassword();
-				localStorage.setItem("password" , password);
-				document.forms.postcontrols.password.value = password;
+		if (document.forms.postcontrols.pswrd) {
+			if (!localStorage.getItem("pswrd") || localStorage.getItem("pswrd") == "undefined"){
+				var pswrd = generatePassword();
+				localStorage.setItem("pswrd" , pswrd);
+				document.forms.postcontrols.pswrd.value = pswrd;
 			}
 		}
 	}
@@ -3364,8 +3366,8 @@ $(document).ready(function(){
 					
 					'<input type="hidden" name="delete_' + id + '">' +
 					
-					'<label for="password_' + id + '">'+_("Password")+'</label>: ' +
-					'<input id="password_' + id + '" type="password" name="password" size="11" maxlength="18">' +
+					'<label for="pswrd_' + id + '">'+_("Password")+'</label>: ' +
+					'<input id="pswrd_' + id + '" type="text" name="pswrd" size="11" maxlength="18">' +
 					'<input title="'+_('Delete file only')+'" type="checkbox" name="file" id="delete_file_' + id + '">' +
 						'<label for="delete_file_' + id + '">'+_('File')+'</label>' +
 					' <input type="submit" name="delete" value="'+_('Delete')+'">' +
@@ -3383,7 +3385,7 @@ $(document).ready(function(){
 				.find('input:not([type="checkbox"]):not([type="submit"]):not([type="hidden"])').keypress(function(e) {
 					if(e.which == 13) {
 						e.preventDefault();
-						if($(this).attr('name') == 'password')  {
+						if($(this).attr('name') == 'pswrd')  {
 							post_form.find('input[name=delete]').click();
 						} else if($(this).attr('name') == 'reason')  {
 							post_form.find('input[name=report]').click();
@@ -3395,7 +3397,7 @@ $(document).ready(function(){
 					return true;
 				});
 			
-			post_form.find('input[type="password"]').val(localStorage.password);
+			post_form.find('input[name=pswrd]').val(localStorage.pswrd);
 			
 			if(thread) {
 				post_form.prependTo($(this).parent().parent().find('div.body'));
