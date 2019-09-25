@@ -47,7 +47,11 @@ secrets.php
 /.installed
 
 # script file
-#/main.js
+/main.js
+
+#index files
+index.php
+recent.html
 
 # rss
 *.rss
