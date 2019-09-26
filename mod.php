@@ -76,7 +76,7 @@ $pages = array(
 
 	'/(\%b)/archive/'					=> 'secure_POST view_archive', 					// View Archive
 	'/(\%b)/featured/'					=> 'secure_POST view_archive_featured', 		// View Featured Archive
-	
+	'/(\%b)/archive_thread/(\d+)'		=> 'secure archive_thread',		// send thread to archive	
 
 	'/(\%b)/ban(&delete)?/(\d+)'		=> 'secure_POST ban_post', 	// ban poster
 	'/(\%b)/move/(\d+)'			=> 'secure_POST move',		// move thread

@@ -3134,7 +3134,7 @@ function mod_view_archive($boardName) {
 	// if(Archive::purgeArchive() != 0)
     //     Archive::buildArchiveIndex();
 
-	$query = query(sprintf("SELECT `id`, `snippet`, `featured` FROM ``archive_%s`` WHERE `lifetime` > %d ORDER BY `lifetime` DESC", $board['uri'], time())) or error(db_error());
+	$query = query(sprintf("SELECT `id`, `snippet`, `featured` FROM ``archive_%s`` WHERE `lifetime` > %d ORDER BY `lifetime` DESC", $board['uri'], 0)) or error(db_error());
 	$archive = $query->fetchAll(PDO::FETCH_ASSOC);
 
 	foreach($archive as &$thread)
@@ -3180,3 +3180,17 @@ function mod_view_archive_featured($boardName) {
 
 
 
+function mod_archive_thread($board, $post) {
+	global $config;
+	
+	if (!openBoard($board))
+		error($config['error']['noboard']);
+	
+	if (!hasPermission($config['mod']['send_threads_to_archive'], $board))
+		error($config['error']['noaccess']);
+	
+	Archive::archiveThread($post);
+	mod_delete($board, false, $post);
+		
+	header('Location: ?/' . sprintf($config['board_path'], $board) . $config['file_index'], true, $config['redirect_http']);
+}

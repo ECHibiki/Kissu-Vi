@@ -68,17 +68,18 @@ document.getElementById("bannerimg").onclick = function(){
 
 	</header>
 
+
 <h1>New Reply</h1>
+
 <div id="topcontainer">
 
 	{{ config.ad.top }}
-
+		
                 {% if config.advanced_post_form  %}
                         {% include 'post_form_advanced.html' %}
                 {% else %}
                         {% include 'post_form.html' %}
                 {% endif %}
-
 </div>
 </div>
 </div>

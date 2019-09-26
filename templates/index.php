@@ -106,6 +106,7 @@ document.getElementById("bannerimg").onclick = function(){
 				{% if config.catalog_link %}
 			<a id="thread-catalog-top" href="{{ config.root }}{{ board.dir }}{{ config.catalog_link }}">[{% trans %}Catalog{% endtrans %}]</a>
 				{% endif %}
+<a id="archive-link-top" href="{{ config.root }}{{ board.dir }}archive/">[Archive]</a>
 	</span>
 	<br/><hr/>
 	
@@ -123,6 +124,8 @@ document.getElementById("bannerimg").onclick = function(){
                 		{% if config.catalog_link %}
 					<a id="thread-catalog" href="{{ config.root }}{{ board.dir }}{{ config.catalog_link }}">[{% trans %}Catalog{% endtrans %}]</a>
 		                {% endif %}
+<a id="archive-link-bottom" href="{{ config.root }}{{ board.dir }}archive/">[Archive]</a>
+
 			</span>
 			
 			<span id="thread-quick-reply">

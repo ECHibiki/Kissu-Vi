@@ -38,13 +38,13 @@
 		}
 	}
 
-?><div class="boardlist"><span class="sub" data-description="0">[ <a href="/">home</a> / <a href="/agg/">agg</a> / <a href="/all/">all</a> ]</span>  <span class="sub" data-description="1">[ <a href="/b/">g</a> / <a href="/qa/">qa ]</a> / <a href="/megu/">megu</a> ]</span>  <span class="sub" data-description="2">[ <a href="https://theatre.kissu.moe">sync</a> / <a href="https://ban.kissu.moe">text</a> ]</span>  <span class="sub" data-description="3">[ <a href="http://bunbunmaru.com/wakaba/general/">bun</a> / <a href="https://boards.4channel.org/qa/">qa4</a> / <a href="https://github.com/ECHibiki/ViQa-Kissu/">ViQa</a> ]</span></div><script type='text/javascript'>if (typeof do_boardlist != 'undefined') do_boardlist();</script>
+?><div class="boardlist"><span class="sub" data-description="0">[ <a href="/">home</a> / <a href="/agg/">agg</a> / <a href="/all/">all</a> ]</span>  <span class="sub" data-description="1">[ <a href="/b/">g</a> / <a href="/qa/">qa ]</a> / <a href="/megu/">megu</a> ]</span>  <span class="sub" data-description="2">[ <a href="https://theatre.kissu.moe">sync</a> / <a href="https://ban.kissu.moe">text</a> ]</span>  <span class="sub" data-description="3">[ <a href="https://ota-ch.com/jp/index.html">ota</a> / <a href="https://boards.4channel.org/qa/">qa4</a> / <a href="https://github.com/ECHibiki/ViQa-Kissu/">ViQa</a> ]</span></div><script type='text/javascript'>if (typeof do_boardlist != 'undefined') do_boardlist();</script>
 	<header>
 	    <img class="icon" src="../static/kissu-card.png">
 		<h1>Kissu.moe</h1>
 		<div class="subtitle">100% Fun!</div>
 	</header>
-	<img class="board_image" src="/static/banners/banner-kissu-16.gif" alt="" />	
+	<img class="board_image" src="/static/banners/banner-kissu-12.gif" alt="" />	
 	<div class="box-wrap">
 	    <!--<fieldset>
 		<legend>Boards</legend>
@@ -101,6 +101,16 @@
 	    <h1>Recent Images</h1>
 		<div class="box image">
 			<ul>
+									<li>
+						<a href="/qa/res/10622#10622">
+							<img src="/qa/thumb/1569485670573.png" style="width:204px;height:255px" alt="">
+						</a>
+					</li>
+									<li>
+						<a href="/qa/res/10621#10621">
+							<img src="/qa/thumb/1569484098775.png" style="width:204px;height:255px" alt="">
+						</a>
+					</li>
 									<li>
 						<a href="/qa/res/10620#10620">
 							<img src="/qa/thumb/1569482558718.png" style="width:204px;height:255px" alt="">
@@ -166,21 +176,23 @@
 							<img src="/qa/thumb/1569463819038.png" style="width:175px;height:154px" alt="">
 						</a>
 					</li>
-									<li>
-						<a href="/qa/res/10598#10600">
-							<img src="/qa/thumb/1569463211297.png" style="width:175px;height:95px" alt="">
-						</a>
-					</li>
-									<li>
-						<a href="/qa/res/10598#10598">
-							<img src="/qa/thumb/1569460697974.png" style="width:255px;height:143px" alt="">
-						</a>
-					</li>
 							</ul>
 		</div>
 		<div class="mainBox">
 			<h2>Latest Posts</h2>
 			<ul>
+									<li>
+						<strong>/qa/</strong>: 
+						<a href="/qa/res/10622#10622">
+							<em>sdf</em>
+						</a>
+					</li>
+									<li>
+						<strong>/qa/</strong>: 
+						<a href="/qa/res/10621#10621">
+							<em>asdasd</em>
+						</a>
+					</li>
 									<li>
 						<strong>/qa/</strong>: 
 						<a href="/qa/res/10620#10620">
@@ -349,18 +361,6 @@
 							<em>&gt;&gt;10579  nice</em>
 						</a>
 					</li>
-									<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/10581#10590">
-							<em>rolled back the changes, need &hellip;</em>
-						</a>
-					</li>
-									<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/10581#10585">
-							<em>&gt;&gt;&gt;/agg/2154  wew</em>
-						</a>
-					</li>
 							</ul>
 		</div>
 		<div class="mainBox">
@@ -404,8 +404,8 @@
 		<div class="mainBox">
 			<h2>Stats</h2>
 			<ul>
-				<li>Total posts: 13,489</li>
-				<li>Unique posters: 404</li>
+				<li>Total posts: 13,491</li>
+				<li>Unique posters: 402</li>
 				<li>Active content: 5.67 GB</li>
 			</ul>
 		</div>

@@ -50,19 +50,19 @@ class Archive {
                 $thread_file_content = str_replace(sprintf('href="/' . $config['board_path'], $board['uri']), sprintf('href="/' . $config['board_path'] . $config['dir']['archive'], $board['uri']), $thread_file_content);
                 $thread_file_content = str_replace('Posting mode: Reply', 'Archived thread', $thread_file_content);
                 // Remove Post Form from HTML (First Form)
-                $thread_file_content = preg_replace("/<form name=\"post\"(.*?)<\/form>/i", "", $thread_file_content);
+                //$thread_file_content = preg_replace("/<form name=\"post\"(.*?)<\/form>/i", "", $thread_file_content);
 
                 // Refix archive link that will be wrong
-                $thread_file_content = str_replace(sprintf('href="/' . $config['board_path'] . $config['dir']['archive'] . $config['dir']['archive'], $board['uri']), sprintf('href="/' . $config['board_path'] . $config['dir']['archive'], $board['uri']), $thread_file_content);
+               // $thread_file_content = str_replace(sprintf('href="/' . $config['board_path'] . $config['dir']['archive'] . $config['dir']['archive'], $board['uri']), sprintf('href="/' . $config['board_path'] . $config['dir']['archive'], $board['uri']), $thread_file_content);
 
                 // Remove Form from HTML
-                $thread_file_content = preg_replace("/<form(.*?)>/i", "", $thread_file_content);
-                $thread_file_content = preg_replace("/<\/form>/i", "", $thread_file_content);
-                $thread_file_content = preg_replace("/<input (.*?)>/i", "", $thread_file_content);
+                //$thread_file_content = preg_replace("/<form(.*?)>/i", "", $thread_file_content);
+                //$thread_file_content = preg_replace("/<\/form>/i", "", $thread_file_content);
+                //$thread_file_content = preg_replace("/<input (.*?)>/i", "", $thread_file_content);
 
                 // Remove Redundant code from HTML
-                $thread_file_content = preg_replace("/<div id=\"report\-fields\"(.*?)<\/div>/i", "", $thread_file_content);
-                $thread_file_content = preg_replace("/<div id=\"thread\-interactions\"(.*?)<\/div>/i", "", $thread_file_content);
+                //$thread_file_content = preg_replace("/<div id=\"report\-fields\"(.*?)<\/div>/i", "", $thread_file_content);
+                //$thread_file_content = preg_replace("/<div id=\"thread\-interactions\"(.*?)<\/div>/i", "", $thread_file_content);
 
                 // Write altered thread HTML to archive location
                 @file_put_contents($board['dir'] . $config['dir']['archive'] . $config['dir']['res'] . sprintf($config['file_page'], $thread_id), $thread_file_content, LOCK_EX);
