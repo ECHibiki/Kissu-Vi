@@ -1320,7 +1320,34 @@
 	// Number of chars in snippet
 	$config['archive']['snippet_len'] = 400;
 	
+/*
+* ====================
+*  Archive settings
+* ====================
+*/
 
+    	// Indicate if threads should be archived
+    	$config['archive']['threads'] = true;
+	// Indicate if it is possible to mark threads as featured (stored forever)
+	$config['feature']['threads'] = true;
+	// Indicate if link to featured archive should be shown on post and thread page
+	$config['feature']['link_post_page'] = false;
+   	// Indicate if it is possible to mark threads as nostalgic (stored forever but will only be accessable to mods)
+    	$config['mod_archive']['threads'] = true;
+	// Days to keep archived threads before deletion (ex. "60 minutes", "6 hours", "1 day", "1 week"), if set to false all archived threads are kept forever
+	$config['archive']['lifetime'] = "3 days";
+   	// Number of chars in snippet
+	$config['archive']['snippet_len'] = 400;
+    	// If any is set to run in crom both will be run in cron regardless
+    	// Archiving is run in cron job
+    	$config['archive']['cron_job']['archiving'] = false;
+    	// Purging of archive is run in cron job
+	$config['archive']['cron_job']['purge'] = false;
+
+    	// Automatically send threads with thiese trips to Featured Archive
+    	// $config['archive']['auto_feature_trips'] = array("!!securetrip", "!trip");
+    	$config['archive']['auto_feature_trips'] = array();
+    																					
 
 	// For load balancing, having a seperate server (and domain/subdomain) for serving static content is
 	// possible. This can either be a directory or a URL. Defaults to $config['root'] . 'static/'.
@@ -1590,7 +1617,7 @@ $config['mod']['capcode'] = array(
 	// Don't worry about per-board moderators. Let all mods moderate any board.
 	$config['mod']['skip_per_board'] = false;
 
-<<<<<<< HEAD
+
 	/* Post Controls */
 	// View IP addresses
 	$config['mod']['show_ip'] = MOD;

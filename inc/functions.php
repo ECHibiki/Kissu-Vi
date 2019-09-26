@@ -3266,3 +3266,20 @@ function strategy_first($fun, $array) {
 		return array('defer');
 	}
 }
+
+
+// Scramble the Json name for files
+function json_scrambler($id_name, $append_extention = false)
+{
+	global $board, $config;
+	if(!$config['json_scrambler']['scramble']){
+		if($append_extention)
+			return sprintf('%d.json', $id_name);
+		return $id_name;
+	}
+	
+	$hash = crypt($board['uri'] . $id_name, "$2y$05$" . $config['json_scrambler']['salt'] . "$");
+	if($append_extention)
+		return str_replace(array("/", "."), "_", substr($hash, 29)) . ".json";
+	return str_replace(array("/", "."), "_", substr($hash, 29));
+}

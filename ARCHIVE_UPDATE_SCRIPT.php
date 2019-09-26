@@ -41,34 +41,34 @@ switch($step)
 			$query = Element('archive.sql', array('board' => $_board['uri']));
 			if (mysql_version() < 50503)
 				$query = preg_replace('/(CHARSET=|CHARACTER SET )utf8mb4/', '$1utf8', $query);
-			query($query) or error(db_error());
+			query($query) or error(db_error());;
 
 			// Create Archive Folders
-			if (!file_exists($_board['dir'] . $config['dir']['archive']))
-				@mkdir($_board['dir'] . $config['dir']['archive'], 0777)
-					or error("Couldn't create " . $_board['dir'] . $config['dir']['archive'] . ". Check permissions.", true);
-			if (!file_exists($_board['dir'] . $config['dir']['archive'] . $config['dir']['img']))
-				@mkdir($_board['dir'] . $config['dir']['archive'] . $config['dir']['img'], 0777)
-					or error("Couldn't create " . $_board['dir'] . $config['dir']['archive'] . $config['dir']['img'] . ". Check permissions.", true);
-			if (!file_exists($_board['dir'] . $config['dir']['archive'] . $config['dir']['thumb']))
-				@mkdir($_board['dir'] . $config['dir']['archive'] . $config['dir']['thumb'], 0777)
-					or error("Couldn't create " . $_board['dir'] . $config['dir']['archive'] . $config['dir']['img'] . ". Check permissions.", true);
-			if (!file_exists($_board['dir'] . $config['dir']['archive'] . $config['dir']['res']))
-				@mkdir($_board['dir'] . $config['dir']['archive'] . $config['dir']['res'], 0777)
-					or error("Couldn't create " . $_board['dir'] . $config['dir']['archive'] . $config['dir']['img'] . ". Check permissions.", true);
+			if (!file_exists( $_board['uri'] . "/" . $config['dir']['archive']))
+				@mkdir( $_board['uri'] . "/" . $config['dir']['archive'], 0777)
+					or error("Couldn't create " .  $_board['uri'] . "/" . $config['dir']['archive'] . ". Check permissions.", true);
+			if (!file_exists($_board['uri'] . "/" . $config['dir']['archive'] . $config['dir']['img']))
+				@mkdir($_board['uri'] . "/" . $config['dir']['archive'] . $config['dir']['img'], 0777)
+					or error("Couldn't create " . $_board['uri'] . "/" . $config['dir']['archive'] . $config['dir']['img'] . ". Check permissions.", true);
+			if (!file_exists($_board['uri'] . "/" . $config['dir']['archive'] . $config['dir']['thumb']))
+				@mkdir($_board['uri'] . "/" . $config['dir']['archive'] . $config['dir']['thumb'], 0777)
+					or error("Couldn't create " . $_board['uri'] . "/" . $config['dir']['archive'] . $config['dir']['img'] . ". Check permissions.", true);
+			if (!file_exists($_board['uri'] . "/" . $config['dir']['archive'] . $config['dir']['res']))
+				@mkdir($_board['uri'] . "/" . $config['dir']['archive'] . $config['dir']['res'], 0777)
+					or error("Couldn't create " . $_board['uri'] . "/" . $config['dir']['archive'] . $config['dir']['img'] . ". Check permissions.", true);
 			// Create Featured threads Folders
-			if (!file_exists($_board['dir'] . $config['dir']['featured']))
-				@mkdir($_board['dir'] . $config['dir']['featured'], 0777)
-					or error("Couldn't create " . $_board['dir'] . $config['dir']['featured'] . ". Check permissions.", true);
-			if (!file_exists($_board['dir'] . $config['dir']['featured'] . $config['dir']['img']))
-				@mkdir($_board['dir'] . $config['dir']['featured'] . $config['dir']['img'], 0777)
-					or error("Couldn't create " . $_board['dir'] . $config['dir']['featured'] . $config['dir']['img'] . ". Check permissions.", true);
-			if (!file_exists($_board['dir'] . $config['dir']['featured'] . $config['dir']['thumb']))
-				@mkdir($_board['dir'] . $config['dir']['featured'] . $config['dir']['thumb'], 0777)
-					or error("Couldn't create " . $_board['dir'] . $config['dir']['featured'] . $config['dir']['img'] . ". Check permissions.", true);
-			if (!file_exists($_board['dir'] . $config['dir']['featured'] . $config['dir']['res']))
-				@mkdir($_board['dir'] . $config['dir']['featured'] . $config['dir']['res'], 0777)
-					or error("Couldn't create " . $_board['dir'] . $config['dir']['featured'] . $config['dir']['img'] . ". Check permissions.", true);
+			if (!file_exists($_board['uri'] . "/" . $config['dir']['featured']))
+				@mkdir($_board['uri'] . "/" . $config['dir']['featured'], 0777)
+					or error("Couldn't create " . $_board['uri'] . "/" . $config['dir']['featured'] . ". Check permissions.", true);
+			if (!file_exists($_board['uri'] . "/" . $config['dir']['featured'] . $config['dir']['img']))
+				@mkdir($_board['uri'] . "/" . $config['dir']['featured'] . $config['dir']['img'], 0777)
+					or error("Couldn't create " . $_board['uri'] . "/" . $config['dir']['featured'] . $config['dir']['img'] . ". Check permissions.", true);
+			if (!file_exists($_board['uri'] . "/" . $config['dir']['featured'] . $config['dir']['thumb']))
+				@mkdir($_board['uri'] . "/" . $config['dir']['featured'] . $config['dir']['thumb'], 0777)
+					or error("Couldn't create " . $_board['uri'] . "/" . $config['dir']['featured'] . $config['dir']['img'] . ". Check permissions.", true);
+			if (!file_exists($_board['uri'] . "/" . $config['dir']['featured'] . $config['dir']['res']))
+				@mkdir($_board['uri'] . "/" . $config['dir']['featured'] . $config['dir']['res'], 0777)
+					or error("Couldn't create " . $_board['uri'] . "/" . $config['dir']['featured'] . $config['dir']['img'] . ". Check permissions.", true);
 		}
 
 		if (!empty($sql_errors))
@@ -83,3 +83,4 @@ echo Element('page.html', $page);
 ?>
 <!-- There is probably a much better way to do this, but eh. -->
 <link rel="stylesheet" type="text/css" href="stylesheets/style.css" />
+
