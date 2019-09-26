@@ -75,7 +75,7 @@ function initImageHover() { //Pashe, influenced by tux, et al, WTFPL
 
 		cat_thread_imgs = $(".thread-image");
 		
-		const BOARD = $("h1 a")[0].text;
+		const BOARD = "/" + window.location.pathname.substring(1,window.location.pathname.lastIndexOf("/")) + "/";
 		console.log(BOARD);
 		
 		//from API give each an indicator of origin file source

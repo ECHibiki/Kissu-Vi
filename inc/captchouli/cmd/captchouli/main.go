@@ -18,7 +18,10 @@ var defaultTags = [...]string{
 var test = [...]string{	"anastasia_(idolmaster)"}
 
 var easy = [...]string{
-	"anastasia_(idolmaster)", "hibiki_(kantai_collection)", "shiro_(dennou_shoujo_youtuber_shiro)", "illyasviel_von_einzbern",	
+            "anastasia_(idolmaster)", "hibiki_(kantai_collection)", "shiro_(dennou_shoujo_youtuber_shiro)", "illyasviel_von_einzbern",      
+        "usada_hikaru", "touwa_erio", "nepgear","koshimizu_sachiko" , "shirasaka_koume",  "arcueid_brunestud",  "artoria_pendragon_(all)", "hoshi_shouko",
+        "konpaku_youmu", "izayoi_sakuya", "suguri_(character)", "serval_(kemono_friends)", "erica_hartmann", 
+
 }
 
 var medium  = [...]string{ 
@@ -32,7 +35,7 @@ func main() {
 	//addressSSL := flag.String("a", ":4087", "address for server to listen on")
 	explicit := flag.Bool("e", false,
 		"allow explicit rating images in the pool")
-	tags := flag.String("t", strings.Join(medium[:], ","),
+	tags := flag.String("t", strings.Join(easy[:], ","),
 		`Comma-separated list of tags to use in the pool. At least 3 required.
 Note that only tags that are detectable from the character's face should be used.
 `)
@@ -68,5 +71,5 @@ Note that only tags that are detectable from the character's face should be used
 
 	//log.Println("listening on " + *address + " & " + *addressSSL)
 	log.Println(http.ListenAndServe(*address,  s.Router()))
-	//log.Println(http.ListenAndServeTLS(*addressSSL, string("/etc/letsencrypt/live/kissu.moe-0001/fullchain.pem"), string("/etc/letsencrypt/live/kissu.moe-0001/privkey.pem"),  s.Router()))
+	//log.Println(http.ListenAndServeTLS(*addressSSL, string("/etc/letsencrypt/live/kissu.moe/fullchain.pem"), string("/etc/letsencrypt/live/kissu.moe/privkey.pem"),  s.Router()))
 }

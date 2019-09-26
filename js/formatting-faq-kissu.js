@@ -1,3 +1,4 @@
+// Options tab for explaining kissu's markup
 	$(document).ready(function(){		
 		// add the tab for viewing the format settings
 		if (window.Options && !Options.get_tab('formatting')) {
@@ -6,6 +7,7 @@
 			The Following is an expansion on <a href="https://kakashi-nenpo.com/faq.php#q08">https://kakashi-nenpo.com/faq.php#q08</a><hr/>\
 			[b] bold [/b]<br/>\
 			\'\'\' bold \'\'\'<br/>\
+			~~ strikethrough ~~ <br/>\
 			[i] italics [/i]<br/>\
 			\'\' italics \'\'<br/>\
 			[u] underline [/u]<br/>\

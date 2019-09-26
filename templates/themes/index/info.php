@@ -81,6 +81,13 @@
 	);
 	
 	$theme['config'][] = Array(
+		'title' => 'Imageless boards',
+		'name' => 'noimg',
+		'type' => 'text',
+		'comment' => '(space seperated)'
+	);
+	
+	$theme['config'][] = Array(
 		'title' => '# of recent images',
 		'name' => 'limit_images',
 		'type' => 'text',

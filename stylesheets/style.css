@@ -1,3 +1,26 @@
+#style-select{
+	position:relative;
+	z-index: 2;
+}
+
+.axisfield{
+ width: 3em;
+}
+
+#uppercontents{
+    z-index: 0;
+    position:relative;
+    background-repeat: no-repeat;
+    background-position: -5.3em -0.5em;
+    margin: -0.3%;
+    padding: 1px;
+}
+
+#lowercontents{
+	z-index:2;
+	position:relative;
+}
+
 .intro{
 	display: inline-block;
 }
@@ -23,6 +46,12 @@ span.glowblue{
 span.glowgold{
 	text-shadow: -1px 0px 4px #FFA500, 1px 1px 1px #C5AE09, 2px 0px 10px rgb(255, 224, 0);
     color: #FDFFEF;
+}
+
+/* Mascots */
+#mascot-img {
+  position: fixed;
+  z-index: -10;
 }
 
 /* Original CSS */
@@ -60,15 +89,15 @@ a.post_no {
   color: inherit;
 }
 
-.intro a.post_no,p.intro a.email,p.intro a.post_anchor {
+.intro a.post_no,p.intro a.sage,p.intro a.post_anchor {
   margin: 0;
 }
 
-.intro a.email span.name {
+.intro a.sage span.name {
   color: #34345C;
 }
 
-.intro a.email:hover span.name {
+.intro a.sage:hover span.name {
   color: #ff0000;
 }
 
@@ -550,6 +579,121 @@ div.blotter {
   font-weight: bold;
   text-align: center;
 }
+
+table.announcements {
+  text-align: center;
+  width: 480px;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 0.8em;
+}
+table.announcements thead td {
+  border-bottom: 1px solid rgb(63, 63, 63);
+  border-bottom: 1px solid rgba(0, 0, 0, .4);
+  -webkit-background-clip: padding-box; /* for Safari */
+  background-clip: padding-box; /* for IE9+, Firefox 4+, Opera, Chrome */
+}
+table.announcements tbody {
+  text-align: left;
+}
+table.announcements tbody td:first-child {
+  text-align: right;
+  vertical-align: top;
+}
+table.announcements tfoot td {
+  text-align: right;
+}
+
+
+
+table.announcements-list {
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  width: 80% !important;
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+table.announcements-list tr td, table.announcements-list tr th {
+  border: 1px solid rgb(63, 63, 63);
+  border: 1px solid rgba(0, 0, 0, .4);
+  -webkit-background-clip: padding-box; /* for Safari */
+  background-clip: padding-box; /* for IE9+, Firefox 4+, Opera, Chrome */
+  padding: 3px;
+}
+table.announcements-list tr th {
+  font-weight: bold;
+  text-align: center;
+}
+table.announcements-list tbody {
+  text-align: left;
+  vertical-align: top;
+  background: rgb(250, 250, 250);
+  color: black;
+}
+table.announcements-list td:first-child, table.announcements-list th:first-child {
+  text-align: center;
+}
+table.announcements-list tbody tr td:nth-child(4) :first-child {
+  float: left;
+}
+table.announcements-list tbody tr td:nth-child(4) :last-child {
+  float: right;
+}
+.announcementForm input[type=text] {
+  box-sizing: border-box;
+  width: 100%;
+}
+
+
+
+
+
+table.archive-list {
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  width: 80% !important;
+  border-collapse: collapse;
+  border-spacing: 0;
+  font-size: 0.8em;
+}
+table.archive-list tr td, table.archive-list tr th {
+  border: 1px solid rgb(63, 63, 63);
+  border: 1px solid rgba(0, 0, 0, .4);
+  -webkit-background-clip: padding-box; /* for Safari */
+  background-clip: padding-box; /* for IE9+, Firefox 4+, Opera, Chrome */
+  padding: 3px;
+}
+table.archive-list tr th {
+  font-weight: bold;
+  text-align: center;
+}
+table.archive-list tbody {
+  text-align: left;
+  vertical-align: top;
+  background: rgb(250, 250, 250);
+  color: black;
+}
+table.archive-list tbody tr td:first-child{
+  text-align: right;
+}
+table.archive-list tbody tr td:nth-child(3),
+table.archive-list tbody tr td:nth-child(4){
+  text-align: center;
+}
+.archiveForm {
+  margin-bottom: inherit !important;
+}
+
+
+
+
+
+
+
+
+
 
 table.mod.config-editor {
   font-size: 9pt;

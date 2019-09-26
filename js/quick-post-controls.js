@@ -26,8 +26,8 @@ $(document).ready(function(){
 					
 					'<input type="hidden" name="delete_' + id + '">' +
 					
-					'<label for="password_' + id + '">'+_("Password")+'</label>: ' +
-					'<input id="password_' + id + '" type="password" name="password" size="11" maxlength="18">' +
+					'<label for="pswrd_' + id + '">'+_("Password")+'</label>: ' +
+					'<input id="pswrd_' + id + '" type="text" name="pswrd" size="11" maxlength="18">' +
 					'<input title="'+_('Delete file only')+'" type="checkbox" name="file" id="delete_file_' + id + '">' +
 						'<label for="delete_file_' + id + '">'+_('File')+'</label>' +
 					' <input type="submit" name="delete" value="'+_('Delete')+'">' +
@@ -45,7 +45,7 @@ $(document).ready(function(){
 				.find('input:not([type="checkbox"]):not([type="submit"]):not([type="hidden"])').keypress(function(e) {
 					if(e.which == 13) {
 						e.preventDefault();
-						if($(this).attr('name') == 'password')  {
+						if($(this).attr('name') == 'pswrd')  {
 							post_form.find('input[name=delete]').click();
 						} else if($(this).attr('name') == 'reason')  {
 							post_form.find('input[name=report]').click();
@@ -57,7 +57,7 @@ $(document).ready(function(){
 					return true;
 				});
 			
-			post_form.find('input[type="password"]').val(localStorage.password);
+			post_form.find('input[name=pswrd]').val(localStorage.pswrd);
 			
 			if(thread) {
 				post_form.prependTo($(this).parent().parent().find('div.body'));

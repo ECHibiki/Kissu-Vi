@@ -28,18 +28,17 @@
 				{% if config.field_email_selectbox %}
 				<select name="email" id="email_selectbox" autocomplete="off">
 					<option value="Add Options"></option>
-					<option value="sage">Hold Back</option>
+					<option value="sage">Sageru</option>
 					<option value="repo">Repost</option>
-					{% if not config.always_noko %}<option value="noko">Remain</option>{% endif %}
+					{# % if not config.always_noko % #}<option value="noko">Remain</option>{#% endif %#}
 				</select>
 				{% else %}
-				<input style="opacity: 0;position: absolute;bottom:0;right:0" type="test" value="EatsChromeAuto"/>
 				<input type="text" name="email" size="25" maxlength="40" autocomplete="off" id='option_input'>
 				<select id="option_simplifier" autocomplete="off">
 					<option value="">Options</option>
 					<option value="repo">Repost</option>
 					<option value="sage">Hold Back</option>
-					{% if not config.always_noko %}<option value="noko">Remain</option>{% endif %}
+					{# % if not config.always_noko % #}<option value="noko">Remain</option>{#% endif %#}
 				</select>
 				{% endif %}
 				{{ antibot.html() }}
@@ -66,7 +65,7 @@
 				{{ antibot.html() }}
 			</th>
 			<td>
-				<textarea name="body" id="body" rows="5" cols="35"></textarea>
+				<textarea name="body" id="body" rows="3" cols="40"></textarea>
 				{{ antibot.html() }}
 				{% if not (not (config.field_disable_subject or (id and config.field_disable_reply_subject)) or (mod and post.mod|hasPermission(config.mod.bypass_field_disable, board.uri))) %}
 				{% if not (not config.field_disable_email or (mod and post.mod|hasPermission(config.mod.bypass_field_disable, board.uri))) %}
@@ -161,7 +160,6 @@
 				{{ antibot.html() }}
 			</th>
 			<td>
-				<input style="opacity: 0;position: absolute;right:0;bottom:0" type="test" value="EatsChromeAuto"/>
 				<input type="text" name="embed" value="" size="30" maxlength="120" autocomplete="off">
 			</td>
 		</tr>
@@ -187,14 +185,14 @@
 			</td>
 		</tr>
 		{% endif %}
-		{% if not config.field_disable_password or (mod and post.mod|hasPermission(config.mod.bypass_field_disable, board.uri)) %}<tr>
+		{% if not config.field_disable_password or (mod and post.mod|hasPermission(config.mod.bypass_field_disable, board.uri)) %}
+		<tr {% if config.field_hide_password %} style="display: none;" {% endif %}>
 			<th>
 				{% trans %}Password{% endtrans %}
 				{{ antibot.html() }}
 			</th>
-			<td>
-				<input style="opacity: 0;position: absolute;right:0;bottom:0" type="password" value="EatsChromeAuto"/>
-				<input type="password" name="password" value="" size="12" maxlength="18" autocomplete="off"> 
+			<td >
+				<input type="password" name="password" value="" size="12" maxlength="18" autocomplete="new-password"> 
 				<span class="unimportant">{% trans %}(For file deletion.){% endtrans %}</span>
 				{{ antibot.html() }}
 			</td>

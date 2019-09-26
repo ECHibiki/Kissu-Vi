@@ -7,8 +7,9 @@ import (
 	"errors"
 	"fmt"
 	"io"
-	"log"
+	
 	"net/http"
+	"net/url"
 	"strconv"
 	"strings"
 
@@ -331,7 +332,7 @@ func handleError(w http.ResponseWriter, err error) {
 // Serve captcha solved status. The captcha is deleted on a successful check to
 // prevent replayagain attacks.
 func ServeStatus(w http.ResponseWriter, r *http.Request) (err error) {
-	id, err := ExtractID(r)
+	id, err := ExtractID(url.QueryUnescape(r))
 	if err != nil {
 		return
 	}

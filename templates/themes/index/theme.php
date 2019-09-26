@@ -22,6 +22,7 @@
 				copy('templates/themes/index/' . $settings['basecss'], $config['dir']['home'] . $settings['css']);
 			}
 			$this->excluded = explode(' ', $settings['exclude']);
+			$this->imageless = explode(' ', $settings['noimg']);
 			
 			if ($action == 'all' || $action == 'post' || $action == 'post-thread' || $action == 'post-delete') {
 				$action = generation_strategy('sb_index', array());
@@ -50,7 +51,7 @@
 			
 			$query = '';
 			foreach ($boards as &$_board) {
-				if (in_array($_board['uri'], $this->excluded))
+				if (in_array($_board['uri'], $this->excluded) || in_array($_board['uri'], $this->imageless))
 					continue;
 				$query .= sprintf("SELECT *, '%s' AS `board` FROM ``posts_%s`` WHERE `files` IS NOT NULL UNION ALL ", $_board['uri'], $_board['uri']);
 			}
@@ -120,7 +121,7 @@
 					$post['snippet'] = pm_snippet($post['body'], 30);
 				else
 					$post['snippet'] = "<em>" . _("(no comment)") . "</em>";
-				$post['board_name'] = $board['name'];
+				$post['board_name'] = "/" . $board['uri'] . "/";
 				
 				$recent_posts[] = $post;
 			}

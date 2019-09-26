@@ -49,15 +49,15 @@ height: auto !important;
 .box img {
 	float: left;
 	margin: 5px;
-	width: auto !important;
-	height: 100px !important;
+	width: auto;
+	height: 100px;
 	border-radius: 10px;
 }
 .icon {
     display: block;
     margin-left: auto;
     margin-right: auto;
-    max-width: 100px;
+    max-width: 150px;
 }
 .imageofnow {
     display: block;

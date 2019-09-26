@@ -6,12 +6,19 @@
 /megu/*
 /ignore/*
 /test/*
+/feb/*
+/all/*
+/g/*
+/Nen/*
+/nen/*
+/jp/*
+/GNFOS/*
+/agg/*
 
 #logs
 *.log
 
 #sql files
-*.sql
 
 # static html and json
 /*/*.html
@@ -39,7 +46,10 @@ secrets.php
 /.installed
 
 # script file
-#/main.js
+/main.js
+
+#index files
+
 
 # rss
 *.rss

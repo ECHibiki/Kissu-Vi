@@ -22,6 +22,9 @@ require_once 'inc/mod/auth.php';
 require_once 'inc/lock.php';
 require_once 'inc/queue.php';
 require_once 'inc/polyfill.php';
+
+require_once 'inc/archive.php';
+
 @include_once 'inc/lib/parsedown/Parsedown.php'; // fail silently, this isn't a critical piece of code
 
 if (!extension_loaded('gettext')) {
@@ -469,11 +472,11 @@ function scrapePages($regex_pattern){
 	$sites_string = '"' . implode("," , $query->fetchAll(PDO::FETCH_COLUMN)) . '"';
 	if($sites_string == '""'){
 		error("No sites in Table 'proxy-sites' list");
-	}
+	} 
 	set_time_limit(300);
 	if(preg_match("/Linux/", php_uname())){
 		// return shell_exec("xvfb-run python3 Regex-Webscraper/py-cmd/regexscraper.py -u $sites_string -r \"$regex_pattern\" --nojs --json");
-		return shell_exec("/usr/bin/sudo xvfb-run python3 Regex-Webscraper/py-cmd/regexscraper.py -u $sites_string -r \"$regex_pattern\" --nojs --json");
+		return shell_exec("/usr/bin/sudo xvfb-run python3 /var/misc-internet-applications/Multipurpose-Regex-Webscraper/py-cmd/regexscraper.py -u $sites_string -r \"$regex_pattern\" --raw --json");
 	}
 	else{
 		return exec("python Regex-Webscraper/py-cmd/regexscraper.py -u $sites_string -r \"$regex_pattern\" --nojs --json");
@@ -567,6 +570,33 @@ function setupBoard($array) {
 	if (!file_exists($board['dir'] . $config['dir']['res']))
 		@mkdir($board['dir'] . $config['dir']['res'], 0777)
 			or error("Couldn't create " . $board['dir'] . $config['dir']['img'] . ". Check permissions.", true);
+
+	// Create Archive Folders
+	if (!file_exists($board['dir'] . $config['dir']['archive']))
+		@mkdir($board['dir'] . $config['dir']['archive'], 0777)
+			or error("Couldn't create " . $board['dir'] . $config['dir']['archive'] . ". Check permissions.", true);
+	if (!file_exists($board['dir'] . $config['dir']['archive'] . $config['dir']['img']))
+		@mkdir($board['dir'] . $config['dir']['archive'] . $config['dir']['img'], 0777)
+			or error("Couldn't create " . $board['dir'] . $config['dir']['archive'] . $config['dir']['img'] . ". Check permissions.", true);
+	if (!file_exists($board['dir'] . $config['dir']['archive'] . $config['dir']['thumb']))
+		@mkdir($board['dir'] . $config['dir']['archive'] . $config['dir']['thumb'], 0777)
+			or error("Couldn't create " . $board['dir'] . $config['dir']['archive'] . $config['dir']['img'] . ". Check permissions.", true);
+	if (!file_exists($board['dir'] . $config['dir']['archive'] . $config['dir']['res']))
+		@mkdir($board['dir'] . $config['dir']['archive'] . $config['dir']['res'], 0777)
+			or error("Couldn't create " . $board['dir'] . $config['dir']['archive'] . $config['dir']['img'] . ". Check permissions.", true);
+	// Create Featured threads Folders
+	if (!file_exists($board['dir'] . $config['dir']['featured']))
+		@mkdir($board['dir'] . $config['dir']['featured'], 0777)
+			or error("Couldn't create " . $board['dir'] . $config['dir']['featured'] . ". Check permissions.", true);
+	if (!file_exists($board['dir'] . $config['dir']['featured'] . $config['dir']['img']))
+		@mkdir($board['dir'] . $config['dir']['featured'] . $config['dir']['img'], 0777)
+			or error("Couldn't create " . $board['dir'] . $config['dir']['featured'] . $config['dir']['img'] . ". Check permissions.", true);
+	if (!file_exists($board['dir'] . $config['dir']['featured'] . $config['dir']['thumb']))
+		@mkdir($board['dir'] . $config['dir']['featured'] . $config['dir']['thumb'], 0777)
+			or error("Couldn't create " . $board['dir'] . $config['dir']['featured'] . $config['dir']['img'] . ". Check permissions.", true);
+	if (!file_exists($board['dir'] . $config['dir']['featured'] . $config['dir']['res']))
+		@mkdir($board['dir'] . $config['dir']['featured'] . $config['dir']['res'], 0777)
+			or error("Couldn't create " . $board['dir'] . $config['dir']['featured'] . $config['dir']['img'] . ". Check permissions.", true);
 }
 
 function openBoard($uri) {
@@ -982,7 +1012,7 @@ function post_laterPost($post, $thread, $numposts, $noko, $id, $dropped_post, $p
 		require_once 'inc/bans.php';
 		require_once 'inc/image.php';
 	
-		global $config, $board;
+		global $config, $board, $build_pages;
 	if ($dropped_post && $dropped_post['from_nntp']) {
 	        $query = prepare("INSERT INTO ``nntp_references`` (`board`, `id`, `message_id`, `message_id_digest`, `own`, `headers`) VALUES ".
 	                                                         "(:board , :id , :message_id , :message_id_digest , false, :headers)");
@@ -1018,6 +1048,7 @@ function post_laterPost($post, $thread, $numposts, $noko, $id, $dropped_post, $p
 		nntp_publish($message, $msgid);
 	}
 
+	
 	insertFloodPost($post);
 
 	// Handle cyclical threads
@@ -1551,7 +1582,7 @@ function deletePostKeepOrder($id, $error_if_doesnt_exist=true, $rebuild_after=tr
 }
 
 // Delete a post (reply or thread) and update bump order
-function deletePost($id, $error_if_doesnt_exist=true, $rebuild_after=true) {
+function deletePost($id, $error_if_doesnt_exist=true, $rebuild_after=true, $store_image = false) {
 	global $board, $config;
 
 	// Select post and replies (if thread) in one query
@@ -1585,7 +1616,7 @@ function deletePost($id, $error_if_doesnt_exist=true, $rebuild_after=true) {
 			// Rebuild thread
 			$rebuild = &$post['thread'];
 		}
-		if ($post['files']) {
+		if ($post['files'] && !$store_image) {
 			// Delete file
 			foreach (json_decode($post['files']) as $i => $f) {
 				if ($f->file !== 'deleted') {
@@ -1673,6 +1704,8 @@ function clean($pid = false) {
 
 	$query->execute() or error(db_error($query));
 	while ($post = $query->fetch(PDO::FETCH_ASSOC)) {
+		Archive::archiveThread($post['id']);
+		if ($pid) modLog("Automatically archived thread #{$post['id']} due to new thread #{$pid}");
 		deletePost($post['id'], false, false);
 		if ($pid) modLog("Automatically deleting thread #{$post['id']} due to new thread #{$pid}");
 	}
@@ -1827,9 +1860,9 @@ function getPageButtons($pages, $mod=false) {
 			} else {
 				$loc = ($mod ? '?/' . $board['uri'] . '/' : '') .
 					($num == 1 ?
-						$config['file_index']
+						($config['remove_ext'] ? $config['file_index_no_ext'] : $config['file_index'])
 					:
-						sprintf($config['file_page'], $num)
+						sprintf(($config['remove_ext'] ? $config['file_page_no_ext'] : $config['file_page']), $num)
 					);
 
 				$btn['prev'] = '<form action="' . ($mod ? '' : $root . $loc) . '" method="get">' .
@@ -1844,7 +1877,7 @@ function getPageButtons($pages, $mod=false) {
 				// There is no next page.
 				$btn['next'] = _('Next');
 			} else {
-				$loc = ($mod ? '?/' . $board['uri'] . '/' : '') . sprintf($config['file_page'], $num + 2);
+				$loc = ($mod ? '?/' . $board['uri'] . '/' : '') . sprintf(($config['remove_ext'] ? $config['file_page_no_ext'] : $config['file_page']), $num + 2);
 
 				$btn['next'] = '<form action="' . ($mod ? '' : $root . $loc) . '" method="get">' .
 					($mod ?
@@ -1877,7 +1910,7 @@ function getPages($mod=false) {
 	for ($x=0;$x<$count && $x<$config['max_pages'];$x++) {
 		$pages[] = array(
 			'num' => $x+1,
-			'link' => $x==0 ? ($mod ? '?/' : $config['root']) . $board['dir'] . $config['file_index'] : ($mod ? '?/' : $config['root']) . $board['dir'] . sprintf($config['file_page'], $x+1)
+			'link' => $x==0 ? ($mod ? '?/' : $config['root']) . $board['dir'] . ($config['remove_ext'] ? $config['file_index_no_ext'] : $config['file_index']) : ($mod ? '?/' : $config['root']) . $board['dir'] . ($config['remove_ext'] ? sprintf($x+1) : sprintf($config['file_page'], $x+1))
 		);
 	}
 
@@ -2013,6 +2046,7 @@ function checkMute() {
 	}
 }
 
+// TODO: Fix missing thread on pages
 function buildIndex($global_api = "yes") {
 	global $board, $config, $build_pages;
 
@@ -2107,6 +2141,9 @@ function buildIndex($global_api = "yes") {
 			file_write($jsonFilename, $json);
 		}
 	}
+
+
+	Archive::RebuildArchiveIndexes();
 
 	if ($config['try_smarter'])
 		$build_pages = array();
@@ -2389,11 +2426,10 @@ function markup(&$body, $track_cites = false, $op = false) {
 			foreach ($matches as &$match) {
 				$match[1] = mb_strlen(substr($body_tmp, 0, $match[1]));
 			}
-
 			if (isset($cited_posts[$cite])) {
-				$replacement = '<a onclick="highlightReply(\''.$cite.'\', event);" href="' .
+				$replacement = '<a onclick="return highlightReply(\''.$cite.'\', event);" href="' .
 					$config['root'] . $board['dir'] . $config['dir']['res'] .
-					link_for(array('id' => $cite, 'thread' => $cited_posts[$cite])) . '#' . $cite . '">' .
+					link_for(array('id' => $cite, 'thread' => $cited_posts[$cite]),false,false,false, $remove_ext=$config['remove_ext']) . '#' . $cite . '">' .
 					'&gt;&gt;' . $cite .
 					'</a>';
 
@@ -2464,11 +2500,11 @@ function markup(&$body, $track_cites = false, $op = false) {
 				
 				while ($cite = $query->fetch(PDO::FETCH_ASSOC)) {
 					$cited_posts[$_board][$cite['id']] = $config['root'] . $board['dir'] . $config['dir']['res'] .
-						link_for($cite) . '#' . $cite['id'];
+						link_for($cite,false,false,false, $remove_ext=$config['remove_ext']) . '#' . $cite['id'];
 				}
 			}
 			
-			$crossboard_indexes[$_board] = $config['root'] . $board['dir'] . $config['file_index'];
+			$crossboard_indexes[$_board] = $config['remove_ext'] ?  ($config['root'] . $board['dir']): ($config['root'] . $board['dir'] . $config['file_index']);
 		}
 		
 		// Restore old board
@@ -2487,10 +2523,10 @@ function markup(&$body, $track_cites = false, $op = false) {
 			if ($cite) {
 				if (isset($cited_posts[$_board][$cite])) {
 					$link = $cited_posts[$_board][$cite];
-					
+		                        
 					$replacement = '<a ' .
 						($_board == $board['uri'] ?
-							'onclick="highlightReply(\''.$cite.'\', event);" '
+							'onclick="return highlightReply(\''.$cite.'\', event);" '
 						: '') . 'href="' . $link . '">' .
 						'&gt;&gt;&gt;/' . $_board . '/' . $cite .
 						'</a>';
@@ -2555,6 +2591,21 @@ function markup(&$body, $track_cites = false, $op = false) {
 
 	return $tracked_cites;
 }
+
+
+
+function archive_list_markup(&$body) {
+	
+	$body = str_replace("\r", '', $body);
+	$body = utf8tohtml($body);
+
+	$body = preg_replace("/^\s*&gt;.*$/m", '<span class="quote">$0</span>', $body);
+	// replace tabs with 8 spaces
+	$body = str_replace("\t", '		', $body);
+}
+
+
+
 
 function escape_markup_modifiers($string) {
 	return preg_replace('@<(tinyboard) ([\w\s]+)>@mi', '<$1 escape $2>', $string);
@@ -3072,8 +3123,8 @@ function slugify($post) {
 	return $slug;
 }
 
-function link_for($post, $page50 = false, $foreignlink = false, $thread = false) {
-	global $config, $board;
+function link_for($post, $page50 = false, $foreignlink = false, $thread = false, $remove_ext = false) {
+        global $config, $board;
 
 	$post = (array)$post;
 
@@ -3108,13 +3159,11 @@ function link_for($post, $page50 = false, $foreignlink = false, $thread = false)
 	elseif ($config['slugify']) {
 		$slug = $post['slug'];
 	}
-
-
 	     if ( $page50 &&  $slug)  $tpl = $config['file_page50_slug'];
 	else if (!$page50 &&  $slug)  $tpl = $config['file_page_slug'];
 	else if ( $page50 && !$slug)  $tpl = $config['file_page50'];
-	else if (!$page50 && !$slug)  $tpl = $config['file_page'];
-
+	else if (!$page50 && !$slug && $remove_ext)  $tpl = $config['file_page_no_ext'];
+	else if (!$page50 && !$slug && !$remove_ext)  $tpl = $config['file_page'];
 	return sprintf($tpl, $id, $slug);
 }
 
@@ -3216,4 +3265,21 @@ function strategy_first($fun, $array) {
 	case 'sb_ukko':
 		return array('defer');
 	}
+}
+
+
+// Scramble the Json name for files
+function json_scrambler($id_name, $append_extention = false)
+{
+	global $board, $config;
+	if(!$config['json_scrambler']['scramble']){
+		if($append_extention)
+			return sprintf('%d.json', $id_name);
+		return $id_name;
+	}
+	
+	$hash = crypt($board['uri'] . $id_name, "$2y$05$" . $config['json_scrambler']['salt'] . "$");
+	if($append_extention)
+		return str_replace(array("/", "."), "_", substr($hash, 29)) . ".json";
+	return str_replace(array("/", "."), "_", substr($hash, 29));
 }

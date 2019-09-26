@@ -223,7 +223,7 @@ function get_cookie(cookie_name) {
 		return null;
 }
 
-function highlightReply(id) {
+function highlightReply(id, evt) {
 	if (typeof window.event != "undefined" && event.which == 2) {
 		// don't highlight on middle click
 		return true;
@@ -241,7 +241,15 @@ function highlightReply(id) {
 			post.className += ' highlighted';
 			window.location.hash = id;
 	}
-	return true;
+        if (evt == undefined) 
+             return true;
+        else{
+            left = evt.target.href.split("/");
+            left.pop();
+            right = window.location.href.split("/");
+            right.pop();
+            return JSON.stringify(left) != JSON.stringify(right); // evt.target.href.split("/").pop().split(".").pop() == window.location.href.split("/").pop().split(".").pop();
+        }
 }
 
 function generatePassword() {
@@ -256,12 +264,14 @@ function generatePassword() {
 
 function dopost(form) {
 	if (form.elements['name']) {
-		localStorage.name = form.elements['name'].value.replace(/( |^)## .+$/, '');
+		//disabled, name storage is inconvinient for it's usage with the hidden post form
+		//localStorage.name = form.elements['name'].value.replace(/( |^)## .+$/, '');
 	}
-	if (form.elements['password']) {
-		localStorage.password = form.elements['password'].value;
+	if (form.elements['pswrd']) {
+		localStorage.setItem(pswrd, form.elements['pswrd'].value);
 	}
-	if (form.elements['email'] && form.elements['email'].value != 'sage') {
+
+	if (form.elements['email'] /*&& form.elements['email'].value != 'sage'*/) {
 		localStorage.email = form.elements['email'].value;
 	}
 	
@@ -272,10 +282,14 @@ function dopost(form) {
 }
 
 function citeReply(id, with_link) {
-	var textarea = document.getElementById('body');
-
-	if (!textarea) return false;
-	
+	var textarea;
+	if(document.getElementById('index-body') != undefined)
+		textarea = document.getElementById('index-body');
+	else
+        	textarea = document.getElementById('body');
+	if (!textarea){
+		 return false;
+	}
 	if (document.selection) {
 		// IE
 		textarea.focus();
@@ -350,14 +364,14 @@ function captchaSetup(){
 
 function rememberStuff() {
 	if (document.forms.post) {
-		if (document.forms.post.password) {
-			if (!localStorage.password)
-				localStorage.password = generatePassword();
-			document.forms.post.password.value = localStorage.password;
+		if (document.forms.post.pswrd) {
+			if (!localStorage.getItem("pswrd") || localStorage.getItem("pswrd") == "undefined")
+				localStorage.setItem("pswrd", generatePassword());
+			document.forms.post.pswrd.value = localStorage.getItem("pswrd");
 		}
-		
-		if (localStorage.name && document.forms.post.elements['name'])
-			document.forms.post.elements['name'].value = localStorage.name;
+		// inconvinient with hidden post form
+		//if (localStorage.name && document.forms.post.elements['name'])
+		//	document.forms.post.elements['name'].value = localStorage.name;
 		if (localStorage.email && document.forms.post.elements['email'])
 			document.forms.post.elements['email'].value = localStorage.email;
 		
@@ -411,11 +425,12 @@ function init() {
 	{% endraw %}	
 	{% if config.allow_delete %}
 	if(document.forms.postcontrols != undefined){
-		if (document.forms.postcontrols.password) {
-			if (!localStorage.password)
-				var password = generatePassword();
-			document.forms.postcontrols.password.value = password;
-			localStorage.password = password;
+		if (document.forms.postcontrols.pswrd) {
+			if (!localStorage.getItem("pswrd") || localStorage.getItem("pswrd") == "undefined"){
+				var pswrd = generatePassword();
+				localStorage.setItem("pswrd" , pswrd);
+				document.forms.postcontrols.pswrd.value = pswrd;
+			}
 		}
 	}
 	{% endif %}

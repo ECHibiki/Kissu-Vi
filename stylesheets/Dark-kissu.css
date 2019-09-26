@@ -6,10 +6,18 @@
 span.quote {
     color:#B8D962;
 }
+header div.subtitle, h1 {
+    color: #dacc86;
+    text-align: center;
+}
+header div.subtitle {
+    font-size: 10pt;
+}
 h1 {
 	font-size: 20pt;
 	text-align: center;
 	letter-spacing: 0px;
+	text-shadow: 5px 5px 10px black;
 }
 
 div.title p {
@@ -46,12 +54,13 @@ div.post.reply div.body a:link:hover, div.post.reply div.body a:visited:hover {
 .intro span.subject {
 	font-size: 12px;
 	font-family: sans-serif;
-	color: #446655;
+	color: #8a8153;
 	font-weight: 800;
 }
 .intro span.name {
-	color: #32DD72;
+	color: #d9dd32;
 	font-weight: 800;
+	text-shadow: rgb(12, 12, 12) 0.1px 0.1px 0.1px;
 }
 .intro a.capcode, p.intro a.nametag {
 	color: magenta;
@@ -59,6 +68,17 @@ div.post.reply div.body a:link:hover, div.post.reply div.body a:visited:hover {
 }
 .intro a.email, p.intro a.email span.name, p.intro a.email:hover, p.intro a.email:hover span.name {
 	color: #32ddaf;
+}
+.intro a.noko, p.intro a.noko span.name, p.intro a.noko:hover, p.intro a.noko:hover span.name {
+	color: #784bff;
+	text-shadow: rgb(12, 12, 12) 1px 1px 1px;
+}
+.intro a.sage, p.intro a.sage span.name, p.intro a.noko:hover, p.intro a.noko:hover span.name {
+	color: #3df55e;
+}
+.intro a.repo, p.intro a.repo span.name, p.intro a.repo:hover, p.intro a.repo:hover span.name {
+	color: #fb672a;
+	text-shadow: rgb(12, 12, 12) 0.1px 0.1px 0.1px;
 }
 input[type="text"], textarea, select {
 	background: #333333;
@@ -82,15 +102,17 @@ form table tr th {
 	padding: 0;
 }
 div.banner {
-	background: #32DD72;
+	background: #7064d0;
 	color: #000;
 	text-align: center;
-	width: 250px;
+	width: 300px;
 	padding: 4px;
 	padding-left: 12px;
 	padding-right: 12px;
 	margin-left: auto;
 	margin-right: auto;
+	margin-top: 4px;
+	margin-bottom: 0px;
 	font-size: 12px;
 }
 div.banner a {
@@ -131,7 +153,9 @@ hr {
 }
 div.boardlist {
 	color: #999999;
-    background-color: rgba(12%, 12%, 12%, 0.10);
+	padding: 0px 3px;
+    margin: 0px -7px;
+    background-color: rgba(12%, 12%, 12%, 0.40);
 }
 
 div.ban {
@@ -140,7 +164,7 @@ div.ban {
 }
 div.ban h2 {
 	background: transparent;
-	color: lime;
+	color: #975fec;
 	font-size: 12px;
 }
 table.modlog tr th {
@@ -196,6 +220,24 @@ a:link, a:visited, .intro a.email span.name {
 	font-family: Verdana, Arial, sans-serif;
 	font-size: 12px;
 }
+a:link, a:visited, .intro a.noko span.name {
+	color: #CCCCCC;
+	text-decoration: none;
+	font-family: Verdana, Arial, sans-serif;
+	font-size: 12px;
+}
+a:link, a:visited, .intro a.sage span.name {
+	color: #CCCCCC;
+	text-decoration: none;
+	font-family: Verdana, Arial, sans-serif;
+	font-size: 12px;
+}
+a:link, a:visited, .intro a.repo span.name {
+	color: #CCCCCC;
+	text-decoration: none;
+	font-family: Verdana, Arial, sans-serif;
+	font-size: 12px;
+}
 a:link:hover, a:visited:hover {
 	color: #fff;
 	font-family: Verdana, Arial, sans-serif;
@@ -204,7 +246,7 @@ a:link:hover, a:visited:hover {
 }
 
 div.title, h1{
-	color: #32DD72;
+	color: #8278b9;
 	font-family: Lucida Sans Unicode, Arial, sans-serif;
 }
 h1 a:link, h1 a:visited{
@@ -224,10 +266,73 @@ div.blotter {
 	font-size: 12px;
 }
 
+.unimportant{
+	text-align:right;
+}
+
+#uppercontents{
+
+}
+#subuppercontents{
+	margin: 0.3%;
+}
+
+/* Use this for an expanding and shrinking post field
+#topcontainer{
+    display: block;
+    margin: auto;
+    margin-bottom: -78px;
+    margin-top: -47px;
+    place-content: space-evenly;
+    flex-flow: row wrap;
+    align-items: end;
+    opacity: 0.85;
+    transform: scale(0.70,0.70);
+    width: 27em;
+	position:relative;
+	left: -2.2em;
+}
+
+#topcontainer:hover, #topcontainer:focus, #topcontainer:target{
+	 opacity: 1.0;
+	 transform: scale(1.0,1.0);
+	margin: 0em 0em 0em;
+	width: 100%;
+	position:relative;
+	left: 2em;
+}
+*/
+
+
+#topcontainer{
+	 opacity: 1.0;
+	 transform: scale(1.0,1.0);
+	margin: 0em 0em 0em;
+	width: 100%;
+	position:relative;
+	margin-bottom: -4em;
+}
+
+header{
+	padding: 0em 0em;
+}
+
+
+div.subtitle {
+    font-size: 8pt;
+}
+div.subtitle {
+    color: #e6b28c;
+    text-align: center;
+	text-shadow: 5px 5px 10px black;
+}
+
 form {
 	margin-bottom: 4em;
 }
 form table {
+	background-color: rgba(30,30,30,0.7);
+	padding:0.5em 0em;
 	margin: auto;
 }
 form table input {
@@ -235,7 +340,7 @@ form table input {
 }
 input[type="text"], input[type="password"], textarea {
 	border: 2px solid #65627f;
-        background-color: #2f3454;
+        background-color: #3a4161;
 	text-indent: 0;
         color:#ECD5DA;
 	text-shadow: none;
@@ -243,6 +348,10 @@ input[type="text"], input[type="password"], textarea {
 	word-spacing: normal;
 	box-shadow: 10px 5px 20px 1px rgba(0,0,0,1);
 	border-radius: 10px;
+}
+
+textarea {
+	width:auto;
 }
 
 .dialog, .suboption-list > div:last-of-type, :root.catalog-hover-expand .catalog-container:hover > .post{
@@ -262,7 +371,7 @@ form table tr th {
 	padding: 4px;
 }
 form table tr th {
-	background: #3c3a31;
+	background: #48402a;
 }
 form table tr td div {
 	text-align: center;

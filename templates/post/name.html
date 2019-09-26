@@ -1,7 +1,15 @@
 {% set capcode = post.capcode|capcode %}
 {% if post.email|length > 0 and (config.hide_sage!=true or post.email!='sage') and config.hide_email!=true %}
 	{# start email #}
+	{% if 'sage' in post.email %}
+	<a class="sage" href="javascript:void(0); {{ post.email }}">
+	{% elseif 'noko' in post.email %}
+	<a class="noko" href="javascript:void(0); {{ post.email }}">
+	{% elseif 'repo' in post.email %}
+	<a class="repo" href="javascript:void(0); {{ post.email }}">
+	{% elseif config.hide_email!=true %}
 	<a class="email" href="mailto:{{ post.email }}">
+	{% endif %}
 {% endif %}
 	<span {% if capcode.name %}style="{{ capcode.name }}" {% endif %}class="name">{{ post.name|bidi_cleanup }}</span>
 	{% if post.trip|length > 0 %}

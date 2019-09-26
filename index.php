@@ -14,41 +14,59 @@
 			var inMod = false;
 			var modRoot="/"+(inMod ? "mod.php?/" : "");
 		</script>
-					<script type="text/javascript" src="/main.js"></script>
+					<script type="text/javascript" src="/main.js?12"></script>
 							</head>
 <body>
-	<div class="boardlist"><span class="sub" data-description="0">[ <a href="/">home</a> ]</span>  <span class="sub" data-description="1">[ <a href="/b/">b</a> / <a href="/qa/">qa</a> / <a href="/lit/">lit</a> ]</span>  <span class="sub" data-description="2">[ <a href="http://swfchan.org/">f</a> / <a href="https://boards.4channel.org/qa/">qa4</a> / <a href="https://github.com/ECHibiki/ViQa-Kissu/">ViQa</a> ]</span></div><script type='text/javascript'>if (typeof do_boardlist != 'undefined') do_boardlist();</script>
 <?php
-	$t = explode(" ", microtime())[0];
 	$expresion = '/(C:\\\xampp\\\htdocs\\\[a-zA-Z]+|\/var\/www\/html\/[a-zA-Z]+)/';
 	while(preg_match("$expresion", getcwd())){
 		chdir ('../');
 	}
-	require_once ('inc/functions.php');
 	require_once ('inc/bans.php');
-
+	require_once ('inc/functions.php');
 	loadConfig();
-	checkDNSBL();
-	checkBan();
-	echo explode(" ", microtime())[0] - $t;
-?>	<header>
-	    <img class="icon" src="../templates/themes/index/hikichanIcon.png">
+	
+	if($config['ban_block']){
+		if(!isset($t2)){
+			$t1 = explode(" ", microtime())[0];
+			checkDNSBL();
+			checkBan();
+			$t2 = explode(" ", microtime())[0];
+		}
+		else{
+			echo ($t2 - $t1);
+		}
+	}
+
+?><div class="boardlist"><span class="sub" data-description="0">[ <a href="/">home</a> / <a href="/agg/">agg</a> / <a href="/all/">all</a> ]</span>  <span class="sub" data-description="1">[ <a href="/b/">g</a> / <a href="/qa/">qa ]</a> / <a href="/megu/">megu</a> ]</span>  <span class="sub" data-description="2">[ <a href="https://theatre.kissu.moe">sync</a> / <a href="https://ban.kissu.moe">text</a> ]</span>  <span class="sub" data-description="3">[ <a href="http://what-ch.mooo.com/what/">what</a> / <a href="https://boards.4channel.org/qa/">qa4</a> / <a href="https://github.com/ECHibiki/ViQa-Kissu/">ViQa</a> ]</span></div><script type='text/javascript'>if (typeof do_boardlist != 'undefined') do_boardlist();</script>
+	<header>
+	    <img class="icon" src="../static/kissu-card.png">
 		<h1>Kissu.moe</h1>
-		<div class="subtitle">100% fun</div>
+		<div class="subtitle">100% Fun!</div>
 	</header>
-	<img class="board_image" src="/banner-art.php" alt="" />	
+	<img class="board_image" src="/static/banners/banner-kissu-3.gif" alt="" />	
 	<div class="box-wrap">
 	    <!--<fieldset>
 		<legend>Boards</legend>
 		<ul>
 							<li class="boardlinksurl">
-					<a href="b/">
-						Boson Tests
+					<a href="agg/">
+						Spinoff Aggregate
 					</a>
 				</li>
 							<li class="boardlinksurl">
-					<a href="lit/">
-						Literature
+					<a href="b/">
+						Boson Technology
+					</a>
+				</li>
+							<li class="boardlinksurl">
+					<a href="feb/">
+						We got here in February
+					</a>
+				</li>
+							<li class="boardlinksurl">
+					<a href="GNFOS/">
+						Gay NEETs From Outer Space
 					</a>
 				</li>
 							<li class="boardlinksurl">
@@ -57,8 +75,18 @@
 					</a>
 				</li>
 							<li class="boardlinksurl">
+					<a href="nen/">
+						Mysterious Thoughtography Collection
+					</a>
+				</li>
+							<li class="boardlinksurl">
 					<a href="qa/">
-						/qa/
+						Questions and Answers
+					</a>
+				</li>
+							<li class="boardlinksurl">
+					<a href="test/">
+						test
 					</a>
 				</li>
 							<li class="boardlinksurl">
@@ -74,78 +102,78 @@
 		<div class="box image">
 			<ul>
 									<li>
-						<a href="/b/res/842#843">
-							<img src="/b/thumb/1546639397688.png" style="width:131px;height:175px" alt="">
+						<a href="/qa/res/10633#10633">
+							<img src="/qa/thumb/1569510835009.png" style="width:168px;height:255px" alt="">
 						</a>
 					</li>
 									<li>
-						<a href="/qa/res/778#804">
-							<img src="/qa/thumb/1546639113867.png" style="width:170px;height:175px" alt="">
+						<a href="/b/res/1827#1834">
+							<img src="/b/thumb/1569510268417.png" style="width:175px;height:82px" alt="">
 						</a>
 					</li>
 									<li>
-						<a href="/qa/res/800#800">
-							<img src="/qa/thumb/1546637761728.png" style="width:182px;height:255px" alt="">
+						<a href="/qa/res/10627#10631">
+							<img src="/qa/thumb/1569509628158.png" style="width:168px;height:175px" alt="">
 						</a>
 					</li>
 									<li>
-						<a href="/b/res/842#842">
-							<img src="/b/thumb/1546637320576.png" style="width:180px;height:255px" alt="">
+						<a href="/b/res/1827#1831">
+							<img src="/b/thumb/1569506465750.png" style="width:175px;height:157px" alt="">
 						</a>
 					</li>
 									<li>
-						<a href="/qa/res/799#799">
-							<img src="/qa/thumb/1546636608200.png" style="width:172px;height:255px" alt="">
+						<a href="/qa/res/10627#10627">
+							<img src="/qa/thumb/1569506332287.png" style="width:206px;height:255px" alt="">
 						</a>
 					</li>
 									<li>
-						<a href="/qa/res/760#788">
-							<img src="/qa/thumb/1546586758270.png" style="width:175px;height:175px" alt="">
+						<a href="/qa/res/10269#10623">
+							<img src="static/kissu-spoiler.png" style="width:275px;height:250px" alt="">
 						</a>
 					</li>
 									<li>
-						<a href="/qa/res/787#787">
-							<img src="/qa/thumb/1546585806574.png" style="width:255px;height:150px" alt="">
+						<a href="/qa/res/10558#10622">
+							<img src="/qa/thumb/1569489215520.png" style="width:175px;height:124px" alt="">
 						</a>
 					</li>
 									<li>
-						<a href="/qa/res/778#782">
-							<img src="/qa/thumb/1546578593686.png" style="width:175px;height:98px" alt="">
+						<a href="/qa/res/10621#10621">
+							<img src="/qa/thumb/1569488171095.png" style="width:204px;height:255px" alt="">
 						</a>
 					</li>
 									<li>
-						<a href="/qa/res/778#779">
-							<img src="/qa/thumb/1546576272730.png" style="width:151px;height:175px" alt="">
+						<a href="/qa/res/10558#10619">
+							<img src="/qa/thumb/1569484065502.png" style="width:124px;height:175px" alt="">
 						</a>
 					</li>
 									<li>
-						<a href="/qa/res/778#778">
-							<img src="/qa/thumb/1546575915592.png" style="width:255px;height:255px" alt="">
+						<a href="/qa/res/10612#10618">
+							<img src="/qa/thumb/1569482872771.png" style="width:175px;height:117px" alt="">
 						</a>
 					</li>
 									<li>
-						<a href="/qa/res/170#771">
-							<img src="/qa/thumb/1546563445347.png" style="width:124px;height:175px" alt="">
+						<a href="/qa/res/9599#10617">
+							<img src="/qa/thumb/1569482167217.png" style="width:124px;height:175px" alt="">
 						</a>
 					</li>
 									<li>
-						<a href="/qa/res/760#761">
-							<img src="/qa/thumb/1546554304093.png" style="width:175px;height:98px" alt="">
+						<a href="/b/res/1827#1827">
+							<img src="/b/thumb/1569481444254.png" style="width:255px;height:128px" alt="">
 						</a>
 					</li>
 									<li>
-						<a href="/qa/res/760#760">
-							<img src="/qa/thumb/1546553832455.png" style="width:255px;height:249px" alt="">
+						<a href="/qa/res/10612#10616">
+							<img src="/qa/thumb/1569480288122.png" style="width:175px;height:96px" alt="">
 						</a>
 					</li>
 									<li>
-						<a href="/qa/res/124#759">
-							<img src="/qa/thumb/1546552210355.png" style="width:175px;height:86px" alt="">
+						<a href="/qa/res/10612#10615">
+							<img src="/qa/thumb/1569479435115.png" style="width:175px;height:112px" alt="">
 						</a>
 					</li>
 									<li>
-						<a href="/b/res/760#835">
-							<img src="/b/thumb/1546549376441.png" style="width:175px;height:133px" alt="">
+						<a href="/qa/res/10612#10614">
+							<img src="/qa/thumb/1569478921326.png" style="width:175px;height:88px" alt="">
 						</a>
 					</li>
 							</ul>
@@ -155,199 +183,209 @@
 			<ul>
 									<li>
 						<strong>/qa/</strong>: 
-						<a href="/qa/res/787#811">
-							<em>neural memeworks were a mistak&hellip;</em>
+						<a href="/qa/res/10627#10638">
+							<em>&gt;&gt;10631  Nope, this thread is &hellip;</em>
 						</a>
 					</li>
 									<li>
 						<strong>/qa/</strong>: 
-						<a href="/qa/res/778#810">
-							<em>&gt;&gt;808  Don't think, feel.</em>
+						<a href="/qa/res/10633#10637">
+							<em>Both are actually a subset of &hellip;</em>
 						</a>
 					</li>
 									<li>
 						<strong>/qa/</strong>: 
-						<a href="/qa/res/787#809">
-							<em>I think it started being reall&hellip;</em>
+						<a href="/qa/res/10612#10636">
+							<em>&gt;&gt;10618  What kind of car has &hellip;</em>
 						</a>
 					</li>
 									<li>
 						<strong>/qa/</strong>: 
-						<a href="/qa/res/778#808">
-							<em>&gt;&gt;803  im too dumb to think of&hellip;</em>
+						<a href="/qa/res/10535#10635">
+							<em>&gt;&gt;10550  Even for historical a&hellip;</em>
 						</a>
 					</li>
 									<li>
 						<strong>/qa/</strong>: 
-						<a href="/qa/res/778#807">
-							<em>&gt;&gt;804  mod is missing a brain &hellip;</em>
+						<a href="/qa/res/10621#10634">
+							<em>Did it work?</em>
 						</a>
 					</li>
 									<li>
 						<strong>/qa/</strong>: 
-						<a href="/qa/res/778#806">
-							<em>&gt;&gt;805  nevermind, too many to &hellip;</em>
+						<a href="/qa/res/10633#10633">
+							<em>is kitsunemimi a subset of nek&hellip;</em>
 						</a>
 					</li>
 									<li>
-						<strong>Boson Tests</strong>: 
-						<a href="/b/res/842#843">
-							<em>she is a GIRL</em>
+						<strong>/b/</strong>: 
+						<a href="/b/res/1415#1835">
+							<em>commented out some sql querrie&hellip;</em>
 						</a>
 					</li>
 									<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/778#805">
-							<em>&gt;&gt;804  someone got wiped, othe&hellip;</em>
+						<strong>/megu/</strong>: 
+						<a href="/megu/res/952#952">
+							<em>don't stop the tests</em>
 						</a>
 					</li>
 									<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/778#804">
-							<em>something is happening</em>
+						<strong>/megu/</strong>: 
+						<a href="/megu/res/951#951">
+							<em>test test test</em>
 						</a>
 					</li>
 									<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/778#803">
-							<em>&gt;&gt;802  What problems do you ha&hellip;</em>
-						</a>
-					</li>
-									<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/778#802">
-							<em>I can make lots of threads, th&hellip;</em>
+						<strong>/b/</strong>: 
+						<a href="/b/res/1827#1834">
+							<em>&gt;&gt;1832  just the one, pretty s&hellip;</em>
 						</a>
 					</li>
 									<li>
 						<strong>/qa/</strong>: 
-						<a href="/qa/res/799#801">
-							<em>wake up early in the morning, &hellip;</em>
+						<a href="/qa/res/10627#10631">
+							<em>You just want me to fap to thi&hellip;</em>
+						</a>
+					</li>
+									<li>
+						<strong>/b/</strong>: 
+						<a href="/b/res/1415#1833">
+							<em>table vichan.votes_ not foaaaa&hellip;</em>
 						</a>
 					</li>
 									<li>
 						<strong>/qa/</strong>: 
-						<a href="/qa/res/800#800">
+						<a href="/qa/res/5007#10630">
+							<em>Remember: you cannot fail as l&hellip;</em>
+						</a>
+					</li>
+									<li>
+						<strong>/b/</strong>: 
+						<a href="/b/res/1827#1832">
+							<em>&gt;&gt;1831  yeah unfortunately the&hellip;</em>
+						</a>
+					</li>
+									<li>
+						<strong>/qa/</strong>: 
+						<a href="/qa/res/10627#10629">
+							<em>on my infinite backlog of shit&hellip;</em>
+						</a>
+					</li>
+									<li>
+						<strong>/b/</strong>: 
+						<a href="/b/res/1827#1831">
+							<em>&gt;&gt;1830  yay, will be waiting w&hellip;</em>
+						</a>
+					</li>
+									<li>
+						<strong>/qa/</strong>: 
+						<a href="/qa/res/10627#10627">
+							<em>I thought it was releasing alo&hellip;</em>
+						</a>
+					</li>
+									<li>
+						<strong>/b/</strong>: 
+						<a href="/b/res/1827#1830">
+							<em>The image was improperly saved&hellip;</em>
+						</a>
+					</li>
+									<li>
+						<strong>/qa/</strong>: 
+						<a href="/qa/res/5007#10626">
+							<em>y'know what  im gonna start ov&hellip;</em>
+						</a>
+					</li>
+									<li>
+						<strong>/qa/</strong>: 
+						<a href="/qa/res/10533#10625">
+							<em>&gt;&gt;10547  One extreme example f&hellip;</em>
+						</a>
+					</li>
+									<li>
+						<strong>/megu/</strong>: 
+						<a href="/megu/res/948#949">
+							<em>want to breed that fox so hard</em>
+						</a>
+					</li>
+									<li>
+						<strong>/qa/</strong>: 
+						<a href="/qa/res/10269#10623">
+							<em>yes, they are extremely import&hellip;</em>
+						</a>
+					</li>
+									<li>
+						<strong>/megu/</strong>: 
+						<a href="/megu/res/948#948">
+							<em>kemono test</em>
+						</a>
+					</li>
+									<li>
+						<strong>/megu/</strong>: 
+						<a href="/megu/res/947#947">
+							<em>oppai test</em>
+						</a>
+					</li>
+									<li>
+						<strong>/qa/</strong>: 
+						<a href="/qa/res/10558#10622">
+							<em>&gt;&gt;10558  nothing wrong with 18&hellip;</em>
+						</a>
+					</li>
+									<li>
+						<strong>/b/</strong>: 
+						<a href="/b/res/1415#1829">
+							<em>seems storage went back to nor&hellip;</em>
+						</a>
+					</li>
+									<li>
+						<strong>/b/</strong>: 
+						<a href="/b/res/1415#1828">
+							<em>The archive I "borrowed" from &hellip;</em>
+						</a>
+					</li>
+									<li>
+						<strong>/qa/</strong>: 
+						<a href="/qa/res/10621#10621">
 							<em>test</em>
 						</a>
 					</li>
 									<li>
-						<strong>Boson Tests</strong>: 
-						<a href="/b/res/842#842">
-							<em>I'm Falling in love with a boy</em>
+						<strong>/megu/</strong>: 
+						<a href="/megu/res/946#946">
+							<em>test</em>
 						</a>
 					</li>
 									<li>
 						<strong>/qa/</strong>: 
-						<a href="/qa/res/799#799">
-							<em>Sitting at the computer while &hellip;</em>
-						</a>
-					</li>
-									<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/787#798">
-							<em>&gt;&gt;796  What even was their rea&hellip;</em>
-						</a>
-					</li>
-									<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/760#797">
-							<em>&gt;&gt;790  Well if someone's inter&hellip;</em>
-						</a>
-					</li>
-									<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/787#796">
-							<em>Yep it's absolute garbage sinc&hellip;</em>
-						</a>
-					</li>
-									<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/787#795">
-							<em>never mind i found it. google &hellip;</em>
-						</a>
-					</li>
-									<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/787#794">
-							<em>&gt;&gt;787  still cant find the sou&hellip;</em>
-						</a>
-					</li>
-									<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/778#793">
-							<em>&gt;&gt;781  i can only listen to al&hellip;</em>
-						</a>
-					</li>
-									<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/778#792">
-							<em>It is as written  https://boar&hellip;</em>
-						</a>
-					</li>
-									<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/29#791">
-							<em>Wish I had the same amount of &hellip;</em>
-						</a>
-					</li>
-									<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/760#790">
-							<em>actually the garbage can be fl&hellip;</em>
-						</a>
-					</li>
-									<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/760#789">
-							<em>&gt;&gt;786  at the very least proxi&hellip;</em>
-						</a>
-					</li>
-									<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/760#788">
-							<em>&gt;&gt;786  I've already composed a&hellip;</em>
-						</a>
-					</li>
-									<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/787#787">
-							<em>&gt;/qa/</em>
-						</a>
-					</li>
-									<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/760#786">
-							<em>&gt;&gt;785  mostly staff limiting w&hellip;</em>
-						</a>
-					</li>
-									<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/760#785">
-							<em>what is wrong with /qa/</em>
-						</a>
-					</li>
-									<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/778#784">
-							<em>yes it is very cold  what can &hellip;</em>
+						<a href="/qa/res/10221#10620">
+							<em>&gt;&gt;10420  I want the Tewi in th&hellip;</em>
 						</a>
 					</li>
 							</ul>
 		</div>
 		<div class="mainBox">
 	        <br>
-	        <div class="description">Now serving You!</div>
+	        <div class="description">The cowards flee to the darkness, huddling like vermin.</div>
 	        <br>
-	        <img class="imageofnow" src="../static/kissu-card.png">
+	        <img class="imageofnow" src="../static/horosho.png">
 	        <br>
-	        <div class="quoteofnow"> "Great minds discuss ideas; average minds discuss events; small minds discuss people." - QUOTE</div>
+	        <div class="quoteofnow">xopowo</div>
 	        <br>
-	        <iframe class ="videoofnow" width="560" height="315" src="https://www.youtube.com/embed/0uwrDqYhufM"></iframe>
+	        <iframe class ="videoofnow" width="560" height="315" src="https://www.youtube.com/embed/uCVR0sLb8pw"></iframe>
 	        <br>
 	    </div>
 	    <div class="ban">
-									<h2 id="11">
+									<h2 id="13">
+											S4
+										<span class="unimportant"> &mdash; by verniy at 09/19/19 (Thu) 17:28:38</span>
+				</h2>
+				<p>Update session 4 coming to a close<br/><a href="https://web.archive.org/web/20190919172630/https://kissu.moe/b/res/1415" rel="nofollow" target="_blank">https://web.archive.org/web/20190919172630/https://kissu.moe/b/res/1415</a><br/><br/>Last things I'm going to add are mascots and updates to the post form,<br/>then a polling system and making the mod system more easy for fast boards.<br/><br/>At that point all the terrible vichan bugs have been fixed and the only thing left are issues with the user interface(which pales in comparison to 4chan's) so best to focus on improving the board speed, community and user experience than developing new improvements and features.</p>
+							<h2 id="12">
+											S3
+										<span class="unimportant"> &mdash; by verniy at 09/19/19 (Thu) 17:25:34</span>
+				</h2>
+				<p>Just realized I had never closed S3 even though the items in it were done<br/><a href="https://kissu.moe/b/sitedev" rel="nofollow" target="_blank">https://kissu.moe/b/sitedev</a><br/><a href="https://web.archive.org/web/20190919172509/https://kissu.moe/b/sitedev" rel="nofollow" target="_blank">https://web.archive.org/web/20190919172509/https://kissu.moe/b/sitedev</a><br/><br/>There are still some new things people asked for from there and I guess for S4 I'll have to put everything people have asked into a giant poll and have voting be done on them.</p>
+							<h2 id="11">
 											S2 Finished. Fixing up the code for new stuff later
 										<span class="unimportant"> &mdash; by verniy at 12/24/18 (Mon) 09:53:26</span>
 				</h2>
@@ -362,23 +400,13 @@
 										<span class="unimportant"> &mdash; by verniy at 12/19/18 (Wed) 09:44:48</span>
 				</h2>
 				<p>We're entering closed beta soon.<br/>That means as soon as I've finished up the last part of S1(bump control) you're free to share on rizon, steam and other places with a low spammer count.<br/><br/>Season 2 updates:<br/><br/>More customization and optimization of layout, scripts and styles for unique board feel<br/><br/>Customizations<br/>&lt;li&gt;Reposition the catalog tags&lt;/li&gt;<br/>&lt;li&gt;Remove the ugly 8chan style for superior futaba inspired style&lt;/li&gt;<br/>&lt;li&gt;Yen text&lt;/li&gt;<br/><br/>Optimizations<br/>&lt;li&gt;URL uploading doesn't handle HTML redirects&lt;/li&gt;<br/>&lt;li&gt;URL uploading doesn't like strange extensions&lt;/li&gt;<br/>&lt;li&gt;Youtube Embed doesn't take some forms&lt;/li&gt;<br/>&lt;li&gt;Youtube Embed doesn't go fullscreen&lt;/li&gt;<br/>&lt;li&gt;Expanded markup help and tags&lt;/li&gt;<br/>&lt;li&gt;markup formatting bugs&lt;/li&gt;<br/>&lt;li&gt;code refactoring for anti-spam and anti-bump&lt;/li&gt;<br/><br/><br/>New<br/>&lt;li&gt;VPN, TOR, and proxy blocks&lt;/li&gt;<br/>&lt;li&gt;bans block from viewing site&lt;/li&gt;&lt;/ul&gt;<br/>&lt;li&gt;A friendly system to handle the mod tools&lt;/li&gt;</p>
-							<h2 id="4">
-											Github Repo
-										<span class="unimportant"> &mdash; by verniy at 12/03/18 (Mon) 00:37:20</span>
-				</h2>
-				<p><a href="https://github.com/ECHibiki/ViQa-Kissu" rel="nofollow" target="_blank">https://github.com/ECHibiki/ViQa-Kissu</a><br/><br/>This is the current site repo if you wish to add features to the site. Will be updated "soon"™</p>
-							<h2 id="3">
-											 Overly Optimistic Site Planning 
-										<span class="unimportant"> &mdash; by verniy at 12/02/18 (Sun) 06:32:08</span>
-				</h2>
-				<p>Updates to be made before more official release(S1):<br/>* Vichan Setup and Configuration<br/>* CSS configuration<br/>* Antiflood block supplemented or replaced with encouraging captcha<br/>* User Requested UI Improvements<br/><br/>Future(S2):<br/>* Post to Rizon+Steam<br/>* More customization of layout, UI and CSS for unique board feel<br/>* Establish a democratic system of transparent, but powerful moderation<br/>* More mod tools to give better ability to handle problems in the future instead of as they arise<br/>* Small online games similar to what GNFOS did<br/><br/>Future(S3):<br/>* Post to /qa/<br/>* Evaluate effectiveness of mod tool, current moderation structure<br/><br/>Any opinions can be posted in the various ways possible to contact me.</p>
 						    </div>
 		<div class="mainBox">
 			<h2>Stats</h2>
 			<ul>
-				<li>Total posts: 1,722</li>
-				<li>Unique posters: 136</li>
-				<li>Active content: 625.85 MB</li>
+				<li>Total posts: 13,528</li>
+				<li>Unique posters: 411</li>
+				<li>Active content: 5.72 GB</li>
 			</ul>
 		</div>
 	</div>
@@ -392,3 +420,25 @@
 	</footer>
 </body>
 </html>
+<?php
+	$expresion = '/(C:\\\xampp\\\htdocs\\\[a-zA-Z]+|\/var\/www\/html\/[a-zA-Z]+)/';
+	while(preg_match("$expresion", getcwd())){
+		chdir ('../');
+	}
+	require_once ('inc/bans.php');
+	require_once ('inc/functions.php');
+	loadConfig();
+	
+	if($config['ban_block']){
+		if(!isset($t2)){
+			$t1 = explode(" ", microtime())[0];
+			checkDNSBL();
+			checkBan();
+			$t2 = explode(" ", microtime())[0];
+		}
+		else{
+			echo ($t2 - $t1);
+		}
+	}
+
+?>

@@ -3,14 +3,17 @@
  *  Copyright (c) 2010-2014 Tinyboard Development Group
  */
 
-require_once 'inc/functions.php';
+ require_once 'inc/functions.php';
 require_once 'inc/anti-bot.php';
 require_once 'inc/bans.php';
-require_once 'inc/image.php';
 
-if ((!isset($_POST['mod']) || !$_POST['mod']) && preg_match($config['board_locked'], $_POST['board'])) {
-    error("Board is locked");
-}
+require_once 'inc/image.php';
+//if(isset($_POST['board']))
+//	openBoard($_POST['board']);
+//loadConfig();
+//if ((!isset($_POST['mod']) || !$_POST['mod']) && $config['board_locked']) {
+ //   error("Board is locked");
+//}
 
 $dropped_post = false;
 
@@ -182,10 +185,10 @@ if (isset($_POST['delete'])) {
 	$mod = false;
 	if(isset($_POST['mod']))	$mod = true;
 	
-	if (!isset($_POST['board'], $_POST['password']))
+	if (!isset($_POST['board'], $_POST['pswrd']))
 		error($config['error']['bot']);
 	
-	$password = &$_POST['password'];
+	$password = &$_POST['pswrd'];
 	
 	if ($password == '' && !$mod)
 		error($config['error']['invalidpassword']);
@@ -202,6 +205,10 @@ if (isset($_POST['delete'])) {
 	// Check if board exists
 	if (!openBoard($_POST['board']))
 		error($config['error']['noboard']);
+
+	if ((!isset($_POST['mod']) || !$_POST['mod']) && $config['board_locked']) {
+    	error("Board is locked");
+	}
 	
 	// Check if banned
 	checkBan($board['uri']);
@@ -288,6 +295,10 @@ elseif (isset($_POST['report'])) {
 	// Check if board exists
 	if (!openBoard($_POST['board']))
 		error($config['error']['noboard']);
+
+	if ((!isset($_POST['mod']) || !$_POST['mod']) && $config['board_locked']) {
+   		error("Board is locked");
+	}
 	
 	// Check if banned
 	checkBan($board['uri']);
@@ -358,7 +369,7 @@ elseif (isset($_POST['report'])) {
 } 
 elseif (isset($_POST['post']) || $dropped_post) {
 
-	if (!isset($_POST['body'], $_POST['board']) && !$dropped_post)
+	if (!isset($_POST['body'], $_POST['board']) && !$dropped_post && !$config['error']['remove_bot_err'])
 		error($config['error']['bot']);
 
 	$post = array('board' => $_POST['board'], 'files' => array());
@@ -370,6 +381,10 @@ elseif (isset($_POST['post']) || $dropped_post) {
 	// Check if board exists
 	if (!openBoard($post['board']))
 		error($config['error']['noboard']);
+
+	if ((!isset($_POST['mod']) || !$_POST['mod']) && $config['board_locked']) {
+    	error("Board is locked");
+	}
 	
 	if (!isset($_POST['name']))
 		$_POST['name'] = $config['anonymous'];
@@ -380,8 +395,8 @@ elseif (isset($_POST['post']) || $dropped_post) {
 	if (!isset($_POST['subject']))
 		$_POST['subject'] = '';
 	
-	if (!isset($_POST['password']))
-		$_POST['password'] = '';	
+	if (!isset($_POST['pswrd']))
+		$_POST['pswrd'] = '';	
 	
 	if (isset($_POST['thread'])) {
 		$post['op'] = false;
@@ -423,7 +438,7 @@ elseif (isset($_POST['post']) || $dropped_post) {
 	}
 }
 
-		if (!(($post['op'] && $_POST['post'] == $config['button_newtopic']) ||
+		if (!$config['error']['remove_bot_err'] && !(($post['op'] && $_POST['post'] == $config['button_newtopic']) ||
 			(!$post['op'] && $_POST['post'] == $config['button_reply'])))
 			error($config['error']['bot']);
 	
@@ -456,8 +471,8 @@ elseif (isset($_POST['post']) || $dropped_post) {
 		
 		if (!$post['mod']) {
 			$post['antispam_hash'] = checkSpam(array($board['uri'], isset($post['thread']) ? $post['thread'] : ($config['try_smarter'] && isset($_POST['page']) ? 0 - (int)$_POST['page'] : null)));
-			if ($post['antispam_hash'] === true)
-				error($config['error']['spam']);
+			// if ($post['antispam_hash'] === true)
+				// error($config['error']['spam']);
 		}
 	
 		if ($config['robot_enable'] && $config['robot_mute']) {
@@ -509,7 +524,7 @@ elseif (isset($_POST['post']) || $dropped_post) {
 			$_POST['email'] = '';
 	
 		if ($config['field_disable_password'])
-			$_POST['password'] = '';
+			$_POST['pswrd'] = '';
 	
 		if ($config['field_disable_subject'] || (!$post['op'] && $config['field_disable_reply_subject']))
 			$_POST['subject'] = '';
@@ -574,7 +589,7 @@ elseif (isset($_POST['post']) || $dropped_post) {
 	$post['subject'] = $_POST['subject'];
 	$post['email'] = str_replace(' ', '%20', htmlspecialchars($_POST['email']));
 	$post['body'] = $_POST['body'];
-	$post['password'] = $_POST['password'];
+	$post['password'] = $_POST['pswrd'];
 	$post['has_file'] = (!isset($post['embed']) && (($post['op'] && !isset($post['no_longer_require_an_image_for_op']) && $config['force_image_op']) || count($_FILES) > 0));
 	
 	if (!$dropped_post) {
@@ -730,10 +745,12 @@ elseif (isset($_POST['post']) || $dropped_post) {
 	
 	$post['body'] = escape_markup_modifiers($post['body']);
 	
+//why is this in here???
+/*
 	if ($mod && isset($post['raw']) && $post['raw']) {
 		$post['body'] .= "\n<tinyboard raw html>1</tinyboard>";
 	}
-	
+*/	
 	if (!$dropped_post)
 	if (($config['country_flags'] && !$config['allow_no_country']) || ($config['country_flags'] && $config['allow_no_country'] && !isset($_POST['no_country']))) {
 		require 'inc/lib/geoip/geoip.inc';
@@ -856,11 +873,15 @@ elseif (isset($_POST['post']) || $dropped_post) {
 	}
 	Post_ImageProcessing::proccess($post);
 	
+
+
 	// Do filters again if OCRing
 	if ($config['tesseract_ocr'] && !hasPermission($config['mod']['bypass_filters'], $board['uri']) && !$dropped_post) {
 		do_filters($post);
 	}
 
+
+	
 	if (!hasPermission($config['mod']['postunoriginal'], $board['uri']) && $config['robot_enable'] && checkRobot($post['body_nomarkup']) && !$dropped_post) {
 		undoImage($post);
 		if ($config['robot_mute']) {
@@ -881,12 +902,19 @@ elseif (isset($_POST['post']) || $dropped_post) {
 		}
 	}
 	
+
 	$post = (object)$post;
 	$post->files = array_map(function($a) { return (object)$a; }, $post->files);
 
+					// ____
+	
 	$error = event('post', $post);
+	
+						// ^^^
 	$post->files = array_map(function($a) { return (array)$a; }, $post->files);
 
+
+	
 	if ($error) {
 		undoImage((array)$post);
 		error($error);
@@ -897,8 +925,12 @@ elseif (isset($_POST['post']) || $dropped_post) {
 		$post['files'] = $post['files'];
 	$post['num_files'] = sizeof($post['files']);
 	
+
+	
 	$post['id'] = $id = post($post);
 	$post['slug'] = slugify($post);
+	
+	
 	if(isset($numposts)){
 		post_laterPost($post, $thread, $numposts, $noko, $id, $dropped_post, $pdo);
 	}
@@ -944,17 +976,25 @@ elseif(isset($_POST['release'])){
 	}
 	elseif ($config['flood_captchouli'] && isset($_POST['captchouli'])){
 		
-		$kissu = curl_init('http://kissu.moe/status?captchouli-id=' . $_POST['captchouli']);
+		$kissu = curl_init('https://kissu.moe/status?captchouli-id=' . $_POST['captchouli']);
+		curl_setopt($kissu, CURLOPT_RETURNTRANSFER, true);
 		$result = curl_exec($kissu);
+
 		if($result === false){
 			error('Bad URL');
 		}
 		else{
 			if ($result == "true"){	}
 			else{
-				error('Bad captcha: ' . $result);
+				if($result == "false")
+					error('Bad captcha: Moldy captcha');
+				else
+					error('Bad captcha: ' . $result);
 			}
 		}
+	}
+	else{
+		error("where is your captcha?");
 	}
 
 	
@@ -999,8 +1039,17 @@ elseif(isset($_POST['release'])){
 		// if ($post['antispam_hash'] === true)
 			// error($config['error']['spam']);
 	}
-		
-		// Remove board directories before inserting them into the database.
+				
+	if (!hasPermission($config['mod']['postunoriginal'], $board['uri']) && $config['robot_enable'] && checkRobot($post['body_nomarkup']) && !$dropped_post) {
+		undoImage($post);
+		if ($config['robot_mute']) {
+			error(sprintf($config['error']['muted'], mute()));
+		} else {
+			error($config['error']['unoriginal']);
+		}
+	}
+	
+			// Remove board directories before inserting them into the database.
 	if ($post['has_file']) {
 		foreach ($post['files'] as $key => &$file) {
 			$file['file_path'] = $file['file'];
@@ -1010,16 +1059,26 @@ elseif(isset($_POST['release'])){
 				$file['thumb'] = mb_substr($file['thumb'], mb_strlen($board['dir'] . $config['dir']['thumb']));
 		}
 	}
-		
-	if (!hasPermission($config['mod']['postunoriginal'], $board['uri']) && $config['robot_enable'] && checkRobot($post['body_nomarkup']) && !$dropped_post) {
-		undoImage($post);
-		if ($config['robot_mute']) {
-			error(sprintf($config['error']['muted'], mute()));
-		} else {
-			error($config['error']['unoriginal']);
-		}
+	
+    $post = (object)$post;
+	$post->files = (array) $post->files;
+	$post->files = array_map(function($a) { return (object)$a; }, $post->files);
+
+					// ____
+	
+	$error = event('post', $post);
+	
+						// ^^^
+	$post->files = array_map(function($a) { return (array)$a; }, $post->files);
+
+
+	
+	if ($error) {
+		undoImage((array)$post);
+		error($error);
 	}
 
+	$post = (array)$post;
 	$post['id'] = $id = post($post);
 
 	$post['slug'] = slugify($post);
@@ -1033,6 +1092,7 @@ elseif(isset($_POST['release'])){
 	
 }
 elseif (isset($_POST['appeal'])) {
+
 	if (!isset($_POST['ban_id']))
 		error($config['error']['bot']);
 	

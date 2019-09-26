@@ -202,10 +202,12 @@
 	// Replacement for sectoor.de
 	$config['dnsbl'][] = array('rbl.efnet.org', 4);
 	
-	// Proxy site scan rate
-	// minutes to perform a scan
-	$config['proxy_scan_rate'] = 30;
+	// block banned from viewing site
+	$config['ban_block'] = false;
 
+	//search for proxies requires cron setup
+	$config["enable_proxy_scrape"] = false;
+	
 	// http://www.sorbs.net/using.shtml
 	// $config['dnsbl'][] = array('dnsbl.sorbs.net', array(2, 3, 4, 5, 6, 7, 8, 9));
 
@@ -286,7 +288,7 @@
 		'subject',
 		'post',
 		'body',
-		'password',
+		'pswrd',
 		'sticky',
 		'lock',
 		'raw',
@@ -342,8 +344,8 @@
 	 $config['captcha']['extra'] = 'abcdefghijklmnopqrstuvwxyz';
 	
 	// Ability to lock a board for normal users and still allow mods to post.  Could also be useful for making an archive board
-	// Input regex pattern of board code
-	$config['board_locked'] = "";
+	// Do on a per board entry
+	$config['board_locked'] = false;
 
 	// If poster's proxy supplies X-Forwarded-For header, check if poster's real IP is banned.
 	$config['proxy_check'] = false;
@@ -552,8 +554,9 @@
 	// How long after posting should you have to wait before being able to delete that post? (In seconds.)
 	$config['delete_time'] = 10;
 	// Reply limit (stops bumping thread when this is reached).
-	$config['reply_limit'] = 100;
-
+	$config['reply_limit'] = 151;
+	// At this point cycled threads will delete older posts as new ones come in.
+	$config['cycle_limit'] = 149;
 	// Image hard limit (stops allowing new image replies when this is reached if not zero).
 	$config['image_hard_limit'] = 150;
 	// Reply hard limit (stops allowing new replies when this is reached if not zero).
@@ -604,6 +607,9 @@
 	// Advanced raplcement (regular expressions):
 	// $config['wordfilters'][] = array('/ca[rt]/', 'dog', true); // 'true' means it's a regular expression
 
+	// Expandable and retractable post form for more compact appearance
+	$config['advanced_post_form'] = false;
+
 	// Always act as if the user had typed "noko" into the email field.
 	$config['always_noko'] = false;
 
@@ -628,7 +634,8 @@
 	$config['field_disable_reply_subject'] = false;
 	// When true, a blank password will be used for files (not usable for deletion).
 	$config['field_disable_password'] = false;
-
+	// Hide password from users
+	$config['field_hide_password'] = false;
 	// When true, users are instead presented a selectbox for email. Contains, blank, noko and sage.
 	$config['field_email_selectbox'] = false;
 
@@ -637,6 +644,7 @@
 
 	// Don't display user's email when it's not "sage"
 	$config['hide_email'] = false;
+	
 
 	// Attach country flags to posts.
 	$config['country_flags'] = false;
@@ -725,7 +733,9 @@
 	$config['markup'][] = array("/\[pink\](.+?)\[\/pink\]/", "<span class=\"glowpink\">\$1</span>");
 	$config['markup'][] = array("/\[blue\](.+?)\[\/blue\]/", "<span class=\"glowblue\">\$1</span>");
 	$config['markup'][] = array("/\[gold\](.+?)\[\/gold\]/", "<span class=\"glowgold\">\$1</span>");
-	
+        
+	//kissu markup
+	$config['markup'][] = array("/~~(.+?)~~/", "<strike>\$1</strike>");
 
 	// Code markup. This should be set to a regular expression, using tags you want to use. Examples:
 	// "/\[code\](.*?)\[\/code\]/is"
@@ -740,6 +750,7 @@
 	// Always regenerate markup. This isn't recommended and should only be used for debugging; by default,
 	// Tinyboard only parses post markup when it needs to, and keeps post-markup HTML in the database. This
 	// will significantly impact performance when enabled.
+	// briefly enable this to apply markup changes to older posts.
 	$config['always_regenerate_markup'] = false;
 
 /*
@@ -873,7 +884,7 @@
 	$config['minimum_copy_resize'] = false;
 
 	// Maximum image upload size in bytes.
-	$config['max_filesize'] = 20 * 1024 * 1024; // 10MB
+	$config['max_filesize'] = 40 * 1024 * 1024; // 10MB
 	// Maximum image dimensions.
 	$config['max_width'] = 10000;
 	$config['max_height'] = $config['max_width'];
@@ -964,7 +975,7 @@
 	// Tinyboard has been translated into a few langauges. See inc/locale for available translations.
 	$config['locale'] = 'en'; // (en, ru_RU.UTF-8, fi_FI.UTF-8, pl_PL.UTF-8)
 
-	// Timezone to use for displaying dates/tiems.
+	// Timezone to use for displaying dates/times.
 	$config['timezone'] = 'America/Los_Angeles';
 	// The format string passed to strftime() for displaying dates.
 	// http://www.php.net/manual/en/function.strftime.php
@@ -990,8 +1001,13 @@
 	// Characters used to generate a random password (with Javascript).
 	$config['genpassword_chars'] = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_+';
 
-	// Optional banner image at the top of every page.
-	// $config['url_banner'] = '/banner.php';
+        // List of banners sepperated by `,`
+        $config['url_banner_list'] = "https://impatientprogrammer.net/wp-content/uploads/2017/12/BlogBanner_Cpp_Basics-1035x270.jpg,http://www.iucedu.com/images/c-c-plus-training-institute-in-chennai.jpg";
+
+        // Exists for legacy purposes
+	// Banners should be set by 'url_banner_list' instead
+	//$config['url_banner'] = array_rand($config['url_banner_list']);
+
 	// Banner dimensions are also optional. As the banner loads after the rest of the page, everything may be
 	// shifted down a few pixels when it does. Making the banner a fixed size will prevent this.
 	// $config['banner_width'] = 300;
@@ -999,8 +1015,8 @@
 
 	// Custom stylesheets available for the user to choose. See the "stylesheets/" folder for a list of
 	// available stylesheets (or create your own).
-	$config['stylesheets']['Yotsuba B'] = ''; // Default; there is no additional/custom stylesheet for this.
-	$config['stylesheets']['Yotsuba'] = 'yotsuba.css';
+	//$config['stylesheets']['Yotsuba B'] = ''; // Default; there is no additional/custom stylesheet for this.
+	//$config['stylesheets']['Yotsuba'] = 'yotsuba.css';
 	// $config['stylesheets']['Futaba'] = 'futaba.css';
 	// $config['stylesheets']['Dark'] = 'dark.css';
 
@@ -1008,7 +1024,7 @@
 	// $config['uri_stylesheets'] = 'http://static.example.org/stylesheets/';
 
 	// The default stylesheet to use.
-	$config['default_stylesheet'] = array('Yotsuba B', $config['stylesheets']['Yotsuba B']);
+//	$config['default_stylesheet'] = array('Yotsuba B', $config['stylesheets']['Yotsuba B']);
 
 	// Make stylesheet selections board-specific.
 	$config['stylesheets_board'] = false;
@@ -1173,6 +1189,7 @@
 
 	// Error messages
 	$config['error']['bot']			= _('You look like a bot.');
+	$config['error']['remove_bot_err'] = true;
 	$config['error']['referer']		= _('Your browser sent an invalid or no HTTP referer.');
 	$config['error']['toolong']		= _('The %s field was too long.');
 	$config['error']['toolong_body']	= _('The body was too long.');
@@ -1268,9 +1285,11 @@
 
 	// Location of files.
 	$config['file_index'] = 'index.html';
+        $config['file_index_no_ext'] = 'index';
 	$config['file_page'] = '%d.html'; // NB: page is both an index page and a thread
 	$config['remove_ext'] = false;
-	$config['file_page50'] = '%d+50.html';
+	$config['file_page_no_ext'] = '%d';
+        $config['file_page50'] = '%d+50.html';
 	$config['file_page_slug'] = '%d-%s.html';
 	$config['file_page50_slug'] = '%d-%s+50.html';
 	$config['file_mod'] = 'mod.php';
@@ -1283,6 +1302,52 @@
 	$config['dir']['img'] = 'src/';
 	$config['dir']['thumb'] = 'thumb/';
 	$config['dir']['res'] = 'res/';
+
+
+	// Directory for archived threads
+	$config['dir']['archive'] = 'archive/';
+	// Directory for "Featured Threads" (threads makred for permanent storage)
+	$config['dir']['featured'] = 'featured/';
+
+	// Indicate if threads should be archived
+	$config['archive']['threads'] = true;
+	// Indicate if it is possible to mark threads as featured (stored forever)
+	$config['feature']['threads'] = true;
+
+	// Days to keep archived threads before deletion (if set to false all archived threads are kept forever)
+	$config['archive']['lifetime'] = 3;
+
+	// Number of chars in snippet
+	$config['archive']['snippet_len'] = 400;
+	
+/*
+* ====================
+*  Archive settings
+* ====================
+*/
+
+    	// Indicate if threads should be archived
+    	$config['archive']['threads'] = true;
+	// Indicate if it is possible to mark threads as featured (stored forever)
+	$config['feature']['threads'] = true;
+	// Indicate if link to featured archive should be shown on post and thread page
+	$config['feature']['link_post_page'] = false;
+   	// Indicate if it is possible to mark threads as nostalgic (stored forever but will only be accessable to mods)
+    	$config['mod_archive']['threads'] = true;
+	// Days to keep archived threads before deletion (ex. "60 minutes", "6 hours", "1 day", "1 week"), if set to false all archived threads are kept forever
+	$config['archive']['lifetime'] = "3 days";
+   	// Number of chars in snippet
+	$config['archive']['snippet_len'] = 400;
+    	// If any is set to run in crom both will be run in cron regardless
+    	// Archiving is run in cron job
+    	$config['archive']['cron_job']['archiving'] = false;
+    	// Purging of archive is run in cron job
+	$config['archive']['cron_job']['purge'] = false;
+
+    	// Automatically send threads with thiese trips to Featured Archive
+    	// $config['archive']['auto_feature_trips'] = array("!!securetrip", "!trip");
+    	$config['archive']['auto_feature_trips'] = array();
+    																					
 
 	// For load balancing, having a seperate server (and domain/subdomain) for serving static content is
 	// possible. This can either be a directory or a URL. Defaults to $config['root'] . 'static/'.
@@ -1448,7 +1513,7 @@
 	);
 
 	// Enable the moving of single replies
-	$config['move_replies'] = false;
+	//--$config['move_replies'] = false;
 
 	// How often (minimum) to purge the ban list of expired bans (which have been seen). Only works when
 	//  $config['cache'] is enabled and working.
@@ -1518,13 +1583,14 @@
 	// Probably best not to change this unless you are smart enough to figure out what you're doing. If you
 	// decide to change it, remember that it is impossible to redefinite/overwrite groups; you may only add
 	// new ones.
-	$config['mod']['groups'] = array(
-		10	=> 'Janitor',
-		20	=> 'Mod',
-		30	=> 'Admin',
-		// 98	=> 'God',
-		99	=> 'Disabled'
-	);
+$config['mod']['groups'] = array(
+  5   => 'Bot',
+  10	=> 'Janitor',
+  20	=> 'Mod',
+  30	=> 'Admin',
+  // 98	=> 'God',
+  99	=> 'Disabled'
+);
 
 	// If you add stuff to the above, you'll need to call this function immediately after.
 	define_groups();
@@ -1534,11 +1600,12 @@
 	// define_groups();
 
 	// Capcode permissions.
-	$config['mod']['capcode'] = array(
-		JANITOR		=> array('Janitor'),
-		MOD		=> array('Mod'),
-		ADMIN		=> true
-	);
+$config['mod']['capcode'] = array(
+  BOT   => array('Bot'),
+  JANITOR		=> array('Janitor'),
+  MOD		=> array('Mod'),
+  ADMIN		=> true
+);
 
 	// Example: Allow mods to post with "## Moderator" as well
 	// $config['mod']['capcode'][MOD][] = 'Moderator';
@@ -1549,6 +1616,7 @@
 
 	// Don't worry about per-board moderators. Let all mods moderate any board.
 	$config['mod']['skip_per_board'] = false;
+
 
 	/* Post Controls */
 	// View IP addresses
@@ -1573,7 +1641,6 @@
 	$config['mod']['sticky'] = MOD;
 	// Cycle a thread
 	$config['mod']['cycle'] = MOD;
-	$config['cycle_limit'] = &$config['reply_limit'];
 	// Lock a thread
 	$config['mod']['lock'] = MOD;
 	// Post in a locked thread
@@ -1603,6 +1670,7 @@
 	$config['mod']['report_dismiss'] = JANITOR;
 	// Dismiss all abuse reports by an IP
 	$config['mod']['report_dismiss_ip'] = JANITOR;
+
 	// View list of bans
 	$config['mod']['view_banlist'] = MOD;
 	// View the username of the mod who made a ban
@@ -1652,7 +1720,7 @@
 	// Set websites to be scraped for proxies
 	$config['mod']['proxy_bans'] = ADMIN;
 	// Rebuild everything
-	$config['mod']['rebuild'] = ADMIN;
+$config['mod']['rebuild'] = BOT;
 	// Search through posts, IP address notes and bans
 	$config['mod']['search'] = JANITOR;
 	// Allow searching posts (can be used with board configuration file to disallow searching through a

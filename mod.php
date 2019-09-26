@@ -73,6 +73,11 @@ $pages = array(
 	'/search/(posts|IP_notes|bans|log)/(.+)/(\d+)'	=> 'search',		// search
 	'/search/(posts|IP_notes|bans|log)/(.+)'	=> 'search',		// search
 
+
+	'/(\%b)/archive/'					=> 'secure_POST view_archive', 					// View Archive
+	'/(\%b)/featured/'					=> 'secure_POST view_archive_featured', 		// View Featured Archive
+	'/(\%b)/archive_thread/(\d+)'		=> 'secure archive_thread',		// send thread to archive	
+
 	'/(\%b)/ban(&delete)?/(\d+)'		=> 'secure_POST ban_post', 	// ban poster
 	'/(\%b)/move/(\d+)'			=> 'secure_POST move',		// move thread
 	'/(\%b)/move_reply/(\d+)'			=> 'secure_POST move_reply',		// move reply
@@ -103,8 +108,12 @@ $pages = array(
 	
 	// This should always be at the end:
 	'/(\%b)/'										=> 'view_board',
+	'/(\%b)'										=> 'view_board',
 	'/(\%b)/' . preg_quote($config['file_index'], '!')					=> 'view_board',
+	'/(\%b)/' . preg_replace('/\.[a-zA-Z]+$/', '', $config['file_index'])		=> 'view_board',
 	'/(\%b)/' . str_replace('%d', '(\d+)', preg_quote($config['file_page'], '!'))		=> 'view_board',
+	'/(\%b)/' . str_replace('%d', '(\d+)', preg_quote('%d', '!'))		=> 'view_board',
+
 	'/(\%b)/' . preg_quote($config['dir']['res'], '!') .
 			str_replace('%d', '(\d+)', preg_quote($config['file_page50'], '!'))	=> 'view_thread50',
 	'/(\%b)/' . preg_quote($config['dir']['res'], '!') .
@@ -118,11 +127,10 @@ $pages = array(
 			str_replace(array('%d','%s'), array('(\d+)', '[a-z0-9-]+'), preg_quote($config['file_page_slug'], '!'))	=> 'view_thread',
 );
 
-
 if (!$mod) {
 	$pages = array('!^(.+)?$!' => 'login');
-} elseif (isset($_GET['status'], $_GET['r'])) {
-	header('Location: ' . $_GET['r'], true, (int)$_GET['status']);
+} elseif (isset($_GET['status'], $_GET['r'])) {	
+header('Location: ' . $_GET['r'], true, (int)$_GET['status']);
 	exit;
 }
 
@@ -185,6 +193,7 @@ foreach ($pages as $uri => $handler) {
 		}
 		
 		if (is_string($handler)) {
+//echo substr($handler, 1); echo "<br/><pre>";print_r($_SERVER); die;
 			if ($handler[0] == ':') {
 				header('Location: ' . substr($handler, 1),  true, $config['redirect_http']);
 			} elseif (is_callable("mod_page_$handler")) {

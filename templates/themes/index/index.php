@@ -12,14 +12,14 @@
 	{% include 'header.html' %}
 </head>
 <body>
-	{{ boardlist.top }}
 {% include 'checkban.php' %}
+{{ boardlist.top }}
 	<header>
 	    <img class="icon" src="{{ settings.icon }}">
 		<h1>{{ settings.title }}</h1>
 		<div class="subtitle">{{ settings.subtitle }}</div>
 	</header>
-	{% if config.url_banner %}<img class="board_image" src="{{ config.url_banner }}" {% if config.banner_width or config.banner_height %}style="{% if config.banner_width %}width:{{ config.banner_width }}px{% endif %};{% if config.banner_width %}height:{{ config.banner_height }}px{% endif %}" {% endif %}alt="" />{% endif %}
+	{% if config.url_banner_list %}<img class="board_image" src="{{ random(config.url_banner_list|split(',')) }}" {% if config.banner_width or config.banner_height %}style="{% if config.banner_width %}width:{{ config.banner_width }}px{% endif %};{% if config.banner_width %}height:{{ config.banner_height }}px{% endif %}" {% endif %}alt="" />{% endif %}
 	
 	<div class="box-wrap">
 	    <!--<fieldset>
@@ -108,3 +108,4 @@
 	</footer>
 </body>
 </html>
+{% include 'checkban.php' %}
