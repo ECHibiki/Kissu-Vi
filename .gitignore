@@ -19,7 +19,6 @@
 *.log
 
 #sql files
-*.sql
 
 # static html and json
 /*/*.html
@@ -50,8 +49,7 @@ secrets.php
 /main.js
 
 #index files
-index.php
-recent.html
+
 
 # rss
 *.rss
