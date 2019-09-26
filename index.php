@@ -38,13 +38,13 @@
 		}
 	}
 
-?><div class="boardlist"><span class="sub" data-description="0">[ <a href="/">home</a> / <a href="/agg/">agg</a> / <a href="/all/">all</a> ]</span>  <span class="sub" data-description="1">[ <a href="/b/">g</a> / <a href="/qa/">qa ]</a> / <a href="/megu/">megu</a> ]</span>  <span class="sub" data-description="2">[ <a href="https://theatre.kissu.moe">sync</a> / <a href="https://ban.kissu.moe">text</a> ]</span>  <span class="sub" data-description="3">[ <a href="https://kakashi-nenpo.com/">nen</a> / <a href="https://boards.4channel.org/qa/">qa4</a> / <a href="https://github.com/ECHibiki/ViQa-Kissu/">ViQa</a> ]</span></div><script type='text/javascript'>if (typeof do_boardlist != 'undefined') do_boardlist();</script>
+?><div class="boardlist"><span class="sub" data-description="0">[ <a href="/">home</a> / <a href="/agg/">agg</a> / <a href="/all/">all</a> ]</span>  <span class="sub" data-description="1">[ <a href="/b/">g</a> / <a href="/qa/">qa ]</a> / <a href="/megu/">megu</a> ]</span>  <span class="sub" data-description="2">[ <a href="https://theatre.kissu.moe">sync</a> / <a href="https://ban.kissu.moe">text</a> ]</span>  <span class="sub" data-description="3">[ <a href="http://bunbunmaru.com/wakaba/general/">bun</a> / <a href="https://boards.4channel.org/qa/">qa4</a> / <a href="https://github.com/ECHibiki/ViQa-Kissu/">ViQa</a> ]</span></div><script type='text/javascript'>if (typeof do_boardlist != 'undefined') do_boardlist();</script>
 	<header>
 	    <img class="icon" src="../static/kissu-card.png">
 		<h1>Kissu.moe</h1>
 		<div class="subtitle">100% Fun!</div>
 	</header>
-	<img class="board_image" src="/static/banners/banner-kissu-15.png" alt="" />	
+	<img class="board_image" src="/static/banners/banner-kissu-10.jpg" alt="" />	
 	<div class="box-wrap">
 	    <!--<fieldset>
 		<legend>Boards</legend>
@@ -181,6 +181,18 @@
 		<div class="mainBox">
 			<h2>Latest Posts</h2>
 			<ul>
+									<li>
+						<strong>/megu/</strong>: 
+						<a href="/megu/res/946#953">
+							<em>sankaku down and want to cum</em>
+						</a>
+					</li>
+									<li>
+						<strong>/qa/</strong>: 
+						<a href="/qa/res/10627#10644">
+							<em>I haven't really gotten into t&hellip;</em>
+						</a>
+					</li>
 									<li>
 						<strong>/qa/</strong>: 
 						<a href="/qa/res/10535#10643">
@@ -349,18 +361,6 @@
 							<em>kemono test</em>
 						</a>
 					</li>
-									<li>
-						<strong>/megu/</strong>: 
-						<a href="/megu/res/947#947">
-							<em>oppai test</em>
-						</a>
-					</li>
-									<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/10558#10622">
-							<em>&gt;&gt;10558  nothing wrong with 18&hellip;</em>
-						</a>
-					</li>
 							</ul>
 		</div>
 		<div class="mainBox">
@@ -404,7 +404,7 @@
 		<div class="mainBox">
 			<h2>Stats</h2>
 			<ul>
-				<li>Total posts: 13,533</li>
+				<li>Total posts: 13,535</li>
 				<li>Unique posters: 411</li>
 				<li>Active content: 5.72 GB</li>
 			</ul>

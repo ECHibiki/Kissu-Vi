@@ -44,9 +44,9 @@
 <body class="8chan vichan is-not-moderator active-index" data-stylesheet="Dark-kissu.css">
 	<div id="uppercontents">
 	<div id="subuppercontents">
-		<div class="boardlist"><span class="sub" data-description="0">[ <a href="/">home</a> / <a href="/agg/">agg</a> / <a href="/all/">all</a> ]</span>  <span class="sub" data-description="1">[ <a href="/b/">g</a> / <a href="/qa/">qa ]</a> / <a href="/megu/">megu</a> ]</span>  <span class="sub" data-description="2">[ <a href="https://theatre.kissu.moe">sync</a> / <a href="https://ban.kissu.moe">text</a> ]</span>  <span class="sub" data-description="3">[ <a href="https://ota-ch.com/jp/index.html">ota</a> / <a href="https://boards.4channel.org/qa/">qa4</a> / <a href="https://github.com/ECHibiki/ViQa-Kissu/">ViQa</a> ]</span></div><script type='text/javascript'>if (typeof do_boardlist != 'undefined') do_boardlist();</script>
+		<div class="boardlist"><span class="sub" data-description="0">[ <a href="/">home</a> / <a href="/agg/">agg</a> / <a href="/all/">all</a> ]</span>  <span class="sub" data-description="1">[ <a href="/b/">g</a> / <a href="/qa/">qa ]</a> / <a href="/megu/">megu</a> ]</span>  <span class="sub" data-description="2">[ <a href="https://theatre.kissu.moe">sync</a> / <a href="https://ban.kissu.moe">text</a> ]</span>  <span class="sub" data-description="3">[ <a href="https://himasugi.blog/jp/">hima</a> / <a href="https://boards.4channel.org/qa/">qa4</a> / <a href="https://github.com/ECHibiki/ViQa-Kissu/">ViQa</a> ]</span></div><script type='text/javascript'>if (typeof do_boardlist != 'undefined') do_boardlist();</script>
 	<a name="top"></a>
-			<img id="bannerimg" class="board_image" src="/static/banners/banner-kissu-2.png" alt="" />
+			<img id="bannerimg" class="board_image" src="/static/banners/banner-kissu-13.png" alt="" />
 <script>
 document.getElementById("bannerimg").onclick = function(){
 	
@@ -94,33 +94,33 @@ document.getElementById("bannerimg").onclick = function(){
 
 	<div>
 	                                        <form class="form_submit" name="post" onsubmit="return dopost(this);" enctype="multipart/form-data" action="/post.php" method="post">
-<span style="display:none"><input type="text" name="user" value=""></span>
-<div style="display:none"><input type="text" name="lastname" value=""></div>
+<span style="display:none" ><input type="text" name="n2epfz9o8lygk6♒ub1ia3sjw7450vh" value=";Ew&#113;N*d9&#9971;PL☖&#93;&#41;(&#121;ul&#82;MJ_T D⛌?\=`o&#9943;&#46;n}!gx&#99;⚫jXW&lt; &#65;^Gb'v&#50;U5&#9782;p+z&#9759;rO&#35;Z,$&#81;a4&#9732;@k&#83;7B&#89;FKtV⚇m&#115;&#105;&#49;&#72;" ></span >
+<textarea name="username" style="display:none"  >J⚱+Bxi☚g_s.?Zb|6$=u7rM☿PNw⛕&gt;⚁0qk@LhG`aj^C#♂Rd4*z:e; Vp&lt;H/Y]\</textarea  >
 <input type="hidden" name="board" value="agg">
-<input name="vwdrx5ukc8⚶6yftnl♑" value="c|x☁&#45;☬vKNo&#121;&#109;☀`GQwd'Ti♴ O&#9770;&#76;3&gt;l6kS&#57;U%&#46;♰1V&#61;_(8B&#110;&#117;&#112;Z&#38;&lt;]52" type="hidden">
+<input   style="display:none"   type="text"   value="g-[N&gt;ro⛚V2FsZ9=Ac!d+uL⛈BfY76q0IhRzEO?\☻⛻aQJMGW5U{"   name="lastname">
 	<table>
 		<tr id="namerow" style="display:none">
 			<th>
-				Name				<input name="login" value="x}FKalHy⛼?45{☓3twn/'♌26X⛩!$%#;hGO8&gt;@~zJS^0⚟Iod&lt;j[q(NALVfQ*bW=u ,)`r7mC|e-.☰c&amp;i♛⛗sv:T9_MEPgB]1Dk Z+" type="hidden" >
+				Name				<div style="display:none"><input type="text" name="search" value=""></div>
 			</th>
 			<td>
-				<input type="text" name="name" size="25" maxlength="35" autocomplete="off"> 				<input value="" name="text" type="hidden">
+				<input type="text" name="name" size="25" maxlength="35" autocomplete="off"> 				<div style="display:none"><input type="text" name="user" value="&gt;N⚤TI4`⚩~y♹*ZP%E8?uS+1iLA,hj☭:R$(05={V|}tf7q/HX@]K.⛎W⛏p2\_gsbr&amp;"></div>
 			</td>
 		</tr>		<tr>
 			<th>
-				Options				<input style="display:none" type="text" name="q" value="⛥VvG&#55;P&#126;ryNq&#125;dC^☵u#/⛺&#36;U⛪0e&#64;F&#109;*&#41;Y&#99;">
+				Options				<div style="display:none"><input type="text" name="7ykdefr3jg0ioqn2491mbap" value=""></div>
 			</th>
 			<td>
 								<input type="text" name="email" size="25" maxlength="40" autocomplete="off" id='option_input'>
 <input class="form_submit" id="email_submit" accesskey="s" style="margin-left:2px;" type="submit" name="post" value="New Topic" />
-								<input type="hidden" value="" name="ghndafeicmvp7w9z306421♐8lq">
+								<input value="" name="2x⛝tavigslre96d83o7b♉yn1" type="hidden">
 			
 			
-				<input style="display:none" type="text" name="w☖f⛡aigq7oc" value="">
+				<div style="display:none"><input type="text" name="iaze6dys♅pc97xrj8" value=""></div>
 			</td>
 		</tr>		<tr id="subjectrow" style="display:none">
 			<th>
-				Subject				
+				Subject				<span  style="display:none"><input  type="text"  name="url"  value="24827"></span>
 			</th>
 			<td>
 				<input style="" type="text" name="subject" size="25" maxlength="100" autocomplete="off">
@@ -129,11 +129,11 @@ document.getElementById("bannerimg").onclick = function(){
 		</tr>
 				<tr>
 			<th>
-				Comment				
+				Comment				<div style="display:none"><input type="text" name="j925n⚊qrou8♽k1wta7id3mzx☂ce☫6vl0hp4yf" value=""></div>
 			</th>
 			<td>
 				<textarea name="body" id="body" rows="3" cols="40"></textarea>
-				
+				<textarea style="display:none" name="text">&#87;KT&#102;g2h!4sQMD9&#38;&#59;♟&#110;5B,oqHtS38b=N&#9852;&#107;&#62;&#79;-C*]LJu 0&#9935;&#92;&#95;&#70;}r:ZX&lt;&#55;Y♸Vm⚀♁j&#108;G &#94;{A.[)&#43;&#37;y(~a$i&#39;p♷1&#63;</textarea>
 				
 			</td>
 		</tr>
@@ -151,7 +151,7 @@ return false;
 						<label for="file_url">Or URL: </label>
 						<input style="display:inline" type="text" id="file_url" name="file_url" size="35">
 					</div>
-								
+								<input   style="display:none"   type="text"   value="H⛢\I&lt;0auC`g⚲{y♄LUQ⚳.☄fm1,XVo|:YvGjh7BA/)TS%c*r#i^zxd~9Ole8⛾t"   name="firstname">
 			</td>
 		</tr>
 		
@@ -241,7 +241,7 @@ $('input[id=force_noko]').prop('checked', localStorage.AlwaysNoko == "true");
 		</tr>		<tr><td colspan=2><span name='markup-hint' style='font-size:10px'>Markup tags exist for bold, itallics, header, spoiler etc. as listed in " [options] > View Formatting "</span></td></tr>
 	</table>
 
-<input type="hidden" name="hash" value="1e52d5205b50977227181f21055a9f301aa58ce3">
+<input type="hidden" name="hash" value="ef840e337c13cfd762e22af7e17c48cf05182ee3">
 </form>
 
 <script type="text/javascript">
@@ -297,7 +297,7 @@ $('input[id=force_noko]').prop('checked', localStorage.AlwaysNoko == "true");
 			</span>
 	</form>
 	<a name="bottom"></a>
-	<div class="boardlist bottom"><span class="sub" data-description="0">[ <a href="/">home</a> / <a href="/agg/">agg</a> / <a href="/all/">all</a> ]</span>  <span class="sub" data-description="1">[ <a href="/b/">g</a> / <a href="/qa/">qa ]</a> / <a href="/megu/">megu</a> ]</span>  <span class="sub" data-description="2">[ <a href="https://theatre.kissu.moe">sync</a> / <a href="https://ban.kissu.moe">text</a> ]</span>  <span class="sub" data-description="3">[ <a href="https://ota-ch.com/jp/index.html">ota</a> / <a href="https://boards.4channel.org/qa/">qa4</a> / <a href="https://github.com/ECHibiki/ViQa-Kissu/">ViQa</a> ]</span></div>
+	<div class="boardlist bottom"><span class="sub" data-description="0">[ <a href="/">home</a> / <a href="/agg/">agg</a> / <a href="/all/">all</a> ]</span>  <span class="sub" data-description="1">[ <a href="/b/">g</a> / <a href="/qa/">qa ]</a> / <a href="/megu/">megu</a> ]</span>  <span class="sub" data-description="2">[ <a href="https://theatre.kissu.moe">sync</a> / <a href="https://ban.kissu.moe">text</a> ]</span>  <span class="sub" data-description="3">[ <a href="https://himasugi.blog/jp/">hima</a> / <a href="https://boards.4channel.org/qa/">qa4</a> / <a href="https://github.com/ECHibiki/ViQa-Kissu/">ViQa</a> ]</span></div>
 	<div class="pages">
 		<form action="/agg/14" method="get"><input type="submit" value="Previous" /></form> 		 [<a href="/agg/index">1</a>]				 [<a href="/agg/2">2</a>]				 [<a href="/agg/3">3</a>]				 [<a href="/agg/4">4</a>]				 [<a href="/agg/5">5</a>]				 [<a href="/agg/6">6</a>]				 [<a href="/agg/7">7</a>]				 [<a href="/agg/8">8</a>]				 [<a href="/agg/9">9</a>]				 [<a href="/agg/10">10</a>]				 [<a href="/agg/11">11</a>]				 [<a href="/agg/12">12</a>]				 [<a href="/agg/13">13</a>]				 [<a href="/agg/14">14</a>]				 [<a class="selected">15</a>]				 [<a href="/agg/16">16</a>]				 [<a href="/agg/17">17</a>]				 [<a href="/agg/18">18</a>]				 [<a href="/agg/19">19</a>]				 [<a href="/agg/20">20</a>]				 [<a href="/agg/21">21</a>]				 [<a href="/agg/22">22</a>]				 [<a href="/agg/23">23</a>]				 [<a href="/agg/24">24</a>]				 [<a href="/agg/25">25</a>] 		 <form action="/agg/16" method="get"><input type="submit" value="Next" /></form>
 					 | <a href="/agg/catalog">Catalog</a>

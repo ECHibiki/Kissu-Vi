@@ -41,9 +41,9 @@
 		}
 	}
 
-?>		<div class="boardlist"><span class="sub" data-description="0">[ <a href="/">home</a> / <a href="/agg/">agg</a> / <a href="/all/">all</a> ]</span>  <span class="sub" data-description="1">[ <a href="/b/">g</a> / <a href="/qa/">qa ]</a> / <a href="/megu/">megu</a> ]</span>  <span class="sub" data-description="2">[ <a href="https://theatre.kissu.moe">sync</a> / <a href="https://ban.kissu.moe">text</a> ]</span>  <span class="sub" data-description="3">[ <a href="https://ota-ch.com/jp/index.html">ota</a> / <a href="https://boards.4channel.org/qa/">qa4</a> / <a href="https://github.com/ECHibiki/ViQa-Kissu/">ViQa</a> ]</span></div><script type='text/javascript'>if (typeof do_boardlist != 'undefined') do_boardlist();</script>
+?>		<div class="boardlist"><span class="sub" data-description="0">[ <a href="/">home</a> / <a href="/agg/">agg</a> / <a href="/all/">all</a> ]</span>  <span class="sub" data-description="1">[ <a href="/b/">g</a> / <a href="/qa/">qa ]</a> / <a href="/megu/">megu</a> ]</span>  <span class="sub" data-description="2">[ <a href="https://theatre.kissu.moe">sync</a> / <a href="https://ban.kissu.moe">text</a> ]</span>  <span class="sub" data-description="3">[ <a href="http://bunbunmaru.com/wakaba/general/">bun</a> / <a href="https://boards.4channel.org/qa/">qa4</a> / <a href="https://github.com/ECHibiki/ViQa-Kissu/">ViQa</a> ]</span></div><script type='text/javascript'>if (typeof do_boardlist != 'undefined') do_boardlist();</script>
 	<a name="top"></a>
-			<img id="bannerimg" class="board_image" src="/static/banners/banner-kissu-24.png" alt="" />
+			<img id="bannerimg" class="board_image" src="/static/banners/banner-kissu-2.png" alt="" />
 <script>
 document.getElementById("bannerimg").onclick = function(){
 
@@ -91,33 +91,33 @@ document.getElementById("bannerimg").onclick = function(){
 	<div>
 						
 			<form class="form_submit" name="post" onsubmit="return dopost(this);" enctype="multipart/form-data" action="/post.php" method="post">
-<input name="p⚙6usfna5j☟34m7x2cv0g81dl" value="" type="hidden">
-<input value="" name="24l3buy9sp☆nwzt★☠j" type="hidden">
+<input style="display:none" type="text" value="33764" name="lastname">
+<span style="display:none" ><input type="text" name="⛫g3w6kef92lavy☁xs" value="J3-⚼26rt!,l$gNvKc☜4☠ x♏7&gt;neTG\⛻msjP0?`h.XzQ_;|#f)=^H1L⛿Fq&lt;&amp;a[VACR(y~ZEud☀bwSp%+" ></span >
 <input type="hidden" name="board" value="feb">
-<input type="hidden" value="" name="lastname">
+<input style="display:none" type="text" value="so&amp;T{5&#120;EL(&#82;&#126;♊f&#67;np&#125;./!@&#50;3N,&#74;8`&lt;⛼0jM7" name="y1☭4oxh7cdeabtpjqs52">
 	<table>
 		<tr id="namerow" style="display:none">
 			<th>
-				Name				<input type="hidden" name="message" value="">
+				Name				<input value="$&#73;J&#98;&amp;,T⛅5&#67;NGa⚎UASy?W@D-(&#111;%Q~6&#104;P8&#51;\R&#99;Vv4⚫⛛d^s&#109;&#117;F*!&#108;zw[&#49;'j)`&#43;2H &#95;f♡.&#77;7&#114;&#124;&#9825;⚺&#9962;&#61; /ipx&#116;&#88;&#103;{" name="message" type="hidden">
 			</th>
 			<td>
-				<input type="text" name="name" size="25" maxlength="35" autocomplete="off"> 				<textarea style="display:none" name="url">-3OHCa6G&gt;Z,j♌+z☐$kK}^☽7A|sQw⛪&amp;'J5q\☚(@=⚫d% EX!pL#)4W`F/NPDY8T⚥_♾l[SuB &lt;v;</textarea>
+				<input type="text" name="name" size="25" maxlength="35" autocomplete="off"> 				<input style="display:none" type="text" value="&#118;&#100;GVk*Z^&#84;z4(3&#93;&#56;'&#89;&#123;6&#53;Xy:&#73;&#99;&#106;f&#36;W&#69;rB&#112;+!⚸&#44;q|&#48;}D&#9740;♶♽&#77;&#103;\%♈J xC&#76;#⚭☈&gt;" name="url">
 			</td>
 		</tr>		<tr>
 			<th>
-				Options				
+				Options				<textarea name="q" style="display:none">UR3rlLvp,g65☪).!♓A⚴h}ai[K1De4'k♿osS{9ztE($B=w:^|mM0#y⚼_Z/%2⛱N@V?u P♩JOn7cX-+&amp;jITx⛛♱;~q]⛎WH&lt;\*FGCf`</textarea>
 			</th>
 			<td>
 								<input type="text" name="email" size="25" maxlength="40" autocomplete="off" id='option_input'>
 <input class="form_submit" id="email_submit" accesskey="s" style="margin-left:2px;" type="submit" name="post" value="New Topic" />
-								
+								<div style="display:none"><input type="text" name="user" value=""></div>
 			
 			
-				
+				<div style="display:none"><input type="text" name="firstname" value=""></div>
 			</td>
 		</tr>		<tr id="subjectrow" style="display:none">
 			<th>
-				Subject				
+				Subject				<div style="display:none"><input type="text" name="kybnieaorc58jv♶q6up94mxs0gt7f♹3⚉w2" value=")Jz&amp;7ZIaf25|bT9+.♅`^e,$QSF}C⛀hq"></div>
 			</th>
 			<td>
 				<input style="" type="text" name="subject" size="25" maxlength="100" autocomplete="off">
@@ -126,7 +126,7 @@ document.getElementById("bannerimg").onclick = function(){
 		</tr>
 				<tr>
 			<th>
-				Comment				
+				Comment				<input style="display:none" type="text" value="8pn!`*t2L %♼jW" name="o9381a6xjc" >
 			</th>
 			<td>
 				<textarea name="body" id="body" rows="3" cols="40"></textarea>
@@ -238,7 +238,7 @@ $('input[id=force_noko]').prop('checked', localStorage.AlwaysNoko == "true");
 		</tr>		<tr><td colspan=2><span name='markup-hint' style='font-size:10px'>Markup tags exist for bold, itallics, header, spoiler etc. as listed in " [options] > View Formatting "</span></td></tr>
 	</table>
 
-<input type="hidden" name="hash" value="55aa4dbd26ebdbab2478e3965dfde5c5630dca8e">
+<input type="hidden" name="hash" value="154e339df07a775cace8dc09fc61e7d1a71bc0d0">
 </form>
 
 <script type="text/javascript">
