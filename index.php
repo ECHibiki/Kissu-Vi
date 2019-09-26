@@ -44,7 +44,7 @@
 		<h1>Kissu.moe</h1>
 		<div class="subtitle">100% Fun!</div>
 	</header>
-	<img class="board_image" src="/static/banners/banner-kissu-2.png" alt="" />	
+	<img class="board_image" src="/static/banners/banner-kissu-3.gif" alt="" />	
 	<div class="box-wrap">
 	    <!--<fieldset>
 		<legend>Boards</legend>
@@ -101,6 +101,11 @@
 	    <h1>Recent Images</h1>
 		<div class="box image">
 			<ul>
+									<li>
+						<a href="/qa/res/10633#10633">
+							<img src="/qa/thumb/1569510835009.png" style="width:168px;height:255px" alt="">
+						</a>
+					</li>
 									<li>
 						<a href="/b/res/1827#1834">
 							<img src="/b/thumb/1569510268417.png" style="width:175px;height:82px" alt="">
@@ -171,16 +176,53 @@
 							<img src="/qa/thumb/1569478921326.png" style="width:175px;height:88px" alt="">
 						</a>
 					</li>
-									<li>
-						<a href="/qa/res/10612#10613">
-							<img src="/qa/thumb/1569478547121.png" style="width:175px;height:99px" alt="">
-						</a>
-					</li>
 							</ul>
 		</div>
 		<div class="mainBox">
 			<h2>Latest Posts</h2>
 			<ul>
+									<li>
+						<strong>/qa/</strong>: 
+						<a href="/qa/res/10627#10638">
+							<em>&gt;&gt;10631  Nope, this thread is &hellip;</em>
+						</a>
+					</li>
+									<li>
+						<strong>/qa/</strong>: 
+						<a href="/qa/res/10633#10637">
+							<em>Both are actually a subset of &hellip;</em>
+						</a>
+					</li>
+									<li>
+						<strong>/qa/</strong>: 
+						<a href="/qa/res/10612#10636">
+							<em>&gt;&gt;10618  What kind of car has &hellip;</em>
+						</a>
+					</li>
+									<li>
+						<strong>/qa/</strong>: 
+						<a href="/qa/res/10535#10635">
+							<em>&gt;&gt;10550  Even for historical a&hellip;</em>
+						</a>
+					</li>
+									<li>
+						<strong>/qa/</strong>: 
+						<a href="/qa/res/10621#10634">
+							<em>Did it work?</em>
+						</a>
+					</li>
+									<li>
+						<strong>/qa/</strong>: 
+						<a href="/qa/res/10633#10633">
+							<em>is kitsunemimi a subset of nek&hellip;</em>
+						</a>
+					</li>
+									<li>
+						<strong>/b/</strong>: 
+						<a href="/b/res/1415#1835">
+							<em>commented out some sql querrie&hellip;</em>
+						</a>
+					</li>
 									<li>
 						<strong>/megu/</strong>: 
 						<a href="/megu/res/952#952">
@@ -319,48 +361,6 @@
 							<em>&gt;&gt;10420  I want the Tewi in th&hellip;</em>
 						</a>
 					</li>
-									<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/10558#10619">
-							<em>don't stop, ascend further to &hellip;</em>
-						</a>
-					</li>
-									<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/10612#10618">
-							<em>I'd like to think a Porche bec&hellip;</em>
-						</a>
-					</li>
-									<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/9599#10617">
-							<em>&gt;&gt;9614  love this squid girl</em>
-						</a>
-					</li>
-									<li>
-						<strong>/b/</strong>: 
-						<a href="/b/res/1827#1827">
-							<em>Why isn't Hazuki in the backgr&hellip;</em>
-						</a>
-					</li>
-									<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/10612#10616">
-							<em>A McLaren 720S, a beautiful ca&hellip;</em>
-						</a>
-					</li>
-									<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/10612#10615">
-							<em>&gt;&gt;10614  You may think I your &hellip;</em>
-						</a>
-					</li>
-									<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/10612#10614">
-							<em>Only the fastest.</em>
-						</a>
-					</li>
 							</ul>
 		</div>
 		<div class="mainBox">
@@ -404,7 +404,7 @@
 		<div class="mainBox">
 			<h2>Stats</h2>
 			<ul>
-				<li>Total posts: 13,520</li>
+				<li>Total posts: 13,528</li>
 				<li>Unique posters: 411</li>
 				<li>Active content: 5.72 GB</li>
 			</ul>
