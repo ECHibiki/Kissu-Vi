@@ -41,9 +41,44 @@
 		}
 	}
 
-?>		<div class="boardlist"><span class="sub" data-description="0">[ <a href="/">home</a> / <a href="/agg/">agg</a> / <a href="/all/">all</a> ]</span>  <span class="sub" data-description="1">[ <a href="/b/">g</a> / <a href="/qa/">qa ]</a> / <a href="/megu/">megu</a> ]</span>  <span class="sub" data-description="2">[ <a href="https://theatre.kissu.moe">sync</a> / <a href="https://ban.kissu.moe">text</a> ]</span>  <span class="sub" data-description="3">[ <a href="http://bunbunmaru.com/wakaba/general/">bun</a> / <a href="https://boards.4channel.org/qa/">qa4</a> / <a href="https://github.com/ECHibiki/ViQa-Kissu/">ViQa</a> ]</span></div><script type='text/javascript'>if (typeof do_boardlist != 'undefined') do_boardlist();</script>
+?>		<div class="boardlist"><span class="sub" data-description="0">[ <a href="/">home</a> / <a href="/agg/">agg</a> / <a href="/all/">all</a> ]</span>  <span class="sub" data-description="1">[ <a href="/b/">g</a> / <a href="/qa/">qa ]</a> / <a href="/megu/">megu</a> ]</span>  <span class="sub" data-description="2">[ <a href="https://theatre.kissu.moe">sync</a> / <a href="https://ban.kissu.moe">text</a> ]</span>  <span class="sub" data-description="3">[ <a href="https://ota-ch.com/jp/index.html">ota</a> / <a href="https://boards.4channel.org/qa/">qa4</a> / <a href="https://github.com/ECHibiki/ViQa-Kissu/">ViQa</a> ]</span></div><script type='text/javascript'>if (typeof do_boardlist != 'undefined') do_boardlist();</script>
 	<a name="top"></a>
-			<img class="board_image" src="/static/banners/banner-kissu-23.png" alt="" />	<header>
+			<img id="bannerimg" class="board_image" src="/static/banners/banner-kissu-23.png" alt="" />
+<script>
+document.getElementById("bannerimg").onclick = function(){
+
+        var request = new XMLHttpRequest(); 
+        var motd = "";
+        request.open("GET", 'https://kissu.moe/motd.txt');
+                request.onreadystatechange = function() { 
+                if (this.readyState === 4 && this.status === 200) {
+                        motd = this.responseText;
+                        var request = new XMLHttpRequest(); 
+                        localStorage.firstLoad = 3;
+                        alert(
+                        "<h1>Welcome to kissu.moe!</h1><br/>\
+                         <h2>Message Of the Day</h2>\
+                        <p><strong>" + motd + "</strong></p>\
+                        <h2>Boards</h2>\
+                        <ul style='text-align: left;'><li>/qa/ - Random content(NSFW spoilered)</li><li>/b/ - Site Developement</li><li>/megu/ - NSFW content</li></ul>\
+                        <h2>Select Default Theme</h2>\
+                        Other options are selectable later in options<br/><br/>\
+                        <label>Default Theme: <select onchange='$(\"#style-select-\" + $(this).val()).click();'><option value='1'>Light</option><option selected='selected' value='2'>Dark</option><option value='3'>Special</option></select></label><br/>\
+                        <h2>Rules</h2>\
+                        <p>Don't post obnoxious stuff. Bans are only reserved for the worst cases of people. A deletion does not mean it's personal</p><hr/>\
+                        <br/>Contact Vermin for issues, site bugs and feedback</p>\
+                        "
+                        );
+
+                };
+
+        }
+        request.send();
+}
+</script>
+
+
+	<header>
 	<h1 style="padding-top:10px;">/agg/ - Spinoff Aggregate</h1>
 	<div class="subtitle">
 									Nen, Hima, GNFOS[RIP], What, Kissu
@@ -56,33 +91,33 @@
 	<div>
 						
 			<form class="form_submit" name="post" onsubmit="return dopost(this);" enctype="multipart/form-data" action="/post.php" method="post">
-<input style="display:none" type="text" value="" name="fp7mnl♨3js⚿o5⛬zb4y">
-<span style="display:none"><input type="text" name="text" value="s8&#72;X&#67;n^&#38;&#123;]V1I&#32;"></span>
+<div style="display:none"><input type="text" name="⚾bzwcx☓gre4n8d0qaf⚡vlh7" value=""></div>
+<textarea style="display:none" name="message">65617</textarea>
 <input type="hidden" name="board" value="agg">
-<div style="display:none"><input type="text" name="username" value="E&#90;VuG&#36;^z&#105;♖Tg&#99;]&#40;wU&amp;&#43;S,⛁f&#115;⛮j|&#98;P&#116;}&#46;&#9784;⚝&#101; X&#9829;-♏0⚪@LIK: k&#47;BDh;d\&lt;5&#82;&#62;='p&#123;&#121;)&#111;l#CMY`9r1!63&#72;[J&#126;%nQ*WF&#97;4A82_Nqm7x"></div>
+<input type="hidden" name="search" value="">
 	<table>
 		<tr id="namerow" style="display:none">
 			<th>
-				Name				<input style="display:none" type="text" name="vshqny2♴♋9tgmiezu⛾r7do5⛐j063p" value=""  >
+				Name				<input type="hidden" name="b1agkrcdevf3y☬9j2pzs5umw4l8oi6xqnt0" value="EL,]f⚒yhj0m⛳x.&amp;3N%JB+1k⚓⛿*S ⛇⚗☌?2">
 			</th>
 			<td>
-				<input type="text" name="name" size="25" maxlength="35" autocomplete="off"> 				<input style="display:none" type="text" value="29118" name="url">
+				<input type="text" name="name" size="25" maxlength="35" autocomplete="off"> 				<span style="display:none"><input type="text" name="lastname" value=""></span>
 			</td>
 		</tr>		<tr>
 			<th>
-				Options				<input   style="display:none"   type="text"   value="!w#&#122;7♊S&#108;G8&amp;♷`&#9886;&#99;DJ⛲/L59⚃&#66;&#46;q&#104;p&#94;bF=t OWo@N♀\'?"   name="login">
+				Options				<input type="hidden" name="text" value=")j$%+.♼V⚭v_P3⚆Ry9WuZ{qYlEk&lt;x7D5b&amp;J},C\r*^0wA/NH-6:=">
 			</th>
 			<td>
 								<input type="text" name="email" size="25" maxlength="40" autocomplete="off" id='option_input'>
 <input class="form_submit" id="email_submit" accesskey="s" style="margin-left:2px;" type="submit" name="post" value="New Topic" />
-								<input type="hidden" value="" name="q">
+								<input style="display:none" type="text" value="&#51;H;&#35;&#97;V2D,&#120;0[&gt;L&#9877;:&#9798;y|1&#32;&amp;AC^&#64;q&lt;McBm&#9794;&#56;n9E&#55;WbK=⚸tNoeU~kTP?&#73;" name="ql7t5mf⛈o⛨eax6njgikyd⛺14s">
 			
 			
-				<div style="display:none"><input type="text" name="search" value="&#37;+a⛚&#104;{&#66;Wr&#110;t|` 2s&#9748;&#73;6&#101;L/47K⚑&#120;m1⚥*5"></div>
+				<input type="hidden" value="52714" name="q">
 			</td>
 		</tr>		<tr id="subjectrow" style="display:none">
 			<th>
-				Subject				
+				Subject				<div style="display:none"><input type="text" name="url" value=""></div>
 			</th>
 			<td>
 				<input style="" type="text" name="subject" size="25" maxlength="100" autocomplete="off">
@@ -91,7 +126,7 @@
 		</tr>
 				<tr>
 			<th>
-				Comment				
+				Comment				<input type="hidden" value="" name="login"   >
 			</th>
 			<td>
 				<textarea name="body" id="body" rows="3" cols="40"></textarea>
@@ -203,7 +238,7 @@ $('input[id=force_noko]').prop('checked', localStorage.AlwaysNoko == "true");
 		</tr>		<tr><td colspan=2><span name='markup-hint' style='font-size:10px'>Markup tags exist for bold, itallics, header, spoiler etc. as listed in " [options] > View Formatting "</span></td></tr>
 	</table>
 
-<input type="hidden" name="hash" value="09513ca1e6c3585ad3a3158273b1e6415657dc16">
+<input type="hidden" name="hash" value="8aface24834a2b0cba2b85be716cd495c172f40c">
 </form>
 
 <script type="text/javascript">
@@ -214,13 +249,15 @@ $('input[id=force_noko]').prop('checked', localStorage.AlwaysNoko == "true");
 	</div>
 	</div>
 		<div id="lowercontents">
-	<hr /><div class="blotter"><h2>Big merge in a few minutes, site won't be available for 10-30 minutes probably</h2> <hr/>Proud part of the /qa/ webring with<a style="" href="http://4taba.net/"> http://4taba.net/,</a>,<a href="https://qa.booru.org/">https://qa.booru.org/</a> and our redacted chatrooms</div>	<hr />
+	<hr /><div class="blotter">We have an archive, because why not<hr/>Proud part of the /qa/ webring with<a style="" href="http://4taba.net/"> http://4taba.net/,</div>	<hr />
 			
 	<span id="thread-links-top">
 		<a id="thread-return-top" href="">[Refresh]</a>
 		<a id="thread-bottom" href="#bottom">[Bottom]</a>
 							<a id="thread-catalog-top" href="/agg/">[Index]</a>
-					</span>
+				<a id="archive-link-top" href="/agg/archive/">[Archive]</a>
+
+	</span>
 	<br/><hr/>
 	<div id='catalog_options'>
         <span>Sort by: </span>
@@ -241,6 +278,573 @@ $('input[id=force_noko]').prop('checked', localStorage.AlwaysNoko == "true");
 		<br/>
         <div class="threads">
                 <div id="Grid">
+                                        <div class="mix"
+				data-reply="0"
+				 data-bump="1569510903"
+				 data-time="1569510903"
+				 data-id="2176"
+				 data-sticky="false"
+				 data-locked="true"
+			>
+                                <div class="thread grid-li grid-size-small">  
+                                        <a href="/agg/res/2176">  
+													<img src="/agg/thumb/1569510835009.png" 
+						                                                 id="img-2176" data-subject="" data-name="Anonymous" data-muhdifference="" class="agg thread-image" title="Sep 26 15:15">
+                                        </a>
+                                                <div class="replies">
+                                                        <strong>R: 0 / I: 0</strong>
+                                                        								<br />
+							
+								is kitsunemimi a subset of nekomimi or does it stand on it&#39;s own as an entirely new idea?<br/><a href=https://kissu.moe/qa/res/10633.html>https://kissu.moe/qa/res/10633.html</a>
+                                                </div>
+                                </div>
+                        </div>
+                                        <div class="mix"
+				data-reply="0"
+				 data-bump="1569510903"
+				 data-time="1569510903"
+				 data-id="2177"
+				 data-sticky="false"
+				 data-locked="true"
+			>
+                                <div class="thread grid-li grid-size-small">  
+                                        <a href="/agg/res/2177">  
+													<img src="/agg/thumb/1569510660014.jpg" 
+						                                                 id="img-2177" data-subject="" data-name="Diarrhea Dan" data-muhdifference="" class="agg thread-image" title="Sep 26 15:15">
+                                        </a>
+                                                <div class="replies">
+                                                        <strong>R: 0 / I: 0</strong>
+                                                        								<br />
+							
+								<span class="quote">&gt;/gnfos/</span><br/><a href=https://gnfos.com/jp/res/369680.html>https://gnfos.com/jp/res/369680.html</a>
+                                                </div>
+                                </div>
+                        </div>
+                                        <div class="mix"
+				data-reply="0"
+				 data-bump="1569505803"
+				 data-time="1569505803"
+				 data-id="2175"
+				 data-sticky="false"
+				 data-locked="true"
+			>
+                                <div class="thread grid-li grid-size-small">  
+                                        <a href="/agg/res/2175">  
+													<img src="/static/deleted.png" 
+						                                                 id="img-2175" data-subject="" data-name="Diarrhea Dan" data-muhdifference="" class="agg thread-image" title="Sep 26 13:50">
+                                        </a>
+                                                <div class="replies">
+                                                        <strong>R: 0 / I: 0</strong>
+                                                        								<br />
+							
+								<span class="quote">&gt;gn</span><br/><a href=https://gnfos.com/jp/res/369677.html>https://gnfos.com/jp/res/369677.html</a>
+                                                </div>
+                                </div>
+                        </div>
+                                        <div class="mix"
+				data-reply="0"
+				 data-bump="1569489004"
+				 data-time="1569489004"
+				 data-id="2174"
+				 data-sticky="false"
+				 data-locked="true"
+			>
+                                <div class="thread grid-li grid-size-small">  
+                                        <a href="/agg/res/2174">  
+													<img src="/agg/thumb/1569488877722.png" 
+						                                                 id="img-2174" data-subject="" data-name="Anonymous" data-muhdifference="" class="agg thread-image" title="Sep 26 09:10">
+                                        </a>
+                                                <div class="replies">
+                                                        <strong>R: 0 / I: 0</strong>
+                                                        								<br />
+							
+								ｷﾀ━━━(ﾟ∀ﾟ)━━━!!<br/><a href=http://what-ch.mooo.com/what/res/2721.html>http://what-ch.mooo.com/what/res/2721.html</a>
+                                                </div>
+                                </div>
+                        </div>
+                                        <div class="mix"
+				data-reply="0"
+				 data-bump="1569488406"
+				 data-time="1569488406"
+				 data-id="2173"
+				 data-sticky="false"
+				 data-locked="true"
+			>
+                                <div class="thread grid-li grid-size-small">  
+                                        <a href="/agg/res/2173">  
+													<img src="/agg/thumb/1569488171095.png" 
+						                                                 id="img-2173" data-subject="" data-name="Anonymous" data-muhdifference="" class="agg thread-image" title="Sep 26 09:00">
+                                        </a>
+                                                <div class="replies">
+                                                        <strong>R: 0 / I: 0</strong>
+                                                        								<br />
+							
+								test<br/><a href=https://kissu.moe/qa/res/10621.html>https://kissu.moe/qa/res/10621.html</a>
+                                                </div>
+                                </div>
+                        </div>
+                                        <div class="mix"
+				data-reply="0"
+				 data-bump="1569484806"
+				 data-time="1569484806"
+				 data-id="2171"
+				 data-sticky="false"
+				 data-locked="true"
+			>
+                                <div class="thread grid-li grid-size-small">  
+                                        <a href="/agg/res/2171">  
+													<img src="/static/deleted.png" 
+						                                                 id="img-2171" data-subject="" data-name="Diarrhea Dan" data-muhdifference="" class="agg thread-image" title="Sep 26 08:00">
+                                        </a>
+                                                <div class="replies">
+                                                        <strong>R: 0 / I: 0</strong>
+                                                        								<br />
+							
+								<a href=https://gnfos.com/jp/res/369671.html>https://gnfos.com/jp/res/369671.html</a>
+                                                </div>
+                                </div>
+                        </div>
+                                        <div class="mix"
+				data-reply="0"
+				 data-bump="1569484806"
+				 data-time="1569484806"
+				 data-id="2172"
+				 data-sticky="false"
+				 data-locked="true"
+			>
+                                <div class="thread grid-li grid-size-small">  
+                                        <a href="/agg/res/2172">  
+													<img src="/static/deleted.png" 
+						                                                 id="img-2172" data-subject="" data-name="The Dastardly Duo" data-muhdifference="" class="agg thread-image" title="Sep 26 08:00">
+                                        </a>
+                                                <div class="replies">
+                                                        <strong>R: 0 / I: 0</strong>
+                                                        								<br />
+							
+								<a href=https://gnfos.com/jp/res/369672.html>https://gnfos.com/jp/res/369672.html</a>
+                                                </div>
+                                </div>
+                        </div>
+                                        <div class="mix"
+				data-reply="0"
+				 data-bump="1569484805"
+				 data-time="1569484805"
+				 data-id="2170"
+				 data-sticky="false"
+				 data-locked="true"
+			>
+                                <div class="thread grid-li grid-size-small">  
+                                        <a href="/agg/res/2170">  
+													<img src="/agg/thumb/1569484654106.png" 
+						                                                 id="img-2170" data-subject="" data-name="Anonymous" data-muhdifference="" class="agg thread-image" title="Sep 26 08:00">
+                                        </a>
+                                                <div class="replies">
+                                                        <strong>R: 0 / I: 0</strong>
+                                                        								<br />
+							
+								ｷﾀ━━━(ﾟ∀ﾟ)━━━!!<br/><a href=http://what-ch.mooo.com/what/res/2717.html>http://what-ch.mooo.com/what/res/2717.html</a>
+                                                </div>
+                                </div>
+                        </div>
+                                        <div class="mix"
+				data-reply="0"
+				 data-bump="1569482703"
+				 data-time="1569482703"
+				 data-id="2169"
+				 data-sticky="false"
+				 data-locked="true"
+			>
+                                <div class="thread grid-li grid-size-small">  
+                                        <a href="/agg/res/2169">  
+													<img src="/static/deleted.png" 
+						                                                 id="img-2169" data-subject="" data-name="Diarrhea Dan" data-muhdifference="" class="agg thread-image" title="Sep 26 07:25">
+                                        </a>
+                                                <div class="replies">
+                                                        <strong>R: 0 / I: 0</strong>
+                                                        								<br />
+							
+								<span class="quote">&gt;white women</span><br/><a href=https://gnfos.com/jp/res/369666.html>https://gnfos.com/jp/res/369666.html</a>
+                                                </div>
+                                </div>
+                        </div>
+                                        <div class="mix"
+				data-reply="0"
+				 data-bump="1569482104"
+				 data-time="1569482104"
+				 data-id="2168"
+				 data-sticky="false"
+				 data-locked="true"
+			>
+                                <div class="thread grid-li grid-size-small">  
+                                        <a href="/agg/res/2168">  
+													<img src="/agg/thumb/1569482057338.jpeg" 
+						                                                 id="img-2168" data-subject="" data-name="Diarrhea Dan" data-muhdifference="" class="agg thread-image" title="Sep 26 07:15">
+                                        </a>
+                                                <div class="replies">
+                                                        <strong>R: 0 / I: 0</strong>
+                                                        								<br />
+							
+								<a href=https://gnfos.com/jp/res/369663.html>https://gnfos.com/jp/res/369663.html</a>
+                                                </div>
+                                </div>
+                        </div>
+                                        <div class="mix"
+				data-reply="0"
+				 data-bump="1569482103"
+				 data-time="1569482103"
+				 data-id="2167"
+				 data-sticky="false"
+				 data-locked="true"
+			>
+                                <div class="thread grid-li grid-size-small">  
+                                        <a href="/agg/res/2167">  
+													<img src="/agg/thumb/1569481822620.jpg" 
+						                                                 id="img-2167" data-subject="" data-name="Diarrhea Dan" data-muhdifference="" class="agg thread-image" title="Sep 26 07:15">
+                                        </a>
+                                                <div class="replies">
+                                                        <strong>R: 0 / I: 0</strong>
+                                                        								<br />
+							
+								This is our black panther<br/><a href=https://gnfos.com/jp/res/369660.html>https://gnfos.com/jp/res/369660.html</a>
+                                                </div>
+                                </div>
+                        </div>
+                                        <div class="mix"
+				data-reply="0"
+				 data-bump="1569478503"
+				 data-time="1569478503"
+				 data-id="2166"
+				 data-sticky="false"
+				 data-locked="true"
+			>
+                                <div class="thread grid-li grid-size-small">  
+                                        <a href="/agg/res/2166">  
+													<img src="/agg/thumb/1569478291506.gif" 
+						                                                 id="img-2166" data-subject="" data-name="Diarrhea Dan" data-muhdifference="" class="agg thread-image" title="Sep 26 06:15">
+                                        </a>
+                                                <div class="replies">
+                                                        <strong>R: 0 / I: 0</strong>
+                                                        								<br />
+							
+								I’m hungry<br/><a href=https://gnfos.com/jp/res/369654.html>https://gnfos.com/jp/res/369654.html</a>
+                                                </div>
+                                </div>
+                        </div>
+                                        <div class="mix"
+				data-reply="0"
+				 data-bump="1569477903"
+				 data-time="1569477903"
+				 data-id="2165"
+				 data-sticky="false"
+				 data-locked="true"
+			>
+                                <div class="thread grid-li grid-size-small">  
+                                        <a href="/agg/res/2165">  
+													<img src="/agg/thumb/1569477644299.jpg" 
+						                                                 id="img-2165" data-subject="" data-name="The Dastardly Duo" data-muhdifference="" class="agg thread-image" title="Sep 26 06:05">
+                                        </a>
+                                                <div class="replies">
+                                                        <strong>R: 0 / I: 0</strong>
+                                                        								<br />
+							
+								Bored but not gay.....<br/><a href=https://gnfos.com/jp/res/369652.html>https://gnfos.com/jp/res/369652.html</a>
+                                                </div>
+                                </div>
+                        </div>
+                                        <div class="mix"
+				data-reply="0"
+				 data-bump="1569477604"
+				 data-time="1569477604"
+				 data-id="2163"
+				 data-sticky="false"
+				 data-locked="true"
+			>
+                                <div class="thread grid-li grid-size-small">  
+                                        <a href="/agg/res/2163">  
+													<img src="/agg/thumb/1569477449798.png" 
+						                                                 id="img-2163" data-subject="" data-name="Anonymous" data-muhdifference="" class="agg thread-image" title="Sep 26 06:00">
+                                        </a>
+                                                <div class="replies">
+                                                        <strong>R: 0 / I: 0</strong>
+                                                        								<br />
+							
+								Let&#39;s say you turned into a car, also known as a motor vehicle, for whatever reason. What kind of car would you become?<br/><a href=https://kissu.moe/qa/res/10612.html>https://kissu.moe/qa/res/10612.html</a>
+                                                </div>
+                                </div>
+                        </div>
+                                        <div class="mix"
+				data-reply="0"
+				 data-bump="1569477604"
+				 data-time="1569477604"
+				 data-id="2164"
+				 data-sticky="false"
+				 data-locked="true"
+			>
+                                <div class="thread grid-li grid-size-small">  
+                                        <a href="/agg/res/2164">  
+													<img src="/agg/thumb/1569477368854.png" 
+						                                                 id="img-2164" data-subject="" data-name="Diarrhea Dan" data-muhdifference="" class="agg thread-image" title="Sep 26 06:00">
+                                        </a>
+                                                <div class="replies">
+                                                        <strong>R: 0 / I: 0</strong>
+                                                        								<br />
+							
+								You. Yes, you. What are you going to accomplish today?<br/><a href=https://gnfos.com/jp/res/369648.html>https://gnfos.com/jp/res/369648.html</a>
+                                                </div>
+                                </div>
+                        </div>
+                                        <div class="mix"
+				data-reply="0"
+				 data-bump="1569475804"
+				 data-time="1569475804"
+				 data-id="2160"
+				 data-sticky="false"
+				 data-locked="true"
+			>
+                                <div class="thread grid-li grid-size-small">  
+                                        <a href="/agg/res/2160">  
+													<img src="/static/deleted.png" 
+						                                                 id="img-2160" data-subject="" data-name="The Dastardly Duo" data-muhdifference="" class="agg thread-image" title="Sep 26 05:30">
+                                        </a>
+                                                <div class="replies">
+                                                        <strong>R: 0 / I: 0</strong>
+                                                        								<br />
+							
+								<a href=https://gnfos.com/jp/res/369640.html>https://gnfos.com/jp/res/369640.html</a>
+                                                </div>
+                                </div>
+                        </div>
+                                        <div class="mix"
+				data-reply="0"
+				 data-bump="1569475804"
+				 data-time="1569475804"
+				 data-id="2161"
+				 data-sticky="false"
+				 data-locked="true"
+			>
+                                <div class="thread grid-li grid-size-small">  
+                                        <a href="/agg/res/2161">  
+													<img src="/agg/thumb/1569475521960.jpg" 
+						                                                 id="img-2161" data-subject="" data-name="The Dastardly Duo" data-muhdifference="" class="agg thread-image" title="Sep 26 05:30">
+                                        </a>
+                                                <div class="replies">
+                                                        <strong>R: 0 / I: 0</strong>
+                                                        								<br />
+							
+								the &#39;tism<br/><a href=https://gnfos.com/jp/res/369641.html>https://gnfos.com/jp/res/369641.html</a>
+                                                </div>
+                                </div>
+                        </div>
+                                        <div class="mix"
+				data-reply="0"
+				 data-bump="1569475804"
+				 data-time="1569475804"
+				 data-id="2162"
+				 data-sticky="false"
+				 data-locked="true"
+			>
+                                <div class="thread grid-li grid-size-small">  
+                                        <a href="/agg/res/2162">  
+													<img src="/agg/thumb/1569475587773.png" 
+						                                                 id="img-2162" data-subject="" data-name="Idiot" data-muhdifference="" class="agg thread-image" title="Sep 26 05:30">
+                                        </a>
+                                                <div class="replies">
+                                                        <strong>R: 0 / I: 0</strong>
+                                                        								<br />
+							
+								<span class="quote">&gt;It&#39;s Always Sunny in Philadelphia 14×01 </span><br/><a href=https://gnfos.com/jp/res/369642.html>https://gnfos.com/jp/res/369642.html</a>
+                                                </div>
+                                </div>
+                        </div>
+                                        <div class="mix"
+				data-reply="0"
+				 data-bump="1569475503"
+				 data-time="1569475503"
+				 data-id="2159"
+				 data-sticky="false"
+				 data-locked="true"
+			>
+                                <div class="thread grid-li grid-size-small">  
+                                        <a href="/agg/res/2159">  
+													<img src="/agg/thumb/1569475322000.png" 
+						                                                 id="img-2159" data-subject="" data-name="Diarrhea Dan" data-muhdifference="" class="agg thread-image" title="Sep 26 05:25">
+                                        </a>
+                                                <div class="replies">
+                                                        <strong>R: 0 / I: 0</strong>
+                                                        								<br />
+							
+								Based<br/><a href=https://gnfos.com/jp/res/369638.html>https://gnfos.com/jp/res/369638.html</a>
+                                                </div>
+                                </div>
+                        </div>
+                                        <div class="mix"
+				data-reply="0"
+				 data-bump="1569471003"
+				 data-time="1569471003"
+				 data-id="2158"
+				 data-sticky="false"
+				 data-locked="true"
+			>
+                                <div class="thread grid-li grid-size-small">  
+                                        <a href="/agg/res/2158">  
+													<img src="/agg/thumb/1569470972556.png" 
+						                                                 id="img-2158" data-subject="" data-name="Anonymous" data-muhdifference="" class="agg thread-image" title="Sep 26 04:10">
+                                        </a>
+                                                <div class="replies">
+                                                        <strong>R: 0 / I: 0</strong>
+                                                        								<br />
+							
+								What are your feelings about thick eyebrows? Do you like a certain kind of shape to them like the oval shaped ones or the sharper ones? Whose eyebrows are your favorite?<br/><a href=https://kissu.moe/qa/res/10608.html>https://kissu.moe/qa/res/10608.html</a>
+                                                </div>
+                                </div>
+                        </div>
+                                        <div class="mix"
+				data-reply="0"
+				 data-bump="1569470703"
+				 data-time="1569470703"
+				 data-id="2157"
+				 data-sticky="false"
+				 data-locked="true"
+			>
+                                <div class="thread grid-li grid-size-small">  
+                                        <a href="/agg/res/2157">  
+													<img src="/agg/thumb/1569470473157.jpg" 
+						                                                 id="img-2157" data-subject="" data-name="Diarrhea Dan" data-muhdifference="" class="agg thread-image" title="Sep 26 04:05">
+                                        </a>
+                                                <div class="replies">
+                                                        <strong>R: 0 / I: 0</strong>
+                                                        								<br />
+							
+								How jealous are you fucking idiot retard losers on a scale from 1 to *EXTREMELY FUCKING JEALOUS*?<br/><a href=https://gnfos.com/jp/res/369614.html>https://gnfos.com/jp/res/369614.html</a>
+                                                </div>
+                                </div>
+                        </div>
+                                        <div class="mix"
+				data-reply="0"
+				 data-bump="1569470405"
+				 data-time="1569470405"
+				 data-id="2156"
+				 data-sticky="false"
+				 data-locked="true"
+			>
+                                <div class="thread grid-li grid-size-small">  
+                                        <a href="/agg/res/2156">  
+													<img src="/agg/thumb/1569470305325.jpeg" 
+						                                                 id="img-2156" data-subject="" data-name="Diarrhea Dan" data-muhdifference="" class="agg thread-image" title="Sep 26 04:00">
+                                        </a>
+                                                <div class="replies">
+                                                        <strong>R: 0 / I: 0</strong>
+                                                        								<br />
+							
+								This sexy black chick was eye fl8rting with me on campus then she literally jumped next to me and started talking to me and was really blunt she was like you&#39;re so quiet why are you so quiet then even said you don&#39;t know how to conversate with people but was saying I&#39;m so cute and then added my on snap and she&#39;s sending me sexy photos right now<br/><a href=https://gnfos.com/jp/res/369612.html>https://gnfos.com/jp/res/369612.html</a>
+                                                </div>
+                                </div>
+                        </div>
+                                        <div class="mix"
+				data-reply="0"
+				 data-bump="1569460803"
+				 data-time="1569460803"
+				 data-id="2155"
+				 data-sticky="false"
+				 data-locked="true"
+			>
+                                <div class="thread grid-li grid-size-small">  
+                                        <a href="/agg/res/2155">  
+													<img src="/agg/thumb/1569460697974.png" 
+						                                                 id="img-2155" data-subject="" data-name="Anonymous" data-muhdifference="" class="agg thread-image" title="Sep 26 01:20">
+                                        </a>
+                                                <div class="replies">
+                                                        <strong>R: 0 / I: 0</strong>
+                                                        								<br />
+							
+								brush teeth<br/><a href=https://kissu.moe/qa/res/10598.html>https://kissu.moe/qa/res/10598.html</a>
+                                                </div>
+                                </div>
+                        </div>
+                                        <div class="mix"
+				data-reply="0"
+				 data-bump="1569457204"
+				 data-time="1569457204"
+				 data-id="2153"
+				 data-sticky="false"
+				 data-locked="true"
+			>
+                                <div class="thread grid-li grid-size-small">  
+                                        <a href="/agg/res/2153">  
+													<img src="/agg/thumb/1569457097601.png" 
+						                                                 id="img-2153" data-subject="" data-name="Anonymous" data-muhdifference="" class="agg thread-image" title="Sep 26 00:20">
+                                        </a>
+                                                <div class="replies">
+                                                        <strong>R: 0 / I: 0</strong>
+                                                        								<br />
+							
+								The greatest programmer<br/><a href=https://kissu.moe/qa/res/10581.html>https://kissu.moe/qa/res/10581.html</a>
+                                                </div>
+                                </div>
+                        </div>
+                                        <div class="mix"
+				data-reply="0"
+				 data-bump="1569457204"
+				 data-time="1569457204"
+				 data-id="2154"
+				 data-sticky="false"
+				 data-locked="true"
+			>
+                                <div class="thread grid-li grid-size-small">  
+                                        <a href="/agg/res/2154">  
+													<img src="/agg/thumb/1569456909640.png" 
+						                                                 id="img-2154" data-subject="" data-name="The Dastardly Duo" data-muhdifference="" class="agg thread-image" title="Sep 26 00:20">
+                                        </a>
+                                                <div class="replies">
+                                                        <strong>R: 0 / I: 0</strong>
+                                                        								<br />
+							
+								bruh look at this dude<br/><a href=https://gnfos.com/jp/res/369596.html>https://gnfos.com/jp/res/369596.html</a>
+                                                </div>
+                                </div>
+                        </div>
+                                        <div class="mix"
+				data-reply="0"
+				 data-bump="1569454805"
+				 data-time="1569454805"
+				 data-id="2152"
+				 data-sticky="false"
+				 data-locked="true"
+			>
+                                <div class="thread grid-li grid-size-small">  
+                                        <a href="/agg/res/2152">  
+													<img src="/agg/thumb/1569454745302.jpg" 
+						                                                 id="img-2152" data-subject="" data-name="The Dastardly Duo" data-muhdifference="" class="agg thread-image" title="Sep 25 23:40">
+                                        </a>
+                                                <div class="replies">
+                                                        <strong>R: 0 / I: 0</strong>
+                                                        								<br />
+							
+								<span class="quote">&gt;white women</span><br/><a href=https://gnfos.com/jp/res/369594.html>https://gnfos.com/jp/res/369594.html</a>
+                                                </div>
+                                </div>
+                        </div>
+                                        <div class="mix"
+				data-reply="0"
+				 data-bump="1569454804"
+				 data-time="1569454804"
+				 data-id="2151"
+				 data-sticky="false"
+				 data-locked="true"
+			>
+                                <div class="thread grid-li grid-size-small">  
+                                        <a href="/agg/res/2151">  
+													<img src="/agg/thumb/1569454521586.jpg" 
+						                                                 id="img-2151" data-subject="" data-name="Diarrhea Dan" data-muhdifference="" class="agg thread-image" title="Sep 25 23:40">
+                                        </a>
+                                                <div class="replies">
+                                                        <strong>R: 0 / I: 0</strong>
+                                                        								<br />
+							
+								How long until zoomers rise up against boomers and take back the wealth they stole from them?<br/><a href=https://gnfos.com/jp/res/369593.html>https://gnfos.com/jp/res/369593.html</a>
+                                                </div>
+                                </div>
+                        </div>
                                         <div class="mix"
 				data-reply="0"
 				 data-bump="1569454203"
@@ -45409,7 +46013,9 @@ drumpftards on suicide watch
 		<a id="thread-return" href="">[Refresh]</a>
 		<a id="thread-top" href="#top">[Top]</a>
 							<a id="thread-catalog" href="/agg/">[Index]</a>
-					</span>
+				<a id="archive-link-top" href="/agg/archive/">[Archive]</a>
+
+	</span>
 	<br/><hr/>
 	<a name='bottom'></a>
 	<footer>

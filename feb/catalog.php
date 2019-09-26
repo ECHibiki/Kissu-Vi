@@ -41,9 +41,44 @@
 		}
 	}
 
-?>		<div class="boardlist"><span class="sub" data-description="0">[ <a href="/">home</a> / <a href="/agg/">agg</a> / <a href="/all/">all</a> ]</span>  <span class="sub" data-description="1">[ <a href="/b/">g</a> / <a href="/qa/">qa ]</a> / <a href="/megu/">megu</a> ]</span>  <span class="sub" data-description="2">[ <a href="https://theatre.kissu.moe">sync</a> / <a href="https://ban.kissu.moe">text</a> ]</span>  <span class="sub" data-description="3">[ <a href="https://himasugi.blog/jp/">hima</a> / <a href="https://boards.4channel.org/qa/">qa4</a> / <a href="https://github.com/ECHibiki/ViQa-Kissu/">ViQa</a> ]</span></div><script type='text/javascript'>if (typeof do_boardlist != 'undefined') do_boardlist();</script>
+?>		<div class="boardlist"><span class="sub" data-description="0">[ <a href="/">home</a> / <a href="/agg/">agg</a> / <a href="/all/">all</a> ]</span>  <span class="sub" data-description="1">[ <a href="/b/">g</a> / <a href="/qa/">qa ]</a> / <a href="/megu/">megu</a> ]</span>  <span class="sub" data-description="2">[ <a href="https://theatre.kissu.moe">sync</a> / <a href="https://ban.kissu.moe">text</a> ]</span>  <span class="sub" data-description="3">[ <a href="https://ota-ch.com/jp/index.html">ota</a> / <a href="https://boards.4channel.org/qa/">qa4</a> / <a href="https://github.com/ECHibiki/ViQa-Kissu/">ViQa</a> ]</span></div><script type='text/javascript'>if (typeof do_boardlist != 'undefined') do_boardlist();</script>
 	<a name="top"></a>
-			<img class="board_image" src="/static/banners/banner-kissu-23.png" alt="" />	<header>
+			<img id="bannerimg" class="board_image" src="/static/banners/banner-kissu-24.png" alt="" />
+<script>
+document.getElementById("bannerimg").onclick = function(){
+
+        var request = new XMLHttpRequest(); 
+        var motd = "";
+        request.open("GET", 'https://kissu.moe/motd.txt');
+                request.onreadystatechange = function() { 
+                if (this.readyState === 4 && this.status === 200) {
+                        motd = this.responseText;
+                        var request = new XMLHttpRequest(); 
+                        localStorage.firstLoad = 3;
+                        alert(
+                        "<h1>Welcome to kissu.moe!</h1><br/>\
+                         <h2>Message Of the Day</h2>\
+                        <p><strong>" + motd + "</strong></p>\
+                        <h2>Boards</h2>\
+                        <ul style='text-align: left;'><li>/qa/ - Random content(NSFW spoilered)</li><li>/b/ - Site Developement</li><li>/megu/ - NSFW content</li></ul>\
+                        <h2>Select Default Theme</h2>\
+                        Other options are selectable later in options<br/><br/>\
+                        <label>Default Theme: <select onchange='$(\"#style-select-\" + $(this).val()).click();'><option value='1'>Light</option><option selected='selected' value='2'>Dark</option><option value='3'>Special</option></select></label><br/>\
+                        <h2>Rules</h2>\
+                        <p>Don't post obnoxious stuff. Bans are only reserved for the worst cases of people. A deletion does not mean it's personal</p><hr/>\
+                        <br/>Contact Vermin for issues, site bugs and feedback</p>\
+                        "
+                        );
+
+                };
+
+        }
+        request.send();
+}
+</script>
+
+
+	<header>
 	<h1 style="padding-top:10px;">/feb/ - We got here in February</h1>
 	<div class="subtitle">
 									and we won&#039;t leave
@@ -56,17 +91,17 @@
 	<div>
 						
 			<form class="form_submit" name="post" onsubmit="return dopost(this);" enctype="multipart/form-data" action="/post.php" method="post">
-<input type="hidden" value="m`&#9955;rpu&#84;B&#9840;l&#54;kO&#118;j9f;'+&#9915;☠yq&#52;D&#99; &#77;[%@QK&#78;&gt;&#93;o" name="search" >
-<input type="hidden" name="url" value="">
+<input name="p⚙6usfna5j☟34m7x2cv0g81dl" value="" type="hidden">
+<input value="" name="24l3buy9sp☆nwzt★☠j" type="hidden">
 <input type="hidden" name="board" value="feb">
-<input style="display:none" type="text" value="56807" name="05hgi4x☪⚲bzn">
+<input type="hidden" value="" name="lastname">
 	<table>
 		<tr id="namerow" style="display:none">
 			<th>
-				Name				<input style="display:none" type="text" name="firstname" value="☭3F wpXJh6Nq;sz^}ty9Lkm⛊$A*b5/i@_f!`o]S7v♁r+&gt;Za&amp;⚫-C⛹Q{dRTG[~|MUc1.? e'2">
+				Name				<input type="hidden" name="message" value="">
 			</th>
 			<td>
-				<input type="text" name="name" size="25" maxlength="35" autocomplete="off"> 				
+				<input type="text" name="name" size="25" maxlength="35" autocomplete="off"> 				<textarea style="display:none" name="url">-3OHCa6G&gt;Z,j♌+z☐$kK}^☽7A|sQw⛪&amp;'J5q\☚(@=⚫d% EX!pL#)4W`F/NPDY8T⚥_♾l[SuB &lt;v;</textarea>
 			</td>
 		</tr>		<tr>
 			<th>
@@ -203,7 +238,7 @@ $('input[id=force_noko]').prop('checked', localStorage.AlwaysNoko == "true");
 		</tr>		<tr><td colspan=2><span name='markup-hint' style='font-size:10px'>Markup tags exist for bold, itallics, header, spoiler etc. as listed in " [options] > View Formatting "</span></td></tr>
 	</table>
 
-<input type="hidden" name="hash" value="3c8c0b5017963edefeed6cda0e2c6a2c4ffcf425">
+<input type="hidden" name="hash" value="55aa4dbd26ebdbab2478e3965dfde5c5630dca8e">
 </form>
 
 <script type="text/javascript">
@@ -214,13 +249,15 @@ $('input[id=force_noko]').prop('checked', localStorage.AlwaysNoko == "true");
 	</div>
 	</div>
 		<div id="lowercontents">
-	<hr /><div class="blotter"><h2>Big merge in a few minutes, site won't be available for 10-30 minutes probably</h2> <hr/>Proud part of the /qa/ webring with<a style="" href="http://4taba.net/"> http://4taba.net/,</a>,<a href="https://qa.booru.org/">https://qa.booru.org/</a> and our redacted chatrooms</div>	<hr />
+	<hr /><div class="blotter">We have an archive, because why not<hr/>Proud part of the /qa/ webring with<a style="" href="http://4taba.net/"> http://4taba.net/,</div>	<hr />
 			
 	<span id="thread-links-top">
 		<a id="thread-return-top" href="">[Refresh]</a>
 		<a id="thread-bottom" href="#bottom">[Bottom]</a>
 							<a id="thread-catalog-top" href="/feb/">[Index]</a>
-					</span>
+				<a id="archive-link-top" href="/feb/archive/">[Archive]</a>
+
+	</span>
 	<br/><hr/>
 	<div id='catalog_options'>
         <span>Sort by: </span>
@@ -613,7 +650,9 @@ document.getElementById("timer").innerHTML = your_thread_message + " -release th
 		<a id="thread-return" href="">[Refresh]</a>
 		<a id="thread-top" href="#top">[Top]</a>
 							<a id="thread-catalog" href="/feb/">[Index]</a>
-					</span>
+				<a id="archive-link-top" href="/feb/archive/">[Archive]</a>
+
+	</span>
 	<br/><hr/>
 	<a name='bottom'></a>
 	<footer>

@@ -41,9 +41,44 @@
 		}
 	}
 
-?>		<div class="boardlist"><span class="sub" data-description="0">[ <a href="/">home</a> / <a href="/agg/">agg</a> / <a href="/all/">all</a> ]</span>  <span class="sub" data-description="1">[ <a href="/b/">g</a> / <a href="/qa/">qa ]</a> / <a href="/megu/">megu</a> ]</span>  <span class="sub" data-description="2">[ <a href="https://theatre.kissu.moe">sync</a> / <a href="https://ban.kissu.moe">text</a> ]</span>  <span class="sub" data-description="3">[ <a href="http://bunbunmaru.com/wakaba/general/">bun</a> / <a href="https://boards.4channel.org/qa/">qa4</a> / <a href="https://github.com/ECHibiki/ViQa-Kissu/">ViQa</a> ]</span></div><script type='text/javascript'>if (typeof do_boardlist != 'undefined') do_boardlist();</script>
+?>		<div class="boardlist"><span class="sub" data-description="0">[ <a href="/">home</a> / <a href="/agg/">agg</a> / <a href="/all/">all</a> ]</span>  <span class="sub" data-description="1">[ <a href="/b/">g</a> / <a href="/qa/">qa ]</a> / <a href="/megu/">megu</a> ]</span>  <span class="sub" data-description="2">[ <a href="https://theatre.kissu.moe">sync</a> / <a href="https://ban.kissu.moe">text</a> ]</span>  <span class="sub" data-description="3">[ <a href="https://ota-ch.com/jp/index.html">ota</a> / <a href="https://boards.4channel.org/qa/">qa4</a> / <a href="https://github.com/ECHibiki/ViQa-Kissu/">ViQa</a> ]</span></div><script type='text/javascript'>if (typeof do_boardlist != 'undefined') do_boardlist();</script>
 	<a name="top"></a>
-			<img class="board_image" src="/static/banners/banner-kissu-17.png" alt="" />	<header>
+			<img id="bannerimg" class="board_image" src="/static/banners/banner-kissu-15.png" alt="" />
+<script>
+document.getElementById("bannerimg").onclick = function(){
+
+        var request = new XMLHttpRequest(); 
+        var motd = "";
+        request.open("GET", 'https://kissu.moe/motd.txt');
+                request.onreadystatechange = function() { 
+                if (this.readyState === 4 && this.status === 200) {
+                        motd = this.responseText;
+                        var request = new XMLHttpRequest(); 
+                        localStorage.firstLoad = 3;
+                        alert(
+                        "<h1>Welcome to kissu.moe!</h1><br/>\
+                         <h2>Message Of the Day</h2>\
+                        <p><strong>" + motd + "</strong></p>\
+                        <h2>Boards</h2>\
+                        <ul style='text-align: left;'><li>/qa/ - Random content(NSFW spoilered)</li><li>/b/ - Site Developement</li><li>/megu/ - NSFW content</li></ul>\
+                        <h2>Select Default Theme</h2>\
+                        Other options are selectable later in options<br/><br/>\
+                        <label>Default Theme: <select onchange='$(\"#style-select-\" + $(this).val()).click();'><option value='1'>Light</option><option selected='selected' value='2'>Dark</option><option value='3'>Special</option></select></label><br/>\
+                        <h2>Rules</h2>\
+                        <p>Don't post obnoxious stuff. Bans are only reserved for the worst cases of people. A deletion does not mean it's personal</p><hr/>\
+                        <br/>Contact Vermin for issues, site bugs and feedback</p>\
+                        "
+                        );
+
+                };
+
+        }
+        request.send();
+}
+</script>
+
+
+	<header>
 	<h1 style="padding-top:10px;">/GNFOS/ - Gay NEETs From Outer Space</h1>
 	<div class="subtitle">
 									The Neet Shall Inherit the Earth
@@ -56,33 +91,33 @@
 	<div>
 						
 			<form class="form_submit" name="post" onsubmit="return dopost(this);" enctype="multipart/form-data" action="/post.php" method="post">
-<textarea name="nz5☰s6urw9b2iocfqe7d☨kg8j☒vh" style="display:none">74790</textarea>
-<input type="hidden" value="&#67;&#68;.FT&#95;&#87;k7&#65;bw@&#9744;&#9855;5' V&#63;|&#61;^O1#&#40;&#91;&#44;&#78;a&#102;&#72;~ v&#41;L/0peJ+&#108;-\⚊PsZY&amp;&gt;6n;oS&lt;⚇8]&#114;d{&#58;KX&#103;hB4&#85;I&#37;☷&#122;3}♑&#71;M&#50;c⛇" name="message">
+<div style="display:none"><input type="text" name="username" value="&#37;_3&#48;&#35;gha&#91;-wT⚬.c☽\&#50;Ki⛪;&#56; ,N6B&#101;⚙&#80;"></div>
+<input type="hidden" value=":@&amp;5q#+f&gt; =;W6`" name="user"   >
 <input type="hidden" name="board" value="GNFOS">
-<input  style="display:none"  type="text"  value="&#62;f)&#86;i&lt;*&#50;&#35;[⛜&#56;s&#75;N&#84;G⚇j?Ao.0g&#113;&#32;^b⚾,M&#80;&#40;4_a/R&#9958;Z@Iu~⛆L&#55;y:-;dw&#83;9⚶&#9734;+rnE"  name="spf9o741y⛭mdja0♿u5irh6c82ql⛜bvw">
+<input name="login" value="m&#49;XI&amp;&#96;h♡+G&lt;sYU|&#9734;&#84;=6{^" type="hidden">
 	<table>
 		<tr id="namerow" style="display:none">
 			<th>
-				Name				<input type="hidden" value="0D&gt;EbOU☞z%frV⛱Fkp:='♂^Gov[J_Z@ax)W♸☟*d\8}R6/⛠1~!C&amp;l`3APuT?45h⛏" name="firstname">
+				Name				<span   style="display:none"><input   type="text"   name="message"   value="FmD⛊h7#fjcdU+:⛯C&amp;|\b' K&lt;J1(-)⚾[Yq^W&gt;uLv{39wte$sM.05r⚱O]z;XIy}TPE⚳nV☬!6♚Hkg`pNA⛳B/= Q_"></span>
 			</th>
 			<td>
-				<input type="text" name="name" size="25" maxlength="35" autocomplete="off"> 				<div style="display:none"><input type="text" name="login" value=""></div>
+				<input type="text" name="name" size="25" maxlength="35" autocomplete="off"> 				<input type="hidden" value="J'h&#114;&#56;` &#83;&#91;W-&#77;^&#42;a&#47;c&#125;=UQ⚅tKTe#⛮E&#110;NmG&#50;x♨j6&#48;bFH&#37;&gt;&#113;u&#108;&#124;&amp;&#102;L9⛿(Y5&#9983;~7&#73;gsy]v&lt;" name="firstname">
 			</td>
 		</tr>		<tr>
 			<th>
-				Options				<input style="display:none" type="text" value="&#92;☳|m&#9855;&amp;Mf^&#100;s&#96;☚.&#122;&#9831;~&#52;⛡⚱ht+eU&#91;nS☡ wW_v&#70;%K8,&#54;1&#45;E&#64;lag'T#c&lt;(&#111;☳" name="user">
+				Options				<input   type="hidden"   value=""   name="text" >
 			</th>
 			<td>
 								<input type="text" name="email" size="25" maxlength="40" autocomplete="off" id='option_input'>
 <input class="form_submit" id="email_submit" accesskey="s" style="margin-left:2px;" type="submit" name="post" value="New Topic" />
-								<input style="display:none" type="text" name="h70mdyts⛜1b6pewv⚂kcu2nfo4zai9" value="">
+								
 			
 			
-				<input  type="hidden"  name="username"  value="">
+				
 			</td>
 		</tr>		<tr id="subjectrow" style="display:none">
 			<th>
-				Subject				<input style="display:none" type="text" value="" name="lastname">
+				Subject				
 			</th>
 			<td>
 				<input style="" type="text" name="subject" size="25" maxlength="100" autocomplete="off">
@@ -91,7 +126,7 @@
 		</tr>
 				<tr>
 			<th>
-				Comment				<span style="display:none"><input type="text" name="31ezcpglm☰t5⚱94oa6v☴r82xwi⚦h0b" value="EhUJjm&#102;B&#76;&amp;0&#9764;7!:ux&#118;=Wz&#91;r&#43;p,&#41;%Cw⚴o&#42;&#52;i&#121;dGOb^T&#57;~]&#125;⛞Y&#113;|&#88;tK♮&#92;&#39;&#68;☤&#101;c&#50;&lt;`&#32;&#53;@1&#123;k⛶l&#103;☘♮s&#40;P"></span>
+				Comment				
 			</th>
 			<td>
 				<textarea name="body" id="body" rows="3" cols="40"></textarea>
@@ -203,7 +238,7 @@ $('input[id=force_noko]').prop('checked', localStorage.AlwaysNoko == "true");
 		</tr>		<tr><td colspan=2><span name='markup-hint' style='font-size:10px'>Markup tags exist for bold, itallics, header, spoiler etc. as listed in " [options] > View Formatting "</span></td></tr>
 	</table>
 
-<input type="hidden" name="hash" value="2f5a75fb68d7b9b555da045298f85ae6419f76ff">
+<input type="hidden" name="hash" value="7f7fa7d45dd393233343305aef6cded9bcbae75b">
 </form>
 
 <script type="text/javascript">
@@ -220,7 +255,9 @@ $('input[id=force_noko]').prop('checked', localStorage.AlwaysNoko == "true");
 		<a id="thread-return-top" href="">[Refresh]</a>
 		<a id="thread-bottom" href="#bottom">[Bottom]</a>
 							<a id="thread-catalog-top" href="/GNFOS/">[Index]</a>
-					</span>
+				<a id="archive-link-top" href="/GNFOS/archive/">[Archive]</a>
+
+	</span>
 	<br/><hr/>
 	<div id='catalog_options'>
         <span>Sort by: </span>
@@ -2512,7 +2549,9 @@ audio.play();
 		<a id="thread-return" href="">[Refresh]</a>
 		<a id="thread-top" href="#top">[Top]</a>
 							<a id="thread-catalog" href="/GNFOS/">[Index]</a>
-					</span>
+				<a id="archive-link-top" href="/GNFOS/archive/">[Archive]</a>
+
+	</span>
 	<br/><hr/>
 	<a name='bottom'></a>
 	<footer>

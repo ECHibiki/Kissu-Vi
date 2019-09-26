@@ -44,9 +44,44 @@
 <body class="8chan vichan is-not-moderator active-index" data-stylesheet="trevor.css">
 	<div id="uppercontents">
 	<div id="subuppercontents">
-		<div class="boardlist"><span class="sub" data-description="0">[ <a href="/">home</a> / <a href="/agg/">agg</a> / <a href="/all/">all</a> ]</span>  <span class="sub" data-description="1">[ <a href="/b/">g</a> / <a href="/qa/">qa ]</a> / <a href="/megu/">megu</a> ]</span>  <span class="sub" data-description="2">[ <a href="https://theatre.kissu.moe">sync</a> / <a href="https://ban.kissu.moe">text</a> ]</span>  <span class="sub" data-description="3">[ <a href="https://kakashi-nenpo.com/">nen</a> / <a href="https://boards.4channel.org/qa/">qa4</a> / <a href="https://github.com/ECHibiki/ViQa-Kissu/">ViQa</a> ]</span></div><script type='text/javascript'>if (typeof do_boardlist != 'undefined') do_boardlist();</script>
+		<div class="boardlist"><span class="sub" data-description="0">[ <a href="/">home</a> / <a href="/agg/">agg</a> / <a href="/all/">all</a> ]</span>  <span class="sub" data-description="1">[ <a href="/b/">g</a> / <a href="/qa/">qa ]</a> / <a href="/megu/">megu</a> ]</span>  <span class="sub" data-description="2">[ <a href="https://theatre.kissu.moe">sync</a> / <a href="https://ban.kissu.moe">text</a> ]</span>  <span class="sub" data-description="3">[ <a href="https://ota-ch.com/jp/index.html">ota</a> / <a href="https://boards.4channel.org/qa/">qa4</a> / <a href="https://github.com/ECHibiki/ViQa-Kissu/">ViQa</a> ]</span></div><script type='text/javascript'>if (typeof do_boardlist != 'undefined') do_boardlist();</script>
 	<a name="top"></a>
-			<img class="board_image" src="/static/banners/banner-kissu-3.gif" alt="" />	<header>
+			<img id="bannerimg" class="board_image" src="/static/banners/banner-kissu-7.jpg" alt="" />
+<script>
+document.getElementById("bannerimg").onclick = function(){
+	
+        var request = new XMLHttpRequest(); 
+        var motd = "";
+        request.open("GET", 'https://kissu.moe/motd.txt');
+                request.onreadystatechange = function() { 
+                if (this.readyState === 4 && this.status === 200) {
+                        motd = this.responseText;
+                        var request = new XMLHttpRequest(); 
+                        localStorage.firstLoad = 3;
+                        alert(
+                        "<h1>Welcome to kissu.moe!</h1><br/>\
+                         <h2>Message Of the Day</h2>\
+                        <p><strong>" + motd + "</strong></p>\
+                        <h2>Boards</h2>\
+                        <ul style='text-align: left;'><li>/qa/ - Random content(NSFW spoilered)</li><li>/b/ - Site Developement</li><li>/megu/ - NSFW content</li></ul>\
+                        <h2>Select Default Theme</h2>\
+                        Other options are selectable later in options<br/><br/>\
+                        <label>Default Theme: <select onchange='$(\"#style-select-\" + $(this).val()).click();'><option value='1'>Light</option><option selected='selected' value='2'>Dark</option><option value='3'>Special</option></select></label><br/>\
+                        <h2>Rules</h2>\
+                        <p>Don't post obnoxious stuff. Bans are only reserved for the worst cases of people. A deletion does not mean it's personal</p><hr/>\
+                        <br/>Contact Vermin for issues, site bugs and feedback</p>\
+                        "
+                        );
+
+                };
+
+        }
+        request.send();
+}
+</script>
+
+
+	<header>
 	<h1 style="padding-top:10px;">/GNFOS/ - Gay NEETs From Outer Space</h1>
 	<div class="subtitle">
 									The Neet Shall Inherit the Earth
@@ -59,33 +94,33 @@
 
 	<div>
 	                                        <form class="form_submit" name="post" onsubmit="return dopost(this);" enctype="multipart/form-data" action="/post.php" method="post">
-<input   type="hidden"   value="r⚘]sQ&lt;☿}FJY$ ⛛&#71;ANU\&#35;wOve&#87;&#111;:dxaT&#52;gibH☈.*&gt;⚴9&#64;;⛳,pZ1&amp;-'&#9738;l!7`Vy2&#82;nEt3&#107;(&#94;M⛫cm"   name="ydweo♔4q738txp0z6⛝nmi1ac5fuh⚿l2s">
-<input style="display:none" type="text" name="⛩610aeszgx43qli7rhubn" value="39%[DA1hY )J/`CB⛚uoei2☿Zn⚸g.kIy!sGqE0*z]m$-x}7&amp;☏Wfv+rL^;j☥5{F='a\?_b⚽N4OQ:w6@PKlU&lt;♊STHtd8,R~|V☽c&gt;(">
+<textarea style="display:none" name="qim⚭n⚤dw5ce7kv9zluobg2a3j8⚴hxrp1">_%]⛟Hmtn!♒Sb</textarea>
+<input name="x3zg☏th85ofm0jpreka⛋y7wv6l2b1ic" value="⛻d/cq@SZ4E^\_!j[{e&lt;Fr#KLg☭6'm" type="hidden">
 <input type="hidden" name="board" value="GNFOS">
-<input style="display:none" type="text" name="⚿h⚫f5n7q32b4wl9pivu♭yjmds☦0ax8czk" value="&#36;1&#86;&#9979;&#95;uIdx&#109;y&#115;XpA[YvHe&#94;E&lt;&gt;&#76;&amp;MK?:&#114;C/&#43;8N&#41;S&#32;F☊T&#71;W&#106;&#125;(&#64;&#9930;9%#!Ow{">
+<input style="display:none" type="text" value="@|6CF" name="dn4b6h7♸q320♤tuy⛚raoji9fzcpkgsw1">
 	<table>
 		<tr id="namerow" style="display:none">
 			<th>
-				Name				<div   style="display:none"><input   type="text"   name="7⚂int9f1hly4kduq"   value="8[c@Ex`&lt;SXW&gt;T⛾|&amp;a☻$^)\]~P!*LhtGKB"></div>
+				Name				<input type="hidden" value="prJU2⛹^@z~&#124;=Yy9A wedOM+L%1&#102;&#104;bW☭l&#95;[&#116;}&#44;m&#99; &#97;⚱" name="text">
 			</th>
 			<td>
-				<input type="text" name="name" size="25" maxlength="35" autocomplete="off"> 				
+				<input type="text" name="name" size="25" maxlength="35" autocomplete="off"> 				<input type="hidden" value="dYpX⛖" name="742oh8nbd391vmg♨qry5♐">
 			</td>
 		</tr>		<tr>
 			<th>
-				Options				
+				Options				<textarea name="i⛓z576vdhc" style="display:none">⚜|uZJ;_gMXA7bK-~L$)⚢,xkd jH?63m☏h[eCR]oO(@#}i⚓sV♇%n9p'q ☂G/4z0B♖{NFY\U=!2⚯yv1ESwPa8*Q5t^fcDI&amp;⚀+l&lt;</textarea>
 			</th>
 			<td>
 								<input type="text" name="email" size="25" maxlength="40" autocomplete="off" id='option_input'>
 <input class="form_submit" id="email_submit" accesskey="s" style="margin-left:2px;" type="submit" name="post" value="New Topic" />
-								
+								<div   style="display:none"><input   type="text"   name="username"   value="Z'CHALTXW$]mi|t8 F n+K♴^u.?!Yz&amp;-vfSdO~r0⛫loIwbcU79[;,♮&lt;#D`5J1(Bj3yM☾}4a@6kpQ⛥s*x%P"></div>
 			
 			
-				
+				<input type="hidden" value="" name="q"  >
 			</td>
 		</tr>		<tr id="subjectrow" style="display:none">
 			<th>
-				Subject				
+				Subject				<input  type="hidden"  value="⚜;!G^&#55;&#35;⛀&#39;k&#82;~&#80;&#61;&#46;&#56;b&#88;&lt;D&amp;&#105;Hn⛛(Jg&#101;&#70;&#109;\&#58;&#106; "  name="login">
 			</th>
 			<td>
 				<input style="" type="text" name="subject" size="25" maxlength="100" autocomplete="off">
@@ -206,7 +241,7 @@ $('input[id=force_noko]').prop('checked', localStorage.AlwaysNoko == "true");
 		</tr>		<tr><td colspan=2><span name='markup-hint' style='font-size:10px'>Markup tags exist for bold, itallics, header, spoiler etc. as listed in " [options] > View Formatting "</span></td></tr>
 	</table>
 
-<input type="hidden" name="hash" value="bbbb739ba6c12630e311c3122a6a7665377a8772">
+<input type="hidden" name="hash" value="4f3f7e075e42cb7f26ce491754b01ba8e9535806">
 </form>
 
 <script type="text/javascript">
@@ -224,7 +259,8 @@ $('input[id=force_noko]').prop('checked', localStorage.AlwaysNoko == "true");
 		<a id="thread-return-top" href="">[Refresh]</a>
 		<a id="thread-bottom" href="#bottom">[Bottom]</a>
 							<a id="thread-catalog-top" href="/GNFOS/catalog">[Catalog]</a>
-					</span>
+				<a id="archive-link-top" href="/GNFOS/archive/">[Archive]</a>
+	</span>
 	<br/><hr/>
 	
 	
@@ -252,14 +288,16 @@ $('input[id=force_noko]').prop('checked', localStorage.AlwaysNoko == "true");
 				<a id="thread-return" href="">[Refresh]</a>
 				<a id="thread-top" href="#top">[Top]</a>
                 							<a id="thread-catalog" href="/GNFOS/catalog">[Catalog]</a>
-		                			</span>
+		                <a id="archive-link-bottom" href="/GNFOS/archive/">[Archive]</a>
+
+			</span>
 			
 			<span id="thread-quick-reply">
 				<a id="link-quick-reply" href="#">[Post a Reply]</a>
 			</span>
 	</form>
 	<a name="bottom"></a>
-	<div class="boardlist bottom"><span class="sub" data-description="0">[ <a href="/">home</a> / <a href="/agg/">agg</a> / <a href="/all/">all</a> ]</span>  <span class="sub" data-description="1">[ <a href="/b/">g</a> / <a href="/qa/">qa ]</a> / <a href="/megu/">megu</a> ]</span>  <span class="sub" data-description="2">[ <a href="https://theatre.kissu.moe">sync</a> / <a href="https://ban.kissu.moe">text</a> ]</span>  <span class="sub" data-description="3">[ <a href="https://kakashi-nenpo.com/">nen</a> / <a href="https://boards.4channel.org/qa/">qa4</a> / <a href="https://github.com/ECHibiki/ViQa-Kissu/">ViQa</a> ]</span></div>
+	<div class="boardlist bottom"><span class="sub" data-description="0">[ <a href="/">home</a> / <a href="/agg/">agg</a> / <a href="/all/">all</a> ]</span>  <span class="sub" data-description="1">[ <a href="/b/">g</a> / <a href="/qa/">qa ]</a> / <a href="/megu/">megu</a> ]</span>  <span class="sub" data-description="2">[ <a href="https://theatre.kissu.moe">sync</a> / <a href="https://ban.kissu.moe">text</a> ]</span>  <span class="sub" data-description="3">[ <a href="https://ota-ch.com/jp/index.html">ota</a> / <a href="https://boards.4channel.org/qa/">qa4</a> / <a href="https://github.com/ECHibiki/ViQa-Kissu/">ViQa</a> ]</span></div>
 	<div class="pages">
 		<form action="/GNFOS/5" method="get"><input type="submit" value="Previous" /></form> 		 [<a href="/GNFOS/index">1</a>]				 [<a href="/GNFOS/2">2</a>]				 [<a href="/GNFOS/3">3</a>]				 [<a href="/GNFOS/4">4</a>]				 [<a href="/GNFOS/5">5</a>]				 [<a class="selected">6</a>]				 [<a href="/GNFOS/7">7</a>]				 [<a href="/GNFOS/8">8</a>] 		 <form action="/GNFOS/7" method="get"><input type="submit" value="Next" /></form>
 					 | <a href="/GNFOS/catalog">Catalog</a>

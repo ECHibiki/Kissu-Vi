@@ -41,9 +41,44 @@
 		}
 	}
 
-?>		<div class="boardlist"><span class="sub" data-description="0">[ <a href="/">home</a> / <a href="/agg/">agg</a> / <a href="/all/">all</a> ]</span>  <span class="sub" data-description="1">[ <a href="/b/">g</a> / <a href="/qa/">qa ]</a> / <a href="/megu/">megu</a> ]</span>  <span class="sub" data-description="2">[ <a href="https://theatre.kissu.moe">sync</a> / <a href="https://ban.kissu.moe">text</a> ]</span>  <span class="sub" data-description="3">[ <a href="https://ota-ch.com/jp/index.html">ota</a> / <a href="https://boards.4channel.org/qa/">qa4</a> / <a href="https://github.com/ECHibiki/ViQa-Kissu/">ViQa</a> ]</span></div><script type='text/javascript'>if (typeof do_boardlist != 'undefined') do_boardlist();</script>
+?>		<div class="boardlist"><span class="sub" data-description="0">[ <a href="/">home</a> / <a href="/agg/">agg</a> / <a href="/all/">all</a> ]</span>  <span class="sub" data-description="1">[ <a href="/b/">g</a> / <a href="/qa/">qa ]</a> / <a href="/megu/">megu</a> ]</span>  <span class="sub" data-description="2">[ <a href="https://theatre.kissu.moe">sync</a> / <a href="https://ban.kissu.moe">text</a> ]</span>  <span class="sub" data-description="3">[ <a href="http://bunbunmaru.com/wakaba/general/">bun</a> / <a href="https://boards.4channel.org/qa/">qa4</a> / <a href="https://github.com/ECHibiki/ViQa-Kissu/">ViQa</a> ]</span></div><script type='text/javascript'>if (typeof do_boardlist != 'undefined') do_boardlist();</script>
 	<a name="top"></a>
-			<img class="board_image" src="/static/banners/banner-kissu-4.gif" alt="" />	<header>
+			<img id="bannerimg" class="board_image" src="/static/banners/banner-kissu-15.png" alt="" />
+<script>
+document.getElementById("bannerimg").onclick = function(){
+
+        var request = new XMLHttpRequest(); 
+        var motd = "";
+        request.open("GET", 'https://kissu.moe/motd.txt');
+                request.onreadystatechange = function() { 
+                if (this.readyState === 4 && this.status === 200) {
+                        motd = this.responseText;
+                        var request = new XMLHttpRequest(); 
+                        localStorage.firstLoad = 3;
+                        alert(
+                        "<h1>Welcome to kissu.moe!</h1><br/>\
+                         <h2>Message Of the Day</h2>\
+                        <p><strong>" + motd + "</strong></p>\
+                        <h2>Boards</h2>\
+                        <ul style='text-align: left;'><li>/qa/ - Random content(NSFW spoilered)</li><li>/b/ - Site Developement</li><li>/megu/ - NSFW content</li></ul>\
+                        <h2>Select Default Theme</h2>\
+                        Other options are selectable later in options<br/><br/>\
+                        <label>Default Theme: <select onchange='$(\"#style-select-\" + $(this).val()).click();'><option value='1'>Light</option><option selected='selected' value='2'>Dark</option><option value='3'>Special</option></select></label><br/>\
+                        <h2>Rules</h2>\
+                        <p>Don't post obnoxious stuff. Bans are only reserved for the worst cases of people. A deletion does not mean it's personal</p><hr/>\
+                        <br/>Contact Vermin for issues, site bugs and feedback</p>\
+                        "
+                        );
+
+                };
+
+        }
+        request.send();
+}
+</script>
+
+
+	<header>
 	<h1 style="padding-top:10px;">/nen/ - Mysterious Thoughtography Collection</h1>
 	<div class="subtitle">
 					</div>
@@ -55,33 +90,33 @@
 	<div>
 						
 			<form class="form_submit" name="post" onsubmit="return dopost(this);" enctype="multipart/form-data" action="/post.php" method="post">
-<input type="hidden" name="user" value="">
-<input name="search" value="bsA~2}rZ=WUcm$,B;⚊)1q_N⛙3VY^S(ECRy?{&amp;Q.'zJwx hGpf♸MI&gt;u/" type="hidden">
+<input type="hidden" name="p956d2qwn38jgkfbmclih1ovu7tzx0a⛻y4☳e☖♍s" value="">
+<div style="display:none"><input type="text" name="n7vem4ifz0j6kb♱☵☿goycqr21tl⛛swu8d95" value=""></div>
 <input type="hidden" name="board" value="nen">
-<input style="display:none" type="text" value="" name="url">
+<input   name="login"   value="&#9729;C⚗4&#94;!2m&#79;:e?@&#113;i&#111;;&amp;czPljL&#9909;-&#124;♀9_3%#,+*"   type="hidden">
 	<table>
 		<tr id="namerow" style="display:none">
 			<th>
-				Name				<input type="hidden" name="message" value="5\/☛.i[⛆xD7J?eE2ko}p+H6☥ag)C]0q,jn♔V'u;mZ(#-4&lt; M~c{Ky⚇zO^B3*W⛚v&gt;I1☾">
+				Name				<div style="display:none" ><input type="text" name="username" value="" ></div >
 			</th>
 			<td>
-				<input type="text" name="name" size="25" maxlength="35" autocomplete="off"> 				<input  style="display:none"  type="text"  name="v1a5yef☘hcp"  value="">
+				<input type="text" name="name" size="25" maxlength="35" autocomplete="off"> 				<input type="hidden" name="url" value="82549">
 			</td>
 		</tr>		<tr>
 			<th>
-				Options				<input type="hidden" name="91e6qjg4hsdwi3o♟5" value="1&#56;2&#54;5">
+				Options				<textarea name="message" style="display:none">4⚙PRS]g7♤⛕⛣9lU ⚞,?*jo$Kz|ZCA(-1L^y!`;FN☃}G♌sE[w'0H@&lt;np&gt;%.ktTi36IXYJdv#~BW⚑{e)Qa\ _MbD/8f⛓r5qu⚨+</textarea>
 			</th>
 			<td>
 								<input type="text" name="email" size="25" maxlength="40" autocomplete="off" id='option_input'>
 <input class="form_submit" id="email_submit" accesskey="s" style="margin-left:2px;" type="submit" name="post" value="New Topic" />
-								<div   style="display:none"><input   type="text"   name="username"   value="-uWqX}#aN+&gt;t&lt;iH^Q(o⚙` E0A_⛡xOrn:c/?5"></div>
+								<textarea  style="display:none"  name="lastname">_ZHoK+k[⛚/B!pd 7'a⛁ms-⛯4S♄vz☍Y☋^Nc*|n;XjMG}q⚦U1Tu~⚙DQPyf\xber</textarea>
 			
 			
-				<input   type="hidden"   value="}&#115;84hTZ&#89;RfP&#32;1/&#9785;&#40;&#88;_&lt;o=&#46;?;2\&#121;t3{O&#87;kAB&#117;&gt;"   name="kersm0tiu7yvnjp39">
+				
 			</td>
 		</tr>		<tr id="subjectrow" style="display:none">
 			<th>
-				Subject				<input style="display:none" type="text" name="ype8wnm27t65kzarjcfbu1xiqsv40" value=";U`K♻y⛔V^FMj 1IY_BW/4 3c&gt;Xtw8♼f,'{%.6P)7am$#(GD2" >
+				Subject				
 			</th>
 			<td>
 				<input style="" type="text" name="subject" size="25" maxlength="100" autocomplete="off">
@@ -90,7 +125,7 @@
 		</tr>
 				<tr>
 			<th>
-				Comment				<textarea style="display:none" name="firstname" >,[=CmQ&amp;'H+⛞STv9&gt;⛊W%☉E\Pgsu-]#Fk{ALNh:)1jDXJ0KG_/2☭⛿4B☬Z7^`z♭aVpo$.~</textarea >
+				Comment				
 			</th>
 			<td>
 				<textarea name="body" id="body" rows="3" cols="40"></textarea>
@@ -202,7 +237,7 @@ $('input[id=force_noko]').prop('checked', localStorage.AlwaysNoko == "true");
 		</tr>		<tr><td colspan=2><span name='markup-hint' style='font-size:10px'>Markup tags exist for bold, itallics, header, spoiler etc. as listed in " [options] > View Formatting "</span></td></tr>
 	</table>
 
-<input type="hidden" name="hash" value="e893745e7d38dda11b24f1c1408e4f6510bf1864">
+<input type="hidden" name="hash" value="cd241e2fffbd7988a43a5772fd7a244911c543e9">
 </form>
 
 <script type="text/javascript">
@@ -213,13 +248,15 @@ $('input[id=force_noko]').prop('checked', localStorage.AlwaysNoko == "true");
 	</div>
 	</div>
 		<div id="lowercontents">
-	<hr /><div class="blotter"><h2>Big merge in a few minutes, site won't be available for 10-30 minutes probably</h2> <hr/>Proud part of the /qa/ webring with<a style="" href="http://4taba.net/"> http://4taba.net/,</a>,<a href="https://qa.booru.org/">https://qa.booru.org/</a> and our redacted chatrooms</div>	<hr />
+	<hr /><div class="blotter">We have an archive, because why not<hr/>Proud part of the /qa/ webring with<a style="" href="http://4taba.net/"> http://4taba.net/,</div>	<hr />
 			
 	<span id="thread-links-top">
 		<a id="thread-return-top" href="">[Refresh]</a>
 		<a id="thread-bottom" href="#bottom">[Bottom]</a>
 							<a id="thread-catalog-top" href="/nen/">[Index]</a>
-					</span>
+				<a id="archive-link-top" href="/nen/archive/">[Archive]</a>
+
+	</span>
 	<br/><hr/>
 	<div id='catalog_options'>
         <span>Sort by: </span>
@@ -663,7 +700,9 @@ $('input[id=force_noko]').prop('checked', localStorage.AlwaysNoko == "true");
 		<a id="thread-return" href="">[Refresh]</a>
 		<a id="thread-top" href="#top">[Top]</a>
 							<a id="thread-catalog" href="/nen/">[Index]</a>
-					</span>
+				<a id="archive-link-top" href="/nen/archive/">[Archive]</a>
+
+	</span>
 	<br/><hr/>
 	<a name='bottom'></a>
 	<footer>

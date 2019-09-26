@@ -6,7 +6,6 @@ onready(function(){
 		request.onreadystatechange = function() { 
 		if (this.readyState === 4 && this.status === 200) {
 			motd = this.responseText;
-			console.log(motd);
 			var request = new XMLHttpRequest(); 
 			if(typeof localStorage.firstLoad == "undefined" || localStorage.firstLoad != 3){
 			localStorage.firstLoad = 3;
