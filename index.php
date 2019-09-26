@@ -38,13 +38,13 @@
 		}
 	}
 
-?><div class="boardlist"><span class="sub" data-description="0">[ <a href="/">home</a> / <a href="/agg/">agg</a> / <a href="/all/">all</a> ]</span>  <span class="sub" data-description="1">[ <a href="/b/">g</a> / <a href="/qa/">qa ]</a> / <a href="/megu/">megu</a> ]</span>  <span class="sub" data-description="2">[ <a href="https://theatre.kissu.moe">sync</a> / <a href="https://ban.kissu.moe">text</a> ]</span>  <span class="sub" data-description="3">[ <a href="http://what-ch.mooo.com/what/">what</a> / <a href="https://boards.4channel.org/qa/">qa4</a> / <a href="https://github.com/ECHibiki/ViQa-Kissu/">ViQa</a> ]</span></div><script type='text/javascript'>if (typeof do_boardlist != 'undefined') do_boardlist();</script>
+?><div class="boardlist"><span class="sub" data-description="0">[ <a href="/">home</a> / <a href="/agg/">agg</a> / <a href="/all/">all</a> ]</span>  <span class="sub" data-description="1">[ <a href="/b/">g</a> / <a href="/qa/">qa ]</a> / <a href="/megu/">megu</a> ]</span>  <span class="sub" data-description="2">[ <a href="https://theatre.kissu.moe">sync</a> / <a href="https://ban.kissu.moe">text</a> ]</span>  <span class="sub" data-description="3">[ <a href="https://ota-ch.com/jp/index.html">ota</a> / <a href="https://boards.4channel.org/qa/">qa4</a> / <a href="https://github.com/ECHibiki/ViQa-Kissu/">ViQa</a> ]</span></div><script type='text/javascript'>if (typeof do_boardlist != 'undefined') do_boardlist();</script>
 	<header>
 	    <img class="icon" src="../static/kissu-card.png">
 		<h1>Kissu.moe</h1>
 		<div class="subtitle">100% Fun!</div>
 	</header>
-	<img class="board_image" src="/static/banners/banner-kissu-21.jpg" alt="" />	
+	<img class="board_image" src="/static/banners/banner-kissu-17.png" alt="" />	
 	<div class="box-wrap">
 	    <!--<fieldset>
 		<legend>Boards</legend>
@@ -101,6 +101,16 @@
 	    <h1>Recent Images</h1>
 		<div class="box image">
 			<ul>
+									<li>
+						<a href="/qa/res/10558#10646">
+							<img src="/qa/thumb/1569516108612.png" style="width:175px;height:140px" alt="">
+						</a>
+					</li>
+									<li>
+						<a href="/qa/res/10645#10645">
+							<img src="/qa/thumb/1569516077323.png" style="width:180px;height:255px" alt="">
+						</a>
+					</li>
 									<li>
 						<a href="/qa/res/9599#10641">
 							<img src="/qa/thumb/1569513089666.png" style="width:175px;height:98px" alt="">
@@ -166,21 +176,35 @@
 							<img src="/b/thumb/1569481444254.png" style="width:255px;height:128px" alt="">
 						</a>
 					</li>
-									<li>
-						<a href="/qa/res/10612#10616">
-							<img src="/qa/thumb/1569480288122.png" style="width:175px;height:96px" alt="">
-						</a>
-					</li>
-									<li>
-						<a href="/qa/res/10612#10615">
-							<img src="/qa/thumb/1569479435115.png" style="width:175px;height:112px" alt="">
-						</a>
-					</li>
 							</ul>
 		</div>
 		<div class="mainBox">
 			<h2>Latest Posts</h2>
 			<ul>
+									<li>
+						<strong>/qa/</strong>: 
+						<a href="/qa/res/10098#10647">
+							<em>Why are the boards on this sit&hellip;</em>
+						</a>
+					</li>
+									<li>
+						<strong>/megu/</strong>: 
+						<a href="/megu/res/946#954">
+							<em>time for cummies</em>
+						</a>
+					</li>
+									<li>
+						<strong>/qa/</strong>: 
+						<a href="/qa/res/10558#10646">
+							<em>You must recognize and embrace&hellip;</em>
+						</a>
+					</li>
+									<li>
+						<strong>/qa/</strong>: 
+						<a href="/qa/res/10645#10645">
+							<em>Shimakaze makes me angry to lo&hellip;</em>
+						</a>
+					</li>
 									<li>
 						<strong>/megu/</strong>: 
 						<a href="/megu/res/946#953">
@@ -337,30 +361,6 @@
 							<em>y'know what  im gonna start ov&hellip;</em>
 						</a>
 					</li>
-									<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/10533#10625">
-							<em>&gt;&gt;10547  One extreme example f&hellip;</em>
-						</a>
-					</li>
-									<li>
-						<strong>/megu/</strong>: 
-						<a href="/megu/res/948#949">
-							<em>want to breed that fox so hard</em>
-						</a>
-					</li>
-									<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/10269#10623">
-							<em>yes, they are extremely import&hellip;</em>
-						</a>
-					</li>
-									<li>
-						<strong>/megu/</strong>: 
-						<a href="/megu/res/948#948">
-							<em>kemono test</em>
-						</a>
-					</li>
 							</ul>
 		</div>
 		<div class="mainBox">
@@ -404,9 +404,9 @@
 		<div class="mainBox">
 			<h2>Stats</h2>
 			<ul>
-				<li>Total posts: 13,535</li>
-				<li>Unique posters: 411</li>
-				<li>Active content: 5.72 GB</li>
+				<li>Total posts: 13,539</li>
+				<li>Unique posters: 410</li>
+				<li>Active content: 5.73 GB</li>
 			</ul>
 		</div>
 	</div>
