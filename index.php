@@ -38,7 +38,7 @@
 		}
 	}
 
-?><div class="boardlist"><span class="sub" data-description="0">[ <a href="/">home</a> / <a href="/agg/">agg</a> / <a href="/all/">all</a> ]</span>  <span class="sub" data-description="1">[ <a href="/b/">g</a> / <a href="/qa/">qa ]</a> / <a href="/megu/">megu</a> ]</span>  <span class="sub" data-description="2">[ <a href="https://theatre.kissu.moe">sync</a> / <a href="https://ban.kissu.moe">text</a> ]</span>  <span class="sub" data-description="3">[ <a href="http://what-ch.mooo.com/what/">what</a> / <a href="https://boards.4channel.org/qa/">qa4</a> / <a href="https://github.com/ECHibiki/ViQa-Kissu/">ViQa</a> ]</span></div><script type='text/javascript'>if (typeof do_boardlist != 'undefined') do_boardlist();</script>
+?><div class="boardlist"><span class="sub" data-description="0">[ <a href="/">home</a> / <a href="/agg/">agg</a> / <a href="/all/">all</a> ]</span>  <span class="sub" data-description="1">[ <a href="/b/">g</a> / <a href="/qa/">qa ]</a> / <a href="/megu/">megu</a> ]</span>  <span class="sub" data-description="2">[ <a href="https://theatre.kissu.moe">sync</a> / <a href="https://ban.kissu.moe">text</a> ]</span>  <span class="sub" data-description="3">[ <a href="https://ota-ch.com/jp/index.html">ota</a> / <a href="https://boards.4channel.org/qa/">qa4</a> / <a href="https://github.com/ECHibiki/ViQa-Kissu/">ViQa</a> ]</span></div><script type='text/javascript'>if (typeof do_boardlist != 'undefined') do_boardlist();</script>
 	<header>
 	    <img class="icon" src="../static/kissu-card.png">
 		<h1>Kissu.moe</h1>
@@ -102,73 +102,78 @@
 		<div class="box image">
 			<ul>
 									<li>
-						<a href="/qa/res/10454#10454">
-							<img src="/qa/thumb/1569368507689.png" style="width:255px;height:79px" alt="">
+						<a href="/qa/res/10622#10622">
+							<img src="/qa/thumb/1569485670573.png" style="width:204px;height:255px" alt="">
 						</a>
 					</li>
 									<li>
-						<a href="/qa/res/10452#10452">
-							<img src="/qa/thumb/1569355475604.png" style="width:204px;height:255px" alt="">
+						<a href="/qa/res/10621#10621">
+							<img src="/qa/thumb/1569484098775.png" style="width:204px;height:255px" alt="">
 						</a>
 					</li>
 									<li>
-						<a href="/qa/res/10325#10450">
-							<img src="/qa/thumb/1569350686454.png" style="width:125px;height:175px" alt="">
+						<a href="/qa/res/10620#10620">
+							<img src="/qa/thumb/1569482558718.png" style="width:204px;height:255px" alt="">
 						</a>
 					</li>
 									<li>
-						<a href="/qa/res/10325#10449">
-							<img src="/qa/thumb/1569348184206.png" style="width:175px;height:124px" alt="">
+						<a href="/qa/res/10619#10619">
+							<img src="/qa/thumb/1569482444690.png" style="width:204px;height:255px" alt="">
 						</a>
 					</li>
 									<li>
-						<a href="/b/res/1821#1823">
-							<img src="/b/thumb/1569347556054.png" style="width:175px;height:147px" alt="">
+						<a href="/qa/res/10618#10618">
+							<img src="/qa/thumb/1569482378047.png" style="width:204px;height:255px" alt="">
 						</a>
 					</li>
 									<li>
-						<a href="/b/res/1821#1821">
-							<img src="/b/thumb/1569347315400.png" style="width:255px;height:214px" alt="">
+						<a href="/qa/res/10617#10617">
+							<img src="/qa/thumb/1569482234380.png" style="width:204px;height:255px" alt="">
 						</a>
 					</li>
 									<li>
-						<a href="/qa/res/10364#10439">
-							<img src="/qa/thumb/1569343284820.jpg" style="width:175px;height:131px" alt="">
+						<a href="/qa/res/10616#10616">
+							<img src="/qa/thumb/1569482184890.png" style="width:204px;height:255px" alt="">
 						</a>
 					</li>
 									<li>
-						<a href="/qa/res/10431#10438">
-							<img src="/qa/thumb/1569343279213.png" style="width:124px;height:175px" alt="">
+						<a href="/qa/res/10615#10615">
+							<img src="/qa/thumb/1569481705424.png" style="width:204px;height:255px" alt="">
 						</a>
 					</li>
 									<li>
-						<a href="/qa/res/10431#10431">
-							<img src="/qa/thumb/1569341401727.png" style="width:219px;height:255px" alt="">
+						<a href="/qa/res/10614#10614">
+							<img src="/qa/thumb/1569481458993.png" style="width:204px;height:255px" alt="">
 						</a>
 					</li>
 									<li>
-						<a href="/qa/res/8669#10429">
-							<img src="/qa/thumb/1569336466873.png" style="width:175px;height:151px" alt="">
+						<a href="/qa/res/10613#10613">
+							<img src="/qa/thumb/1569481173966.png" style="width:204px;height:255px" alt="">
 						</a>
 					</li>
 									<li>
-						<a href="/qa/res/10182#10426">
-							<img src="/qa/thumb/1569315357092.png" style="width:175px;height:98px" alt="">
+						<a href="/qa/res/10612#10612">
+							<img src="/qa/thumb/1569480841993.png" style="width:204px;height:255px" alt="">
 						</a>
 					</li>
 									<li>
-						<a href="/qa/res/8669#10424">
-							<img src="/qa/thumb/1569311977798.png" style="width:175px;height:138px" alt="">
+						<a href="/qa/res/10608#10609">
+							<img src="/qa/thumb/1569472216950.jpg" style="width:175px;height:98px" alt="">
 						</a>
 					</li>
 									<li>
-						<a href="/qa/res/10221#10420">
-							<img src="/qa/thumb/1569305075970.png" style="width:175px;height:124px" alt="">
+						<a href="/qa/res/10608#10608">
+							<img src="/qa/thumb/1569470972556.png" style="width:128px;height:255px" alt="">
 						</a>
 					</li>
 									<li>
-						<a href="/qa/res/10411#10414">
-							<img src="/qa/thumb/1569302457155.png" style="width:175px;height:98px" alt="">
+						<a href="/qa/res/10565#10605">
+							<img src="/qa/thumb/1569465280595.png" style="width:163px;height:175px" alt="">
+						</a>
+					</li>
+									<li>
+						<a href="/qa/res/10533#10602">
+							<img src="/qa/thumb/1569463819038.png" style="width:175px;height:154px" alt="">
 						</a>
 					</li>
 							</ul>
@@ -178,182 +183,182 @@
 			<ul>
 									<li>
 						<strong>/qa/</strong>: 
-						<a href="/qa/res/10454#10454">
-							<em>yrdy</em>
+						<a href="/qa/res/10622#10622">
+							<em>sdf</em>
 						</a>
 					</li>
 									<li>
 						<strong>/qa/</strong>: 
-						<a href="/qa/res/10452#10453">
-							<em>Stupid as it is, yes. I make t&hellip;</em>
+						<a href="/qa/res/10621#10621">
+							<em>asdasd</em>
 						</a>
 					</li>
 									<li>
 						<strong>/qa/</strong>: 
-						<a href="/qa/res/10452#10452">
-							<em>do you ever have trouble diffe&hellip;</em>
+						<a href="/qa/res/10620#10620">
+							<em>yrasdzzzzzzxc</em>
 						</a>
 					</li>
 									<li>
 						<strong>/qa/</strong>: 
-						<a href="/qa/res/10364#10451">
-							<em>&gt;&gt;10439  Aside from laziness, &hellip;</em>
+						<a href="/qa/res/10619#10619">
+							<em>asdasd</em>
 						</a>
 					</li>
 									<li>
 						<strong>/qa/</strong>: 
-						<a href="/qa/res/10325#10450">
-							<em>glad summer is over, worst sea&hellip;</em>
+						<a href="/qa/res/10618#10618">
+							<em>yrasdzzzzzzx</em>
 						</a>
 					</li>
 									<li>
 						<strong>/qa/</strong>: 
-						<a href="/qa/res/10325#10449">
-							<em>Can't wait to be able to wrap &hellip;</em>
-						</a>
-					</li>
-									<li>
-						<strong>/b/</strong>: 
-						<a href="/b/res/1821#1823">
-							<em>(no comment)</em>
-						</a>
-					</li>
-									<li>
-						<strong>/b/</strong>: 
-						<a href="/b/res/1821#1821">
-							<em>some sketchups for index</em>
+						<a href="/qa/res/10617#10617">
+							<em>yrasdzzzzzz</em>
 						</a>
 					</li>
 									<li>
 						<strong>/qa/</strong>: 
-						<a href="/qa/res/10415#10448">
-							<em>♂</em>
+						<a href="/qa/res/10616#10616">
+							<em>yrasdzzzzz</em>
 						</a>
 					</li>
 									<li>
 						<strong>/qa/</strong>: 
-						<a href="/qa/res/10364#10442">
-							<em>&gt;&gt;10441  nice caps nerd</em>
+						<a href="/qa/res/10615#10615">
+							<em>yrasdzzz</em>
 						</a>
 					</li>
 									<li>
 						<strong>/qa/</strong>: 
-						<a href="/qa/res/10364#10441">
-							<em>&gt;&gt;10439  NO DON'T POINT OUT TH&hellip;</em>
+						<a href="/qa/res/10614#10614">
+							<em>yrasdz</em>
 						</a>
 					</li>
 									<li>
 						<strong>/qa/</strong>: 
-						<a href="/qa/res/10364#10439">
-							<em>Can't believe futaba allows we&hellip;</em>
+						<a href="/qa/res/10613#10613">
+							<em>yrasd</em>
 						</a>
 					</li>
 									<li>
 						<strong>/qa/</strong>: 
-						<a href="/qa/res/10431#10438">
-							<em>fills my heart with a nice war&hellip;</em>
+						<a href="/qa/res/10612#10612">
+							<em>yr</em>
 						</a>
 					</li>
 									<li>
 						<strong>/qa/</strong>: 
-						<a href="/qa/res/7211#10435">
-							<em>(no comment)</em>
+						<a href="/qa/res/10608#10611">
+							<em>have a sort of retard moe feel&hellip;</em>
 						</a>
 					</li>
 									<li>
 						<strong>/qa/</strong>: 
-						<a href="/qa/res/10431#10434">
-							<em>because it's a medium that len&hellip;</em>
+						<a href="/qa/res/10533#10610">
+							<em>Escaflowne and Trinity Seven. &hellip;</em>
 						</a>
 					</li>
 									<li>
 						<strong>/qa/</strong>: 
-						<a href="/qa/res/7211#10432">
-							<em>can't go wrong with some good &hellip;</em>
+						<a href="/qa/res/10608#10609">
+							<em>Normally I don't notice them, &hellip;</em>
 						</a>
 					</li>
 									<li>
 						<strong>/qa/</strong>: 
-						<a href="/qa/res/10431#10431">
-							<em>Why do you watch anime</em>
-						</a>
-					</li>
-									<li>
-						<strong>/b/</strong>: 
-						<a href="/b/res/1415#1820">
-							<em>something in between of the la&hellip;</em>
+						<a href="/qa/res/10608#10608">
+							<em>What are your feelings about t&hellip;</em>
 						</a>
 					</li>
 									<li>
 						<strong>/qa/</strong>: 
-						<a href="/qa/res/8669#10430">
-							<em>Same</em>
+						<a href="/qa/res/10533#10607">
+							<em>The Noein OST is criminally un&hellip;</em>
 						</a>
 					</li>
 									<li>
 						<strong>/qa/</strong>: 
-						<a href="/qa/res/8669#10429">
-							<em>just awoke</em>
+						<a href="/qa/res/10533#10606">
+							<em>&gt;&gt;10602  I wonder if it's just&hellip;</em>
 						</a>
 					</li>
 									<li>
 						<strong>/qa/</strong>: 
-						<a href="/qa/res/10182#10428">
-							<em>&gt;&gt;10294  I've never managed to&hellip;</em>
+						<a href="/qa/res/10565#10605">
+							<em>&gt;&gt;10604  you're just not livin&hellip;</em>
 						</a>
 					</li>
 									<li>
 						<strong>/qa/</strong>: 
-						<a href="/qa/res/10182#10427">
-							<em>&gt;&gt;10426  i'm on alexina. they &hellip;</em>
+						<a href="/qa/res/10565#10604">
+							<em>&gt;&gt;10565  Sure. They're too big&hellip;</em>
 						</a>
 					</li>
 									<li>
 						<strong>/qa/</strong>: 
-						<a href="/qa/res/10182#10426">
-							<em>&gt;&gt;10191  What server? Was ther&hellip;</em>
+						<a href="/qa/res/10598#10603">
+							<em>brushie brushie brushie</em>
 						</a>
 					</li>
 									<li>
 						<strong>/qa/</strong>: 
-						<a href="/qa/res/10407#10425">
-							<em>I guess it's similar to how th&hellip;</em>
+						<a href="/qa/res/10533#10602">
+							<em>The Rozen Maiden OST is amazin&hellip;</em>
 						</a>
 					</li>
 									<li>
 						<strong>/qa/</strong>: 
-						<a href="/qa/res/8669#10424">
-							<em>time to sleep</em>
+						<a href="/qa/res/10533#10601">
+							<em>For me, it's the Berserk OST.</em>
 						</a>
 					</li>
 									<li>
 						<strong>/qa/</strong>: 
-						<a href="/qa/res/8837#10423">
-							<em>so tired  kill me</em>
+						<a href="/qa/res/10598#10600">
+							<em>&gt;&gt;10598  Thanks for the remind&hellip;</em>
 						</a>
 					</li>
 									<li>
 						<strong>/qa/</strong>: 
-						<a href="/qa/res/10064#10422">
-							<em>&gt;&gt;10419  Oh, and Vinland is pr&hellip;</em>
+						<a href="/qa/res/10431#10599">
+							<em>I would like to draw and anima&hellip;</em>
 						</a>
 					</li>
 									<li>
 						<strong>/qa/</strong>: 
-						<a href="/qa/res/10415#10421">
-							<em>where's the flash support..</em>
+						<a href="/qa/res/10598#10598">
+							<em>brush teeth</em>
 						</a>
 					</li>
 									<li>
 						<strong>/qa/</strong>: 
-						<a href="/qa/res/10221#10420">
-							<em>&gt;&gt;10418  Think of how many men&hellip;</em>
+						<a href="/qa/res/10564#10597">
+							<em>&gt;&gt;10595  just click the link a&hellip;</em>
 						</a>
 					</li>
 									<li>
 						<strong>/qa/</strong>: 
-						<a href="/qa/res/10064#10419">
-							<em>I just watched the stuff in th&hellip;</em>
+						<a href="/qa/res/10431#10596">
+							<em>&gt;&gt;10594  I'm not sure, I think&hellip;</em>
+						</a>
+					</li>
+									<li>
+						<strong>/qa/</strong>: 
+						<a href="/qa/res/10564#10595">
+							<em>&gt;&gt;10572  i dont know how to ge&hellip;</em>
+						</a>
+					</li>
+									<li>
+						<strong>/qa/</strong>: 
+						<a href="/qa/res/10431#10594">
+							<em>&gt;&gt;10579  Is this… CG?</em>
+						</a>
+					</li>
+									<li>
+						<strong>/qa/</strong>: 
+						<a href="/qa/res/10431#10593">
+							<em>&gt;&gt;10579  nice</em>
 						</a>
 					</li>
 							</ul>
@@ -399,9 +404,9 @@
 		<div class="mainBox">
 			<h2>Stats</h2>
 			<ul>
-				<li>Total posts: 13,322</li>
-				<li>Unique posters: 399</li>
-				<li>Active content: 5.65 GB</li>
+				<li>Total posts: 13,491</li>
+				<li>Unique posters: 402</li>
+				<li>Active content: 5.67 GB</li>
 			</ul>
 		</div>
 	</div>
