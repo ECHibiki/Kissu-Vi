@@ -148,7 +148,7 @@ class Archive {
             $del_query = prepare("DELETE FROM ``votes_archive`` WHERE `board` = :board AND `thread_id` = :thread_id");
             $del_query->bindValue(':board', $board['uri']);
             $del_query->bindValue(':thread_id', $thread['id'], PDO::PARAM_INT);
-            $del_query->execute() or error(db_error($del_query));
+            //$del_query->execute() or error(db_error($del_query));
         }
 
         // Delete Archive Entries
@@ -382,9 +382,9 @@ class Archive {
 		$query->bindValue(':ip', get_ip_hash($_SERVER['REMOTE_ADDR']), PDO::PARAM_STR);
     	
         // Error if already voted
-        $query->execute() or error(db_error($query));
-	    if ($query->fetchColumn(0) != 0)
-            error($config['error']['already_voted']);
+        //$query->execute() or error(db_error($query));
+	   // if ($query->fetchColumn(0) != 0)
+           // error($config['error']['already_voted']);
         
         // Increase vote count for thread
         query(sprintf("UPDATE ``archive_%s`` SET `votes` = `votes`+1 WHERE `id` = %d", $board, (int)$thread_id)) or error(db_error());
@@ -394,7 +394,7 @@ class Archive {
 	    $query->bindValue(':board', $board, PDO::PARAM_STR);
 	    $query->bindValue(':thread_id', $thread_id, PDO::PARAM_INT);
 		$query->bindValue(':ip', get_ip_hash($_SERVER['REMOTE_ADDR']), PDO::PARAM_STR);
-        $query->execute() or error(db_error($query));
+        //$query->execute() or error(db_error($query));
 
         // Rebuild Archive Index
         self::buildArchiveIndex();
