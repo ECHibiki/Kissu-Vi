@@ -464,7 +464,7 @@ elseif (isset($_POST['post']) || $dropped_post) {
 			if ($post['sticky'] && !hasPermission($config['mod']['sticky'], $board['uri']))
 				error($config['error']['noaccess']);
 			if ($post['locked'] && !hasPermission($config['mod']['lock'], $board['uri']))
-				error($config['error']['noaccess']);
+https://www.youtube.com/watch?v=_5joTyy3CCo				error($config['error']['noaccess']);
 			if ($post['raw'] && !hasPermission($config['mod']['rawhtml'], $board['uri']))
 				error($config['error']['noaccess']);
 		}
@@ -1090,6 +1090,9 @@ elseif(isset($_POST['release'])){
 		post_laterPost($post, $thread, null, $noko, $id, $dropped_post, $pdo);
 	}
 	
+}
+elseif(isset($_POST['poll'])){
+	echo "proccess unavailable";
 }
 elseif (isset($_POST['appeal'])) {
 
