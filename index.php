@@ -44,7 +44,11 @@
 		<h1>Kissu.moe</h1>
 		<div class="subtitle">100% Fun!</div>
 	</header>
+<<<<<<< HEAD
 	<img class="board_image" src="/static/banners/banner-kissu-22.jpg" alt="" />	
+=======
+	<img class="board_image" src="/static/banners/banner-kissu-3.gif" alt="" />	
+>>>>>>> 42564f62c23903d43bf0b75ccff50e8dae898e55
 	<div class="box-wrap">
 	    <!--<fieldset>
 		<legend>Boards</legend>
@@ -107,8 +111,18 @@
 		<div class="box image">
 			<ul>
 									<li>
+<<<<<<< HEAD
 						<a href="/poll/res/1#1">
 							<img src="/poll/thumb/1569720868242.png" style="width:185px;height:255px" alt="">
+=======
+						<a href="/qa/res/10633#10633">
+							<img src="/qa/thumb/1569510835009.png" style="width:168px;height:255px" alt="">
+						</a>
+					</li>
+									<li>
+						<a href="/b/res/1827#1834">
+							<img src="/b/thumb/1569510268417.png" style="width:175px;height:82px" alt="">
+>>>>>>> 42564f62c23903d43bf0b75ccff50e8dae898e55
 						</a>
 					</li>
 									<li>
@@ -176,20 +190,71 @@
 							<img src="/qa/thumb/1569472216950.jpg" style="width:175px;height:98px" alt="">
 						</a>
 					</li>
+<<<<<<< HEAD
 									<li>
 						<a href="/qa/res/10608#10608">
 							<img src="/qa/thumb/1569470972556.png" style="width:128px;height:255px" alt="">
 						</a>
 					</li>
+=======
+>>>>>>> 42564f62c23903d43bf0b75ccff50e8dae898e55
 							</ul>
 		</div>
 		<div class="mainBox">
 			<h2>Latest Posts</h2>
 			<ul>
 									<li>
+<<<<<<< HEAD
 						<strong>/poll/</strong>: 
 						<a href="/poll/res/1#13">
 							<em>&gt;&gt;12  zxx</em>
+=======
+						<strong>/qa/</strong>: 
+						<a href="/qa/res/10627#10638">
+							<em>&gt;&gt;10631  Nope, this thread is &hellip;</em>
+						</a>
+					</li>
+									<li>
+						<strong>/qa/</strong>: 
+						<a href="/qa/res/10633#10637">
+							<em>Both are actually a subset of &hellip;</em>
+						</a>
+					</li>
+									<li>
+						<strong>/qa/</strong>: 
+						<a href="/qa/res/10612#10636">
+							<em>&gt;&gt;10618  What kind of car has &hellip;</em>
+						</a>
+					</li>
+									<li>
+						<strong>/qa/</strong>: 
+						<a href="/qa/res/10535#10635">
+							<em>&gt;&gt;10550  Even for historical a&hellip;</em>
+						</a>
+					</li>
+									<li>
+						<strong>/qa/</strong>: 
+						<a href="/qa/res/10621#10634">
+							<em>Did it work?</em>
+						</a>
+					</li>
+									<li>
+						<strong>/qa/</strong>: 
+						<a href="/qa/res/10633#10633">
+							<em>is kitsunemimi a subset of nek&hellip;</em>
+						</a>
+					</li>
+									<li>
+						<strong>/b/</strong>: 
+						<a href="/b/res/1415#1835">
+							<em>commented out some sql querrie&hellip;</em>
+						</a>
+					</li>
+									<li>
+						<strong>/megu/</strong>: 
+						<a href="/megu/res/952#952">
+							<em>don't stop the tests</em>
+>>>>>>> 42564f62c23903d43bf0b75ccff50e8dae898e55
 						</a>
 					</li>
 									<li>
@@ -324,6 +389,7 @@
 							<em>yrasdzzzzzz</em>
 						</a>
 					</li>
+<<<<<<< HEAD
 									<li>
 						<strong>/qa/</strong>: 
 						<a href="/qa/res/10616#10616">
@@ -366,6 +432,8 @@
 							<em>Escaflowne and Trinity Seven. &hellip;</em>
 						</a>
 					</li>
+=======
+>>>>>>> 42564f62c23903d43bf0b75ccff50e8dae898e55
 							</ul>
 		</div>
 		<div class="mainBox">
@@ -409,9 +477,15 @@
 		<div class="mainBox">
 			<h2>Stats</h2>
 			<ul>
+<<<<<<< HEAD
 				<li>Total posts: 13,509</li>
 				<li>Unique posters: 402</li>
 				<li>Active content: 5.67 GB</li>
+=======
+				<li>Total posts: 13,528</li>
+				<li>Unique posters: 411</li>
+				<li>Active content: 5.72 GB</li>
+>>>>>>> 42564f62c23903d43bf0b75ccff50e8dae898e55
 			</ul>
 		</div>
 	</div>

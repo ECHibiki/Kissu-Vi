@@ -19,22 +19,39 @@
 		{% if config.url_banner_list %}<img id="bannerimg" class="board_image" src="{{ random(config.url_banner_list|split(',')) }}" {% if config.banner_width or config.banner_height %}style="{% if config.banner_width %}width:{{ config.banner_width }}px{% endif %};{% if config.banner_width %}height:{{ config.banner_height }}px{% endif %}" {% endif %}alt="" />
 <script>
 document.getElementById("bannerimg").onclick = function(){
-	alert(
-	"<h1>Welcome to kissu.moe!</h1><br/>\
-        <h2>Message Of the Day</h2>\
-	<p><strong>Bored and Gay...</strong></p>\
-	<h2>Boards</h2>\
-	<ul style='text-align: left;'><li>/qa/ - Random content(NSFW spoilered)</li><li>/b/ - Site Developement</li><li>/megu/ - NSFW content</li></ul>\
-	<h2>Select Default Theme</h2>\
-	Other options are selectable later in options<br/><br/>\
-	<label>Default Theme: <select onchange='$(\"#style-select-\" + $(this).val()).click();'><option value='1'>Light</option><option selected='selected' value='2'>Dark</option><option value='3'>Special</option></select></label><br/>\
-	<h2>Rules</h2>\
-	<p>Don't post obnoxious stuff. Bans are only reserved for the worst cases of people. A deletion does not mean it's personal</p><hr/>\
-	<br/>Contact Vermin for issues, site bugs and feedback</p>\
-	"
-	);
+
+        var request = new XMLHttpRequest(); 
+        var motd = "";
+        request.open("GET", 'https://kissu.moe/motd.txt');
+                request.onreadystatechange = function() { 
+                if (this.readyState === 4 && this.status === 200) {
+                        motd = this.responseText;
+                        console.log(motd);
+                        var request = new XMLHttpRequest(); 
+                        localStorage.firstLoad = 3;
+                        alert(
+                        "<h1>Welcome to kissu.moe!</h1><br/>\
+                         <h2>Message Of the Day</h2>\
+                        <p><strong>" + motd + "</strong></p>\
+                        <h2>Boards</h2>\
+                        <ul style='text-align: left;'><li>/qa/ - Random content(NSFW spoilered)</li><li>/b/ - Site Developement</li><li>/megu/ - NSFW content</li></ul>\
+                        <h2>Select Default Theme</h2>\
+                        Other options are selectable later in options<br/><br/>\
+                        <label>Default Theme: <select onchange='$(\"#style-select-\" + $(this).val()).click();'><option value='1'>Light</option><option selected='selected' value='2'>Dark</option><option value='3'>Special</option></select></label><br/>\
+                        <h2>Rules</h2>\
+                        <p>Don't post obnoxious stuff. Bans are only reserved for the worst cases of people. A deletion does not mean it's personal</p><hr/>\
+                        <br/>Contact Vermin for issues, site bugs and feedback</p>\
+                        "
+                        );
+
+                };
+
+        }
+        request.send();
 }
 </script>
+
+
 {% endif %}
 	<header>
 	<h1 style="padding-top:10px;">{{ board.url }} - {{ board.title|e }}</h1>
