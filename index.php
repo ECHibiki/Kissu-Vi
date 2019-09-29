@@ -38,17 +38,13 @@
 		}
 	}
 
-?><div class="boardlist"><span class="sub" data-description="0">[ <a href="/">home</a> / <a href="/agg/">agg</a> / <a href="/all/">all</a> ]</span>  <span class="sub" data-description="1">[ <a href="/b/">g</a> / <a href="/qa/">qa ]</a> / <a href="/megu/">megu</a> ]</span>  <span class="sub" data-description="2">[ <a href="https://theatre.kissu.moe">sync</a> / <a href="https://ban.kissu.moe">text</a> ]</span>  <span class="sub" data-description="3">[ <a href="https://kakashi-nenpo.com/">nen</a> / <a href="https://boards.4channel.org/qa/">qa4</a> / <a href="https://github.com/ECHibiki/ViQa-Kissu/">ViQa</a> ]</span></div><script type='text/javascript'>if (typeof do_boardlist != 'undefined') do_boardlist();</script>
+?><div class="boardlist"><span class="sub" data-description="0">[ <a href="/">home</a> / <a href="/agg/">agg</a> / <a href="/all/">all</a> ]</span>  <span class="sub" data-description="1">[ <a href="/b/">g</a> / <a href="/qa/">qa ]</a> / <a href="/megu/">megu</a> ]</span>  <span class="sub" data-description="2">[ <a href="https://theatre.kissu.moe">sync</a> / <a href="https://ban.kissu.moe">text</a> ]</span>  <span class="sub" data-description="3">[ <a href="http://what-ch.mooo.com/what/">what</a> / <a href="https://boards.4channel.org/qa/">qa4</a> / <a href="https://github.com/ECHibiki/ViQa-Kissu/">ViQa</a> ]</span></div><script type='text/javascript'>if (typeof do_boardlist != 'undefined') do_boardlist();</script>
 	<header>
 	    <img class="icon" src="../static/kissu-card.png">
 		<h1>Kissu.moe</h1>
 		<div class="subtitle">100% Fun!</div>
 	</header>
-<<<<<<< HEAD
-	<img class="board_image" src="/static/banners/banner-kissu-22.jpg" alt="" />	
-=======
-	<img class="board_image" src="/static/banners/banner-kissu-3.gif" alt="" />	
->>>>>>> 42564f62c23903d43bf0b75ccff50e8dae898e55
+	<img class="board_image" src="/static/banners/banner-kissu-9.gif" alt="" />	
 	<div class="box-wrap">
 	    <!--<fieldset>
 		<legend>Boards</legend>
@@ -111,18 +107,38 @@
 		<div class="box image">
 			<ul>
 									<li>
-<<<<<<< HEAD
-						<a href="/poll/res/1#1">
-							<img src="/poll/thumb/1569720868242.png" style="width:185px;height:255px" alt="">
-=======
-						<a href="/qa/res/10633#10633">
-							<img src="/qa/thumb/1569510835009.png" style="width:168px;height:255px" alt="">
+						<a href="/qa/res/10630#10630">
+							<img src="/qa/thumb/1569777427567.png" style="width:185px;height:255px" alt="">
 						</a>
 					</li>
 									<li>
-						<a href="/b/res/1827#1834">
-							<img src="/b/thumb/1569510268417.png" style="width:175px;height:82px" alt="">
->>>>>>> 42564f62c23903d43bf0b75ccff50e8dae898e55
+						<a href="/poll/res/15#15">
+							<img src="/poll/thumb/1569773052565.png" style="width:185px;height:255px" alt="">
+						</a>
+					</li>
+									<li>
+						<a href="/poll/res/14#14">
+							<img src="/poll/thumb/1569771621529.png" style="width:185px;height:255px" alt="">
+						</a>
+					</li>
+									<li>
+						<a href="/qa/res/10629#10629">
+							<img src="/qa/thumb/1569771045926.png" style="width:169px;height:255px" alt="">
+						</a>
+					</li>
+									<li>
+						<a href="/qa/res/10628#10628">
+							<img src="/qa/thumb/1569770866896.png" style="width:169px;height:255px" alt="">
+						</a>
+					</li>
+									<li>
+						<a href="/qa/res/10627#10627">
+							<img src="/qa/thumb/1569770824068.png" style="width:204px;height:255px" alt="">
+						</a>
+					</li>
+									<li>
+						<a href="/poll/res/1#1">
+							<img src="/poll/thumb/1569720868242.png" style="width:185px;height:255px" alt="">
 						</a>
 					</li>
 									<li>
@@ -165,96 +181,183 @@
 							<img src="/qa/thumb/1569482184890.png" style="width:204px;height:255px" alt="">
 						</a>
 					</li>
-									<li>
-						<a href="/qa/res/10615#10615">
-							<img src="/qa/thumb/1569481705424.png" style="width:204px;height:255px" alt="">
-						</a>
-					</li>
-									<li>
-						<a href="/qa/res/10614#10614">
-							<img src="/qa/thumb/1569481458993.png" style="width:204px;height:255px" alt="">
-						</a>
-					</li>
-									<li>
-						<a href="/qa/res/10613#10613">
-							<img src="/qa/thumb/1569481173966.png" style="width:204px;height:255px" alt="">
-						</a>
-					</li>
-									<li>
-						<a href="/qa/res/10612#10612">
-							<img src="/qa/thumb/1569480841993.png" style="width:204px;height:255px" alt="">
-						</a>
-					</li>
-									<li>
-						<a href="/qa/res/10608#10609">
-							<img src="/qa/thumb/1569472216950.jpg" style="width:175px;height:98px" alt="">
-						</a>
-					</li>
-<<<<<<< HEAD
-									<li>
-						<a href="/qa/res/10608#10608">
-							<img src="/qa/thumb/1569470972556.png" style="width:128px;height:255px" alt="">
-						</a>
-					</li>
-=======
->>>>>>> 42564f62c23903d43bf0b75ccff50e8dae898e55
 							</ul>
 		</div>
 		<div class="mainBox">
 			<h2>Latest Posts</h2>
 			<ul>
 									<li>
-<<<<<<< HEAD
+						<strong>/poll/</strong>: 
+						<a href="/poll/res/33#33">
+							<em>zz  zzz    [View Responses]asd&hellip;</em>
+						</a>
+					</li>
+									<li>
+						<strong>/poll/</strong>: 
+						<a href="/poll/res/32#32">
+							<em>345  ds  g  d    [View Respons&hellip;</em>
+						</a>
+					</li>
+									<li>
+						<strong>/poll/</strong>: 
+						<a href="/poll/res/31#31">
+							<em>3  5  [View Responses]345z</em>
+						</a>
+					</li>
+									<li>
+						<strong>/poll/</strong>: 
+						<a href="/poll/res/30#30">
+							<em>asd2  as1  33  asdz</em>
+						</a>
+					</li>
+									<li>
+						<strong>/poll/</strong>: 
+						<a href="/poll/res/29#29">
+							<em>12  21  ad</em>
+						</a>
+					</li>
+									<li>
+						<strong>/poll/</strong>: 
+						<a href="/poll/res/28#28">
+							<em>asd2  asd1  asd</em>
+						</a>
+					</li>
+									<li>
+						<strong>/poll/</strong>: 
+						<a href="/poll/res/27#27">
+							<em>te1  tw2  </em>
+						</a>
+					</li>
+									<li>
+						<strong>/poll/</strong>: 
+						<a href="/poll/res/26#26">
+							<em>test  test  tetef</em>
+						</a>
+					</li>
+									<li>
+						<strong>/poll/</strong>: 
+						<a href="/poll/res/25#25">
+							<em>tete</em>
+						</a>
+					</li>
+									<li>
+						<strong>/poll/</strong>: 
+						<a href="/poll/res/21#24">
+							<em>tr</em>
+						</a>
+					</li>
+									<li>
+						<strong>/poll/</strong>: 
+						<a href="/poll/res/21#23">
+							<em>te</em>
+						</a>
+					</li>
+									<li>
+						<strong>/poll/</strong>: 
+						<a href="/poll/res/21#22">
+							<em>te</em>
+						</a>
+					</li>
+									<li>
+						<strong>/qa/</strong>: 
+						<a href="/qa/res/10630#10634">
+							<em>te</em>
+						</a>
+					</li>
+									<li>
+						<strong>/qa/</strong>: 
+						<a href="/qa/res/10630#10633">
+							<em>te</em>
+						</a>
+					</li>
+									<li>
+						<strong>/poll/</strong>: 
+						<a href="/poll/res/21#21">
+							<em>test</em>
+						</a>
+					</li>
+									<li>
+						<strong>/qa/</strong>: 
+						<a href="/qa/res/10630#10632">
+							<em>test</em>
+						</a>
+					</li>
+									<li>
+						<strong>/poll/</strong>: 
+						<a href="/poll/res/20#20">
+							<em>asdasd</em>
+						</a>
+					</li>
+									<li>
+						<strong>/poll/</strong>: 
+						<a href="/poll/res/19#19">
+							<em>tets</em>
+						</a>
+					</li>
+									<li>
+						<strong>/poll/</strong>: 
+						<a href="/poll/res/18#18">
+							<em>sdfdsf</em>
+						</a>
+					</li>
+									<li>
+						<strong>/poll/</strong>: 
+						<a href="/poll/res/17#17">
+							<em>yesy</em>
+						</a>
+					</li>
+									<li>
+						<strong>/qa/</strong>: 
+						<a href="/qa/res/10630#10631">
+							<em>te</em>
+						</a>
+					</li>
+									<li>
+						<strong>/qa/</strong>: 
+						<a href="/qa/res/10630#10630">
+							<em>te</em>
+						</a>
+					</li>
+									<li>
+						<strong>/poll/</strong>: 
+						<a href="/poll/res/16#16">
+							<em>testzzz</em>
+						</a>
+					</li>
+									<li>
+						<strong>/poll/</strong>: 
+						<a href="/poll/res/15#15">
+							<em>test</em>
+						</a>
+					</li>
+									<li>
+						<strong>/poll/</strong>: 
+						<a href="/poll/res/14#14">
+							<em>test</em>
+						</a>
+					</li>
+									<li>
+						<strong>/qa/</strong>: 
+						<a href="/qa/res/10629#10629">
+							<em>asd</em>
+						</a>
+					</li>
+									<li>
+						<strong>/qa/</strong>: 
+						<a href="/qa/res/10628#10628">
+							<em>ss</em>
+						</a>
+					</li>
+									<li>
+						<strong>/qa/</strong>: 
+						<a href="/qa/res/10627#10627">
+							<em>(no comment)</em>
+						</a>
+					</li>
+									<li>
 						<strong>/poll/</strong>: 
 						<a href="/poll/res/1#13">
 							<em>&gt;&gt;12  zxx</em>
-=======
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/10627#10638">
-							<em>&gt;&gt;10631  Nope, this thread is &hellip;</em>
-						</a>
-					</li>
-									<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/10633#10637">
-							<em>Both are actually a subset of &hellip;</em>
-						</a>
-					</li>
-									<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/10612#10636">
-							<em>&gt;&gt;10618  What kind of car has &hellip;</em>
-						</a>
-					</li>
-									<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/10535#10635">
-							<em>&gt;&gt;10550  Even for historical a&hellip;</em>
-						</a>
-					</li>
-									<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/10621#10634">
-							<em>Did it work?</em>
-						</a>
-					</li>
-									<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/10633#10633">
-							<em>is kitsunemimi a subset of nek&hellip;</em>
-						</a>
-					</li>
-									<li>
-						<strong>/b/</strong>: 
-						<a href="/b/res/1415#1835">
-							<em>commented out some sql querrie&hellip;</em>
-						</a>
-					</li>
-									<li>
-						<strong>/megu/</strong>: 
-						<a href="/megu/res/952#952">
-							<em>don't stop the tests</em>
->>>>>>> 42564f62c23903d43bf0b75ccff50e8dae898e55
 						</a>
 					</li>
 									<li>
@@ -263,177 +366,6 @@
 							<em>zxx</em>
 						</a>
 					</li>
-									<li>
-						<strong>/poll/</strong>: 
-						<a href="/poll/res/1#11">
-							<em>zxcvzxcvvvzzzzzzzzzzzzzc</em>
-						</a>
-					</li>
-									<li>
-						<strong>/poll/</strong>: 
-						<a href="/poll/res/1#10">
-							<em>zxcvzxcvvv</em>
-						</a>
-					</li>
-									<li>
-						<strong>/poll/</strong>: 
-						<a href="/poll/res/1#9">
-							<em>zzzzasdx</em>
-						</a>
-					</li>
-									<li>
-						<strong>/poll/</strong>: 
-						<a href="/poll/res/1#8">
-							<em>zzzzasd</em>
-						</a>
-					</li>
-									<li>
-						<strong>/poll/</strong>: 
-						<a href="/poll/res/1#7">
-							<em>zzzz</em>
-						</a>
-					</li>
-									<li>
-						<strong>/poll/</strong>: 
-						<a href="/poll/res/1#6">
-							<em>zzzz</em>
-						</a>
-					</li>
-									<li>
-						<strong>/poll/</strong>: 
-						<a href="/poll/res/1#5">
-							<em>asdfasdfg</em>
-						</a>
-					</li>
-									<li>
-						<strong>/poll/</strong>: 
-						<a href="/poll/res/1#4">
-							<em>asdfasdfasdf</em>
-						</a>
-					</li>
-									<li>
-						<strong>/poll/</strong>: 
-						<a href="/poll/res/1#3">
-							<em>asdf</em>
-						</a>
-					</li>
-									<li>
-						<strong>/poll/</strong>: 
-						<a href="/poll/res/1#2">
-							<em>&gt;&gt;1  test</em>
-						</a>
-					</li>
-									<li>
-						<strong>/poll/</strong>: 
-						<a href="/poll/res/1#1">
-							<em>test</em>
-						</a>
-					</li>
-									<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/10624#10625">
-							<em>(no comment)</em>
-						</a>
-					</li>
-									<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/10624#10624">
-							<em>(no comment)</em>
-						</a>
-					</li>
-									<li>
-						<strong>/megu/</strong>: 
-						<a href="/megu/res/944#944">
-							<em>test</em>
-						</a>
-					</li>
-									<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/10622#10623">
-							<em>test</em>
-						</a>
-					</li>
-									<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/10622#10622">
-							<em>sdf</em>
-						</a>
-					</li>
-									<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/10621#10621">
-							<em>asdasd</em>
-						</a>
-					</li>
-									<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/10620#10620">
-							<em>yrasdzzzzzzxc</em>
-						</a>
-					</li>
-									<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/10619#10619">
-							<em>asdasd</em>
-						</a>
-					</li>
-									<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/10618#10618">
-							<em>yrasdzzzzzzx</em>
-						</a>
-					</li>
-									<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/10617#10617">
-							<em>yrasdzzzzzz</em>
-						</a>
-					</li>
-<<<<<<< HEAD
-									<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/10616#10616">
-							<em>yrasdzzzzz</em>
-						</a>
-					</li>
-									<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/10615#10615">
-							<em>yrasdzzz</em>
-						</a>
-					</li>
-									<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/10614#10614">
-							<em>yrasdz</em>
-						</a>
-					</li>
-									<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/10613#10613">
-							<em>yrasd</em>
-						</a>
-					</li>
-									<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/10612#10612">
-							<em>yr</em>
-						</a>
-					</li>
-									<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/10608#10611">
-							<em>have a sort of retard moe feel&hellip;</em>
-						</a>
-					</li>
-									<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/10533#10610">
-							<em>Escaflowne and Trinity Seven. &hellip;</em>
-						</a>
-					</li>
-=======
->>>>>>> 42564f62c23903d43bf0b75ccff50e8dae898e55
 							</ul>
 		</div>
 		<div class="mainBox">
@@ -477,15 +409,9 @@
 		<div class="mainBox">
 			<h2>Stats</h2>
 			<ul>
-<<<<<<< HEAD
-				<li>Total posts: 13,509</li>
-				<li>Unique posters: 402</li>
-				<li>Active content: 5.67 GB</li>
-=======
-				<li>Total posts: 13,528</li>
-				<li>Unique posters: 411</li>
-				<li>Active content: 5.72 GB</li>
->>>>>>> 42564f62c23903d43bf0b75ccff50e8dae898e55
+				<li>Total posts: 13,538</li>
+				<li>Unique posters: 399</li>
+				<li>Active content: 5.66 GB</li>
 			</ul>
 		</div>
 	</div>

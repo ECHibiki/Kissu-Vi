@@ -3,10 +3,10 @@
  *  Copyright (c) 2010-2014 Tinyboard Development Group
  */
 
- require_once 'inc/functions.php';
+require_once 'inc/functions.php';
 require_once 'inc/anti-bot.php';
 require_once 'inc/bans.php';
-
+require_once 'inc/polling.php';
 require_once 'inc/image.php';
 //if(isset($_POST['board']))
 //	openBoard($_POST['board']);
@@ -252,6 +252,7 @@ if (isset($_POST['delete'])) {
 				deletePostKeepOrder($id);
 
 				//TODO: remove poll if exists, probably do this in functions because moderator tools
+				Polling::removePoll($id);
 
 				if(!$mod) modLog("User deleted his own post #$id");
 				else modLog("Mod deleted file from post #$id");
@@ -406,8 +407,47 @@ elseif (isset($_POST['post']) || $dropped_post) {
 	} else
 		$post['op'] = true;
 
-	//TODO assign default to unset poll fields
-	//TODO unset poll fields if not OP
+	// unset poll fields if not OP
+	if($config['poll_board']){
+	if(!$post['op']){
+		foreach($_POST as $key => $value){
+			if(preg_match('/^pollopt\d+/', $key)){
+				unset($_POST[$key]);
+			}
+		}
+	}
+	// assign default to unset poll fields
+	else{
+		$num_opt = 0;
+                foreach($_POST as $key => $value){
+                        if(preg_match('/^pollopt\d+/', $key)){
+                        	$num_opt++;
+				if ($_POST[$key] == ""){
+					error("Error: Field $num_opt blank");
+				}
+                        }
+                }
+		if($num_opt <= 1)
+			error("Error: Not enough options");
+
+		if (!isset($_POST['postthresh']) || !isset($_POST['lifespan']))
+			error("Unset field");	
+
+		if(!isset($_POST['multisel'])){
+			$_POST['multisel'] = 'off';
+		}
+		else if($_POST['multisel'] != 'on'){
+			error("strange field");
+		}
+		if(trim($_POST['postthresh']) == ""){
+			$_POST['postthresh'] = '0';
+		}
+		if(trim($_POST['lifespan']) == ""){
+			$_POST['lifespan'] = '24';
+		}
+	}
+	}
+
 
 	if (!$dropped_post) {
 		// Check if banned
@@ -589,6 +629,8 @@ https://www.youtube.com/watch?v=_5joTyy3CCo				error($config['error']['noaccess'
 		);
 	}
 	
+//  proccess post data into poll json format if  applicable. throw errors where needed and insert into body
+	$post['poll_data'] = Polling::formatFields($_POST);
 	$post['name'] = $_POST['name'] != '' ? $_POST['name'] : $config['anonymous'];
 	$post['subject'] = $_POST['subject'];
 	$post['email'] = str_replace(' ', '%20', htmlspecialchars($_POST['email']));
@@ -749,12 +791,11 @@ https://www.youtube.com/watch?v=_5joTyy3CCo				error($config['error']['noaccess'
 	
 	$post['body'] = escape_markup_modifiers($post['body']);
 	
-//why is this in here???
-/*
+
 	if ($mod && isset($post['raw']) && $post['raw']) {
 		$post['body'] .= "\n<tinyboard raw html>1</tinyboard>";
 	}
-*/	
+
 	if (!$dropped_post)
 	if (($config['country_flags'] && !$config['allow_no_country']) || ($config['country_flags'] && $config['allow_no_country'] && !isset($_POST['no_country']))) {
 		require 'inc/lib/geoip/geoip.inc';
@@ -819,11 +860,10 @@ https://www.youtube.com/watch?v=_5joTyy3CCo				error($config['error']['noaccess'
 			$post['body_nomarkup'] .= $char;
 		}
 	}
-	
+//modify body reference	
 	$post['tracked_cites'] = markup($post['body'], true);
+	$post['body'] = Polling::bodyAddablePoll($post['poll_data']) . "<hr/>" . $post['body'];	
 
-	
-	
 	if ($post['has_file']) {
 		$md5cmd = false;
 		if ($config['bsd_md5'])  $md5cmd = '/sbin/md5 -r';

@@ -41,27 +41,44 @@
 		}
 	}
 
-?>		<div class="boardlist"><span class="sub" data-description="0">[ <a href="/">home</a> / <a href="/agg/">agg</a> / <a href="/all/">all</a> ]</span>  <span class="sub" data-description="1">[ <a href="/b/">g</a> / <a href="/qa/">qa ]</a> / <a href="/megu/">megu</a> ]</span>  <span class="sub" data-description="2">[ <a href="https://theatre.kissu.moe">sync</a> / <a href="https://ban.kissu.moe">text</a> ]</span>  <span class="sub" data-description="3">[ <a href="http://bunbunmaru.com/wakaba/general/">bun</a> / <a href="https://boards.4channel.org/qa/">qa4</a> / <a href="https://github.com/ECHibiki/ViQa-Kissu/">ViQa</a> ]</span></div><script type='text/javascript'>if (typeof do_boardlist != 'undefined') do_boardlist();</script>
+?>		<div class="boardlist"><span class="sub" data-description="0">[ <a href="/">home</a> / <a href="/agg/">agg</a> / <a href="/all/">all</a> ]</span>  <span class="sub" data-description="1">[ <a href="/b/">g</a> / <a href="/qa/">qa ]</a> / <a href="/megu/">megu</a> ]</span>  <span class="sub" data-description="2">[ <a href="https://theatre.kissu.moe">sync</a> / <a href="https://ban.kissu.moe">text</a> ]</span>  <span class="sub" data-description="3">[ <a href="https://ota-ch.com/jp/index.html">ota</a> / <a href="https://boards.4channel.org/qa/">qa4</a> / <a href="https://github.com/ECHibiki/ViQa-Kissu/">ViQa</a> ]</span></div><script type='text/javascript'>if (typeof do_boardlist != 'undefined') do_boardlist();</script>
 	<a name="top"></a>
-			<img id="bannerimg" class="board_image" src="/static/banners/banner-kissu-9.gif" alt="" />
+			<img id="bannerimg" class="board_image" src="/static/banners/banner-kissu-24.png" alt="" />
 <script>
 document.getElementById("bannerimg").onclick = function(){
-	alert(
-	"<h1>Welcome to kissu.moe!</h1><br/>\
-        <h2>Message Of the Day</h2>\
-	<p><strong>Bored and Gay...</strong></p>\
-	<h2>Boards</h2>\
-	<ul style='text-align: left;'><li>/qa/ - Random content(NSFW spoilered)</li><li>/b/ - Site Developement</li><li>/megu/ - NSFW content</li></ul>\
-	<h2>Select Default Theme</h2>\
-	Other options are selectable later in options<br/><br/>\
-	<label>Default Theme: <select onchange='$(\"#style-select-\" + $(this).val()).click();'><option value='1'>Light</option><option selected='selected' value='2'>Dark</option><option value='3'>Special</option></select></label><br/>\
-	<h2>Rules</h2>\
-	<p>Don't post obnoxious stuff. Bans are only reserved for the worst cases of people. A deletion does not mean it's personal</p><hr/>\
-	<br/>Contact Vermin for issues, site bugs and feedback</p>\
-	"
-	);
+
+        var request = new XMLHttpRequest(); 
+        var motd = "";
+        request.open("GET", 'https://kissu.moe/motd.txt');
+                request.onreadystatechange = function() { 
+                if (this.readyState === 4 && this.status === 200) {
+                        motd = this.responseText;
+                        console.log(motd);
+                        var request = new XMLHttpRequest(); 
+                        localStorage.firstLoad = 3;
+                        alert(
+                        "<h1>Welcome to kissu.moe!</h1><br/>\
+                         <h2>Message Of the Day</h2>\
+                        <p><strong>" + motd + "</strong></p>\
+                        <h2>Boards</h2>\
+                        <ul style='text-align: left;'><li>/qa/ - Random content(NSFW spoilered)</li><li>/b/ - Site Developement</li><li>/megu/ - NSFW content</li></ul>\
+                        <h2>Select Default Theme</h2>\
+                        Other options are selectable later in options<br/><br/>\
+                        <label>Default Theme: <select onchange='$(\"#style-select-\" + $(this).val()).click();'><option value='1'>Light</option><option selected='selected' value='2'>Dark</option><option value='3'>Special</option></select></label><br/>\
+                        <h2>Rules</h2>\
+                        <p>Don't post obnoxious stuff. Bans are only reserved for the worst cases of people. A deletion does not mean it's personal</p><hr/>\
+                        <br/>Contact Vermin for issues, site bugs and feedback</p>\
+                        "
+                        );
+
+                };
+
+        }
+        request.send();
 }
 </script>
+
+
 	<header>
 	<h1 style="padding-top:10px;">/poll/ - polling</h1>
 	<div class="subtitle">
@@ -74,33 +91,33 @@ document.getElementById("bannerimg").onclick = function(){
 	<div>
 						
 			<form class="form_submit" name="post" onsubmit="return dopost(this);" enctype="multipart/form-data" action="/post.php" method="post">
-<input value="" name="lastname" type="hidden" >
-<input value="?M0x⚏&#41;.g{K&#42;G☙&#9735;&#58;&#33;&#56;ZOQzX⚒C6- yb/k&#74;L&#95;%" name="q" type="hidden">
+<div style="display:none"   ><input type="text" name="login" value="C+!gs[Mj2K⚩,p3#⚳eE"   ></div   >
+<span style="display:none"><input type="text" name="q" value=""></span>
 <input type="hidden" name="board" value="poll">
-<input   name="user"   value=""   type="hidden">
+<textarea name="text" style="display:none">!UuL0^&lt;Sx@|v </textarea>
 	<table>
 		<tr id="namerow" style="display:none">
 			<th>
-				Name				<span style="display:none"><input type="text" name="firstname" value=""></span>
+				Name				<input   type="hidden"   name="b♏q1o74k5s0vrixnl⚶♮fcpaez3"   value="jkFWm)⛒U#&amp;2w}O5!d♾D~1y_g/B&gt;ai69Hc ou3 :b-☕0X@+=e,⚩E⛰;S⛚t\nzR♔I^NThlGf?(☠vK*L$CprMA]Y4J8'P7[`⛧.V{xZ">
 			</th>
 			<td>
-				<input type="text" name="name" size="25" maxlength="35" autocomplete="off"> 				<input  value="cb♠!9⛩⛌&#92;E-xX"  name="129u6ws⛽qhdxnpfr405ey♁k⚸8cgv"  type="hidden">
+				<input type="text" name="name" size="25" maxlength="35" autocomplete="off"> 				
 			</td>
 		</tr>		<tr>
 			<th>
-				Options				<input style="display:none" type="text" value="Hs;}v⛡2_JrM&lt;&gt;YzRA\mLk Bx 0anSZt♳$OW4(K⛜3)6pl-IQ@j^b'ETC" name="message">
+				Options				
 			</th>
 			<td>
 								<input type="text" name="email" size="25" maxlength="40" autocomplete="off" id='option_input'>
 <input class="form_submit" id="email_submit" accesskey="s" style="margin-left:2px;" type="submit" name="post" value="New Topic" />
-								<input   style="display:none"   type="text"   name="zn⛏7l0⚴hjgwp5⛙t⛌6ei3xf2dor1cb"   value="b'0&#103;&#108;&#57;v♷JK{e⛾I&#36;&#87;^(M}i&#82;?\/8&#71;*U&#32;&#80;5⚾Y&#43;y&#52;7]&#58;1o&#116;Lj&#115;_&#9842;63&#9879;&lt;%&#44;&#79;#&#86;⛋fC&#91;=&#45;x!ThEn⚊Np&#126;F&#72;Z&#9813;&#68;A">
+								
 			
 			
-				<input value="]☮g⚣[.1aM&lt;9:" name="n8vlf9ap6theqrgw♂bk☨my7c" type="hidden">
+				
 			</td>
 		</tr>		<tr id="subjectrow" style="display:none">
 			<th>
-				Subject				<input style="display:none" type="text" name="username" value="*z+lj5D&#94;&#9959;!(3.1&#84;u☆c&#9813;&#75;">
+				Subject				
 			</th>
 			<td>
 				<input style="" type="text" name="subject" size="25" maxlength="100" autocomplete="off">
@@ -109,7 +126,7 @@ document.getElementById("bannerimg").onclick = function(){
 		</tr>
 				<tr>
 			<th>
-				Comment				<input style="display:none" type="text" value="(4SP)RAY?B☯♬vs~[!g♩_" name="url" >
+				Comment				
 			</th>
 			<td>
 				<textarea name="body" id="body" rows="3" cols="40"></textarea>
@@ -221,7 +238,7 @@ $('input[id=force_noko]').prop('checked', localStorage.AlwaysNoko == "true");
 		</tr>		<tr><td colspan=2><span name='markup-hint' style='font-size:10px'>Markup tags exist for bold, itallics, header, spoiler etc. as listed in " [options] > View Formatting "</span></td></tr>
 	</table>
 
-<input type="hidden" name="hash" value="fc29dbc4e1659280db08864856377f58ef8b801e">
+<input type="hidden" name="hash" value="1373aa5807100bdd778877d6052ab2496cf44744">
 </form>
 
 <script type="text/javascript">
@@ -261,6 +278,459 @@ $('input[id=force_noko]').prop('checked', localStorage.AlwaysNoko == "true");
 		<br/>
         <div class="threads">
                 <div id="Grid">
+                                        <div class="mix"
+				data-reply="1"
+				 data-bump="1569787083"
+				 data-time="1569786981"
+				 data-id="37"
+				 data-sticky="false"
+				 data-locked="false"
+			>
+                                <div class="thread grid-li grid-size-small">  
+                                        <a href="/poll/res/37">  
+													<img src="/poll/thumb/1569786981761.png" 
+						                                                 id="img-37" data-subject="asdsa" data-name="Anonymous" data-muhdifference="" class="poll thread-image" title="Sep 29 19:58">
+                                        </a>
+                                                <div class="replies">
+                                                        <strong>R: 1 / I: 0</strong>
+                                                        								<p class="intro">
+									<span class="subject">
+										asdsa
+									</span>
+								</p>
+							
+								<div data-lifespan='24' data-creationtime='1569786981' class='lolyoucantnestforms'><label><input type='checkbox' name='pollopt' value='0'/>zxczxc</label><br/><label><input type='checkbox' name='pollopt' value='1'/>zczxc</label><br/><input type='submit' class='pollsubmit' onclick='return false' value='Make Response'><a href='javscript:void(0)' onclick='return false'><br/>[View Responses]</a></div><hr/>asd
+                                                </div>
+                                </div>
+                        </div>
+                                        <div class="mix"
+				data-reply="0"
+				 data-bump="1569786920"
+				 data-time="1569786920"
+				 data-id="36"
+				 data-sticky="false"
+				 data-locked="false"
+			>
+                                <div class="thread grid-li grid-size-small">  
+                                        <a href="/poll/res/36">  
+													<img src="/static/deleted.png" 
+						                                                 id="img-36" data-subject="" data-name="Anonymous" data-muhdifference="" class="poll thread-image" title="Sep 29 19:55">
+                                        </a>
+                                                <div class="replies">
+                                                        <strong>R: 0 / I: 0</strong>
+                                                        								<br />
+							
+								<div data-lifespan='24' data-creationtime='1569786920' class='lolyoucantnestforms'><label><input type='radio' name='pollopt' value='0'/>f</label><br/><label><input type='radio' name='pollopt' value='1'/>f</label><br/><input type='submit' class='pollsubmit' onclick='return false' value='Make Response'><a href='javscript:void(0)' onclick='return false'><br/>[View Responses]</a></div><hr/>fff
+                                                </div>
+                                </div>
+                        </div>
+                                        <div class="mix"
+				data-reply="0"
+				 data-bump="1569786886"
+				 data-time="1569786886"
+				 data-id="35"
+				 data-sticky="false"
+				 data-locked="false"
+			>
+                                <div class="thread grid-li grid-size-small">  
+                                        <a href="/poll/res/35">  
+													<img src="/static/deleted.png" 
+						                                                 id="img-35" data-subject="" data-name="Anonymous" data-muhdifference="" class="poll thread-image" title="Sep 29 19:54">
+                                        </a>
+                                                <div class="replies">
+                                                        <strong>R: 0 / I: 0</strong>
+                                                        								<br />
+							
+								<div data-lifespan='24' data-creationtime='1569786886' class='lolyoucantnestforms'><label><input type='radio' name='pollopt' value='0'/>123</label><br/><label><input type='radio' name='pollopt' value='1'/>4</label><br/><label><input type='radio' name='pollopt' value='2'/>0</label><br/><label><input type='radio' name='pollopt' value='3'/>4</label><br/><input type='submit' class='pollsubmit' onclick='return false' value='Make Response'><a onclick='return false'><br/>[View Responses]</a></div><hr/>123.l
+                                                </div>
+                                </div>
+                        </div>
+                                        <div class="mix"
+				data-reply="0"
+				 data-bump="1569786809"
+				 data-time="1569786809"
+				 data-id="34"
+				 data-sticky="false"
+				 data-locked="false"
+			>
+                                <div class="thread grid-li grid-size-small">  
+                                        <a href="/poll/res/34">  
+													<img src="/static/deleted.png" 
+						                                                 id="img-34" data-subject="ff" data-name="Anonymous" data-muhdifference="" class="poll thread-image" title="Sep 29 19:53">
+                                        </a>
+                                                <div class="replies">
+                                                        <strong>R: 0 / I: 0</strong>
+                                                        								<p class="intro">
+									<span class="subject">
+										ff
+									</span>
+								</p>
+							
+								<div data-lifespan='25' data-creationtime='1569786809' class='lolyoucantnestforms'><label><input type='checkbox' name='pollopt' value='0'/>s</label><br/><label><input type='checkbox' name='pollopt' value='1'/>s</label><br/><input type='submit' class='pollsubmit' onclick='return false' value='Make Response'><a onclick='return false'><br/>[View Responses]</a></div><hr/>zzz
+                                                </div>
+                                </div>
+                        </div>
+                                        <div class="mix"
+				data-reply="0"
+				 data-bump="1569786720"
+				 data-time="1569786720"
+				 data-id="33"
+				 data-sticky="false"
+				 data-locked="false"
+			>
+                                <div class="thread grid-li grid-size-small">  
+                                        <a href="/poll/res/33">  
+													<img src="/static/deleted.png" 
+						                                                 id="img-33" data-subject="zzz" data-name="Anonymous" data-muhdifference="" class="poll thread-image" title="Sep 29 19:52">
+                                        </a>
+                                                <div class="replies">
+                                                        <strong>R: 0 / I: 0</strong>
+                                                        								<p class="intro">
+									<span class="subject">
+										zzz
+									</span>
+								</p>
+							
+								<div data-lifespan='24' class='lolyoucantnestforms'><label><input type='checkbox' name='pollopt' value='0'/>zz</label><br/><label><input type='checkbox' name='pollopt' value='1'/>zzz</label><br/><input type='submit' class='pollsubmit' onclick='return false' value='Make Response'><a onclick='return false'><br/>[View Responses]</a></div><hr/>asdc
+                                                </div>
+                                </div>
+                        </div>
+                                        <div class="mix"
+				data-reply="0"
+				 data-bump="1569786605"
+				 data-time="1569786605"
+				 data-id="32"
+				 data-sticky="false"
+				 data-locked="false"
+			>
+                                <div class="thread grid-li grid-size-small">  
+                                        <a href="/poll/res/32">  
+													<img src="/static/deleted.png" 
+						                                                 id="img-32" data-subject="" data-name="Anonymous" data-muhdifference="" class="poll thread-image" title="Sep 29 19:50">
+                                        </a>
+                                                <div class="replies">
+                                                        <strong>R: 0 / I: 0</strong>
+                                                        								<br />
+							
+								<div class='lolyoucantnestforms'><label><input type='radio' name='pollopt' value='0'/>345</label><br/><label><input type='radio' name='pollopt' value='1'/>ds</label><br/><label><input type='radio' name='pollopt' value='2'/>g</label><br/><label><input type='radio' name='pollopt' value='3'/>d</label><br/><input type='submit' class='pollsubmit' onclick='return false' value='Make Response'><a onclick='return false'><br/>[View Responses]</a></div><hr/>sdsdfg
+                                                </div>
+                                </div>
+                        </div>
+                                        <div class="mix"
+				data-reply="0"
+				 data-bump="1569786145"
+				 data-time="1569786145"
+				 data-id="31"
+				 data-sticky="false"
+				 data-locked="false"
+			>
+                                <div class="thread grid-li grid-size-small">  
+                                        <a href="/poll/res/31">  
+													<img src="/static/deleted.png" 
+						                                                 id="img-31" data-subject="" data-name="Anonymous" data-muhdifference="" class="poll thread-image" title="Sep 29 19:42">
+                                        </a>
+                                                <div class="replies">
+                                                        <strong>R: 0 / I: 0</strong>
+                                                        								<br />
+							
+								<div id='lolyoucantnestforms'><label><input type='radio' name='pollopt' value='0'/>3</label><br/><label><input type='radio' name='pollopt' value='1'/>5</label><br/><input type='submit' onclick='return false' value='Make Response'><a onclick='return false'>[View Responses]</a></div><hr/>345z
+                                                </div>
+                                </div>
+                        </div>
+                                        <div class="mix"
+				data-reply="0"
+				 data-bump="1569785995"
+				 data-time="1569785995"
+				 data-id="30"
+				 data-sticky="false"
+				 data-locked="false"
+			>
+                                <div class="thread grid-li grid-size-small">  
+                                        <a href="/poll/res/30">  
+													<img src="/static/deleted.png" 
+						                                                 id="img-30" data-subject="" data-name="Anonymous" data-muhdifference="" class="poll thread-image" title="Sep 29 19:39">
+                                        </a>
+                                                <div class="replies">
+                                                        <strong>R: 0 / I: 0</strong>
+                                                        								<br />
+							
+								<div id='lolyoucantnestforms'><label><input type='radio' name='pollopt' value='0'/>asd2</label><br/><label><input type='radio' name='pollopt' value='1'/>as1</label><br/><label><input type='radio' name='pollopt' value='2'/>33</label><br/><input type='submit' onclick='return false' value='Make Response'></div><hr/>asdz
+                                                </div>
+                                </div>
+                        </div>
+                                        <div class="mix"
+				data-reply="0"
+				 data-bump="1569785884"
+				 data-time="1569785884"
+				 data-id="29"
+				 data-sticky="false"
+				 data-locked="false"
+			>
+                                <div class="thread grid-li grid-size-small">  
+                                        <a href="/poll/res/29">  
+													<img src="/static/deleted.png" 
+						                                                 id="img-29" data-subject="" data-name="Anonymous" data-muhdifference="" class="poll thread-image" title="Sep 29 19:38">
+                                        </a>
+                                                <div class="replies">
+                                                        <strong>R: 0 / I: 0</strong>
+                                                        								<br />
+							
+								<form onsubmit='return false'><label><input type='radio' name='pollopt' value='0'/>12</label><br/><label><input type='radio' name='pollopt' value='1'/>21</label><br/><input type='submit' value='Make Response'></form><hr/>ad
+                                                </div>
+                                </div>
+                        </div>
+                                        <div class="mix"
+				data-reply="0"
+				 data-bump="1569785706"
+				 data-time="1569785706"
+				 data-id="28"
+				 data-sticky="false"
+				 data-locked="false"
+			>
+                                <div class="thread grid-li grid-size-small">  
+                                        <a href="/poll/res/28">  
+													<img src="/static/deleted.png" 
+						                                                 id="img-28" data-subject="" data-name="Anonymous" data-muhdifference="" class="poll thread-image" title="Sep 29 19:35">
+                                        </a>
+                                                <div class="replies">
+                                                        <strong>R: 0 / I: 0</strong>
+                                                        								<br />
+							
+								<form onsubmit='return false'><label><input type='radio' name='pollopt' value='0'/>asd2</label><br/><label><input type='radio' name='pollopt' value='1'/>asd1</label><br/><input type='submit' value='Make Response'></form><hr/>asd
+                                                </div>
+                                </div>
+                        </div>
+                                        <div class="mix"
+				data-reply="0"
+				 data-bump="1569785630"
+				 data-time="1569785630"
+				 data-id="27"
+				 data-sticky="false"
+				 data-locked="false"
+			>
+                                <div class="thread grid-li grid-size-small">  
+                                        <a href="/poll/res/27">  
+													<img src="/static/deleted.png" 
+						                                                 id="img-27" data-subject="" data-name="Anonymous" data-muhdifference="" class="poll thread-image" title="Sep 29 19:33">
+                                        </a>
+                                                <div class="replies">
+                                                        <strong>R: 0 / I: 0</strong>
+                                                        								<br />
+							
+								<form onsubmit='return false'><label><input type='radio' name='pollopt' value='0'/>te1</label><br/><label><input type='radio' name='pollopt' value='1'/>tw2</label><br/><input type='submit' value='Make Response'></form><hr/>
+                                                </div>
+                                </div>
+                        </div>
+                                        <div class="mix"
+				data-reply="0"
+				 data-bump="1569785487"
+				 data-time="1569785487"
+				 data-id="26"
+				 data-sticky="false"
+				 data-locked="false"
+			>
+                                <div class="thread grid-li grid-size-small">  
+                                        <a href="/poll/res/26">  
+													<img src="/static/deleted.png" 
+						                                                 id="img-26" data-subject="" data-name="Anonymous" data-muhdifference="" class="poll thread-image" title="Sep 29 19:31">
+                                        </a>
+                                                <div class="replies">
+                                                        <strong>R: 0 / I: 0</strong>
+                                                        								<br />
+							
+								<form onpost='return false'><label><input type='radio' name='pollopt' value='0'/>test</label><br/><label><input type='radio' name='pollopt' value='1'/>test</label><br/><input type='submit' value='Make Response'></form><hr/>tetef
+                                                </div>
+                                </div>
+                        </div>
+                                        <div class="mix"
+				data-reply="0"
+				 data-bump="1569785434"
+				 data-time="1569785434"
+				 data-id="25"
+				 data-sticky="false"
+				 data-locked="false"
+			>
+                                <div class="thread grid-li grid-size-small">  
+                                        <a href="/poll/res/25">  
+													<img src="/static/deleted.png" 
+						                                                 id="img-25" data-subject="" data-name="Anonymous" data-muhdifference="" class="poll thread-image" title="Sep 29 19:30">
+                                        </a>
+                                                <div class="replies">
+                                                        <strong>R: 0 / I: 0</strong>
+                                                        								<br />
+							
+								<hr/>tete
+                                                </div>
+                                </div>
+                        </div>
+                                        <div class="mix"
+				data-reply="3"
+				 data-bump="1569784058"
+				 data-time="1569783327"
+				 data-id="21"
+				 data-sticky="false"
+				 data-locked="false"
+			>
+                                <div class="thread grid-li grid-size-small">  
+                                        <a href="/poll/res/21">  
+													<img src="/static/deleted.png" 
+						                                                 id="img-21" data-subject="" data-name="Anonymous" data-muhdifference="" class="poll thread-image" title="Sep 29 19:07">
+                                        </a>
+                                                <div class="replies">
+                                                        <strong>R: 3 / I: 0</strong>
+                                                        								<br />
+							
+								<form><input></form>test
+                                                </div>
+                                </div>
+                        </div>
+                                        <div class="mix"
+				data-reply="0"
+				 data-bump="1569779125"
+				 data-time="1569779125"
+				 data-id="20"
+				 data-sticky="false"
+				 data-locked="false"
+			>
+                                <div class="thread grid-li grid-size-small">  
+                                        <a href="/poll/res/20">  
+													<img src="/static/deleted.png" 
+						                                                 id="img-20" data-subject="" data-name="Anonymous" data-muhdifference="" class="poll thread-image" title="Sep 29 17:45">
+                                        </a>
+                                                <div class="replies">
+                                                        <strong>R: 0 / I: 0</strong>
+                                                        								<br />
+							
+								asdasd
+                                                </div>
+                                </div>
+                        </div>
+                                        <div class="mix"
+				data-reply="0"
+				 data-bump="1569779113"
+				 data-time="1569779113"
+				 data-id="19"
+				 data-sticky="false"
+				 data-locked="false"
+			>
+                                <div class="thread grid-li grid-size-small">  
+                                        <a href="/poll/res/19">  
+													<img src="/static/deleted.png" 
+						                                                 id="img-19" data-subject="" data-name="Anonymous" data-muhdifference="" class="poll thread-image" title="Sep 29 17:45">
+                                        </a>
+                                                <div class="replies">
+                                                        <strong>R: 0 / I: 0</strong>
+                                                        								<br />
+							
+								tets
+                                                </div>
+                                </div>
+                        </div>
+                                        <div class="mix"
+				data-reply="0"
+				 data-bump="1569779052"
+				 data-time="1569779052"
+				 data-id="18"
+				 data-sticky="false"
+				 data-locked="false"
+			>
+                                <div class="thread grid-li grid-size-small">  
+                                        <a href="/poll/res/18">  
+													<img src="/static/deleted.png" 
+						                                                 id="img-18" data-subject="" data-name="Anonymous" data-muhdifference="" class="poll thread-image" title="Sep 29 17:44">
+                                        </a>
+                                                <div class="replies">
+                                                        <strong>R: 0 / I: 0</strong>
+                                                        								<br />
+							
+								sdfdsf
+                                                </div>
+                                </div>
+                        </div>
+                                        <div class="mix"
+				data-reply="0"
+				 data-bump="1569779044"
+				 data-time="1569779044"
+				 data-id="17"
+				 data-sticky="false"
+				 data-locked="false"
+			>
+                                <div class="thread grid-li grid-size-small">  
+                                        <a href="/poll/res/17">  
+													<img src="/static/deleted.png" 
+						                                                 id="img-17" data-subject="" data-name="Anonymous" data-muhdifference="" class="poll thread-image" title="Sep 29 17:44">
+                                        </a>
+                                                <div class="replies">
+                                                        <strong>R: 0 / I: 0</strong>
+                                                        								<br />
+							
+								yesy
+                                                </div>
+                                </div>
+                        </div>
+                                        <div class="mix"
+				data-reply="0"
+				 data-bump="1569773425"
+				 data-time="1569773425"
+				 data-id="16"
+				 data-sticky="false"
+				 data-locked="false"
+			>
+                                <div class="thread grid-li grid-size-small">  
+                                        <a href="/poll/res/16">  
+													<img src="/static/deleted.png" 
+						                                                 id="img-16" data-subject="" data-name="Anonymous" data-muhdifference="" class="poll thread-image" title="Sep 29 16:10">
+                                        </a>
+                                                <div class="replies">
+                                                        <strong>R: 0 / I: 0</strong>
+                                                        								<br />
+							
+								testzzz
+                                                </div>
+                                </div>
+                        </div>
+                                        <div class="mix"
+				data-reply="0"
+				 data-bump="1569773052"
+				 data-time="1569773052"
+				 data-id="15"
+				 data-sticky="false"
+				 data-locked="false"
+			>
+                                <div class="thread grid-li grid-size-small">  
+                                        <a href="/poll/res/15">  
+													<img src="/poll/thumb/1569773052565.png" 
+						                                                 id="img-15" data-subject="" data-name="Anonymous" data-muhdifference="" class="poll thread-image" title="Sep 29 16:04">
+                                        </a>
+                                                <div class="replies">
+                                                        <strong>R: 0 / I: 0</strong>
+                                                        								<br />
+							
+								test
+                                                </div>
+                                </div>
+                        </div>
+                                        <div class="mix"
+				data-reply="0"
+				 data-bump="1569771621"
+				 data-time="1569771621"
+				 data-id="14"
+				 data-sticky="false"
+				 data-locked="false"
+			>
+                                <div class="thread grid-li grid-size-small">  
+                                        <a href="/poll/res/14">  
+													<img src="/poll/thumb/1569771621529.png" 
+						                                                 id="img-14" data-subject="" data-name="Anonymous" data-muhdifference="" class="poll thread-image" title="Sep 29 15:40">
+                                        </a>
+                                                <div class="replies">
+                                                        <strong>R: 0 / I: 0</strong>
+                                                        								<br />
+							
+								test
+                                                </div>
+                                </div>
+                        </div>
                                         <div class="mix"
 				data-reply="12"
 				 data-bump="1569737572"
