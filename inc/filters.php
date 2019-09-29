@@ -1,4 +1,5 @@
 <?php
+// TODO: Add post data fields to the holding table
 
 /*
  *  Copyright (c) 2010-2013 Tinyboard Development Group

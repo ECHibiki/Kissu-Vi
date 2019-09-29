@@ -1006,13 +1006,23 @@ function checkBan($board = false) {
 		cache::set('purged_bans_last', time());
 }
 
-function post_laterPost($post, $thread, $numposts, $noko, $id, $dropped_post, $pdo){
+function post_laterPost($post, $thread, $numposts, $noko, $dropped_post, $pdo){
 	
 		require_once 'inc/anti-bot.php';
 		require_once 'inc/bans.php';
 		require_once 'inc/image.php';
 	
-		global $config, $board, $build_pages;
+	
+	global $config, $board, $build_pages;
+	// TODO: Assuming it's a new poll insert poll data here from new file polling.php
+
+	// TODO: proccess post data into poll format if  applicable. throw errors where needed
+
+	//POST IS DONE HERE
+        $post['id'] = $id = post($post);
+        $post['slug'] = slugify($post);
+
+
 	if ($dropped_post && $dropped_post['from_nntp']) {
 	        $query = prepare("INSERT INTO ``nntp_references`` (`board`, `id`, `message_id`, `message_id_digest`, `own`, `headers`) VALUES ".
 	                                                         "(:board , :id , :message_id , :message_id_digest , false, :headers)");
@@ -1093,6 +1103,7 @@ function post_laterPost($post, $thread, $numposts, $noko, $id, $dropped_post, $p
 	
 	$root = $post['mod'] ? $config['root'] . $config['file_mod'] . '?/' : $config['root'];
 	
+//TODO: Bonus add nonoko
 	if ($noko) {
 		$redirect = $root . $board['dir'] . $config['dir']['res'] .
 			link_for($post, false, false, $thread) . (!$post['op'] ? '#' . $id : '');

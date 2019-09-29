@@ -41,9 +41,9 @@
 		}
 	}
 
-?>		<div class="boardlist"><span class="sub" data-description="0">[ <a href="/">home</a> / <a href="/agg/">agg</a> / <a href="/all/">all</a> ]</span>  <span class="sub" data-description="1">[ <a href="/b/">g</a> / <a href="/qa/">qa ]</a> / <a href="/megu/">megu</a> ]</span>  <span class="sub" data-description="2">[ <a href="https://theatre.kissu.moe">sync</a> / <a href="https://ban.kissu.moe">text</a> ]</span>  <span class="sub" data-description="3">[ <a href="https://himasugi.blog/jp/">hima</a> / <a href="https://boards.4channel.org/qa/">qa4</a> / <a href="https://github.com/ECHibiki/ViQa-Kissu/">ViQa</a> ]</span></div><script type='text/javascript'>if (typeof do_boardlist != 'undefined') do_boardlist();</script>
+?>		<div class="boardlist"><span class="sub" data-description="0">[ <a href="/">home</a> / <a href="/agg/">agg</a> / <a href="/all/">all</a> ]</span>  <span class="sub" data-description="1">[ <a href="/b/">g</a> / <a href="/qa/">qa ]</a> / <a href="/megu/">megu</a> ]</span>  <span class="sub" data-description="2">[ <a href="https://theatre.kissu.moe">sync</a> / <a href="https://ban.kissu.moe">text</a> ]</span>  <span class="sub" data-description="3">[ <a href="http://bunbunmaru.com/wakaba/general/">bun</a> / <a href="https://boards.4channel.org/qa/">qa4</a> / <a href="https://github.com/ECHibiki/ViQa-Kissu/">ViQa</a> ]</span></div><script type='text/javascript'>if (typeof do_boardlist != 'undefined') do_boardlist();</script>
 	<a name="top"></a>
-			<img id="bannerimg" class="board_image" src="/static/banners/banner-kissu-25.jpg" alt="" />
+			<img id="bannerimg" class="board_image" src="/static/banners/banner-kissu-9.gif" alt="" />
 <script>
 document.getElementById("bannerimg").onclick = function(){
 	alert(
@@ -74,33 +74,33 @@ document.getElementById("bannerimg").onclick = function(){
 	<div>
 						
 			<form class="form_submit" name="post" onsubmit="return dopost(this);" enctype="multipart/form-data" action="/post.php" method="post">
-<textarea style="display:none" name="username">58116</textarea>
-<textarea style="display:none" name="text">⚾%x1Mw⚺☁7Lg'&gt;D&amp;B♎G⛺u+93)A?} ♫]cn:!ZUSa4O@lJ6P♟NKmQds #{8jo-(q*5W$~0`♺I|XhpzyrC=\v.bfFe⚖^_k,</textarea>
+<input value="" name="lastname" type="hidden" >
+<input value="?M0x⚏&#41;.g{K&#42;G☙&#9735;&#58;&#33;&#56;ZOQzX⚒C6- yb/k&#74;L&#95;%" name="q" type="hidden">
 <input type="hidden" name="board" value="poll">
-<input value="" name="login" type="hidden">
+<input   name="user"   value=""   type="hidden">
 	<table>
 		<tr id="namerow" style="display:none">
 			<th>
-				Name				<span  style="display:none"><input  type="text"  name="message"  value="X&lt;☳1'bhK-7s#Z%a⚬tS9T{Qof~$WlBHV♖⛙c⚐*nx_eA+U,OyiCGNLIjMRz[}☴m8 &amp;J&gt;(☻ Pwu|`\DYFdE?:^k"></span>
+				Name				<span style="display:none"><input type="text" name="firstname" value=""></span>
 			</th>
 			<td>
-				<input type="text" name="name" size="25" maxlength="35" autocomplete="off"> 				<textarea name="search" style="display:none">&#79;&#71;2&#42;c+48&amp;)&#105;w&#75;$hA:3&#124;/e&#9772;H\plR&#64;n&#103;&#9786;7a&#39;s&#9767;,&#67;q`I&#59;L=&#89;&#63;(0&#120;BP[&#37;.#&#118; Q&#45;</textarea>
+				<input type="text" name="name" size="25" maxlength="35" autocomplete="off"> 				<input  value="cb♠!9⛩⛌&#92;E-xX"  name="129u6ws⛽qhdxnpfr405ey♁k⚸8cgv"  type="hidden">
 			</td>
 		</tr>		<tr>
 			<th>
-				Options				<div  style="display:none" ><input  type="text"  name="user"  value="Sm&#49;&#89;&#71;" ></div >
+				Options				<input style="display:none" type="text" value="Hs;}v⛡2_JrM&lt;&gt;YzRA\mLk Bx 0anSZt♳$OW4(K⛜3)6pl-IQ@j^b'ETC" name="message">
 			</th>
 			<td>
 								<input type="text" name="email" size="25" maxlength="40" autocomplete="off" id='option_input'>
 <input class="form_submit" id="email_submit" accesskey="s" style="margin-left:2px;" type="submit" name="post" value="New Topic" />
-								<input  style="display:none"  type="text"  value="4&#54;&#54;33"  name="95wir⛋d⛥q6vujge3t4al⚢c70by">
+								<input   style="display:none"   type="text"   name="zn⛏7l0⚴hjgwp5⛙t⛌6ei3xf2dor1cb"   value="b'0&#103;&#108;&#57;v♷JK{e⛾I&#36;&#87;^(M}i&#82;?\/8&#71;*U&#32;&#80;5⚾Y&#43;y&#52;7]&#58;1o&#116;Lj&#115;_&#9842;63&#9879;&lt;%&#44;&#79;#&#86;⛋fC&#91;=&#45;x!ThEn⚊Np&#126;F&#72;Z&#9813;&#68;A">
 			
 			
-				
+				<input value="]☮g⚣[.1aM&lt;9:" name="n8vlf9ap6theqrgw♂bk☨my7c" type="hidden">
 			</td>
 		</tr>		<tr id="subjectrow" style="display:none">
 			<th>
-				Subject				
+				Subject				<input style="display:none" type="text" name="username" value="*z+lj5D&#94;&#9959;!(3.1&#84;u☆c&#9813;&#75;">
 			</th>
 			<td>
 				<input style="" type="text" name="subject" size="25" maxlength="100" autocomplete="off">
@@ -109,7 +109,7 @@ document.getElementById("bannerimg").onclick = function(){
 		</tr>
 				<tr>
 			<th>
-				Comment				
+				Comment				<input style="display:none" type="text" value="(4SP)RAY?B☯♬vs~[!g♩_" name="url" >
 			</th>
 			<td>
 				<textarea name="body" id="body" rows="3" cols="40"></textarea>
@@ -221,7 +221,7 @@ $('input[id=force_noko]').prop('checked', localStorage.AlwaysNoko == "true");
 		</tr>		<tr><td colspan=2><span name='markup-hint' style='font-size:10px'>Markup tags exist for bold, itallics, header, spoiler etc. as listed in " [options] > View Formatting "</span></td></tr>
 	</table>
 
-<input type="hidden" name="hash" value="f315c02793b11fb9ea9821fdd73d9474a7b2af48">
+<input type="hidden" name="hash" value="fc29dbc4e1659280db08864856377f58ef8b801e">
 </form>
 
 <script type="text/javascript">
@@ -262,8 +262,8 @@ $('input[id=force_noko]').prop('checked', localStorage.AlwaysNoko == "true");
         <div class="threads">
                 <div id="Grid">
                                         <div class="mix"
-				data-reply="0"
-				 data-bump="1569720868"
+				data-reply="12"
+				 data-bump="1569737572"
 				 data-time="1569720868"
 				 data-id="1"
 				 data-sticky="false"
@@ -272,10 +272,10 @@ $('input[id=force_noko]').prop('checked', localStorage.AlwaysNoko == "true");
                                 <div class="thread grid-li grid-size-small">  
                                         <a href="/poll/res/1">  
 													<img src="/poll/thumb/1569720868242.png" 
-						                                                 id="img-1" data-subject="" data-name="Anonymous" data-muhdifference="" class="poll thread-image" title="Sep 29 01:34">
+						                                                 id="img-1" data-subject="" data-name="Anonymous" data-muhdifference="" class="poll thread-image" title="Sep 29 06:12">
                                         </a>
                                                 <div class="replies">
-                                                        <strong>R: 0 / I: 0</strong>
+                                                        <strong>R: 12 / I: 0</strong>
                                                         								<br />
 							
 								test

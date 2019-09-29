@@ -91,7 +91,11 @@ this.parentNode.parentNode.removeChild(this.parentNode);
 return false
 " value="-" disabled/><br/></span></td>
 </tr>
-<tr id="polloptrow"><th>Poll Options</th><td><label><input type="checkbox" name="multisel">Multi-Choice</label></td></tr>
+<tr id="polloptrow"><th>Poll Options</th><td>
+<label><input type="checkbox" name="multisel"> Multi-Choice</label><br/>
+<label><input type="number" name="postcutoff" style="width:38px"> Minimum Posts</label>
+
+</td></tr>
 
 
 		<tr>

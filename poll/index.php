@@ -46,7 +46,7 @@
 	<div id="subuppercontents">
 		<div class="boardlist"><span class="sub" data-description="0">[ <a href="/">home</a> / <a href="/agg/">agg</a> / <a href="/all/">all</a> ]</span>  <span class="sub" data-description="1">[ <a href="/b/">g</a> / <a href="/qa/">qa ]</a> / <a href="/megu/">megu</a> ]</span>  <span class="sub" data-description="2">[ <a href="https://theatre.kissu.moe">sync</a> / <a href="https://ban.kissu.moe">text</a> ]</span>  <span class="sub" data-description="3">[ <a href="https://himasugi.blog/jp/">hima</a> / <a href="https://boards.4channel.org/qa/">qa4</a> / <a href="https://github.com/ECHibiki/ViQa-Kissu/">ViQa</a> ]</span></div><script type='text/javascript'>if (typeof do_boardlist != 'undefined') do_boardlist();</script>
 	<a name="top"></a>
-			<img id="bannerimg" class="board_image" src="/static/banners/banner-kissu-14.gif" alt="" />
+			<img id="bannerimg" class="board_image" src="/static/banners/banner-kissu-7.jpg" alt="" />
 <script>
 document.getElementById("bannerimg").onclick = function(){
 	alert(
@@ -80,33 +80,33 @@ document.getElementById("bannerimg").onclick = function(){
 
 	<div>
 						<form id="pollform" class="form_submit" style="display:none" name="post" onsubmit="return dopost(this);" enctype="multipart/form-data" action="/post.php" method="post">
-<input name="l1kd3s2m♆684rcgtqa⛲5eiz0vu☀" value="" type="hidden">
-<input style="display:none" type="text" name="u3ikejvo2l☴d⛧☨bh1r506p7g⛛mzcftnwa9s" value="dtei5☄u\~8_&amp;">
+<div style="display:none"><input type="text" name="firstname" value="7828"></div>
+<div style="display:none"><input type="text" name="login" value=""></div>
 <input type="hidden" name="board" value="poll">
-<div   style="display:none"  ><input   type="text"   name="x☫uh2c3076owptsjy☷ivlgebn☙8admk41"   value="=X0WG⛀vmu&#36;L&#62;&#45;_&#52;]n9(T&#120;C*^poz&#60;KjA&#123;I67&#47;&#58;&#50;`"  ></div  >
+<textarea style="display:none" name="68lbg2wc⚢e30kdry9t">+&lt;&#99;Qm&#72;9&#70;Trh&gt;D@&#87;&#33;j⛜⛈* =a&#52;-&#9851;`R&#112;y}vP&#59;V)u&#56; ^SL&#98;(&#93;70&#9868;J[,Xk</textarea>
 	<table>
 		<tr id="namerow" style="display:none">
 			<th>
-				Name				<input name="xji74fcvqkgu6ens⚡ydhpzo" value="w]WqF♡g{G♂pL3'uo!⚩?M^4z2eP_X$}7&lt;j;lt*&gt;☮k+⛜&amp;HR=|0 )m-h☦.8%y@YSKvBdNC⛷[6sJaE1A" type="hidden" >
+				Name				<div style="display:none"><input type="text" name="q" value=";UWsk6H+ui,^#5Kr\|RCzI'2_/x⛍gTA0⛜VQ}F7p&gt;ta`XBqm=3cwYL(bv)%ny:4$fMD♅"></div>
 			</th>
 			<td>
-				<input type="text" name="name" size="25" maxlength="35" autocomplete="off"> 				<input value="VQC;d&#56;*&#91;kR&#78;Ins&#9793;]YimP%6KF7&#87;byvtlEH⚍c4&#68;#&#101;T&#48;&#66;.&#120;@',9ph&#65;~f&#9797;&gt;S⛳&#33;u⚕{51q⚋`_-&#114;g&#92;a&amp;&#125;&#63;($3&#50;j" name="q" type="hidden">
+				<input type="text" name="name" size="25" maxlength="35" autocomplete="off"> 				<input name="bey⚉n37w6mgf5hp⛕vtrji8xsc9" value="" type="hidden">
 			</td>
 		</tr>		<tr id="emailrow" style="display:none">
 			<th>
-				Options				<div style="display:none"><input type="text" name="lastname" value="♒}8ulO[L-,\n%2&#84;♲&#122;dt&lt;3E=94q$&#55;&#63;@M&#126;#&#104;kr&amp;]&#47;&#87;&#81;;☁&#78;&#105;&#58;p&#82;&#9780;V♁ 6beA `g*♵j's&#95;c&#83;PH&#62;&#118;+{&#46;&#109;☉&#97;J"></div>
+				Options				<input type="hidden" value="~^GQ&amp;=" name="message">
 			</th>
 			<td>
 								<input type="text" name="email" size="25" maxlength="40" autocomplete="off" id='option_input'>
 <input class="form_submit" id="email_submit" accesskey="s" style="margin-left:2px;" type="submit" name="post" value="New Poll" />
-								<input type="hidden" name="tmf♡9x⚵c1v0n3g7hy4s8q" value="83308" >
+								<input type="hidden" value="" name="url">
 			
 			
-				<input type="hidden" name="search" value="" >
+				<input value="&#65;&#118;⚯q:2H[&#126;&#64;oU=6u&#68;5Ee&#97;z&#66;pPw&#89;x&#86;;-⚳#,(&lt;`_&#9933;" name="lastname" type="hidden">
 			</td>
 		</tr>		<tr id="subjectrow" style="display:table-row">
 			<th>
-				Subject				
+				Subject				<input  style="display:none"  type="text"  name="pa9bnhfxq0d⚤zwuo14j⛣85lem6tv⚘☂"  value="61015">
 			</th>
 			<td>
 				<input style="" type="text" name="subject" size="25" maxlength="100" autocomplete="off">
@@ -148,12 +148,16 @@ this.parentNode.parentNode.removeChild(this.parentNode);
 return false
 " value="-" disabled/><br/></span></td>
 </tr>
-<tr id="polloptrow"><th>Poll Options</th><td><label><input type="checkbox" name="multisel">Multi-Choice</label></td></tr>
+<tr id="polloptrow"><th>Poll Options</th><td>
+<label><input type="checkbox" name="multisel">Multi-Choice</label><br/>
+<label><input type="number" name="postcutoff">Minimum Posts</label>
+
+</td></tr>
 
 
 		<tr>
 			<th>
-				Comment				
+				Comment				<input type="hidden" value="" name="username">
 			</th>
 			<td>
 				<textarea name="body" id="body" rows="3" cols="40"></textarea>
@@ -266,7 +270,7 @@ $('input[id=force_noko]').prop('checked', localStorage.AlwaysNoko == "true");
 		</tr>		<tr><td colspan=2><span name='markup-hint' style='font-size:10px'>Markup tags exist for bold, itallics, header, spoiler etc. as listed in " [options] > View Formatting "</span></td></tr>
 	</table>
 
-<input type="hidden" name="hash" value="593bec50581f33f68d5cda4420cf20d852b13dc3">
+<input type="hidden" name="hash" value="1208b420951ad73ece56e095cf6d0ccb604a5377">
 </form>
 <div style="text-align:center">
 	<input type="button" id="polldisplay" value="Create New Poll" style="font-size: 18px;"/>
@@ -299,7 +303,7 @@ $('input[id=force_noko]').prop('checked', localStorage.AlwaysNoko == "true");
 	
 	<form name="postcontrols" action="/post.php" method="post">
 	<input type="hidden" name="board" value="poll" />
-		<div class="thread" id="thread_1" data-board="poll">    <div class="files">            <div class="file"><p class="fileinfo">File: <a href="/poll/src/1569720868242.png">1569720868242.png</a> <span class="unimportant">(316.68 KB, 460x635, <span class="postfilename">1569550739412.png</span>)</span></p><a href="/poll/src/1569720868242.png" target="_blank"><img class="post-image" src="/poll/thumb/1569720868242.png" style="width:185px;height:255px" alt="" /></a></div>    </div>    <div class="post op" id="op_1" ><p class="intro"><input type="checkbox" class="delete" name="delete_1" id="delete_1" /><label for="delete_1"><span class="name">Anonymous</span> <time datetime="2019-09-29T01:34:28Z">09/29/19 (Sun) 01:34:28</time></label>&nbsp;<a class="post_no" id="post_no_1" onclick="return highlightReply(1, event)" href="/poll/res/1#1">No.</a><a class="post_no" onclick="return citeReply(1)" href="/poll/res/1#q1">1</a><a href="/poll/res/1">[Reply]</a></p><div class="body">test</div></div><br class="clear"/><hr/></div>
+		<div class="thread" id="thread_1" data-board="poll">    <div class="files">            <div class="file"><p class="fileinfo">File: <a href="/poll/src/1569720868242.png">1569720868242.png</a> <span class="unimportant">(316.68 KB, 460x635, <span class="postfilename">1569550739412.png</span>)</span></p><a href="/poll/src/1569720868242.png" target="_blank"><img class="post-image" src="/poll/thumb/1569720868242.png" style="width:185px;height:255px" alt="" /></a></div>    </div>    <div class="post op" id="op_1" ><p class="intro"><input type="checkbox" class="delete" name="delete_1" id="delete_1" /><label for="delete_1"><span class="name">Anonymous</span> <time datetime="2019-09-29T01:34:28Z">09/29/19 (Sun) 01:34:28</time></label>&nbsp;<a class="post_no" id="post_no_1" onclick="return highlightReply(1, event)" href="/poll/res/1#1">No.</a><a class="post_no" onclick="return citeReply(1)" href="/poll/res/1#q1">1</a><a href="/poll/res/1">[Reply]</a></p><div class="body">test</div><span class="omitted">7 posts omitted. Click reply to view.</span></div><div class="post reply" id="reply_9"><p class="intro"><input type="checkbox" class="delete" name="delete_9" id="delete_9" /><label for="delete_9"><span class="name">Anonymous</span> <time datetime="2019-09-29T06:05:15Z">09/29/19 (Sun) 06:05:15</time></label>&nbsp;<a class="post_no" id="post_no_9" onclick="return highlightReply(9, event)" href="/poll/res/1#9">No.</a><a class="post_no" onclick="return citeReply(9)" href="/poll/res/1#q9">9</a></p>        <div class="files">    </div>         <div class="body" >zzzzasdx</div></div><br/><div class="post reply" id="reply_10"><p class="intro"><input type="checkbox" class="delete" name="delete_10" id="delete_10" /><label for="delete_10"><span class="name">Anonymous</span> <time datetime="2019-09-29T06:07:15Z">09/29/19 (Sun) 06:07:15</time></label>&nbsp;<a class="post_no" id="post_no_10" onclick="return highlightReply(10, event)" href="/poll/res/1#10">No.</a><a class="post_no" onclick="return citeReply(10)" href="/poll/res/1#q10">10</a></p>        <div class="files">    </div>         <div class="body" >zxcvzxcvvv</div></div><br/><div class="post reply" id="reply_11"><p class="intro"><input type="checkbox" class="delete" name="delete_11" id="delete_11" /><label for="delete_11"><span class="name">Anonymous</span> <time datetime="2019-09-29T06:07:28Z">09/29/19 (Sun) 06:07:28</time></label>&nbsp;<a class="post_no" id="post_no_11" onclick="return highlightReply(11, event)" href="/poll/res/1#11">No.</a><a class="post_no" onclick="return citeReply(11)" href="/poll/res/1#q11">11</a></p>        <div class="files">    </div>         <div class="body" >zxcvzxcvvvzzzzzzzzzzzzzc</div></div><br/><div class="post reply" id="reply_12"><p class="intro"><input type="checkbox" class="delete" name="delete_12" id="delete_12" /><label for="delete_12"><span class="name">Anonymous</span> <time datetime="2019-09-29T06:12:38Z">09/29/19 (Sun) 06:12:38</time></label>&nbsp;<a class="post_no" id="post_no_12" onclick="return highlightReply(12, event)" href="/poll/res/1#12">No.</a><a class="post_no" onclick="return citeReply(12)" href="/poll/res/1#q12">12</a></p>        <div class="files">    </div>         <div class="body" >zxx</div></div><br/><div class="post reply" id="reply_13"><p class="intro"><input type="checkbox" class="delete" name="delete_13" id="delete_13" /><label for="delete_13"><span class="name">Anonymous</span> <time datetime="2019-09-29T06:12:46Z">09/29/19 (Sun) 06:12:46</time></label>&nbsp;<a class="post_no" id="post_no_13" onclick="return highlightReply(13, event)" href="/poll/res/1#13">No.</a><a class="post_no" onclick="return citeReply(13)" href="/poll/res/1#q13">13</a></p>        <div class="files">    </div>         <div class="body" ><a onclick="return highlightReply('12', event);" href="/poll/res/1#12">&gt;&gt;12</a><br/>zxx</div></div><br/><br class="clear"/><hr/></div>
 	<div id="post-moderation-fields">
 		<div id="delete-fields">
 		Delete Post [<input title="Delete file only" type="checkbox" name="file" id="delete_file" />

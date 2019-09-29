@@ -250,6 +250,9 @@ if (isset($_POST['delete'])) {
 			} else {
 				// Delete entire post
 				deletePostKeepOrder($id);
+
+				//TODO: remove poll if exists, probably do this in functions because moderator tools
+
 				if(!$mod) modLog("User deleted his own post #$id");
 				else modLog("Mod deleted file from post #$id");
 			}
@@ -368,7 +371,6 @@ elseif (isset($_POST['report'])) {
 	}
 } 
 elseif (isset($_POST['post']) || $dropped_post) {
-
 	if (!isset($_POST['body'], $_POST['board']) && !$dropped_post && !$config['error']['remove_bot_err'])
 		error($config['error']['bot']);
 
@@ -404,6 +406,8 @@ elseif (isset($_POST['post']) || $dropped_post) {
 	} else
 		$post['op'] = true;
 
+	//TODO assign default to unset poll fields
+	//TODO unset poll fields if not OP
 
 	if (!$dropped_post) {
 		// Check if banned
@@ -925,17 +929,12 @@ https://www.youtube.com/watch?v=_5joTyy3CCo				error($config['error']['noaccess'
 		$post['files'] = $post['files'];
 	$post['num_files'] = sizeof($post['files']);
 	
-
-	
-	$post['id'] = $id = post($post);
-	$post['slug'] = slugify($post);
-	
-	
+	//use to simplify post and release	
 	if(isset($numposts)){
-		post_laterPost($post, $thread, $numposts, $noko, $id, $dropped_post, $pdo);
+		post_laterPost($post, $thread, $numposts, $noko, $dropped_post, $pdo);
 	}
 	else{
-		post_laterPost($post, $thread, null, $noko, $id, $dropped_post, $pdo);
+		post_laterPost($post, $thread, null, $noko, $dropped_post, $pdo);
 	}
 }
 elseif(isset($_POST['release'])){
@@ -1079,15 +1078,12 @@ elseif(isset($_POST['release'])){
 	}
 
 	$post = (array)$post;
-	$post['id'] = $id = post($post);
-
-	$post['slug'] = slugify($post);
 	
 	if(isset($numposts)){
-		post_laterPost($post, $thread, $numposts, $noko, $id, $dropped_post, $pdo);
+		post_laterPost($post, $thread, $numposts, $noko, $dropped_post, $pdo);
 	}
 	else{
-		post_laterPost($post, $thread, null, $noko, $id, $dropped_post, $pdo);
+		post_laterPost($post, $thread, null, $noko, $dropped_post, $pdo);
 	}
 	
 }
