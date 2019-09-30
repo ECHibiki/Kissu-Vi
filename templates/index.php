@@ -16,9 +16,10 @@
 
 	{% include 'header.html' %}
 	<title>{{ board.url }} - {{ board.title|e }}</title>
+
 </head>
 <body class="8chan vichan {% if mod %}is-moderator{% else %}is-not-moderator{% endif %} active-{% if not no_post_form %}index{% else %}ukko{% endif %}" data-stylesheet="{% if config.default_stylesheet.1 != '' %}{{ config.default_stylesheet.1 }}{% else %}default{% endif %}">
-	<div id="uppercontents">
+<div id="uppercontents">
 	<div id="subuppercontents">
 		{{ boardlist.top }}
 	<a name="top"></a>
@@ -29,7 +30,7 @@ document.getElementById("bannerimg").onclick = function(){
 	
         var request = new XMLHttpRequest(); 
         var motd = "";
-        request.open("GET", 'https://kissu.moe/motd.txt');
+        request.open("GET", '/motd.txt');
                 request.onreadystatechange = function() { 
                 if (this.readyState === 4 && this.status === 200) {
                         motd = this.responseText;

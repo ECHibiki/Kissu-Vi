@@ -327,9 +327,6 @@ div.subtitle {
 	text-shadow: 5px 5px 10px black;
 }
 
-form {
-	margin-bottom: 4em;
-}
 form table {
 	background-color: rgba(30,30,30,0.7);
 	padding:0.5em 0em;
@@ -386,3 +383,8 @@ form table tr td div input {
 form table tr td div label {
 	font-size: 10px;
 }
+
+form {
+	margin-bottom: 5em;
+}
+

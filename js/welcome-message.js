@@ -2,7 +2,7 @@
 onready(function(){
 	var request = new XMLHttpRequest(); 
 	var motd = "";
-	request.open("GET", 'https://kissu.moe/motd.txt');
+	request.open("GET", '/motd.txt');
 		request.onreadystatechange = function() { 
 		if (this.readyState === 4 && this.status === 200) {
 			motd = this.responseText;
