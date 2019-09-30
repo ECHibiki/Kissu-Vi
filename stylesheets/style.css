@@ -1381,3 +1381,7 @@ div.mix {
 	max-width:36%;
 	max-height:36%;
 }
+
+.poll_data_text{
+	padding: 3em 4em;
+}

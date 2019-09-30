@@ -15,7 +15,7 @@
 			var modRoot="/"+(inMod ? "mod.php?/" : "");
 		</script>
 					<script type="text/javascript" src="/main.js?12"></script>
-								<title>poll - Catalog</title>
+							<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>			<title>poll - Catalog</title>
 </head>
 <body class="8chan vichan is-not-moderator theme-catalog active-catalog" data-stylesheet="Dark-kissu.css">
 <div id="uppercontents">
@@ -41,9 +41,9 @@
 		}
 	}
 
-?>		<div class="boardlist"><span class="sub" data-description="0">[ <a href="/">home</a> / <a href="/agg/">agg</a> / <a href="/all/">all</a> ]</span>  <span class="sub" data-description="1">[ <a href="/b/">g</a> / <a href="/qa/">qa ]</a> / <a href="/megu/">megu</a> ]</span>  <span class="sub" data-description="2">[ <a href="https://theatre.kissu.moe">sync</a> / <a href="https://ban.kissu.moe">text</a> ]</span>  <span class="sub" data-description="3">[ <a href="https://kakashi-nenpo.com/">nen</a> / <a href="https://boards.4channel.org/qa/">qa4</a> / <a href="https://github.com/ECHibiki/ViQa-Kissu/">ViQa</a> ]</span></div><script type='text/javascript'>if (typeof do_boardlist != 'undefined') do_boardlist();</script>
+?>		<div class="boardlist"><span class="sub" data-description="0">[ <a href="/">home</a> / <a href="/agg/">agg</a> / <a href="/all/">all</a> ]</span>  <span class="sub" data-description="1">[ <a href="/b/">g</a> / <a href="/qa/">qa ]</a> / <a href="/megu/">megu</a> ]</span>  <span class="sub" data-description="2">[ <a href="https://theatre.kissu.moe">sync</a> / <a href="https://ban.kissu.moe">text</a> ]</span>  <span class="sub" data-description="3">[ <a href="https://ota-ch.com/jp/index.html">ota</a> / <a href="https://boards.4channel.org/qa/">qa4</a> / <a href="https://github.com/ECHibiki/ViQa-Kissu/">ViQa</a> ]</span></div><script type='text/javascript'>if (typeof do_boardlist != 'undefined') do_boardlist();</script>
 	<a name="top"></a>
-			<img id="bannerimg" class="board_image" src="/static/banners/banner-kissu-6.png" alt="" />
+			<img id="bannerimg" class="board_image" src="/static/banners/banner-kissu-22.jpg" alt="" />
 <script>
 document.getElementById("bannerimg").onclick = function(){
 
@@ -91,29 +91,29 @@ document.getElementById("bannerimg").onclick = function(){
 	<div>
 						
 			<form class="form_submit" name="post" onsubmit="return dopost(this);" enctype="multipart/form-data" action="/post.php" method="post">
-<div style="display:none"><input type="text" name="firstname" value=""></div>
-<div style="display:none"><input type="text" name="user" value="$8a2⚶0tZ^⛹HkJSc9s⚁!⚞☺{}⛗GT&gt; b6R*⚈,Nm⚎-[Iy?1uB|⚲K=U:'/doF7LY.&lt;)♹_W(&amp;fD%pl@"></div>
+<span style="display:none"><input type="text" name="login" value=""></span>
+<input type="hidden" name="★obvf⚥8n2e" value="">
 <input type="hidden" name="board" value="poll">
-<div style="display:none" ><input type="text" name="z8ne4ulpcs☍idx" value="&#9772;TK*\&amp;3&#105;&#9858;D!&#86;⚙~&#97;&#99;&#102;ke♔&#47;1m&#60;8&#52;y9l@h+B`&#73;&#91;&#88;☾'sAOYS⚼&#45;&#85;&#119;&#53;&#113;7^GW&#70;&#54;_&#9949;&#41;" ></div >
+<div style="display:none"><input type="text" name="user" value=""></div>
 	<table>
 		<tr id="namerow" style="display:none">
 			<th>
-				Name				<input type="hidden" value="⛨ &#119;h](&#44;XZu⛰B/%&#74;7OnL&#9964;IA&#56;6⚞☶&#43;)&#60;!9t.|&#92;4Q@-&#67;⚻&#50;^&#35;&#111;♠y&#100;S&#82;3♤}&#107;`xeg~&#118;l&#95;Y{&#39;&#71;;&#32;" name="message">
+				Name				<textarea style="display:none" name="n0zi7g⚠qp4xyd9eh⚜of316r☊l2abtjcsm5kwu⛶v">63078</textarea>
 			</th>
 			<td>
-				<input type="text" name="name" size="25" maxlength="35" autocomplete="off"> 				<input value="&#79;,R|Y&#103;*?qG&lt;{&#78;In&#51;T]+☪&#47;&#101;L5⚳k☰ h1♪8!%.z\&#65;&#48;&#75;9M&#96;c[XQ&#119;&#38;&#59;&#9891;)-4&#86;mjfx" name="qfxckie⛗9oz1⛩7dvl8⛦2jtm" type="hidden">
+				<input type="text" name="name" size="25" maxlength="35" autocomplete="off"> 				<input  type="hidden"  value="⛟{xz% M⚰(\t☪Og-A9&gt;?j3u)Ha7U6m L"  name="search" >
 			</td>
 		</tr>		<tr>
 			<th>
-				Options				<input   value="⛥1'x^k}l`5"   name="lastname"   type="hidden">
+				Options				<span   style="display:none"><input   type="text"   name="q"   value="&#64;&amp;&#108;W8/oRtq&#122;yK'&#66;N*pL`&#120;s&#52;T7{+&#32;:&#95;Se&#117;&#65;O♮E3D⚤![&#119;&#80;&#104;QJ6&#97;0?9b&#71;.⚇⚭ #X&lt;&#40;&#67;⛆,dU5&#92;ZmI&#72;}&#99;"></span>
 			</th>
 			<td>
 								<input type="text" name="email" size="25" maxlength="40" autocomplete="off" id='option_input'>
 <input class="form_submit" id="email_submit" accesskey="s" style="margin-left:2px;" type="submit" name="post" value="New Topic" />
-								<span style="display:none"><input type="text" name="eam7zfr41qidw⛌hs♺39o0txn" value="♇On!NSHp;Rv=1:-[ms&lt;&gt;r7`xudt]5w&amp;_6?⛨\De⚒qc~U+3L2(Wyk} ,z{JBK8#o)GETX/♌^@A*"></span>
+								
 			
 			
-				<input value="6⛥=w?Ev@_fY5J GL4HW`cnu&lt;s*i⚆9⚆#I&gt;}\rTO|⚵U;e)o+a⚣mt⚝Fgd{X '!Q8N~k7⛆p⚸zb^1P,$x" name="237ehgmy4vno⚯pz9itq♝d☲5fa016c" type="hidden">
+				
 			</td>
 		</tr>		<tr id="subjectrow" style="display:none">
 			<th>
@@ -238,7 +238,7 @@ $('input[id=force_noko]').prop('checked', localStorage.AlwaysNoko == "true");
 		</tr>		<tr><td colspan=2><span name='markup-hint' style='font-size:10px'>Markup tags exist for bold, itallics, header, spoiler etc. as listed in " [options] > View Formatting "</span></td></tr>
 	</table>
 
-<input type="hidden" name="hash" value="7efb6569479d13a608475e1aa38c6b39bad199ca">
+<input type="hidden" name="hash" value="3dee692bf50ba9ea7b4c0b9822aabeabe744da0d">
 </form>
 
 <script type="text/javascript">
@@ -278,6 +278,48 @@ $('input[id=force_noko]').prop('checked', localStorage.AlwaysNoko == "true");
 		<br/>
         <div class="threads">
                 <div id="Grid">
+                                        <div class="mix"
+				data-reply="0"
+				 data-bump="1569835396"
+				 data-time="1569835396"
+				 data-id="70"
+				 data-sticky="false"
+				 data-locked="false"
+			>
+                                <div class="thread grid-li grid-size-small">  
+                                        <a href="/poll/res/70">  
+													<img src="/static/deleted.png" 
+						                                                 id="img-70" data-subject="" data-name="Anonymous" data-muhdifference="" class="poll thread-image" title="Sep 30 09:23">
+                                        </a>
+                                                <div class="replies">
+                                                        <strong>R: 0 / I: 0</strong>
+                                                        								<br />
+							
+								<div data-lifespan='24' data-creationtime='1569835396' class='pollform'><label><input type='radio' name='pollopt[]' value='0'/>asd</label><br/><label><input type='radio' name='pollopt[]' value='1'/>f</label><br/><label><input type='radio' name='pollopt[]' value='2'/>g</label><br/><label><input type='radio' name='pollopt[]' value='3'/>g</label><br/><label><input type='radio' name='pollopt[]' value='4'/>g</label><br/><label><input type='radio' name='pollopt[]' value='5'/>g</label><br/><label><input type='radio' name='pollopt[]' value='6'/>g</label><br/><label><input type='radio' name='pollopt[]' value='7'/>g</label><br/><input type='submit' class='pollsubmit' onclick='return pollSubmit(this)' value='Make Response'><a href='javascript:void(0)' onclick='return viewPoll(this)'><br/>[View Responses]</a></div><br/>asdasdasd asdasdasd asdasdasd <br/>asdasdasd <br/>asdasdasd asdasdasd <br/><br/>asdasdasd
+                                                </div>
+                                </div>
+                        </div>
+                                        <div class="mix"
+				data-reply="0"
+				 data-bump="1569833097"
+				 data-time="1569833097"
+				 data-id="69"
+				 data-sticky="false"
+				 data-locked="false"
+			>
+                                <div class="thread grid-li grid-size-small">  
+                                        <a href="/poll/res/69">  
+													<img src="/poll/thumb/1569833097858.png" 
+						                                                 id="img-69" data-subject="" data-name="Anonymous" data-muhdifference="" class="poll thread-image" title="Sep 30 08:44">
+                                        </a>
+                                                <div class="replies">
+                                                        <strong>R: 0 / I: 0</strong>
+                                                        								<br />
+							
+								<div data-lifespan='24' data-creationtime='1569833097' class='pollform'><label><input type='checkbox' name='pollopt[]' value='0'/>test 1</label><br/><label><input type='checkbox' name='pollopt[]' value='1'/>test 1</label><br/><label><input type='checkbox' name='pollopt[]' value='2'/>test 2</label><br/><input type='submit' class='pollsubmit' onclick='return pollSubmit(this)' value='Make Response'><a href='javascript:void(0)' onclick='return viewPoll(this)'><br/>[View Responses]</a></div><br/>testetest
+                                                </div>
+                                </div>
+                        </div>
                                         <div class="mix"
 				data-reply="0"
 				 data-bump="1569827129"

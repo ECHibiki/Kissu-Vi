@@ -333,19 +333,25 @@ function displayPoll(response_text, reference_element){
                         br[i].style = "display:none";
                 }
 
-		reference_element.parentNode.getElementsByTagName("a")[0].style = "display:none";
-
-
+		reference_element.parentNode.getElementsByTagName("a")[0].style = "display:none";	
+		reference_element.parentNode.style = "display:flex;flex-direction:row;justify-content: safe;";
+		chart_text_div = document.createElement("div");
+		chart_text_div.innerHTML = simple_string;
+		chart_text_div.setAttribute("class","poll_data_text");
+	
 			chart_canvas_div = document.createElement("div");
-			chart_canvas_div.innerHTML = simple_string;
 			chart_canvas_div.setAttribute('class', 'poll_container');
-			chart_canvas = document.createElement("canvas");
+			bar_chart_canvas = document.createElement("canvas");
+			pie_chart_canvas = document.createElement("canvas");
 
-			chart_canvas_div.appendChild(chart_canvas);			
+			chart_canvas_div.appendChild(bar_chart_canvas);			
+			chart_canvas_div.appendChild(pie_chart_canvas);			
 			reference_element.parentNode.appendChild(chart_canvas_div);
-			var pie_cart = new Chart(chart_canvas,
+			reference_element.parentNode.appendChild(chart_text_div);
+
+var bar_cart = new Chart(bar_chart_canvas,
 {
-	type: 'pie',
+	type: 'horizontalBar',
 	data:
 	{
 		labels: poll_labels,
@@ -361,6 +367,26 @@ function displayPoll(response_text, reference_element){
 		
 	}
 });
+
+var pie_cart = new Chart(pie_chart_canvas,
+{
+        type: 'pie',
+        data:
+        {
+                labels: poll_labels,
+                datasets:
+                [{
+                        label:'test',
+                        data: poll_data,
+                        backgroundColor: random_bg
+                }]
+        },
+        options:
+        {
+
+        }
+});
+
 
 
 }

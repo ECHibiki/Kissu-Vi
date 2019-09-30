@@ -44,7 +44,7 @@
 		<h1>Kissu.moe</h1>
 		<div class="subtitle">100% Fun!</div>
 	</header>
-	<img class="board_image" src="/static/banners/banner-kissu-6.png" alt="" />	
+	<img class="board_image" src="/static/banners/banner-kissu-11.png" alt="" />	
 	<div class="box-wrap">
 	    <!--<fieldset>
 		<legend>Boards</legend>
@@ -106,6 +106,11 @@
 	    <h1>Recent Images</h1>
 		<div class="box image">
 			<ul>
+									<li>
+						<a href="/poll/res/69#69">
+							<img src="/poll/thumb/1569833097858.png" style="width:185px;height:255px" alt="">
+						</a>
+					</li>
 									<li>
 						<a href="/poll/res/58#58">
 							<img src="/poll/thumb/1569806128942.png" style="width:185px;height:255px" alt="">
@@ -176,16 +181,23 @@
 							<img src="/qa/thumb/1569482184890.png" style="width:204px;height:255px" alt="">
 						</a>
 					</li>
-									<li>
-						<a href="/qa/res/10615#10615">
-							<img src="/qa/thumb/1569481705424.png" style="width:204px;height:255px" alt="">
-						</a>
-					</li>
 							</ul>
 		</div>
 		<div class="mainBox">
 			<h2>Latest Posts</h2>
 			<ul>
+									<li>
+						<strong>/poll/</strong>: 
+						<a href="/poll/res/70#70">
+							<em>asd  f  g  g  g  g  g  g    [V&hellip;</em>
+						</a>
+					</li>
+									<li>
+						<strong>/poll/</strong>: 
+						<a href="/poll/res/69#69">
+							<em>test 1  test 1  test 2    [Vie&hellip;</em>
+						</a>
+					</li>
 									<li>
 						<strong>/poll/</strong>: 
 						<a href="/poll/res/68#68">
@@ -354,18 +366,6 @@
 							<em>yrasdzzzzz</em>
 						</a>
 					</li>
-									<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/10615#10615">
-							<em>yrasdzzz</em>
-						</a>
-					</li>
-									<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/10614#10614">
-							<em>yrasdz</em>
-						</a>
-					</li>
 							</ul>
 		</div>
 		<div class="mainBox">
@@ -409,7 +409,7 @@
 		<div class="mainBox">
 			<h2>Stats</h2>
 			<ul>
-				<li>Total posts: 13,573</li>
+				<li>Total posts: 13,575</li>
 				<li>Unique posters: 399</li>
 				<li>Active content: 5.66 GB</li>
 			</ul>
