@@ -15,7 +15,7 @@
 			var modRoot="/"+(inMod ? "mod.php?/" : "");
 		</script>
 					<script type="text/javascript" src="/main.js?12"></script>
-							</head>
+									</head>
 <body>
 <?php
 	$expresion = '/(C:\\\xampp\\\htdocs\\\[a-zA-Z]+|\/var\/www\/html\/[a-zA-Z]+)/';
@@ -38,13 +38,21 @@
 		}
 	}
 
+<<<<<<< HEAD
 ?><div class="boardlist"><span class="sub" data-description="0">[ <a href="/">home</a> / <a href="/agg/">agg</a> / <a href="/all/">all</a> ]</span>  <span class="sub" data-description="1">[ <a href="/b/">g</a> / <a href="/qa/">qa ]</a> / <a href="/megu/">megu</a> ]</span>  <span class="sub" data-description="2">[ <a href="https://theatre.kissu.moe">sync</a> / <a href="https://ban.kissu.moe">text</a> ]</span>  <span class="sub" data-description="3">[ <a href="https://ota-ch.com/jp/index.html">ota</a> / <a href="https://boards.4channel.org/qa/">qa4</a> / <a href="https://github.com/ECHibiki/ViQa-Kissu/">ViQa</a> ]</span></div><script type='text/javascript'>if (typeof do_boardlist != 'undefined') do_boardlist();</script>
+=======
+?><div class="boardlist"><span class="sub" data-description="0">[ <a href="/">home</a> / <a href="/agg/">agg</a> / <a href="/all/">all</a> ]</span>  <span class="sub" data-description="1">[ <a href="/b/">g</a> / <a href="/qa/">qa ]</a> / <a href="/megu/">megu</a> ]</span>  <span class="sub" data-description="2">[ <a href="https://theatre.kissu.moe">sync</a> / <a href="https://ban.kissu.moe">text</a> ]</span>  <span class="sub" data-description="3">[ <a href="http://bunbunmaru.com/wakaba/general/">bun</a> / <a href="https://boards.4channel.org/qa/">qa4</a> / <a href="https://github.com/ECHibiki/ViQa-Kissu/">ViQa</a> ]</span></div><script type='text/javascript'>if (typeof do_boardlist != 'undefined') do_boardlist();</script>
+>>>>>>> 64515fafb2ddbb492b478d7256d28ac7ddac384f
 	<header>
 	    <img class="icon" src="../static/kissu-card.png">
 		<h1>Kissu.moe</h1>
 		<div class="subtitle">100% Fun!</div>
 	</header>
+<<<<<<< HEAD
 	<img class="board_image" src="/static/banners/banner-kissu-17.png" alt="" />	
+=======
+	<img class="board_image" src="/static/banners/banner-kissu-11.png" alt="" />	
+>>>>>>> 64515fafb2ddbb492b478d7256d28ac7ddac384f
 	<div class="box-wrap">
 	    <!--<fieldset>
 		<legend>Boards</legend>
@@ -80,6 +88,11 @@
 					</a>
 				</li>
 							<li class="boardlinksurl">
+					<a href="poll/">
+						polling
+					</a>
+				</li>
+							<li class="boardlinksurl">
 					<a href="qa/">
 						Questions and Answers
 					</a>
@@ -102,6 +115,7 @@
 		<div class="box image">
 			<ul>
 									<li>
+<<<<<<< HEAD
 						<a href="/qa/res/10627#11136">
 							<img src="/qa/thumb/1569854931642.png" style="width:175px;height:143px" alt="">
 						</a>
@@ -174,6 +188,80 @@
 									<li>
 						<a href="/qa/res/11109#11109">
 							<img src="/qa/thumb/1569807126485.jpg" style="width:255px;height:143px" alt="">
+=======
+						<a href="/poll/res/69#69">
+							<img src="/poll/thumb/1569833097858.png" style="width:185px;height:255px" alt="">
+						</a>
+					</li>
+									<li>
+						<a href="/poll/res/58#58">
+							<img src="/poll/thumb/1569806128942.png" style="width:185px;height:255px" alt="">
+						</a>
+					</li>
+									<li>
+						<a href="/poll/res/57#57">
+							<img src="/poll/thumb/1569806108276.png" style="width:185px;height:255px" alt="">
+						</a>
+					</li>
+									<li>
+						<a href="/poll/res/56#56">
+							<img src="/poll/thumb/1569806082682.png" style="width:185px;height:255px" alt="">
+						</a>
+					</li>
+									<li>
+						<a href="/qa/res/10630#10630">
+							<img src="/qa/thumb/1569777427567.png" style="width:185px;height:255px" alt="">
+						</a>
+					</li>
+									<li>
+						<a href="/poll/res/14#14">
+							<img src="/poll/thumb/1569771621529.png" style="width:185px;height:255px" alt="">
+						</a>
+					</li>
+									<li>
+						<a href="/qa/res/10627#10627">
+							<img src="/qa/thumb/1569770824068.png" style="width:204px;height:255px" alt="">
+						</a>
+					</li>
+									<li>
+						<a href="/qa/res/10624#10624">
+							<img src="/qa/thumb/1569509741918.png" style="width:204px;height:255px" alt="">
+						</a>
+					</li>
+									<li>
+						<a href="/qa/res/10622#10622">
+							<img src="/qa/thumb/1569485670573.png" style="width:204px;height:255px" alt="">
+						</a>
+					</li>
+									<li>
+						<a href="/qa/res/10621#10621">
+							<img src="/qa/thumb/1569484098775.png" style="width:204px;height:255px" alt="">
+						</a>
+					</li>
+									<li>
+						<a href="/qa/res/10620#10620">
+							<img src="/qa/thumb/1569482558718.png" style="width:204px;height:255px" alt="">
+						</a>
+					</li>
+									<li>
+						<a href="/qa/res/10619#10619">
+							<img src="/qa/thumb/1569482444690.png" style="width:204px;height:255px" alt="">
+						</a>
+					</li>
+									<li>
+						<a href="/qa/res/10618#10618">
+							<img src="/qa/thumb/1569482378047.png" style="width:204px;height:255px" alt="">
+						</a>
+					</li>
+									<li>
+						<a href="/qa/res/10617#10617">
+							<img src="/qa/thumb/1569482234380.png" style="width:204px;height:255px" alt="">
+						</a>
+					</li>
+									<li>
+						<a href="/qa/res/10616#10616">
+							<img src="/qa/thumb/1569482184890.png" style="width:204px;height:255px" alt="">
+>>>>>>> 64515fafb2ddbb492b478d7256d28ac7ddac384f
 						</a>
 					</li>
 							</ul>
@@ -182,6 +270,7 @@
 			<h2>Latest Posts</h2>
 			<ul>
 									<li>
+<<<<<<< HEAD
 						<strong>/qa/</strong>: 
 						<a href="/qa/res/11017#11137">
 							<em>&gt;&gt;11131  These long-running sh&hellip;</em>
@@ -251,34 +340,126 @@
 						<strong>/qa/</strong>: 
 						<a href="/qa/res/11127#11127">
 							<em>ohaiyo</em>
+=======
+						<strong>/poll/</strong>: 
+						<a href="/poll/res/70#70">
+							<em>asd  f  g  g  g  g  g  g    [V&hellip;</em>
+						</a>
+					</li>
+									<li>
+						<strong>/poll/</strong>: 
+						<a href="/poll/res/69#69">
+							<em>test 1  test 1  test 2    [Vie&hellip;</em>
+						</a>
+					</li>
+									<li>
+						<strong>/poll/</strong>: 
+						<a href="/poll/res/68#68">
+							<em>,  knmj    [View Responses]  </em>
+						</a>
+					</li>
+									<li>
+						<strong>/poll/</strong>: 
+						<a href="/poll/res/67#67">
+							<em>z  xc    [View Responses]  asd&hellip;</em>
+						</a>
+					</li>
+									<li>
+						<strong>/poll/</strong>: 
+						<a href="/poll/res/66#66">
+							<em>tew  tez    [View Responses]  &hellip;</em>
+						</a>
+					</li>
+									<li>
+						<strong>/poll/</strong>: 
+						<a href="/poll/res/65#65">
+							<em>sdfs  ggg    [View Responses] &hellip;</em>
+						</a>
+					</li>
+									<li>
+						<strong>/poll/</strong>: 
+						<a href="/poll/res/64#64">
+							<em>dfg  dd    [View Responses]  d&hellip;</em>
+						</a>
+					</li>
+									<li>
+						<strong>/poll/</strong>: 
+						<a href="/poll/res/63#63">
+							<em>asd2  123    [View Responses] &hellip;</em>
+						</a>
+					</li>
+									<li>
+						<strong>/poll/</strong>: 
+						<a href="/poll/res/62#62">
+							<em>t1  t2  t2    [View Responses]&hellip;</em>
+						</a>
+					</li>
+									<li>
+						<strong>/poll/</strong>: 
+						<a href="/poll/res/58#58">
+							<em>Asuka  Mashiro  Misaki    [Vie&hellip;</em>
+						</a>
+					</li>
+									<li>
+						<strong>/poll/</strong>: 
+						<a href="/poll/res/57#57">
+							<em>Asuka  Mashiro    [View Respon&hellip;</em>
+						</a>
+					</li>
+									<li>
+						<strong>/poll/</strong>: 
+						<a href="/poll/res/56#56">
+							<em>Asuka  Mashiro  Misaki    [Vie&hellip;</em>
+>>>>>>> 64515fafb2ddbb492b478d7256d28ac7ddac384f
 						</a>
 					</li>
 									<li>
 						<strong>/qa/</strong>: 
+<<<<<<< HEAD
 						<a href="/qa/res/11126#11126">
 							<em>ITT: Manga you want to see an &hellip;</em>
+=======
+						<a href="/qa/res/10630#10634">
+							<em>te</em>
+>>>>>>> 64515fafb2ddbb492b478d7256d28ac7ddac384f
 						</a>
 					</li>
 									<li>
 						<strong>/qa/</strong>: 
+<<<<<<< HEAD
 						<a href="/qa/res/11105#11125">
 							<em>&gt;&gt;11105  teh rei</em>
+=======
+						<a href="/qa/res/10630#10633">
+							<em>te</em>
+>>>>>>> 64515fafb2ddbb492b478d7256d28ac7ddac384f
 						</a>
 					</li>
 									<li>
 						<strong>/qa/</strong>: 
+<<<<<<< HEAD
 						<a href="/qa/res/10182#11124">
 							<em>I played through Shard of Drea&hellip;</em>
+=======
+						<a href="/qa/res/10630#10632">
+							<em>test</em>
+>>>>>>> 64515fafb2ddbb492b478d7256d28ac7ddac384f
 						</a>
 					</li>
 									<li>
 						<strong>/qa/</strong>: 
+<<<<<<< HEAD
 						<a href="/qa/res/8837#11123">
 							<em>feeling especially bleh</em>
+=======
+						<a href="/qa/res/10630#10631">
+							<em>te</em>
+>>>>>>> 64515fafb2ddbb492b478d7256d28ac7ddac384f
 						</a>
 					</li>
 									<li>
 						<strong>/qa/</strong>: 
+<<<<<<< HEAD
 						<a href="/qa/res/8669#11122">
 							<em>Woke up and there is a storm o&hellip;</em>
 						</a>
@@ -287,22 +468,43 @@
 						<strong>/qa/</strong>: 
 						<a href="/qa/res/10692#11121">
 							<em>I probably need to beat alcoho&hellip;</em>
+=======
+						<a href="/qa/res/10630#10630">
+							<em>te</em>
+						</a>
+					</li>
+									<li>
+						<strong>/poll/</strong>: 
+						<a href="/poll/res/14#14">
+							<em>test</em>
+>>>>>>> 64515fafb2ddbb492b478d7256d28ac7ddac384f
 						</a>
 					</li>
 									<li>
 						<strong>/qa/</strong>: 
+<<<<<<< HEAD
 						<a href="/qa/res/10692#11120">
 							<em>where was this thread 15 minut&hellip;</em>
+=======
+						<a href="/qa/res/10627#10627">
+							<em>(no comment)</em>
+>>>>>>> 64515fafb2ddbb492b478d7256d28ac7ddac384f
 						</a>
 					</li>
 									<li>
 						<strong>/qa/</strong>: 
+<<<<<<< HEAD
 						<a href="/qa/res/10692#11119">
 							<em>This was my last ween. I’m don&hellip;</em>
+=======
+						<a href="/qa/res/10624#10625">
+							<em>(no comment)</em>
+>>>>>>> 64515fafb2ddbb492b478d7256d28ac7ddac384f
 						</a>
 					</li>
 									<li>
 						<strong>/qa/</strong>: 
+<<<<<<< HEAD
 						<a href="/qa/res/11109#11118">
 							<em>Go away spinsters! Idols belon&hellip;</em>
 						</a>
@@ -311,54 +513,104 @@
 						<strong>/qa/</strong>: 
 						<a href="/qa/res/11105#11117">
 							<em>(no comment)</em>
-						</a>
-					</li>
-									<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/11111#11116">
-							<em>&gt;&gt;11115  impressive!</em>
-						</a>
-					</li>
-									<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/11111#11115">
-							<em>&gt;&gt;11112  Thanks, I sure worked&hellip;</em>
-						</a>
-					</li>
-									<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/11102#11113">
-							<em>Wanna get tied up by a cute gi&hellip;</em>
-						</a>
-					</li>
-									<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/11111#11112">
-							<em>nice get tard</em>
-						</a>
-					</li>
-									<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/11111#11111">
-							<em>Lala is ICHIBAN AIDORU</em>
-						</a>
-					</li>
-									<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/8669#11110">
-							<em>sleepy time</em>
-						</a>
-					</li>
-									<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/11109#11109">
+=======
+						<a href="/qa/res/10624#10624">
 							<em>(no comment)</em>
 						</a>
 					</li>
 									<li>
+						<strong>/megu/</strong>: 
+						<a href="/megu/res/944#944">
+							<em>test</em>
+>>>>>>> 64515fafb2ddbb492b478d7256d28ac7ddac384f
+						</a>
+					</li>
+									<li>
 						<strong>/qa/</strong>: 
+<<<<<<< HEAD
+						<a href="/qa/res/11111#11116">
+							<em>&gt;&gt;11115  impressive!</em>
+=======
+						<a href="/qa/res/10622#10623">
+							<em>test</em>
+>>>>>>> 64515fafb2ddbb492b478d7256d28ac7ddac384f
+						</a>
+					</li>
+									<li>
+						<strong>/qa/</strong>: 
+<<<<<<< HEAD
+						<a href="/qa/res/11111#11115">
+							<em>&gt;&gt;11112  Thanks, I sure worked&hellip;</em>
+=======
+						<a href="/qa/res/10622#10622">
+							<em>sdf</em>
+>>>>>>> 64515fafb2ddbb492b478d7256d28ac7ddac384f
+						</a>
+					</li>
+									<li>
+						<strong>/qa/</strong>: 
+<<<<<<< HEAD
+						<a href="/qa/res/11102#11113">
+							<em>Wanna get tied up by a cute gi&hellip;</em>
+=======
+						<a href="/qa/res/10621#10621">
+							<em>asdasd</em>
+>>>>>>> 64515fafb2ddbb492b478d7256d28ac7ddac384f
+						</a>
+					</li>
+									<li>
+						<strong>/qa/</strong>: 
+<<<<<<< HEAD
+						<a href="/qa/res/11111#11112">
+							<em>nice get tard</em>
+=======
+						<a href="/qa/res/10620#10620">
+							<em>yrasdzzzzzzxc</em>
+>>>>>>> 64515fafb2ddbb492b478d7256d28ac7ddac384f
+						</a>
+					</li>
+									<li>
+						<strong>/qa/</strong>: 
+<<<<<<< HEAD
+						<a href="/qa/res/11111#11111">
+							<em>Lala is ICHIBAN AIDORU</em>
+=======
+						<a href="/qa/res/10619#10619">
+							<em>asdasd</em>
+>>>>>>> 64515fafb2ddbb492b478d7256d28ac7ddac384f
+						</a>
+					</li>
+									<li>
+						<strong>/qa/</strong>: 
+<<<<<<< HEAD
+						<a href="/qa/res/8669#11110">
+							<em>sleepy time</em>
+=======
+						<a href="/qa/res/10618#10618">
+							<em>yrasdzzzzzzx</em>
+>>>>>>> 64515fafb2ddbb492b478d7256d28ac7ddac384f
+						</a>
+					</li>
+									<li>
+						<strong>/qa/</strong>: 
+<<<<<<< HEAD
+						<a href="/qa/res/11109#11109">
+							<em>(no comment)</em>
+=======
+						<a href="/qa/res/10617#10617">
+							<em>yrasdzzzzzz</em>
+>>>>>>> 64515fafb2ddbb492b478d7256d28ac7ddac384f
+						</a>
+					</li>
+									<li>
+						<strong>/qa/</strong>: 
+<<<<<<< HEAD
 						<a href="/qa/res/11102#11108">
 							<em>It's S&amp;M stuff for the beating&hellip;</em>
+=======
+						<a href="/qa/res/10616#10616">
+							<em>yrasdzzzzz</em>
+>>>>>>> 64515fafb2ddbb492b478d7256d28ac7ddac384f
 						</a>
 					</li>
 							</ul>
@@ -404,9 +656,15 @@
 		<div class="mainBox">
 			<h2>Stats</h2>
 			<ul>
+<<<<<<< HEAD
 				<li>Total posts: 14,094</li>
 				<li>Unique posters: 390</li>
 				<li>Active content: 6 GB</li>
+=======
+				<li>Total posts: 13,575</li>
+				<li>Unique posters: 399</li>
+				<li>Active content: 5.66 GB</li>
+>>>>>>> 64515fafb2ddbb492b478d7256d28ac7ddac384f
 			</ul>
 		</div>
 	</div>
@@ -414,7 +672,7 @@
 	<hr/>
 	<footer>
 		<p class="unimportant" style="margin-top:20px;text-align:center;">- Tinyboard + 
-			<a href="https://engine.vichan.net/">vichan</a> 5.1.4 -
+			<a href="https://engine.vichan.net/">vichan</a> 0.8.1 -
 		<br>Tinyboard Copyright &copy; 2010-2014 Tinyboard Development Group    
 		<br><a href="https://engine.vichan.net/">vichan</a> Copyright &copy; 2012-2018 vichan-devel
 	</footer>

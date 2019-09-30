@@ -3,17 +3,11 @@
  *  Copyright (c) 2010-2014 Tinyboard Development Group
  */
 
- require_once 'inc/functions.php';
+require_once 'inc/functions.php';
 require_once 'inc/anti-bot.php';
 require_once 'inc/bans.php';
-
+require_once 'inc/polling.php';
 require_once 'inc/image.php';
-//if(isset($_POST['board']))
-//	openBoard($_POST['board']);
-//loadConfig();
-//if ((!isset($_POST['mod']) || !$_POST['mod']) && $config['board_locked']) {
- //   error("Board is locked");
-//}
 
 $dropped_post = false;
 
@@ -250,6 +244,7 @@ if (isset($_POST['delete'])) {
 			} else {
 				// Delete entire post
 				deletePostKeepOrder($id);
+
 				if(!$mod) modLog("User deleted his own post #$id");
 				else modLog("Mod deleted file from post #$id");
 			}
@@ -368,7 +363,6 @@ elseif (isset($_POST['report'])) {
 	}
 } 
 elseif (isset($_POST['post']) || $dropped_post) {
-
 	if (!isset($_POST['body'], $_POST['board']) && !$dropped_post && !$config['error']['remove_bot_err'])
 		error($config['error']['bot']);
 
@@ -403,6 +397,47 @@ elseif (isset($_POST['post']) || $dropped_post) {
 		$post['thread'] = round($_POST['thread']);
 	} else
 		$post['op'] = true;
+
+	// unset poll fields if not OP
+	if($config['poll_board']){
+	if(!$post['op']){
+		foreach($_POST as $key => $value){
+			if(preg_match('/^pollopt\d+/', $key)){
+				unset($_POST[$key]);
+			}
+		}
+	}
+	// assign default to unset poll fields
+	else{
+		$num_opt = 0;
+                foreach($_POST as $key => $value){
+                        if(preg_match('/^pollopt\d+/', $key)){
+                        	$num_opt++;
+				if ($_POST[$key] == ""){
+					error("Error: Field $num_opt blank");
+				}
+                        }
+                }
+		if($num_opt <= 1)
+			error("Error: Not enough options");
+
+		if (!isset($_POST['postthresh']) || !isset($_POST['lifespan']))
+			error("Unset field");	
+
+		if(!isset($_POST['multisel'])){
+			$_POST['multisel'] = 'off';
+		}
+		else if($_POST['multisel'] != 'on'){
+			error("strange field");
+		}
+		if(trim($_POST['postthresh']) == ""){
+			$_POST['postthresh'] = '0';
+		}
+		if(trim($_POST['lifespan']) == ""){
+			$_POST['lifespan'] = '9000';
+		}
+	}
+	}
 
 
 	if (!$dropped_post) {
@@ -464,7 +499,7 @@ elseif (isset($_POST['post']) || $dropped_post) {
 			if ($post['sticky'] && !hasPermission($config['mod']['sticky'], $board['uri']))
 				error($config['error']['noaccess']);
 			if ($post['locked'] && !hasPermission($config['mod']['lock'], $board['uri']))
-				error($config['error']['noaccess']);
+https://www.youtube.com/watch?v=_5joTyy3CCo				error($config['error']['noaccess']);
 			if ($post['raw'] && !hasPermission($config['mod']['rawhtml'], $board['uri']))
 				error($config['error']['noaccess']);
 		}
@@ -585,6 +620,8 @@ elseif (isset($_POST['post']) || $dropped_post) {
 		);
 	}
 	
+//  proccess post data into poll json format if  applicable. throw errors where needed and insert into body
+	$post['poll_data'] = Polling::formatFields($_POST);
 	$post['name'] = $_POST['name'] != '' ? $_POST['name'] : $config['anonymous'];
 	$post['subject'] = $_POST['subject'];
 	$post['email'] = str_replace(' ', '%20', htmlspecialchars($_POST['email']));
@@ -745,12 +782,11 @@ elseif (isset($_POST['post']) || $dropped_post) {
 	
 	$post['body'] = escape_markup_modifiers($post['body']);
 	
-//why is this in here???
-/*
+
 	if ($mod && isset($post['raw']) && $post['raw']) {
 		$post['body'] .= "\n<tinyboard raw html>1</tinyboard>";
 	}
-*/	
+
 	if (!$dropped_post)
 	if (($config['country_flags'] && !$config['allow_no_country']) || ($config['country_flags'] && $config['allow_no_country'] && !isset($_POST['no_country']))) {
 		require 'inc/lib/geoip/geoip.inc';
@@ -815,11 +851,11 @@ elseif (isset($_POST['post']) || $dropped_post) {
 			$post['body_nomarkup'] .= $char;
 		}
 	}
-	
+//modify body reference	
 	$post['tracked_cites'] = markup($post['body'], true);
+	if($config['poll_board'] && !isset($post['thread']))
+		$post['body'] = Polling::bodyAddablePoll($post['poll_data']) . $post['body'];	
 
-	
-	
 	if ($post['has_file']) {
 		$md5cmd = false;
 		if ($config['bsd_md5'])  $md5cmd = '/sbin/md5 -r';
@@ -925,17 +961,12 @@ elseif (isset($_POST['post']) || $dropped_post) {
 		$post['files'] = $post['files'];
 	$post['num_files'] = sizeof($post['files']);
 	
-
-	
-	$post['id'] = $id = post($post);
-	$post['slug'] = slugify($post);
-	
-	
+	//use to simplify post and release	
 	if(isset($numposts)){
-		post_laterPost($post, $thread, $numposts, $noko, $id, $dropped_post, $pdo);
+		post_laterPost($post, $thread, $numposts, $noko, $dropped_post, $pdo);
 	}
 	else{
-		post_laterPost($post, $thread, null, $noko, $id, $dropped_post, $pdo);
+		post_laterPost($post, $thread, null, $noko, $dropped_post, $pdo);
 	}
 }
 elseif(isset($_POST['release'])){
@@ -1079,15 +1110,12 @@ elseif(isset($_POST['release'])){
 	}
 
 	$post = (array)$post;
-	$post['id'] = $id = post($post);
-
-	$post['slug'] = slugify($post);
 	
 	if(isset($numposts)){
-		post_laterPost($post, $thread, $numposts, $noko, $id, $dropped_post, $pdo);
+		post_laterPost($post, $thread, $numposts, $noko, $dropped_post, $pdo);
 	}
 	else{
-		post_laterPost($post, $thread, null, $noko, $id, $dropped_post, $pdo);
+		post_laterPost($post, $thread, null, $noko, $dropped_post, $pdo);
 	}
 	
 }

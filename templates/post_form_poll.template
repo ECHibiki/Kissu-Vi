@@ -1,0 +1,319 @@
+<form id="pollform" class="form_submit" style="display:none" name="post" onsubmit="return dopost(this);" enctype="multipart/form-data" action="{{ config.post_url }}" method="post">
+{{ antibot.html() }}
+{% if id %}<input type="hidden" name="thread" value="{{ id }}">{% endif %}
+{{ antibot.html() }}
+<input type="hidden" name="board" value="{{ board.uri }}">
+{{ antibot.html() }}
+{% if current_page %}
+	<input type="hidden" name="page" value="{{ current_page }}">
+{% endif %}
+{% if mod %}<input type="hidden" name="mod" value="1">{% endif %}
+	<table>
+		{% if not config.field_disable_name or (mod and post.mod|hasPermission(config.mod.bypass_field_disable, board.uri)) %}
+<tr id="namerow" style="display:none">
+			<th>
+				{% trans %}Name{% endtrans %}
+				{{ antibot.html() }}
+			</th>
+			<td>
+				<input type="text" name="name" size="25" maxlength="35" autocomplete="off"> {% if config.allow_no_country and config.country_flags %}<input id="no_country" name="no_country" type="checkbox"> <label for="no_country">{% trans %}Don't show my flag{% endtrans %}</label>{% endif %}
+				{{ antibot.html() }}
+			</td>
+		</tr>{% endif %}
+		{% if not config.field_disable_email or (mod and post.mod|hasPermission(config.mod.bypass_field_disable, board.uri)) %}
+<tr id="emailrow" style="display:none">
+			<th>
+				{% trans %}Options{% endtrans %}
+				{{ antibot.html() }}
+			</th>
+			<td>
+				{% if config.field_email_selectbox %}
+				<select name="email" id="email_selectbox" autocomplete="off">
+					<option value="Add Options"></option>
+					<option value="sage">Sageru</option>
+					<option value="repo">Repost</option>
+					{# % if not config.always_noko % #}<option value="noko">Remain</option>{#% endif %#}
+				</select>
+				{% else %}
+				<input type="text" name="email" size="25" maxlength="40" autocomplete="off" id='option_input'>
+<input class="form_submit" id="email_submit" accesskey="s" style="margin-left:2px;" type="submit" name="post" value="New Poll" />
+				{% endif %}
+				{{ antibot.html() }}
+			
+			
+				{{ antibot.html() }}
+			</td>
+		</tr>{% endif %}
+		{% if not (config.field_disable_subject or (id and config.field_disable_reply_subject)) or (mod and post.mod|hasPermission(config.mod.bypass_field_disable, board.uri)) %}
+<tr id="subjectrow" style="display:table-row">
+			<th>
+				{% trans %}Subject{% endtrans %}
+				{{ antibot.html() }}
+			</th>
+			<td>
+				<input style="" type="text" name="subject" size="25" maxlength="100" autocomplete="off">
+<input class="form_submit" id="subject_submit"  accesskey="s" style="margin-left:2px;" type="submit" name="post" value="New Poll" />
+			</td>
+		</tr>
+		{% endif %}
+
+<tr id="pollrow"><th>Poll Questions</th>
+<td id="polldata">
+<span><span>Option 1: </span><input type="text" name="pollopt1" id="pollopt1"><br/></span>
+<span><span>Option 2: </span><input type="text" name="pollopt2" id="pollopt2"> <input type="button" id="boostcount" onclick="
+if(this.previousElementSibling.name=='pollopt2'){
+	this.nextElementSibling.removeAttribute('disabled')
+}
+input_container = this.parentNode.cloneNode(true);
+input_container.firstChild.nextElementSibling.id = 'pollopt' + (1 + parseInt(input_container.firstChild.textContent.split(' ')[1].replace(':','')));
+input_container.firstChild.nextElementSibling.name = input_container.firstChild.nextSibling.id;
+document.getElementById('polldata').appendChild(input_container);
+input_container.firstChild.textContent = 'Option ' + (1 + parseInt(input_container.firstChild.textContent.split(' ')[1].replace(':',''))) + ': '; 
+document.getElementById('polldata').appendChild(input_container);
+
+this.parentNode.removeChild(this.nextElementSibling);
+this.parentNode.removeChild(this);
+
+return false
+
+" value="+"/><input type="button" id="retractcount" onclick="
+
+if(this.previousElementSibling.previousElementSibling.name=='pollopt3'){
+	this.setAttribute('disabled','');
+}
+var next_in_line = this.parentNode.previousSibling;
+next_in_line.removeChild(next_in_line.lastChild);
+next_in_line.appendChild(this.previousElementSibling.cloneNode());
+next_in_line.appendChild(this.cloneNode());
+next_in_line.appendChild(document.createElement('br'));
+this.parentNode.parentNode.removeChild(this.parentNode);
+	
+return false
+" value="-" disabled/><br/></span></td>
+</tr>
+<tr id="polloptrow"><th>Poll Options</th><td>
+<label><input type="checkbox" name="multisel"> Multi-Choice</label><br/>
+<label><input type="number" name="postthresh" style="width:38px" value="0">Min Kissu Posts</label>
+<label><input type="number" name="lifespan" style="width:38px" value="24"> Poll Life(0 hours is unlimited)</label>
+
+</td></tr>
+
+
+		<tr>
+			<th>
+				{% trans %}Comment{% endtrans %}
+				{{ antibot.html() }}
+			</th>
+			<td>
+				<textarea name="body" id="body" rows="3" cols="40"></textarea>
+				{{ antibot.html() }}
+				
+			</td>
+		</tr>
+		{% if config.recaptcha %}
+		<tr>
+			<th>
+				{% trans %}Verification{% endtrans %}
+				{{ antibot.html() }}
+			</th>
+			<td>
+				<div class="g-recaptcha" data-sitekey="{{ config.recaptcha_public }}"></div>
+				{{ antibot.html() }}
+			</td>
+		</tr>
+		{% endif %}
+		{% if config.captcha.enabled %}
+		<tr class='captcha'>
+			<th>
+				{% trans %}Verification{% endtrans %}
+			</th>
+			<td>
+				<script>load_captcha("{{ config.captcha.provider_get }}", "{{ config.captcha.extra }}");</script>
+			</td>
+		</tr>
+			{% elseif config.new_thread_capt %}
+ 			{% if not id %} 
+ 			<tr class='captcha'>
+                        <th>
+                                {% trans %}Verification{% endtrans %}
+                        </th>
+                        <td>
+                                <script>load_captcha("{{ config.captcha.provider_get }}", "{{ config.captcha.extra }}");</script>
+                        </td>
+                	</tr>
+			{% endif %}
+		{% endif %}
+		{% if config.user_flag %}
+			<tr>
+	7			<th>{% trans %}Flag{% endtrans %}</th>
+				<td>
+					<select name="user_flag" id="user_flag">
+						<option value="">{% trans %}None{% endtrans %}</option>
+						{% for flag, text in config.user_flags %}
+							<option value="{{ flag }}">{{ text }}</option>
+						{% endfor %}
+					</select>
+				</td>
+			</tr>
+		{% endif %}
+		{% if config.allowed_tags and not id %}
+			<tr>
+				<th>{% trans %}Tag{% endtrans %}</th>
+				<td>
+					<select name="tag">
+						{% for id, tag in config.allowed_tags %}
+							<option value="{{ id|e }}">{{ tag|e }}</option>
+						{% endfor %}
+					</select>
+				</td>
+			</tr>
+		{% endif %}		
+		
+		{% if mod and ((not id and post.mod|hasPermission(config.mod.sticky, board.uri)) or (not id and post.mod|hasPermission(config.mod.lock, board.uri)) or post.mod|hasPermission(config.mod.rawhtml, board.uri)) %}
+		<tr>
+			<th>
+				{% trans %}Flags{% endtrans %}
+			</th>
+			<td>
+				{% if not id and post.mod|hasPermission(config.mod.sticky, board.uri) %}<div class="center">
+					<label for="sticky">{% trans %}Sticky{% endtrans %}</label>
+					<input title="{% trans %}Sticky{% endtrans %}" type="checkbox" name="sticky" id="sticky"><br>
+				</div>{% endif %}
+				{% if not id and post.mod|hasPermission(config.mod.lock, board.uri) %}<div class="center">
+					<label for="lock">{% trans %}Lock{% endtrans %}</label><br>
+					<input title="{% trans %}Lock{% endtrans %}" type="checkbox" name="lock" id="lock">
+				</div>{% endif %}
+				{% if post.mod|hasPermission(config.mod.rawhtml, board.uri) %}<div class="center">
+					<label for="raw">{% trans %}Raw HTML{% endtrans %}</label><br>
+					<input title="{% trans %}Raw HTML{% endtrans %}" type="checkbox" name="raw" id="raw">
+				</div>{% endif %}
+			</td>
+		</tr>
+		{% endif %}
+<tr id="additional_clicker"><td colspan="2"><button onclick="
+visible = $('tr[id=namerow]').css('display') == 'table-row';
+if(!visible){
+	$('tr[id=namerow]').css('display', 'table-row');
+	$('tr[id=emailrow]').css('display', 'table-row');
+	$('tr[id=filerow]').css('display', 'table-row');
+	$('input[id=email_submit]').css('display', 'none');
+	$('input[id=subject_submit]').css('display', 'table-row');
+	$('tr[id=embedrow]').css('display','table-row');
+	$('tr[id=advancedoptrow]').css('display', 'table-row');
+	$('tr[id=captcharow]').css('display', 'table-row');
+	$('tr[id=spoilerrow]').css('display', 'table-row');
+        $('tr[id=pswrdrow]').css('display', 'table-row');
+this.textContent = '[Remove Hidden Options]';
+}
+else{
+	$('tr[id=namerow]').css('display', 'none');
+	$('tr[id=emailrow]').css('display', 'none');
+	$('tr[id=filerow]').css('display', 'none');
+	$('input[id=subject_submit]').css('display', 'table-row');
+	$('input[id=email_submit]').css('display', 'none');
+	$('tr[id=embedrow]').css('display','none');
+	$('tr[id=advancedoptrow]').css('display', 'none');
+	$('tr[id=captcharow]').css('display', 'none');
+	$('tr[id=spoilerrow]').css('display', 'none');
+	$('tr[id=pswrdrow]').css('display', 'none');
+this.textContent = '[View Hidden Options]';
+}
+return false;
+">[View Hidden Options]</a></td></tr>
+<tr id="filerow" style="display:none">
+			<th>
+				{% trans %}File{% endtrans %}
+			</th>
+			<td>
+				<input type="file" name="file" id="upload_file" style="width: 190px;"> 
+				<script type="text/javascript">if (typeof init_file_selector !== 'undefined') init_file_selector({{ config.max_images }});</script>
+<button onclick="
+$('input[id=upload_file]').val('');
+return false;
+" id="remove_img">X</button>
+				{% if config.allow_upload_by_url %}
+					<div style="float:none;text-align:left" id="upload_url">
+						<label for="file_url">{% trans %}Or URL{% endtrans %}: </label>
+						<input style="display:inline" type="text" id="file_url" name="file_url" size="35">
+					</div>
+				{% endif %}
+				{{ antibot.html() }}
+			</td>
+		</tr>
+
+{% if config.enable_embedding %}
+		<tr  style="display:none" id="embedrow">
+			<th>
+				{% trans %}Video Stream Embedding{% endtrans %}
+				{{ antibot.html() }}
+			</th>
+			<td>
+				<input type="text" name="embed" value="" size="30" maxlength="120" autocomplete="off">
+			</td>
+		</tr>
+{% endif %}
+<tr id="advancedoptrow" style="display:none"><th>Advanced Options</th><td>
+<label><input type="checkbox" id="force_noko" onchange="
+localStorage.AlwaysNoko = this.checked;
+if(this.checked == true)
+        $('input[id=option_input]').val($('input[id=option_input]').val() + ' noko');
+">Always Noko</label>
+<label><input type="checkbox" id="force_sage" onchange="
+localStorage.AlwaysSage = this.checked;
+if(this.checked == true)
+	$('input[id=option_input]').val($('input[id=option_input]').val() + ' sage');
+">Always Sage</label>
+
+<script>
+if(localStorage.AlwaysSage == "true")
+        $('input[id=option_input]').val($('input[id=option_input]').val() + ' sage');
+$('input[id=force_sage]').prop('checked', localStorage.AlwaysSage == "true");
+
+if(localStorage.AlwaysNoko == "true")
+        $('input[id=option_input]').val($('input[id=option_input]').val() + ' noko');
+$('input[id=force_noko]').prop('checked', localStorage.AlwaysNoko == "true");
+
+</script>
+
+				<select id="option_simplifier" autocomplete="off">
+					<option value="">Options</option>
+					<option value="repo">Repost</option>
+					<option value="sage">Hold Back</option>
+					{# % if not config.always_noko % #}<option value="noko">Remain</option>{#% endif %#}
+				</select> 
+</td></tr>
+<tr id="captcharow"  style="display:none"><th>Captcha Type</th><td>				<span name='captchasel'>
+				<label><input type="radio" name="captype" class="rec" value="recaptcha"> Recaptcha </label>
+				<label><input type="radio" name="captype" class="cap" value="captchouli"> Captchouli </label>
+				</span>
+</td>
+<tr id="spoilerrow"  style="display:none"><th>Spoiler</th><td>{% if config.spoiler_images %} <input id="spoiler" name="spoiler" type="checkbox"> <label for="spoiler">{% trans %}Spoiler Image{% endtrans %}</label>{% endif %}</td></tr>
+		{% if not config.field_disable_password or (mod and post.mod|hasPermission(config.mod.bypass_field_disable, board.uri)) %}
+		<tr {% if config.field_hide_password %}id="pswrdrow" style="display: none;" {% endif %}>
+			<th>
+				{% trans %}Password{% endtrans %}
+				{{ antibot.html() }}
+			</th>
+			<td >
+				<input type="text" name="pswrd" value="" size="12" maxlength="18"> 
+				<span class="unimportant">{% trans %}(For file deletion.){% endtrans %}</span>
+				{{ antibot.html() }}
+			</td>
+		</tr>{% endif %}
+		<tr><td colspan=2><span name='markup-hint' style='font-size:10px'>Markup tags exist for bold, itallics, header, spoiler etc. as listed in " [options] > View Formatting "</span></td></tr>
+	</table>
+{{ antibot.html(true) }}
+<input type="hidden" name="hash" value="{{ antibot.hash() }}">
+</form>
+<div style="text-align:center">
+	<input type="button" id="polldisplay" value="Create New Poll" style="font-size: 18px;"/>
+</div>
+<script type="text/javascript">{% raw %}
+	rememberStuff();
+	document.getElementById("polldisplay").onclick = function(){
+		this.style = "display:none";
+
+		document.getElementById("pollheader").style = "display:block";
+		document.getElementById("pollform").style = "display:block";
+}
+{% endraw %}</script>
