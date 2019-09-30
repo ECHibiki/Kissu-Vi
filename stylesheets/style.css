@@ -1376,3 +1376,8 @@ table.fileboard .intro a {
 div.mix {
 	display: inline-block;
 }
+
+.poll_container{
+	max-width:36%;
+	max-height:36%;
+}

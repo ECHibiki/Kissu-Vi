@@ -22,7 +22,7 @@ require_once 'inc/mod/auth.php';
 require_once 'inc/lock.php';
 require_once 'inc/queue.php';
 require_once 'inc/polyfill.php';
-
+require_once 'inc/polling.php';
 require_once 'inc/archive.php';
 
 @include_once 'inc/lib/parsedown/Parsedown.php'; // fail silently, this isn't a critical piece of code
@@ -1014,15 +1014,14 @@ function post_laterPost(&$post, &$thread, $numposts, &$noko, &$dropped_post, &$p
 	
 	
 	global $config, $board, $build_pages;
-	if(isset($post['poll_data']) && $post['poll_data'] != ""){
-	// Assuming it's a new poll insert poll data here from new file polling.php
-		Polling::addPoll($post['poll_data']);
-	}
-	
 	//POST IS DONE HERE
         $post['id'] = $id = post($post);
         $post['slug'] = slugify($post);
-	
+
+	if(isset($post['poll_data']) && $post['poll_data'] != ""){
+	// Assuming it's a new poll insert poll data here from new file polling.php
+		Polling::addPoll($post['poll_data'], $id, $pdo);
+	}
 
 	if ($dropped_post && $dropped_post['from_nntp']) {
 	        $query = prepare("INSERT INTO ``nntp_references`` (`board`, `id`, `message_id`, `message_id_digest`, `own`, `headers`) VALUES ".
@@ -1424,6 +1423,10 @@ function rebuildPost($id) {
 function deletePostKeepOrder($id, $error_if_doesnt_exist=true, $rebuild_after=true) {
 		global $board, $config;
 	// Select post and replies (if thread) in one query
+	if($config["poll_board"])
+            //remove poll if exists, 
+            Polling::removePoll($id);
+
 	$query = prepare(sprintf("SELECT `id`,`thread`,`files`,`slug` FROM ``posts_%s`` WHERE `id` = :id OR `thread` = :id", $board['uri']));
 	$query->bindValue(':id', $id, PDO::PARAM_INT);
 	$query->execute() or error(db_error($query));
@@ -1491,6 +1494,10 @@ function deletePostKeepOrder($id, $error_if_doesnt_exist=true, $rebuild_after=tr
 // Delete a post (reply or thread) and update bump order
 function deletePost($id, $error_if_doesnt_exist=true, $rebuild_after=true, $store_image = false) {
 	global $board, $config;
+
+        if($config["poll_board"])
+            //remove poll if exists, 
+            Polling::removePoll($id);
 
 	// Select post and replies (if thread) in one query
 	$query = prepare(sprintf("SELECT `id`,`thread`,`files`,`slug` FROM ``posts_%s`` WHERE `id` = :id OR `thread` = :id", $board['uri']));
@@ -1953,7 +1960,6 @@ function checkMute() {
 	}
 }
 
-// TODO: Fix missing thread on pages
 function buildIndex($global_api = "yes") {
 	global $board, $config, $build_pages;
 

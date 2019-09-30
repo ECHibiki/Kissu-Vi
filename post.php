@@ -8,12 +8,6 @@ require_once 'inc/anti-bot.php';
 require_once 'inc/bans.php';
 require_once 'inc/polling.php';
 require_once 'inc/image.php';
-//if(isset($_POST['board']))
-//	openBoard($_POST['board']);
-//loadConfig();
-//if ((!isset($_POST['mod']) || !$_POST['mod']) && $config['board_locked']) {
- //   error("Board is locked");
-//}
 
 $dropped_post = false;
 
@@ -251,9 +245,6 @@ if (isset($_POST['delete'])) {
 				// Delete entire post
 				deletePostKeepOrder($id);
 
-				//TODO: remove poll if exists, probably do this in functions because moderator tools
-				Polling::removePoll($id);
-
 				if(!$mod) modLog("User deleted his own post #$id");
 				else modLog("Mod deleted file from post #$id");
 			}
@@ -443,7 +434,7 @@ elseif (isset($_POST['post']) || $dropped_post) {
 			$_POST['postthresh'] = '0';
 		}
 		if(trim($_POST['lifespan']) == ""){
-			$_POST['lifespan'] = '24';
+			$_POST['lifespan'] = '9000';
 		}
 	}
 	}
@@ -862,7 +853,8 @@ https://www.youtube.com/watch?v=_5joTyy3CCo				error($config['error']['noaccess'
 	}
 //modify body reference	
 	$post['tracked_cites'] = markup($post['body'], true);
-	$post['body'] = Polling::bodyAddablePoll($post['poll_data']) . "<hr/>" . $post['body'];	
+	if($config['poll_board'] && !isset($post['thread']))
+		$post['body'] = Polling::bodyAddablePoll($post['poll_data']) . $post['body'];	
 
 	if ($post['has_file']) {
 		$md5cmd = false;
@@ -1126,9 +1118,6 @@ elseif(isset($_POST['release'])){
 		post_laterPost($post, $thread, null, $noko, $dropped_post, $pdo);
 	}
 	
-}
-elseif(isset($_POST['poll'])){
-	echo "proccess unavailable";
 }
 elseif (isset($_POST['appeal'])) {
 

@@ -17,6 +17,7 @@
 			{% for javascript in config.additional_javascript %}<script type="text/javascript" src="{{ config.additional_javascript_url }}{{ javascript }}"></script>{% endfor %}
 			{% endif %}
 		{% endif %}
+		{% if config.poll_board %}<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>{% endif %}
 		{% if config.recaptcha %}<script src="//www.google.com/recaptcha/api.js"></script>
 		<style type="text/css">{% raw %}
 			#recaptcha_area {
