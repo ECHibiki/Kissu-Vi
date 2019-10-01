@@ -145,7 +145,7 @@
 				$type = "radio";
 			foreach($poll_obj['options'] as $index=>$option)
 				$input_selection .= "<label><input type='$type' name='pollopt[]' value='$index'/>$option</label><br/>";
-			$form = "<div data-lifespan='$poll_obj[lifespan]' data-creationtime='$time' class='pollform'>$input_selection<input type='submit' class='pollsubmit' onclick='return pollSubmit(this)' value='Make Response'><a href='javascript:void(0)' onclick='return viewPoll(this)'><br/>[View Responses]</a></div><br/>";
+			$form = "<div data-lifespan='$poll_obj[lifespan]' data-creationtime='$time' class='pollform'>$input_selection<input type='submit' class='pollsubmit' onclick='return pollSubmit(this)' value='Cast Vote'><a href='javascript:void(0)' onclick='return viewPoll(this)'><br/>[View Responses]</a></div><br/>";
 
 			return $form;
 

@@ -33,8 +33,8 @@
 secrets.php
 
 # include some files though
-!/templates/*.html
-!/inc/config.php
+#!/templates/*.html
+#!/inc/config.php
 
 # minify
 /inc/lib/minify

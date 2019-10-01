@@ -357,14 +357,25 @@ var bar_cart = new Chart(bar_chart_canvas,
 		labels: poll_labels,
 		datasets:
 		[{
-			label:'test',
+			label:poll_labels,
 			data: poll_data,
 			backgroundColor: random_bg
 		}]
 	},
 	options:
 	{
-		
+	scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                }
+            }],
+	   xAxes: [{
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+
 	}
 });
 
@@ -376,7 +387,7 @@ var pie_cart = new Chart(pie_chart_canvas,
                 labels: poll_labels,
                 datasets:
                 [{
-                        label:'test',
+                        label: poll_labels,
                         data: poll_data,
                         backgroundColor: random_bg
                 }]
