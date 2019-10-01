@@ -305,7 +305,14 @@ function displayPoll(response_text, reference_element){
 				var key = Object.keys(json_arr[label])[0];
 				var value = json_arr[label][key];
 				if(key == "expires"){
-					simple_string += "<span>Expires in: " + Math.round((parseInt(value) - Date.now()/1000) / 60 / 60)  +" Hours</span>";
+					var expiration_time = Math.round((parseInt(value) - Date.now()/1000) / 60 / 60);
+					if(expiration_time / 24 < 1){
+						expiration_time = expiration_time  + " Hours";
+					}
+					else {
+					  expiration_time = Math.round(expiration_time / 24) +" Days"
+					}
+					simple_string = simple_string + "<span>Expires in: " +  expiration_time +" </span>";
 					continue;
 				}
 				simple_string += "<span>" + key + " : " + value + "</span><br/>"; 
@@ -357,25 +364,22 @@ var bar_cart = new Chart(bar_chart_canvas,
 		labels: poll_labels,
 		datasets:
 		[{
-			label:poll_labels,
+			label:"Poll Votes",
 			data: poll_data,
 			backgroundColor: random_bg
 		}]
 	},
 	options:
 	{
-	scales: {
-            yAxes: [{
-                ticks: {
-                    beginAtZero: true
-                }
-            }],
-	   xAxes: [{
-                ticks: {
-                    beginAtZero: true
-                }
-            }]
+		scales: {
+	   		xAxes: [{
+                		ticks: {
+                    			beginAtZero: true,
+					stepSize: 1
+                		}
+            		}]
 
+			}
 	}
 });
 

@@ -9,6 +9,7 @@
 /feb/*
 /all/*
 /g/*
+/poll/*
 /Nen/*
 /nen/*
 /jp/*
@@ -21,13 +22,10 @@
 #sql files
 
 # static html and json
-/*/*.html
 /*/*.json
 /*/res
 /*/src
 /*/thumb
-/*/config.php
-/*.html
 
 #password files
 secrets.php

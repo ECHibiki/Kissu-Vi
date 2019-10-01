@@ -14,7 +14,7 @@
 			var inMod = false;
 			var modRoot="/"+(inMod ? "mod.php?/" : "");
 		</script>
-					<script type="text/javascript" src="/main.js?12"></script>
+					<script type="text/javascript" src="/main.js"></script>
 									</head>
 <body>
 <?php
@@ -38,13 +38,13 @@
 		}
 	}
 
-?><div class="boardlist"><span class="sub" data-description="0">[ <a href="/">home</a> / <a href="/agg/">agg</a> / <a href="/all/">all</a> ]</span>  <span class="sub" data-description="1">[ <a href="/b/">g</a> / <a href="/qa/">qa ]</a> / <a href="/megu/">megu</a> ]</span>  <span class="sub" data-description="2">[ <a href="https://theatre.kissu.moe">sync</a> / <a href="https://ban.kissu.moe">text</a> / <a href="/poll/">poll</a> ]</span>  <span class="sub" data-description="3">[ <a href="http://bunbunmaru.com/wakaba/general/">bun</a> / <a href="https://boards.4channel.org/qa/">qa4</a> / <a href="https://github.com/ECHibiki/ViQa-Kissu/">ViQa</a> ]</span></div><script type='text/javascript'>if (typeof do_boardlist != 'undefined') do_boardlist();</script>
+?><div class="boardlist"><span class="sub" data-description="0">[ <a href="/">home</a> / <a href="/agg/">agg</a> / <a href="/all/">all</a> ]</span>  <span class="sub" data-description="1">[ <a href="/b/">g</a> / <a href="/qa/">qa ]</a> / <a href="/megu/">megu</a> ]</span>  <span class="sub" data-description="2">[ <a href="https://theatre.kissu.moe">sync</a> / <a href="https://ban.kissu.moe">text</a> / <a href="/poll/">poll</a> ]</span>  <span class="sub" data-description="3">[ <a href="https://kakashi-nenpo.com/">nen</a> / <a href="https://boards.4channel.org/qa/">qa4</a> / <a href="https://github.com/ECHibiki/ViQa-Kissu/">ViQa</a> ]</span></div><script type='text/javascript'>if (typeof do_boardlist != 'undefined') do_boardlist();</script>
 	<header>
 	    <img class="icon" src="../static/kissu-card.png">
 		<h1>Kissu.moe</h1>
 		<div class="subtitle">100% Fun!</div>
 	</header>
-	<img class="board_image" src="/static/banners/banner-kissu-4.gif" alt="" />	
+	<img class="board_image" src="/static/banners/banner-kissu-19.jpg" alt="" />	
 	<div class="box-wrap">
 	    <!--<fieldset>
 		<legend>Boards</legend>
@@ -106,6 +106,11 @@
 	    <h1>Recent Images</h1>
 		<div class="box image">
 			<ul>
+									<li>
+						<a href="/qa/res/11284#11284">
+							<img src="/qa/thumb/1569907685823.png" style="width:255px;height:255px" alt="">
+						</a>
+					</li>
 									<li>
 						<a href="/qa/res/11143#11282">
 							<img src="/qa/thumb/1569907129912.png" style="width:175px;height:98px" alt="">
@@ -176,16 +181,41 @@
 							<img src="/qa/thumb/1569896731980.png" style="width:175px;height:131px" alt="">
 						</a>
 					</li>
-									<li>
-						<a href="/qa/res/11126#11246">
-							<img src="/qa/thumb/1569896644388.png" style="width:123px;height:175px" alt="">
-						</a>
-					</li>
 							</ul>
 		</div>
 		<div class="mainBox">
 			<h2>Latest Posts</h2>
 			<ul>
+									<li>
+						<strong>/qa/</strong>: 
+						<a href="/qa/res/11250#11287">
+							<em>i agree with mister 11274, the&hellip;</em>
+						</a>
+					</li>
+									<li>
+						<strong>/qa/</strong>: 
+						<a href="/qa/res/9199#11286">
+							<em>&gt;&gt;11285  Sometimes, you should&hellip;</em>
+						</a>
+					</li>
+									<li>
+						<strong>/qa/</strong>: 
+						<a href="/qa/res/9199#11285">
+							<em>&gt;&gt;10898  Before I start this, &hellip;</em>
+						</a>
+					</li>
+									<li>
+						<strong>/qa/</strong>: 
+						<a href="/qa/res/11284#11284">
+							<em>i hate my refractory period  i&hellip;</em>
+						</a>
+					</li>
+									<li>
+						<strong>/qa/</strong>: 
+						<a href="/qa/res/8837#11283">
+							<em>(^_^)  \/\ \</em>
+						</a>
+					</li>
 									<li>
 						<strong>/qa/</strong>: 
 						<a href="/qa/res/11143#11282">
@@ -336,36 +366,6 @@
 							<em>patchy with her friends!</em>
 						</a>
 					</li>
-									<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/11250#11259">
-							<em>&gt;&gt;11256  my heart…</em>
-						</a>
-					</li>
-									<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/11250#11258">
-							<em>&gt;&gt;11256  hmmmmmmmmmmmmmm  well&hellip;</em>
-						</a>
-					</li>
-									<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/11183#11257">
-							<em>&gt;&gt;11243  Shion is also very ni&hellip;</em>
-						</a>
-					</li>
-									<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/11250#11256">
-							<em>&gt;&gt;11253  I didn't have a tamak&hellip;</em>
-						</a>
-					</li>
-									<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/11162#11255">
-							<em>&gt;&gt;11165  dis</em>
-						</a>
-					</li>
 							</ul>
 		</div>
 		<div class="mainBox">
@@ -409,8 +409,8 @@
 		<div class="mainBox">
 			<h2>Stats</h2>
 			<ul>
-				<li>Total posts: 14,255</li>
-				<li>Unique posters: 399</li>
+				<li>Total posts: 14,260</li>
+				<li>Unique posters: 398</li>
 				<li>Active content: 2.42 GB</li>
 			</ul>
 		</div>
