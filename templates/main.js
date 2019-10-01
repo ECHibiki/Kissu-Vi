@@ -262,6 +262,154 @@ function generatePassword() {
 	return pass;
 }
 
+function pollSubmit(button){
+	var head_element = button.parentNode;
+	var inputs = head_element.getElementsByTagName("input");
+	var input_arr = [];
+	for(var input_index = 0; input_index < inputs.length - 1; input_index++){
+		if(inputs[input_index].checked == true)
+			input_arr.push(inputs[input_index].value);
+	}
+	json_answer = JSON.stringify(input_arr);
+	
+	var xhttp = new XMLHttpRequest();
+	xhttp.onreadystatechange = function(){
+		if(this.readyState == 4){
+		if(this.status != 200) 
+			alert("Poll Transfer Error");
+		else{ //use response data to build chart
+			displayPoll(this.responseText, button);
+		}
+		}
+	}	
+	xhttp.open("POST", "/poll.php");
+	xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	var thread_id = button.parentNode.parentNode.parentNode.id.replace("op_", "");
+	xhttp.send("respond_poll=1&response_json=" + json_answer + "&id=" + thread_id); 
+	return false;
+}
+
+function displayPoll(response_text, reference_element){
+               //use response data to build chart
+			json_arr = JSON.parse(response_text);
+			if(json_arr['error'] != undefined){
+                                alert(json_arr['error']);
+                                return;
+                        }
+
+			var poll_labels = [];
+			var poll_data = [];
+			var random_bg = [];
+			var simple_string = "";
+			for(label in json_arr){
+				var key = Object.keys(json_arr[label])[0];
+				var value = json_arr[label][key];
+				if(key == "expires"){
+					simple_string += "<span>Expires in: " + Math.round((parseInt(value) - Date.now()/1000) / 60 / 60)  +" Hours</span>";
+					continue;
+				}
+				simple_string += "<span>" + key + " : " + value + "</span><br/>"; 
+				poll_labels.push(key);
+				poll_data.push(parseInt(value));
+				random_bg.push("rgba(" + 
+					Math.floor(Math.random() * Math.floor(255)) + "," + 
+					Math.floor(Math.random() * Math.floor(255))  + "," +
+					Math.floor(Math.random() * Math.floor(255))  + "," +
+					1.0  + ")");
+			}
+
+
+		var inputs = reference_element.parentNode.getElementsByTagName("input");
+		for(var i = 0 ; i < inputs.length; i++){
+			inputs[i].style = "display:none";
+		}
+                var labels = reference_element.parentNode.getElementsByTagName("label");
+                for(var i = 0 ; i < labels.length; i++){
+                        labels[i].style = "display:none";
+                }
+
+                var br = reference_element.parentNode.getElementsByTagName("br");
+                for(var i = 0 ; i < br.length; i++){
+                        br[i].style = "display:none";
+                }
+
+		reference_element.parentNode.getElementsByTagName("a")[0].style = "display:none";	
+		reference_element.parentNode.style = "display:flex;flex-direction:row;justify-content: safe;";
+		chart_text_div = document.createElement("div");
+		chart_text_div.innerHTML = simple_string;
+		chart_text_div.setAttribute("class","poll_data_text");
+	
+			chart_canvas_div = document.createElement("div");
+			chart_canvas_div.setAttribute('class', 'poll_container');
+			bar_chart_canvas = document.createElement("canvas");
+			pie_chart_canvas = document.createElement("canvas");
+
+			chart_canvas_div.appendChild(bar_chart_canvas);			
+			chart_canvas_div.appendChild(pie_chart_canvas);			
+			reference_element.parentNode.appendChild(chart_canvas_div);
+			reference_element.parentNode.appendChild(chart_text_div);
+
+var bar_cart = new Chart(bar_chart_canvas,
+{
+	type: 'horizontalBar',
+	data:
+	{
+		labels: poll_labels,
+		datasets:
+		[{
+			label:'test',
+			data: poll_data,
+			backgroundColor: random_bg
+		}]
+	},
+	options:
+	{
+		
+	}
+});
+
+var pie_cart = new Chart(pie_chart_canvas,
+{
+        type: 'pie',
+        data:
+        {
+                labels: poll_labels,
+                datasets:
+                [{
+                        label:'test',
+                        data: poll_data,
+                        backgroundColor: random_bg
+                }]
+        },
+        options:
+        {
+
+        }
+});
+
+
+
+}
+
+function viewPoll(link){
+	var thread_id = link.parentNode.parentNode.parentNode.id.replace("op_", "");
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function(){
+                if(this.readyState == 4){
+			if(this.status != 200) { //replace with error message where canvas would be
+                        	alert("Poll Retrieval Error");
+			}
+			else{
+				displayPoll(this.responseText, link);
+			}
+		}	
+        }       
+        xhttp.open("POST", "/poll.php");
+        xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        xhttp.send("query_poll=1&id=" + thread_id); 
+        return false;
+}
+
 function dopost(form) {
 	if (form.elements['name']) {
 		//disabled, name storage is inconvinient for it's usage with the hidden post form
@@ -347,7 +495,6 @@ function captchaSetup(){
 	});
 	
 	var captcha_val = localStorage.getItem("captcha");
-	console.log()
 	if(captcha_val == null || captcha_val == "cap"){
 		var cap = $(".cap");
 		for(var i = 0 ; i < cap.length ; i++){

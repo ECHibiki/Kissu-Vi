@@ -22,7 +22,7 @@ require_once 'inc/mod/auth.php';
 require_once 'inc/lock.php';
 require_once 'inc/queue.php';
 require_once 'inc/polyfill.php';
-
+require_once 'inc/polling.php';
 require_once 'inc/archive.php';
 
 @include_once 'inc/lib/parsedown/Parsedown.php'; // fail silently, this isn't a critical piece of code
@@ -1006,13 +1006,23 @@ function checkBan($board = false) {
 		cache::set('purged_bans_last', time());
 }
 
-function post_laterPost($post, $thread, $numposts, $noko, $id, $dropped_post, $pdo){
+function post_laterPost(&$post, &$thread, $numposts, &$noko, &$dropped_post, &$pdo){
 	
 		require_once 'inc/anti-bot.php';
 		require_once 'inc/bans.php';
 		require_once 'inc/image.php';
 	
-		global $config, $board, $build_pages;
+	
+	global $config, $board, $build_pages;
+	//POST IS DONE HERE
+        $post['id'] = $id = post($post);
+        $post['slug'] = slugify($post);
+
+	if(isset($post['poll_data']) && $post['poll_data'] != ""){
+	// Assuming it's a new poll insert poll data here from new file polling.php
+		Polling::addPoll($post['poll_data'], $id, $pdo);
+	}
+
 	if ($dropped_post && $dropped_post['from_nntp']) {
 	        $query = prepare("INSERT INTO ``nntp_references`` (`board`, `id`, `message_id`, `message_id_digest`, `own`, `headers`) VALUES ".
 	                                                         "(:board , :id , :message_id , :message_id_digest , false, :headers)");
@@ -1093,6 +1103,7 @@ function post_laterPost($post, $thread, $numposts, $noko, $id, $dropped_post, $p
 	
 	$root = $post['mod'] ? $config['root'] . $config['file_mod'] . '?/' : $config['root'];
 	
+//TODO: Bonus add nonoko
 	if ($noko) {
 		$redirect = $root . $board['dir'] . $config['dir']['res'] .
 			link_for($post, false, false, $thread) . (!$post['op'] ? '#' . $id : '');
@@ -1225,111 +1236,6 @@ function insertFloodPost(array $post) {
 		$query->bindValue(':filehash', null, PDO::PARAM_NULL);
 	$query->bindValue(':isreply', !$post['op'], PDO::PARAM_INT);
 	$query->execute() or error(db_error($query));
-}
-
-function withhold(array $post){
-	global $pdo, $board;
-	$query = prepare(sprintf("INSERT INTO ``withheld`` VALUES ( NULL, :thread, :subject, :email, :name, :trip, :capcode, :body, :body_nomarkup, :time, :time, :files, :num_files, :filehash, :password, :ip, :sticky, :locked, :cycle, 0, :embed, :slug,
-		:reference, :board)", $board['uri']));
-	
-	//withheld refernces
-	if (!empty($post['reference'])) {
-		$query->bindValue(':reference', $post['reference']);
-	} else {
-		$query->bindValue(':reference', null, PDO::PARAM_NULL);
-	}
-	if (!empty($post['board'])) {
-		$query->bindValue(':board', $post['board']);
-	} else {
-		$query->bindValue(':board', null, PDO::PARAM_NULL);
-	}
-		
-	// Basic stuff
-	if (!empty($post['subject'])) {
-		$query->bindValue(':subject', $post['subject']);
-	} else {
-		$query->bindValue(':subject', null, PDO::PARAM_NULL);
-	}
-
-	if (!empty($post['email'])) {
-		$query->bindValue(':email', $post['email']);
-	} else {
-		$query->bindValue(':email', null, PDO::PARAM_NULL);
-	}
-
-	if (!empty($post['trip'])) {
-		$query->bindValue(':trip', $post['trip']);
-	} else {
-		$query->bindValue(':trip', null, PDO::PARAM_NULL);
-	}
-
-	$query->bindValue(':name', $post['name']);
-	$query->bindValue(':body', $post['body']);
-	$query->bindValue(':body_nomarkup', $post['body_nomarkup']);
-	$query->bindValue(':time', isset($post['time']) ? $post['time'] : time(), PDO::PARAM_INT);
-	$query->bindValue(':password', $post['password']);		
-	$query->bindValue(':ip', isset($post['ip']) ? $post['ip'] : $_SERVER['REMOTE_ADDR']);
-
-	if ($post['op'] && $post['mod'] && isset($post['sticky']) && $post['sticky']) {
-		$query->bindValue(':sticky', true, PDO::PARAM_INT);
-	} else {
-		$query->bindValue(':sticky', false, PDO::PARAM_INT);
-	}
-
-	if ($post['op'] && $post['mod'] && isset($post['locked']) && $post['locked']) {
-		$query->bindValue(':locked', true, PDO::PARAM_INT);
-	} else {
-		$query->bindValue(':locked', false, PDO::PARAM_INT);
-	}
-
-	if ($post['op'] && $post['mod'] && isset($post['cycle']) && $post['cycle']) {
-		$query->bindValue(':cycle', true, PDO::PARAM_INT);
-	} else {
-		$query->bindValue(':cycle', false, PDO::PARAM_INT);
-	}
-
-	if ($post['mod'] && isset($post['capcode']) && $post['capcode']) {
-		$query->bindValue(':capcode', $post['capcode'], PDO::PARAM_STR);
-	} else {
-		$query->bindValue(':capcode', null, PDO::PARAM_NULL);
-	}
-
-	if (!empty($post['embed'])) {
-		$query->bindValue(':embed', $post['embed']);
-	} else {
-		$query->bindValue(':embed', null, PDO::PARAM_NULL);
-	}
-
-	if ($post['op']) {
-		// No parent thread, image
-		$query->bindValue(':thread', null, PDO::PARAM_NULL);
-	} else {
-		$query->bindValue(':thread', $post['thread'], PDO::PARAM_INT);
-	}
-
-	if ($post['has_file']) {
-		$query->bindValue(':files', json_encode($post['files']));
-		$query->bindValue(':num_files', $post['num_files']);
-		$query->bindValue(':filehash', $post['filehash']);
-	} else {
-		$query->bindValue(':files', null, PDO::PARAM_NULL);
-		$query->bindValue(':num_files', 0);
-		$query->bindValue(':filehash', null, PDO::PARAM_NULL);
-	}
-
-	if ($post['op']) {
-		$query->bindValue(':slug', slugify($post));
-	}
-	else {
-		$query->bindValue(':slug', NULL);
-	}
-
-	if (!$query->execute()) {
-		undoImage($post);
-		error(db_error($query));
-	}
-
-	return $pdo->lastInsertId();
 }
 
 function post(array $post) {
@@ -1517,6 +1423,10 @@ function rebuildPost($id) {
 function deletePostKeepOrder($id, $error_if_doesnt_exist=true, $rebuild_after=true) {
 		global $board, $config;
 	// Select post and replies (if thread) in one query
+	if($config["poll_board"])
+            //remove poll if exists, 
+            Polling::removePoll($id);
+
 	$query = prepare(sprintf("SELECT `id`,`thread`,`files`,`slug` FROM ``posts_%s`` WHERE `id` = :id OR `thread` = :id", $board['uri']));
 	$query->bindValue(':id', $id, PDO::PARAM_INT);
 	$query->execute() or error(db_error($query));
@@ -1584,6 +1494,10 @@ function deletePostKeepOrder($id, $error_if_doesnt_exist=true, $rebuild_after=tr
 // Delete a post (reply or thread) and update bump order
 function deletePost($id, $error_if_doesnt_exist=true, $rebuild_after=true, $store_image = false) {
 	global $board, $config;
+
+        if($config["poll_board"])
+            //remove poll if exists, 
+            Polling::removePoll($id);
 
 	// Select post and replies (if thread) in one query
 	$query = prepare(sprintf("SELECT `id`,`thread`,`files`,`slug` FROM ``posts_%s`` WHERE `id` = :id OR `thread` = :id", $board['uri']));
@@ -2046,7 +1960,6 @@ function checkMute() {
 	}
 }
 
-// TODO: Fix missing thread on pages
 function buildIndex($global_api = "yes") {
 	global $board, $config, $build_pages;
 

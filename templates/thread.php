@@ -140,13 +140,7 @@ document.getElementById("bannerimg").onclick = function(){
 
 	{{ config.ad.bottom }}
 
-	<footer>
-		<p class="unimportant" style="margin-top:20px;text-align:center;">- Tinyboard + 
-			<a href="https://engine.vichan.net/">vichan</a> {{ config.version }} -
-		<br>Tinyboard Copyright &copy; 2010-2014 Tinyboard Development Group    
-		<br><a href="https://engine.vichan.net/">vichan</a> Copyright &copy; 2012-2018 vichan-devel</p>
-		{% for footer in config.footer %}<p class="unimportant" style="text-align:center;">{{ footer }}</p>{% endfor %}
-	</footer>
+	{% include 'footer.template' %}
 	<script type="text/javascript">{% raw %}
 		ready();
 	{% endraw %}</script>

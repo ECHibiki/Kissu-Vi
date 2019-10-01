@@ -73,7 +73,13 @@ document.getElementById("bannerimg").onclick = function(){
 		{% if mod %}<p><a href="?/">{% trans %}Return to dashboard{% endtrans %}</a></p>{% endif %}
 	</div>
 	</header>
-<h1>New Thread</h1>
+{% if config.poll_board %}
+	<h1 id="pollheader" style="display:none">New poll</h1>
+{% else %}
+	<h1 id="threadheader">New Thread</h1>
+
+{% endif %}
+
 	<div id="topcontainer">
 	{% include 'attention_bar.html' %}
 
@@ -81,8 +87,10 @@ document.getElementById("bannerimg").onclick = function(){
 
 	<div>
 	{% if not no_post_form %}
-                {% if config.advanced_post_form  %}
-                        {% include 'post_form_advanced.html' %}
+		{% if config.poll_board %}
+			{% include 'post_form_poll.template' %}
+                {% elseif config.advanced_post_form  %}
+                       {% include 'post_form_advanced.html' %}
                 {% else %}
                         {% include 'post_form.html' %}
                 {% endif %}
@@ -161,14 +169,7 @@ document.getElementById("bannerimg").onclick = function(){
 
 	{{ config.ad.bottom }}
 
-	<footer>
-		<p class="unimportant" style="margin-top:20px;text-align:center;">- Tinyboard + 
-			<a href="https://engine.vichan.net/">vichan</a> {{ config.version }} -
-		<br>Tinyboard Copyright &copy; 2010-2014 Tinyboard Development Group
-		<br><a href="https://engine.vichan.net/">vichan</a> Copyright &copy; 2012-2018 vichan-devel</p>
-
-		{% for footer in config.footer %}<p class="unimportant" style="text-align:center;">{{ footer }}</p>{% endfor %}
-	</footer>
+	{% include 'footer.template' %}
 	<script type="text/javascript">{% raw %}
 		ready();
 	{% endraw %}</script>

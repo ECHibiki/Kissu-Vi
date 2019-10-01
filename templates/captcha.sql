@@ -1,4 +1,4 @@
-CREATE TABLE IF NOT EXISTS ``posts_{{ board }}`` (
+CREATE TABLE IF NOT EXISTS `withheld`(
    `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
    `thread` int(11) DEFAULT NULL,
    `subject` varchar(100) DEFAULT NULL,
@@ -21,11 +21,14 @@ CREATE TABLE IF NOT EXISTS ``posts_{{ board }}`` (
    `sage` int(1) NOT NULL,
    `embed` text,
    `slug` varchar(256) DEFAULT NULL,
+   `reference` varchar(256) NOT NULL,
+   `board` varchar(256) NOT NULL,
+   `poll_data` mediumtext DEFAULT NULL,
    UNIQUE KEY `id` (`id`),
    KEY `thread_id` (`thread`,`id`),
    KEY `filehash` (`filehash`(40)),
    KEY `time` (`time`),
    KEY `ip` (`ip`),
    KEY `list_threads` (`thread`, `sticky`, `bump`)
- ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 AUTO_INCREMENT=1 ;
- 
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 AUTO_INCREMENT=1 ;
+
