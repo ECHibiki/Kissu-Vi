@@ -7,7 +7,7 @@
 <link rel='stylesheet' href='stylesheets/longtable/longtable.css'>
 <link rel='stylesheet' href='stylesheets/mod/ban-list.css'>
 
-	<form action="?/bans" method="post" class="banform">
+	<form {% if mod %} action="?/bans" method="post" {% endif %} class="banform">
 		{% if token %}
 			<input type="hidden" name="token" value="{{ token }}">
 		{% endif %}
