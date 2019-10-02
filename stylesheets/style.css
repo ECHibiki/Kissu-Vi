@@ -51,7 +51,8 @@ span.glowgold{
 /* Mascots */
 #mascot-img {
   position: fixed;
-  z-index: -10;
+  /* using this we could remove z-index fuckery */
+  pointer-events: none;
 }
 
 /* Original CSS */
