@@ -204,6 +204,41 @@ class Bans {
 
 	}
 	
+	static public function reducedBanSearchFromJSON($ip, $reason, $expiration, $post){
+		if(trim($ip) == "" && trim($reason) == "" && trim($expiration) == "" && trim($post) == ""){	
+			header('Location: /bans-all.html');
+			die;
+		}
+		$negative_search_ip = $ip != "" && $ip[0] == '-';
+		$ip = $negative_search_ip ? substr($ip, 1) : $ip;
+
+		$negative_search_reason = $reason != "" && $reason[0] == '-';
+		$reason = $negative_search_reason ? substr($reason, 1) : $reason;
+
+		$negative_search_expiration = $expiration != "" && $expiration[0] == '-';
+		$expiration = $negative_search_expiration ? substr($expiration, 1) : $expiration;
+
+		$negative_search_post = $post != "" && $post[0] == '-';
+		$post = $negative_search_post ? substr($post, 1) : $post;
+
+		$ban_json =  json_decode(file_get_contents('bans.json'), true);		
+		foreach($ban_json as $key=>$entry){
+			//boolean mathematics(negation)
+			$ip_bool = ($negative_search_ip + preg_match("/$ip/", $entry['mask'])) % 2;
+			$reason_bool = isset($entry['reason']) ? ($negative_search_reason + preg_match("/$reason/", $entry['reason'])) % 2 : true;
+			$expiration_bool = isset($entry['expires']) ? ($negative_search_expiration + preg_match("/$expiration/", $entry['expires'])) % 2 : true;
+			$post_bool = isset($entry['message']) ? ($negative_search_post + preg_match("/$post/", $entry['message'])) % 2 : true;
+			if(!($ip_bool && $reason_bool && $expiration_bool && $post_bool)){
+				unset($ban_json[$key]);
+			}
+		}
+		$formatted_bans = array();
+		foreach($ban_json as $key=>$entry){
+			array_push($formatted_bans, $entry);
+		}
+		return $formatted_bans;
+	}
+
 	static public function seen($ban_id) {
 		$query = query("UPDATE ``bans`` SET `seen` = 1 WHERE `id` = " . (int)$ban_id) or error(db_error());
                 rebuildThemes('bans');
@@ -230,7 +265,7 @@ class Bans {
 		                error($config['error']['noaccess']);
 			
 			$mask = self::range_to_string(array($ban['ipstart'], $ban['ipend']));
-			
+			$range = self::parse_range($mask);
 			modLog("Removed ban #{$ban_id} for " .
 				(filter_var($mask, FILTER_VALIDATE_IP) !== false ? "<a href=\"?/IP/$mask\">$mask</a>" : $mask));
 		}

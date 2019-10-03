@@ -35,8 +35,8 @@
 	);
 
 	$theme['config'][] = Array(
-		'title' => 'PHP Results Page',
-		'name' => 'file_results',
+		'title' => 'Reduced Bans List',
+		'name' => 'file_reduced',
 		'type' => 'text',
 		'default' => 'ban-list.php',
 		'comment' => '(eg. "bans-list.php")'
