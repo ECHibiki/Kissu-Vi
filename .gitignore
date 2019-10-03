@@ -15,7 +15,7 @@
 /jp/*
 /GNFOS/*
 /agg/*
-
+/trans/*
 #logs
 *.log
 

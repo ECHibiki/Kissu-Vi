@@ -1341,6 +1341,244 @@ function mod_move_reply($originBoard, $postID) {
 
 }
 
+function mod_nerf_move($originBoard, $postID, $redirect = true){
+global $board, $config, $mod, $pdo;
+	
+	if (!openBoard($originBoard))
+		error($config['error']['noboard']);
+	
+	//if (!hasPermission($config['mod']['move'], $originBoard))
+		//error($config['error']['noaccess']);
+	
+	$query = prepare(sprintf('SELECT * FROM ``posts_%s`` WHERE `id` = :id', $originBoard));
+	$query->bindValue(':id', $postID);
+	$query->execute() or error(db_error($query));
+	if (!$post = $query->fetch(PDO::FETCH_ASSOC))
+		error($config['error']['404']);
+
+	if (true || isset($_POST['board'])) {
+		$targetBoard = $config['nerf_mods_board'];
+		$shadow = false;
+		
+		if ($targetBoard === $originBoard)
+			error(_('Priviledge level ' .$config['nerf_mods_max_level_number'] . " can not do this"));
+		
+		// copy() if leaving a shadow thread behind; else, rename().
+		$clone = $shadow ? 'copy' : 'rename';
+		
+		
+		// indicate that the post is a thread
+		$post['op'] = true;
+		if ($post['files']) {
+			$post['files'] = json_decode($post['files'], TRUE);
+			$post['has_file'] = true;
+			foreach ($post['files'] as $i => &$file) {
+				if ($file['file'] === 'deleted') 
+					continue;
+				$clone($file['file_path'], sprintf($config['board_path'], $board['uri']) . $config['dir']['img'] . 'm' . $file['file']);
+				$file['file_path'] = sprintf($config['board_path'], $board['uri']) . $config['dir']['img'] . 'm' . $file['file'];
+				$file['file'] = 'm' . $file['file'];
+				$file['file_id'] = 'm' . $file['file'];
+				$clone($file['thumb_path'],sprintf($config['board_path'], $board['uri']) . $config['dir']['thumb'] . 'm' . $file['thumb']);
+				$file['thumb_path'] = sprintf($config['board_path'], $board['uri']) . $config['dir']['thumb'] . 'm' . $file['thumb'];
+				$file['thumb'] =  'm' . $file['thumb'];
+			}
+		} else {
+			$post['has_file'] = false;
+		}
+		
+		// allow thread to keep its same traits (stickied, locked, etc.)
+		$post['mod'] = true;
+
+		if (!openBoard($targetBoard))
+			error($config['error']['noboard']);
+		//attach mod message
+		$post['body'] .= "<br/><br/><strong>Deleted by " . $mod['username'] . " from /$originBoard/$postID " . (isset($post['thread']) ? "from thread " . $post['thread'] : " As OP")  ."</strong>";
+
+		//update  time
+		$post['bump'] = "" . time();
+		$post['time'] = "" . time();
+
+		// create the new thread(or post)
+		$newID = post($post);
+	
+		$op = $post;
+		if(isset($_POST['target_thread']) && trim($_POST['target_thread']) != ""){
+			//needed for link_for redirect
+			$op['id'] = $_POST['target_thread'];
+		}
+		else{
+			// build new thread
+			$op['id'] = $newID;
+		}
+	
+		if ($post['has_file']) {
+			// copy image
+			foreach ($post['files'] as $i => &$file) {
+				if ($file['file'] !== 'deleted') 
+					$clone($file['file_path'], sprintf($config['board_path'], $board['uri']) . $config['dir']['img'] . $file['file']);
+				if (isset($file['thumb']) && !in_array($file['thumb'], array('spoiler', 'deleted', 'file')))
+					$clone($file['thumb_path'], sprintf($config['board_path'], $board['uri']) . $config['dir']['thumb'] . $file['thumb']);
+			}
+		}
+		
+		// go back to the original board to fetch replies
+		openBoard($originBoard);
+		
+		$query = prepare(sprintf('SELECT * FROM ``posts_%s`` WHERE `thread` = :id ORDER BY `id`', $originBoard));
+		$query->bindValue(':id', $postID, PDO::PARAM_INT);
+		$query->execute() or error(db_error($query));
+		
+		$replies = array();
+		
+		while ($post = $query->fetch(PDO::FETCH_ASSOC)) {
+			$post['mod'] = true;
+			$post['thread'] = $op['id'];
+			
+			if ($post['files']) {
+				$post['files'] = json_decode($post['files'], TRUE);
+				$post['has_file'] = true;
+				foreach ($post['files'] as $i => &$file) {
+					$file['file_path'] = sprintf($config['board_path'], $board['uri']) . $config['dir']['img'] . $file['file'];
+
+					if (isset($file['thumb'])) {
+						$file['thumb_path'] = sprintf($config['board_path'], $board['uri']) . $config['dir']['thumb'] . $file['thumb'];
+					}
+				}
+			} else {
+				$post['has_file'] = false;
+			}
+			
+			$replies[] = $post;
+		}
+		
+		$newIDs = array($postID => $op['id']);
+		
+		openBoard($targetBoard);
+		
+		/*foreach ($replies as &$post) {
+			$query = prepare('SELECT `target` FROM ``cites`` WHERE `target_board` = :board AND `board` = :board AND `post` = :post');
+			$query->bindValue(':board', $originBoard);
+			$query->bindValue(':post', $post['id'], PDO::PARAM_INT);
+			$query->execute() or error(db_error($qurey));
+			
+			// correct >>X links
+			while ($cite = $query->fetch(PDO::FETCH_ASSOC)) {
+				if (isset($newIDs[$cite['target']])) {
+					$post['body_nomarkup'] = preg_replace(
+							'/(>>(>\/' . preg_quote($originBoard, '/') . '\/)?)' . preg_quote($cite['target'], '/') . '/',
+							'>>' . $newIDs[$cite['target']],
+							$post['body_nomarkup']);
+					
+					$post['body'] = $post['body_nomarkup'];
+				}
+			}
+			
+			$post['body'] = $post['body_nomarkup'];
+			
+			$post['op'] = false;
+			$post['tracked_cites'] = markup($post['body'], true);
+			
+			if ($post['has_file']) {
+				// copy or rename image
+				foreach ($post['files'] as $i => &$file) {
+					if (isset($file['thumb'])) 
+					if ($file['thumb'] != 'spoiler' && $file['thumb'] != 'deleted') { //trying to move/copy the spoiler thumb raises an error
+						$new_file = sprintf($config['board_path'], $board['uri']) . $config['dir']['img'] . 'm' . $file['file'];
+						$clone($file['file_path'], $new_file);
+						$file['file_path'] = $new_file;
+						$file['file_id'] = 'm' . $file['file'];
+						$file['file'] = 'm' . $file['file'];
+						
+						$new_thumb = sprintf($config['board_path'], $board['uri']) . $config['dir']['thumb'] . 'm'. $file['thumb'] ;
+						$clone($file['thumb_path'], $new_thumb);
+						$file['thumb_path'] = $new_thumb;
+						$file['thumb'] = 'm' . $file['thumb'];
+					}
+				}
+			}
+			// insert reply
+			$newIDs[$post['id']] = $newPostID = post($post);
+			
+			
+			if (!empty($post['tracked_cites'])) {
+				$insert_rows = array();
+				foreach ($post['tracked_cites'] as $cite) {
+					$insert_rows[] = '(' .
+						$pdo->quote($board['uri']) . ', ' . $newPostID . ', ' .
+						$pdo->quote($cite[0]) . ', ' . (int)$cite[1] . ')';
+				}
+				query('INSERT INTO ``cites`` VALUES ' . implode(', ', $insert_rows)) or error(db_error());
+			}
+		}*/
+		
+		modLog("Moved thread #${postID} to " . sprintf($config['board_abbreviation'], $targetBoard) . " (#${newID})", $originBoard);
+		
+		buildThread($op['id']);
+		
+		clean();
+		buildIndex();
+		
+		// trigger themes
+		rebuildThemes('post', $targetBoard);
+		
+		$newboard = $board;
+
+		// return to original board
+		openBoard($originBoard);
+		
+		/*if ($shadow) {
+			// lock old thread
+			$query = prepare(sprintf('UPDATE ``posts_%s`` SET `locked` = 1 WHERE `id` = :id', $originBoard));
+			$query->bindValue(':id', $postID, PDO::PARAM_INT);
+			$query->execute() or error(db_error($query));
+			
+			// leave a reply, linking to the new thread
+			$spost = array(
+				'mod' => true,
+				'subject' => '',
+				'email' => '',
+				'name' => (!$config['mod']['shadow_name'] ? $config['anonymous'] : $config['mod']['shadow_name']),
+				'capcode' => $config['mod']['shadow_capcode'],
+				'trip' => '',
+				'password' => '',
+				'has_file' => false,
+				// attach to original thread
+				'thread' => $postID,
+				'op' => false
+			);
+
+			$spost['body'] = $spost['body_nomarkup'] =  sprintf($config['mod']['shadow_mesage'], '>>>/' . $targetBoard . '/' . $newID);
+			
+			markup($spost['body']);
+			
+			$botID = post($spost);
+			buildThread($postID);
+			
+			buildIndex();
+			
+			header('Location: ?/' . sprintf($config['board_path'], $newboard['uri']) . $config['dir']['res'] . link_for($op, false, $newboard) .
+				'#' . $botID, true, $config['redirect_http']);
+		} else {*/
+			deletePost($postID);
+			buildIndex();
+			if($redirect){
+				openBoard($targetBoard);
+				header('Location: ?/' . sprintf($config['board_path'], $newboard['uri']) . $config['dir']['res'] . link_for($op, false, $newboard), true, $config['redirect_http']);
+			}
+		//}
+	}
+	
+	$boards = listBoards();
+	if (count($boards) <= 1)
+		error(_('Impossible to move thread; there is only one board.'));
+	
+	$security_token = make_secure_link_token($originBoard . '/move/' . $postID);
+	if($redirect){
+		//mod_page(_('Move thread'), 'mod/move.html', array('post' => $postID, 'board' => $originBoard, 'boards' => $boards, 'token' => $security_token));
+	}
+}
+
 function mod_move($originBoard, $postID) {
 	global $board, $config, $mod, $pdo;
 	
@@ -1728,9 +1966,22 @@ function mod_edit_post($board, $edit_raw_html, $postID) {
 	}
 }
 
-function mod_delete($board, $post) {
+function nerf_mod_check($board, $postID, $redirect = true){
+	global $mod, $config;
+	if($config['nerf_mods'] && $mod['type'] == $config['nerf_mods_max_level_number']){
+		mod_nerf_move($board, $postID, $redirect);
+		return true;
+	}else{
+		return false;
+	}
+
+}
+
+function mod_delete($board, $post, $redirect_on_nerf=true) {
 	global $config, $mod;
-	
+	if(nerf_mod_check($board, $post, $redirect_on_nerf))
+		return;
+
 	if (!openBoard($board))
 		error($config['error']['noboard']);
 	
@@ -1754,11 +2005,13 @@ function mod_delete($board, $post) {
 		// Reload to board index
 		header('Location: ?/' . sprintf($config['board_path'], $board) . $config['file_index'], true, $config['redirect_http']);
 	}
+	
 }
 
 function mod_delete_keeporder($board, $post) {
 	global $config, $mod;
-	
+	if(nerf_mod_check($board, $post))
+		return;
 	if (!openBoard($board))
 		error($config['error']['noboard']);
 	
@@ -1894,8 +2147,9 @@ function mod_deletebyip($boardName, $post, $global = false) {
 	$threads_deleted = array();
 	while ($post = $query->fetch(PDO::FETCH_ASSOC)) {
 		openBoard($post['board']);
-		
-		deletePost($post['id'], false, false);
+
+		if(!nerf_mod_check($board['uri'], $post['id'], $redirect=false))
+		 	deletePost($post['id'], false, false);
 
 		rebuildThemes('post-delete', $board['uri']);
 		

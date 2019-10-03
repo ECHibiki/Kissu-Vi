@@ -9,6 +9,8 @@ require_once 'inc/bans.php';
 require_once 'inc/polling.php';
 require_once 'inc/image.php';
 
+require_once 'inc/mod/pages.php';
+
 $dropped_post = false;
 
 // Is it a post coming from NNTP? Let's extract it and pretend it's a normal post.
@@ -176,8 +178,10 @@ elseif (isset($_GET['Newsgroups'])) {
 
 if (isset($_POST['delete'])) {
 	// Delete
-	$mod = false;
-	if(isset($_POST['mod']))	$mod = true;
+//TODO find a more secure method to do this
+	global $mod;
+	check_login(false);
+
 	
 	if (!isset($_POST['board'], $_POST['pswrd']))
 		error($config['error']['bot']);
@@ -200,8 +204,8 @@ if (isset($_POST['delete'])) {
 	if (!openBoard($_POST['board']))
 		error($config['error']['noboard']);
 
-	if ((!isset($_POST['mod']) || !$_POST['mod']) && $config['board_locked']) {
-    	error("Board is locked");
+	if (!$mod && $config['board_locked']) {
+    		error("Board is locked");
 	}
 	
 	// Check if banned
@@ -235,18 +239,28 @@ if (isset($_POST['delete'])) {
 			if (!$mod &&$post['time'] > time() - $config['delete_time'] && (!$thread || $thread['password'] != $password)) {
 				error(sprintf($config['error']['delete_too_soon'], until($post['time'] + $config['delete_time'])));
 			}
-			
 			if (isset($_POST['file'])) {
 				// Delete just the file
-				deleteFile($id);
-				if(!$mod) modLog("User deleted file from his own post #$id");
-				else modLog("Mod deleted file from post #$id");
+				if(!$mod){ 
+					deleteFile($id);
+					modLog("User deleted file from his own post #$id");
+				}
+				else{
+					mod_deletefile($board['uri'], $id, NULL);
+					modLog("Mod deleted file from post #$id");
+				}
 			} else {
 				// Delete entire post
-				deletePostKeepOrder($id);
+				
 
-				if(!$mod) modLog("User deleted his own post #$id");
-				else modLog("Mod deleted file from post #$id");
+				if(!$mod){
+					 deletePost($id);
+					 modLog("User deleted his own post #$id");
+				}
+				else {
+					mod_delete($board['uri'], $id, false);				
+					modLog("Mod deleted file from post #$id");
+				}
 			}
 
 			_syslog(LOG_INFO, 'Deleted post: ' .

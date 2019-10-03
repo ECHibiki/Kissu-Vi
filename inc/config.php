@@ -1583,6 +1583,10 @@
 	// Probably best not to change this unless you are smart enough to figure out what you're doing. If you
 	// decide to change it, remember that it is impossible to redefinite/overwrite groups; you may only add
 	// new ones.
+$config['nerf_mods'] = false;
+$config['nerf_mods_board'] = 'trans';
+$config['nerf_mods_max_level_number'] = 30;
+
 $config['mod']['groups'] = array(
   5   => 'Bot',
   10	=> 'Janitor',

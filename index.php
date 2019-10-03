@@ -38,13 +38,13 @@
 		}
 	}
 
-?><div class="boardlist"><span class="sub" data-description="0">[ <a href="/">home</a> / <a href="/agg/">agg</a> / <a href="/all/">all</a> ]</span>  <span class="sub" data-description="1">[ <a href="/b/">g</a> / <a href="/qa/">qa ]</a> / <a href="/megu/">megu</a> ]</span>  <span class="sub" data-description="2">[ <a href="https://theatre.kissu.moe">sync</a> / <a href="https://ban.kissu.moe">text</a> ]</span>  <span class="sub" data-description="3">[ <a href="https://kakashi-nenpo.com/">nen</a> / <a href="https://boards.4channel.org/qa/">qa4</a> / <a href="https://github.com/ECHibiki/ViQa-Kissu/">ViQa</a> ]</span></div><script type='text/javascript'>if (typeof do_boardlist != 'undefined') do_boardlist();</script>
+?><div class="boardlist"><span class="sub" data-description="0">[ <a href="/">home</a> / <a href="/agg/">agg</a> / <a href="/all/">all</a> ]</span>  <span class="sub" data-description="1">[ <a href="/b/">g</a> / <a href="/qa/">qa ]</a> / <a href="/megu/">megu</a> ]</span>  <span class="sub" data-description="2">[ <a href="https://theatre.kissu.moe">sync</a> / <a href="https://ban.kissu.moe">text</a> ]</span>  <span class="sub" data-description="3">[ <a href="https://ota-ch.com/jp/index.html">ota</a> / <a href="https://boards.4channel.org/qa/">qa4</a> / <a href="https://github.com/ECHibiki/ViQa-Kissu/">ViQa</a> ]</span></div><script type='text/javascript'>if (typeof do_boardlist != 'undefined') do_boardlist();</script>
 	<header>
 	    <img class="icon" src="../static/kissu-card.png">
 		<h1>Kissu.moe</h1>
 		<div class="subtitle">100% Fun!</div>
 	</header>
-	<img class="board_image" src="/static/banners/banner-kissu-23.png" alt="" />	
+	<img class="board_image" src="/static/banners/banner-kissu-18.png" alt="" />	
 	<div class="box-wrap">
 	    <!--<fieldset>
 		<legend>Boards</legend>
@@ -95,6 +95,11 @@
 					</a>
 				</li>
 							<li class="boardlinksurl">
+					<a href="trans/">
+						transparency
+					</a>
+				</li>
+							<li class="boardlinksurl">
 					<a href="xmas/">
 						Merri Christmasu!
 					</a>
@@ -107,78 +112,63 @@
 		<div class="box image">
 			<ul>
 									<li>
-						<a href="/poll/res/69#69">
-							<img src="/poll/thumb/1569833097858.png" style="width:185px;height:255px" alt="">
+						<a href="/trans/res/106#106">
+							<img src="/trans/thumb/m1569341401727.png" style="width:219px;height:255px" alt="">
 						</a>
 					</li>
 									<li>
-						<a href="/poll/res/58#58">
-							<img src="/poll/thumb/1569806128942.png" style="width:185px;height:255px" alt="">
+						<a href="/trans/res/105#105">
+							<img src="/trans/thumb/m1569460697974.png" style="width:255px;height:143px" alt="">
 						</a>
 					</li>
 									<li>
-						<a href="/poll/res/57#57">
-							<img src="/poll/thumb/1569806108276.png" style="width:185px;height:255px" alt="">
+						<a href="/trans/res/103#103">
+							<img src="/trans/thumb/m1569481173966.png" style="width:204px;height:255px" alt="">
 						</a>
 					</li>
 									<li>
-						<a href="/poll/res/56#56">
-							<img src="/poll/thumb/1569806082682.png" style="width:185px;height:255px" alt="">
+						<a href="/trans/res/104#104">
+							<img src="/trans/thumb/m1569480841993.png" style="width:204px;height:255px" alt="">
 						</a>
 					</li>
 									<li>
-						<a href="/qa/res/10630#10630">
-							<img src="/qa/thumb/1569777427567.png" style="width:185px;height:255px" alt="">
+						<a href="/trans/res/102#102">
+							<img src="/trans/thumb/m1569481458993.png" style="width:204px;height:255px" alt="">
 						</a>
 					</li>
 									<li>
-						<a href="/poll/res/14#14">
-							<img src="/poll/thumb/1569771621529.png" style="width:185px;height:255px" alt="">
+						<a href="/trans/res/101#101">
+							<img src="/trans/thumb/m1569481705424.png" style="width:204px;height:255px" alt="">
 						</a>
 					</li>
 									<li>
-						<a href="/qa/res/10627#10627">
-							<img src="/qa/thumb/1569770824068.png" style="width:204px;height:255px" alt="">
+						<a href="/trans/res/97#97">
+							<img src="/trans/thumb/m1567311390506.png" style="width:255px;height:170px" alt="">
 						</a>
 					</li>
 									<li>
-						<a href="/qa/res/10624#10624">
-							<img src="/qa/thumb/1569509741918.png" style="width:204px;height:255px" alt="">
+						<a href="/trans/res/99#99">
+							<img src="/trans/thumb/m1567291883842.png" style="width:255px;height:191px" alt="">
 						</a>
 					</li>
 									<li>
-						<a href="/qa/res/10622#10622">
-							<img src="/qa/thumb/1569485670573.png" style="width:204px;height:255px" alt="">
+						<a href="/trans/res/100#100">
+							<img src="/trans/thumb/m1567283078990.png" style="width:255px;height:96px" alt="">
 						</a>
 					</li>
 									<li>
-						<a href="/qa/res/10621#10621">
-							<img src="/qa/thumb/1569484098775.png" style="width:204px;height:255px" alt="">
+						<a href="/trans/res/94#94">
+							<img src="/trans/thumb/m1567526944531.png" style="width:255px;height:148px" alt="">
 						</a>
 					</li>
 									<li>
-						<a href="/qa/res/10620#10620">
-							<img src="/qa/thumb/1569482558718.png" style="width:204px;height:255px" alt="">
+						<a href="/trans/res/89#89">
+							<img src="/trans/thumb/m1566346107165.png" style="width:169px;height:255px" alt="">
 						</a>
 					</li>
 									<li>
-						<a href="/qa/res/10619#10619">
-							<img src="/qa/thumb/1569482444690.png" style="width:204px;height:255px" alt="">
-						</a>
-					</li>
-									<li>
-						<a href="/qa/res/10618#10618">
-							<img src="/qa/thumb/1569482378047.png" style="width:204px;height:255px" alt="">
-						</a>
-					</li>
-									<li>
-						<a href="/qa/res/10617#10617">
-							<img src="/qa/thumb/1569482234380.png" style="width:204px;height:255px" alt="">
-						</a>
-					</li>
-									<li>
-						<a href="/qa/res/10616#10616">
-							<img src="/qa/thumb/1569482184890.png" style="width:204px;height:255px" alt="">
+						<a href="/trans/res/80#80">
+							<img src="/trans/thumb/m1568010901293.png" style="width:255px;height:218px" alt="">
 						</a>
 					</li>
 							</ul>
@@ -187,183 +177,183 @@
 			<h2>Latest Posts</h2>
 			<ul>
 									<li>
-						<strong>/poll/</strong>: 
-						<a href="/poll/res/70#70">
-							<em>asd  f  g  g  g  g  g  g    [V&hellip;</em>
+						<strong>/trans/</strong>: 
+						<a href="/trans/res/106#106">
+							<em>Why do you watch anime    Dele&hellip;</em>
 						</a>
 					</li>
 									<li>
-						<strong>/poll/</strong>: 
-						<a href="/poll/res/69#69">
-							<em>test 1  test 1  test 2    [Vie&hellip;</em>
+						<strong>/trans/</strong>: 
+						<a href="/trans/res/105#105">
+							<em>brush teeth    Deleted by vern&hellip;</em>
 						</a>
 					</li>
 									<li>
-						<strong>/poll/</strong>: 
-						<a href="/poll/res/68#68">
-							<em>,  knmj    [View Responses]  </em>
+						<strong>/trans/</strong>: 
+						<a href="/trans/res/103#103">
+							<em>yrasd    Deleted by verniy fro&hellip;</em>
 						</a>
 					</li>
 									<li>
-						<strong>/poll/</strong>: 
-						<a href="/poll/res/67#67">
-							<em>z  xc    [View Responses]  asd&hellip;</em>
+						<strong>/trans/</strong>: 
+						<a href="/trans/res/104#104">
+							<em>yr    Deleted by verniy from /&hellip;</em>
 						</a>
 					</li>
 									<li>
-						<strong>/poll/</strong>: 
-						<a href="/poll/res/66#66">
-							<em>tew  tez    [View Responses]  &hellip;</em>
+						<strong>/trans/</strong>: 
+						<a href="/trans/res/102#102">
+							<em>yrasdz    Deleted by verniy fr&hellip;</em>
 						</a>
 					</li>
 									<li>
-						<strong>/poll/</strong>: 
-						<a href="/poll/res/65#65">
-							<em>sdfs  ggg    [View Responses] &hellip;</em>
+						<strong>/trans/</strong>: 
+						<a href="/trans/res/101#101">
+							<em>yrasdzzz    Deleted by verniy &hellip;</em>
 						</a>
 					</li>
 									<li>
-						<strong>/poll/</strong>: 
-						<a href="/poll/res/64#64">
-							<em>dfg  dd    [View Responses]  d&hellip;</em>
+						<strong>/trans/</strong>: 
+						<a href="/trans/res/97#97">
+							<em>make them  submit them  talk a&hellip;</em>
 						</a>
 					</li>
 									<li>
-						<strong>/poll/</strong>: 
-						<a href="/poll/res/63#63">
-							<em>asd2  123    [View Responses] &hellip;</em>
+						<strong>/trans/</strong>: 
+						<a href="/trans/res/98#98">
+							<em>heh    Deleted by verniy from &hellip;</em>
 						</a>
 					</li>
 									<li>
-						<strong>/poll/</strong>: 
-						<a href="/poll/res/62#62">
-							<em>t1  t2  t2    [View Responses]&hellip;</em>
+						<strong>/trans/</strong>: 
+						<a href="/trans/res/99#99">
+							<em>test ignore this    Deleted by&hellip;</em>
 						</a>
 					</li>
 									<li>
-						<strong>/poll/</strong>: 
-						<a href="/poll/res/58#58">
-							<em>Asuka  Mashiro  Misaki    [Vie&hellip;</em>
+						<strong>/trans/</strong>: 
+						<a href="/trans/res/100#100">
+							<em>…    Deleted by verniy from /b&hellip;</em>
 						</a>
 					</li>
 									<li>
-						<strong>/poll/</strong>: 
-						<a href="/poll/res/57#57">
-							<em>Asuka  Mashiro    [View Respon&hellip;</em>
+						<strong>/trans/</strong>: 
+						<a href="/trans/res/94#94">
+							<em>    Deleted by verniy from /b/&hellip;</em>
 						</a>
 					</li>
 									<li>
-						<strong>/poll/</strong>: 
-						<a href="/poll/res/56#56">
-							<em>Asuka  Mashiro  Misaki    [Vie&hellip;</em>
+						<strong>/trans/</strong>: 
+						<a href="/trans/res/95#95">
+							<em>&gt;&gt;1471  I'm the best poster on&hellip;</em>
 						</a>
 					</li>
 									<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/10630#10634">
-							<em>te</em>
+						<strong>/trans/</strong>: 
+						<a href="/trans/res/96#96">
+							<em>I think this made my problem w&hellip;</em>
 						</a>
 					</li>
 									<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/10630#10633">
-							<em>te</em>
+						<strong>/trans/</strong>: 
+						<a href="/trans/res/92#92">
+							<em>Thinkin about admins using the&hellip;</em>
 						</a>
 					</li>
 									<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/10630#10632">
-							<em>test</em>
+						<strong>/trans/</strong>: 
+						<a href="/trans/res/93#93">
+							<em>&gt;&gt;1473  you are the worst    D&hellip;</em>
 						</a>
 					</li>
 									<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/10630#10631">
-							<em>te</em>
+						<strong>/trans/</strong>: 
+						<a href="/trans/res/91#91">
+							<em>You should make an /ad/ board &hellip;</em>
 						</a>
 					</li>
 									<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/10630#10630">
-							<em>te</em>
+						<strong>/trans/</strong>: 
+						<a href="/trans/res/90#90">
+							<em>test    Deleted by verniy from&hellip;</em>
 						</a>
 					</li>
 									<li>
-						<strong>/poll/</strong>: 
-						<a href="/poll/res/14#14">
-							<em>test</em>
+						<strong>/trans/</strong>: 
+						<a href="/trans/res/89#89">
+							<em>Are you not entertained by kis&hellip;</em>
 						</a>
 					</li>
 									<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/10627#10627">
-							<em>(no comment)</em>
+						<strong>/trans/</strong>: 
+						<a href="/trans/res/88#88">
+							<em>I need to do a test with the m&hellip;</em>
 						</a>
 					</li>
 									<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/10624#10625">
-							<em>(no comment)</em>
+						<strong>/trans/</strong>: 
+						<a href="/trans/res/85#85">
+							<em>test    Deleted by verniy from&hellip;</em>
 						</a>
 					</li>
 									<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/10624#10624">
-							<em>(no comment)</em>
+						<strong>/trans/</strong>: 
+						<a href="/trans/res/86#86">
+							<em>&gt;&gt;1528    Deleted by verniy fr&hellip;</em>
 						</a>
 					</li>
 									<li>
-						<strong>/megu/</strong>: 
-						<a href="/megu/res/944#944">
-							<em>test</em>
+						<strong>/trans/</strong>: 
+						<a href="/trans/res/87#87">
+							<em>troooled    Deleted by verniy &hellip;</em>
 						</a>
 					</li>
 									<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/10622#10623">
-							<em>test</em>
+						<strong>/trans/</strong>: 
+						<a href="/trans/res/82#82">
+							<em>&gt;&gt;&gt;/qa/1    Deleted by verniy &hellip;</em>
 						</a>
 					</li>
 									<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/10622#10622">
-							<em>sdf</em>
+						<strong>/trans/</strong>: 
+						<a href="/trans/res/83#83">
+							<em>&gt;&gt;&gt;/qa/4165    Deleted by vern&hellip;</em>
 						</a>
 					</li>
 									<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/10621#10621">
-							<em>asdasd</em>
+						<strong>/trans/</strong>: 
+						<a href="/trans/res/84#84">
+							<em>&gt;&gt;&gt;/b/1596    Deleted by verni&hellip;</em>
 						</a>
 					</li>
 									<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/10620#10620">
-							<em>yrasdzzzzzzxc</em>
+						<strong>/trans/</strong>: 
+						<a href="/trans/res/79#79">
+							<em>test    Deleted by verniy from&hellip;</em>
 						</a>
 					</li>
 									<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/10619#10619">
-							<em>asdasd</em>
+						<strong>/trans/</strong>: 
+						<a href="/trans/res/80#80">
+							<em>test    Deleted by verniy from&hellip;</em>
 						</a>
 					</li>
 									<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/10618#10618">
-							<em>yrasdzzzzzzx</em>
+						<strong>/trans/</strong>: 
+						<a href="/trans/res/81#81">
+							<em>&gt;&gt;&gt;/qa/    Deleted by verniy f&hellip;</em>
 						</a>
 					</li>
 									<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/10617#10617">
-							<em>yrasdzzzzzz</em>
+						<strong>/trans/</strong>: 
+						<a href="/trans/res/76#76">
+							<em>&gt;&gt;1560  you mean delete your o&hellip;</em>
 						</a>
 					</li>
 									<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/10616#10616">
-							<em>yrasdzzzzz</em>
+						<strong>/trans/</strong>: 
+						<a href="/trans/res/77#77">
+							<em>&gt;&gt;1568  ah, there's a way to d&hellip;</em>
 						</a>
 					</li>
 							</ul>
@@ -409,9 +399,9 @@
 		<div class="mainBox">
 			<h2>Stats</h2>
 			<ul>
-				<li>Total posts: 13,575</li>
-				<li>Unique posters: 399</li>
-				<li>Active content: 5.66 GB</li>
+				<li>Total posts: 13,669</li>
+				<li>Unique posters: 372</li>
+				<li>Active content: 5.64 GB</li>
 			</ul>
 		</div>
 	</div>
