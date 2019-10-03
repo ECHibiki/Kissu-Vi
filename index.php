@@ -38,21 +38,13 @@
 		}
 	}
 
-<<<<<<< HEAD
-?><div class="boardlist"><span class="sub" data-description="0">[ <a href="/">home</a> / <a href="/agg/">agg</a> / <a href="/all/">all</a> ]</span>  <span class="sub" data-description="1">[ <a href="/b/">g</a> / <a href="/qa/">qa ]</a> / <a href="/megu/">megu</a> ]</span>  <span class="sub" data-description="2">[ <a href="https://theatre.kissu.moe">sync</a> / <a href="https://ban.kissu.moe">text</a> ]</span>  <span class="sub" data-description="3">[ <a href="https://ota-ch.com/jp/index.html">ota</a> / <a href="https://boards.4channel.org/qa/">qa4</a> / <a href="https://github.com/ECHibiki/ViQa-Kissu/">ViQa</a> ]</span></div><script type='text/javascript'>if (typeof do_boardlist != 'undefined') do_boardlist();</script>
-=======
 ?><div class="boardlist"><span class="sub" data-description="0">[ <a href="/">home</a> / <a href="/agg/">agg</a> / <a href="/all/">all</a> ]</span>  <span class="sub" data-description="1">[ <a href="/b/">g</a> / <a href="/qa/">qa ]</a> / <a href="/megu/">megu</a> ]</span>  <span class="sub" data-description="2">[ <a href="https://theatre.kissu.moe">sync</a> / <a href="https://ban.kissu.moe">text</a> / <a href="/poll/">poll</a> ]</span>  <span class="sub" data-description="3">[ <a href="http://what-ch.mooo.com/what/">what</a> / <a href="https://boards.4channel.org/qa/">qa4</a> / <a href="https://github.com/ECHibiki/ViQa-Kissu/">ViQa</a> ]</span></div><script type='text/javascript'>if (typeof do_boardlist != 'undefined') do_boardlist();</script>
->>>>>>> 88a3591b52dd2ab6011e90d3cda2540be91a5eb9
 	<header>
 	    <img class="icon" src="../static/kissu-card.png">
 		<h1>Kissu.moe</h1>
 		<div class="subtitle">100% Fun!</div>
 	</header>
-<<<<<<< HEAD
-	<img class="board_image" src="/static/banners/banner-kissu-18.png" alt="" />	
-=======
-	<img id='bannerimg' class="board_image" src="/static/banners/banner-kissu-14.gif" alt="" />
->>>>>>> 88a3591b52dd2ab6011e90d3cda2540be91a5eb9
+	<img id='bannerimg' class="board_image" src="/static/banners/banner-kissu-24.png" alt="" />
 	<div class="box-wrap">
 	    <!--<fieldset>
 		<legend>Boards</legend>
@@ -89,7 +81,7 @@
 				</li>
 							<li class="boardlinksurl">
 					<a href="poll/">
-						polling
+						Polling and Honesty
 					</a>
 				</li>
 							<li class="boardlinksurl">
@@ -104,7 +96,7 @@
 				</li>
 							<li class="boardlinksurl">
 					<a href="trans/">
-						transparency
+						Transparency and Moderation
 					</a>
 				</li>
 							<li class="boardlinksurl">
@@ -120,65 +112,36 @@
 		<div class="box image">
 			<ul>
 									<li>
-<<<<<<< HEAD
-						<a href="/trans/res/106#106">
-							<img src="/trans/thumb/m1569341401727.png" style="width:219px;height:255px" alt="">
+						<a href="/b/res/1415#1882">
+							<img src="/b/thumb/1570141733688.png" style="width:175px;height:126px" alt="">
 						</a>
 					</li>
 									<li>
-						<a href="/trans/res/105#105">
-							<img src="/trans/thumb/m1569460697974.png" style="width:255px;height:143px" alt="">
+						<a href="/qa/res/11720#11722">
+							<img src="/qa/thumb/1570139873452.png" style="width:175px;height:164px" alt="">
 						</a>
 					</li>
 									<li>
-						<a href="/trans/res/103#103">
-							<img src="/trans/thumb/m1569481173966.png" style="width:204px;height:255px" alt="">
+						<a href="/qa/res/11720#11721">
+							<img src="/qa/thumb/1570139855001.png" style="width:175px;height:108px" alt="">
 						</a>
 					</li>
 									<li>
-						<a href="/trans/res/104#104">
-							<img src="/trans/thumb/m1569480841993.png" style="width:204px;height:255px" alt="">
+						<a href="/qa/res/11720#11720">
+							<img src="/qa/thumb/1570139557060.png" style="width:255px;height:255px" alt="">
 						</a>
 					</li>
 									<li>
-						<a href="/trans/res/102#102">
-							<img src="/trans/thumb/m1569481458993.png" style="width:204px;height:255px" alt="">
+						<a href="/qa/res/11611#11719">
+							<img src="/qa/thumb/1570139395055.png" style="width:108px;height:175px" alt="">
 						</a>
 					</li>
 									<li>
-						<a href="/trans/res/101#101">
-							<img src="/trans/thumb/m1569481705424.png" style="width:204px;height:255px" alt="">
+						<a href="/b/res/1415#1879">
+							<img src="/b/thumb/1570138242350.png" style="width:130px;height:175px" alt="">
 						</a>
 					</li>
 									<li>
-						<a href="/trans/res/97#97">
-							<img src="/trans/thumb/m1567311390506.png" style="width:255px;height:170px" alt="">
-						</a>
-					</li>
-									<li>
-						<a href="/trans/res/99#99">
-							<img src="/trans/thumb/m1567291883842.png" style="width:255px;height:191px" alt="">
-						</a>
-					</li>
-									<li>
-						<a href="/trans/res/100#100">
-							<img src="/trans/thumb/m1567283078990.png" style="width:255px;height:96px" alt="">
-						</a>
-					</li>
-									<li>
-						<a href="/trans/res/94#94">
-							<img src="/trans/thumb/m1567526944531.png" style="width:255px;height:148px" alt="">
-						</a>
-					</li>
-									<li>
-						<a href="/trans/res/89#89">
-							<img src="/trans/thumb/m1566346107165.png" style="width:169px;height:255px" alt="">
-						</a>
-					</li>
-									<li>
-						<a href="/trans/res/80#80">
-							<img src="/trans/thumb/m1568010901293.png" style="width:255px;height:218px" alt="">
-=======
 						<a href="/qa/res/11611#11709">
 							<img src="/qa/thumb/1570134864992.png" style="width:175px;height:131px" alt="">
 						</a>
@@ -223,222 +186,138 @@
 							<img src="/qa/thumb/1570125432876.png" style="width:175px;height:165px" alt="">
 						</a>
 					</li>
-									<li>
-						<a href="/qa/res/11675#11675">
-							<img src="/qa/thumb/1570123988157.png" style="width:255px;height:143px" alt="">
-						</a>
-					</li>
-									<li>
-						<a href="/qa/res/8837#11674">
-							<img src="/qa/thumb/1570123919760.png" style="width:175px;height:98px" alt="">
-						</a>
-					</li>
-									<li>
-						<a href="/qa/res/10598#11673">
-							<img src="/qa/thumb/1570123756087.png" style="width:175px;height:175px" alt="">
-						</a>
-					</li>
-									<li>
-						<a href="/qa/res/11611#11672">
-							<img src="/qa/thumb/1570123649965.png" style="width:146px;height:175px" alt="">
-						</a>
-					</li>
-									<li>
-						<a href="/qa/res/11634#11670">
-							<img src="/qa/thumb/1570123255169.png" style="width:175px;height:143px" alt="">
-						</a>
-					</li>
-									<li>
-						<a href="/qa/res/11634#11661">
-							<img src="/qa/thumb/1570115682176.png" style="width:175px;height:111px" alt="">
->>>>>>> 88a3591b52dd2ab6011e90d3cda2540be91a5eb9
-						</a>
-					</li>
 							</ul>
 		</div>
 		<div class="mainBox">
 			<h2>Latest Posts</h2>
 			<ul>
 									<li>
-<<<<<<< HEAD
-						<strong>/trans/</strong>: 
-						<a href="/trans/res/106#106">
-							<em>Why do you watch anime    Dele&hellip;</em>
+						<strong>/qa/</strong>: 
+						<a href="/qa/res/11611#11725">
+							<em>&gt;&gt;11719  Mint?</em>
 						</a>
 					</li>
 									<li>
-						<strong>/trans/</strong>: 
-						<a href="/trans/res/105#105">
-							<em>brush teeth    Deleted by vern&hellip;</em>
+						<strong>/megu/</strong>: 
+						<a href="/megu/res/1014#1023">
+							<em>they feel your kissu</em>
 						</a>
 					</li>
 									<li>
-						<strong>/trans/</strong>: 
-						<a href="/trans/res/103#103">
-							<em>yrasd    Deleted by verniy fro&hellip;</em>
+						<strong>/megu/</strong>: 
+						<a href="/megu/res/1020#1022">
+							<em>&gt;&gt;1021  are you an idiot or so&hellip;</em>
 						</a>
 					</li>
 									<li>
-						<strong>/trans/</strong>: 
-						<a href="/trans/res/104#104">
-							<em>yr    Deleted by verniy from /&hellip;</em>
+						<strong>/b/</strong>: 
+						<a href="/b/res/1415#1882">
+							<em>major issues are worked out. S&hellip;</em>
 						</a>
 					</li>
 									<li>
-						<strong>/trans/</strong>: 
-						<a href="/trans/res/102#102">
-							<em>yrasdz    Deleted by verniy fr&hellip;</em>
+						<strong>/b/</strong>: 
+						<a href="/b/res/1415#1881">
+							<em>&gt;&gt;1880  Got a few bugs actuall&hellip;</em>
 						</a>
 					</li>
 									<li>
-						<strong>/trans/</strong>: 
-						<a href="/trans/res/101#101">
-							<em>yrasdzzz    Deleted by verniy &hellip;</em>
+						<strong>/qa/</strong>: 
+						<a href="/qa/res/11720#11724">
+							<em>&gt;&gt;11721  Is this the latest in&hellip;</em>
 						</a>
 					</li>
 									<li>
-						<strong>/trans/</strong>: 
-						<a href="/trans/res/97#97">
-							<em>make them  submit them  talk a&hellip;</em>
+						<strong>/qa/</strong>: 
+						<a href="/qa/res/11720#11723">
+							<em>sure thing!</em>
 						</a>
 					</li>
 									<li>
-						<strong>/trans/</strong>: 
-						<a href="/trans/res/98#98">
-							<em>heh    Deleted by verniy from &hellip;</em>
+						<strong>/qa/</strong>: 
+						<a href="/qa/res/11720#11722">
+							<em>we always take it easy</em>
 						</a>
 					</li>
 									<li>
-						<strong>/trans/</strong>: 
-						<a href="/trans/res/99#99">
-							<em>test ignore this    Deleted by&hellip;</em>
+						<strong>/qa/</strong>: 
+						<a href="/qa/res/11720#11721">
+							<em>Take it hard</em>
 						</a>
 					</li>
 									<li>
-						<strong>/trans/</strong>: 
-						<a href="/trans/res/100#100">
-							<em>…    Deleted by verniy from /b&hellip;</em>
+						<strong>/qa/</strong>: 
+						<a href="/qa/res/11720#11720">
+							<em>take it easy</em>
 						</a>
 					</li>
 									<li>
-						<strong>/trans/</strong>: 
-						<a href="/trans/res/94#94">
-							<em>    Deleted by verniy from /b/&hellip;</em>
+						<strong>/qa/</strong>: 
+						<a href="/qa/res/11611#11719">
+							<em>Does /qa/ have any nice recipe&hellip;</em>
 						</a>
 					</li>
 									<li>
-						<strong>/trans/</strong>: 
-						<a href="/trans/res/95#95">
-							<em>&gt;&gt;1471  I'm the best poster on&hellip;</em>
+						<strong>/qa/</strong>: 
+						<a href="/qa/res/11530#11718">
+							<em>Just write a fanfiction about &hellip;</em>
 						</a>
 					</li>
 									<li>
-						<strong>/trans/</strong>: 
-						<a href="/trans/res/96#96">
-							<em>I think this made my problem w&hellip;</em>
+						<strong>/qa/</strong>: 
+						<a href="/qa/res/11530#11717">
+							<em>&gt;&gt;11713  It's already been est&hellip;</em>
 						</a>
 					</li>
 									<li>
-						<strong>/trans/</strong>: 
-						<a href="/trans/res/92#92">
-							<em>Thinkin about admins using the&hellip;</em>
+						<strong>/qa/</strong>: 
+						<a href="/qa/res/11590#11716">
+							<em>No, because I'm too smart for &hellip;</em>
 						</a>
 					</li>
 									<li>
-						<strong>/trans/</strong>: 
-						<a href="/trans/res/93#93">
-							<em>&gt;&gt;1473  you are the worst    D&hellip;</em>
+						<strong>/b/</strong>: 
+						<a href="/b/res/1415#1880">
+							<em>Seems ban and delete isnt work&hellip;</em>
 						</a>
 					</li>
 									<li>
-						<strong>/trans/</strong>: 
-						<a href="/trans/res/91#91">
-							<em>You should make an /ad/ board &hellip;</em>
+						<strong>/megu/</strong>: 
+						<a href="/megu/res/1020#1021">
+							<em>*goes into ear*</em>
 						</a>
 					</li>
 									<li>
-						<strong>/trans/</strong>: 
-						<a href="/trans/res/90#90">
-							<em>test    Deleted by verniy from&hellip;</em>
+						<strong>/qa/</strong>: 
+						<a href="/qa/res/11693#11715">
+							<em>I used to when I was a kid. I &hellip;</em>
 						</a>
 					</li>
 									<li>
-						<strong>/trans/</strong>: 
-						<a href="/trans/res/89#89">
-							<em>Are you not entertained by kis&hellip;</em>
+						<strong>/b/</strong>: 
+						<a href="/b/res/1415#1879">
+							<em>https://kissu.moe/bans.html ha&hellip;</em>
 						</a>
 					</li>
 									<li>
-						<strong>/trans/</strong>: 
-						<a href="/trans/res/88#88">
-							<em>I need to do a test with the m&hellip;</em>
+						<strong>/qa/</strong>: 
+						<a href="/qa/res/11693#11714">
+							<em>I always like love watching st&hellip;</em>
 						</a>
 					</li>
 									<li>
-						<strong>/trans/</strong>: 
-						<a href="/trans/res/85#85">
-							<em>test    Deleted by verniy from&hellip;</em>
+						<strong>/megu/</strong>: 
+						<a href="/megu/res/1020#1020">
+							<em>it's cold out there… why don't&hellip;</em>
 						</a>
 					</li>
 									<li>
-						<strong>/trans/</strong>: 
-						<a href="/trans/res/86#86">
-							<em>&gt;&gt;1528    Deleted by verniy fr&hellip;</em>
+						<strong>/megu/</strong>: 
+						<a href="/megu/res/1002#1019">
+							<em>hate when that happens….</em>
 						</a>
 					</li>
 									<li>
-						<strong>/trans/</strong>: 
-						<a href="/trans/res/87#87">
-							<em>troooled    Deleted by verniy &hellip;</em>
-						</a>
-					</li>
-									<li>
-						<strong>/trans/</strong>: 
-						<a href="/trans/res/82#82">
-							<em>&gt;&gt;&gt;/qa/1    Deleted by verniy &hellip;</em>
-						</a>
-					</li>
-									<li>
-						<strong>/trans/</strong>: 
-						<a href="/trans/res/83#83">
-							<em>&gt;&gt;&gt;/qa/4165    Deleted by vern&hellip;</em>
-						</a>
-					</li>
-									<li>
-						<strong>/trans/</strong>: 
-						<a href="/trans/res/84#84">
-							<em>&gt;&gt;&gt;/b/1596    Deleted by verni&hellip;</em>
-						</a>
-					</li>
-									<li>
-						<strong>/trans/</strong>: 
-						<a href="/trans/res/79#79">
-							<em>test    Deleted by verniy from&hellip;</em>
-						</a>
-					</li>
-									<li>
-						<strong>/trans/</strong>: 
-						<a href="/trans/res/80#80">
-							<em>test    Deleted by verniy from&hellip;</em>
-						</a>
-					</li>
-									<li>
-						<strong>/trans/</strong>: 
-						<a href="/trans/res/81#81">
-							<em>&gt;&gt;&gt;/qa/    Deleted by verniy f&hellip;</em>
-						</a>
-					</li>
-									<li>
-						<strong>/trans/</strong>: 
-						<a href="/trans/res/76#76">
-							<em>&gt;&gt;1560  you mean delete your o&hellip;</em>
-						</a>
-					</li>
-									<li>
-						<strong>/trans/</strong>: 
-						<a href="/trans/res/77#77">
-							<em>&gt;&gt;1568  ah, there's a way to d&hellip;</em>
-=======
 						<strong>/b/</strong>: 
 						<a href="/b/res/1871#1878">
 							<em>good work!</em>
@@ -492,133 +371,6 @@
 							<em>youtube keeps recommending me &hellip;</em>
 						</a>
 					</li>
-									<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/11640#11705">
-							<em>&gt;&gt;11703  yeah that's the one, &hellip;</em>
-						</a>
-					</li>
-									<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/11693#11704">
-							<em>yeah, i love nature documentar&hellip;</em>
-						</a>
-					</li>
-									<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/11640#11703">
-							<em>Is this the one?   https://ani&hellip;</em>
-						</a>
-					</li>
-									<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/11611#11702">
-							<em>yes, but i avoid drinking it, &hellip;</em>
-						</a>
-					</li>
-									<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/11692#11701">
-							<em>*dodges it*  *smirks* maybe wi&hellip;</em>
-						</a>
-					</li>
-									<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/11692#11699">
-							<em>&gt;&gt;11692  the greatest honor</em>
-						</a>
-					</li>
-									<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/11693#11698">
-							<em>i used to think saying you wat&hellip;</em>
-						</a>
-					</li>
-									<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/11611#11697">
-							<em>I can get drunk off of a light&hellip;</em>
-						</a>
-					</li>
-									<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/11640#11696">
-							<em>This anime has a really strong&hellip;</em>
-						</a>
-					</li>
-									<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/11675#11695">
-							<em>&gt;&gt;11690  It's an eyesore</em>
-						</a>
-					</li>
-									<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/11692#11694">
-							<em>Aww, thanks Remi. Here let me &hellip;</em>
-						</a>
-					</li>
-									<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/11693#11693">
-							<em>Do you ever watch nature docum&hellip;</em>
-						</a>
-					</li>
-									<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/11692#11692">
-							<em>Because you deserve a headpat &hellip;</em>
-						</a>
-					</li>
-									<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/11530#11691">
-							<em>i think you guys are missing t&hellip;</em>
-						</a>
-					</li>
-									<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/11675#11690">
-							<em>&gt;&gt;11679  Why is this silly lun&hellip;</em>
-						</a>
-					</li>
-									<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/11675#11689">
-							<em>&gt;&gt;11678  Whoa whoa, who said a&hellip;</em>
-						</a>
-					</li>
-									<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/8837#11688">
-							<em>certainly would distract her f&hellip;</em>
-						</a>
-					</li>
-									<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/10627#11687">
-							<em>why do nips try to keep all th&hellip;</em>
-						</a>
-					</li>
-									<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/11566#11686">
-							<em>going to have to get this next&hellip;</em>
-						</a>
-					</li>
-									<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/8837#11685">
-							<em>let her watch you masturbate t&hellip;</em>
-						</a>
-					</li>
-									<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/11566#11684">
-							<em>I want Princess Maker 2 with H&hellip;</em>
->>>>>>> 88a3591b52dd2ab6011e90d3cda2540be91a5eb9
-						</a>
-					</li>
 							</ul>
 		</div>
 		<div class="mainBox">
@@ -633,7 +385,12 @@
 	        <br>
 	    </div>
 	    <div class="ban">
-									<h2 id="13">
+									<h2 id="16">
+											Kissu pre-beta Announcement
+										<span class="unimportant"> &mdash; by verniy at 09/29/19 (Sun) 20:27:47</span>
+				</h2>
+				<p>Kissu(at this point) won't be updating off of vichan anymore since the only updates are for paid things, these will be private updates most likely so there won't be any new content to get from them(We'll probably end up doing a bunch of clean up to post.php to make it easier to read anyways).<br/>Likewise, at this point kissu has copied everything it needs from NFPChan so there's not much to look at from them. They're likewise stalling and doing mostly small updates.<br/><br/>Kissu's plans is to be developed for probably the next two years I guess. hard to tell, but there are a lot of UI improvements that need to be done to make it a competitive software against proprietary futaba. Feature wise kissu is already competetive, but the UI is shite so that needs to be worked on.<br/><br/>I also might do some things like remove flags and other /pol/ tier garbage from the software. There are also some other features like compatibility with NNTP but I think that's all dead so if it's a performance impact that might get removed.<br/><br/>Kissu could probably be called in a beta state when I finish off the mod and polling features. This meaning that the priorities will no longer be for grand new features that will differentiate the board from others(we have to stop updating sometime) and will be optimizations on the ways things are already done.<br/><br/>For archive purposes the banner sticky is at:<br/><a href="https://web.archive.org/web/20190929202326/https://kissu.moe/b/res/1483" rel="nofollow" target="_blank">https://web.archive.org/web/20190929202326/https://kissu.moe/b/res/1483</a></p>
+							<h2 id="13">
 											S4
 										<span class="unimportant"> &mdash; by verniy at 09/19/19 (Thu) 17:28:38</span>
 				</h2>
@@ -653,24 +410,13 @@
 										<span class="unimportant"> &mdash; by verniy at 12/19/18 (Wed) 09:45:41</span>
 				</h2>
 				<p>For all intents and purposes, the S2 objectives of adding new things to the site is done. I'm just fixing bugs and refactoring/organizing the code. Really all that needs to be done is more style and placement of certain elements.<br/>This videoplayer buisness is mostly a stand alone project that will run on the server, but it isn't actually part of the imageboard itself.</p>
-							<h2 id="9">
-											Closing S1 
-										<span class="unimportant"> &mdash; by verniy at 12/19/18 (Wed) 09:44:48</span>
-				</h2>
-				<p>We're entering closed beta soon.<br/>That means as soon as I've finished up the last part of S1(bump control) you're free to share on rizon, steam and other places with a low spammer count.<br/><br/>Season 2 updates:<br/><br/>More customization and optimization of layout, scripts and styles for unique board feel<br/><br/>Customizations<br/>&lt;li&gt;Reposition the catalog tags&lt;/li&gt;<br/>&lt;li&gt;Remove the ugly 8chan style for superior futaba inspired style&lt;/li&gt;<br/>&lt;li&gt;Yen text&lt;/li&gt;<br/><br/>Optimizations<br/>&lt;li&gt;URL uploading doesn't handle HTML redirects&lt;/li&gt;<br/>&lt;li&gt;URL uploading doesn't like strange extensions&lt;/li&gt;<br/>&lt;li&gt;Youtube Embed doesn't take some forms&lt;/li&gt;<br/>&lt;li&gt;Youtube Embed doesn't go fullscreen&lt;/li&gt;<br/>&lt;li&gt;Expanded markup help and tags&lt;/li&gt;<br/>&lt;li&gt;markup formatting bugs&lt;/li&gt;<br/>&lt;li&gt;code refactoring for anti-spam and anti-bump&lt;/li&gt;<br/><br/><br/>New<br/>&lt;li&gt;VPN, TOR, and proxy blocks&lt;/li&gt;<br/>&lt;li&gt;bans block from viewing site&lt;/li&gt;&lt;/ul&gt;<br/>&lt;li&gt;A friendly system to handle the mod tools&lt;/li&gt;</p>
 						    </div>
 		<div class="mainBox">
 			<h2>Stats</h2>
 			<ul>
-<<<<<<< HEAD
-				<li>Total posts: 13,669</li>
-				<li>Unique posters: 372</li>
-				<li>Active content: 5.64 GB</li>
-=======
-				<li>Total posts: 14,740</li>
+				<li>Total posts: 14,761</li>
 				<li>Unique posters: 386</li>
-				<li>Active content: 2.53 GB</li>
->>>>>>> 88a3591b52dd2ab6011e90d3cda2540be91a5eb9
+				<li>Active content: 2.55 GB</li>
 			</ul>
 		</div>
 	</div>
@@ -678,7 +424,7 @@
 	<hr/>
 	<footer>
 		<p class="unimportant" style="margin-top:20px;text-align:center;">- Tinyboard + 
-			<a href="https://engine.vichan.net/">vichan</a> 0.8.1 -
+			<a href="https://engine.vichan.net/">vichan</a> 5.1.4 -
 		<br>Tinyboard Copyright &copy; 2010-2014 Tinyboard Development Group    
 		<br><a href="https://engine.vichan.net/">vichan</a> Copyright &copy; 2012-2018 vichan-devel
 	</footer>

@@ -1009,6 +1009,7 @@ function mod_ban() {
 function mod_bans() {
 	global $config;
 	global $mod;
+
 	if (!hasPermission($config['mod']['view_banlist']))
 		error($config['error']['noaccess']);
 	
@@ -1393,7 +1394,7 @@ global $board, $config, $mod, $pdo;
 		if (!openBoard($targetBoard))
 			error($config['error']['noboard']);
 		//attach mod message
-		$post['body'] .= "<br/><br/><strong>Deleted by " . $mod['username'] . " from /$originBoard/$postID " . (isset($post['thread']) ? "from thread " . $post['thread'] : " As OP")  ."</strong>";
+		$post['body'] .= "<br/><br/><h3>Deleted by " . $mod['username'] . " from /$originBoard/$postID " . (isset($post['thread']) ? "from thread " . $post['thread'] : " As OP")  ."</h3>";
 
 		//update  time
 		$post['bump'] = "" . time();
@@ -1456,7 +1457,7 @@ global $board, $config, $mod, $pdo;
 		
 		openBoard($targetBoard);
 		
-		/*foreach ($replies as &$post) {
+		foreach ($replies as &$post) {
 			$query = prepare('SELECT `target` FROM ``cites`` WHERE `target_board` = :board AND `board` = :board AND `post` = :post');
 			$query->bindValue(':board', $originBoard);
 			$query->bindValue(':post', $post['id'], PDO::PARAM_INT);
@@ -1479,6 +1480,8 @@ global $board, $config, $mod, $pdo;
 			$post['op'] = false;
 			$post['tracked_cites'] = markup($post['body'], true);
 			
+			$post['body'] .= "<br/><br/><h3>Moved by followup</h3>";
+
 			if ($post['has_file']) {
 				// copy or rename image
 				foreach ($post['files'] as $i => &$file) {
@@ -1510,7 +1513,7 @@ global $board, $config, $mod, $pdo;
 				}
 				query('INSERT INTO ``cites`` VALUES ' . implode(', ', $insert_rows)) or error(db_error());
 			}
-		}*/
+		}
 		
 		modLog("Moved thread #${postID} to " . sprintf($config['board_abbreviation'], $targetBoard) . " (#${newID})", $originBoard);
 		
@@ -1820,7 +1823,7 @@ function mod_move($originBoard, $postID) {
 
 function mod_ban_post($board, $delete, $post, $token = false) {
 	global $config, $mod;
-	
+
 	if (!openBoard($board))
 		error($config['error']['noboard']);
 	
@@ -1865,7 +1868,7 @@ function mod_ban_post($board, $delete, $post, $token = false) {
 			buildIndex();
 		} elseif (isset($_POST['delete']) && (int) $_POST['delete']) {
 			// Delete post
-			deletePost($post);
+ 			mod_delete($board, $post, $redirect_on_nerf=true);
 			modLog("Deleted post #{$post}");
 			// Rebuild board
 			buildIndex();

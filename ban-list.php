@@ -86,7 +86,7 @@
 	<footer>
 	<p class="unimportant" style="margin-top:20px;text-align:center;">- Tinyboard + 
 		<a href="https://engine.vichan.net/">vichan</a> 5.1.4 
-		+ <a href="https://github.com/ECHibiki/ViQa-Kissu/">Kissu</a> 0.8.1 -
+		+ <a href="https://github.com/ECHibiki/ViQa-Kissu/">Kissu</a> 5.1.4 -
 	<br>Tinyboard Copyright &copy; 2010-2014 Tinyboard Development Group
 	<br><a href="https://engine.vichan.net/">vichan</a> Copyright &copy; 2012-2018 vichan-devel
 	<br><a href="https://github.com/ECHibiki/ViQa-Kissu/">Kissu</a> Copyleft 2018-2019</p>
