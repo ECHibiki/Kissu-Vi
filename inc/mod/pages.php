@@ -1519,67 +1519,29 @@ global $board, $config, $mod, $pdo;
 		
 		buildThread($op['id']);
 		
-		clean();
-		buildIndex();
 		
 		// trigger themes
 		rebuildThemes('post', $targetBoard);
 		
 		$newboard = $board;
 
+		clean();
+		buildIndex();
+
 		// return to original board
 		openBoard($originBoard);
 		
-		/*if ($shadow) {
-			// lock old thread
-			$query = prepare(sprintf('UPDATE ``posts_%s`` SET `locked` = 1 WHERE `id` = :id', $originBoard));
-			$query->bindValue(':id', $postID, PDO::PARAM_INT);
-			$query->execute() or error(db_error($query));
-			
-			// leave a reply, linking to the new thread
-			$spost = array(
-				'mod' => true,
-				'subject' => '',
-				'email' => '',
-				'name' => (!$config['mod']['shadow_name'] ? $config['anonymous'] : $config['mod']['shadow_name']),
-				'capcode' => $config['mod']['shadow_capcode'],
-				'trip' => '',
-				'password' => '',
-				'has_file' => false,
-				// attach to original thread
-				'thread' => $postID,
-				'op' => false
-			);
-
-			$spost['body'] = $spost['body_nomarkup'] =  sprintf($config['mod']['shadow_mesage'], '>>>/' . $targetBoard . '/' . $newID);
-			
-			markup($spost['body']);
-			
-			$botID = post($spost);
-			buildThread($postID);
-			
-			buildIndex();
-			
-			header('Location: ?/' . sprintf($config['board_path'], $newboard['uri']) . $config['dir']['res'] . link_for($op, false, $newboard) .
-				'#' . $botID, true, $config['redirect_http']);
-		} else {*/
 			deletePost($postID);
 			buildIndex();
 			if($redirect){
 				openBoard($targetBoard);
 				header('Location: ?/' . sprintf($config['board_path'], $newboard['uri']) . $config['dir']['res'] . link_for($op, false, $newboard), true, $config['redirect_http']);
 			}
-		//}
 	}
 	
 	$boards = listBoards();
 	if (count($boards) <= 1)
-		error(_('Impossible to move thread; there is only one board.'));
-	
-	$security_token = make_secure_link_token($originBoard . '/move/' . $postID);
-	if($redirect){
-		//mod_page(_('Move thread'), 'mod/move.html', array('post' => $postID, 'board' => $originBoard, 'boards' => $boards, 'token' => $security_token));
-	}
+		error(_('Impossible to move thread; there is only one board.'));	
 }
 
 function mod_move($originBoard, $postID) {
