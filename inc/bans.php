@@ -169,6 +169,8 @@ class Bans {
 				$post = json_decode($ban['post']);
 				$ban['message'] = isset($post->body) ? $post->body : 0;
 			}
+			$ban['message'] = !isset($ban['message']) ? '' : $ban['message']; 
+
 			unset($ban['ipstart'], $ban['ipend'], $ban['post'], $ban['creator']);
 
 			if ($board_access === false || in_array ($ban['board'], $board_access)) {
@@ -223,10 +225,9 @@ class Bans {
 		$post = $negative_search_post ? substr($post, 1) : $post;
 
 		$ban_json =  json_decode(file_get_contents('bans.json'), true);		
-		foreach($ban_json as $key=>$entry){
-			$entry['reason'] = !isset($entry['reason']) ? 'none' : $entry['reason']; 
+		foreach($ban_json as $key=>$entry){ 
+			// placment in json requires modifications of ban-list js file 
 			$entry['expires'] = !isset($entry['expires']) ? 'never' : $entry['expires']; 
-			$entry['message'] = !isset($entry['message']) ? '' : $entry['message']; 
 			//boolean mathematics(negation)
 			$ip_bool = ($negative_search_ip + preg_match("/$ip/", $entry['mask']));
 			$reason_bool = ($negative_search_reason + preg_match("/$reason/", $entry['reason'])) % 2;

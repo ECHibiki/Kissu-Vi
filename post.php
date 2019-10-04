@@ -181,14 +181,14 @@ if (isset($_POST['delete'])) {
 //TODO find a more secure method to do this
 	global $mod;
 	check_login(false);
-
+	$is_mod = $mod && strpos($_SERVER['HTTP_REFERER'],'mod?/') || strpos($_SERVER['HTTP_REFERER'],'mod.php?/');
 	
 	if (!isset($_POST['board'], $_POST['pswrd']))
 		error($config['error']['bot']);
 	
 	$password = &$_POST['pswrd'];
 	
-	if ($password == '' && !$mod)
+	if ($password == '' && !$is_mod)
 		error($config['error']['invalidpassword']);
 	
 	$delete = array();
@@ -204,7 +204,7 @@ if (isset($_POST['delete'])) {
 	if (!openBoard($_POST['board']))
 		error($config['error']['noboard']);
 
-	if (!$mod && $config['board_locked']) {
+	if (!$is_mod && $config['board_locked']) {
     		error("Board is locked");
 	}
 	
@@ -233,15 +233,15 @@ if (isset($_POST['delete'])) {
 				$thread = $thread_query->fetch(PDO::FETCH_ASSOC);	
 			}
 
-			if (!$mod && $password != '' && $post['password'] != $password && (!$thread || $thread['password'] != $password))
+			if (!$is_mod && $password != '' && $post['password'] != $password && (!$thread || $thread['password'] != $password))
 				error($config['error']['invalidpassword']);
 			
-			if (!$mod &&$post['time'] > time() - $config['delete_time'] && (!$thread || $thread['password'] != $password)) {
+			if (!$is_mod &&$post['time'] > time() - $config['delete_time'] && (!$thread || $thread['password'] != $password)) {
 				error(sprintf($config['error']['delete_too_soon'], until($post['time'] + $config['delete_time'])));
 			}
 			if (isset($_POST['file'])) {
 				// Delete just the file
-				if(!$mod){ 
+				if(!$is_mod){ 
 					deleteFile($id);
 					modLog("User deleted file from his own post #$id");
 				}
@@ -253,7 +253,7 @@ if (isset($_POST['delete'])) {
 				// Delete entire post
 				
 
-				if(!$mod){
+				if(!$is_mod){
 					 deletePost($id);
 					 modLog("User deleted his own post #$id");
 				}
@@ -271,7 +271,6 @@ if (isset($_POST['delete'])) {
 	
 	buildIndex();
 
-	$is_mod = isset($_POST['mod']) && $_POST['mod'];
 	$root = $is_mod ? $config['root'] . $config['file_mod'] . '?/' : $config['root'];
 
 	if (!isset($_POST['json_response'])) {
