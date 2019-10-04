@@ -163,7 +163,8 @@ class Bans {
 
                 foreach ($bans as &$ban) {
                         $ban['mask'] = self::range_to_string(array($ban['ipstart'], $ban['ipend']));
-
+			if(!$ban['reason'])
+				$ban['reason'] = 'N/A';
 			if ($ban['post']) {
 				$post = json_decode($ban['post']);
 				$ban['message'] = isset($post->body) ? $post->body : 0;
@@ -223,11 +224,14 @@ class Bans {
 
 		$ban_json =  json_decode(file_get_contents('bans.json'), true);		
 		foreach($ban_json as $key=>$entry){
+			$entry['reason'] = !isset($entry['reason']) ? 'none' : $entry['reason']; 
+			$entry['expires'] = !isset($entry['expires']) ? 'never' : $entry['expires']; 
+			$entry['message'] = !isset($entry['message']) ? '' : $entry['message']; 
 			//boolean mathematics(negation)
-			$ip_bool = ($negative_search_ip + preg_match("/$ip/", $entry['mask'])) % 2;
-			$reason_bool = isset($entry['reason']) ? ($negative_search_reason + preg_match("/$reason/", $entry['reason'])) % 2 : true;
-			$expiration_bool = isset($entry['expires']) ? ($negative_search_expiration + preg_match("/$expiration/", $entry['expires'])) % 2 : true;
-			$post_bool = isset($entry['message']) ? ($negative_search_post + preg_match("/$post/", $entry['message'])) % 2 : true;
+			$ip_bool = ($negative_search_ip + preg_match("/$ip/", $entry['mask']));
+			$reason_bool = ($negative_search_reason + preg_match("/$reason/", $entry['reason'])) % 2;
+			$expiration_bool = ($negative_search_expiration + preg_match("/$expiration/", $entry['expires'])) % 2;
+			$post_bool = ($negative_search_post + preg_match("/$post/", $entry['message'])) % 2;
 			if(!($ip_bool && $reason_bool && $expiration_bool && $post_bool)){
 				unset($ban_json[$key]);
 			}

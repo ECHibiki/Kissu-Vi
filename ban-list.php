@@ -29,8 +29,8 @@
 
 	require_once('inc/bans.php');
 	require_once('inc/functions.php');
-	$regex_similars = array(".");
-	$regex_actuals = array("\\.");
+	$regex_similars = array(".", "/", "[", "]");
+	$regex_actuals = array("\\.", "\/", "\[", "\]");
 	
 	$ip = '';
 	if (isset($_GET['ip']))
