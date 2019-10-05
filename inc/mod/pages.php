@@ -1254,6 +1254,7 @@ function mod_move_reply($originBoard, $postID) {
 
 	if (isset($_POST['board'])) {
 		$targetBoard = $_POST['board'];
+		$shadow = isset($_POST['shadow']);
 
 		if ($_POST['target_thread']) {
 			$query = prepare(sprintf('SELECT * FROM ``posts_%s`` WHERE `id` = :id', $targetBoard));
@@ -1266,34 +1267,43 @@ function mod_move_reply($originBoard, $postID) {
 			$post['op'] = true;
 		}
 		
+		// copy() if leaving a shadow thread behind; else, rename().
+		$clone = $shadow ? 'copy' : 'rename';
+
 		if ($post['files']) {
 			$post['files'] = json_decode($post['files'], TRUE);
 			$post['has_file'] = true;
 			foreach ($post['files'] as $i => &$file) {
-				$file['file_path'] = sprintf($config['board_path'], $board['uri']) . $config['dir']['img'] . $file['file'];
-				if (isset($file['thumb'])) 
-					$file['thumb_path'] = sprintf($config['board_path'], $board['uri']) . $config['dir']['thumb'] . $file['thumb'];
+				if ($file['file'] === 'deleted') 
+					continue;
+				$clone($file['file_path'], sprintf($config['board_path'], $targetBoard) . $config['dir']['img'] . 'm' . $file['file']);
+				$file['file_path'] = sprintf($config['board_path'], $targetBoard) . $config['dir']['img'] . 'm' . $file['file'];
+				$file['file'] = 'm' . $file['file'];
+				$file['file_id'] = $file['file'];
+				$clone($file['thumb_path'],sprintf($config['board_path'], $targetBoard) . $config['dir']['thumb'] . 'm' . $file['thumb']);
+				$file['thumb_path'] = sprintf($config['board_path'], $targetBoard) . $config['dir']['thumb'] . 'm' . $file['thumb'];
+				$file['thumb'] =  'm' . $file['thumb'];
 			}
 		} else {
 			$post['has_file'] = false;
 		}
-		
+
 		// allow thread to keep its same traits (stickied, locked, etc.)
 		$post['mod'] = true;
 		
 		if (!openBoard($targetBoard))
 			error($config['error']['noboard']);
-		
+
 		// create the new post 
 		$newID = post($post);
-		
+
 		if ($post['has_file']) {
 			foreach ($post['files'] as $i => &$file) {
 				// move the image
 				if (isset($file['thumb'])) 
 				if ($file['thumb'] != 'spoiler' && $file['thumb'] != 'deleted') { //trying to move/copy the spoiler thumb raises an error
-					rename($file['file_path'], sprintf($config['board_path'], $board['uri']) . $config['dir']['img'] . $file['file']);
-					rename($file['thumb_path'], sprintf($config['board_path'], $board['uri']) . $config['dir']['thumb'] . $file['thumb']);
+					//rename($file['file_path'], sprintf($config['board_path'], $board['uri']) . $config['dir']['img'] . $file['file']);
+					//rename($file['thumb_path'], sprintf($config['board_path'], $board['uri']) . $config['dir']['thumb'] . $file['thumb']);
 				}
 			}
 		}
@@ -1309,11 +1319,11 @@ function mod_move_reply($originBoard, $postID) {
 		else{
 			// build new thread
 			$post['id'] = $newID;
+			$post['thread'] = $newID;
 			buildThread($newID);
 		}
-		
-		// trigger themes
-		rebuildThemes('post', $targetBoard);
+					var_dump($post);
+
 		// mod log
 		modLog("Moved post #${postID} to " . sprintf($config['board_abbreviation'], $targetBoard) . " (#${newID})", $originBoard);
 		
@@ -1327,7 +1337,11 @@ function mod_move_reply($originBoard, $postID) {
 		// open target board for redirect
 		openBoard($targetBoard);
 		
+		// trigger themes
+		rebuildThemes('post', $targetBoard);
+
 		// redirect
+		$post['id'] = $newID;
 		header('Location: ?/' . sprintf($config['board_path'], $board['uri']) . $config['dir']['res'] . link_for($post) . '#' . $newID, true, $config['redirect_http']);
 	}
 
@@ -1362,7 +1376,7 @@ global $board, $config, $mod, $pdo;
 		$shadow = false;
 		
 		if ($targetBoard === $originBoard)
-			error(_('Priviledge level ' .$config['nerf_mods_max_level_number'] . " can not do this"));
+			error(_('Privilege level ' .$config['nerf_mods_max_level_number'] . " can not do this"));
 		
 		// copy() if leaving a shadow thread behind; else, rename().
 		$clone = $shadow ? 'copy' : 'rename';
@@ -1376,12 +1390,12 @@ global $board, $config, $mod, $pdo;
 			foreach ($post['files'] as $i => &$file) {
 				if ($file['file'] === 'deleted') 
 					continue;
-				$clone($file['file_path'], sprintf($config['board_path'], $board['uri']) . $config['dir']['img'] . 'm' . $file['file']);
-				$file['file_path'] = sprintf($config['board_path'], $board['uri']) . $config['dir']['img'] . 'm' . $file['file'];
+				$clone($file['file_path'], sprintf($config['board_path'], $targetBoard) . $config['dir']['img'] . 'm' . $file['file']);
+				$file['file_path'] = sprintf($config['board_path'], $targetBoard) . $config['dir']['img'] . 'm' . $file['file'];
 				$file['file'] = 'm' . $file['file'];
 				$file['file_id'] = 'm' . $file['file'];
-				$clone($file['thumb_path'],sprintf($config['board_path'], $board['uri']) . $config['dir']['thumb'] . 'm' . $file['thumb']);
-				$file['thumb_path'] = sprintf($config['board_path'], $board['uri']) . $config['dir']['thumb'] . 'm' . $file['thumb'];
+				$clone($file['thumb_path'],sprintf($config['board_path'], $targetBoard) . $config['dir']['thumb'] . 'm' . $file['thumb']);
+				$file['thumb_path'] = sprintf($config['board_path'], $targetBoard) . $config['dir']['thumb'] . 'm' . $file['thumb'];
 				$file['thumb'] =  'm' . $file['thumb'];
 			}
 		} else {
@@ -1415,12 +1429,12 @@ global $board, $config, $mod, $pdo;
 	
 		if ($post['has_file']) {
 			// copy image
-			foreach ($post['files'] as $i => &$file) {
+			/*foreach ($post['files'] as $i => &$file) {
 				if ($file['file'] !== 'deleted') 
 					$clone($file['file_path'], sprintf($config['board_path'], $board['uri']) . $config['dir']['img'] . $file['file']);
 				if (isset($file['thumb']) && !in_array($file['thumb'], array('spoiler', 'deleted', 'file')))
 					$clone($file['thumb_path'], sprintf($config['board_path'], $board['uri']) . $config['dir']['thumb'] . $file['thumb']);
-			}
+			}*/
 		}
 		
 		// go back to the original board to fetch replies
@@ -1487,13 +1501,13 @@ global $board, $config, $mod, $pdo;
 				foreach ($post['files'] as $i => &$file) {
 					if (isset($file['thumb'])) 
 					if ($file['thumb'] != 'spoiler' && $file['thumb'] != 'deleted') { //trying to move/copy the spoiler thumb raises an error
-						$new_file = sprintf($config['board_path'], $board['uri']) . $config['dir']['img'] . 'm' . $file['file'];
+						$new_file = sprintf($config['board_path'], $targetBoard) . $config['dir']['img'] . 'm' . $file['file'];
 						$clone($file['file_path'], $new_file);
 						$file['file_path'] = $new_file;
 						$file['file_id'] = 'm' . $file['file'];
 						$file['file'] = 'm' . $file['file'];
 						
-						$new_thumb = sprintf($config['board_path'], $board['uri']) . $config['dir']['thumb'] . 'm'. $file['thumb'] ;
+						$new_thumb = sprintf($config['board_path'], $targetBoard) . $config['dir']['thumb'] . 'm'. $file['thumb'] ;
 						$clone($file['thumb_path'], $new_thumb);
 						$file['thumb_path'] = $new_thumb;
 						$file['thumb'] = 'm' . $file['thumb'];
@@ -1587,13 +1601,14 @@ function mod_move($originBoard, $postID) {
 			foreach ($post['files'] as $i => &$file) {
 				if ($file['file'] === 'deleted') 
 					continue;
-				$clone($file['file_path'], sprintf($config['board_path'], $board['uri']) . $config['dir']['img'] . 'm' . $file['file']);
-				$file['file_path'] = sprintf($config['board_path'], $board['uri']) . $config['dir']['img'] . 'm' . $file['file'];
+				$clone($file['file_path'], sprintf($config['board_path'], $targetBoard) . $config['dir']['img'] . 'm' . $file['file']);
+				$file['file_path'] = sprintf($config['board_path'], $targetBoard) . $config['dir']['img'] . 'm' . $file['file'];
 				$file['file'] = 'm' . $file['file'];
-				$file['file_id'] = 'm' . $file['file'];
-				$clone($file['thumb_path'],sprintf($config['board_path'], $board['uri']) . $config['dir']['thumb'] . 'm' . $file['thumb']);
-				$file['thumb_path'] = sprintf($config['board_path'], $board['uri']) . $config['dir']['thumb'] . 'm' . $file['thumb'];
+				$file['file_id'] = $file['file'];
+				$clone($file['thumb_path'],sprintf($config['board_path'], $targetBoard) . $config['dir']['thumb'] . 'm' . $file['thumb']);
+				$file['thumb_path'] = sprintf($config['board_path'], $targetBoard) . $config['dir']['thumb'] . 'm' . $file['thumb'];
 				$file['thumb'] =  'm' . $file['thumb'];
+echo "A";
 			}
 		} else {
 			$post['has_file'] = false;
@@ -1607,7 +1622,7 @@ function mod_move($originBoard, $postID) {
 		
 		// create the new thread(or post)
 		$newID = post($post);
-	
+	echo "B";
 		$op = $post;
 		if(isset($_POST['target_thread']) && trim($_POST['target_thread']) != ""){
 			//needed for link_for redirect
@@ -1617,15 +1632,15 @@ function mod_move($originBoard, $postID) {
 			// build new thread
 			$op['id'] = $newID;
 		}
-	
+	echo "C";
 		if ($post['has_file']) {
 			// copy image
-			foreach ($post['files'] as $i => &$file) {
+			/*foreach ($post['files'] as $i => &$file) {
 				if ($file['file'] !== 'deleted') 
 					$clone($file['file_path'], sprintf($config['board_path'], $board['uri']) . $config['dir']['img'] . $file['file']);
 				if (isset($file['thumb']) && !in_array($file['thumb'], array('spoiler', 'deleted', 'file')))
 					$clone($file['thumb_path'], sprintf($config['board_path'], $board['uri']) . $config['dir']['thumb'] . $file['thumb']);
-			}
+			}*/
 		}
 		
 		// go back to the original board to fetch replies
@@ -1725,9 +1740,6 @@ function mod_move($originBoard, $postID) {
 		clean();
 		buildIndex();
 		
-		// trigger themes
-		rebuildThemes('post', $targetBoard);
-		
 		$newboard = $board;
 
 		// return to original board
@@ -1762,6 +1774,8 @@ function mod_move($originBoard, $postID) {
 			buildThread($postID);
 			
 			buildIndex();
+			// trigger themes
+			rebuildThemes('post', $targetBoard);
 			
 			header('Location: ?/' . sprintf($config['board_path'], $newboard['uri']) . $config['dir']['res'] . link_for($op, false, $newboard) .
 				'#' . $botID, true, $config['redirect_http']);
