@@ -2009,3 +2009,10 @@ $config['mod']['rebuild'] = BOT;
 
 	// Allowed HTML tags in ?/edit_pages.
 	$config['allowed_html'] = 'a[href|title],p,br,li,ol,ul,strong,em,u,h2,b,i,tt,div,img[src|alt|title],hr';
+
+
+// Json File Scrambler
+// Indicate if json filenames should be scrambled 
+$config['json_scrambler']['scramble'] = false;
+// Salt for hashing json filenames
+$config['json_scrambler']['salt'] = '0123456789012345678901';
