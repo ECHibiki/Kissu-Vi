@@ -1274,15 +1274,19 @@ function mod_move_reply($originBoard, $postID) {
 			$post['files'] = json_decode($post['files'], TRUE);
 			$post['has_file'] = true;
 			foreach ($post['files'] as $i => &$file) {
-				if ($file['file'] === 'deleted') 
-					continue;
-				$clone($file['file_path'], sprintf($config['board_path'], $targetBoard) . $config['dir']['img'] . 'm' . $file['file']);
-				$file['file_path'] = sprintf($config['board_path'], $targetBoard) . $config['dir']['img'] . 'm' . $file['file'];
-				$file['file'] = 'm' . $file['file'];
-				$file['file_id'] = $file['file'];
-				$clone($file['thumb_path'],sprintf($config['board_path'], $targetBoard) . $config['dir']['thumb'] . 'm' . $file['thumb']);
-				$file['thumb_path'] = sprintf($config['board_path'], $targetBoard) . $config['dir']['thumb'] . 'm' . $file['thumb'];
-				$file['thumb'] =  'm' . $file['thumb'];
+					if (isset($file['thumb'])) 
+					if ($file['thumb'] != 'spoiler' && $file['thumb'] != 'deleted' && $file['thumb'] != 'file') { //trying to move/copy the spoiler thumb raises an error
+						$new_file = sprintf($config['board_path'], $board['uri']) . $config['dir']['img'] . 'm' . $file['file'];
+						$clone($file['file_path'], $new_file);
+						$file['file_path'] = $new_file;
+						$file['file_id'] = 'm' . $file['file'];
+						$file['file'] = 'm' . $file['file'];
+						
+						$new_thumb = sprintf($config['board_path'], $board['uri']) . $config['dir']['thumb'] . 'm'. $file['thumb'] ;
+						$clone($file['thumb_path'], $new_thumb);
+						$file['thumb_path'] = $new_thumb;
+						$file['thumb'] = 'm' . $file['thumb'];
+					}
 			}
 		} else {
 			$post['has_file'] = false;
@@ -1301,7 +1305,7 @@ function mod_move_reply($originBoard, $postID) {
 			foreach ($post['files'] as $i => &$file) {
 				// move the image
 				if (isset($file['thumb'])) 
-				if ($file['thumb'] != 'spoiler' && $file['thumb'] != 'deleted') { //trying to move/copy the spoiler thumb raises an error
+				if ($file['thumb'] != 'deleted' && $file['thumb'] != 'spoiler' && $file['thumb'] != 'file') { //trying to move/copy the spoiler thumb raises an error
 					//rename($file['file_path'], sprintf($config['board_path'], $board['uri']) . $config['dir']['img'] . $file['file']);
 					//rename($file['thumb_path'], sprintf($config['board_path'], $board['uri']) . $config['dir']['thumb'] . $file['thumb']);
 				}
@@ -1500,7 +1504,7 @@ global $board, $config, $mod, $pdo;
 				// copy or rename image
 				foreach ($post['files'] as $i => &$file) {
 					if (isset($file['thumb'])) 
-					if ($file['thumb'] != 'spoiler' && $file['thumb'] != 'deleted') { //trying to move/copy the spoiler thumb raises an error
+					if ($file['thumb'] != 'deleted' && $file['thumb'] != 'spoiler' && $file['thumb'] != 'file') { //trying to move/copy the spoiler thumb raises an error
 						$new_file = sprintf($config['board_path'], $targetBoard) . $config['dir']['img'] . 'm' . $file['file'];
 						$clone($file['file_path'], $new_file);
 						$file['file_path'] = $new_file;
@@ -1599,17 +1603,17 @@ function mod_move($originBoard, $postID) {
 			$post['files'] = json_decode($post['files'], TRUE);
 			$post['has_file'] = true;
 			foreach ($post['files'] as $i => &$file) {
-				if ($file['file'] === 'deleted') 
-					continue;
+				if(isset($file['thumb'])){
+					if (!($file['thumb'] === 'deleted' || $file['thumb'] === 'spoiler' || $file['thumb'] === 'file')) {
+						$clone($file['thumb_path'],sprintf($config['board_path'], $targetBoard) . $config['dir']['thumb'] . 'm' . $file['thumb']);
+						$file['thumb_path'] = sprintf($config['board_path'], $targetBoard) . $config['dir']['thumb'] . 'm' . $file['thumb'];
+						$file['thumb'] =  'm' . $file['thumb'];
+					}
+				}
 				$clone($file['file_path'], sprintf($config['board_path'], $targetBoard) . $config['dir']['img'] . 'm' . $file['file']);
 				$file['file_path'] = sprintf($config['board_path'], $targetBoard) . $config['dir']['img'] . 'm' . $file['file'];
 				$file['file'] = 'm' . $file['file'];
-				$file['file_id'] = $file['file'];
-				$clone($file['thumb_path'],sprintf($config['board_path'], $targetBoard) . $config['dir']['thumb'] . 'm' . $file['thumb']);
-				$file['thumb_path'] = sprintf($config['board_path'], $targetBoard) . $config['dir']['thumb'] . 'm' . $file['thumb'];
-				$file['thumb'] =  'm' . $file['thumb'];
-echo "A";
-			}
+				$file['file_id'] = $file['file'];			}
 		} else {
 			$post['has_file'] = false;
 		}
@@ -1622,7 +1626,6 @@ echo "A";
 		
 		// create the new thread(or post)
 		$newID = post($post);
-	echo "B";
 		$op = $post;
 		if(isset($_POST['target_thread']) && trim($_POST['target_thread']) != ""){
 			//needed for link_for redirect
@@ -1632,11 +1635,10 @@ echo "A";
 			// build new thread
 			$op['id'] = $newID;
 		}
-	echo "C";
 		if ($post['has_file']) {
 			// copy image
 			/*foreach ($post['files'] as $i => &$file) {
-				if ($file['file'] !== 'deleted') 
+				if ($file['file'] !== 'deleted' && $file['file'] !== 'spoiler' && $file['file'] !== 'file') 
 					$clone($file['file_path'], sprintf($config['board_path'], $board['uri']) . $config['dir']['img'] . $file['file']);
 				if (isset($file['thumb']) && !in_array($file['thumb'], array('spoiler', 'deleted', 'file')))
 					$clone($file['thumb_path'], sprintf($config['board_path'], $board['uri']) . $config['dir']['thumb'] . $file['thumb']);
@@ -1651,7 +1653,7 @@ echo "A";
 		$query->execute() or error(db_error($query));
 		
 		$replies = array();
-		
+
 		while ($post = $query->fetch(PDO::FETCH_ASSOC)) {
 			$post['mod'] = true;
 			$post['thread'] = $op['id'];
@@ -1702,9 +1704,9 @@ echo "A";
 			
 			if ($post['has_file']) {
 				// copy or rename image
-				foreach ($post['files'] as $i => &$file) {
+				foreach ($post['files'] as $i => &$file) {		
 					if (isset($file['thumb'])) 
-					if ($file['thumb'] != 'spoiler' && $file['thumb'] != 'deleted') { //trying to move/copy the spoiler thumb raises an error
+					if ($file['thumb'] != 'spoiler' && $file['thumb'] != 'deleted' && $file['thumb'] != 'file') { //trying to move/copy the spoiler thumb raises an error
 						$new_file = sprintf($config['board_path'], $board['uri']) . $config['dir']['img'] . 'm' . $file['file'];
 						$clone($file['file_path'], $new_file);
 						$file['file_path'] = $new_file;

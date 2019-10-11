@@ -2,6 +2,12 @@
 <!doctype html>
 <html>
 <head>
+<script type="text/javascript">
+	  var
+                        active_page = "home"
+            , board_name = 'home';
+</script>
+
     <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
 	<title>{{ settings.title }}</title>
 	<link rel="stylesheet" media="screen" href="{{ config.url_stylesheet }}"/>
@@ -106,6 +112,9 @@
 		<br>Tinyboard Copyright &copy; 2010-2014 Tinyboard Development Group    
 		<br><a href="https://engine.vichan.net/">vichan</a> Copyright &copy; 2012-2018 vichan-devel
 	</footer>
+<script type="text/javascript">
+		ready();
+	</script>
 </body>
 </html>
 {% include 'checkban.php' %}

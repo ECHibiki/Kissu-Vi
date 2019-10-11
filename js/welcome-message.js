@@ -54,6 +54,5 @@ var giveMessage = function(motd){
         	request.send();
 	}
 
-
 });
 

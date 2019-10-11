@@ -83,7 +83,10 @@ class Archive {
                 foreach (json_decode($post['files']) as $i => $f) {
                     if ($f->file !== 'deleted') {
                         copy($board['dir'] . $config['dir']['img'] . $f->file, $board['dir'] . $config['dir']['archive'] . $config['dir']['img'] . $f->file);
-                        copy($board['dir'] . $config['dir']['thumb'] . $f->thumb, $board['dir'] . $config['dir']['archive'] . $config['dir']['thumb'] . $f->thumb);
+       		        if($f->thumb == "spoiler" || $f->thumb == "file" || $f->thumb == "deleted"){
+		        }
+			else
+                        	copy($board['dir'] . $config['dir']['thumb'] . $f->thumb, $board['dir'] . $config['dir']['archive'] . $config['dir']['thumb'] . $f->thumb);
 
                         $file_list[] = $f;
 
@@ -136,7 +139,7 @@ class Archive {
         $query->execute() or error(db_error($query));
         while($thread = $query->fetch(PDO::FETCH_ASSOC)) {
             // Delete Files
-var_dump($thread);
+
             foreach (json_decode($thread['files']) as $f) {
                 @unlink($board['dir'] . $config['dir']['archive'] . $config['dir']['img'] . $f->file);
                 @unlink($board['dir'] . $config['dir']['archive'] . $config['dir']['img'] . $f->thumb);

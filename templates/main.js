@@ -305,8 +305,13 @@ function displayPoll(response_text, reference_element){
 				var key = Object.keys(json_arr[label])[0];
 				var value = json_arr[label][key];
 				if(key == "expires"){
-					var expiration_time = Math.round((parseInt(value) - Date.now()/1000) / 60 / 60);
-					expiration_time = expiration_time < 0 ? "Poll Finished" : expiration_time; 
+					if(value == json_arr[label]["created"]){
+					    expiration_time = "Never";
+					}
+					else{
+						var expiration_time = Math.round((parseInt(value) - Date.now()/1000) / 60 / 60);
+						expiration_time = expiration_time < 0 ? "Poll Finished" : expiration_time; 
+					}
 					if(typeof expiration_time == "string"){}
 					else if(expiration_time / 24 < 1){
 						expiration_time = expiration_time  + " Hours";
