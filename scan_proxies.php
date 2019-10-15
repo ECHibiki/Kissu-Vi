@@ -15,13 +15,16 @@
 					echo("....." . $ip_arr[$index]);
 					unset($ip_arr[$index]);
 					continue;
-				}	
-				$bans = Bans::find($ip, $board, $config['show_modname']);	
+				}
+				$ip_arr[$index] = implode(".", array_map(function($segment){
+					return intval($segment);
+				}, explode(".", $ip_arr[$index])));
+				$bans = Bans::find($ip_arr[$index], $board, $config['show_modname']);	
 				foreach ($bans as &$ban) {
 					if ($ban['expires'] && $ban['expires'] < time()) {
 						Bans::delete($ban['id']);
 					}
-					echo("+++++" . $ip_arr[$index]);					
+					echo("<br/>+++++" . $ip_arr[$index]);					
 					unset($ip_arr[$index]);
 					continue;
 				}	
