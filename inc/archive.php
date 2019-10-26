@@ -82,11 +82,11 @@ class Archive {
             if ($post['files']) {
                 foreach (json_decode($post['files']) as $i => $f) {
                     if ($f->file !== 'deleted') {
-                        copy($board['dir'] . $config['dir']['img'] . $f->file, $board['dir'] . $config['dir']['archive'] . $config['dir']['img'] . $f->file);
+                        rename($board['dir'] . $config['dir']['img'] . $f->file, $board['dir'] . $config['dir']['archive'] . $config['dir']['img'] . $f->file);
        		        if($f->thumb == "spoiler" || $f->thumb == "file" || $f->thumb == "deleted"){
 		        }
 			else
-                        	copy($board['dir'] . $config['dir']['thumb'] . $f->thumb, $board['dir'] . $config['dir']['archive'] . $config['dir']['thumb'] . $f->thumb);
+                        	rename($board['dir'] . $config['dir']['thumb'] . $f->thumb, $board['dir'] . $config['dir']['archive'] . $config['dir']['thumb'] . $f->thumb);
 
                         $file_list[] = $f;
 
