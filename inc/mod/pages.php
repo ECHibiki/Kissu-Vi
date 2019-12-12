@@ -370,7 +370,7 @@ function mod_search($type, $search_query_escaped, $page_no = 1) {
 		'results' => $results
 	));
 }
-
+// board deletion and changes
 function mod_edit_board($boardName) {
 	global $board, $config;
 	
@@ -404,12 +404,12 @@ function mod_edit_board($boardName) {
 			
 			// Clear reports
 			$query = prepare('DELETE FROM ``reports`` WHERE `board` = :id');
-			$query->bindValue(':id', $board['uri'], PDO::PARAM_INT);
+			$query->bindValue(':id', $board['uri']);
 			$query->execute() or error(db_error($query));
 			
 			// Delete from table
 			$query = prepare('DELETE FROM ``boards`` WHERE `uri` = :uri');
-			$query->bindValue(':uri', $board['uri'], PDO::PARAM_INT);
+			$query->bindValue(':uri', $board['uri']);
 			$query->execute() or error(db_error($query));
 			
 			$query = prepare("SELECT `board`, `post` FROM ``cites`` WHERE `target_board` = :board ORDER BY `board`");
@@ -447,9 +447,10 @@ function mod_edit_board($boardName) {
 					$_query->execute() or error(db_error($_query));
 				}
 			}
-			
+			echo "ex1";
 			// Delete entire board directory
 			rrmdir($board['uri'] . '/');
+			echo "ex2";
 		} else {
 			$query = prepare('UPDATE ``boards`` SET `title` = :title, `subtitle` = :subtitle WHERE `uri` = :uri');
 			$query->bindValue(':uri', $board['uri']);

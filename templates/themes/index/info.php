@@ -63,6 +63,15 @@
 		'default' => 'https://www.youtube.com/embed/zndkMAHKjNM',
 		'size' => 50
 	);
+
+		$theme['config'][] = Array(
+		'title' => 'Embed',
+		'name' => 'embeded',
+		'type' => 'checkbox',
+		'default' => 'checked'
+	);
+	
+
 	
 	$theme['config'][] = Array(
 		'title' => '# of recent entries',

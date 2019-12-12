@@ -470,12 +470,12 @@ function scrapePages($regex_pattern){
 	$query = prepare("SELECT `site` FROM `proxy-sites`");
 	$query->execute() or error(db_error($query));
 	$sites_string = '"' . implode("," , $query->fetchAll(PDO::FETCH_COLUMN)) . '"';
+
 	if($sites_string == '""'){
 		error("No sites in Table 'proxy-sites' list");
 	} 
 	set_time_limit(300);
 	if(preg_match("/Linux/", php_uname())){
-		// return shell_exec("xvfb-run python3 Regex-Webscraper/py-cmd/regexscraper.py -u $sites_string -r \"$regex_pattern\" --nojs --json");
 		return shell_exec("/usr/bin/sudo xvfb-run python3 /var/misc-internet-applications/Multipurpose-Regex-Webscraper/py-cmd/regexscraper.py -u $sites_string -r \"$regex_pattern\" --raw --json");
 	}
 	else{
@@ -769,7 +769,7 @@ function file_write($path, $data, $simple = false, $skip_purge = false) {
 	event('write', $path);
 }
 
-function file_unlink($path) {
+function file_unlink($path, $gzip_if_possible=true) {
 	global $config, $debug;
 	
 	if ($config['debug']) {
@@ -779,8 +779,9 @@ function file_unlink($path) {
 	}
 
 	$ret = @unlink($path);
-
-        if ($config['gzip_static']) {
+		
+		// Conflicts with rrmdir
+        if ($config['gzip_static'] && $gzip_if_possible) {
                 $gzpath = "$path.gz";
 
 		@unlink($gzpath);
@@ -1847,8 +1848,8 @@ function make_comment_hex($str) {
 
 	$str = strtolower($str);
 
-	// strip all non-alphabet characters
-	$str = preg_replace('/[^a-z]/', '', $str);
+	// (Why would you do this???) strip all non-alphabet characters
+	//$str = preg_replace('/[^a-z]/', '', $str);
 
 	return md5($str);
 }
@@ -2340,10 +2341,15 @@ function markup(&$body, $track_cites = false, $op = false) {
 				$match[1] = mb_strlen(substr($body_tmp, 0, $match[1]));
 			}
 			if (isset($cited_posts[$cite])) {
+				$op_str = "";
+				if(!$cited_posts[$cite]){
+					// disabled for 4chanx
+					// $op_str = "(op)";
+				}
 				$replacement = '<a onclick="return highlightReply(\''.$cite.'\', event);" href="' .
 					$config['root'] . $board['dir'] . $config['dir']['res'] .
 					link_for(array('id' => $cite, 'thread' => $cited_posts[$cite]),false,false,false, $remove_ext=$config['remove_ext']) . '#' . $cite . '">' .
-					'&gt;&gt;' . $cite .
+					'&gt;&gt;' . $cite . $op_str .
 					'</a>';
 
 				$body = mb_substr_replace($body, $matches[1][0] . $replacement . $matches[3][0], $matches[0][1] + $skip_chars, mb_strlen($matches[0][0]));
@@ -2738,7 +2744,7 @@ function rrmdir($dir) {
 				if (filetype($dir."/".$object) == "dir")
 					rrmdir($dir."/".$object);
 				else
-					file_unlink($dir."/".$object);
+					file_unlink($dir."/".$object, false);
 			}
 		}
 		reset($objects);

@@ -512,7 +512,7 @@ elseif (isset($_POST['post']) || $dropped_post) {
 			if ($post['sticky'] && !hasPermission($config['mod']['sticky'], $board['uri']))
 				error($config['error']['noaccess']);
 			if ($post['locked'] && !hasPermission($config['mod']['lock'], $board['uri']))
-https://www.youtube.com/watch?v=_5joTyy3CCo				error($config['error']['noaccess']);
+				error($config['error']['noaccess']);
 			if ($post['raw'] && !hasPermission($config['mod']['rawhtml'], $board['uri']))
 				error($config['error']['noaccess']);
 		}

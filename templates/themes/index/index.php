@@ -75,8 +75,14 @@
 	        <br>
 	        <div class="quoteofnow">{{ settings.quoteofnow }}</div>
 	        <br>
+		{% if settings.embeded %}
 	        <iframe class ="videoofnow" width="560" height="315" src="{{ settings.videoofnow }}"></iframe>
-	        <br>
+	        {% else %}
+		<video class ="videoofnow" width="560" height="315" controls autoplay>
+			<source src="{{ settings.videoofnow }}">
+		</video>
+		{% endif %}
+		<br>
 	    </div>
 	    <div class="ban">
 		{% if news|count == 0 %}

@@ -5,6 +5,7 @@
 var new_posts = 0;
 var previous_time = Math.floor(Date.now() / 1000) + 20;
 function checkUpdates(){
+	//doesn't do in threads
   if(!(/^\/[a-zA-Z0-9]+\/res/.test(window.location.pathname))){
     var response = $.ajax({
         type: 'GET',

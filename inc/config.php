@@ -73,6 +73,8 @@
 	// When executing most command-line tools (such as `convert` for ImageMagick image processing), add this
 	// to the environment path (seperated by :).
 	$config['shell_path'] = '/usr/local/bin';
+	
+
 
 /*
  * ====================
@@ -548,7 +550,9 @@
 	$config['max_filename_len'] = 255;
 	// Maximum filename length to display (the rest can be viewed upon mouseover).
 	$config['max_filename_display'] = 30;
-
+	// Swap file and unix location
+	$config['file_location_swap'] = true;
+	
 	// Allow users to delete their own posts?
 	$config['allow_delete'] = true;
 	// How long after posting should you have to wait before being able to delete that post? (In seconds.)
@@ -1154,6 +1158,11 @@
 				'/^https?:\/\/(\w+\.)?youtu\.be\/([a-zA-Z0-9\-_]{10,11})?(.+)?$/i',
 				'<iframe style="float: left;margin: 10px 20px;" width="%%tb_width%%" height="%%tb_height%%" frameborder="0" id="ytplayer" src="https://www.youtube.com/embed/$2" allowfullscreen></iframe>'
 			),
+			array(
+				'/^https?:\/\/(\w+\.)?nicovideo\.jp\/watch\/sm([a-zA-Z0-9\-_]+)\??$/i',
+				'<iframe style="float: left;margin: 10px 20px;"  width="%%tb_width%%" height="%%tb_height%%" frameborder="0" id="nnplayer" src="https://embed.nicovideo.jp/watch/sm$2" scrolling="no" style="border:solid 1px #ccc;" frameborder="0" allowfullscreen><a href="https://www.nicovideo.jp/watch/sm$2"></a></iframe>'
+			),
+
 			array(
 				'/^https?:\/\/(\w+\.)?vimeo\.com\/(\d{2,10})(\?.+)?$/i',
 				'<iframe style="float: left;margin: 10px 20px;" width="%%tb_width%%" height="%%tb_height%%" src="https://player.vimeo.com/video/$2" frameborder="0"></iframe>'

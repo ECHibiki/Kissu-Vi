@@ -5,7 +5,7 @@ var giveMessage = function(motd){
 
 	alert(
 		"<h1>Welcome to kissu.moe!</h1><br/>\
-       		<h2>Message Of the Day</h2>\
+		<h2>Message Of the Day</h2>\
 		<p><strong>" + motd + "</strong></p>\
 		<h2>Boards</h2>\
 		<ul style='text-align: left;'>\
@@ -23,7 +23,7 @@ var giveMessage = function(motd){
 }
 	var request = new XMLHttpRequest(); 
 	var motd = "";
-	request.open("GET", '/motd.txt');
+	request.open("GET", '/motd.txt?' + Date.now());
 		request.onreadystatechange = function() { 
 		if (this.readyState === 4 && this.status === 200) {
 			motd = this.responseText;
@@ -41,7 +41,7 @@ var giveMessage = function(motd){
 	
        	 	var request = new XMLHttpRequest(); 
         	var motd = "";
-        	request.open("GET", '/motd.txt');
+        	request.open("GET", '/motd.txt?' + Date.now());
                 request.onreadystatechange = function() { 
                 	if (this.readyState === 4 && this.status === 200) {
                      	   motd = this.responseText;
