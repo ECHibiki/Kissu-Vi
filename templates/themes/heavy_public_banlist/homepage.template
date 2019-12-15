@@ -8,7 +8,7 @@
 	Leave a field blank if you don't want it<br/>
 	Use the minus sign - to remove something from search<br/>
 	<label class='ban-search-option'>IP : <input type='text' name='ip'></label><br/>
-	<label class='ban-search-option'>Reason : <input type='text' name='reason'></label><br/>
+	<label class='ban-search-option'>Reason : <input type='text' name='reason' placeholder='try -proxy'></label><br/>
 	<label class='ban-search-option'>Expiration : <input type='text' name='duration'></label><br/>
 	<label class='ban-search-option'>Post : <input type='text' name='post'></label><br/>
 	<input type='submit' value='search' style='margin-top:0.5em'>

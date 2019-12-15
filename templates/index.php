@@ -100,7 +100,9 @@
 				{% if config.catalog_link %}
 			<a id="thread-catalog-top" href="{{ config.root }}{{ board.dir }}{{ config.catalog_link }}">[{% trans %}Catalog{% endtrans %}]</a>
 				{% endif %}
+{% if config.archive.threads %}
 <a id="archive-link-top" href="{{ config.root }}{{ board.dir }}archive/">[Archive]</a>
+{% endif %}
 	</span>
 	<br/><hr/>
 	
@@ -118,8 +120,9 @@
                 		{% if config.catalog_link %}
 					<a id="thread-catalog" href="{{ config.root }}{{ board.dir }}{{ config.catalog_link }}">[{% trans %}Catalog{% endtrans %}]</a>
 		                {% endif %}
+{% if config.archive.threads %}
 <a id="archive-link-bottom" href="{{ config.root }}{{ board.dir }}archive/">[Archive]</a>
-
+{% endif %}
 			</span>
 			
 			<span id="thread-quick-reply">

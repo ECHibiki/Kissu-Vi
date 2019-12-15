@@ -229,10 +229,10 @@ class Bans {
 			// placment in json requires modifications of ban-list js file 
 			$entry['expires'] = !isset($entry['expires']) ? 'never' : $entry['expires']; 
 			//boolean mathematics(negation)
-			$ip_bool = ($negative_search_ip + preg_match("/$ip/", $entry['mask']));
-			$reason_bool = ($negative_search_reason + preg_match("/$reason/", $entry['reason'])) % 2;
-			$expiration_bool = ($negative_search_expiration + preg_match("/$expiration/", $entry['expires'])) % 2;
-			$post_bool = ($negative_search_post + preg_match("/$post/", $entry['message'])) % 2;
+			$ip_bool = ($negative_search_ip + preg_match("/$ip/i", $entry['mask']));
+			$reason_bool = ($negative_search_reason + preg_match("/$reason/i", $entry['reason'])) % 2;
+			$expiration_bool = ($negative_search_expiration + preg_match("/$expiration/i", $entry['expires'])) % 2;
+			$post_bool = ($negative_search_post + preg_match("/$post/i", $entry['message'])) % 2;
 			if(!($ip_bool && $reason_bool && $expiration_bool && $post_bool)){
 				unset($ban_json[$key]);
 			}
