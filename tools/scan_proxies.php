@@ -1,6 +1,6 @@
 <?php
-	require("inc/functions.php");
-	require("inc/bans.php");
+	require("../inc/functions.php");
+	require("../inc/bans.php");
 	global $config;
 	loadConfig();
 	if($config["enable_proxy_scrape"]){

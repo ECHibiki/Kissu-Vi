@@ -788,6 +788,8 @@ elseif (isset($_POST['post']) || $dropped_post) {
 			error(sprintf($config['error']['toolong'], 'subject'));
 		if (!$mod && mb_strlen($post['body']) > $config['max_body'])
 			error($config['error']['toolong_body']);
+		if (!$mod && substr_count($post['body'], PHP_EOL) > $config['max_newlines'])
+			error($config['error']['toomanylines']);
 		if (mb_strlen($post['password']) > 20)
 			error(sprintf($config['error']['toolong'], 'password'));
 	}

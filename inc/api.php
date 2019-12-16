@@ -210,7 +210,8 @@ class Api {
 		foreach ($threads as $thread) {
 			$ts = $this->translateThread($thread, $threadsPage);
 			$first = array_shift($ts["posts"]);
-			$first["last_replies"] = $ts["posts"];
+			if(!$threadsPage)
+				$first["last_replies"] = $ts["posts"];
 			$apiPage['threads'][] = $first;
 		}
 		return $apiPage;

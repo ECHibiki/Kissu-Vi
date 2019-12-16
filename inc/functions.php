@@ -2311,8 +2311,11 @@ function markup(&$body, $track_cites = false, $op = false) {
 	$tracked_cites = array();
 
 	// Cites
-	if (isset($board) && preg_match_all('/(^|\s)&gt;&gt;(\d+?)([\s,.)?]|$)/m', $body, $cites, PREG_SET_ORDER | PREG_OFFSET_CAPTURE)) {
-		if (count($cites[0]) > $config['max_cites']) {
+	// Limitation in preg_match_all means >>22>>22>>22 will have an unmatched cite in the center. Possible fix is lookaheads, but this will require rework of method
+	if (isset($board) && preg_match_all('/&gt;&gt;(\d+?)([^0-9]|$)/mi', $body, $cites, PREG_SET_ORDER | PREG_OFFSET_CAPTURE)) {
+		//var_dump ($cites );
+		//var_dump ($config['max_cites']) ;
+		if (!isset($_POST['mod']) && count($cites) > $config['max_cites']) {
 			error($config['error']['toomanycites']);
 		}
 
@@ -2321,7 +2324,7 @@ function markup(&$body, $track_cites = false, $op = false) {
 		
 		$search_cites = array();
 		foreach ($cites as $matches) {
-			$search_cites[] = '`id` = ' . $matches[2][0];
+			$search_cites[] = '`id` = ' . $matches[1][0];
 		}
 		$search_cites = array_unique($search_cites);
 		
@@ -2334,12 +2337,12 @@ function markup(&$body, $track_cites = false, $op = false) {
 		}
 				
 		foreach ($cites as $matches) {
-			$cite = $matches[2][0];
+			$cite = $matches[1][0];
 
 			// preg_match_all is not multibyte-safe
-			foreach ($matches as &$match) {
-				$match[1] = mb_strlen(substr($body_tmp, 0, $match[1]));
-			}
+			// foreach ($matches as &$match) {
+				// $match[1] = mb_strlen(substr($body_tmp, 0, $match[1]));
+			// }
 			if (isset($cited_posts[$cite])) {
 				$op_str = "";
 				if(!$cited_posts[$cite]){
@@ -2352,8 +2355,8 @@ function markup(&$body, $track_cites = false, $op = false) {
 					'&gt;&gt;' . $cite . $op_str .
 					'</a>';
 
-				$body = mb_substr_replace($body, $matches[1][0] . $replacement . $matches[3][0], $matches[0][1] + $skip_chars, mb_strlen($matches[0][0]));
-				$skip_chars += mb_strlen($matches[1][0] . $replacement . $matches[3][0]) - mb_strlen($matches[0][0]);
+				$body = mb_substr_replace($body, $replacement . $matches[2][0], $matches[0][1] + $skip_chars, mb_strlen($matches[0][0]));
+				$skip_chars += mb_strlen($replacement . $matches[2][0]) - mb_strlen($matches[0][0]);
 
 				if ($track_cites && $config['track_cites'])
 					$tracked_cites[] = array($board['uri'], $cite);

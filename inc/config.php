@@ -539,6 +539,7 @@
 	$config['max_links'] = 20;
 	// Maximum number of cites per post (prevents abuse, as more citations mean more database queries).
 	$config['max_cites'] = 45;
+	$config['max_newlines'] = 50;
 	// Maximum number of cross-board links/citations per post.
 	$config['max_cross'] = $config['max_cites'];
 
@@ -722,29 +723,29 @@
  */
 
 	// "Wiki" markup syntax ($config['wiki_markup'] in pervious versions):
-	$config['markup'][] = array("/'''(.+?)'''/", "<strong>\$1</strong>");
-	$config['markup'][] = array("/\[b\](.+?)\[\/b\]/", "<strong>\$1</strong>");
-	$config['markup'][] = array("/''(.+?)''/", "<em>\$1</em>");
-	$config['markup'][] = array("/\[i\](.+?)\[\/i\]/", "<em>\$1</em>");
-	$config['markup'][] = array("/\*\*(.+?)\*\*/", "<span class=\"spoiler\">\$1</span>");
-	$config['markup'][] = array("/\[u\](.+?)\[\/u\]/", "<u>\$1</u>");
-	$config['markup'][] = array("/\[spoiler\](.+?)\[\/spoiler\]/", "<span class=\"spoiler\">\$1</span>");
-	$config['markup'][] = array("/\[spoilers\](.+?)\[\/spoilers\]/", "<span class=\"spoiler\">\$1</span>");
-	$config['markup'][] = array("/==(.+?)==/", "<span class=\"heading\">\$1</span>");
-	$config['markup'][] = array("/\[header\](.+?)\[\/header\]/", "<span class=\"heading\">\$1</span>");
+	$config['markup'][] = array("/'''(.+?)'''/ims", "<strong>\$1</strong>");
+	$config['markup'][] = array("/\[b\](.+?)\[\/b\]/s", "<strong>\$1</strong>");
+	$config['markup'][] = array("/''(.+?)''/s", "<em>\$1</em>");
+	$config['markup'][] = array("/\[i\](.+?)\[\/i\]/s", "<em>\$1</em>");
+	$config['markup'][] = array("/\*\*(.+?)\*\*/s", "<span class=\"spoiler\">\$1</span>");
+	$config['markup'][] = array("/\[u\](.+?)\[\/u\]/s", "<u>\$1</u>");
+	$config['markup'][] = array("/\[spoiler\](.+?)\[\/spoiler\]/s", "<span class=\"spoiler\">\$1</span>");
+	$config['markup'][] = array("/\[spoilers\](.+?)\[\/spoilers\]/s", "<span class=\"spoiler\">\$1</span>");
+	$config['markup'][] = array("/==(.+?)==/s", "<span class=\"heading\">\$1</span>");
+	$config['markup'][] = array("/\[header\](.+?)\[\/header\]/s", "<span class=\"heading\">\$1</span>");
 	
 	// Markup from Nen
-	$config['markup'][] = array("/\[pink\](.+?)\[\/pink\]/", "<span class=\"glowpink\">\$1</span>");
-	$config['markup'][] = array("/\[blue\](.+?)\[\/blue\]/", "<span class=\"glowblue\">\$1</span>");
-	$config['markup'][] = array("/\[gold\](.+?)\[\/gold\]/", "<span class=\"glowgold\">\$1</span>");
+	$config['markup'][] = array("/\[pink\](.+?)\[\/pink\]/s", "<span class=\"glowpink\">\$1</span>");
+	$config['markup'][] = array("/\[blue\](.+?)\[\/blue\]/s", "<span class=\"glowblue\">\$1</span>");
+	$config['markup'][] = array("/\[gold\](.+?)\[\/gold\]/s", "<span class=\"glowgold\">\$1</span>");
         
 	//kissu markup
-	$config['markup'][] = array("/~~(.+?)~~/", "<strike>\$1</strike>");
+	$config['markup'][] = array("/~~(.+?)~~/s", "<strike>\$1</strike>");
 
 	// Code markup. This should be set to a regular expression, using tags you want to use. Examples:
 	// "/\[code\](.*?)\[\/code\]/is"
 	// "/```([a-z0-9-]{0,20})\n(.*?)\n?```\n?/s"
-	$config['markup_code'] = "/\[code\](.*?)\[\/code\]/";
+	$config['markup_code'] = "/\[code\](.*?)\[\/code\]/s";
 
 	// Repair markup with HTML Tidy. This may be slower, but it solves nesting mistakes. Tinyboad, at the
 	// time of writing this, can not prevent out-of-order markup tags (eg. "**''test**'') without help from
@@ -1223,6 +1224,7 @@
 	$config['error']['dnsbl']		= _('Your IP address is listed in %s.');
 	$config['error']['toomanylinks']	= _('Too many links; flood detected.');
 	$config['error']['toomanycites']	= _('Too many cites; post discarded.');
+	$config['error']['toomanylines']	= _('Too many lines; post discarded.');
 	$config['error']['toomanycross']	= _('Too many cross-board links; post discarded.');
 	$config['error']['nodelete']		= _('You didn\'t select anything to delete.');
 	$config['error']['noreport']		= _('You didn\'t select anything to report.');
