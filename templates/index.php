@@ -19,6 +19,19 @@
 
 </head>
 <body class="8chan vichan {% if mod %}is-moderator{% else %}is-not-moderator{% endif %} active-{% if not no_post_form %}index{% else %}ukko{% endif %}" data-stylesheet="{% if config.default_stylesheet.1 != '' %}{{ config.default_stylesheet.1 }}{% else %}default{% endif %}">
+{% if config.nsfw_board %}
+	<script>
+	if(typeof localStorage.{{ board.uri }}_nsfw == "undefined" || localStorage.{{ board.uri }}_nsfw != 2){
+		resp = confirm("/{{ board.uri }}/ is an NSFW board with potentially pornographic content.\nIf this isn't the kind of thing you want to see, press cancel.\nThis message will only be seen once.");
+		if (!resp){
+			window.location.href="/";
+		}
+		else
+			localStorage.{{ board.uri }}_nsfw = 2;
+	}
+	</script>
+{% endif %}
+
 <div id="uppercontents">
 	<div id="subuppercontents">
 		{{ boardlist.top }}

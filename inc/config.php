@@ -1811,6 +1811,9 @@ $config['mod']['rebuild'] = BOT;
 
 	// File board. Like 4chan /f/
 	$config['file_board'] = false;
+	
+	// NSFW board. Load a disclaimer for this board
+	$config['nsfw_board'] = false;
 
 	// Poll board
 	$config['poll_board'] = false;

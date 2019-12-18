@@ -21,7 +21,7 @@
 			var inMod = false;
 			var modRoot="/"+(inMod ? "mod.php?/" : "");
 		</script>
-					<script type="text/javascript" src="/main.js?2"></script>
+					<script type="text/javascript" src="/main.js?3"></script>
 									</head>
 <body>
 <?php
@@ -45,13 +45,13 @@
 		}
 	}
 
-?><div class="boardlist"><span class="sub" data-description="0">[ <a href="/">home</a> / <a href="/bans">bans</a> / <a href="/all/">all</a> ]</span>  <span class="sub" data-description="1">[ <a href="/b/">g</a> / <a href="/qa/">qa</a> / <a href="/xmas/">xmas</a> ]</span>  <span class="sub" data-description="2">[ <a href="/megu/">megu</a> ]</span>  <span class="sub" data-description="3">[ <a href="https://theatre.kissu.moe">tv</a> / <a href="/agg/">agg</a> / <a href="/poll/">poll</a> ]</span>  <span class="sub" data-description="4">[ <a href="https://himasugi.blog/jp/">hima</a> / <a href="http://4taba.net/board/all">4tab</a> / <a href="https://github.com/ECHibiki/ViQa-Kissu/">ViQa</a> ]</span></div><script type='text/javascript'>if (typeof do_boardlist != 'undefined') do_boardlist();</script>
+?><div class="boardlist"><span class="sub" data-description="0">[ <a href="/">home</a> / <a href="/bans">bans</a> / <a href="/all/">all</a> ]</span>  <span class="sub" data-description="1">[ <a href="/b/">g</a> / <a href="/qa/">qa</a> / <a href="/xmas/">xmas</a> ]</span>  <span class="sub" data-description="2">[ <a href="/megu/">megu</a> ]</span>  <span class="sub" data-description="3">[ <a href="https://theatre.kissu.moe">tv</a> / <a href="/agg/">agg</a> / <a href="/poll/">poll</a> ]</span>  <span class="sub" data-description="4">[ <a href="https://ota-ch.com/jp/index.html">ota</a> / <a href="http://4taba.net/board/all">4tab</a> / <a href="https://github.com/ECHibiki/ViQa-Kissu/">ViQa</a> ]</span></div><script type='text/javascript'>if (typeof do_boardlist != 'undefined') do_boardlist();</script>
 	<header>
 	    <img class="icon" src="../static/kissu-card.png">
 		<h1>Kissu.moe</h1>
 		<div class="subtitle">100% Fun!</div>
 	</header>
-	<img id='bannerimg' class="board_image" src="/static/banners/banner-kissu-6.png" alt="" />
+	<img id='bannerimg' class="board_image" src="/static/banners/banner-kissu-27.jpg" alt="" />
 	<div class="box-wrap">
 	    <!--<fieldset>
 		<legend>Boards</legend>
@@ -114,78 +114,78 @@
 		<div class="box image">
 			<ul>
 									<li>
-						<a href="/qa/res/20472#20583">
-							<img src="/qa/thumb/1576540030882.png" style="width:175px;height:131px" alt="">
+						<a href="/qa/res/20890#20891">
+							<img src="/qa/thumb/1576626557632.png" style="width:175px;height:120px" alt="">
 						</a>
 					</li>
 									<li>
-						<a href="/qa/res/20472#20581">
-							<img src="/qa/thumb/1576538933493.png" style="width:175px;height:97px" alt="">
+						<a href="/qa/res/20890#20890">
+							<img src="/qa/thumb/1576626538694.png" style="width:255px;height:184px" alt="">
 						</a>
 					</li>
 									<li>
-						<a href="/qa/res/20441#20579">
-							<img src="/qa/thumb/1576538114280.png" style="width:174px;height:175px" alt="">
+						<a href="/qa/res/20000#20889">
+							<img src="/qa/thumb/1576626285806.png" style="width:175px;height:168px" alt="">
 						</a>
 					</li>
 									<li>
-						<a href="/qa/res/20557#20577">
-							<img src="/qa/thumb/1576537869322.png" style="width:171px;height:175px" alt="">
+						<a href="/qa/res/20000#20886">
+							<img src="/qa/thumb/1576626121682.png" style="width:175px;height:131px" alt="">
 						</a>
 					</li>
 									<li>
-						<a href="/qa/res/20557#20576">
-							<img src="/qa/thumb/1576537781280.png" style="width:129px;height:174px" alt="">
+						<a href="/qa/res/20845#20884">
+							<img src="/qa/thumb/1576625750613.png" style="width:175px;height:115px" alt="">
 						</a>
 					</li>
 									<li>
-						<a href="/qa/res/20130#20575">
-							<img src="/qa/thumb/1576537629825.png" style="width:175px;height:98px" alt="">
+						<a href="/qa/res/20000#20883">
+							<img src="/qa/thumb/1576625545009.png" style="width:175px;height:99px" alt="">
 						</a>
 					</li>
 									<li>
-						<a href="/qa/res/20207#20574">
-							<img src="/qa/thumb/1576536972774.png" style="width:104px;height:175px" alt="">
+						<a href="/qa/res/20880#20880">
+							<img src="/qa/thumb/1576625020450.png" style="width:255px;height:232px" alt="">
 						</a>
 					</li>
 									<li>
-						<a href="/qa/res/20544#20569">
-							<img src="/qa/thumb/1576534995424.png" style="width:175px;height:98px" alt="">
+						<a href="/qa/res/20811#20878">
+							<img src="/qa/thumb/1576624603745.png" style="width:175px;height:98px" alt="">
 						</a>
 					</li>
 									<li>
-						<a href="/qa/res/20557#20567">
-							<img src="/qa/thumb/1576534804301.png" style="width:167px;height:175px" alt="">
+						<a href="/b/res/2094#2094">
+							<img src="/b/thumb/1576623992502.png" style="width:255px;height:204px" alt="">
 						</a>
 					</li>
 									<li>
-						<a href="/qa/res/20544#20561">
-							<img src="/qa/thumb/1576534480570.png" style="width:175px;height:98px" alt="">
+						<a href="/qa/res/20811#20877">
+							<img src="/qa/thumb/1576623977801.png" style="width:175px;height:131px" alt="">
 						</a>
 					</li>
 									<li>
-						<a href="/qa/res/20544#20558">
-							<img src="/qa/thumb/1576534126512.png" style="width:175px;height:98px" alt="">
+						<a href="/qa/res/20845#20875">
+							<img src="/qa/thumb/1576623419404.png" style="width:175px;height:115px" alt="">
 						</a>
 					</li>
 									<li>
-						<a href="/qa/res/20557#20557">
-							<img src="/qa/thumb/1576533898858.png" style="width:255px;height:232px" alt="">
+						<a href="/qa/res/20845#20873">
+							<img src="/qa/thumb/1576623033568.png" style="width:175px;height:115px" alt="">
 						</a>
 					</li>
 									<li>
-						<a href="/qa/res/20469#20554">
-							<img src="/qa/thumb/1576533092339.png" style="width:175px;height:98px" alt="">
+						<a href="/qa/res/20000#20871">
+							<img src="/qa/thumb/1576622809302.png" style="width:175px;height:131px" alt="">
 						</a>
 					</li>
 									<li>
-						<a href="/qa/res/20469#20553">
-							<img src="/qa/thumb/1576532916873.png" style="width:175px;height:98px" alt="">
+						<a href="/qa/res/20789#20870">
+							<img src="/qa/thumb/1576622560174.png" style="width:175px;height:98px" alt="">
 						</a>
 					</li>
 									<li>
-						<a href="/xmas/res/95#99">
-							<img src="/xmas/thumb/1576532901576.png" style="width:175px;height:175px" alt="">
+						<a href="/qa/res/20000#20869">
+							<img src="/qa/thumb/1576622503182.png" style="width:175px;height:151px" alt="">
 						</a>
 					</li>
 							</ul>
@@ -195,182 +195,182 @@
 			<ul>
 									<li>
 						<strong>/b/</strong>: 
-						<a href="/b/res/1884#2081">
-							<em>&gt;&gt;2080  that has functional be&hellip;</em>
-						</a>
-					</li>
-									<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/20441#20585">
-							<em>&gt;&gt;20584  Yep, I have the same &hellip;</em>
-						</a>
-					</li>
-									<li>
-						<strong>/xmas/</strong>: 
-						<a href="/xmas/res/95#100">
-							<em>&gt;&gt;99  Sure. Might as well make&hellip;</em>
-						</a>
-					</li>
-									<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/20441#20584">
-							<em>My hard drive takes a decent a&hellip;</em>
-						</a>
-					</li>
-									<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/20472#20583">
-							<em>I ended up reading on Commodor&hellip;</em>
+						<a href="/b/res/1884#2097">
+							<em>yeah, ajax.js was written by H&hellip;</em>
 						</a>
 					</li>
 									<li>
 						<strong>/b/</strong>: 
-						<a href="/b/res/1884#2080">
-							<em>Something to consider for the &hellip;</em>
+						<a href="/b/res/1884#2096">
+							<em>having them both on probably c&hellip;</em>
+						</a>
+					</li>
+									<li>
+						<strong>/b/</strong>: 
+						<a href="/b/res/1884#2095">
+							<em>&gt;&gt;2092  I may have fixed it. T&hellip;</em>
 						</a>
 					</li>
 									<li>
 						<strong>/qa/</strong>: 
-						<a href="/qa/res/20544#20582">
-							<em>&gt;&gt;20580  the sad cats of flats</em>
+						<a href="/qa/res/20890#20895">
+							<em>&gt;&gt;20890  That looks awful…</em>
 						</a>
 					</li>
 									<li>
 						<strong>/qa/</strong>: 
-						<a href="/qa/res/20472#20581">
-							<em>&gt;&gt;20474  OH MY GOD  THE /tv/ A&hellip;</em>
+						<a href="/qa/res/20890#20894">
+							<em>original is better</em>
 						</a>
 					</li>
 									<li>
 						<strong>/qa/</strong>: 
-						<a href="/qa/res/20544#20580">
-							<em>&gt;&gt;20571  looks like cat eyes</em>
+						<a href="/qa/res/20890#20893">
+							<em>It's, different, but I don't d&hellip;</em>
 						</a>
 					</li>
 									<li>
 						<strong>/qa/</strong>: 
-						<a href="/qa/res/20441#20579">
-							<em>i use hydrus with an awful hal&hellip;</em>
+						<a href="/qa/res/20890#20892">
+							<em>i like the current one better</em>
 						</a>
 					</li>
 									<li>
 						<strong>/qa/</strong>: 
-						<a href="/qa/res/4165#20578">
-							<em>&gt;&gt;20541  cue ayy will laugh la&hellip;</em>
+						<a href="/qa/res/20890#20891">
+							<em>and this is the current</em>
 						</a>
 					</li>
 									<li>
 						<strong>/qa/</strong>: 
-						<a href="/qa/res/20557#20577">
-							<em>&gt;&gt;20567  i will never forget B&hellip;</em>
+						<a href="/qa/res/20890#20890">
+							<em>Would you prefer a kissu heade&hellip;</em>
 						</a>
 					</li>
 									<li>
 						<strong>/qa/</strong>: 
-						<a href="/qa/res/20557#20576">
-							<em>&gt;&gt;20573  You sure love asking &hellip;</em>
+						<a href="/qa/res/20000#20889">
+							<em>Nairaland!!! :P</em>
 						</a>
 					</li>
 									<li>
 						<strong>/qa/</strong>: 
-						<a href="/qa/res/20130#20575">
+						<a href="/qa/res/19590#20888">
+							<em>&gt;&gt;20813  very nice yuno</em>
+						</a>
+					</li>
+									<li>
+						<strong>/qa/</strong>: 
+						<a href="/qa/res/20845#20887">
+							<em>&gt;&gt;20884  lala is riding a bana&hellip;</em>
+						</a>
+					</li>
+									<li>
+						<strong>/qa/</strong>: 
+						<a href="/qa/res/20000#20886">
 							<em>(no comment)</em>
 						</a>
 					</li>
 									<li>
 						<strong>/qa/</strong>: 
-						<a href="/qa/res/20207#20574">
-							<em>Will anyone play today?</em>
+						<a href="/qa/res/20000#20885">
+							<em>&gt;&gt;20883  wanna torp those dest&hellip;</em>
 						</a>
 					</li>
 									<li>
 						<strong>/qa/</strong>: 
-						<a href="/qa/res/20557#20573">
-							<em>But how do I remember them if &hellip;</em>
+						<a href="/qa/res/20845#20884">
+							<em>it's kinda hard to edit in stu&hellip;</em>
 						</a>
 					</li>
 									<li>
 						<strong>/qa/</strong>: 
-						<a href="/qa/res/19590#20572">
-							<em>eatin ‘za  accidentally got fl&hellip;</em>
+						<a href="/qa/res/20000#20883">
+							<em>&gt;&gt;20863  Back now.</em>
 						</a>
 					</li>
 									<li>
 						<strong>/qa/</strong>: 
-						<a href="/qa/res/20544#20571">
-							<em>&gt;&gt;20544  why do they have line&hellip;</em>
+						<a href="/qa/res/20880#20882">
+							<em>&gt;&gt;20881  I can</em>
 						</a>
 					</li>
 									<li>
 						<strong>/qa/</strong>: 
-						<a href="/qa/res/20544#20570">
-							<em>&gt;&gt;20569  my god they're flat</em>
+						<a href="/qa/res/20880#20881">
+							<em>cannot believe ota did this</em>
 						</a>
 					</li>
 									<li>
 						<strong>/qa/</strong>: 
-						<a href="/qa/res/20544#20569">
-							<em>&gt;&gt;20565  no fatties in the del&hellip;</em>
+						<a href="/qa/res/20880#20880">
+							<em>&gt;ota</em>
 						</a>
 					</li>
 									<li>
 						<strong>/qa/</strong>: 
-						<a href="/qa/res/20557#20568">
-							<em>&gt;&gt;20562  Sailor Moon, DBZ, any&hellip;</em>
+						<a href="/qa/res/20000#20879">
+							<em>&gt;&gt;20719  boson</em>
 						</a>
 					</li>
 									<li>
 						<strong>/qa/</strong>: 
-						<a href="/qa/res/20557#20567">
-							<em>Poor Bellnoa…</em>
+						<a href="/qa/res/20811#20878">
+							<em>They're alright, but I don't r&hellip;</em>
+						</a>
+					</li>
+									<li>
+						<strong>/b/</strong>: 
+						<a href="/b/res/2094#2094">
+							<em>steamginx</em>
 						</a>
 					</li>
 									<li>
 						<strong>/qa/</strong>: 
-						<a href="/qa/res/19121#20566">
-							<em>Omg hai ^___^ I’m Ai-san and I&hellip;</em>
+						<a href="/qa/res/20811#20877">
+							<em>&gt;&gt;20874  I don't appreciate yo&hellip;</em>
 						</a>
 					</li>
 									<li>
 						<strong>/qa/</strong>: 
-						<a href="/qa/res/20544#20565">
-							<em>&gt;&gt;20561  What if they get fat &hellip;</em>
+						<a href="/qa/res/20789#20876">
+							<em>Try applying for internships f&hellip;</em>
 						</a>
 					</li>
 									<li>
 						<strong>/qa/</strong>: 
-						<a href="/qa/res/20557#20564">
-							<em>&gt;&gt;20562  movies</em>
+						<a href="/qa/res/20845#20875">
+							<em>fixed</em>
 						</a>
 					</li>
 									<li>
 						<strong>/qa/</strong>: 
-						<a href="/qa/res/20557#20563">
-							<em>I haven't forgotten her…</em>
+						<a href="/qa/res/20811#20874">
+							<em>&gt;&gt;20817  Agreed. A harem serie&hellip;</em>
 						</a>
 					</li>
 									<li>
 						<strong>/qa/</strong>: 
-						<a href="/qa/res/20557#20562">
-							<em>can anyone give me an example &hellip;</em>
+						<a href="/qa/res/20845#20873">
+							<em>pppppssssssssssssssssshhhhhhhh&hellip;</em>
 						</a>
 					</li>
 									<li>
 						<strong>/qa/</strong>: 
-						<a href="/qa/res/20544#20561">
-							<em>&gt;&gt;20559  oh yes</em>
+						<a href="/qa/res/20762#20872">
+							<em>I had to look her up. Very cut&hellip;</em>
 						</a>
 					</li>
 									<li>
 						<strong>/qa/</strong>: 
-						<a href="/qa/res/20544#20559">
-							<em>&gt;&gt;20558  Oh no!</em>
+						<a href="/qa/res/20000#20871">
+							<em>(no comment)</em>
 						</a>
 					</li>
 									<li>
 						<strong>/qa/</strong>: 
-						<a href="/qa/res/20544#20558">
-							<em>&gt;&gt;20556  Possessing magical po&hellip;</em>
+						<a href="/qa/res/20789#20870">
+							<em>Well, I'm one of the last peop&hellip;</em>
 						</a>
 					</li>
 							</ul>
@@ -418,9 +418,9 @@
 		<div class="mainBox">
 			<h2>Stats</h2>
 			<ul>
-				<li>Total posts: 24,157</li>
-				<li>Unique posters: 532</li>
-				<li>Active content: 6.56 GB</li>
+				<li>Total posts: 24,497</li>
+				<li>Unique posters: 530</li>
+				<li>Active content: 6.75 GB</li>
 			</ul>
 		</div>
 	</div>
