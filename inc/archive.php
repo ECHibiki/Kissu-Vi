@@ -135,8 +135,7 @@ class Archive {
 
         // If archive is set to live forever return
         if(!$config['archive']['lifetime'])
-            //return;
-			$azxc = 0;
+            return;
 			
         // Delete all static pages and files for archived threads that has timed out
         $query = prepare(sprintf("SELECT `id`, `files` FROM ``archive_%s`` WHERE `lifetime` < :lifetime AND `featured` = 0 AND `mod_archived` = 0", $board['uri']));
@@ -147,18 +146,18 @@ class Archive {
 
             foreach (json_decode($thread['files']) as $f) {
 				if(!($f->thumb == "spoiler" || $f->thumb == "file" || $f->thumb == "deleted")){
-					unlink($board['dir'] . $config['dir']['archive'] . $config['dir']['thumb'] . $f->thumb);
+					@unlink($board['dir'] . $config['dir']['archive'] . $config['dir']['thumb'] . $f->thumb);
 				}
 				if($f->thumb != "deleted"){
-					unlink($board['dir'] . $config['dir']['archive'] . $config['dir']['img'] . $f->file);
+					@unlink($board['dir'] . $config['dir']['archive'] . $config['dir']['img'] . $f->file);
 				}
             }
 
             // Delete Thread
-            unlink($board['dir'] . $config['dir']['archive'] . $config['dir']['res'] . sprintf($config['file_page'], $thread['id']));
+            @unlink($board['dir'] . $config['dir']['archive'] . $config['dir']['res'] . sprintf($config['file_page'], $thread['id']));
             // Delete JSON
 			if($config['api']['enabled'])
-				unlink($board['dir'] . $config['dir']['archive'] . $config['dir']['res'] . sprintf($config['file_page_no_ext'], $thread['id']) . ".json");
+				@unlink($board['dir'] . $config['dir']['archive'] . $config['dir']['res'] . sprintf($config['file_page_no_ext'], $thread['id']) . ".json");
             
 			// Delete Vote Data
             //$del_query = prepare("DELETE FROM ``votes_archive`` WHERE `board` = :board AND `thread_id` = :thread_id");

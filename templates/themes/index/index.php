@@ -1,4 +1,5 @@
-
+<!--{% include 'checkban.php' %}
+-->
 <!doctype html>
 <html>
 <head>
@@ -18,7 +19,6 @@
 	{% include 'header.html' %}
 </head>
 <body>
-{% include 'checkban.php' %}
 {{ boardlist.top }}
 	<header>
 	    <img class="icon" src="{{ settings.icon }}">
@@ -123,4 +123,5 @@
 	</script>
 </body>
 </html>
-{% include 'checkban.php' %}
+<!--{% include 'checkban.php' %}
+-->

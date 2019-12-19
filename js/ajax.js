@@ -87,15 +87,21 @@ $(window).ready(function() {
 							$.ajax({
 								url: document.location,
 								success: function(data) {
-									$(data).find('div.post.reply').each(function() {
-										var id = $(this).attr('id');
-										if($('#' + id).length == 0) {
-											$(this).insertAfter($('div.post:last').next()).after('<br class="clear">');
-											$(document).trigger('new_post', this);
-											// watch.js & auto-reload.js retrigger
-											setTimeout(function() { $(window).trigger("scroll"); }, 100);
-										}
+									console.log(data);
+									$(data).find('div.thread').each(function() {
+										var tr_id = $(this).attr('id');
+										console.log(tr_id);
+										$(this).find('.post.reply').each(function() {
+											var id = $(this).attr('id');
+											if($('#' + id).length == 0) {
+												$(this).insertAfter($('#' + tr_id + ' div.post:last').next());
+												$(document).trigger('new_post', this);
+												// watch.js & auto-reload.js retrigger
+												setTimeout(function() { $(window).trigger("scroll"); }, 100);
+											}
+										})
 									});
+								
 									
 									highlightReply(post_response.id);
 									window.location.hash = post_response.id;
@@ -105,6 +111,10 @@ $(window).ready(function() {
 									$(form).find('input[type="submit"]').removeAttr('disabled');
 									$(form).find('input[name="subject"],input[name="file_url"],\
 										textarea[name="body"],input[type="file"]').val('').change();
+								},
+								error: function(xhr, status, er){
+									$(form).find('input[type="submit"]').val("(Error)");
+									$(form).find('input[type="submit"]').removeAttr('disabled');
 								},
 								cache: false,
 								contentType: false,

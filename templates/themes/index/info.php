@@ -113,7 +113,7 @@
 	);
 	
 	$theme['config'][] = Array(
-		'title' => 'PHP file',
+		'title' => 'Index file',
 		'name' => 'PHP',
 		'type' => 'text',
 		'default' => 'index.php',

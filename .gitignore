@@ -19,6 +19,9 @@
 #logs
 *.log
 
+#compressions
+*.gz
+
 #sql files
 
 # static html and json

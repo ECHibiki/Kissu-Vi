@@ -6,6 +6,29 @@ require 'inc/lib/IP/Lifo/IP/CIDR.php';
 
 use Lifo\IP\CIDR;
 
+function make_parsable(&$ip){
+	$ip = explode(".", $ip);
+	foreach ($ip as &$component){
+		$end_pt = 0;
+		for($i = 0 ; $i < strlen($component); $i++){
+			if($component[$i] == "0")
+				$end_pt = $i + 1;
+			else{
+				if($end_pt == strlen($component)){
+					$component = "0";
+					//var_dump($ip);
+				}
+				else{
+					$component = substr($component, $i);
+				}
+				break;
+			}
+		}
+	};
+	$ip = implode(".", $ip);
+	return $ip;
+}
+
 class Bans {
 	static public function range_to_string($mask) {
 		list($ipstart, $ipend) = $mask;
@@ -119,7 +142,7 @@ class Bans {
 	
 	static public function find($ip, $board = false, $get_mod_info = false) {
 		global $config;
-		
+		make_parsable($ip);
 		$query = prepare('SELECT ``bans``.*' . ($get_mod_info ? ', `username`' : '') . ' FROM ``bans``
 		' . ($get_mod_info ? 'LEFT JOIN ``mods`` ON ``mods``.`id` = `creator`' : '') . '
 		WHERE

@@ -1,3 +1,5 @@
+<!--{% include 'checkban.php' %}
+-->
 <!doctype html>
 <html>
 <head>
@@ -12,7 +14,6 @@
 <body class="8chan vichan {% if mod %}is-moderator{% else %}is-not-moderator{% endif %} theme-catalog active-catalog" data-stylesheet="{% if config.default_stylesheet.1 != '' %}{{ config.default_stylesheet.1 }}{% else %}default{% endif %}">
 <div id="uppercontents">
 	<div id="subuppercontents">
-	{% include 'checkban.php' %}
 		{{ boardlist.top }}
 	<a name="top"></a>
 	{% if pm %}<div class="top_notice">You have <a href="?/PM/{{ pm.id }}">an unread PM</a>{% if pm.waiting > 0 %}, plus {{ pm.waiting }} more waiting{% endif %}.</div><hr />{% endif %}
@@ -178,4 +179,5 @@
 </div>
 </body>
 </html>
-{% include 'checkban.php' %}
+<!--{% include 'checkban.php' %}
+-->

@@ -1,4 +1,4 @@
-{% include 'checkban.php' %}
+<!-- {% include 'checkban.php' %} -->
 <!doctype html>
 <html>
 <head>
@@ -163,4 +163,6 @@
 	</div>
 </body>
 </html>
+<!--
 {% include 'checkban.php' %}
+-->

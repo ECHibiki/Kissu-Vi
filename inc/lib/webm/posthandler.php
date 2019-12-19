@@ -21,6 +21,7 @@ function postHandler($post) {
             $tn_path = $board['dir'] . $config['dir']['thumb'] . $file->file_id . '.jpg';
             if(0 == make_webm_thumbnail($file->file_path, $tn_path, $file->thumbwidth, $file->thumbheight, $webminfo)) {
               $file->thumb = $file->file_id . '.jpg';
+              $file->thumb_path = sprintf($config['board_path'], $board['uri']) . $config['dir']['thumb'] . $file->file_id . '.jpg';
             }
             else {
               $file->thumb = 'file';
