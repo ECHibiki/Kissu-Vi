@@ -1,4 +1,4 @@
-{% include 'checkban.php' %}
+<!--{% include 'checkban.php' %}-->
 <!doctype html>
 <html>
 <head>
@@ -25,6 +25,18 @@
 	<title>{{ board.url }} - {{ meta_subject }}</title>
 </head>
 <body class="8chan vichan {% if mod %}is-moderator{% else %}is-not-moderator{% endif %} active-thread" data-stylesheet="{% if config.default_stylesheet.1 != '' %}{{ config.default_stylesheet.1 }}{% else %}default{% endif %}">
+	{% if config.nsfw_board %}
+	<script>
+	if(typeof localStorage.{{ board.uri }}_nsfw == "undefined" || localStorage.{{ board.uri }}_nsfw != 2){
+		resp = confirm("/{{ board.uri }}/ is an NSFW board with potentially pornographic content.\nIf this isn't the kind of thing you want to see, press cancel.\nThis message will only be seen once.");
+		if (!resp){
+			window.location.href="/";
+		}
+		else
+			localStorage.{{ board.uri }}_nsfw = 2;
+	}
+	</script>
+{% endif %}
 	<div id="uppercontents">
 	<div id="subuppercontents">
 	{{ boardlist.top }}
@@ -32,39 +44,6 @@
 	{% if pm %}<div class="top_notice">You have <a href="?/PM/{{ pm.id }}">an unread PM</a>{% if pm.waiting > 0 %}, plus {{ pm.waiting }} more waiting{% endif %}.</div><hr />{% endif %}
 	{% if config.url_banner_list %}<img id="bannerimg" class="board_image" src="{{ random(config.url_banner_list|split(',')) }}" {% if config.banner_width or config.banner_height %}style="{% if config.banner_width %}width:{{ config.banner_width }}px{% endif %};{% if config.banner_width %}height:{{ config.banner_height }}px{% endif %}" {% endif %}alt="" />
 
-<script>
-document.getElementById("bannerimg").onclick = function(){
-
-        var request = new XMLHttpRequest(); 
-        var motd = "";
-        request.open("GET", 'https://kissu.moe/motd.txt');
-                request.onreadystatechange = function() { 
-                if (this.readyState === 4 && this.status === 200) {
-                        motd = this.responseText;
-                        console.log(motd);
-                        var request = new XMLHttpRequest(); 
-                        localStorage.firstLoad = 3;
-                        alert(
-                        "<h1>Welcome to kissu.moe!</h1><br/>\
-                         <h2>Message Of the Day</h2>\
-                        <p><strong>" + motd + "</strong></p>\
-                        <h2>Boards</h2>\
-                        <ul style='text-align: left;'><li>/qa/ - Random content(NSFW spoilered)</li><li>/b/ - Site Developement</li><li>/megu/ - NSFW content</li></ul>\
-                        <h2>Select Default Theme</h2>\
-                        Other options are selectable later in options<br/><br/>\
-                        <label>Default Theme: <select onchange='$(\"#style-select-\" + $(this).val()).click();'><option value='1'>Light</option><option selected='selected' value='2'>Dark</option><option value='3'>Special</option></select></label><br/>\
-                        <h2>Rules</h2>\
-                        <p>Don't post obnoxious stuff. Bans are only reserved for the worst cases of people. A deletion does not mean it's personal</p><hr/>\
-                        <br/>Contact Vermin for issues, site bugs and feedback</p>\
-                        "
-                        );
-
-                };
-
-        }
-        request.send();
-}
-</script>
 
 {% endif %}
 	<header>
@@ -89,13 +68,19 @@ document.getElementById("bannerimg").onclick = function(){
 
 <div id="topcontainer">
 
-	{{ config.ad.top }}
-		
+	{{ config.ad.top }}		
+ 
+        <div>
+        {% if not no_post_form %}
                 {% if config.advanced_post_form  %}
                         {% include 'post_form_advanced.html' %}
                 {% else %}
                         {% include 'post_form.html' %}
                 {% endif %}
+
+        {% endif %}
+        </div>
+
 </div>
 </div>
 </div>
@@ -147,4 +132,4 @@ document.getElementById("bannerimg").onclick = function(){
 </div>
 </body>
 </html>
-{% include 'checkban.php' %}
+<!--{% include 'checkban.php' %}-->

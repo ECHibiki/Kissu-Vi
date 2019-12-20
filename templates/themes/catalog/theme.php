@@ -19,7 +19,7 @@
 
 				$action = generation_strategy("sb_catalog", array($board));
 				if ($action == 'delete') {
-					file_unlink($config['dir']['home'] . $board . '/catalog.php');
+					file_unlink($config['dir']['home'] . $board . '/catalog.html');
 					file_unlink($config['dir']['home'] . $board . '/index.rss');
 				}
 				elseif ($action == 'rebuild') {
@@ -31,7 +31,7 @@
 
 			$action = generation_strategy("sb_catalog", array($board));
 			if ($action == 'delete') {
-				file_unlink($config['dir']['home'] . $board . '/catalog.php');
+				file_unlink($config['dir']['home'] . $board . '/catalog.html');
 				file_unlink($config['dir']['home'] . $board . '/index.rss');
 			}
 			elseif ($action == 'rebuild') {
@@ -116,7 +116,7 @@
 			
 			$antibot = create_antibot($board['uri']);
 
-			file_write($config['dir']['home'] . $board_name . '/catalog.php', Element('themes/catalog/catalog.php', Array(
+			file_write($config['dir']['home'] . $board_name . '/catalog.html', Element('themes/catalog/catalog.php', Array(
 				'antibot' => $antibot,
 				'settings' => $settings,
 				'config' => $config,

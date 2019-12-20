@@ -9,6 +9,8 @@ require_once 'inc/bans.php';
 require_once 'inc/polling.php';
 require_once 'inc/image.php';
 
+require_once 'inc/mod/pages.php';
+
 $dropped_post = false;
 
 // Is it a post coming from NNTP? Let's extract it and pretend it's a normal post.
@@ -176,15 +178,17 @@ elseif (isset($_GET['Newsgroups'])) {
 
 if (isset($_POST['delete'])) {
 	// Delete
-	$mod = false;
-	if(isset($_POST['mod']))	$mod = true;
+//TODO find a more secure method to do this
+	global $mod;
+	check_login(false);
+	$is_mod = $mod && strpos($_SERVER['HTTP_REFERER'],'mod?/') || strpos($_SERVER['HTTP_REFERER'],'mod.php?/');
 	
 	if (!isset($_POST['board'], $_POST['pswrd']))
 		error($config['error']['bot']);
 	
 	$password = &$_POST['pswrd'];
 	
-	if ($password == '' && !$mod)
+	if ($password == '' && !$is_mod)
 		error($config['error']['invalidpassword']);
 	
 	$delete = array();
@@ -200,8 +204,8 @@ if (isset($_POST['delete'])) {
 	if (!openBoard($_POST['board']))
 		error($config['error']['noboard']);
 
-	if ((!isset($_POST['mod']) || !$_POST['mod']) && $config['board_locked']) {
-    	error("Board is locked");
+	if (!$is_mod && $config['board_locked']) {
+    		error("Board is locked");
 	}
 	
 	// Check if banned
@@ -229,24 +233,34 @@ if (isset($_POST['delete'])) {
 				$thread = $thread_query->fetch(PDO::FETCH_ASSOC);	
 			}
 
-			if (!$mod && $password != '' && $post['password'] != $password && (!$thread || $thread['password'] != $password))
+			if (!$is_mod && $password != '' && $post['password'] != $password && (!$thread || $thread['password'] != $password))
 				error($config['error']['invalidpassword']);
 			
-			if (!$mod &&$post['time'] > time() - $config['delete_time'] && (!$thread || $thread['password'] != $password)) {
+			if (!$is_mod &&$post['time'] > time() - $config['delete_time'] && (!$thread || $thread['password'] != $password)) {
 				error(sprintf($config['error']['delete_too_soon'], until($post['time'] + $config['delete_time'])));
 			}
-			
 			if (isset($_POST['file'])) {
 				// Delete just the file
-				deleteFile($id);
-				if(!$mod) modLog("User deleted file from his own post #$id");
-				else modLog("Mod deleted file from post #$id");
+				if(!$is_mod){ 
+					deleteFile($id);
+					modLog("User deleted file from his own post #$id");
+				}
+				else{
+					mod_deletefile($board['uri'], $id, NULL);
+					modLog("Mod deleted file from post #$id");
+				}
 			} else {
 				// Delete entire post
-				deletePostKeepOrder($id);
+				
 
-				if(!$mod) modLog("User deleted his own post #$id");
-				else modLog("Mod deleted file from post #$id");
+				if(!$is_mod){
+					 deletePost($id);
+					 modLog("User deleted his own post #$id");
+				}
+				else {
+					mod_delete($board['uri'], $id, false);				
+					modLog("Mod deleted file from post #$id");
+				}
 			}
 
 			_syslog(LOG_INFO, 'Deleted post: ' .
@@ -257,7 +271,6 @@ if (isset($_POST['delete'])) {
 	
 	buildIndex();
 
-	$is_mod = isset($_POST['mod']) && $_POST['mod'];
 	$root = $is_mod ? $config['root'] . $config['file_mod'] . '?/' : $config['root'];
 
 	if (!isset($_POST['json_response'])) {
@@ -499,7 +512,7 @@ elseif (isset($_POST['post']) || $dropped_post) {
 			if ($post['sticky'] && !hasPermission($config['mod']['sticky'], $board['uri']))
 				error($config['error']['noaccess']);
 			if ($post['locked'] && !hasPermission($config['mod']['lock'], $board['uri']))
-https://www.youtube.com/watch?v=_5joTyy3CCo				error($config['error']['noaccess']);
+				error($config['error']['noaccess']);
 			if ($post['raw'] && !hasPermission($config['mod']['rawhtml'], $board['uri']))
 				error($config['error']['noaccess']);
 		}
@@ -775,6 +788,8 @@ https://www.youtube.com/watch?v=_5joTyy3CCo				error($config['error']['noaccess'
 			error(sprintf($config['error']['toolong'], 'subject'));
 		if (!$mod && mb_strlen($post['body']) > $config['max_body'])
 			error($config['error']['toolong_body']);
+		if (!$mod && substr_count($post['body'], PHP_EOL) > $config['max_newlines'])
+			error($config['error']['toomanylines']);
 		if (mb_strlen($post['password']) > 20)
 			error(sprintf($config['error']['toolong'], 'password'));
 	}

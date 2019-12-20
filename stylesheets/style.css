@@ -1,3 +1,21 @@
+[class|="confetti"] {
+  position: absolute;
+}
+
+.red {
+  background-color: #E94A3F;
+}
+
+.yellow {
+  background-color: #FAA040;
+}
+
+.blue {
+  background-color: #5FC9F5;
+}
+
+
+
 #style-select{
 	position:relative;
 	z-index: 2;
@@ -51,7 +69,8 @@ span.glowgold{
 /* Mascots */
 #mascot-img {
   position: fixed;
-  z-index: -10;
+  /* using this we could remove z-index fuckery */
+  pointer-events: none;
 }
 
 /* Original CSS */
@@ -137,8 +156,8 @@ header div.subtitle {
   font-size: 8pt;
 }
 
-form {
-  margin-bottom: 4em;
+form form_submit{
+  margin-bottom: 1em;
 }
 
 form table {
@@ -1384,4 +1403,25 @@ div.mix {
 
 .poll_data_text{
 	padding: 3em 4em;
+}
+
+#ban-home-container{
+ 	width:50%;
+	margin:auto;
+	text-align:center;
+}
+
+#ban-search-form{
+	margin:10px;
+}
+
+.ban-option{
+	font-size:18px;
+}
+
+.ban-search-option{
+  display: inline-block;
+  width: 20.5em;
+  padding:0.2em;
+  text-align: right;
 }

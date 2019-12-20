@@ -1,26 +1,32 @@
-
+<!--{% include 'checkban.php' %}
+-->
 <!doctype html>
 <html>
 <head>
+<script type="text/javascript">
+	  var
+                        active_page = "home"
+            , board_name = 'home';
+</script>
+
     <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
 	<title>{{ settings.title }}</title>
 	<link rel="stylesheet" media="screen" href="{{ config.url_stylesheet }}"/>
 	<link rel="stylesheet" media="screen" href="{{ config.root }}{{ settings.css }}"/>
 	{% if config.url_favicon %}<link rel="shortcut icon" href="{{ config.url_favicon }}" />{% endif %}
-	{% if config.default_stylesheet.1 != '' %}<link rel="stylesheet" type="text/css" id="stylesheet" href="{{ config.uri_stylesheets }}{{ config.default_stylesheet.1 }}">{% endif %}
+	<!-- {% if config.default_stylesheet.1 != '' %}<link rel="stylesheet" type="text/css" id="stylesheet" href="{{ config.uri_stylesheets }}{{ config.default_stylesheet.1 }}">{% endif %} -->
 	{% if config.font_awesome %}<link rel="stylesheet" href="{{ config.root }}{{ config.font_awesome_css }}">{% endif %}
 	{% include 'header.html' %}
 </head>
 <body>
-{% include 'checkban.php' %}
 {{ boardlist.top }}
 	<header>
 	    <img class="icon" src="{{ settings.icon }}">
 		<h1>{{ settings.title }}</h1>
 		<div class="subtitle">{{ settings.subtitle }}</div>
 	</header>
-	{% if config.url_banner_list %}<img class="board_image" src="{{ random(config.url_banner_list|split(',')) }}" {% if config.banner_width or config.banner_height %}style="{% if config.banner_width %}width:{{ config.banner_width }}px{% endif %};{% if config.banner_width %}height:{{ config.banner_height }}px{% endif %}" {% endif %}alt="" />{% endif %}
-	
+	{% if config.url_banner_list %}<img id='bannerimg' class="board_image" src="{{ random(config.url_banner_list|split(',')) }}" {% if config.banner_width or config.banner_height %}style="{% if config.banner_width %}width:{{ config.banner_width }}px{% endif %};{% if config.banner_width %}height:{{ config.banner_height }}px{% endif %}" {% endif %}alt="" />{% endif %}
+
 	<div class="box-wrap">
 	    <!--<fieldset>
 		<legend>Boards</legend>
@@ -69,8 +75,14 @@
 	        <br>
 	        <div class="quoteofnow">{{ settings.quoteofnow }}</div>
 	        <br>
+		{% if settings.embeded %}
 	        <iframe class ="videoofnow" width="560" height="315" src="{{ settings.videoofnow }}"></iframe>
-	        <br>
+	        {% else %}
+		<video class ="videoofnow" width="560" height="315" controls autoplay>
+			<source src="{{ settings.videoofnow }}">
+		</video>
+		{% endif %}
+		<br>
 	    </div>
 	    <div class="ban">
 		{% if news|count == 0 %}
@@ -106,6 +118,10 @@
 		<br>Tinyboard Copyright &copy; 2010-2014 Tinyboard Development Group    
 		<br><a href="https://engine.vichan.net/">vichan</a> Copyright &copy; 2012-2018 vichan-devel
 	</footer>
+<script type="text/javascript">
+		ready();
+	</script>
 </body>
 </html>
-{% include 'checkban.php' %}
+<!--{% include 'checkban.php' %}
+-->

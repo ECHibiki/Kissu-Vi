@@ -119,7 +119,7 @@ $pages = array(
 	'/(\%b)/' . preg_quote($config['dir']['res'], '!') .
 			str_replace('%d', '(\d+)', preg_quote($config['file_page'], '!'))	=> 'view_thread',
 	'/(\%b)/' . preg_quote($config['dir']['res'], '!') .
-		str_replace(array('%d', '\.php'), array('(\d+)', ''), preg_quote($config['file_page'], '!'))	=> 'view_thread',
+		str_replace(array('%d', '\.html'), array('(\d+)', ''), preg_quote($config['file_page'], '!'))	=> 'view_thread',
 
 	'/(\%b)/' . preg_quote($config['dir']['res'], '!') .
 			str_replace(array('%d','%s'), array('(\d+)', '[a-z0-9-]+'), preg_quote($config['file_page50_slug'], '!'))	=> 'view_thread50',

@@ -70,14 +70,13 @@ class Api {
 		'images' => 1,
 		'sticky' => 1,
 		'locked' => 1,
-		'last_modified' => 1
+		'last_modified' => 1,
 	);
 
 	private function translateFields($fields, $object, &$apiPost) {
 		foreach ($fields as $local => $translated) {
 			if (!isset($object->$local))
-				continue;
-
+				continue;			
 			$toInt = isset(self::$ints[$translated]);
 			$val = $object->$local;
 			if ($val !== null && $val !== '') {
@@ -88,6 +87,12 @@ class Api {
 	}
 
 	private function translateFile($file, $post, &$apiPost) {
+		if($file->file == "deleted"){
+			$apiPost['filedeleted'] = 1;
+		}
+		else if($file->thumb == "spoiler"){
+			$apiPost['spoiler'] = 1;
+		}
 		$this->translateFields($this->fileFields, $file, $apiPost);
 		$apiPost['filename'] = @substr($file->name, 0, strrpos($file->name, '.'));
 		$dotPos = strrpos($file->file, '.');
@@ -148,18 +153,49 @@ class Api {
 		return $apiPost;
 	}
 
+	function translateArchive($arch_arr){
+		$li = array();
+		for($i = 0 ; $i < sizeof($arch_arr) ; $i++){
+			$li[$i] = intval($arch_arr[$i]["id"]);
+		}
+		return $li;
+	}
+	
 	function translateThread(Thread $thread, $threadsPage = false) {
+		global $config;
 		$apiPosts = array();
 		$op = $this->translatePost($thread, $threadsPage);
+		$op_limits_checked = false;
+		if(isset($op["replies"] )){
+			$op_limits_checked = true;
+			$op["bumplimit"] = $op["replies"] > $config["reply_limit"] && $config["reply_limit"] != 0 ? 1 : 0;
+		}
+		if(isset($op["images"] )){
+			$op["imagelimit"] = $op["images"] > $config["image_hard_limit"] && $config["image_hard_limit"] != 0 ? 1 : 0;
+			$op_limits_checked = true;
+		}
+		if(!$op_limits_checked && !$threadsPage){
+			$post_count = $image_count = 0;
+			foreach ($thread->posts as $p) {
+				$post_count++;
+				if (isset($p->files))
+					$image_count++;
+			}
+			$op["bumplimit"] = $config["reply_limit"] != 0 && $post_count > $config["reply_limit"] ? 1 : 0;
+			$op["imagelimit"] = $config["image_hard_limit"] != 0 && $image_count > $config["image_hard_limit"] ? 1 : 0;
+		}
+		
+		
 		if (!$threadsPage) $op['resto'] = 0;
 		$apiPosts['posts'][] = $op;
-
+		
+		
 		foreach ($thread->posts as $p) {
 			$apiPosts['posts'][] = $this->translatePost($p, $threadsPage);
 		}
-
 		return $apiPosts;
 	}
+	
 
 	function translatePage(array $threads) {
 		$apiPage = array();
@@ -173,7 +209,10 @@ class Api {
 		$apiPage = array();
 		foreach ($threads as $thread) {
 			$ts = $this->translateThread($thread, $threadsPage);
-			$apiPage['threads'][] = current($ts['posts']);
+			$first = array_shift($ts["posts"]);
+			if(!$threadsPage)
+				$first["last_replies"] = $ts["posts"];
+			$apiPage['threads'][] = $first;
 		}
 		return $apiPage;
 	}

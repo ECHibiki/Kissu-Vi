@@ -305,7 +305,21 @@ function displayPoll(response_text, reference_element){
 				var key = Object.keys(json_arr[label])[0];
 				var value = json_arr[label][key];
 				if(key == "expires"){
-					simple_string += "<span>Expires in: " + Math.round((parseInt(value) - Date.now()/1000) / 60 / 60)  +" Hours</span>";
+					if(value == json_arr[label]["created"]){
+					    expiration_time = "Never";
+					}
+					else{
+						var expiration_time = Math.round((parseInt(value) - Date.now()/1000) / 60 / 60);
+						expiration_time = expiration_time < 0 ? "Poll Finished" : expiration_time; 
+					}
+					if(typeof expiration_time == "string"){}
+					else if(expiration_time / 24 < 1){
+						expiration_time = expiration_time  + " Hours";
+					}
+					else {
+					  expiration_time = Math.round(expiration_time / 24) +" Days"
+					}
+					simple_string = simple_string + "<span>Expires in: " +  expiration_time +" </span>";
 					continue;
 				}
 				simple_string += "<span>" + key + " : " + value + "</span><br/>"; 
@@ -357,14 +371,22 @@ var bar_cart = new Chart(bar_chart_canvas,
 		labels: poll_labels,
 		datasets:
 		[{
-			label:'test',
+			label:"Poll Votes",
 			data: poll_data,
 			backgroundColor: random_bg
 		}]
 	},
 	options:
 	{
-		
+		scales: {
+	   		xAxes: [{
+                		ticks: {
+                    			beginAtZero: true,
+					stepSize: 1
+                		}
+            		}]
+
+			}
 	}
 });
 
@@ -376,7 +398,7 @@ var pie_cart = new Chart(pie_chart_canvas,
                 labels: poll_labels,
                 datasets:
                 [{
-                        label:'test',
+                        label: poll_labels,
                         data: poll_data,
                         backgroundColor: random_bg
                 }]

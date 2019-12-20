@@ -1,0 +1,21 @@
+<div id="ban-home-container">
+<a class="ban-option" href='{{ file_bans_url }}'>Get all bans</a><br/>
+<a class="ban-option" href='javascript:void(0)' onclick='
+	document.getElementById("ban-search-form").style="display:inline-block";
+'>Search Bans</a><br/>
+<form id='ban-search-form' id='search' action='/ban-list.php' method='get' style='display:none'>
+	<div style="">
+	Leave a field blank if you don't want it<br/>
+	Use the minus sign - to remove something from search<br/>
+	<label class='ban-search-option'>IP : <input type='text' name='ip'></label><br/>
+	<label class='ban-search-option'>Reason : <input type='text' name='reason' placeholder='try -proxy'></label><br/>
+	<label class='ban-search-option'>Expiration : <input type='text' name='duration'></label><br/>
+	<label class='ban-search-option'>Post : <input type='text' name='post'></label><br/>
+	<input type='submit' value='search' style='margin-top:0.5em'>
+	</div>
+</form>
+<br/>
+{% if mod_board %}
+	<a class="ban-option" href='{{ mod_board }}'>View mod actions</a>
+{% endif %}
+</div>

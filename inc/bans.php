@@ -6,6 +6,29 @@ require 'inc/lib/IP/Lifo/IP/CIDR.php';
 
 use Lifo\IP\CIDR;
 
+function make_parsable(&$ip){
+	$ip = explode(".", $ip);
+	foreach ($ip as &$component){
+		$end_pt = 0;
+		for($i = 0 ; $i < strlen($component); $i++){
+			if($component[$i] == "0")
+				$end_pt = $i + 1;
+			else{
+				if($end_pt == strlen($component)){
+					$component = "0";
+					//var_dump($ip);
+				}
+				else{
+					$component = substr($component, $i);
+				}
+				break;
+			}
+		}
+	};
+	$ip = implode(".", $ip);
+	return $ip;
+}
+
 class Bans {
 	static public function range_to_string($mask) {
 		list($ipstart, $ipend) = $mask;
@@ -119,7 +142,7 @@ class Bans {
 	
 	static public function find($ip, $board = false, $get_mod_info = false) {
 		global $config;
-		
+		make_parsable($ip);
 		$query = prepare('SELECT ``bans``.*' . ($get_mod_info ? ', `username`' : '') . ' FROM ``bans``
 		' . ($get_mod_info ? 'LEFT JOIN ``mods`` ON ``mods``.`id` = `creator`' : '') . '
 		WHERE
@@ -163,11 +186,14 @@ class Bans {
 
                 foreach ($bans as &$ban) {
                         $ban['mask'] = self::range_to_string(array($ban['ipstart'], $ban['ipend']));
-
+			if(!$ban['reason'])
+				$ban['reason'] = 'N/A';
 			if ($ban['post']) {
 				$post = json_decode($ban['post']);
 				$ban['message'] = isset($post->body) ? $post->body : 0;
 			}
+			$ban['message'] = !isset($ban['message']) ? '' : $ban['message']; 
+
 			unset($ban['ipstart'], $ban['ipend'], $ban['post'], $ban['creator']);
 
 			if ($board_access === false || in_array ($ban['board'], $board_access)) {
@@ -204,6 +230,43 @@ class Bans {
 
 	}
 	
+	static public function reducedBanSearchFromJSON($ip, $reason, $expiration, $post){
+		if(trim($ip) == "" && trim($reason) == "" && trim($expiration) == "" && trim($post) == ""){	
+			header('Location: /bans-all.html');
+			die;
+		}
+		$negative_search_ip = $ip != "" && $ip[0] == '-';
+		$ip = $negative_search_ip ? substr($ip, 1) : $ip;
+
+		$negative_search_reason = $reason != "" && $reason[0] == '-';
+		$reason = $negative_search_reason ? substr($reason, 1) : $reason;
+
+		$negative_search_expiration = $expiration != "" && $expiration[0] == '-';
+		$expiration = $negative_search_expiration ? substr($expiration, 1) : $expiration;
+
+		$negative_search_post = $post != "" && $post[0] == '-';
+		$post = $negative_search_post ? substr($post, 1) : $post;
+
+		$ban_json =  json_decode(file_get_contents('bans.json'), true);		
+		foreach($ban_json as $key=>$entry){ 
+			// placment in json requires modifications of ban-list js file 
+			$entry['expires'] = !isset($entry['expires']) ? 'never' : $entry['expires']; 
+			//boolean mathematics(negation)
+			$ip_bool = ($negative_search_ip + preg_match("/$ip/i", $entry['mask']));
+			$reason_bool = ($negative_search_reason + preg_match("/$reason/i", $entry['reason'])) % 2;
+			$expiration_bool = ($negative_search_expiration + preg_match("/$expiration/i", $entry['expires'])) % 2;
+			$post_bool = ($negative_search_post + preg_match("/$post/i", $entry['message'])) % 2;
+			if(!($ip_bool && $reason_bool && $expiration_bool && $post_bool)){
+				unset($ban_json[$key]);
+			}
+		}
+		$formatted_bans = array();
+		foreach($ban_json as $key=>$entry){
+			array_push($formatted_bans, $entry);
+		}
+		return $formatted_bans;
+	}
+
 	static public function seen($ban_id) {
 		$query = query("UPDATE ``bans`` SET `seen` = 1 WHERE `id` = " . (int)$ban_id) or error(db_error());
                 rebuildThemes('bans');
@@ -230,7 +293,7 @@ class Bans {
 		                error($config['error']['noaccess']);
 			
 			$mask = self::range_to_string(array($ban['ipstart'], $ban['ipend']));
-			
+			$range = self::parse_range($mask);
 			modLog("Removed ban #{$ban_id} for " .
 				(filter_var($mask, FILTER_VALIDATE_IP) !== false ? "<a href=\"?/IP/$mask\">$mask</a>" : $mask));
 		}

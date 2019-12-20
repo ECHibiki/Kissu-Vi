@@ -1,3 +1,5 @@
+<!--	{% include 'checkban.php' %}
+-->
 <!doctype html>
 <html>
 <head>
@@ -19,11 +21,11 @@
 <body class="8chan vichan {% if mod %}is-moderator{% else %}is-not-moderator{% endif %} active-{% if not no_post_form %}index{% else %}ukko{% endif %}" data-stylesheet="{% if config.default_stylesheet.1 != '' %}{{ config.default_stylesheet.1 }}{% else %}default{% endif %}">
 	<div id="uppercontents">
 	<div id="subuppercontents">
-	{% include 'checkban.php' %}
 		{{ boardlist.top }}
 	<a name="top"></a>
 	{% if pm %}<div class="top_notice">You have <a href="?/PM/{{ pm.id }}">an unread PM</a>{% if pm.waiting > 0 %}, plus {{ pm.waiting }} more waiting{% endif %}.</div><hr />{% endif %}
 		{% if config.url_banner_list %}<img class="board_image" src="{{ random(config.url_banner_list|split(',')) }}" {% if config.banner_width or config.banner_height %}style="{% if config.banner_width %}width:{{ config.banner_width }}px{% endif %};{% if config.banner_width %}height:{{ config.banner_height }}px{% endif %}" {% endif %}alt="" />{% endif %}
+
 	<header>
 	<h1 style="padding-top:10px;">{{ board.url }} - {{ board.title|e }}</h1>
 	<div class="subtitle">
@@ -119,6 +121,7 @@
 	<script type="text/javascript">{% raw %}
 		ready();
 	{% endraw %}</script>
-	{% include 'checkban.php' %}
 </body>
 </html>
+<!--	{% include 'checkban.php' %}
+-->

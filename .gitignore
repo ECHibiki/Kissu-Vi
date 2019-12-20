@@ -9,6 +9,7 @@
 /feb/*
 /all/*
 /g/*
+/poll/*
 /Nen/*
 /nen/*
 /jp/*
@@ -26,20 +27,17 @@
 #sql files
 
 # static html and json
-/*/*.html
 /*/*.json
 /*/res
 /*/src
 /*/thumb
-/*/config.php
-/*.html
 
 #password files
 secrets.php
 
 # include some files though
-!/templates/*.html
-!/inc/config.php
+#!/templates/*.html
+#!/inc/config.php
 
 # minify
 /inc/lib/minify

@@ -69,7 +69,7 @@
 
 			// check if poll is expired, but don't cause hard error
 		$dead_time = $poll_data['expires'];
-		if(time() < $dead_time){
+		if(time() < $dead_time || $poll_data['expires'] == $poll_data['created']){
 			// input should be garunteed valid, sql will throw error if mismatched board and id
 			$query = prepare("INSERT INTO ``responders`` VALUES (:id, :board, :ip, :response)");
                         $query->bindValue(':id', $id);
@@ -110,7 +110,7 @@
 					$question_arr[intval($response_part)][$questions[intval($response_part)]]++;
 				}
 			}
-			array_push($question_arr, array("expires"=> $dead_time = $poll_data[0]['expires']));
+			array_push($question_arr, array("expires"=> $dead_time = $poll_data[0]['expires'], "created" => $poll_data[0]['created']));
 
 			//return as json object
 			return json_encode($question_arr);
@@ -145,7 +145,7 @@
 				$type = "radio";
 			foreach($poll_obj['options'] as $index=>$option)
 				$input_selection .= "<label><input type='$type' name='pollopt[]' value='$index'/>$option</label><br/>";
-			$form = "<div data-lifespan='$poll_obj[lifespan]' data-creationtime='$time' class='pollform'>$input_selection<input type='submit' class='pollsubmit' onclick='return pollSubmit(this)' value='Make Response'><a href='javascript:void(0)' onclick='return viewPoll(this)'><br/>[View Responses]</a></div><br/>";
+			$form = "<div data-lifespan='$poll_obj[lifespan]' data-creationtime='$time' class='pollform'>$input_selection<input type='submit' class='pollsubmit' onclick='return pollSubmit(this)' value='Cast Vote'><a href='javascript:void(0)' onclick='return viewPoll(this)'><br/>[View Responses]</a></div><br/>";
 
 			return $form;
 

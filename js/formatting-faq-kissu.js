@@ -4,6 +4,8 @@
 		if (window.Options && !Options.get_tab('formatting')) {
 			Options.add_tab('view_formatting', 'angle-right', _('View Formatting'));
 			Options.extend_tab('view_formatting', '\
+			watch for slash directions!<br/>\
+			[code]printf("%s","code");[/code]<br/>\
 			The Following is an expansion on <a href="https://kakashi-nenpo.com/faq.php#q08">https://kakashi-nenpo.com/faq.php#q08</a><hr/>\
 			[b] bold [/b]<br/>\
 			\'\'\' bold \'\'\'<br/>\
@@ -20,12 +22,7 @@
 			[spoilers] spoiler [/spoilers] <br/>\
 			** spoiler ** <br/>\
 			<br/>\
-			However, they only work with one line of text.<br/>\
-			So if you want your whole post to be bold, you need to <br/>\
-			[b] use [/b]<br/>\
-			[b] the tags [/b]<br/>\
-			[b] separately [/b]<br/>\
-			[b] on every line. [/b]<br/>\
+			All of these will match on new lines.<br/>\
 			\
 			');	
 		}		

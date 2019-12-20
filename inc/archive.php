@@ -1,8 +1,7 @@
 <?php
 
-
-
-
+require_once('inc/functions.php');
+require_once('inc/api.php');
 
 class Archive {
 
@@ -12,8 +11,9 @@ class Archive {
         global $config, $board;
 
         // If archiving is turned off return
-        if(!$config['archive']['threads'])
-            return;
+        if(!$config['archive']['threads']){
+		return;
+	}
 
         // Check if it is a thread
         $thread_query = prepare(sprintf("SELECT `thread`, `subject`, `body_nomarkup`, `trip` FROM ``posts_%s`` WHERE `id` = :id", $board['uri']));
@@ -41,9 +41,10 @@ class Archive {
 
         while ($post = $query->fetch(PDO::FETCH_ASSOC)) {
             // Copy Static HTML page for Thread
+
             if (!$post['thread']) {
-                // Read Content of HTML
-                $thread_file_content = @file_get_contents($board['dir'] . $config['dir']['res'] . link_for($post));
+                // Read Content of HTML, softfailing bad
+                $thread_file_content = file_get_contents($board['dir'] . $config['dir']['res'] . link_for($post));
                 
                 // Replace links and posting mode to Archived
                 $thread_file_content = str_replace(sprintf('src="/' . $config['board_path'], $board['uri']), sprintf('src="/' . $config['board_path'] . $config['dir']['archive'], $board['uri']), $thread_file_content);
@@ -55,6 +56,9 @@ class Archive {
                 // Refix archive link that will be wrong
                // $thread_file_content = str_replace(sprintf('href="/' . $config['board_path'] . $config['dir']['archive'] . $config['dir']['archive'], $board['uri']), sprintf('href="/' . $config['board_path'] . $config['dir']['archive'], $board['uri']), $thread_file_content);
 
+				// Remove Catalog link from HTML
+                $thread_file_content = preg_replace("/<a id=\"thread-catalog(.*?)\"(.*?)>(.*?)>/i", "", $thread_file_content);
+				
                 // Remove Form from HTML
                 //$thread_file_content = preg_replace("/<form(.*?)>/i", "", $thread_file_content);
                 //$thread_file_content = preg_replace("/<\/form>/i", "", $thread_file_content);
@@ -64,26 +68,29 @@ class Archive {
                 //$thread_file_content = preg_replace("/<div id=\"report\-fields\"(.*?)<\/div>/i", "", $thread_file_content);
                 //$thread_file_content = preg_replace("/<div id=\"thread\-interactions\"(.*?)<\/div>/i", "", $thread_file_content);
 
-                // Write altered thread HTML to archive location
-                @file_put_contents($board['dir'] . $config['dir']['archive'] . $config['dir']['res'] . sprintf($config['file_page'], $thread_id), $thread_file_content, LOCK_EX);
+                // Write altered thread HTML to archive location, softfailing bad
+                file_put_contents($board['dir'] . $config['dir']['archive'] . $config['dir']['res'] . sprintf($config['file_page'], $thread_id), $thread_file_content, LOCK_EX);
             }
 
 
             // Copy json file to Archive
             // Read Content of Json file
-            $json_file_content = @file_get_contents($board['dir'] . $config['dir']['res'] . json_scrambler($thread_id, true));
+            $json_file_content = file_get_contents($board['dir'] . $config['dir']['res'] . json_scrambler($thread_id, true));
             // Replace links and posting mode to Archived
             $json_file_content = str_replace(substr($board['dir'], 0, -1) . '\/' . substr($config['dir']['res'], 0, -1), substr($board['dir'], 0, -1) . '\/' . substr($config['dir']['archive'], 0, -1) . '\/' . substr($config['dir']['res'], 0, -1), $json_file_content);
             // Write altered thread json to archive location
-            @file_put_contents($board['dir'] . $config['dir']['archive'] . $config['dir']['res'] .  json_scrambler($thread_id, true), $json_file_content, LOCK_EX);
+            file_put_contents($board['dir'] . $config['dir']['archive'] . $config['dir']['res'] .  json_scrambler($thread_id, true), $json_file_content, LOCK_EX);
             
 
             // Copy Images and Files Associated with Thread
             if ($post['files']) {
                 foreach (json_decode($post['files']) as $i => $f) {
                     if ($f->file !== 'deleted') {
-                        @copy($board['dir'] . $config['dir']['img'] . $f->file, $board['dir'] . $config['dir']['archive'] . $config['dir']['img'] . $f->file);
-                        @copy($board['dir'] . $config['dir']['thumb'] . $f->thumb, $board['dir'] . $config['dir']['archive'] . $config['dir']['thumb'] . $f->thumb);
+                        rename($board['dir'] . $config['dir']['img'] . $f->file, $board['dir'] . $config['dir']['archive'] . $config['dir']['img'] . $f->file);
+       		        if($f->thumb == "spoiler" || $f->thumb == "file" || $f->thumb == "deleted"){
+					}
+					else
+						rename($board['dir'] . $config['dir']['thumb'] . $f->thumb, $board['dir'] . $config['dir']['archive'] . $config['dir']['thumb'] . $f->thumb);
 
                         $file_list[] = $f;
 
@@ -129,32 +136,40 @@ class Archive {
         // If archive is set to live forever return
         if(!$config['archive']['lifetime'])
             return;
-
+			
         // Delete all static pages and files for archived threads that has timed out
         $query = prepare(sprintf("SELECT `id`, `files` FROM ``archive_%s`` WHERE `lifetime` < :lifetime AND `featured` = 0 AND `mod_archived` = 0", $board['uri']));
-        $query->bindValue(':lifetime', strtotime("-" . $config['archive']['lifetime']), PDO::PARAM_INT);
+        $query->bindValue(':lifetime', strtotime("-" . $config['archive']['lifetime'] . " day"), PDO::PARAM_INT);
         $query->execute() or error(db_error($query));
         while($thread = $query->fetch(PDO::FETCH_ASSOC)) {
             // Delete Files
+
             foreach (json_decode($thread['files']) as $f) {
-                @unlink($board['dir'] . $config['dir']['archive'] . $config['dir']['img'] . $f->file);
-                @unlink($board['dir'] . $config['dir']['archive'] . $config['dir']['img'] . $f->thumb);
+				if(!($f->thumb == "spoiler" || $f->thumb == "file" || $f->thumb == "deleted")){
+					@unlink($board['dir'] . $config['dir']['archive'] . $config['dir']['thumb'] . $f->thumb);
+				}
+				if($f->thumb != "deleted"){
+					@unlink($board['dir'] . $config['dir']['archive'] . $config['dir']['img'] . $f->file);
+				}
             }
 
             // Delete Thread
             @unlink($board['dir'] . $config['dir']['archive'] . $config['dir']['res'] . sprintf($config['file_page'], $thread['id']));
-
-            // Delete Vote Data
-            $del_query = prepare("DELETE FROM ``votes_archive`` WHERE `board` = :board AND `thread_id` = :thread_id");
-            $del_query->bindValue(':board', $board['uri']);
-            $del_query->bindValue(':thread_id', $thread['id'], PDO::PARAM_INT);
+            // Delete JSON
+			if($config['api']['enabled'])
+				@unlink($board['dir'] . $config['dir']['archive'] . $config['dir']['res'] . sprintf($config['file_page_no_ext'], $thread['id']) . ".json");
+            
+			// Delete Vote Data
+            //$del_query = prepare("DELETE FROM ``votes_archive`` WHERE `board` = :board AND `thread_id` = :thread_id");
+            //$del_query->bindValue(':board', $board['uri']);
+            //$del_query->bindValue(':thread_id', $thread['id'], PDO::PARAM_INT);
             //$del_query->execute() or error(db_error($del_query));
         }
 
         // Delete Archive Entries
         if($query->rowCount() != 0) {
     		$query = prepare(sprintf("DELETE FROM  ``archive_%s`` WHERE `lifetime` < :lifetime AND `featured` = 0 AND `mod_archived` = 0", $board['uri'])) or error(db_error());
-            $query->bindValue(':lifetime', strtotime("-" . $config['archive']['lifetime']), PDO::PARAM_INT);
+            $query->bindValue(':lifetime', strtotime("-" . $config['archive']['lifetime']  . " day"), PDO::PARAM_INT);
             $query->execute() or error(db_error($query));
 
             modLog(sprintf("Purged %d archived threads due to expiration date", $query->rowCount()));
@@ -284,8 +299,17 @@ class Archive {
         // Get archive List
         $archive = self::getArchiveList();
 
-        foreach($archive as &$thread)
+		if ($config['api']['enabled']){
+			$api = new Api();
+			$archive_json = json_encode($api->translateArchive($archive ));
+			$jsonFilename = $board['dir'] . $config['dir']['archive'] . 'archive.json';
+			file_write($jsonFilename, $archive_json);
+		}
+		
+		
+        foreach($archive as &$thread){
             $thread['archived_url'] = $config['dir']['res'] . sprintf($config['file_page'], $thread['id']);
+		}
 
         $title = sprintf(_('Archived') . ' %s: ' . $config['board_abbreviation'], _('threads'), $board['uri']);
         $archive_page = Element('page.html', array(
@@ -320,7 +344,7 @@ class Archive {
             $archive = $query->fetchAll(PDO::FETCH_ASSOC);
         } else {
             $query = prepare(sprintf("SELECT `id`, `snippet`, `featured`, `mod_archived`, `votes`  FROM ``archive_%s`` WHERE `lifetime` > :lifetime", $board['uri']) . ($order_by_lifetime?" ORDER BY `lifetime` DESC":" ORDER BY `id` DESC"));
-            $query->bindValue(':lifetime', strtotime("-" . $config['archive']['lifetime']), PDO::PARAM_INT);
+            $query->bindValue(':lifetime', strtotime("-" . $config['archive']['lifetime'] . " day"), PDO::PARAM_INT);
             $query->execute() or error(db_error());
             $archive = $query->fetchAll(PDO::FETCH_ASSOC);
         }

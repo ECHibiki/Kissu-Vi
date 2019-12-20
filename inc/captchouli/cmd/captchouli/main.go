@@ -60,7 +60,6 @@ Note that only tags that are detectable from the character's face should be used
 			opts.Explicitness = []captchouli.Rating{captchouli.Safe,
 				captchouli.Questionable, captchouli.Explicit}
 		}
-
 		s, err = captchouli.NewService(opts)
 		return
 	}()

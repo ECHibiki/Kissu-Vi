@@ -12,6 +12,16 @@
 		$b = new index();
 		$b->build($action, $settings);
 	}
+
+	//https://gist.github.com/eusonlito/5099936
+	function folderSize ($dir)
+	{
+	    $size = 0;
+	    foreach (glob(rtrim($dir, '/').'/*', GLOB_NOSORT) as $each) {
+ 	       $size += is_file($each) ? filesize($each) : folderSize($each);
+	    }
+	    return $size;
+	}
 	
 	// Wrap functions in a class so they don't interfere with normal Tinyboard operations
 	class index {
@@ -149,21 +159,8 @@
 			$stats['unique_posters'] = number_format($query->fetchColumn());
 			
 			// Active content
-			$query = 'SELECT DISTINCT(`files`) FROM (';
-			foreach ($boards as &$_board) {
-				if (in_array($_board['uri'], $this->excluded))
-					continue;
-				$query .= sprintf("SELECT `files` FROM ``posts_%s`` UNION ALL ", $_board['uri']);
-			}
-			$query = preg_replace('/UNION ALL $/', ' WHERE `num_files` > 0) AS `posts_all`', $query);
-			$query = query($query) or error(db_error());
-			$files = $query->fetchAll();
-			$stats['active_content'] = 0;
-			foreach ($files as &$file) {
-				preg_match_all('/"size":([0-9]*)/', $file[0], $matches);
-				$stats['active_content'] += array_sum($matches[1]);
-			}
-			
+			$stats['active_content'] = folderSize ("../");
+
 			//news entries
 			$settings['no_recent'] = (int) $settings['no_recent'];
 			$query = query("SELECT * FROM ``news`` ORDER BY `time` DESC" . ($settings['no_recent'] ? ' LIMIT ' . $settings['no_recent'] : '')) or error(db_error());
