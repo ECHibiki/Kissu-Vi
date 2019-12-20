@@ -14,9 +14,14 @@
 /jp/*
 /GNFOS/*
 /agg/*
+/poll/*
+/trans/*
 
 #logs
 *.log
+
+#gz
+*.gz
 
 #sql files
 
