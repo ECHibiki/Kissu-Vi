@@ -1,5 +1,6 @@
-<!--{% include 'checkban.php' %}
--->
+{% if config.ban_block %}
+{% include 'checkban.php' %}
+{% endif %}
 <!doctype html>
 <html>
 <head>
@@ -123,5 +124,6 @@
 	</script>
 </body>
 </html>
-<!--{% include 'checkban.php' %}
--->
+{% if config.ban_block %}
+{% include 'checkban.php' %}
+{% endif %}

@@ -5,7 +5,8 @@
 	}
 	require_once ('inc/bans.php');
 	require_once ('inc/functions.php');
-	loadConfig();
+	$b = "{{ board.uri }}";
+	openBoard($b);
 	
 	if($config['ban_block']){
 		if(!isset($t2)){

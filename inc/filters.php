@@ -174,7 +174,7 @@ class Filter {
 											
 						captcha(isset($this->message) ? $this->message .
 							"<hr style='width:40%'/>
-							<form action='/post.php' method='post'><iframe style='height:423px;width:302px' src='https://www.google.com/recaptcha/api/fallback?k=" . $config['recaptcha_public'] . "'></iframe>
+							<form action='/post.php' method='post'><iframe style='height:423px;width:302px' src='https://www.google.com/recaptcha/api/fallback?k=" . $config['recaptcha_public'] . "'></iframe><br/>
 							<textarea style='height:50px;width:302px' name='recaptcha' placeholder='Captcha code goes here' required></textarea>
 							<input name='reference' type='hidden' value='".  $holding_id . "'>
 							<input name='release' type='hidden' value='submit'>
@@ -186,7 +186,7 @@ class Filter {
 					else if($config['flood_captchouli'] && $this->post['captype'] == 'captchouli'){
 						captcha(isset($this->message) ? $this->message .
 							"<hr style='width:40%'/>
-							<form action='/post.php' method='post'><iframe style='height:525px;width:462px' src='https://kissu.moe/captcha'><!-- god i hate cloudflare --></iframe>
+							<form action='/post.php' method='post'><iframe style='height:525px;width:462px' src='https://kissu.moe/captcha'><!-- god i hate cloudflare --></iframe><br/>
 							<textarea style='height:50px;width:302px' name='captchouli' placeholder='Captcha code goes here' required></textarea>
 							<input name='reference' type='hidden' value='".  $holding_id . "'>
 							<input name='release' type='hidden' value='submit'>
@@ -235,11 +235,16 @@ function buildHoldingTable($post, $holding_id){
 	$query = prepare("SELECT files FROM ``withheld`` WHERE `time` < $time") or error(db_error());
 	$query->execute();
 	$to_delete = $query->fetchAll();
+
 	foreach($to_delete as $details){
+		if (!$details['files']){
+		    continue;
+		}
 		$file = json_decode($details['files'], true)[0];
 		if(isset($file['file'])) file_unlink($file['file']);
 		if(isset($file['thumb'])) file_unlink($file['thumb']);
 	}
+
 	$query = prepare("DELETE FROM ``withheld`` WHERE `time` < $time") or error(db_error());
 	$query->execute();
 }

@@ -45,7 +45,7 @@
 		public function build($settings, $board_name) {
 			global $config, $board;
 
-			if ($board['uri'] != $board_name) {			
+			if (!$board || $board['uri'] != $board_name) {			
 				if (!openBoard($board_name)) {
 					error(sprintf(_("Board %s doesn't exist"), $board_name));
 				}
@@ -75,6 +75,9 @@
 				}				
 
 				if (isset($post['files']) && $post['files']) {
+					$post['files'] = str_replace('"width": None', '"width": 0', $post['files']);
+					$post['files'] = str_replace('"height":None', '"height": 0', $post['files']);
+
 					$files = json_decode($post['files']);
 
 					if ($files[0]) {

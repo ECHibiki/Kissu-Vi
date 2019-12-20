@@ -180,13 +180,7 @@ function captcha($message, $priority = true, $debug_stuff = false) {
 		'config' => $config,
 		'title' => _('Error'),
 		'subtitle' => _('An error has occured.'),
-		'body' => Element('captcha.html', array(
-			'config' => $config,
-			'message' => $message,
-			'mod' => $mod,
-			'board' => isset($board) ? $board : false,
-			'debug' => is_array($debug_stuff) ? str_replace("\n", '&#10;', utf8tohtml(print_r($debug_stuff, true))) : utf8tohtml($debug_stuff)
-		))
+		'body' => $message
 	)));
 }
 

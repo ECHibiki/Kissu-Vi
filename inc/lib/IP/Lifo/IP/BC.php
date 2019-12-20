@@ -99,10 +99,9 @@ abstract class BC
     public static function bcand($left, $right)
     {
         $len = self::_bitwise($left, $right);
-
         $value = '';
         for ($i=0; $i<$len; $i++) {
-            $value .= (($left{$i} + 0) & ($right{$i} + 0)) ? '1' : '0';
+            $value .= (($left[$i] + 0) & ($right[$i] + 0)) ? '1' : '0';
         }
         return self::bcbindec($value != '' ? $value : '0');
     }
@@ -113,10 +112,9 @@ abstract class BC
     public static function bcor($left, $right)
     {
         $len = self::_bitwise($left, $right);
-
         $value = '';
         for ($i=0; $i<$len; $i++) {
-            $value .= (($left{$i} + 0) | ($right{$i} + 0)) ? '1' : '0';
+            $value .= (($left[$i] + 0) | ($right[$i] + 0)) ? '1' : '0';
         }
         return self::bcbindec($value != '' ? $value : '0');
     }
@@ -127,10 +125,9 @@ abstract class BC
     public static function bcxor($left, $right)
     {
         $len = self::_bitwise($left, $right);
-
         $value = '';
         for ($i=0; $i<$len; $i++) {
-            $value .= (($left{$i} + 0) ^ ($right{$i} + 0)) ? '1' : '0';
+            $value .= (($left[$i] + 0) ^ ($right[$i] + 0)) ? '1' : '0';
         }
         return self::bcbindec($value != '' ? $value : '0');
     }
@@ -144,7 +141,7 @@ abstract class BC
         $len = self::_bitwise($left, $right, $bits);
         $value = '';
         for ($i=0; $i<$len; $i++) {
-            $value .= $left{$i} == '1' ? '0' : '1';
+            $value .= $left[$i] == '1' ? '0' : '1';
         }
         return self::bcbindec($value);
     }

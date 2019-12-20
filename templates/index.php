@@ -1,4 +1,6 @@
-<!-- {% include 'checkban.php' %} -->
+{% if config.ban_block %}
+{% include 'checkban.php' %}
+{% endif %}
 <!doctype html>
 <html>
 <head>
@@ -146,7 +148,7 @@
 	{{ boardlist.bottom }}
 	<div class="pages">
 		{{ btn.prev }} {% for page in pages %}
-		 [<a {% if page.selected %}class="selected"{% endif %}{% if not page.selected %}href="{{ page.link }}"{% endif %}>{{ page.num }}</a>]{% if loop.last %} {% endif %}
+		 [<a {% if page.selected %}class="selected"{% endif %} {% if not page.selected %}href="{{ page.link }}"{% endif %}>{{ page.num }}</a>]{% if loop.last %} {% endif %}
 		{% endfor %} {{ btn.next }}
 		{% if config.catalog_link %}
 			 | <a href="{{ config.root }}{{ board.dir }}{{ config.catalog_link }}">{% trans %}Catalog{% endtrans %}</a>
@@ -163,6 +165,6 @@
 	</div>
 </body>
 </html>
-<!--
+{% if config.ban_block %}
 {% include 'checkban.php' %}
--->
+{% endif %}

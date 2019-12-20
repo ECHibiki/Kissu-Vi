@@ -246,7 +246,7 @@ $('input[id=force_noko]').prop('checked', localStorage.AlwaysNoko == "true");
 </td>
 <tr id="spoilerrow"  style="display:none"><th>Spoiler</th><td>{% if config.spoiler_images %} <input id="spoiler" name="spoiler" type="checkbox"> <label for="spoiler">{% trans %}Spoiler Image{% endtrans %}</label>{% endif %}</td></tr>
 		{% if not config.field_disable_password or (mod and post.mod|hasPermission(config.mod.bypass_field_disable, board.uri)) %}
-		<tr {% if config.field_hide_password %}id="pswrdrow" style="display: none;" {% endif %}>
+		<tr {% if config.field_hide_password %} id="pswrdrow" style="display: none;" {% endif %}>
 			<th>
 				{% trans %}Password{% endtrans %}
 				{{ antibot.html() }}
