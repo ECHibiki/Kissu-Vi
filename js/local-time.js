@@ -27,16 +27,25 @@ $(document).ready(function(){
 		return [Math.pow(10, count - num.toString().length), num].join('').substr(1);
 	};
 
-	var dateformat = (typeof strftime === 'undefined') ? function(t) {
+// Origonal Hidden for initial add of PHP7.4 and twig issues
+	// var dateformat = (typeof strftime === 'undefined') ? function(t) {
+		// return zeropad(t.getMonth() + 1, 2) + "/" + zeropad(t.getDate(), 2) + "/" + t.getFullYear().toString().substring(2) +
+				// "&nbsp;(" + [_("Sun"), _("Mon"), _("Tue"), _("Wed"), _("Thu"), _("Fri"), _("Sat"), _("Sun")][t.getDay()]  + ")&nbsp;" +
+				// // time
+				// zeropad(t.getHours(), 2) + ":" + zeropad(t.getMinutes(), 2) + ":" + zeropad(t.getSeconds(), 2);
+
+	// } : function(t) {
+		// // post_date is defined in templates/main.js
+		// return strftime(window.post_date, t, datelocale);
+	// };
+	
+	var dateformat = function(t) {
 		return zeropad(t.getMonth() + 1, 2) + "/" + zeropad(t.getDate(), 2) + "/" + t.getFullYear().toString().substring(2) +
-				"&nbsp;(" + [_(" Sun "), _("Mon"), _("Tue"), _("Wed"), _("Thu"), _("Fri"), _("Sat"), _("Sun")][t.getDay()]  + ")&nbsp;" +
+				"&nbsp;(" + [_("Sun"), _("Mon"), _("Tue"), _("Wed"), _("Thu"), _("Fri"), _("Sat"), _("Sun")][t.getDay()]  + ")&nbsp;" +
 				// time
 				zeropad(t.getHours(), 2) + ":" + zeropad(t.getMinutes(), 2) + ":" + zeropad(t.getSeconds(), 2);
 
-	} : function(t) {
-		// post_date is defined in templates/main.js
-		return strftime(window.post_date, t, datelocale);
-	};
+	}
 
 	function timeDifference(current, previous) {
 
