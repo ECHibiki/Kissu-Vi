@@ -11,7 +11,7 @@
 		{% include 'post/flag.html' %}
 		{% include 'post/time.html' %}
 	</label>
-	{% include 'post/poster_id.html' %}&nbsp;
+	{% include 'post/poster_id.html' %}
 	<a class="post_no" id="post_no_{{ post.id }}" onclick="return highlightReply({{ post.id }}, event)" href="{% if isnoko50 %}{{ post.link('', '50', config.remove_ext) }}{% else %}{{ post.link('',false, config.remove_ext) }}{% endif %}">No.</a>
 	<a class="post_no" onclick="return citeReply({{ post.id }})" href="{% if isnoko50 %}{{ post.link('q', '50', config.remove_ext) }}{% else %}{{ post.link('q',false, config.remove_ext) }}{% endif %}">{{ post.id }}</a>
 	</p>

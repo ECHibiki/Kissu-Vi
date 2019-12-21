@@ -1,5 +1,5 @@
 {% if post.subject|length > 0 %}
 	{# show subject #}
-	<span class="subject">{{ post.subject|bidi_cleanup }}</span> 
+	&nbsp;<span class="subject">&nbsp{{ post.subject | bidi_cleanup }}</span> 
 {% endif %}
 

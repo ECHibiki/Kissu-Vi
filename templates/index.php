@@ -17,7 +17,7 @@
         </script>
 
 	{% include 'header.html' %}
-	<title>{{ board.url }} - {{ board.title|e }}</title>
+	<title>{{ board.url }}&nbsp;-&nbsp;{{ board.title|e }}</title>
 
 </head>
 <body class="8chan vichan {% if mod %}is-moderator{% else %}is-not-moderator{% endif %} active-{% if not no_post_form %}index{% else %}ukko{% endif %}" data-stylesheet="{% if config.default_stylesheet.1 != '' %}{{ config.default_stylesheet.1 }}{% else %}default{% endif %}">
@@ -38,7 +38,7 @@
 	<div id="subuppercontents">
 		{{ boardlist.top }}
 	<a name="top"></a>
-	{% if pm %}<div class="top_notice">You have <a href="?/PM/{{ pm.id }}">an unread PM</a>{% if pm.waiting > 0 %}, plus {{ pm.waiting }} more waiting{% endif %}.</div><hr />{% endif %}
+	{% if pm %}<div class="top_notice">You have <a href="?/PM/{{ pm.id }}">an unread PM</a>{% if pm.waiting > 0 %}, plus&nbsp;{{ pm.waiting }}&nbsp;more waiting{% endif %}.</div><hr />{% endif %}
 		{% if config.url_banner_list %}<img id="bannerimg" class="board_image" src="{{ random(config.url_banner_list|split(',')) }}" {% if config.banner_width or config.banner_height %}style="{% if config.banner_width %}width:{{ config.banner_width }}px{% endif %};{% if config.banner_width %}height:{{ config.banner_height }}px{% endif %}" {% endif %}alt="" />
 
 
@@ -47,7 +47,7 @@
 {% endif %}
 
 	<header>
-	<h1 style="padding-top:10px;">{{ board.url }} - {{ board.title|e }}</h1>
+	<h1 style="padding-top:10px;">{{ board.url }}&nbsp;-&nbsp;{{ board.title|e }}</h1>
 	<div class="subtitle">
 		{% if board.subtitle %}
 			{% if config.allow_subtitle_html %}
@@ -116,7 +116,7 @@
 			<a id="thread-catalog-top" href="{{ config.root }}{{ board.dir }}{{ config.catalog_link }}">[{% trans %}Catalog{% endtrans %}]</a>
 				{% endif %}
 {% if config.archive.threads %}
-<a id="archive-link-top" href="{{ config.root }}{{ board.dir }}archive/">[Archive]</a>
+<a id="archive-link-top" href="{{ config.root }}{{ board.dir }}archive/">&nbsp;[Archive]</a>
 {% endif %}
 	</span>
 	<br/><hr/>
@@ -136,7 +136,7 @@
 					<a id="thread-catalog" href="{{ config.root }}{{ board.dir }}{{ config.catalog_link }}">[{% trans %}Catalog{% endtrans %}]</a>
 		                {% endif %}
 {% if config.archive.threads %}
-<a id="archive-link-bottom" href="{{ config.root }}{{ board.dir }}archive/">[Archive]</a>
+<a id="archive-link-bottom" href="{{ config.root }}{{ board.dir }}archive/">&nbsp;[Archive]</a>
 {% endif %}
 			</span>
 			
@@ -145,10 +145,10 @@
 			</span>
 	</form>
 	<a name="bottom"></a>
-	{{ boardlist.bottom }}
+	{{ boardlist.bottom }}<br/>
 	<div class="pages">
 		{{ btn.prev }} {% for page in pages %}
-		 [<a {% if page.selected %}class="selected"{% endif %} {% if not page.selected %}href="{{ page.link }}"{% endif %}>{{ page.num }}</a>]{% if loop.last %} {% endif %}
+		 [<a class="{% if page.selected %} selected {% endif %}" {% if not page.selected %} href="{{ page.link }}"{% endif %}>{{ page.num }}</a>]{% if loop.last %} {% endif %}
 		{% endfor %} {{ btn.next }}
 		{% if config.catalog_link %}
 			 | <a href="{{ config.root }}{{ board.dir }}{{ config.catalog_link }}">{% trans %}Catalog{% endtrans %}</a>

@@ -105,20 +105,15 @@
 		<div class="mainBox">
 			<h2>Stats</h2>
 			<ul>
-				<li>Total posts: {{ stats.total_posts }}</li>
-				<li>Unique posters: {{ stats.unique_posters }}</li>
-				<li>Active content: {{ stats.active_content|filesize }}</li>
+				<li>Total posts:&nbsp{{ stats.total_posts }}</li>
+				<li>Unique posters:&nbsp{{ stats.unique_posters }}</li>
+				<li>Active content:&nbsp{{ stats.active_content|filesize }}</li>
 			</ul>
 		</div>
 	</div>
 	
 	<hr/>
-	<footer>
-		<p class="unimportant" style="margin-top:20px;text-align:center;">- Tinyboard + 
-			<a href="https://engine.vichan.net/">vichan</a> {{ config.version }} -
-		<br>Tinyboard Copyright &copy; 2010-2014 Tinyboard Development Group    
-		<br><a href="https://engine.vichan.net/">vichan</a> Copyright &copy; 2012-2018 vichan-devel
-	</footer>
+{% include 'footer.template' %}
 <script type="text/javascript">
 		ready();
 	</script>

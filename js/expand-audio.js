@@ -302,14 +302,15 @@ function setupAudio(thumb, url) {
 
 function setupAudioIn(element) {
     var thumbs = element.querySelectorAll("a.file");
+	var audio_reg = /(\.mp3|\.flac|\.ogg|\.opus)$/;
     for (var i = 0; i < thumbs.length; i++) {
-        if (/\.mp3$|\.flac$/.test(thumbs[i].pathname)) {
+        if (audio_reg.test(thumbs[i].pathname)) {
             setupAudio(thumbs[i], thumbs[i].href);
         } else {
             var m = thumbs[i].search.match(/\bv=([^&]*)/);
             if (m != null) {
                 var url = decodeURIComponent(m[1]);
-                if (/\.mp3$|\.flac$/.test(url)){
+                if (audio_reg.test(url)){
 					setupAudio(thumbs[i], url);
 				}
             }

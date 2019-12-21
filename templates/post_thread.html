@@ -8,13 +8,13 @@
 <div class="post op" id="op_{{ post.id }}" {%if post.num_files > 1%}style='clear:both'{%endif%}><p class="intro">
 	<input type="checkbox" class="delete" name="delete_{{ post.id }}" id="delete_{{ post.id }}" />
 	<label for="delete_{{ post.id }}">
-		{% include 'post/subject.html' %}
-		{% include 'post/name.html' %}
-		{% include 'post/ip.html' %}
-		{% include 'post/flag.html' %}
-		{% include 'post/time.html' %}
+		{% include 'post/subject.html' %} 
+		{% include 'post/name.html' %} 
+		{% include 'post/ip.html' %} 
+		{% include 'post/flag.html' %} 
+		{% include 'post/time.html' %} 
 	</label>
-	{% include 'post/poster_id.html' %}&nbsp;
+	{% include 'post/poster_id.html' %}
 	<a class="post_no" id="post_no_{{ post.id }}" onclick="return highlightReply({{ post.id }}, event)" href="{% if isnoko50 %}{{ post.link('', '50', config.remove_ext) }}{% else %}{{ post.link('',false, config.remove_ext) }}{% endif %}">No.</a>
 	<a class="post_no" onclick="return citeReply({{ post.id }})" href="{% if isnoko50 %}{{ post.link('q', '50' , config.remove_ext) }}{% else %}{{ post.link('q', false , config.remove_ext) }}{% endif %}">{{ post.id }}</a>
 	{% if post.sticky %}
@@ -72,16 +72,16 @@
 					{{ count }} posts
 				{% endtrans %}
 				{% if post.omitted_images %}
-					 {% trans %}and{% endtrans %} 
+					 {% trans %}&nbspand{% endtrans %} 
 				{% endif %}
 			{% endif %}
 			{% if post.omitted_images %}
 				{% trans %}
-					1 image reply
+					&nbsp1 image reply
 				{% plural post.omitted_images %}
-					{{ count }} image replies
+					&nbsp1{{ count }} image replies
 				{% endtrans %}
-			{% endif %} {% trans %}omitted. Click reply to view.{% endtrans %}
+			{% endif %} {% trans %}&nbspomitted. Click reply to view.{% endtrans %}
 		</span>
 	{% endif %}
 {% if not index %}

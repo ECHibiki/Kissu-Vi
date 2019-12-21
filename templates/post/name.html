@@ -10,6 +10,8 @@
 	{% elseif config.hide_email!=true %}
 	<a class="email" href="mailto:{{ post.email }}">
 	{% endif %}
+{% else %}
+	&nbsp;
 {% endif %}
 	<span {% if capcode.name %} style="{{ capcode.name }}" {% endif %} class="name">{{ post.name|bidi_cleanup }}</span>
 	{% if post.trip|length > 0 %}

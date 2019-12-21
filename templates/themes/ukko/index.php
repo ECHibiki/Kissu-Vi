@@ -28,7 +28,7 @@
 		{% if config.url_banner_list %}<img class="board_image" src="{{ random(config.url_banner_list|split(',')) }}" {% if config.banner_width or config.banner_height %}style="{% if config.banner_width %}width:{{ config.banner_width }}px{% endif %};{% if config.banner_width %}height:{{ config.banner_height }}px{% endif %}" {% endif %}alt="" />{% endif %}
 
 	<header>
-	<h1 style="padding-top:10px;">{{ board.url }} - {{ board.title|e }}</h1>
+	<h1 style="padding-top:10px;">{{ board.url }}&nbsp-&nbsp{{ board.title|e }}</h1>
 	<div class="subtitle">
 		{% if board.subtitle %}
 			{% if config.allow_subtitle_html %}
@@ -79,9 +79,9 @@
 	<span id="thread-links-top">
 		<a id="thread-return-top" href="{{ return }}">[{% trans %}Refresh{% endtrans %}]</a>
 		<a id="thread-bottom" href="#bottom">[{% trans %}Bottom{% endtrans %}]</a>
-				{% if config.catalog_link %}
+				<!--{% if config.catalog_link %}
 			<a id="thread-catalog-top" href="{{ config.root }}{{ board.dir }}{{ config.catalog_link }}">[{% trans %}Catalog{% endtrans %}]</a>
-				{% endif %}
+				{% endif %} -->
 	</span>
 	<br/><hr/>
 	
@@ -96,9 +96,9 @@
 			<span id="thread-links">
 				<a id="thread-return" href="{{ return }}">[{% trans %}Refresh{% endtrans %}]</a>
 				<a id="thread-top" href="#top">[{% trans %}Top{% endtrans %}]</a>
-                		{% if config.catalog_link %}
+                		<!--{% if config.catalog_link %}
 					<a id="thread-catalog" href="{{ config.root }}{{ board.dir }}{{ config.catalog_link }}">[{% trans %}Catalog{% endtrans %}]</a>
-		                {% endif %}
+		                {% endif %}-->
 			</span>
 			
 			<span id="thread-quick-reply">
@@ -107,14 +107,14 @@
 	</form>
 	<a name="bottom"></a>
 	{{ boardlist.bottom }}
-	<div class="pages">
+	<!--<div class="pages">
 		{{ btn.prev }} {% for page in pages %}
 		 [<a {% if page.selected %}class="selected"{% endif %}{% if not page.selected %}href="{{ page.link }}"{% endif %}>{{ page.num }}</a>]{% if loop.last %} {% endif %}
 		{% endfor %} {{ btn.next }}
 		{% if config.catalog_link %}
 			 | <a href="{{ config.root }}{{ board.dir }}{{ config.catalog_link }}">{% trans %}Catalog{% endtrans %}</a>
 		{% endif %}
-	</div>
+	</div> -->
 	
 
 	{{ config.ad.bottom }}
