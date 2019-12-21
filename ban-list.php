@@ -69,7 +69,15 @@
 	<hr><footer>
 	<p class="unimportant" style="margin-top:20px;text-align:center;">- Tinyboard + 
 		<a href="https://engine.vichan.net/">vichan</a>&nbsp5.1.4 
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
 		+ <a href="https://github.com/ECHibiki/ViQa-Kissu/">Kissu</a>&nbsp5.1.4 -
+=======
+		+ <a href="https://github.com/ECHibiki/ViQa-Kissu/">Kissu</a>&nbsp -
+>>>>>>> Stashed changes
+=======
+		+ <a href="https://github.com/ECHibiki/ViQa-Kissu/">Kissu</a>&nbsp -
+>>>>>>> Stashed changes
 	<br>Tinyboard Copyright &copy; 2010-2014 Tinyboard Development Group
 	<br><a href="https://engine.vichan.net/">vichan</a> Copyright &copy; 2012-2018 vichan-devel
 	<br><a href="https://github.com/ECHibiki/ViQa-Kissu/">Kissu</a> Copyleft 2018-2019</p><p class="unimportant" style="text-align:center;">All trademarks, copyrights, comments, and images on this page are owned by and are the responsibility of their respective parties.</p><p class="unimportant" style="text-align:center;">Concerns to the gmail of ECVerniy</p></footer>

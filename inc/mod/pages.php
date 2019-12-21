@@ -2559,11 +2559,6 @@ function mod_rebuild() {
 			$twig->clearCacheFiles();
 		}
 		
-		if (isset($_POST['rebuild_themes'])) {
-			$log[] = 'Regenerating theme files';
-			rebuildThemes('all');
-		}
-		
 		if (isset($_POST['rebuild_javascript'])) {
 			$log[] = 'Rebuilding <strong>' . $config['file_script'] . '</strong>';
 			buildJavascript();
@@ -2573,10 +2568,11 @@ function mod_rebuild() {
 		foreach ($boards as $board) {
 			if (!(isset($_POST['boards_all']) || isset($_POST['board_' . $board['uri']])))
 				continue;
-			
+
 			openBoard($board['uri']);
 			$config['try_smarter'] = false;
-			
+			clean();
+
 			if (isset($_POST['rebuild_index'])) {
 				buildIndex();
 				$log[] = '<strong>' . sprintf($config['board_abbreviation'], $board['uri']) . '</strong>: Creating index pages';
@@ -2595,6 +2591,11 @@ function mod_rebuild() {
 					buildThread($post['id']);
 				}
 			}
+		}
+
+		if (isset($_POST['rebuild_themes'])) {
+			$log[] = 'Regenerating theme files';
+			rebuildThemes('all');
 		}
 		
 		mod_page(_('Rebuild'), 'mod/rebuilt.html', array('logs' => $log));
