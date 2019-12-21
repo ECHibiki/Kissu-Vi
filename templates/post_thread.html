@@ -12,7 +12,7 @@
 		{% include 'post/name.html' %} 
 		{% include 'post/ip.html' %} 
 		{% include 'post/flag.html' %} 
-		{% include 'post/time.html' %} 
+		{% include 'post/time.html' %}
 	</label>
 	{% include 'post/poster_id.html' %}
 	<a class="post_no" id="post_no_{{ post.id }}" onclick="return highlightReply({{ post.id }}, event)" href="{% if isnoko50 %}{{ post.link('', '50', config.remove_ext) }}{% else %}{{ post.link('',false, config.remove_ext) }}{% endif %}">No.</a>
@@ -72,16 +72,16 @@
 					{{ count }} posts
 				{% endtrans %}
 				{% if post.omitted_images %}
-					 {% trans %}&nbspand{% endtrans %} 
+					 {% trans %}&nbsp;and{% endtrans %} 
 				{% endif %}
 			{% endif %}
 			{% if post.omitted_images %}
 				{% trans %}
-					&nbsp1 image reply
+					&nbsp;1 image reply
 				{% plural post.omitted_images %}
-					&nbsp1{{ count }} image replies
+					&nbsp;1{{ count }} image replies
 				{% endtrans %}
-			{% endif %} {% trans %}&nbspomitted. Click reply to view.{% endtrans %}
+			{% endif %} {% trans %}&nbsp;omitted. Click reply to view.{% endtrans %}
 		</span>
 	{% endif %}
 {% if not index %}
