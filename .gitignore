@@ -24,7 +24,8 @@
 #gz
 *.gz
 
-#sql files
+#ban files
+bans-all.html
 
 # static html and json
 *.json
