@@ -27,7 +27,7 @@
 #sql files
 
 # static html and json
-/*/*.json
+*.json
 /*/res
 /*/src
 /*/thumb
