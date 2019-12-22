@@ -3,9 +3,11 @@
 // Polls threads.json every 30 seconds for updates
 
 //used for communication with index noko in ajax.js
-var index_post_no = {post_no:0 , index_noko: false};
+var index_post_no = {post_no:undefined, index_noko: false};
 
 $(window).ready(function() {
+	
+	var previous_index_no = 0;
 	function checkUpdates(){
 		//don't do in threads
 	  if(!(/^\/[a-zA-Z0-9]+\/res/.test(window.location.pathname)) || window.location.pathname == "/"){
@@ -16,9 +18,21 @@ $(window).ready(function() {
 			dataType:"json",
 			success: function(json_data){
 				console.log(json_data);
-				index_post_no.post_no = json_data.post_count - index_post_no.post_no - json_data.sage_count;
-				var title = document.title.replace(`(${index_post_no.post_no})`, "");
-				document.title = `(${index_post_no.post_no}) ` + title;
+				if(index_post_no.post_no == undefined){
+					index_post_no.post_no = json_data.recent_post - json_data.sage_count;
+					previous_index_no = json_data.recent_post - index_post_no.post_no - json_data.sage_count;
+					console.log(index_post_no.post_no);
+					return;
+				}
+				var index_no = json_data.recent_post - index_post_no.post_no - json_data.sage_count;
+				console.log(index_post_no.post_no);
+				console.log(index_no);
+				console.log(previous_index_no);
+				if(index_no != previous_index_no){
+					var title = document.title.replace(`(${previous_index_no})`, "");
+					document.title = `(${index_no}) ` + title;
+					previous_index_no = index_no
+				}
 
 			},
 			fail:function(a,b,error){
@@ -27,5 +41,6 @@ $(window).ready(function() {
 		  });
 		}
 	}
-	setInterval(checkUpdates, 30000);
+	checkUpdates();
+	setInterval(checkUpdates, 10000);
 });

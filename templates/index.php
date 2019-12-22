@@ -116,7 +116,7 @@
 			<a id="thread-catalog-top" href="{{ config.root }}{{ board.dir }}{{ config.catalog_link }}">[{% trans %}Catalog{% endtrans %}]</a>
 				{% endif %}
 {% if config.archive.threads %}
-<a id="archive-link-top" href="{{ config.root }}{{ board.dir }}archive/">&nbsp;[Archive]</a>
+&nbsp;<a id="archive-link-top" href="{{ config.root }}{{ board.dir }}archive/">[Archive]</a>
 {% endif %}
 	</span>
 	<br/><hr/>

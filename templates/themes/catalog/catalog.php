@@ -10,7 +10,7 @@
 		  , board_name = "{{ board.uri }}";
 	</script>
 	{% include 'header.html' %}
-	<title>{{ board.uri }} - Catalog</title>
+	<title>{{ board.uri }}&nbsp;-&nbsp;Catalog</title>
 </head>
 <body class="8chan vichan {% if mod %}is-moderator{% else %}is-not-moderator{% endif %} theme-catalog active-catalog" data-stylesheet="{% if config.default_stylesheet.1 != '' %}{{ config.default_stylesheet.1 }}{% else %}default{% endif %}">
 <div id="uppercontents">
@@ -88,7 +88,7 @@
 			<a id="thread-catalog-top" href="{{ config.root }}{{ board.dir }}">[{% trans %}Index{% endtrans %}]</a>
 				{% endif %}
 {% if config.archive.threads %}
-<a id="archive-link-top" href="{{ config.root }}{{ board.dir }}archive/">[Archive]</a>
+&nbsp;<a id="archive-link-top" href="{{ config.root }}{{ board.dir }}archive/">[Archive]</a>
 {% endif %}
 	</span>
 	<br/><hr/>
