@@ -17,17 +17,11 @@ $(window).ready(function() {
 			  + "posts.json",
 			dataType:"json",
 			success: function(json_data){
-				console.log(json_data);
 				if(index_post_no.post_no == undefined){
 					index_post_no.post_no = json_data.recent_post - json_data.sage_count;
 					previous_index_no = json_data.recent_post - index_post_no.post_no - json_data.sage_count;
-					console.log(index_post_no.post_no);
-					return;
 				}
 				var index_no = json_data.recent_post - index_post_no.post_no - json_data.sage_count;
-				console.log(index_post_no.post_no);
-				console.log(index_no);
-				console.log(previous_index_no);
 				if(index_no != previous_index_no){
 					var title = document.title.replace(`(${previous_index_no})`, "");
 					document.title = `(${index_no}) ` + title;
@@ -41,6 +35,7 @@ $(window).ready(function() {
 		  });
 		}
 	}
-	checkUpdates();
+
+	setTimeout(checkUpdates, 5000);
 	setInterval(checkUpdates, 10000);
 });
