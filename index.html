@@ -1,29 +1,3 @@
-<<<<<<< HEAD
-=======
-<?php
-	$expresion = '/(C:\\\xampp\\\htdocs\\\[a-zA-Z]+|\/var\/www\/html\/[a-zA-Z]+)/';
-	while(preg_match("$expresion", getcwd())){
-		chdir ('../');
-	}
-	require_once ('inc/bans.php');
-	require_once ('inc/functions.php');
-	$b = "";
-	openBoard($b);
-	
-	if($config['ban_block']){
-		if(!isset($t2)){
-			$t1 = explode(" ", microtime())[0];
-			checkDNSBL();
-			checkBan();
-			$t2 = explode(" ", microtime())[0];
-		}
-		else{
-			echo ($t2 - $t1);
-		}
-	}
-
-?>
->>>>>>> eb55a1a1dcc9bdc90825c842c06eb7c8ba2d59ae
 <!doctype html>
 <html>
 <head>
@@ -41,22 +15,13 @@
 			var configRoot="/";
 			var inMod =false;
 			var modRoot="/"+(inMod ? "mod.php?/" : "");
-<<<<<<< HEAD
 		</script>			<script type="text/javascript" src="/main.js"></script></head>
-<body><div class="boardlist"><span class="sub" data-description="0">[ <a href="/">home</a> / <a href="/bans">bans</a> / <a href="/all/">all</a> ]</span>  <span class="sub" data-description="1">[ <a href="/b/">g</a> / <a href="/qa/">qa</a> / <a href="/xmas/">xmas</a> ]</span>  <span class="sub" data-description="2">[ <a href="/megu/">megu</a> ]</span>  <span class="sub" data-description="3">[ <a href="https://theatre.kissu.moe">tv</a> / <a href="/agg/">agg</a> / <a href="/poll/">poll</a> ]</span>  <span class="sub" data-description="4">[ <a href="http://what-ch.mooo.com/what/">what</a> / <a href="http://4taba.net/board/all">4tab</a> / <a href="https://github.com/ECHibiki/ViQa-Kissu/">ViQa</a> ]</span></div><script type='text/javascript'>if (typeof do_boardlist != 'undefined') do_boardlist();</script>
-=======
-		</script>			<script type="text/javascript" src="/main.js?1"></script></head>
-<body><div class="boardlist"><span class="sub" data-description="0">[ <a href="/">home</a> / <a href="/bans">bans</a> / <a href="/all/">all</a> ]</span>  <span class="sub" data-description="1">[ <a href="/b/">g</a> / <a href="/qa/">qa</a> ]</span>  <span class="sub" data-description="2">[ <a href="/megu/">megu</a> ]</span>  <span class="sub" data-description="3">[ <a href="https://theatre.kissu.moe">tv</a> / <a href="/agg/">agg</a> / <a href="/poll/">poll</a> ]</span>  <span class="sub" data-description="4">[ <a href="http://bunbunmaru.com/wakaba/general/">bun</a> / <a href="http://4taba.net/board/all">4tab</a> / <a href="https://github.com/ECHibiki/ViQa-Kissu/">ViQa</a> ]</span></div><script type='text/javascript'>if (typeof do_boardlist != 'undefined') do_boardlist();</script>
->>>>>>> eb55a1a1dcc9bdc90825c842c06eb7c8ba2d59ae
+<body><div class="boardlist"><span class="sub" data-description="0">[ <a href="/">home</a> / <a href="/bans">bans</a> / <a href="/all/">all</a> ]</span>  <span class="sub" data-description="1">[ <a href="/b/">g</a> / <a href="/qa/">qa</a> / <a href="/xmas/">xmas</a> ]</span>  <span class="sub" data-description="2">[ <a href="/megu/">megu</a> ]</span>  <span class="sub" data-description="3">[ <a href="https://theatre.kissu.moe">tv</a> / <a href="/agg/">agg</a> / <a href="/poll/">poll</a> ]</span>  <span class="sub" data-description="4">[ <a href="https://himasugi.blog/jp/">hima</a> / <a href="http://4taba.net/board/all">4tab</a> / <a href="https://github.com/ECHibiki/ViQa-Kissu/">ViQa</a> ]</span></div><script type='text/javascript'>if (typeof do_boardlist != 'undefined') do_boardlist();</script>
 	<header>
 	    <img class="icon" src="../static/kissu-card.png">
 		<h1>Kissu.moe</h1>
 		<div class="subtitle">100% Fun!</div>
-<<<<<<< HEAD
-	</header><img id='bannerimg' class="board_image" src="/static/banners/banner-kissu-18.png"alt="" />
-=======
-	</header><img id='bannerimg' class="board_image" src="/static/banners/banner-kissu-26.jpg"alt="" />
->>>>>>> eb55a1a1dcc9bdc90825c842c06eb7c8ba2d59ae
+	</header><img id='bannerimg' class="board_image" src="/static/banners/banner-kissu-14.gif"alt="" />
 	<div class="box-wrap">
 	    <!--<fieldset>
 		<legend>Boards</legend>
@@ -97,37 +62,24 @@
 	    <h1>Recent Images</h1>
 		<div class="box image">
 			<ul>					<li>
-<<<<<<< HEAD
+						<a href="/qa/res/21675#21677">
+							<img src="/qa/thumb/1577015603553.png" style="width:157px;height:31px" alt="">
+						</a>
+					</li>					<li>
+						<a href="/qa/res/21675#21676">
+							<img src="/qa/thumb/1577014976578.png" style="width:156px;height:32px" alt="">
+						</a>
+					</li>					<li>
+						<a href="/qa/res/21675#21675">
+							<img src="/qa/thumb/1577013674958.png" style="width:234px;height:33px" alt="">
+						</a>
+					</li>					<li>
+						<a href="/qa/res/4165#21673">
+							<img src="/qa/thumb/1577011555817.png" style="width:175px;height:172px" alt="">
+						</a>
+					</li>					<li>
 						<a href="/qa/res/14450#21668">
 							<img src="/qa/thumb/1577002839666.jpg" style="width:175px;height:98px" alt="">
-=======
-						<a href="/b/res/1884#2132">
-							<img src="/b/thumb/1576981533597.png" style="width:131px;height:175px" alt="">
-						</a>
-					</li>					<li>
-						<a href="/qa/res/21511#21513">
-							<img src="/qa/thumb/1576911036366.png" style="width:125px;height:175px" alt="">
-						</a>
-					</li>					<li>
-						<a href="/qa/res/21511#21511">
-							<img src="/qa/thumb/1576910772205.png" style="width:181px;height:255px" alt="">
-						</a>
-					</li>					<li>
-						<a href="/xmas/res/108#109">
-							<img src="/xmas/thumb/1576906110661.png" style="width:175px;height:175px" alt="">
-						</a>
-					</li>					<li>
-						<a href="/qa/res/20544#21505">
-							<img src="/qa/thumb/1576905577530.png" style="width:175px;height:98px" alt="">
-						</a>
-					</li>					<li>
-						<a href="/qa/res/20207#21504">
-							<img src="/qa/thumb/1576903993808.png" style="width:175px;height:175px" alt="">
-						</a>
-					</li>					<li>
-						<a href="/qa/res/20207#21496">
-							<img src="/qa/thumb/1576896502492.png" style="width:175px;height:175px" alt="">
->>>>>>> eb55a1a1dcc9bdc90825c842c06eb7c8ba2d59ae
 						</a>
 					</li>					<li>
 						<a href="/xmas/res/108#117">
@@ -146,13 +98,8 @@
 							<img src="/qa/thumb/1577000672682.png" style="width:175px;height:98px" alt="">
 						</a>
 					</li>					<li>
-<<<<<<< HEAD
 						<a href="/qa/res/21561#21657">
 							<img src="/qa/thumb/1576999325897.png" style="width:175px;height:98px" alt="">
-=======
-						<a href="/qa/res/21473#21473">
-							<img src="static/kissu-spoiler.png" style="width:275px;height:250px" alt="">
->>>>>>> eb55a1a1dcc9bdc90825c842c06eb7c8ba2d59ae
 						</a>
 					</li>					<li>
 						<a href="/qa/res/19249#21654">
@@ -166,7 +113,6 @@
 						<a href="/qa/res/21649#21649">
 							<img src="/qa/thumb/1576997094230.png" style="width:255px;height:143px" alt="">
 						</a>
-<<<<<<< HEAD
 					</li>					<li>
 						<a href="/qa/res/21230#21642">
 							<img src="/qa/thumb/1576995313842.png" style="width:175px;height:106px" alt="">
@@ -175,30 +121,43 @@
 						<a href="/xmas/res/115#116">
 							<img src="/xmas/thumb/1576991922849.png" style="width:118px;height:175px" alt="">
 						</a>
-					</li>					<li>
-						<a href="/qa/res/21561#21626">
-							<img src="/qa/thumb/1576980524377.png" style="width:128px;height:175px" alt="">
-						</a>
-					</li>					<li>
-						<a href="/qa/res/3261#21625">
-							<img src="/qa/thumb/1576979638704.png" style="width:175px;height:98px" alt="">
-						</a>
-					</li>					<li>
-						<a href="/b/res/2111#2140">
-							<img src="/b/thumb/1576977918997-0.jpg" style="width:175px;height:98px" alt="">
-						</a>
-					</li>					<li>
-						<a href="/xmas/res/115#115">
-							<img src="/xmas/thumb/1576976043905.png" style="width:153px;height:255px" alt="">
-						</a>
-=======
->>>>>>> eb55a1a1dcc9bdc90825c842c06eb7c8ba2d59ae
 					</li>			</ul>
 		</div>
 		<div class="mainBox">
 			<h2>Latest Posts</h2>
 			<ul>					<li>
-<<<<<<< HEAD
+						<strong>/qa/</strong>: 
+						<a href="/qa/res/21675#21678"><em>ignore the NaN</em>
+						</a>
+					</li>					<li>
+						<strong>/b/</strong>: 
+						<a href="/b/res/1884#2145"><em>&gt;&gt;2144  well, it doesn't seem &hellip;</em>
+						</a>
+					</li>					<li>
+						<strong>/b/</strong>: 
+						<a href="/b/res/1884#2144"><em>&gt;&gt;2142  &gt;&gt;2143  Success, the i&hellip;</em>
+						</a>
+					</li>					<li>
+						<strong>/qa/</strong>: 
+						<a href="/qa/res/21675#21677"><em>(no comment)</em>
+						</a>
+					</li>					<li>
+						<strong>/qa/</strong>: 
+						<a href="/qa/res/21675#21676"><em>Even more!</em>
+						</a>
+					</li>					<li>
+						<strong>/qa/</strong>: 
+						<a href="/qa/res/21675#21675"><em>Wow! Look at how many people a&hellip;</em>
+						</a>
+					</li>					<li>
+						<strong>/qa/</strong>: 
+						<a href="/qa/res/21561#21674"><em>The more I see people whinge a&hellip;</em>
+						</a>
+					</li>					<li>
+						<strong>/qa/</strong>: 
+						<a href="/qa/res/4165#21673"><em>Was smuglo.li created as 8/a/ &hellip;</em>
+						</a>
+					</li>					<li>
 						<strong>/qa/</strong>: 
 						<a href="/qa/res/21561#21672"><em>&gt;&gt;21671  Weirdly enough, I saw&hellip;</em>
 						</a>
@@ -253,22 +212,6 @@
 					</li>					<li>
 						<strong>/megu/</strong>: 
 						<a href="/megu/res/1291#1297"><em>&gt;&gt;1296  you wouldn't even know&hellip;</em>
-=======
-						<strong>/b/</strong>: 
-						<a href="/b/res/1884#2133"><em>&gt;&gt;2132</em>
-						</a>
-					</li>					<li>
-						<strong>/b/</strong>: 
-						<a href="/b/res/1884#2132"><em>&gt;&gt;2130  &gt;&gt;2130</em>
-						</a>
-					</li>					<li>
-						<strong>/b/</strong>: 
-						<a href="/b/res/1884#2130"><em>&gt;&gt;2128</em>
-						</a>
-					</li>					<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/21230#21515"><em>test</em>
->>>>>>> eb55a1a1dcc9bdc90825c842c06eb7c8ba2d59ae
 						</a>
 					</li>					<li>
 						<strong>/qa/</strong>: 
@@ -302,66 +245,6 @@
 						<strong>/qa/</strong>: 
 						<a href="/qa/res/19249#21653"><em>&gt;&gt;21595  &gt;&gt;21596  But then wha&hellip;</em>
 						</a>
-					</li>					<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/19590#21652"><em>oh yeah forgot that</em>
-						</a>
-					</li>					<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/21649#21651"><em>&gt;&gt;21650  I found it more pleas&hellip;</em>
-						</a>
-					</li>					<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/21649#21650"><em>I wanted to like this anime. M&hellip;</em>
-						</a>
-					</li>					<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/21649#21649"><em>Miki's anime has ended. It was&hellip;</em>
-						</a>
-					</li>					<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/19590#21648"><em>&gt;&gt;21647  yes that's actually h&hellip;</em>
-						</a>
-					</li>					<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/19590#21647"><em>&gt;&gt;21646  was the sun even able&hellip;</em>
-						</a>
-					</li>					<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/19590#21646"><em>&gt;&gt;21640  yea dio was a stupid &hellip;</em>
-						</a>
-					</li>					<li>
-						<strong>/qa/</strong>: 
-<<<<<<< HEAD
-						<a href="/qa/res/21230#21645"><em>&gt;&gt;21642  LOLE!!!!!!!!! A DEMON&hellip;</em>
-=======
-						<a href="/qa/res/21466#21495"><em>look at her go</em>
-						</a>
-					</li>					<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/20207#21494"><em>&gt;&gt;21493  I don't have the reso&hellip;</em>
-						</a>
-					</li>					<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/20207#21493"><em>&gt;&gt;21491  you can be the one to&hellip;</em>
-						</a>
-					</li>					<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/21059#21492"><em>&gt;&gt;21484  They can modify the t&hellip;</em>
-						</a>
-					</li>					<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/20207#21491"><em>I only notice the lobbies up o&hellip;</em>
-						</a>
-					</li>					<li>
-						<strong>/qa/</strong>: 
-						<a href="/qa/res/21482#21490"><em>wonder how these are made</em>
-						</a>
-					</li>					<li>
-						<strong>/b/</strong>: 
-						<a href="/b/res/1990#2129"><em>&gt;&gt;2000  That's just how female&hellip;</em>
->>>>>>> eb55a1a1dcc9bdc90825c842c06eb7c8ba2d59ae
-						</a>
 					</li>			</ul>
 		</div>
 		<div class="mainBox">
@@ -389,15 +272,9 @@
 		<div class="mainBox">
 			<h2>Stats</h2>
 			<ul>
-<<<<<<< HEAD
-				<li>Total posts:&nbsp25,363</li>
+				<li>Total posts:&nbsp25,371</li>
 				<li>Unique posters:&nbsp544</li>
-				<li>Active content:&nbsp6.91 GB</li>
-=======
-				<li>Total posts:&nbsp25,179</li>
-				<li>Unique posters:&nbsp539</li>
-				<li>Active content:&nbsp19.77 GB</li>
->>>>>>> eb55a1a1dcc9bdc90825c842c06eb7c8ba2d59ae
+				<li>Active content:&nbsp6.92 GB</li>
 			</ul>
 		</div>
 	</div>
@@ -405,11 +282,7 @@
 	<hr/><footer>
 	<p class="unimportant" style="margin-top:20px;text-align:center;">- Tinyboard + 
 		<a href="https://engine.vichan.net/">vichan</a>&nbsp5.1.4 
-<<<<<<< HEAD
 		+ <a href="https://github.com/ECHibiki/ViQa-Kissu/">Kissu</a>&nbsp5.1.4 -
-=======
-		+ <a href="https://github.com/ECHibiki/ViQa-Kissu/">Kissu</a>&nbsp -
->>>>>>> eb55a1a1dcc9bdc90825c842c06eb7c8ba2d59ae
 	<br>Tinyboard Copyright &copy; 2010-2014 Tinyboard Development Group
 	<br><a href="https://engine.vichan.net/">vichan</a> Copyright &copy; 2012-2018 vichan-devel
 	<br><a href="https://github.com/ECHibiki/ViQa-Kissu/">Kissu</a> Copyleft 2018-2019</p><p class="unimportant" style="text-align:center;">All trademarks, copyrights, comments, and images on this page are owned by and are the responsibility of their respective parties.</p><p class="unimportant" style="text-align:center;">Concerns to the gmail of ECVerniy</p></footer>
@@ -417,30 +290,4 @@
 		ready();
 	</script>
 </body>
-<<<<<<< HEAD
 </html>
-=======
-</html><?php
-	$expresion = '/(C:\\\xampp\\\htdocs\\\[a-zA-Z]+|\/var\/www\/html\/[a-zA-Z]+)/';
-	while(preg_match("$expresion", getcwd())){
-		chdir ('../');
-	}
-	require_once ('inc/bans.php');
-	require_once ('inc/functions.php');
-	$b = "";
-	openBoard($b);
-	
-	if($config['ban_block']){
-		if(!isset($t2)){
-			$t1 = explode(" ", microtime())[0];
-			checkDNSBL();
-			checkBan();
-			$t2 = explode(" ", microtime())[0];
-		}
-		else{
-			echo ($t2 - $t1);
-		}
-	}
-
-?>
->>>>>>> eb55a1a1dcc9bdc90825c842c06eb7c8ba2d59ae

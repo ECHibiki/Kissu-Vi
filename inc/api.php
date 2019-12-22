@@ -221,8 +221,8 @@ class Api {
 	    return $api_properties;
 	}
 	
-	function translateCounts($recent_no, $post_count, $sage_count, $file_count){
-            $api_counter = array("recent_post"=>$recent_no, "post_count"=>$post_count, "sage_count"=>$sage_count,  "file_count"=>$file_count);
+	function translateCounts($recent_no, $sage_count, $file_count){
+            $api_counter = array("recent_post"=>$recent_no, "sage_count"=>$sage_count,  "file_count"=>$file_count);
             return $api_counter;
 	}
 

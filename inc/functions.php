@@ -2066,27 +2066,23 @@ function buildIndex($global_api = "yes") {
 			if($post_contents)
 				$json_posts = json_decode(file_get_contents($board['dir'] . 'posts.json'), true);
 			else
-				$json_posts = array("recent_post"=>0, "post_count"=>0, "sage_count"=>0,  "file_count"=>0);
+				$json_posts = array("recent_post"=>0, "sage_count"=>0,  "file_count"=>0);
 
 			$query = prepare(sprintf("SELECT id FROM posts_%s ORDER BY id DESC LIMIT 1", $board['uri']));
 			$query->execute() or error(db_error($query));
 			$recent_no = intval($query->fetch(PDO::FETCH_ASSOC)['id']);
 
-			$query = prepare(sprintf("SELECT COUNT(*) AS count FROM posts_%s", $board['uri']));
-			$query->execute() or error(db_error($query));
-			$post_count = intval($query->fetch(PDO::FETCH_ASSOC)['count']);
-
 			$query = prepare(sprintf("SELECT COUNT(*) AS count FROM posts_%s WHERE email LIKE '%%sage%%' AND id > :boundry_id", $board['uri']));
 			$query->bindValue(':boundry_id', $json_posts["recent_post"], PDO::PARAM_INT);
 			$query->execute() or error(db_error($query));
-			$sage_count = intval($query->fetch(PDO::FETCH_ASSOC)['count']);
+			$sage_count = $json_posts["sage_count"] + intval($query->fetch(PDO::FETCH_ASSOC)['count']);
 
 			$query = prepare(sprintf("SELECT COUNT(*) AS count FROM posts_%s WHERE files IS NOT NULL AND id > :boundry_id", $board['uri']));
 			$query->bindValue(':boundry_id', $json_posts["recent_post"], PDO::PARAM_INT);
 			$query->execute() or error(db_error($query));
-			$image_count = intval($query->fetch(PDO::FETCH_ASSOC)['count']);
+			$file_count = $json_posts["file_count"] + intval($query->fetch(PDO::FETCH_ASSOC)['count']);
 
-			$json = json_encode($api->translateCounts($recent_no, $post_count, $sage_count, $image_count));
+			$json = json_encode($api->translateCounts($recent_no, $sage_count, $file_count));
 			$jsonFilename = $board['dir'] . 'posts.json';
 			file_write($jsonFilename, $json);
 		}
