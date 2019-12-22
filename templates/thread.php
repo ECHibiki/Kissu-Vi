@@ -16,7 +16,7 @@
 
 	{% set meta_subject %}{% if config.thread_subject_in_title and thread.subject %}{{ thread.subject|e }}{% else %}{{ thread.body_nomarkup[:256]|remove_modifiers|e }}{% endif %}{% endset %}
 
-	<meta name="description" content="{{ board.url }} - {{ board.title|e }} - {{ meta_subject }}" />
+	<meta name="description" content="{{ board.url }}@nbsp;-@nbsp;{{ board.title|e }} - {{ meta_subject }}" />
 	<meta name="twitter:card" value="summary">
 	<meta property="og:title" content="{{ meta_subject }}" />
 	<meta property="og:type" content="article" />
@@ -49,7 +49,7 @@
 
 {% endif %}
 	<header>
-		<h1>{{ board.url }} - {{ board.title|e }}</h1>
+		<h1>{{ board.url }}&nbsp;-&nbsp;{{ board.title|e }}</h1>
 		<div class="subtitle">
 			{% if board.subtitle %}
 				{% if config.allow_subtitle_html %}

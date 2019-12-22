@@ -4,7 +4,7 @@
 
 $(window).ready(function() {
 	var new_posts = 0;
-	var previous_time = Math.floor(Date.now() / 1000);
+	var previous_time = Math.floor(Date.now() / 1000)+6;
 	function checkUpdates(){
 		//doesn't do in threads
 	  if(!(/^\/[a-zA-Z0-9]+\/res/.test(window.location.pathname))){

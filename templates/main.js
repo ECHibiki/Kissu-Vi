@@ -111,7 +111,6 @@ function alert(a, do_confirm, confirm_ok_action, confirm_cancel_action, no_ok) {
 
 var saved = {};
 
-
 var selectedstyle = '{% endraw %}{{ config.default_stylesheet.0|addslashes }}{% raw %}';
 var styles = {
 	{% endraw %}
@@ -212,7 +211,7 @@ function init_stylechooser() {
 		newElement.appendChild(style);
 	}	
 	
-	document.getElementsByTagName('body')[0].insertBefore(newElement, document.getElementsByTagName('body')[0].lastChild.nextSibling);
+	document.getElementsByClassName('boardlist')[0].insertBefore(newElement, document.getElementsByTagName('body')[0].lastChild.nextSibling);
 }
 
 function get_cookie(cookie_name) {
