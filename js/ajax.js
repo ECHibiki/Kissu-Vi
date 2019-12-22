@@ -107,7 +107,8 @@ $(window).ready(function() {
 											}
 										})
 									});
-								
+									
+									index_post_no.post_no -= 1;
 									
 									highlightReply(post_response.id);
 									window.location.hash = post_response.id;

@@ -2072,16 +2072,16 @@ function buildIndex($global_api = "yes") {
 			$query->execute() or error(db_error($query));
 			$recent_no = intval($query->fetch(PDO::FETCH_ASSOC)['id']);
 
-			$query = prepare(sprintf("SELECT AUTO_INCREMENT FROM information_schema.TABLES where TABLE_NAME='posts_%s'", $board['uri']));
+			$query = prepare(sprintf("SELECT COUNT(*) AS count FROM posts_%s", $board['uri']));
 			$query->execute() or error(db_error($query));
-			$post_count = intval($query->fetch(PDO::FETCH_ASSOC)['AUTO_INCREMENT']) - 1;
+			$post_count = intval($query->fetch(PDO::FETCH_ASSOC)['count']);
 
-			$query = prepare(sprintf("SELECT COUNT(*) AS count FROM posts_%s WHERE email LIKE '%%sage%%' AND id > :boundry_id ORDER BY id DESC LIMIT 1", $board['uri']));
+			$query = prepare(sprintf("SELECT COUNT(*) AS count FROM posts_%s WHERE email LIKE '%%sage%%' AND id > :boundry_id", $board['uri']));
 			$query->bindValue(':boundry_id', $json_posts["recent_post"], PDO::PARAM_INT);
 			$query->execute() or error(db_error($query));
 			$sage_count = intval($query->fetch(PDO::FETCH_ASSOC)['count']);
 
-			$query = prepare(sprintf("SELECT COUNT(*) AS count FROM posts_%s WHERE files IS NOT NULL AND id > :boundry_id  ORDER BY id DESC LIMIT 1", $board['uri']));
+			$query = prepare(sprintf("SELECT COUNT(*) AS count FROM posts_%s WHERE files IS NOT NULL AND id > :boundry_id", $board['uri']));
 			$query->bindValue(':boundry_id', $json_posts["recent_post"], PDO::PARAM_INT);
 			$query->execute() or error(db_error($query));
 			$image_count = intval($query->fetch(PDO::FETCH_ASSOC)['count']);
