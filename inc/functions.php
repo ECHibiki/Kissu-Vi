@@ -2037,12 +2037,16 @@ function buildIndex($global_api = "yes") {
 		}
 	}
 
-	// json api catalog
+	// json api catalog(catalog, threads, properties, post counter)
 	if ($config['api']['enabled'] && $global_api != "skip") {
 		if ($catalog_api_action == 'delete') {
 			$jsonFilename = $board['dir'] . 'catalog.json';
 			file_unlink($jsonFilename);
 			$jsonFilename = $board['dir'] . 'threads.json';
+			file_unlink($jsonFilename);
+			$jsonFilename = $board['dir'] . 'properties.json';
+			file_unlink($jsonFilename);
+			$jsonFilename = $board['dir'] . 'posts.json';
 			file_unlink($jsonFilename);
 		}
 		elseif ($catalog_api_action == 'rebuild') {
@@ -2052,6 +2056,38 @@ function buildIndex($global_api = "yes") {
 
 			$json = json_encode($api->translateCatalog($catalog, true));
 			$jsonFilename = $board['dir'] . 'threads.json';
+			file_write($jsonFilename, $json);
+
+			$json = json_encode($api->translateProperties());
+			$jsonFilename = $board['dir'] . 'properties.json';
+			file_write($jsonFilename, $json);
+
+			$post_contents = @file_get_contents($board['dir'] . 'posts.json');
+			if($post_contents)
+				$json_posts = json_decode(file_get_contents($board['dir'] . 'posts.json'), true);
+			else
+				$json_posts = array("recent_post"=>0, "post_count"=>0, "sage_count"=>0,  "file_count"=>0);
+
+			$query = prepare(sprintf("SELECT id FROM posts_%s ORDER BY id DESC LIMIT 1", $board['uri']));
+			$query->execute() or error(db_error($query));
+			$recent_no = intval($query->fetch(PDO::FETCH_ASSOC)['id']);
+
+			$query = prepare(sprintf("SELECT COUNT(*) AS count FROM posts_%s", $board['uri']));
+			$query->execute() or error(db_error($query));
+			$post_count = intval($query->fetch(PDO::FETCH_ASSOC)['count']);
+
+			$query = prepare(sprintf("SELECT COUNT(*) AS count FROM posts_%s WHERE email LIKE '%%sage%%' AND id > :boundry_id", $board['uri']));
+			$query->bindValue(':boundry_id', $json_posts["recent_post"], PDO::PARAM_INT);
+			$query->execute() or error(db_error($query));
+			$sage_count = intval($query->fetch(PDO::FETCH_ASSOC)['count']);
+
+			$query = prepare(sprintf("SELECT COUNT(*) AS count FROM posts_%s WHERE files IS NOT NULL AND id > :boundry_id", $board['uri']));
+			$query->bindValue(':boundry_id', $json_posts["recent_post"], PDO::PARAM_INT);
+			$query->execute() or error(db_error($query));
+			$image_count = intval($query->fetch(PDO::FETCH_ASSOC)['count']);
+
+			$json = json_encode($api->translateCounts($recent_no, $post_count, $sage_count, $image_count));
+			$jsonFilename = $board['dir'] . 'posts.json';
 			file_write($jsonFilename, $json);
 		}
 	}

@@ -1320,16 +1320,7 @@
 	// Directory for "Featured Threads" (threads makred for permanent storage)
 	$config['dir']['featured'] = 'featured/';
 
-	// Indicate if threads should be archived
-	$config['archive']['threads'] = true;
-	// Indicate if it is possible to mark threads as featured (stored forever)
-	$config['feature']['threads'] = true;
 
-	// Days to keep archived threads before deletion (if set to false all archived threads are kept forever)
-	$config['archive']['lifetime'] = 3;
-
-	// Number of chars in snippet
-	$config['archive']['snippet_len'] = 400;
 	
 /*
 * ====================
@@ -1345,8 +1336,8 @@
 	$config['feature']['link_post_page'] = false;
    	// Indicate if it is possible to mark threads as nostalgic (stored forever but will only be accessable to mods)
     	$config['mod_archive']['threads'] = true;
-	// Days to keep archived threads before deletion (ex. "60 minutes", "6 hours", "1 day", "1 week"), if set to false all archived threads are kept forever
-	$config['archive']['lifetime'] = "3 days";
+	// Days to keep archived threads before deletion (if set to false all archived threads are kept forever) threads are kept forever
+	$config['archive']['lifetime'] = "3";
    	// Number of chars in snippet
 	$config['archive']['snippet_len'] = 400;
     	// If any is set to run in crom both will be run in cron regardless

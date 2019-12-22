@@ -195,7 +195,36 @@ class Api {
 		}
 		return $apiPosts;
 	}
+
+	function translateProperties(){
+	    global $board, $config;
+
+	    $api_properties['board'] = $board['uri'];
+	    $api_properties['title'] = $board['title'];
+	    $api_properties['subtitle'] = $board['subtitle']; 
+	    $api_properties['blotter'] = $config['blotter']; 
+	    $api_properties['max_pages'] = $config['max_pages']; 
+	    $api_properties['threads_per_page'] = $config['threads_per_page'];
+	    $api_properties['nsfw_board'] = $config['nsfw_board']; 
+	    $api_properties['poll_board'] = $config['poll_board']; 
+	    $api_properties['file_board'] = $config['file_board']; 
+	    $api_properties['max_filesize'] = $config['max_filesize']; 
+	    $api_properties['max_body'] = $config['max_body']; 
+	    $api_properties['reply_limit'] = $config['reply_limit']; 
+	    $api_properties['image_hard_limit'] = $config['image_hard_limit']; 
+	    $api_properties['flood_time'] = $config['flood_time']; 
+	    $api_properties['flood_time_ip'] = $config['flood_time_ip']; 
+	    $api_properties['flood_board_time'] = $config['flood_board_time']; 
+	    $api_properties['archive']['threads'] = $config['archive']['threads']; 
+	    $api_properties['archive']['lifetime'] = $config['archive']['lifetime']; 
+
+	    return $api_properties;
+	}
 	
+	function translateCounts($recent_no, $post_count, $sage_count, $file_count){
+            $api_counter = array("recent_post"=>$recent_no, "post_count"=>$post_count, "sage_count"=>$sage_count,  "file_count"=>$file_count);
+            return $api_counter;
+	}
 
 	function translatePage(array $threads) {
 		$apiPage = array();
