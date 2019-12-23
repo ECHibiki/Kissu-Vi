@@ -31,11 +31,12 @@ $(window).ready(function() {
 			},
 			fail:function(a,b,error){
 			  console.log(error);
-			}
+			},
+			cache:false
 		  });
 		}
 	}
 
-	setTimeout(checkUpdates, 5000);
+	setTimeout(checkUpdates, 10000);
 	setInterval(checkUpdates, 10000);
 });
