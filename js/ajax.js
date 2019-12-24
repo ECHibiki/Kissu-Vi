@@ -124,7 +124,7 @@ $(window).ready(function() {
 								},
 								error: function(xhr, status, er){
 									$("form").each(function(){
-										$(this).find('input[type="submit"]').val("(Error)");
+										// issue was reported here  $(this).find('input[type="submit"]').val("(Error)");
 										$(this).find('input[type="submit"]').removeAttr('disabled');
 									});
 								},
