@@ -37,6 +37,5 @@ $(window).ready(function() {
 		}
 	}
 
-	setTimeout(checkUpdates, 10000);
 	setInterval(checkUpdates, 10000);
 });

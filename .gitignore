@@ -24,7 +24,8 @@
 #gz
 *.gz
 
-#sql files
+#ban files
+bans-all.html
 
 # static html and json
 *.json
@@ -52,7 +53,7 @@ secrets.php
 /main.js
 
 #index files
-
+index.html
 
 # rss
 *.rss
