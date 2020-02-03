@@ -79,7 +79,7 @@
 		{% if settings.embeded %}
 	        <iframe class ="videoofnow" width="560" height="315" src="{{ settings.videoofnow }}"></iframe>
 	        {% else %}
-		<video class ="videoofnow" width="560" height="315" controls autoplay>
+		<video class ="videoofnow" width="560" height="315" controls>
 			<source src="{{ settings.videoofnow }}">
 		</video>
 		{% endif %}

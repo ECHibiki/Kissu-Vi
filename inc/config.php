@@ -321,6 +321,9 @@
 	// If both true defaults to recaptcha
 	$config['flood_captchouli'] = false;
 	
+	//where to request captcha
+	$config['captchouli_addr'] = '127.0.0.1:8512/captcha';
+	
 	// Public and private key pair from https://www.google.com/recaptcha/admin/create
 	$config['recaptcha_public'] = '6LcXTcUSAAAAAKBxyFWIt2SO8jwx4W7wcSMRoN3f';
 	$config['recaptcha_private'] = '6LcXTcUSAAAAAOGVbVdhmEM1_SyRF4xTKe8jbzf_';

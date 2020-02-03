@@ -23,7 +23,7 @@ var giveMessage = function(motd){
 }
 	var request = new XMLHttpRequest(); 
 	var motd = "";
-	request.open("GET", '/motd.txt?' + Date.now());
+	request.open("GET", '/motd.txt');
 		request.onreadystatechange = function() { 
 		if (this.readyState === 4 && this.status === 200) {
 			motd = this.responseText;
@@ -41,7 +41,7 @@ var giveMessage = function(motd){
 	
        	 	var request = new XMLHttpRequest(); 
         	var motd = "";
-        	request.open("GET", '/motd.txt?' + Date.now());
+        	request.open("GET", '/motd.txt');
                 request.onreadystatechange = function() { 
                 	if (this.readyState === 4 && this.status === 200) {
                      	   motd = this.responseText;

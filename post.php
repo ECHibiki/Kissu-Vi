@@ -1022,7 +1022,7 @@ elseif(isset($_POST['release'])){
 	}
 	elseif ($config['flood_captchouli'] && isset($_POST['captchouli'])){
 		
-		$kissu = curl_init('https://kissu.moe/status?captchouli-id=' . $_POST['captchouli']);
+		$kissu = curl_init($config['captchouli_addr'] . 'status?captchouli-id=' . $_POST['captchouli']);
 		curl_setopt($kissu, CURLOPT_RETURNTRANSFER, true);
 		$result = curl_exec($kissu);
 

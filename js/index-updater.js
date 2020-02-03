@@ -32,10 +32,10 @@ $(window).ready(function() {
 			fail:function(a,b,error){
 			  console.log(error);
 			},
-			cache:false
+			cache:true
 		  });
 		}
 	}
-
-	setInterval(checkUpdates, 10000);
+	setTimeout(checkUpdates, 5000);
+	setInterval(checkUpdates, 20000);
 });

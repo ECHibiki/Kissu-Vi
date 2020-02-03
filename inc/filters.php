@@ -186,7 +186,7 @@ class Filter {
 					else if($config['flood_captchouli'] && $this->post['captype'] == 'captchouli'){
 						captcha(isset($this->message) ? $this->message .
 							"<hr style='width:40%'/>
-							<form action='/post.php' method='post'><iframe style='height:525px;width:462px' src='https://kissu.moe/captcha'><!-- god i hate cloudflare --></iframe><br/>
+							<form action='/post.php' method='post'><iframe style='height:525px;width:462px' src='" . $config['captchouli_addr'] . "captcha'><!-- god i hate cloudflare --></iframe><br/>
 							<textarea style='height:50px;width:302px' name='captchouli' placeholder='Captcha code goes here' required></textarea>
 							<input name='reference' type='hidden' value='".  $holding_id . "'>
 							<input name='release' type='hidden' value='submit'>

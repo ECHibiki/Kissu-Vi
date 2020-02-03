@@ -208,7 +208,7 @@ class Api {
 	    $api_properties['nsfw_board'] = $config['nsfw_board']; 
 	    $api_properties['poll_board'] = $config['poll_board']; 
 	    $api_properties['file_board'] = $config['file_board']; 
-	    $api_properties['max_filesize'] = $config['max_filesize']; 
+	    $api_properties['max_filesize'] = intval($config['max_filesize'] / (1024 * 1024)) . " MB"; 
 	    $api_properties['max_body'] = $config['max_body']; 
 	    $api_properties['reply_limit'] = $config['reply_limit']; 
 	    $api_properties['image_hard_limit'] = $config['image_hard_limit']; 

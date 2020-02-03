@@ -227,12 +227,12 @@ function loadConfig() {
 		if (!isset($config['image_deleted']))
 			$config['image_deleted'] = $config['dir']['static'] . 'deleted.png';
 
-		if (!isset($config['uri_thumb']))
+		if (!isset($config['uri_thumb']) && isset($board['dir']))
 			$config['uri_thumb'] = $config['root'] . $board['dir'] . $config['dir']['thumb'];
 		elseif (isset($board['dir']))
 			$config['uri_thumb'] = sprintf($config['uri_thumb'], $board['dir']);
 
-		if (!isset($config['uri_img']))
+		if (!isset($config['uri_img']) && isset($board['dir']))
 			$config['uri_img'] = $config['root'] . $board['dir'] . $config['dir']['img'];
 		elseif (isset($board['dir']))
 			$config['uri_img'] = sprintf($config['uri_img'], $board['dir']);
