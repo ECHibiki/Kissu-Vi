@@ -24,8 +24,6 @@ var banlist_init = function(token, my_boards, inMod) {
     });
 
     var selall = "<input type='checkbox' id='select-all' style='float: left;'>";
-console.log(t);
-console.log(window.longtable_json_dynamic)
     lt = $("#banlist").longtable({
       mask: {name: selall+_("IP address"), width: "220px", fmt: function(f) {
         var pre = "";

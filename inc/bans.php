@@ -218,6 +218,9 @@ class Bans {
 				$ban['masked'] = true;
 			}
 
+			// modify URLs incase offensive
+			$ban['message'] = preg_replace("/(http|https):\/\/.+(\..*)/i", "$1://***$2", preg_replace("/<a.*?>(.*?)<\/a>/i","$1", $ban['message']));
+
 			$json = json_encode($ban);
 			$out ? fputs($out, $json) : print($json);
 

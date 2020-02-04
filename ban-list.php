@@ -43,7 +43,7 @@
 
 
 <script src='main.js'></script>
-<script src='js/jquery.min.js'></script>
+<script src='js/jquery-3.4.1.min.js'></script>
 <script src='js/mobile-style.js'></script>
 <script src='js/strftime.min.js'></script>
 <script src='js/longtable/longtable.js'></script>
@@ -61,6 +61,8 @@
 		</div>
 
 		<table class="mod" style="width:100%" id="banlist">
+			<tbody>
+			</tbody>
 		</table>
 
 
