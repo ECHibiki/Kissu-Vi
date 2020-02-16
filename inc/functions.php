@@ -1550,6 +1550,11 @@ function deletePost($id, $error_if_doesnt_exist=true, $rebuild_after=true, $stor
 	$query->execute() or error(db_error($query));
 	$thread_id = $query->fetch(PDO::FETCH_ASSOC)['thread'];
 
+	$query = prepare(sprintf("SELECT COUNT(*) AS `replies` FROM posts_%s WHERE `thread`=:id", $board['uri']));
+	$query->bindValue(':id', $thread_id, PDO::PARAM_INT);
+	$query->execute() or error(db_error($query));
+	$reply_count = $query->fetch(PDO::FETCH_ASSOC)['replies'];
+
 	$query = prepare(sprintf("DELETE FROM ``posts_%s`` WHERE `id` = :id OR `thread` = :id", $board['uri']));
 	$query->bindValue(':id', $id, PDO::PARAM_INT);
 	$query->execute() or error(db_error($query));
@@ -1560,7 +1565,7 @@ function deletePost($id, $error_if_doesnt_exist=true, $rebuild_after=true, $stor
 	// $query->execute() or error(db_error($query));
 
 	// Update bump order
-	if (isset($thread_id))
+	if (isset($thread_id) && $reply_count < $config['reply_limit'])
 	{
 		$query = prepare(sprintf('SELECT MAX(`time`) AS `correct_bump` FROM `posts_%s`
 		                          WHERE (`thread` = :thread AND NOT email <=> "sage")
