@@ -21,12 +21,13 @@
 </head>
 <body>
 {{ boardlist.top }}
+	{% if config.url_banner_list %}<img id='bannerimg' class="board_image" src="{{ random(config.url_banner_list|split(',')) }}" {% if config.banner_width or config.banner_height %}style="{% if config.banner_width %}width:{{ config.banner_width }}px{% endif %};{% if config.banner_width %}height:{{ config.banner_height }}px{% endif %}" {% endif %}alt="" />{% endif %}
+
 	<header>
-	    <img class="icon" src="{{ settings.icon }}">
 		<h1>{{ settings.title }}</h1>
 		<div class="subtitle">{{ settings.subtitle }}</div>
+	        <div><img class="icon" src="{{ settings.icon }}"></div>
 	</header>
-	{% if config.url_banner_list %}<img id='bannerimg' class="board_image" src="{{ random(config.url_banner_list|split(',')) }}" {% if config.banner_width or config.banner_height %}style="{% if config.banner_width %}width:{{ config.banner_width }}px{% endif %};{% if config.banner_width %}height:{{ config.banner_height }}px{% endif %}" {% endif %}alt="" />{% endif %}
 
 	<div class="box-wrap">
 	    <!--<fieldset>
@@ -96,7 +97,7 @@
 					{% else %}
 						<em>no subject</em>
 					{% endif %}
-					<span class="unimportant"> &mdash; by {{ entry.name }} at {{ entry.time|date(config.post_date, config.timezone) }}</span>
+					<span class="unimportant"> &mdash; by&nbsp;{{ entry.name }} at {{ entry.time|date(config.post_date, config.timezone) }}</span>
 				</h2>
 				<p>{{ entry.body }}</p>
 			{% endfor %}

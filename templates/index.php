@@ -84,6 +84,9 @@
 	{% endif %}
 	</div>
 	</div>
+{% if config.banner_ads %}
+	{% include 'banner.template' %}
+{% endif %}
 	</div>
 	</div>
 	{% if config.page_nav_top %}

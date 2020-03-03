@@ -85,6 +85,9 @@
 
 </div>
 </div>
+{% if config.banner_ads %}
+	{% include 'banner.template' %}
+{% endif %}
 </div>
 <div id="lowercontents">
 	{% if config.global_message %}<hr /><div class="blotter">{{ config.global_message }}</div>{% endif %}

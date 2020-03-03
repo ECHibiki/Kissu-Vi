@@ -2024,3 +2024,8 @@ $config['mod']['rebuild'] = BOT;
 $config['json_scrambler']['scramble'] = false;
 // Salt for hashing json filenames
 $config['json_scrambler']['salt'] = '0123456789012345678901';
+
+// banners.
+$config['banner_ads'] = false;
+$config['banner_w'] = 500;
+$config['banner_h'] = 100;

@@ -50,6 +50,9 @@
 		{% include 'boardlist.html' %}
 	{% endif %}
 	</div>
+{% if config.banner_ads %}
+	{% include 'banner.template' %}
+{% endif %}
 	</div>
 	</div>
 	</div>
