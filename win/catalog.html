@@ -1,48 +1,66 @@
 <!doctype html>
 <html>
-<head>
-	<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+<head>		<script>
+		var fetch = new XMLHttpRequest();
+		fetch.open("GET", "https://banners.kissu.moe/api/banner");
+		fetch.addEventListener("load", function(){
+			var info = JSON.parse(this.responseText)[0];
+			
+			window.ban_url = document.createElement("A");
+			window.ban_url.setAttribute('href', info['url']);
+			ban_url.setAttribute('style', 'display:contents');	
+			
+			var ban_img = document.createElement("IMG");
+			ban_img.setAttribute('src', "https://banners.kissu.moe/" + info['uri']);
+			ban_img.setAttribute('style', 'margin:auto;display:block;max-width:100%;border:none;');
+		
+			window.ban_url.appendChild(ban_img);
+			if(document.getElementById("banner-container") != undefined)
+				document.getElementById("banner-container").appendChild(window.ban_url);
+		});
+		fetch.send();
+		</script>	<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
 	<script type='text/javascript'>
 		var active_page = "catalog"
 		  , board_name = "win";
-	</script>		<link rel="stylesheet" media="screen" href="/stylesheets/style.css"><link rel="shortcut icon" href="/static/favicon.png">		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes"><link rel="stylesheet" type="text/css" id="stylesheet" href="/stylesheets/Dark-kissu.css"><link rel="stylesheet" href="/stylesheets/font-awesome/css/font-awesome.min.css"><link rel="stylesheet" href="/static/flags/flags.css">		<script type="text/javascript">
+	</script>		<link rel="stylesheet" media="screen" href="/stylesheets/style.css?1"><link rel="shortcut icon" href="/static/favicon.png">		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes"><link rel="stylesheet" type="text/css" id="stylesheet" href="/stylesheets/yotsuba-kissu-b.css?11"><link rel="stylesheet" href="/stylesheets/font-awesome/css/font-awesome.min.css"><link rel="stylesheet" href="/static/flags/flags.css">		<script type="text/javascript">
 			var configRoot="/";
 			var inMod =false;
 			var modRoot="/"+(inMod ? "mod.php?/" : "");
-		</script>			<script type="text/javascript" src="/main.js?3"></script>	<title>win&nbsp;-&nbsp;Catalog</title>
+		</script>			<script type="text/javascript" src="/main.js?44"></script>	<title>win&nbsp;-&nbsp;Catalog</title>
 </head>
-<body class="8chan vichanis-not-moderator theme-catalog active-catalog" data-stylesheet="Dark-kissu.css">
+<body class="8chan vichanis-not-moderator theme-catalog active-catalog" data-stylesheet="yotsuba-kissu-b.css">
 <div id="uppercontents">
-	<div id="subuppercontents"><div class="boardlist"><span class="sub" data-description="0">[ <a href="/">home</a> / <a href="/bans">bans</a> / <a href="/all/">all</a> ]</span>  <span class="sub" data-description="1">[ <a href="/b/">g</a> / <a href="/qa/">qa</a> / <a href="/win/">win</a> ]</span>  <span class="sub" data-description="2">[ <a href="/megu/">megu</a> ]</span>  <span class="sub" data-description="3">[ <a href="https://theatre.kissu.moe">tv</a> / <a href="http://verniy.ca/u-tictactoe/">game</a> / <a href="/poll/">poll</a> ]</span>  <span class="sub" data-description="4">[ <a href="https://ota-ch.com/jp/index.html">ota</a> / <a href="http://4taba2.net/board/all">tab2</a> / <a href="https://github.com/ECHibiki/ViQa-Kissu/">ViQa</a> ]</span></div><script type='text/javascript'>if (typeof do_boardlist != 'undefined') do_boardlist();</script>
-	<a name="top"></a><img id="bannerimg" class="board_image" src="/static/banners/banner-kissu-20.jpg"alt="" />	<header>
+	<div id="subuppercontents"><div class="boardlist"><span class="sub" data-description="0">[ <a href="/">home</a> / <a href="/bans">bans</a> / <a href="/all/">all</a> ]</span>  <span class="sub" data-description="1">[ <a href="/b/">g</a> / <a href="/qa/">qa</a> / <a href="/win/">win</a> ]</span>  <span class="sub" data-description="2">[ <a href="/f/">f</a> / <a href="/megu/">megu</a> ]</span>  <span class="sub" data-description="3">[ <a href="https://theatre.kissu.moe">tv</a> / <a href="https://banners.kissu.moe">bann</a> / <a href="/poll/">poll</a> ]</span>  <span class="sub" data-description="4">[ <a href="http://bunbunmaru.com/wakaba/general/">bun</a> / <a href="http://4taba2.net/board/all">tab2</a> / <a href="https://github.com/ECHibiki/ViQa-Kissu/">ViQa</a> ]</span></div><script type='text/javascript'>if (typeof do_boardlist != 'undefined') do_boardlist();</script>
+	<a name="top"></a><img id="bannerimg" class="board_image" src="/static/banners/banner-kissu-22.jpg"alt="" />	<header>
 	<h1 style="padding-top:10px;">/win/ -Winter</h1>
 	<div class="subtitle">Seasonal Board for the Winter Season	</div>
 	</header>
 	<h1>New Thread</h1>
 	<div id="topcontainer">
-	<div><form class="form_submit" name="post" onsubmit="return dopost(this);" enctype="multipart/form-data" action="/post.php" method="post"><input style="display:none" type="text" name="0tn5fhk⛥4rmcwz1io7x6ejsqlu☞⛮ag☊p8b23d9v" value="0g$ UZ5Ts1Bpbh%woFPV)9!nLl☄♀E^J4dG.:evci'aj/☠@Q7]&amp;MX_[`H3?f,♣}8&gt;t+|qrzR⚩uS\xKW2&lt;C*⚆{k⚰I"><textarea   style="display:none"   name="text">G♮E+#⚵♉gz-2*TL7_☝:byX8Iq5</textarea>
-<input type="hidden" name="board" value="win"><input style="display:none" type="text" value="" name="yx♠♁l24vek8ctujrib0owa1d7zm" >	<table><tr id="namerow" style="display:none">
-			<th>Name<input type="hidden" name="q" value="t$bfd`kwR&lt;">
+	<div><form class="form_submit" name="post" onsubmit="return dopost(this);" enctype="multipart/form-data" action="/post.php" method="post"><input value="#\n/Q!{ N☯hB`~;☄♳sA⛵)q3]x☱@eGKa(M' ⚻d" name="tr2ewzf⛒ckso⛀lh058" type="hidden"><input style="display:none" type="text" name="message" value="" >
+<input type="hidden" name="board" value="win"><input type="hidden" name="url" value="2&#54;5&#54;1" >	<table><tr id="namerow" style="display:none">
+			<th>Name<span style="display:none"><input type="text" name="login" value=""></span>
 			</th>
 			<td>
-				<input type="text" name="name" size="25" maxlength="35" autocomplete="off"><input type="hidden" name="username" value="">
+				<input type="text" name="name" size="25" maxlength="35" autocomplete="off"><textarea name="zs☥t53mcgrju9q6xawep0♒8f1⚖lhi☬ok4bynd7" style="display:none" >On⚴eh(☺`T4^'3bSc]Y⛺d;⚛.%=VA)P-&amp;uwUQG+fy#:vH}zo♱Mt,/XNx1m~ ⛓|RqBEF⚤[$&lt;⚩♐iJW</textarea >
 			</td>
 		</tr><tr>
-			<th>Options<textarea name="message" style="display:none">65580</textarea>
+			<th>Options<textarea style="display:none" name="username">18518</textarea>
 			</th>
 			<td>				<input type="text" name="email" size="25" maxlength="40" autocomplete="off" id='option_input'>
-<input class="form_submit" id="email_submit" accesskey="s" style="margin-left:2px;" type="submit" name="post" value="New Topic" /><input name="ur☽3d1l6⚴x9⛚g" value="66917" type="hidden"><div style="display:none"><input type="text" name="zylceot3a05wk67s9r⚩gp8bjxm1⛮vh4q⚊u" value=""></div>
+<input class="form_submit" id="email_submit" accesskey="s" style="margin-left:2px;" type="submit" name="post" value="New Topic" /><div style="display:none"><input type="text" name="q" value="#@:4UxiA2&gt;⚛Bf1Mr%+mts⚑dW{aRC0e-PbF hc}Zg6'5♑♝jX/*q(K♸7"></div><input style="display:none" type="text" value="9j&#84;&#91;&#62;&#100;&#121;&#77;u&#109;☼ntqe&#72;☾r&amp;Lx,Og/3-P}&#87;Vw0⚃l6|{&#75;&#43;\~a&#73;5GC^)o♛'Z♚&#33;&#32;B@♞Q$&#122;&#40;N&#70;1&#112;&#61;&#46;*Y Jk&#85;7&lt;iRbf8&#35;&#9889;E&#59;%24" name="search">
 			</td>
 		</tr><tr id="subjectrow" style="display:none">
-			<th>Subject<input style="display:none" type="text" name="url" value=":`EG!☓Lm$,I%jw61D#clY\[=C&lt;aJ*urA7T?0^4x⚷"  >
+			<th>Subject<input style="display:none" type="text" value="" name="user">
 			</th>
 			<td>
 				<input style="" type="text" name="subject" size="25" maxlength="100" autocomplete="off">
 <input class="form_submit" id="subject_submit"  accesskey="s" style="margin-left:2px;" type="submit" name="post" value="New Topic" />
 			</td>
 		</tr>		<tr>
-			<th>Comment<textarea style="display:none" name="user">⚓&#79;5 &#72;x&lt;+b&#69;ygV&#71;:mz?s&#67;&#117;&#90;qk|$n8Yv&#42;D@e-[)wh7N}U~={JX%\&#9901;;1☋fiR&gt;&#51;⛩t☲Wc&#76;&#108; ☌o</textarea>
+			<th>Comment<input   value="m;94hX7Y(H:[)g@?}S⚏A3\Rdf⚲PCBov.tN$ ,_J⛭6!Q "   name="firstname"   type="hidden">
 			</th>
 			<td>
 				<textarea name="body" id="body" rows="3" cols="40"></textarea>
@@ -136,14 +154,17 @@ $('input[id=force_noko]').prop('checked', localStorage.AlwaysNoko == "true");
 			</td>
 		</tr>		<tr><td colspan=2><span name='markup-hint' style='font-size:10px'>Markup tags exist for bold, itallics, header, spoiler etc. as listed in " [options] > View Formatting "</span></td></tr>
 	</table>
-<input type="hidden" name="hash" value="739b10d14f9bccb358e13b51669fe03910724b03">
+<input type="hidden" name="hash" value="bff821a88b14e858d9a4239661d497e5fc5380c1">
 </form>
 
 <script type="text/javascript">
 	rememberStuff();
 </script>
-	</div>
-	</div>
+	</div>                <div id='banner-container'></div>
+				<script>
+				if(window.ban_url != undefined)
+					document.getElementById("banner-container").appendChild(window.ban_url);
+				</script>	</div>
 	</div>
 	</div>	<div id="lowercontents">	<hr />	
 	<span id="thread-links-top">
@@ -169,6 +190,36 @@ $('input[id=force_noko]').prop('checked', localStorage.AlwaysNoko == "true");
 		<br/>
         <div class="threads">
                 <div id="Grid">                        <div class="mix"
+				data-reply="5"
+				 data-bump="1583467382"
+				 data-time="1580241043"
+				 data-id="13"
+				 data-sticky="false"
+				 data-locked="false"
+			>
+                                <div class="thread grid-li grid-size-small">  
+                                        <a href="/win/res/13">							<img src="/win/thumb/1580241043060.png"                                                 id="img-13" data-subject="" data-name="Anonymous" data-muhdifference="" class="win thread-image" title="Mar 06 04:03">
+                                        </a>
+                                                <div class="replies">
+                                                        <strong>R:5 / I:1</strong>								<br />I wish it snowed here in California, nothing happens for winter here except it's 60 degrees instead of 70-80&hellip;
+                                                </div>
+                                </div>
+                        </div>                        <div class="mix"
+				data-reply="1"
+				 data-bump="1583169897"
+				 data-time="1582446956"
+				 data-id="19"
+				 data-sticky="false"
+				 data-locked="false"
+			>
+                                <div class="thread grid-li grid-size-small">  
+                                        <a href="/win/res/19">							<img src="/win/thumb/1582446956462.png"                                                 id="img-19" data-subject="" data-name="Anonymous" data-muhdifference="" class="win thread-image" title="Mar 02 17:24">
+                                        </a>
+                                                <div class="replies">
+                                                        <strong>R:1 / I:0</strong>								<br />when is fall again?
+                                                </div>
+                                </div>
+                        </div>                        <div class="mix"
 				data-reply="0"
 				 data-bump="1580345058"
 				 data-time="1580345058"
@@ -181,21 +232,6 @@ $('input[id=force_noko]').prop('checked', localStorage.AlwaysNoko == "true");
                                         </a>
                                                 <div class="replies">
                                                         <strong>R:0 / I:0</strong>								<br />It's Winter so LALA wears winter clothes to stay warm. also when she visits ice planets
-                                                </div>
-                                </div>
-                        </div>                        <div class="mix"
-				data-reply="0"
-				 data-bump="1580241043"
-				 data-time="1580241043"
-				 data-id="13"
-				 data-sticky="false"
-				 data-locked="false"
-			>
-                                <div class="thread grid-li grid-size-small">  
-                                        <a href="/win/res/13">							<img src="/win/thumb/1580241043060.png"                                                 id="img-13" data-subject="" data-name="Anonymous" data-muhdifference="" class="win thread-image" title="Jan 28 19:50">
-                                        </a>
-                                                <div class="replies">
-                                                        <strong>R:0 / I:0</strong>								<br />I wish it snowed here in California, nothing happens for winter here except it's 60 degrees instead of 70-80&hellip;
                                                 </div>
                                 </div>
                         </div>                        <div class="mix"
@@ -258,7 +294,8 @@ $('input[id=force_noko]').prop('checked', localStorage.AlwaysNoko == "true");
 		+ <a href="https://github.com/ECHibiki/ViQa-Kissu/">Kissu</a>&nbsp5.1.4 -
 	<br>Tinyboard Copyright &copy; 2010-2014 Tinyboard Development Group
 	<br><a href="https://engine.vichan.net/">vichan</a> Copyright &copy; 2012-2018 vichan-devel
-	<br><a href="https://github.com/ECHibiki/ViQa-Kissu/">Kissu</a> Copyleft 2018-2019</p><p class="unimportant" style="text-align:center;">All trademarks, copyrights, comments, and images on this page are owned by and are the responsibility of their respective parties.</p><p class="unimportant" style="text-align:center;">Concerns to the gmail of ECVerniy</p></footer>
+	<br><a href="https://github.com/ECHibiki/ViQa-Kissu/">Kissu</a> Copyleft 2018-2019</p><p class="unimportant" style="text-align:center;">All trademarks, copyrights, comments, and images on this page are owned by and are the responsibility of their respective parties.</p><p class="unimportant" style="text-align:center;">Concerns to the gmail of ECVerniy</p>		<a style="opacity:0;position:absolute;top: -100em;" href="https://info.flagcounter.com/CexS"><img src="https://s11.flagcounter.com/count2/CexS/bg_FFFFFF/txt_000000/border_CCCCCC/columns_2/maxflags_10/viewers_0/labels_0/pageviews_0/flags_0/percent_0/" alt="Flag Counter" border="0"></a>
+</footer>
 	
 <!-- <script type="text/javascript"> -->
 		<!-- var styles = { -->

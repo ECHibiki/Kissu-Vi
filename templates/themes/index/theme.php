@@ -60,6 +60,7 @@
 			$boards = listBoards();
 			
 			$query = '';
+			$query2 = '';
 			foreach ($boards as &$_board) {
 				if (in_array($_board['uri'], $this->excluded) || in_array($_board['uri'], $this->imageless))
 					continue;

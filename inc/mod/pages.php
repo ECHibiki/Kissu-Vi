@@ -3160,8 +3160,10 @@ function mod_edit_page($id) {
 		$query->bindValue(':content', $content);
 		$query->bindValue(':id', $id);
 		$query->execute() or error(db_error($query));
-
-		$fn = ($board['uri'] ? ($board['uri'] . '/') : '') . $page['name'] . '.html';
+		if($board)
+			$fn = ($board['uri'] ? ($board['uri'] . '/') : '') . $page['name'] . '.html';
+		else
+			$fn = '' . $page['name'] . '.html';
 		$body = "<div class='ban'>$write</div>";
 		$html = Element('page.html', array('config' => $config, 'body' => $body, 'title' => utf8tohtml($page['title'])));
 		file_write($fn, $html);

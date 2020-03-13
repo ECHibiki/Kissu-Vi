@@ -1,0 +1,1 @@
+<iframe importance="high" id="kissu-banner" src="https://banners.kissu.moe/banner" scrolling="no" width="{{ config.banner_w }}" height="{{ config.banner_h }}" style="margin:auto;display:block;max-width:100%;border:none"></iframe>

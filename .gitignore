@@ -17,12 +17,18 @@
 /agg/*
 /poll/*
 /trans/*
+/f/*
+/sgp/*
 
 #logs
 *.log
+*.txt
 
 #gz
 *.gz
+
+#saves
+*.save*
 
 #ban files
 bans-all.html

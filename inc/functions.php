@@ -1533,6 +1533,7 @@ function deletePost($id, $error_if_doesnt_exist=true, $rebuild_after=true, $stor
 		}
 		if ($post['files'] && !$store_image) {
 			// Delete file
+		if(json_decode($post['files']))
 			foreach (json_decode($post['files']) as $i => $f) {
 				if ($f->file !== 'deleted') {
 					file_unlink($board['dir'] . $config['dir']['img'] . $f->file);
@@ -2075,18 +2076,27 @@ function buildIndex($global_api = "yes") {
 
 			$query = prepare(sprintf("SELECT id FROM posts_%s ORDER BY id DESC LIMIT 1", $board['uri']));
 			$query->execute() or error(db_error($query));
-			$recent_no = intval($query->fetch(PDO::FETCH_ASSOC)['id']);
-
+			if($re = $query->fetch(PDO::FETCH_ASSOC))
+				$recent_no = intval($re['id']);
+			else
+				$recent_no = 0;
+			
 			$query = prepare(sprintf("SELECT COUNT(*) AS count FROM posts_%s WHERE email LIKE '%%sage%%' AND id > :boundry_id", $board['uri']));
 			$query->bindValue(':boundry_id', $json_posts["recent_post"], PDO::PARAM_INT);
 			$query->execute() or error(db_error($query));
-			$sage_count = $json_posts["sage_count"] + intval($query->fetch(PDO::FETCH_ASSOC)['count']);
-
+			if($se = $query->fetch(PDO::FETCH_ASSOC))
+				$sage_count = $json_posts["sage_count"] + intval($se['count']);
+			else
+				$sage_count = 0;
+			
 			$query = prepare(sprintf("SELECT COUNT(*) AS count FROM posts_%s WHERE files IS NOT NULL AND id > :boundry_id", $board['uri']));
 			$query->bindValue(':boundry_id', $json_posts["recent_post"], PDO::PARAM_INT);
 			$query->execute() or error(db_error($query));
-			$file_count = $json_posts["file_count"] + intval($query->fetch(PDO::FETCH_ASSOC)['count']);
-
+			if($fe = $query->fetch(PDO::FETCH_ASSOC))
+				$file_count = $json_posts["file_count"] + intval($fe['count']);
+			else
+				$file_count = 0;
+				
 			$json = json_encode($api->translateCounts($recent_no, $sage_count, $file_count));
 			$jsonFilename = $board['dir'] . 'posts.json';
 			file_write($jsonFilename, $json);

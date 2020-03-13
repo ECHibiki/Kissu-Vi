@@ -4,6 +4,29 @@
 <!doctype html>
 <html>
 <head>
+	{% if config.preload_banner %}
+		<script>
+		var fetch = new XMLHttpRequest();
+		fetch.open("GET", "{{ config.banner_src }}api/banner");
+		fetch.addEventListener("load", function(){
+			var info = JSON.parse(this.responseText)[0];
+			
+			window.ban_url = document.createElement("A");
+			window.ban_url.setAttribute('href', info['url']);
+			ban_url.setAttribute('style', 'display:contents');			
+
+			var ban_img = document.createElement("IMG");
+			ban_img.setAttribute('src', "{{ config.banner_src }}" + info['uri']);
+			ban_img.setAttribute('style', 'margin:auto;display:block;max-width:100%;border:none;');
+			
+		
+			window.ban_url.appendChild(ban_img);
+			if(document.getElementById("banner-container") != undefined)
+				document.getElementById("banner-container").appendChild(window.ban_url);
+		});
+		fetch.send();
+		</script>
+	{% endif %}
 	<meta charset="utf-8">
 
         <script type="text/javascript">
@@ -84,6 +107,17 @@
 	{% endif %}
 	</div>
 	</div>
+{% if config.banner_ads %}
+        {% if config.iframe_banner %}
+                {% include 'banner.template' %}
+        {% elseif config.preload_banner %}
+                <div id='banner-container'></div>
+				<script>
+				if(window.ban_url != undefined)
+					document.getElementById("banner-container").appendChild(window.ban_url);
+				</script>
+        {% endif %}
+{% endif %}
 	</div>
 	</div>
 	{% if config.page_nav_top %}

@@ -40,7 +40,7 @@
 }
 
 .intro{
-	display: inline-block;
+	/* display: inline-block; Why???*/
 }
 
 /* http://kissu.moe/b/res/198.html#q290 */

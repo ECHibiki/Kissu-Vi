@@ -12,8 +12,7 @@
 
     <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
 	<title>{{ settings.title }}</title>
-	<link rel="stylesheet" media="screen" href="{{ config.url_stylesheet }}"/>
-	<link rel="stylesheet" media="screen" href="{{ config.root }}{{ settings.css }}"/>
+	<link rel="stylesheet" media="screen" href="{{ config.root }}{{ settings.css }}?1"/>
 	{% if config.url_favicon %}<link rel="shortcut icon" href="{{ config.url_favicon }}" />{% endif %}
 	<!-- {% if config.default_stylesheet.1 != '' %}<link rel="stylesheet" type="text/css" id="stylesheet" href="{{ config.uri_stylesheets }}{{ config.default_stylesheet.1 }}">{% endif %} -->
 	{% if config.font_awesome %}<link rel="stylesheet" href="{{ config.root }}{{ config.font_awesome_css }}">{% endif %}
@@ -21,12 +20,13 @@
 </head>
 <body>
 {{ boardlist.top }}
+	{% if config.url_banner_list %}<img id='bannerimg' class="board_image" src="{{ random(config.url_banner_list|split(',')) }}" {% if config.banner_width or config.banner_height %}style="{% if config.banner_width %}width:{{ config.banner_width }}px{% endif %};{% if config.banner_width %}height:{{ config.banner_height }}px{% endif %}" {% endif %}alt="" />{% endif %}
+
 	<header>
-	    <img class="icon" src="{{ settings.icon }}">
 		<h1>{{ settings.title }}</h1>
 		<div class="subtitle">{{ settings.subtitle }}</div>
+	        <div><img class="icon" src="{{ settings.icon }}"></div>
 	</header>
-	{% if config.url_banner_list %}<img id='bannerimg' class="board_image" src="{{ random(config.url_banner_list|split(',')) }}" {% if config.banner_width or config.banner_height %}style="{% if config.banner_width %}width:{{ config.banner_width }}px{% endif %};{% if config.banner_width %}height:{{ config.banner_height }}px{% endif %}" {% endif %}alt="" />{% endif %}
 
 	<div class="box-wrap">
 	    <!--<fieldset>
@@ -96,7 +96,7 @@
 					{% else %}
 						<em>no subject</em>
 					{% endif %}
-					<span class="unimportant"> &mdash; by {{ entry.name }} at {{ entry.time|date(config.post_date, config.timezone) }}</span>
+					<span class="unimportant"> &mdash; by&nbsp;{{ entry.name }} at {{ entry.time|date(config.post_date, config.timezone) }}</span>
 				</h2>
 				<p>{{ entry.body }}</p>
 			{% endfor %}
