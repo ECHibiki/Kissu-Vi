@@ -5,13 +5,13 @@
 	<script type="text/javascript">
 		var active_page = "page";
 	</script>		<link rel="stylesheet" media="screen" href="/stylesheets/style.css?1"><link rel="shortcut icon" href="/static/favicon.png">		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes"><link rel="stylesheet" type="text/css" id="stylesheet" href="/stylesheets/yotsuba-kissu-b.css?11"><link rel="stylesheet" href="/stylesheets/font-awesome/css/font-awesome.min.css"><link rel="stylesheet" href="/static/flags/flags.css">		<script type="text/javascript">
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes"><link rel="stylesheet" type="text/css" id="stylesheet" href="/stylesheets/kissumas.css?11"><link rel="stylesheet" href="/stylesheets/font-awesome/css/font-awesome.min.css"><link rel="stylesheet" href="/static/flags/flags.css">		<script type="text/javascript">
 			var configRoot="/";
 			var inMod =false;
 			var modRoot="/"+(inMod ? "mod.php?/" : "");
 		</script>	<title>Ban list</title>
 </head>
-<body class="8chan vichanis-not-moderator active-page" data-stylesheet="yotsuba-kissu-b.css">	<header>
+<body class="8chan vichanis-not-moderator active-page" data-stylesheet="kissumas.css">	<header>
 		<h1>Ban list</h1>
 		<div class="subtitle">		</div>
 	</header><?php

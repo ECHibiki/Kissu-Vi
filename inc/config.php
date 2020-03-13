@@ -2027,8 +2027,10 @@ $config['json_scrambler']['salt'] = '0123456789012345678901';
 
 // banners.
 $config['banner_ads'] = false;
+
 $config['preload_banner'] = false;
 $config['iframe_banner'] = false;
 $config['banner_src'] = "https://banners.kissu.moe/";
+
 $config['banner_w'] = 500;
 $config['banner_h'] = 100;
