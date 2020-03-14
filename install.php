@@ -990,6 +990,7 @@ if ($step == 0) {
 	$queries[] = Element('archive.sql', array('board' => 'b'));
 	$queries[] = Element('polling.sql', array());
 	$queries[] = Element('captcha.sql', array());
+	$queries[] = Element('proxy.sql', array());
 
 	$sql_errors = '';
 	foreach ($queries as $query) {

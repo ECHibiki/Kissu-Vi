@@ -1,110 +1,32 @@
-ViChan - A lightweight and full featured PHP imageboard.
-========================================================
+# Original Kissu - Vichan fork that makes things work
 
-About
-------------
+## About
+Instead of a long list of instalation instructions consult the vichan wiki and readme. The instalation and setup procedures are identical. What this documentation will provide is an explanation on what has been added to the software since the git log is pretty unclear. It makes use of features from NPFChan and my own to give use cases centered around users having control and information. Though the intent of democratic imageboard usage was has not yet been met, it offers the majority a greater controll over what happens should you chose to enable these features.
+<br/><br/>
+Kissu has not been tested for upgrades off of NPFChan or Vichan. I have no affiliation with the two parties and am simply using their code as per the lisence agreement.
+### Polling
+Orig. Kissu adds the ability for users to set up polling boards. These are an aditional board/thread type that creates polling threads with questions, keeping track of responses, and outputting them through the charts.js Library
+### Captchouli and Filters
+Orig. Kissu has the ability to use Bakape's Captchouli captcha software. This is a local captcha provider that uses machine learning to search for faces in boorus and generate captchas based on taggings. Though it is included, it requires some set up. It is a much better alternative to numerical captcha or google's recaptcha.
+<br/><br/>
+In addition Kissu allows for you to set up captcha bypasses to flood warnings. Instead of outright rejecting a user who is suspected of flooding, it will give them a captcha to solve to verify they are not a spambot.
+### IP Scraping
+In situations where you are concerned about Proxy and VPN abuse you may configure a crontab to execute tools/scan_proxies.php. This makes use of a python script that will scan a list of sites for IP regex matches and place them into the banned user database table. Over time this will slow down user posting to a snails pace so regular cleaning is required.
+### Banners
+Orig. Kissu includes a Laverl program to serve banner ads much like 4chan. See https://github.com/ECHibiki/Community-Banners for more info. <br/>
+This fork also includes an alterantive way to handle banners through URLs in the $config['url_banner_list'] property. Using this you can easily create a list of banners without ever needing to touch the code or servers. banner-art.php also provides the standard rotate.php behaviour.
 
-*Security problems can be reported to Fredrick Brennan at his email: COPYPASTE \<AT\> KITTENS \<DOT\> PH.*
-	
-History
-------------
-vichan is a fork of (now defunc'd) [Tinyboard](http://github.com/savetheinternet/Tinyboard),
-a great imageboard package, actively building on it and adding a lot of features and other
-improvements.
+### Archive Board
+Original Kissu makes partial use of NPFChan's archive functionality. Consult their documentation for usage.
 
-Some documentation may be found on our [wiki](https://github.com/vichan-devel/vichan/wiki). (feel free to contribute)
+### Weaker Moderation
+This creates a situation where all of a moderators delets below a set permission level will always send deleted posts into a defined board. This in effect makes it impossible for mods to delete posts always leaving a trace of information over who did what. Mods can perform all regular functions, they simply can not delete completely. in addition to this the theme "heavy-public-banlist" provides a search field where users can look up which mods did what and what kind of posters are being banned.
 
-Requirements
-------------
-1.	PHP <= PHP 7.4.
-2.	MySQL/MariaDB server
-3.	[mbstring](http://www.php.net/manual/en/mbstring.installation.php) 
-4.	[PHP GD](http://www.php.net/manual/en/intro.image.php)
-5.	[PHP PDO](http://www.php.net/manual/en/intro.pdo.php)
-6.	A Unix-like OS, preferrably FreeBSD or Linux. 
-Notes. ViQa is developed on Ubuntu18.04 with an Ubuntu18.04 VPS Server
+### Index Updater Script
+This idea was adopted from GNFOS.com to make use of an expanded JSON api and tell users through the browser tab when a new post has been made.
 
-We try to make sure vichan is compatible with all major web servers. vichan does not include an Apache ```.htaccess``` file nor does it need one.
+### And many more
+In addition to lots of bug fixes and being the only ViChan fork with out of the box compatibility given PHP7.4, there are a many other new adjustments I made to suit the /qa/ community that I have forgotten about.
 
-### Recommended
-1.	MySQL/MariaDB server >= 5.5.3
-2.	ImageMagick (command-line ImageMagick or GraphicsMagick preferred).
-3.	[APC (Alternative PHP Cache)](http://php.net/manual/en/book.apc.php),
-	[XCache](http://xcache.lighttpd.net/) or
-	[Memcached](http://www.php.net/manual/en/intro.memcached.php)
-
-Contributing
-------------
-You can contribute to vichan by:
-*	Developing patches/improvements/translations and using GitHub to submit pull requests
-*	Providing feedback and suggestions
-*	Writing/editing documentation
-
-Installation
--------------
-1.	Download and extract vichan to your web directory or get the latest
-	development version with:
-
-        git clone git://github.com/vichan-devel/vichan.git
-	
-2.	Navigate to ```install.php``` in your web browser and follow the
-	prompts.
-3.	vichan should now be installed. Log in to ```mod.php``` with the
-	default username and password combination: **admin / password**.
-
-Please remember to change the administrator account password.
-
-See also: [Configuration Basics](https://web.archive.org/web/20121003095922/http://tinyboard.org/docs/?p=Config).
-
-
-
-Upgrade
--------
-To upgrade from any version of Tinyboard or vichan:
-
-Either run ```git pull``` to update your files, if you used git, or
-backup your ```inc/instance-config.php```, replace all your files in place
-(don't remove boards etc.), then put ```inc/instance-config.php``` back and
-finally run ```install.php```.
-
-To migrate from a Kusaba X board, use http://github.com/vichan-devel/Tinyboard-Migration
-
-Support
---------
-vichan is still beta software -- there are bound to be bugs. If you find a
-bug, please report it.
-
-CLI tools
------------------
-There are a few command line interface tools, based on Tinyboard-Tools. These need
-to be launched from a Unix shell account (SSH, or something). They are located in a ```tools/```
-directory.
-
-You actually don't need these tools for your imageboard functioning, they are aimed
-at the power users. You won't be able to run these from shared hosting accounts
-(i.e. all free web servers).
-
-Oekaki
-------
-vichan makes use of [wPaint](https://github.com/websanova/wPaint) for oekaki. After you pull the repository, however, you will need to download wPaint separately using git's `submodule` feature. Use the following commands:
-
-```
-git submodule init
-git submodule update
-```
-
-To enable oekaki, add all the scripts listed in `js/wpaint.js` to your `instance-config.php`.
-
-WebM support
-------------
-Read `inc/lib/webm/README.md` for information about enabling webm.
-
-vichan API
-----------
-vichan provides by default a 4chan-compatible JSON API. For documentation on this, see:
-https://github.com/vichan-devel/vichan-API/ .
-
-License
---------
-See [LICENSE.md](http://github.com/vichan-devel/vichan/blob/master/LICENSE.md).
-
+## Closing Remarks
+Not everything in here has been tested and I'm not certain I will improve on this release. If something is outright broken I will fix it, but I don't want the responsibility of keeping an up to date vichan fork unless there is some monetary compensation involved. This is release included as a failsafe in case I vanish and people want to recreate what I have made.

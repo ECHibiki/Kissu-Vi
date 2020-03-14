@@ -1,3 +1,22 @@
+# License of Kissu Origonal
+
+Subliscenced
+
+Yo, this code ... you can use it however you want, but respect the rights of other contribtors pl0x as per the MIT/X11 lisence.<br/>
+Don't modify dem footers because that's making it less clear who made the changes and don't you dare think about removing this file. I have no obligation to fix bugs on this product nor am I responsible if it damages anything on your computer, or when it causes you to lose wealth.
+
+Code is lisenced under the MIT/X11 license and in situations where conflicts between readings occur, then the MIT/X11 license will take precidence. 
+
+# License of NPFchan
+
+Copyright (c) 2017 NPFchan
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+All copyright notices and permission notices (including this file) shall be included and remain unedited in all copies or substantial portions of the Software. This explicitly includes but is not limited to the vichan copyright notices found in the footers of some template files.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
 # License of vichan
 Copyright (c) 2012-2018 vichan-devel
 
@@ -53,7 +72,7 @@ THE SOFTWARE.
 This section is not a law code, it just describes the license in a
 human-friendly way.
 
-Both licenses are slight modifications of the MIT/X11 license. This is a
+All licenses are slight modifications of the MIT/X11 license. This is a
 permissive license, you can do anything with code, but you just have to leave
 copyright notices untouched. Beside, we give you absolutely no guarantees.
 
