@@ -1,4 +1,21 @@
+
+
 # Original Kissu - Vichan fork that makes things work
+
+## Want me to work faster?
+
+<a href="https://www.patreon.com/ECVerniy"><img width="30%" src="https://banners.kissu.moe/static/Patreon_Navy.png" /></a>
+<h3>Crypto?</h3>
+BITCOIN: 14K6kHgpRvgKPnktf4e2UVfEaarYEe64n4<br/>
+ETHEREUM: 0xf590a2cdd900eae8a680ed199e97f59d3718457a<br/>
+BITCOIN CASH: 1DrBJ3TWGDjmKX4VKfaXTcMvq8UJBZyiEu<br/>
+DOGECOIN: DDVEFppYykougRWhEaWN7oAYXu2Lw3bk5i<br/>
+LITECOIN: LPjzwQjCjMT55W79SPifztGppdbfQQymkP<br/>
+MONERO: 49wbxUahfiyCQWtpJefQWVJofKPXj7pjohgmGeTChRJRCYMyUPeZe7fMdoK5MLbsvHS3A3QoB1hWTQ4D8FZFQsh445Gp93K<br/>
+
+currently work on improving kissu's software is limited by a need for cash.
+
+The git log of this project is somewhat messy due to a lack of understanding on how to properly deploy software. After this commit, procedures should be better.
 
 ## About
 Instead of a long list of instalation instructions consult the vichan wiki and readme. The instalation and setup procedures are identical. What this documentation will provide is an explanation on what has been added to the software since the git log is pretty unclear. It makes use of features from NPFChan and my own to give use cases centered around users having control and information. Though the intent of democratic imageboard usage was has not yet been met, it offers the majority a greater controll over what happens should you chose to enable these features.
