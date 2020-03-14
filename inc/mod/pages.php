@@ -792,7 +792,7 @@ function mod_view_board($boardName, $page_no = 1) {
 	$page['mod'] = true;
 	$page['config'] = $config;
 	
-	echo Element('index.php', $page);
+	echo Element('index.html', $page);
 }
 
 function mod_view_thread($boardName, $thread) {

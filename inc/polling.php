@@ -97,7 +97,6 @@
 			$query->bindValue(':board', $board);
 			$query->execute() or error(db_error($query));
 			$poll_data = ($query->fetchAll(PDO::FETCH_ASSOC));
-			
 			$questions = json_decode($poll_data[0]['questionaire_json']);
 			$colors = json_decode($poll_data[0]['colors']);
 			if(!$colors)

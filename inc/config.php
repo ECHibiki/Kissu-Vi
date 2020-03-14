@@ -21,7 +21,11 @@
  *
  *  Tinyboard documentation: https://web.archive.org/web/20121003095807/http://tinyboard.org/docs/?p=Main_Page
  *
- */
+ 
+/* AHEM */
+ // config.php should be left in tact
+ // make your modifications in a new file called instance-config.php and it will be used to replace most of the values here. Filters are an exception.
+
 
 	defined('TINYBOARD') or exit;
 
@@ -394,6 +398,7 @@
 	$config['flood_ban'] = 'ban'; // note: bans require a reason and a time. Search below for examples
 	$config['flood_captcha'] = 'captcha';
 
+	/*
 	// Minimum time between posts by the same IP address (all boards).
 	$config['filters'][] = array(
 		'condition' => array(
@@ -434,8 +439,6 @@
 		'action' => $config['flood_captcha'],
 		'message' => &$config['error']['flood']['fast']
 	);
-
-
 $config['filters'][] = array(
         'condition' => array(
 			'body' => '/apg\.de/', 
@@ -445,6 +448,7 @@ $config['filters'][] = array(
 		);
 
 
+*/
 
 	// Example: Minimum time between posts with the same file hash.
 	// $config['filters'][] = array(
@@ -1122,7 +1126,7 @@ $config['filters'][] = array(
  *  Javascript
  * ====================
  */
-
+	
 	// Additional Javascript files to include on board index and thread pages. See js/ for available scripts.
 	// $config['additional_javascript'][] = 'js/jquery.min.js';
 	// $config['additional_javascript'][] = 'js/inline-expanding.js';
@@ -1132,8 +1136,8 @@ $config['filters'][] = array(
 	// jQuery, you should first empty the array so that "js/query.min.js" can be the first, and then re-add
 	// "js/inline-expanding.js" or else the inline-expanding script might not interact properly with other
 	// scripts.
-	// $config['additional_javascript'] = array();
-	// $config['additional_javascript'][] = 'js/jquery.min.js';
+	$config['additional_javascript'] = array();
+	$config['additional_javascript'][] = 'js/jquery-3.4.1.min.js';
 	// $config['additional_javascript'][] = 'js/inline-expanding.js';
 	// $config['additional_javascript'][] = 'js/auto-reload.js';
 	// $config['additional_javascript'][] = 'js/post-hover.js';
@@ -2045,4 +2049,4 @@ $config['banner_src'] = "https://banners.kissu.moe/";
 
 $config['banner_w'] = 500;
 $config['banner_h'] = 100;
-$config['webscraper_path'] = '/var/www/html/Regex-Webscraper/py-cmd/regexscraper.py';
+$config['webscraper_path'] = '/var/www/html/inc/Regex-Webscraper/py-cmd/regexscraper.py';

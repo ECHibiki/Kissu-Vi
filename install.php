@@ -1,7 +1,7 @@
 <?php
-
+echo "<pre>";
 // Installation/upgrade file	
-define('VERSION', '5.1.4');
+define('VERSION', '6.0.0');
 require 'inc/functions.php';
 loadConfig();
 
@@ -976,7 +976,7 @@ if ($step == 0) {
 	buildJavascript();
 	
 	$sql = @file_get_contents('install.sql') or error("Couldn't load install.sql.");
-	
+
 	sql_open();
 	$mysql_version = mysql_version();
 	
@@ -987,7 +987,10 @@ if ($step == 0) {
 	$queries = $queries[2];
 	
 	$queries[] = Element('posts.sql', array('board' => 'b'));
-	
+	$queries[] = Element('archive.sql', array('board' => 'b'));
+	$queries[] = Element('polling.sql', array());
+	$queries[] = Element('captcha.sql', array());
+
 	$sql_errors = '';
 	foreach ($queries as $query) {
 		if ($mysql_version < 50503)

@@ -2022,7 +2022,7 @@ function buildIndex($global_api = "yes") {
 			$content['btn'] = getPageButtons($content['pages']);
 			$content['antibot'] = $antibot;
 
-			file_write($filename, Element('index.php', $content));
+			file_write($filename, Element('index.html', $content));
 		}
 		elseif ($action == 'delete' || $catalog_api_action == 'delete') {
 			file_unlink($filename);
@@ -2662,7 +2662,7 @@ function buildThread($id, $return = false, $mod = false) {
 		$hasnoko50 = $thread->postCount() >= $config['noko50_min'];
 		$antibot = $mod || $return ? false : create_antibot($board['uri'], $id);
 			
-		$body = Element('thread.php', array(
+		$body = Element('thread.html', array(
 			'board' => $board,
 			'thread' => $thread,
 			'body' => $thread->build(),
@@ -2765,7 +2765,7 @@ function buildThread50($id, $return = false, $mod = false, $thread = null, $anti
 
 	$hasnoko50 = $thread->postCount() >= $config['noko50_min'];		
 
-	$body = Element('thread.php', array(
+	$body = Element('thread.html', array(
 		'board' => $board,
 		'thread' => $thread,
 		'body' => $thread->build(false, true),
