@@ -462,7 +462,6 @@ class Thread {
 		$this->mod = $mod;
 		$this->root = $root;
 		$this->hr = $hr;
-
 		$this->posts = array();
 		$this->omitted = 0;
 		$this->omitted_images = 0;
@@ -507,6 +506,7 @@ class Thread {
 		event('show-thread', $this);
 		
 		$file = ($index && $config['file_board']) ? 'post_thread_fileboard.html' : 'post_thread.html';
+		($index && $config['file_board']) ? $this->omitted = $this->postCount() : '';
 		$built = Element($file, array('config' => $config, 'board' => $board, 'post' => &$this, 'index' => $index, 'hasnoko50' => $hasnoko50, 'isnoko50' => $isnoko50, 'mod' => $this->mod));
 		
 		return $built;

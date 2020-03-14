@@ -4,8 +4,8 @@
 	<meta charset="utf-8">
 	<script type="text/javascript">
 		var active_page = "page";
-	</script>		<link rel="stylesheet" media="screen" href="/stylesheets/style.css?0a"><link rel="shortcut icon" href="/static/favicon.png">		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes"><link rel="stylesheet" type="text/css" id="stylesheet" href="/stylesheets/kissumas.css?0a"><link rel="stylesheet" href="/stylesheets/font-awesome/css/font-awesome.min.css"><link rel="stylesheet" href="/static/flags/flags.css">		<script type="text/javascript">
+	</script>		<link rel="stylesheet" media="screen" href="/stylesheets/style.css?0b2"><link rel="shortcut icon" href="/static/favicon.png">		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes"><link rel="stylesheet" type="text/css" id="stylesheet" href="/stylesheets/kissumas.css?0b2"><link rel="stylesheet" href="/stylesheets/font-awesome/css/font-awesome.min.css"><link rel="stylesheet" href="/static/flags/flags.css">		<script type="text/javascript">
 			var configRoot="/";
 			var inMod =false;
 			var modRoot="/"+(inMod ? "mod.php?/" : "");
@@ -71,7 +71,7 @@
 	<hr><footer>
 	<p class="unimportant" style="margin-top:20px;text-align:center;">- Tinyboard + 
 		<a href="https://engine.vichan.net/">vichan</a>&nbsp5.1.4 
-		+ <a href="https://github.com/ECHibiki/ViQa-Kissu/">Kissu</a>&nbsp5.1.4 -
+		+ <a href="https://github.com/ECHibiki/ViQa-Kissu/">Kissu</a>&nbsp0.9 -
 	<br>Tinyboard Copyright &copy; 2010-2014 Tinyboard Development Group
 	<br><a href="https://engine.vichan.net/">vichan</a> Copyright &copy; 2012-2018 vichan-devel
 	<br><a href="https://github.com/ECHibiki/ViQa-Kissu/">Kissu</a> Copyleft 2018-2019</p><p class="unimportant" style="text-align:center;">All trademarks, copyrights, comments, and images on this page are owned by and are the responsibility of their respective parties.</p><p class="unimportant" style="text-align:center;">Concerns to the gmail of ECVerniy</p>		<a style="opacity:0;position:absolute;top: -100em;" href="https://info.flagcounter.com/CexS"><img src="https://s11.flagcounter.com/count2/CexS/bg_FFFFFF/txt_000000/border_CCCCCC/columns_2/maxflags_10/viewers_0/labels_0/pageviews_0/flags_0/percent_0/" alt="Flag Counter" border="0"></a>

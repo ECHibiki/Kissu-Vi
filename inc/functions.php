@@ -476,10 +476,10 @@ function scrapePages($regex_pattern){
 	} 
 	set_time_limit(300);
 	if(preg_match("/Linux/", php_uname())){
-		return shell_exec("/usr/bin/sudo xvfb-run python3 /var/misc-internet-applications/Multipurpose-Regex-Webscraper/py-cmd/regexscraper.py -u $sites_string -r \"$regex_pattern\" --raw --json");
+		return shell_exec("xvfb-run python3 " . $config['webscraper_path'] . " -u $sites_string -r \"$regex_pattern\" --raw --json");
 	}
 	else{
-		return exec("python Regex-Webscraper/py-cmd/regexscraper.py -u $sites_string -r \"$regex_pattern\" --nojs --json");
+		return exec("python " . $config['webscraper_path'] . " -u $sites_string -r \"$regex_pattern\" --nojs --json");
 	}
 }
 
@@ -1751,7 +1751,7 @@ function index($page, $mod=false, $brief = false) {
 			$body .= $thread->build(true);
 		}
 	}
-
+	
 	if ($config['file_board']) {
 		$body = Element('fileboard.html', array('body' => $body, 'mod' => $mod));
 	}

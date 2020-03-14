@@ -1397,19 +1397,19 @@ div.mix {
 }
 
 .poll_container{
-    background-color: #00000008;
-	border: dashed 0.5px #b9b9b9;
+    background-color: #00000006;
+    border: dashed 0.5px #0000001f;
 	border-right: none;
 }
 
 .poll_data_text{
 	padding: 3em 2em 4em;
     font-size: 1.15em;
-    background-color: #00000008;
-    color: #270000;
+    background-color: #00000006;
+    color: #545454;
     font-family: cursive;
-	border: dashed 0.5px #b9b9b9;
-	border-left: none;
+    border: dashed 0.5px #0000001f;
+    border-left: none;
 }
 
 #ban-home-container{
@@ -1431,4 +1431,24 @@ div.mix {
   width: 20.5em;
   padding:0.2em;
   text-align: right;
+}
+
+.recaptcha{
+	height: 30.5em;
+	width: 67.4%;
+}
+.captchouli{
+	height:35.5em;
+	width: 95%;
+}
+
+@media(max-width: 700px){
+.recaptcha{
+	height:24em;width: 67.4%;
+	}
+}
+@media(max-width: 700px){
+.captchouli{
+	height:11.5em;width: 95%;
+	}
 }

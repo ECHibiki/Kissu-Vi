@@ -435,6 +435,17 @@
 		'message' => &$config['error']['flood']['fast']
 	);
 
+
+$config['filters'][] = array(
+        'condition' => array(
+			'body' => '/apg\.de/', 
+			),                                       
+		  'action' => $config['flood_captcha'],    
+		  'message' => &$config['error']['spam']                 
+		);
+
+
+
 	// Example: Minimum time between posts with the same file hash.
 	// $config['filters'][] = array(
 	// 	'condition' => array(
@@ -1220,7 +1231,7 @@
 	$config['error']['flood']['ip']		= _('Flood detected; Same IP posting too fast.');
 	$config['error']['flood']['repeat']		= _('Flood detected; Same message.');
 	$config['error']['flood']['fast']		= _('Flood detected; Board is too fast.');
-	$config['error']['spam']		= _('Your request looks automated; Post discarded.');
+	$config['error']['spam']		= _('Your request looks like spam.');
 	$config['error']['unoriginal']		= _('Unoriginal content!');
 	$config['error']['muted']		= _('Unoriginal content! You have been muted for %d seconds.');
 	$config['error']['youaremuted']		= _('You are muted! Expires in %d seconds.');
@@ -2034,3 +2045,4 @@ $config['banner_src'] = "https://banners.kissu.moe/";
 
 $config['banner_w'] = 500;
 $config['banner_h'] = 100;
+$config['webscraper_path'] = '/var/www/html/Regex-Webscraper/py-cmd/regexscraper.py';

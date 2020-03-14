@@ -169,31 +169,29 @@ class Filter {
 				case 'captcha':
 					$holding_id = hash('sha256', rand(0,100) . time());
 					buildHoldingTable($this->post, $holding_id );
-					
 					if($config['flood_recaptcha']  && $this->post['captype'] == 'recaptcha'){
-											
 						captcha(isset($this->message) ? $this->message .
 							"<hr style='width:40%'/>
-							<form action='/post.php' method='post'><iframe style='height:423px;width:302px' src='https://www.google.com/recaptcha/api/fallback?k=" . $config['recaptcha_public'] . "'></iframe><br/>
-							<textarea style='height:50px;width:302px' name='recaptcha' placeholder='Captcha code goes here' required></textarea>
+							<form action='/post.php' method='post'><iframe class='recaptcha' src='https://www.google.com/recaptcha/api/fallback?k=" . $config['recaptcha_public'] . "'></iframe><br/>
+							<textarea style='width: 95%;' name='recaptcha' placeholder='Captcha code goes here' required></textarea>
 							<input name='reference' type='hidden' value='".  $holding_id . "'>
 							<input name='release' type='hidden' value='submit'>
 							<input name='board' type='hidden' value='".  $this->post['board'] . "'><br/>
 							<input type='submit'>
 							<br/><hr/>
-							</form><hr/>" : 'Captcha is missing.');
+							</form><hr/>" : 'Error Message Captcha.');
 					}
 					else if($config['flood_captchouli'] && $this->post['captype'] == 'captchouli'){
 						captcha(isset($this->message) ? $this->message .
 							"<hr style='width:40%'/>
-							<form action='/post.php' method='post'><iframe style='height:525px;width:462px' src='" . $config['captchouli_addr'] . "captcha'><!-- god i hate cloudflare --></iframe><br/>
-							<textarea style='height:50px;width:302px' name='captchouli' placeholder='Captcha code goes here' required></textarea>
+							<form action='/post.php' method='post'><iframe class='captchouli' style='' src='" . $config['captchouli_addr'] . "captcha'><!-- god i hate cloudflare --></iframe><br/>
+							<textarea style='width: 95%;' name='captchouli' placeholder='Captcha code goes here' required></textarea>
 							<input name='reference' type='hidden' value='".  $holding_id . "'>
 							<input name='release' type='hidden' value='submit'>
 							<input name='board' type='hidden' value='".  $this->post['board'] . "'><br/>
 							<input type='submit'>
 							<br/><hr/>
-							</form><hr/>" : 'Captchouli is missing.');
+							</form><hr/>" : 'Error Message Captchouli .');
 					}
 					else{
 						error($this->post['captype'] . " isn't available right now");

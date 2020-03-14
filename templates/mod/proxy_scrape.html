@@ -10,7 +10,7 @@
 </head>
 <body>
 	<form action="?/proxy" method="post" class="banform" style="padding:40px;width:75%">
-		<label>Websites: <br/><textarea type='text' name='statements' rows=50 cols=10>
+		<label>Websites: <br/><textarea type='text' name='statements' rows=10 cols=50>
 		{% for item in lines %}
 			{{ item.site }}&#13;&#10			
 		{% endfor %}
