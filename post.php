@@ -413,43 +413,49 @@ elseif (isset($_POST['post']) || $dropped_post) {
 
 	// unset poll fields if not OP
 	if($config['poll_board']){
-	if(!$post['op']){
-		foreach($_POST as $key => $value){
-			if(preg_match('/^pollopt\d+/', $key)){
-				unset($_POST[$key]);
+		if(!$post['op']){
+			foreach($_POST as $key => $value){
+				if(preg_match('/^(pollopt|color)\d+/', $key)){
+					unset($_POST[$key]);
+				}
 			}
 		}
-	}
-	// assign default to unset poll fields
-	else{
-		$num_opt = 0;
-                foreach($_POST as $key => $value){
-                        if(preg_match('/^pollopt\d+/', $key)){
-                        	$num_opt++;
-				if ($_POST[$key] == ""){
-					error("Error: Field $num_opt blank");
+		// assign default to unset poll fields
+		else{
+			$num_opt = 0;
+				foreach($_POST as $key => $value){
+					if(preg_match('/^pollopt\d+/', $key)){
+						$num_opt++;
+						if ($_POST[$key] == ""){
+							error("Error: Field $num_opt blank");
+						}
+					}
+					if(preg_match('/^color\d+/', $key)){
+						if($value=="#000000"){
+							$_POST[$key] = '#' . dechex(mt_rand(0, 0xFFFFFF));
+							
+						}
+					}
 				}
-                        }
-                }
-		if($num_opt <= 1)
-			error("Error: Not enough options");
+			if($num_opt <= 1)
+				error("Error: Not enough options");
 
-		if (!isset($_POST['postthresh']) || !isset($_POST['lifespan']))
-			error("Unset field");	
+			if (!isset($_POST['postthresh']) || !isset($_POST['lifespan']))
+				error("Unset field");	
 
-		if(!isset($_POST['multisel'])){
-			$_POST['multisel'] = 'off';
+			if(!isset($_POST['multisel'])){
+				$_POST['multisel'] = 'off';
+			}
+			else if($_POST['multisel'] != 'on'){
+				error("strange field");
+			}
+			if(trim($_POST['postthresh']) == ""){
+				$_POST['postthresh'] = '0';
+			}
+			if(trim($_POST['lifespan']) == ""){
+				$_POST['lifespan'] = '9000';
+			}
 		}
-		else if($_POST['multisel'] != 'on'){
-			error("strange field");
-		}
-		if(trim($_POST['postthresh']) == ""){
-			$_POST['postthresh'] = '0';
-		}
-		if(trim($_POST['lifespan']) == ""){
-			$_POST['lifespan'] = '9000';
-		}
-	}
 	}
 
 

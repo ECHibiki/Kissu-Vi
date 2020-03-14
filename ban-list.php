@@ -4,8 +4,8 @@
 	<meta charset="utf-8">
 	<script type="text/javascript">
 		var active_page = "page";
-	</script>		<link rel="stylesheet" media="screen" href="/stylesheets/style.css?1"><link rel="shortcut icon" href="/static/favicon.png">		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes"><link rel="stylesheet" type="text/css" id="stylesheet" href="/stylesheets/kissumas.css?11"><link rel="stylesheet" href="/stylesheets/font-awesome/css/font-awesome.min.css"><link rel="stylesheet" href="/static/flags/flags.css">		<script type="text/javascript">
+	</script>		<link rel="stylesheet" media="screen" href="/stylesheets/style.css?0a"><link rel="shortcut icon" href="/static/favicon.png">		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes"><link rel="stylesheet" type="text/css" id="stylesheet" href="/stylesheets/kissumas.css?0a"><link rel="stylesheet" href="/stylesheets/font-awesome/css/font-awesome.min.css"><link rel="stylesheet" href="/static/flags/flags.css">		<script type="text/javascript">
 			var configRoot="/";
 			var inMod =false;
 			var modRoot="/"+(inMod ? "mod.php?/" : "");

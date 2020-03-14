@@ -1397,12 +1397,19 @@ div.mix {
 }
 
 .poll_container{
-	max-width:36%;
-	max-height:36%;
+    background-color: #00000008;
+	border: dashed 0.5px #b9b9b9;
+	border-right: none;
 }
 
 .poll_data_text{
-	padding: 3em 4em;
+	padding: 3em 2em 4em;
+    font-size: 1.15em;
+    background-color: #00000008;
+    color: #270000;
+    font-family: cursive;
+	border: dashed 0.5px #b9b9b9;
+	border-left: none;
 }
 
 #ban-home-container{

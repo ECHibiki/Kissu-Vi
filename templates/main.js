@@ -289,46 +289,46 @@ function pollSubmit(button){
 }
 
 function displayPoll(response_text, reference_element){
-               //use response data to build chart
-			json_arr = JSON.parse(response_text);
-			if(json_arr['error'] != undefined){
-                                alert(json_arr['error']);
-                                return;
-                        }
-
-			var poll_labels = [];
-			var poll_data = [];
-			var random_bg = [];
-			var simple_string = "";
-			for(label in json_arr){
-				var key = Object.keys(json_arr[label])[0];
-				var value = json_arr[label][key];
-				if(key == "expires"){
-					if(value == json_arr[label]["created"]){
-					    expiration_time = "Never";
-					}
-					else{
-						var expiration_time = Math.round((parseInt(value) - Date.now()/1000) / 60 / 60);
-						expiration_time = expiration_time < 0 ? "Poll Finished" : expiration_time; 
-					}
-					if(typeof expiration_time == "string"){}
-					else if(expiration_time / 24 < 1){
-						expiration_time = expiration_time  + " Hours";
-					}
-					else {
-					  expiration_time = Math.round(expiration_time / 24) +" Days"
-					}
-					simple_string = simple_string + "<span>Expires in: " +  expiration_time +" </span>";
-					continue;
+	   //use response data to build chart
+	json_arr = JSON.parse(response_text);
+	if(json_arr['error'] != undefined){
+						alert(json_arr['error']);
+						return;
 				}
-				simple_string += "<span>" + key + " : " + value + "</span><br/>"; 
-				poll_labels.push(key);
-				poll_data.push(parseInt(value));
-				random_bg.push("rgba(" + 
-					Math.floor(Math.random() * Math.floor(255)) + "," + 
-					Math.floor(Math.random() * Math.floor(255))  + "," +
-					Math.floor(Math.random() * Math.floor(255))  + "," +
-					1.0  + ")");
+
+	var poll_labels = [];
+	var poll_data = [];
+	var random_bg = [];
+	var simple_string = "";
+	for(label in json_arr['question']){
+		var key = Object.keys(json_arr['question'][label])[0];
+		var value = json_arr['question'][label][key];
+		if(key == "expires"){
+			if(value == json_arr['question'][label]["created"]){
+				expiration_time = "Never";
+			}
+			else{
+				var expiration_time = Math.round((parseInt(value) - Date.now()/1000) / 60 / 60);
+				expiration_time = expiration_time < 0 ? "Poll Finished" : expiration_time; 
+			}
+			if(typeof expiration_time == "string"){}
+			else if(expiration_time / 24 < 1){
+				expiration_time = expiration_time  + " Hours";
+			}
+			else {
+			 expiration_time = Math.round(expiration_time / 24)
+				if(expiration_time == 1)
+					expiration_time += " Day"				
+				else
+					expiration_time += " Days"
+			}
+			simple_string = simple_string + "<span>Expires in: " +  expiration_time +" </span>";
+		}else{
+			simple_string += "<span>" + key + " : " + value + "</span><br/>"; 
+			poll_labels.push(key);
+			poll_data.push(parseInt(value));
+			random_bg.push(json_arr['colors'][label]);
+		}
 			}
 
 
@@ -352,63 +352,61 @@ function displayPoll(response_text, reference_element){
 		chart_text_div.innerHTML = simple_string;
 		chart_text_div.setAttribute("class","poll_data_text");
 	
-			chart_canvas_div = document.createElement("div");
-			chart_canvas_div.setAttribute('class', 'poll_container');
-			bar_chart_canvas = document.createElement("canvas");
-			pie_chart_canvas = document.createElement("canvas");
+		chart_canvas_div = document.createElement("div");
+		chart_canvas_div.setAttribute('class', 'poll_container');
+		bar_chart_canvas = document.createElement("canvas");
+		pie_chart_canvas = document.createElement("canvas");
 
-			chart_canvas_div.appendChild(bar_chart_canvas);			
-			chart_canvas_div.appendChild(pie_chart_canvas);			
-			reference_element.parentNode.appendChild(chart_canvas_div);
-			reference_element.parentNode.appendChild(chart_text_div);
+		chart_canvas_div.appendChild(bar_chart_canvas);			
+		chart_canvas_div.appendChild(pie_chart_canvas);			
+		reference_element.parentNode.appendChild(chart_canvas_div);
+		reference_element.parentNode.appendChild(chart_text_div);
 
-var bar_cart = new Chart(bar_chart_canvas,
-{
-	type: 'horizontalBar',
-	data:
+	var bar_cart = new Chart(bar_chart_canvas,
 	{
-		labels: poll_labels,
-		datasets:
-		[{
-			label:"Poll Votes",
-			data: poll_data,
-			backgroundColor: random_bg
-		}]
-	},
-	options:
+		type: 'horizontalBar',
+		data:
+		{
+			labels: poll_labels,
+			datasets:
+			[{
+				label:"Poll Votes",
+				data: poll_data,
+				backgroundColor: random_bg
+			}]
+		},
+		options:
+		{
+			scales: {
+				xAxes: [{
+							ticks: {
+									beginAtZero: true,
+						stepSize: 1
+							}
+						}]
+
+				}
+		}
+	});
+
+	var pie_cart = new Chart(pie_chart_canvas,
 	{
-		scales: {
-	   		xAxes: [{
-                		ticks: {
-                    			beginAtZero: true,
-					stepSize: 1
-                		}
-            		}]
+			type: 'pie',
+			data:
+			{
+					labels: poll_labels,
+					datasets:
+					[{
+							label: poll_labels,
+							data: poll_data,
+							backgroundColor: random_bg
+					}]
+			},
+			options:
+			{
 
 			}
-	}
-});
-
-var pie_cart = new Chart(pie_chart_canvas,
-{
-        type: 'pie',
-        data:
-        {
-                labels: poll_labels,
-                datasets:
-                [{
-                        label: poll_labels,
-                        data: poll_data,
-                        backgroundColor: random_bg
-                }]
-        },
-        options:
-        {
-
-        }
-});
-
-
+	});
 
 }
 

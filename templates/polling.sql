@@ -6,6 +6,7 @@ CREATE TABLE IF NOT EXISTS `poll` (
   `post_count` int(20) NOT NULL,
   `expires` int(20) NOT NULL,
   `created` int(20) NOT NULL,
+  `color` varchar(255),
   CONSTRAINT pk_poll PRIMARY KEY(id, board) 
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 

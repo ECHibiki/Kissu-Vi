@@ -59,46 +59,50 @@
 
 <tr id="pollrow"><th>Poll Questions</th>
 <td id="polldata">
-<span><span>Option 1: </span><input type="text" name="pollopt1" id="pollopt1"><br/></span>
-<span><span>Option 2: </span><input type="text" name="pollopt2" id="pollopt2"> <input type="button" id="boostcount" onclick="
-if(this.previousElementSibling.name=='pollopt2'){
-	this.nextElementSibling.removeAttribute('disabled')
-}
-input_container = this.parentNode.cloneNode(true);
-input_container.firstChild.nextElementSibling.id = 'pollopt' + (1 + parseInt(input_container.firstChild.textContent.split(' ')[1].replace(':','')));
-input_container.firstChild.nextElementSibling.name = input_container.firstChild.nextSibling.id;
-document.getElementById('polldata').appendChild(input_container);
-input_container.firstChild.textContent = 'Option ' + (1 + parseInt(input_container.firstChild.textContent.split(' ')[1].replace(':',''))) + ': '; 
-document.getElementById('polldata').appendChild(input_container);
+<span><span>Option 1: </span><input type='color' name='color1' id='color1' style='height: 1em;width: 1em;'/><input type="text" name="pollopt1" id="pollopt1"><br/></span>
+<span><span>Option 2: </span><input type='color' name='color2' id='color2' style='height: 1em;width: 1em;'/><input type="text" name="pollopt2" id="pollopt2"><input type="button" id="boostcount" onclick="
+	if(this.previousElementSibling.name=='pollopt2'){
+		this.nextElementSibling.removeAttribute('disabled')
+	}
+	input_container = this.parentNode.cloneNode(true);
+	
 
-this.parentNode.removeChild(this.nextElementSibling);
-this.parentNode.removeChild(this);
+	input_container.firstChild.nextElementSibling.id = 'color' + (1 + parseInt(input_container.firstChild.textContent.split(' ')[1].replace(':','')));
+	input_container.firstChild.nextElementSibling.name = input_container.firstChild.nextElementSibling.id;
 
-return false
+	
+	input_container.firstChild.nextElementSibling.nextElementSibling.id = 'pollopt' + (1 + parseInt(input_container.firstChild.textContent.split(' ')[1].replace(':','')));
+	input_container.firstChild.nextElementSibling.nextElementSibling.name = input_container.firstChild.nextElementSibling.nextElementSibling.id;
+	//document.getElementById('polldata').appendChild(input_container);
+	input_container.firstChild.textContent = 'Option ' + (1 + parseInt(input_container.firstChild.textContent.split(' ')[1].replace(':',''))) + ': '; 
+	document.getElementById('polldata').appendChild(input_container);
 
+	this.parentNode.removeChild(this.nextElementSibling);
+	this.parentNode.removeChild(this);
+
+	return false;
+	
 " value="+"/><input type="button" id="retractcount" onclick="
 
-if(this.previousElementSibling.previousElementSibling.name=='pollopt3'){
-	this.setAttribute('disabled','');
-}
-var next_in_line = this.parentNode.previousSibling;
-next_in_line.removeChild(next_in_line.lastChild);
-next_in_line.appendChild(this.previousElementSibling.cloneNode());
-next_in_line.appendChild(this.cloneNode());
-next_in_line.appendChild(document.createElement('br'));
-this.parentNode.parentNode.removeChild(this.parentNode);
-	
-return false
+	if(this.previousElementSibling.previousElementSibling.name=='pollopt3'){
+		this.setAttribute('disabled','');
+	}
+	var next_in_line = this.parentNode.previousSibling;
+	next_in_line.removeChild(next_in_line.lastChild);
+	next_in_line.appendChild(this.previousElementSibling.cloneNode());
+	next_in_line.appendChild(this.cloneNode());
+	next_in_line.appendChild(document.createElement('br'));
+	this.parentNode.parentNode.removeChild(this.parentNode);
+		
+	return false
 " value="-" disabled/><br/></span></td>
 </tr>
 <tr id="polloptrow"><th>Poll Options</th><td>
 <label><input type="checkbox" name="multisel"> Multi-Choice</label><br/>
 <label><input type="number" name="postthresh" style="width:38px" value="0">Min Kissu Posts</label>
-<label><input type="number" name="lifespan" style="width:38px" value="24"> Poll Life(0 hours is unlimited)</label>
+<label><input type="number" name="lifespan" style="width:38px" value="0"> Poll Life(0 hours is unlimited)</label>
 
 </td></tr>
-
-
 		<tr>
 			<th>
 				{% trans %}Comment{% endtrans %}
