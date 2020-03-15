@@ -50,8 +50,7 @@ secrets.php
 # minify
 /inc/lib/minify
 
-# instance-config
-/inc/instance-config.php
+
 
 # .installed
 /.installed
@@ -59,8 +58,6 @@ secrets.php
 # script file
 /main.js
 
-#index files
-index.html
 
 # rss
 *.rss

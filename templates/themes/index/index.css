@@ -42,7 +42,7 @@ height: auto !important;
     border: none;
     width: 100%;
     min-height: 250px;
-    max-height: 321px;
+    max-height: 400px;
     overflow-x: hidden;
     overflow-y:  auto;;
 }
