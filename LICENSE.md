@@ -1,7 +1,7 @@
 # License of Kissu Origonal
 
-You can use it however you want, but respect the rights of other contribtors as per the MIT/X11 lisence.<br/>
-Don't modify dem footers because that's making it less clear who made the changes and don't you dare think about removing this file. I have no obligation to fix bugs on this product nor am I responsible if it damages anything on your computer, or when it causes you to lose wealth.
+You can use it however you want, but respect the rights of other contributors and authors as per the MIT/X11 lisence.<br/>
+Don't modify dem footers because that's making it less clear who made the what and don't you dare think about removing this file. I have no obligation to fix bugs on this product nor am I responsible if it damages anything on your computer, or when it causes you to lose wealth.
 
 In situations where conflicts between readings occur, then the MIT/X11 license will take precidence. 
 
