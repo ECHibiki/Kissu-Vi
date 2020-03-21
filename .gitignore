@@ -1,3 +1,8 @@
+# For development
+/inc/instance-config.php
+
+#node
+/node_modules/*
 #boards
 /b/*
 /qa/*

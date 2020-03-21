@@ -40,6 +40,9 @@
 	// $config['global_message'] = 'This is an important announcement!';
 	$config['blotter'] = &$config['global_message'];
 
+        // flag for react to replace standard html template behaviour with dynamic ones.
+	$config['js_ui'] = true;
+
 	// Automatically check if a newer version of Tinyboard is available when an administrator logs in.
 	$config['check_updates'] = false;
 	// How often to check for updates
