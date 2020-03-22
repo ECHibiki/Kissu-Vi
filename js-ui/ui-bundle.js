@@ -113,10 +113,15 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var React = __webpack_require__(0);
 var ReactDOM = __webpack_require__(2);
 const Hello_1 = __webpack_require__(3);
+// Use library solution to render elements through inline HTML
 module.exports = {
     renderTest: function (id) {
         console.log('run from library - ' + id);
         ReactDOM.render(React.createElement(Hello_1.Hello, null), document.getElementById(id));
+    },
+    renderPostReply: function (id) {
+    },
+    renderPostOP: function (id) {
     }
 };
 
