@@ -119,9 +119,13 @@ module.exports = {
         console.log('run from library - ' + id);
         ReactDOM.render(React.createElement(Hello_1.Hello, null), document.getElementById(id));
     },
-    renderPostReply: function (id) {
+    // the two functions are for the sake of testing purposes only
+    renderThread: function (id) {
+        console.log("qtest " + id);
+        // load thread json
     },
-    renderPostOP: function (id) {
+    renderPage: function (page) {
+        console.log("ptest " + page);
     }
 };
 

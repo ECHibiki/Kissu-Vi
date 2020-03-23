@@ -15,15 +15,20 @@ import {Page} from "./components/Page";
 // A composite of pages
 import {Catalog} from "./components/Catalog";
 
+
 // Use library solution to render elements through inline HTML
 module.exports = {
   renderTest: function (id: string) {
     console.log('run from library - ' + id);
 	ReactDOM.render(<Hello/>, document.getElementById(id));
   },
-  renderPostReply: function(id:string){
-	
+  // the two functions are for the sake of testing purposes only
+  renderThread: function(id:string){
+	console.log("qtest " + id);
+	//ReactDOM.render(<Thread/>, document.getElementById(id));
   },
-  renderPostOP: function(id:string){
+  renderPage: function(page:string){
+    console.log("ptest " + page)
+	//ReactDOM.render(<Page/>, document.getElementById(id));
   }
 }

@@ -1,6 +1,11 @@
 import * as React from "react";
+import {Post, PostProperties} from "./Post";
 
-export class Page{
-	static page_json:string;
+type PageProperties{
+}
+type PageVariables{
+}
+export class Page extends React.Component<PageProperties, PageVariables{
+
 
 }

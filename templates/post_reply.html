@@ -1,7 +1,6 @@
 
 {# tabs and new lines will be ignored #}
-<div id="reply_{{ post.id }}">
-	{% if not config.js_ui %}
+<div id="reply_{{ post.id }}" class="post reply">
 	    {% filter remove_whitespace %}
 		<p class="intro">
 		{% if not index %}<a id="{{ post.id }}" class="post_anchor"></a>{% endif %}
@@ -26,15 +25,7 @@
 			{% endif %}
 		</div>
 	  {% endfilter %}
-	{% endif %}
 </div>
-
-{% if config.js_ui %}
-   <script>
-     JS_UI.renderTest("reply_{{ post.id }}");
-   </script>
-{% endif %}
-
 
 <br/>
 

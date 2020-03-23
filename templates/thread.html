@@ -131,11 +131,14 @@
 				{% endif %}
 	</span>
 	<br/><hr/>
-	<form name="postcontrols" action="{{ config.post_url }}" method="post">
-		<input type="hidden" name="board" value="{{ board.uri }}" />
-		{% if mod %}<input type="hidden" name="mod" value="1" />{% endif %}
-		
-		{{ body }}
+	<form name="postcontrols" action="{{ config.post_url }}" method="post" id="thread_{{ thread.id }}">
+		{% if config.js_ui and not mod %}
+			<script>JS_UI.renderThread("thread_{{ thread.id }}")</script>
+		{% else %}
+			<input type="hidden" name="board" value="{{ board.uri }}" />
+			<input type="hidden" name="mod" value="1" />
+			{{ body }}
+		{% endif %}
 		
 		<div id="thread-interactions">
 			<span id="thread-links">

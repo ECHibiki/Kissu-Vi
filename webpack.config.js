@@ -1,8 +1,8 @@
 const TerserPlugin = require('terser-webpack-plugin');
-
+const CompressionPlugin = require('compression-webpack-plugin')
 module.exports = {
     mode: "production",
-
+    plugins: [ new CompressionPlugin ],
     // Enable sourcemaps for debugging webpack's output.
     devtool: "source-map",
 
