@@ -23,12 +23,12 @@ module.exports = {
 	ReactDOM.render(<Hello/>, document.getElementById(id));
   },
   // the two functions are for the sake of testing purposes only
-  renderThread: function(id:string){
-	console.log("qtest " + id);
-	//ReactDOM.render(<Thread/>, document.getElementById(id));
+  renderThread: function(id_str:string, board_str:string){
+	console.log("qtest " + id_str);
+	ReactDOM.render(<Thread id={id_str} board={board_str} paged={false}/>, document.getElementById("thread_form"));
   },
-  renderPage: function(page:string){
-    console.log("ptest " + page)
-	//ReactDOM.render(<Page/>, document.getElementById(id));
+  renderPage: function(page_str:string, board_str:string){
+    console.log("ptest " + page_str + " " + board_str)
+	ReactDOM.render(<Page page={page_str} board={board_str}/>, document.getElementById("thread_form"));
   }
 }

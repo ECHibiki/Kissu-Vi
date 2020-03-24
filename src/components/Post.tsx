@@ -2,20 +2,18 @@ import * as React from "react";
 
 export type PostProperties = {
 // properties
-	hierarchy:string,
+	hierarchy_class:string,
 	paged:boolean,
 	board:string,
 	id:number,
 	op_id:number,
+	key:number,
 
-// json
-	no:number,
+// json - no & resto already defined
 	sub:string,
 	com:string,
 	name:string,
 	time:number,
-	omitted_posts:number,
-	ommited_images:number,
 	sticky:number,
 	locked:number,
 	cyclical:number,
@@ -28,16 +26,17 @@ export type PostProperties = {
 	filename:string,
 	ext:string,
 	tim:string,
+	embed:string,
 	md5:string,
 	bumplimit:number,
-	imagelimit:number,
-	resto:number
+	imagelimit:number
+
 
 }
 
 type PostDetails = {
 	// options
-	filename_cuttoff:number
+	filename_cutoff:number
 }
 
 
@@ -53,13 +52,14 @@ type PostDetails = {
 	// - Thread hiding button
 
 // TODO: When this is used in Threads.tsx states will have to move to properties where applicable
-// TODO: Ommited field
+// TODO: Ommited field be set by options
 
 export class Post extends React.Component<PostProperties, PostDetails>{	
 	post_json:string;	
 
 	constructor(props:any){
 		super(props);
+		this.state = ({filename_cutoff:20})
 	}
 
 	componentDidMount(){
@@ -72,26 +72,43 @@ export class Post extends React.Component<PostProperties, PostDetails>{
 	}
 
 	shortenFileName(fname:string){
+		if(fname.length > this.state.filename_cutoff)
+			return fname.substr(0,this.state.filename_cutoff) + "..";
+		else
+			return fname;
 	}
 
 	highlightReply(e:React.MouseEvent<HTMLAnchorElement, MouseEvent>, id:number){
 	}
 	citeReply(e: React.MouseEvent<HTMLAnchorElement, MouseEvent>, id:number){
 	}
+	formatFileSize(fsize:number){
+		if(fsize / (1024 * 1024) > 1){ // MB size check
+			return (fsize / (1024*1024)).toFixed(2) + "MB";
+		}
+		else if(fsize / 1024 > 1){ // KB size check
+			return (fsize / (1024)).toFixed(2) + "KB";
+		}
+		else{ // Byte Default
+			return (fsize) + "B";
+		}
+	}
 	render(){
-		return (<div className={"post " + this.props.hierarchy}>
+		return (<div className={"post " + this.props.hierarchy_class}>
+			{this.props.fsize &&
 			   <div className="file">
 				<p className="fileinfo">
 				  File: <a href={this.props.time + ".jpg"}>
-					  <span className="postfilename" title={this.shortenFileName(this.props.filename) + this.props.ext}></span>
+					  <span className="postfilename" title={this.props.filename + this.props.ext}>{this.shortenFileName(this.props.filename) + this.props.ext}</span>
 					</a>&nbsp;
-					<span className="unimportant">({this.props.fsize}{"," + this.props.h}{"x"+this.props.w})</span>&nbsp;
+					<span className="unimportant">({ this.formatFileSize(this.props.fsize) }{"," + this.props.h}{"x"+this.props.w})</span>&nbsp;
 					<a className="sauce" target="_blank" href="https://www.google.com/searchbyimage?image_url=&safe=off">Google</a>
-					<a href={"/" + this.props.board + "/src/" + this.props.tim + ".jpg"} target="_blank">
-						<img className="post-image" src={"/" + this.props.board + "/thumb/" + this.props.tim + this.props.ext} style={{width:this.props.w, height:this.props.h}} alt={"Image: /" + this.props.board + "/thumb/" + this.props.tim + this.props.ext + "failed to load"} />
+					<a href={"/" + this.props.board + "/src/" + this.props.tim + this.props.ext} target="_blank">
+						<img className="post-image" src={"/" + this.props.board + "/thumb/" + this.props.tim + ".png"} style={{width:this.props.w, height:this.props.h}} alt={"Image failed to load"} />
 					</a>
 				</p>
 			   </div>
+			}
 			   <p className="intro">
 				<input type="checkbox" className="delete" name={"delete_" + this.props.id} id={"delete_" + this.props.id} />&nbsp;
 				<a className="post_no" id={"post_no_" + this.props.id} onClick={(event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {return this.highlightReply(event,this.props.id)}} href={"/qa/res/" + this.props.op_id + "#" + this.props.id}>No.</a>
@@ -100,8 +117,8 @@ export class Post extends React.Component<PostProperties, PostDetails>{
 			   <div className="body">
 				{this.parsePostBodyIntoSafeJSX()}
 			   </div>
-			  {this.props.hierarchy == "op" && this.props.paged &&
-				<span className="ommited"></span>
+			  {this.props.hierarchy_class == "op" && this.props.paged &&
+				<span className="omited"></span>
 			  }
 			</div>)
 	}

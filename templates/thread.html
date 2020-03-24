@@ -131,9 +131,9 @@
 				{% endif %}
 	</span>
 	<br/><hr/>
-	<form name="postcontrols" action="{{ config.post_url }}" method="post" id="thread_{{ thread.id }}">
+	<form id="thread_form" name="postcontrols" action="{{ config.post_url }}" method="post" >
 		{% if config.js_ui and not mod %}
-			<script>JS_UI.renderThread("thread_{{ thread.id }}")</script>
+			<script>JS_UI.renderThread("{{ thread.id }}", "{{board.uri}}")</script>
 		{% else %}
 			<input type="hidden" name="board" value="{{ board.uri }}" />
 			<input type="hidden" name="mod" value="1" />

@@ -156,13 +156,20 @@
 	<br/><hr/>
 	
 	
-	<form name="postcontrols" action="{{ config.post_url }}" method="post">
-	<input type="hidden" name="board" value="{{ board.uri }}" />
-	{% if mod %}<input type="hidden" name="mod" value="1" />{% endif %}
-	{{ body }}
-	{% include 'report_delete.html' %}
-	
-	
+	<form id="thread_form" name="postcontrols" action="{{ config.post_url }}" method="post">
+		{% if config.js_ui and not mod %}
+			{% for page in pages %}
+				{% if page.selected %}
+					<script>JS_UI.renderPage("{{page.num}}", "{{board.uri}}")</script>
+				{% endif %}
+			{% endfor %}
+		{% else %}
+			<input type="hidden" name="board" value="{{ board.uri }}" />
+			{% if mod %}<input type="hidden" name="mod" value="1" />{% endif %}
+			{{ body }}
+		{% endif %}
+
+		{% include 'report_delete.html' %}
 			<span id="thread-links">
 				<a id="thread-return" href="{{ return }}">[{% trans %}Refresh{% endtrans %}]</a>
 				<a id="thread-top" href="#top">[{% trans %}Top{% endtrans %}]</a>
