@@ -181,11 +181,13 @@ class Thread extends React.Component {
             key: key * 2 - 1,
             sub: post_obj['sub'],
             com: post_obj['com'],
+            email: post_obj['email'],
             name: post_obj['name'],
             time: post_obj['time'],
             sticky: post_obj['sticky'],
             locked: post_obj['locked'],
             cyclical: post_obj['cyclical'],
+            sage: post_obj['sage'],
             last_modified: post_obj['last_modified'],
             tn_h: post_obj['tn_h'],
             tn_w: post_obj['tn_w'],
@@ -214,7 +216,7 @@ class Thread extends React.Component {
             return (React.createElement("p", null, this.state.error));
         return (React.createElement("div", { id: "thread" + this.props.id, className: "thread", "data-board": this.props.board, "data-full-i-d": this.props.board + "." + this.props.id },
             React.createElement("input", { type: "hidden", name: "board", value: this.props.board }),
-            this.state.spaced_posts)); // set by componentDidMount+setThreadPosts, modified by setThreadConfig assuming config exists
+            this.state.spaced_posts)); // quantity of rendered posts should vary on configuration
     }
 }
 exports.Thread = Thread;
@@ -306,8 +308,12 @@ class Post extends React.Component {
     }
     // taking the json data for body field, parse string and create JSX elements for safe tags such as <a>, <br>
     // the raw json should already be safe from the server, however can never be too sure and makes for crearer render insertion
-    parsePostBodyIntoSafeJSX() {
-        return (React.createElement("span", null));
+    // current method prevents localstore and cookie being called from inline scripting
+    parsePostBodyIntoSafeJSX(unsafe_body) {
+        unsafe_body = unsafe_body.replace(/cookie/g, "c&#111;&#111;kie");
+        var safe_body = unsafe_body.replace(/localStorage/g, "l&#111;calSt&#111;rage");
+        var xss_protect_cookie_and_localStorage = { __html: safe_body };
+        return (React.createElement("div", { dangerouslySetInnerHTML: xss_protect_cookie_and_localStorage }));
     }
     shortenFileName(fname) {
         if (fname.length > this.state.filename_cutoff)
@@ -330,31 +336,65 @@ class Post extends React.Component {
             return (fsize) + "B";
         }
     }
+    // also does name
+    parseEmailField(email, name) {
+        if (email == "" || !email)
+            return (React.createElement("span", { className: "name" }, this.props.name));
+        else {
+            var parsed_email = email.split('%20');
+            var classes = "";
+            for (let item of parsed_email) {
+                classes += item + " ";
+            }
+            return (React.createElement("a", { className: classes, title: classes, href: classes, onClick: (e) => { e.preventDefault(); return false; } },
+                React.createElement("span", { className: "name" }, name)));
+        }
+    }
+    readableTime(time) {
+        var ms_time = new Date(time * 1000);
+        return "" + (ms_time.getDate() + "").padStart(2, '0') + "/" + (ms_time.getMonth() + "").padStart(2, '0') + "/" + (ms_time.getFullYear() + "").substr(2) + "|" + (ms_time.getHours() + "").padStart(2, '0') + ":" + (ms_time.getMinutes() + "").padStart(2, '0') + ":" + (ms_time.getSeconds() + "").padStart(2, '0');
+    }
     render() {
         return (React.createElement("div", { className: "post " + this.props.hierarchy_class },
-            this.props.fsize &&
-                React.createElement("div", { className: "file" },
-                    React.createElement("p", { className: "fileinfo" },
-                        "File: ",
-                        React.createElement("a", { href: this.props.time + ".jpg" },
-                            React.createElement("span", { className: "postfilename", title: this.props.filename + this.props.ext }, this.shortenFileName(this.props.filename) + this.props.ext)),
+            React.createElement("div", { className: "intro" },
+                React.createElement("div", { className: "user" },
+                    React.createElement("label", { htmlFor: "delete_" + this.props.id },
                         "\u00A0",
-                        React.createElement("span", { className: "unimportant" },
-                            "(",
-                            this.formatFileSize(this.props.fsize),
-                            "," + this.props.h,
-                            "x" + this.props.w,
-                            ")"),
+                        React.createElement("input", { type: "checkbox", className: "delete", name: "delete_" + this.props.id, id: "delete_" + this.props.id }),
                         "\u00A0",
-                        React.createElement("a", { className: "sauce", target: "_blank", href: "https://www.google.com/searchbyimage?image_url=&safe=off" }, "Google"),
+                        this.props.sub &&
+                            React.createElement("span", { className: "subject" },
+                                "\u00A0",
+                                this.props.sub),
+                        this.parseEmailField(this.props.email, this.props.name),
+                        "\u00A0",
+                        React.createElement("time", { "data-utc": this.props.time }, this.readableTime(this.props.time))),
+                    "\u00A0",
+                    React.createElement("a", { className: "post_no", id: "post_no_" + this.props.id, onClick: (event) => { return this.highlightReply(event, this.props.id); }, href: "/qa/res/" + this.props.op_id + "#" + this.props.id }, "No."),
+                    React.createElement("a", { className: "post_no", onClick: (event) => { return this.citeReply(event, this.props.id); }, href: "/qa/res/" + this.props.op_id + "#" + this.props.id }, this.props.id),
+                    this.props.sticky == 1 && React.createElement("i", { className: "fa fa-thumb-tack", title: "Sticky" }),
+                    this.props.locked == 1 && React.createElement("i", { className: "fa fa-lock", title: "Locked" }),
+                    this.props.cyclical == 1 && React.createElement("i", { className: "fa fa-refresh", title: "Cycle" }),
+                    this.props.sage == 1 && React.createElement("i", { className: "fa fa-anchor", title: "Sink" })),
+                this.props.filename &&
+                    React.createElement("div", { className: "file" },
+                        React.createElement("span", { className: "fileinfo" },
+                            React.createElement("a", { href: "/" + this.props.board + "/src/" + this.props.tim + this.props.ext },
+                                React.createElement("span", { className: "postfilename", title: this.props.filename + this.props.ext }, this.shortenFileName(this.props.filename) + this.props.ext)),
+                            "\u2B0E\u00A0",
+                            React.createElement("span", { className: "unimportant" },
+                                "(",
+                                this.formatFileSize(this.props.fsize),
+                                "," + this.props.h,
+                                "x" + this.props.w,
+                                ")"),
+                            "\u00A0",
+                            React.createElement("a", { className: "sauce", target: "_blank", href: "https://www.google.com/searchbyimage?image_url=&safe=off" }, "Google"))),
+                this.props.filename &&
+                    React.createElement("div", null,
                         React.createElement("a", { href: "/" + this.props.board + "/src/" + this.props.tim + this.props.ext, target: "_blank" },
-                            React.createElement("img", { className: "post-image", src: "/" + this.props.board + "/thumb/" + this.props.tim + ".png", style: { width: this.props.w, height: this.props.h }, alt: "Image failed to load" })))),
-            React.createElement("p", { className: "intro" },
-                React.createElement("input", { type: "checkbox", className: "delete", name: "delete_" + this.props.id, id: "delete_" + this.props.id }),
-                "\u00A0",
-                React.createElement("a", { className: "post_no", id: "post_no_" + this.props.id, onClick: (event) => { return this.highlightReply(event, this.props.id); }, href: "/qa/res/" + this.props.op_id + "#" + this.props.id }, "No."),
-                React.createElement("a", { className: "post_no", onClick: (event) => { return this.citeReply(event, this.props.id); }, href: "/qa/res/" + this.props.op_id + "#" + this.props.id }, this.props.id)),
-            React.createElement("div", { className: "body" }, this.parsePostBodyIntoSafeJSX()),
+                            React.createElement("img", { className: "post-image", src: "/" + this.props.board + "/thumb/" + this.props.tim + ".png", style: { width: this.props.tn_w, height: this.props.tn_h }, alt: "Image failed to load" })))),
+            React.createElement("div", { className: "body" }, this.parsePostBodyIntoSafeJSX(this.props.com)),
             this.props.hierarchy_class == "op" && this.props.paged &&
                 React.createElement("span", { className: "omited" })));
     }

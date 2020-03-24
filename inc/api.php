@@ -32,6 +32,7 @@ class Api {
 			'images' => 'images',
 			'sticky' => 'sticky',
 			'locked' => 'locked',
+			'sage' => 'sage',
 			'cycle' => 'cyclical',
 			'bump' => 'last_modified',
 			'embed' => 'embed',
@@ -70,6 +71,9 @@ class Api {
 		'images' => 1,
 		'sticky' => 1,
 		'locked' => 1,
+		'cyclical' => 1,
+		'sage' => 1,
+		'bumplocked' => 1,
 		'last_modified' => 1,
 	);
 
