@@ -382,7 +382,7 @@ span.quote {
   color: #789922;
 }
 
-span.omitted {
+.omitted {
   display: block;
   margin-top: 1em;
 }

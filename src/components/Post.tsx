@@ -31,9 +31,9 @@ export type PostProperties = {
 	embed:string,
 	md5:string,
 	bumplimit:number,
-	imagelimit:number
+	imagelimit:number,
 
-
+	omitted_posts:number,
 }
 
 type PostDetails = {
@@ -116,37 +116,54 @@ export class Post extends React.Component<PostProperties, PostDetails>{
 	}
 	readableTime(time:number){
 		var ms_time = new Date(time * 1000);
-		return  "" + (ms_time.getDate() + "").padStart(2,'0') + "/" + (ms_time.getMonth() + "").padStart(2,'0') + "/" + (ms_time.getFullYear()+"").substr(2)  + "|" + (ms_time.getHours()+ "").padStart(2,'0') + ":" + (ms_time.getMinutes() + "").padStart(2,'0') + ":" + (ms_time.getSeconds()+ "").padStart(2,'0');
+		return  (ms_time.getHours()+ "").padStart(2,'0') + ":" + (ms_time.getMinutes() + "").padStart(2,'0') + ":" + (ms_time.getSeconds()+ "").padStart(2,'0');
 	}
+	detailsExpander(is_file:boolean){
+		return  (is_file ? <a href="" onClick={(e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
+                                                         e.preventDefault();
+                                                         return false;
+                                                   }
+					}	>⬎ ⬐</a> : " ");
+	}
+	readableDate(time:number){
+		var ms_time = new Date(time * 1000);
+		return  "" + (ms_time.getDate() + "").padStart(2,'0') + "/" + (ms_time.getMonth() + "").padStart(2,'0') + "/" + (ms_time.getFullYear()+"").substr(2) 
+	}
+
 	render(){
 		return (<div className={"post " + this.props.hierarchy_class}>
 			   <div className="intro">
 				<div className="user">
 				  <label htmlFor={"delete_" + this.props.id}>&nbsp;
 				    <input type="checkbox" className="delete" name={"delete_" + this.props.id} id={"delete_" + this.props.id} />&nbsp;
-
 				    {this.props.sub &&
 					<span className="subject">&nbsp;{this.props.sub}</span>
 				    }
 				    {this.parseEmailField(this.props.email,this.props.name)}&nbsp;
-				    <time data-utc={this.props.time}>{ this.readableTime(this.props.time) }</time>
+				    <time data-utc={this.props.time}>{ this.readableDate(this.props.time) } { this.detailsExpander(!!this.props.filename) } { this.readableTime(this.props.time) }</time>
 				  </label>&nbsp;
 			  	  <a className="post_no" id={"post_no_" + this.props.id} onClick={(event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {return this.highlightReply(event,this.props.id)}} href={"/qa/res/" + this.props.op_id + "#" + this.props.id}>No.</a>
 			          <a className="post_no" onClick={(event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {return this.citeReply(event,this.props.id)}} href={"/qa/res/" + this.props.op_id + "#" + this.props.id}>{this.props.id}</a>
 				{this.props.sticky == 1 &&   <i className="fa fa-thumb-tack" title="Sticky"></i>}
-				{this.props.locked == 1&&    <i className="fa fa-lock" title="Locked"></i>}
+				{this.props.locked == 1 &&   <i className="fa fa-lock" title="Locked"></i>}
 				{this.props.cyclical == 1 && <i className="fa fa-refresh" title="Cycle"></i>}
-				{this.props.sage == 1&&      <i className="fa fa-anchor" title="Sink"></i>}
+				{this.props.sage == 1   &&   <i className="fa fa-anchor" title="Sink"></i>}
+				{this.props.hierarchy_class == "op" && <span className="reply-anchor">&emsp;<a href={ "/" + this.props.board + "/res/" + this.props.id }>[Open Thread]</a></span>}
 
 			      </div>
+				{this.props.filename &&
+				   <div className="image-search">
+					<a className="sauce" target="_blank" href="https://www.google.com/searchbyimage?image_url=&safe=off">Google</a>
+				   </div>
+				}
+
 				{this.props.filename &&
 				   <div className="file">
 					<span className="fileinfo">
 					 <a href={"/" + this.props.board + "/src/" + this.props.tim + this.props.ext}>
 						<span className="postfilename" title={this.props.filename + this.props.ext}>{this.shortenFileName(this.props.filename) + this.props.ext}</span>
-						</a>⬎&nbsp;
+						</a>&nbsp;
 						<span className="unimportant">({ this.formatFileSize(this.props.fsize) }{"," + this.props.h}{"x"+this.props.w})</span>&nbsp;
-						<a className="sauce" target="_blank" href="https://www.google.com/searchbyimage?image_url=&safe=off">Google</a>
 					</span>
 				   </div>
 				}
@@ -161,9 +178,18 @@ export class Post extends React.Component<PostProperties, PostDetails>{
 			   <div className="body">
 				{this.parsePostBodyIntoSafeJSX(this.props.com)}
 			   </div>
-			  {this.props.hierarchy_class == "op" && this.props.paged &&
-				<span className="omited"></span>
-			  }
-			</div>)
+			   {this.props.omitted_posts > 0 && 
+				<div className="omitted">
+					{this.props.omitted_posts} Replies Hidden &nbsp;
+					<a href={ "/" + this.props.board + "/res/" + this.props.id } onClick={
+						(e:React.MouseEvent<HTMLAnchorElement>)=> {
+							e.preventDefault();
+							return false;
+						  }
+						}>[Expand Replies]</a>
+										
+				</div>
+		          } 
+		    </div>)
 	}
 }

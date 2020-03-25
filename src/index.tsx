@@ -27,8 +27,8 @@ module.exports = {
 	console.log("qtest " + id_str);
 	ReactDOM.render(<Thread id={id_str} board={board_str} paged={false}/>, document.getElementById("thread_form"));
   },
-  renderPage: function(page_str:string, board_str:string){
-    console.log("ptest " + page_str + " " + board_str)
-	ReactDOM.render(<Page page={page_str} board={board_str}/>, document.getElementById("thread_form"));
+  renderPage: function(page_num:number, board_str:string){
+   	console.log("ptest " + page_num + " " + board_str)
+	ReactDOM.render(<Page page={page_num} board={board_str}/>, document.getElementById("thread_form"));
   }
 }

@@ -160,7 +160,7 @@
 		{% if config.js_ui and not mod %}
 			{% for page in pages %}
 				{% if page.selected %}
-					<script>JS_UI.renderPage("{{page.num}}", "{{board.uri}}")</script>
+					<script>JS_UI.renderPage({{page.num}}, "{{board.uri}}")</script>
 				{% endif %}
 			{% endfor %}
 		{% else %}

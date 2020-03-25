@@ -4,21 +4,22 @@ import {Post, PostProperties} from "./Post";
 export type ThreadProperties = {
     board:string,
     id: string,
-    paged: boolean
+    paged: any
 }
 
 type ThreadVariables = {
 	spaced_posts:JSX.Element[],
-	error:string;
+	error:string
 }
 
-// TODO: Construct a thread from an AJAX json request
 export class Thread extends React.Component<ThreadProperties, ThreadVariables>{
-
+	
 	constructor(props:any){
 	  super(props);
 
-	  this.setThreadPosts = this.setThreadPosts.bind(this);
+	  this.setThreadPostsFetched = this.setThreadPostsFetched.bind(this);
+	  this.setThreadPostsPreFetched = this.setThreadPostsPreFetched.bind(this);
+
 	  this.getThreadJSONData = this.getThreadJSONData.bind(this);
 	  this.returnPostJSXObject = this.returnPostJSXObject.bind(this);
 	  this.defineStatePostsArray = this.defineStatePostsArray.bind(this);
@@ -27,22 +28,35 @@ export class Thread extends React.Component<ThreadProperties, ThreadVariables>{
 	}
 
 	componentDidMount(){
-		this.setThreadPosts();
+		if(!this.props.paged){
+			this.setThreadPostsFetched();
+		}
+		else{
+			this.setThreadPostsPreFetched(this.props.paged);	
+		}
 	}
 
-	async setThreadPosts(){
+	setThreadPostsPreFetched(thread_json:any){
+		var posts_arr:JSX.Element[] = [];
+		thread_json.forEach((post_obj:any, index:number)=>{
+			posts_arr.push(this.returnPostJSXObject(post_obj, index));		
+		});
+		this.defineStatePostsArray(posts_arr);
+
+	}
+
+	async setThreadPostsFetched(){
 		this.getThreadJSONData(this.props.board, this.props.id)
 		   .then((recieved:string) => {
-			console.log(recieved);
 			var thread_json = JSON.parse(recieved);
 			var posts_arr:JSX.Element[] = [];
-			thread_json["posts"].forEach((index:number, post_obj:any)=>{
-				posts_arr.push(this.returnPostJSXObject(index, post_obj));		
+			thread_json["posts"].forEach((post_obj:any, index:number)=>{
+				posts_arr.push(this.returnPostJSXObject(post_obj, index));		
 			});
 			this.defineStatePostsArray(posts_arr);
 		   })
  		   .catch((err)=>{
-			console.log(console.log(err))
+			console.log(err)
 		       this.setState({error: err + "\nJSON fetch error"});
 		 });
 	}
@@ -73,7 +87,7 @@ export class Thread extends React.Component<ThreadProperties, ThreadVariables>{
 	returnPostJSXObject(post_obj:any, key:number):JSX.Element{
 		var post_details:PostProperties = {
 			hierarchy_class: (post_obj['resto'] == 0 ? "op" : "reply"),
-			paged: this.props.paged,
+			paged: typeof this.props.paged != 'boolean',
 			board: this.props.board,
 			id: post_obj['no'],
 			op_id:post_obj['resto'],
@@ -99,17 +113,20 @@ export class Thread extends React.Component<ThreadProperties, ThreadVariables>{
 			embed:post_obj['embed'],
 			md5:post_obj['md5'],
 			bumplimit:post_obj['bumplimit'],
-			imagelimit:post_obj['imagelimit']	
+			imagelimit:post_obj['imagelimit'],
+
+			omitted_posts:post_obj['omitted_posts']
 		};
-console.log(post_details);
 		return <Post {...post_details}/>;
 	}
 
 	defineStatePostsArray(posts:JSX.Element[]){
+		var spaced_list:JSX.Element[] = [];
 		for(var post_ind = 0 ; post_ind < posts.length ; post_ind++){
-		  this.setState({spaced_posts: [...this.state.spaced_posts, posts[post_ind]]});
-		  this.setState({spaced_posts: [...this.state.spaced_posts, <br key={post_ind * 2}/>]});
+		  spaced_list = [...spaced_list, posts[post_ind]]
+		  spaced_list = [...spaced_list, <br key={post_ind * 2}/>]
 		}
+		this.setState({spaced_posts: spaced_list});
 	}
 	
 	render(){
@@ -118,7 +135,7 @@ console.log(post_details);
 		return (
 			<div id={"thread" + this.props.id} className="thread" data-board={this.props.board} data-full-i-d={this.props.board + "." + this.props.id}>
 	  		<input type="hidden" name="board" value={this.props.board} />
-	  		{this.state.spaced_posts} 
-			</div>);// quantity of rendered posts should vary on configuration
+	  		{ this.state.spaced_posts } 
+			</div>);// quantity of paged and rendered posts should vary on configuration
 	}
 }

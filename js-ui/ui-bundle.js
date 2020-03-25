@@ -118,33 +118,44 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 const React = __webpack_require__(0);
 const Post_1 = __webpack_require__(5);
-// TODO: Construct a thread from an AJAX json request
 class Thread extends React.Component {
     constructor(props) {
         super(props);
-        this.setThreadPosts = this.setThreadPosts.bind(this);
+        this.setThreadPostsFetched = this.setThreadPostsFetched.bind(this);
+        this.setThreadPostsPreFetched = this.setThreadPostsPreFetched.bind(this);
         this.getThreadJSONData = this.getThreadJSONData.bind(this);
         this.returnPostJSXObject = this.returnPostJSXObject.bind(this);
         this.defineStatePostsArray = this.defineStatePostsArray.bind(this);
         this.state = { spaced_posts: [], error: null };
     }
     componentDidMount() {
-        this.setThreadPosts();
+        if (!this.props.paged) {
+            this.setThreadPostsFetched();
+        }
+        else {
+            this.setThreadPostsPreFetched(this.props.paged);
+        }
     }
-    setThreadPosts() {
+    setThreadPostsPreFetched(thread_json) {
+        var posts_arr = [];
+        thread_json.forEach((post_obj, index) => {
+            posts_arr.push(this.returnPostJSXObject(post_obj, index));
+        });
+        this.defineStatePostsArray(posts_arr);
+    }
+    setThreadPostsFetched() {
         return __awaiter(this, void 0, void 0, function* () {
             this.getThreadJSONData(this.props.board, this.props.id)
                 .then((recieved) => {
-                console.log(recieved);
                 var thread_json = JSON.parse(recieved);
                 var posts_arr = [];
-                thread_json["posts"].forEach((index, post_obj) => {
-                    posts_arr.push(this.returnPostJSXObject(index, post_obj));
+                thread_json["posts"].forEach((post_obj, index) => {
+                    posts_arr.push(this.returnPostJSXObject(post_obj, index));
                 });
                 this.defineStatePostsArray(posts_arr);
             })
                 .catch((err) => {
-                console.log(console.log(err));
+                console.log(err);
                 this.setState({ error: err + "\nJSON fetch error" });
             });
         });
@@ -174,7 +185,7 @@ class Thread extends React.Component {
     returnPostJSXObject(post_obj, key) {
         var post_details = {
             hierarchy_class: (post_obj['resto'] == 0 ? "op" : "reply"),
-            paged: this.props.paged,
+            paged: typeof this.props.paged != 'boolean',
             board: this.props.board,
             id: post_obj['no'],
             op_id: post_obj['resto'],
@@ -200,23 +211,25 @@ class Thread extends React.Component {
             embed: post_obj['embed'],
             md5: post_obj['md5'],
             bumplimit: post_obj['bumplimit'],
-            imagelimit: post_obj['imagelimit']
+            imagelimit: post_obj['imagelimit'],
+            omitted_posts: post_obj['omitted_posts']
         };
-        console.log(post_details);
         return React.createElement(Post_1.Post, Object.assign({}, post_details));
     }
     defineStatePostsArray(posts) {
+        var spaced_list = [];
         for (var post_ind = 0; post_ind < posts.length; post_ind++) {
-            this.setState({ spaced_posts: [...this.state.spaced_posts, posts[post_ind]] });
-            this.setState({ spaced_posts: [...this.state.spaced_posts, React.createElement("br", { key: post_ind * 2 })] });
+            spaced_list = [...spaced_list, posts[post_ind]];
+            spaced_list = [...spaced_list, React.createElement("br", { key: post_ind * 2 })];
         }
+        this.setState({ spaced_posts: spaced_list });
     }
     render() {
         if (this.state.error)
             return (React.createElement("p", null, this.state.error));
         return (React.createElement("div", { id: "thread" + this.props.id, className: "thread", "data-board": this.props.board, "data-full-i-d": this.props.board + "." + this.props.id },
             React.createElement("input", { type: "hidden", name: "board", value: this.props.board }),
-            this.state.spaced_posts)); // quantity of rendered posts should vary on configuration
+            this.state.spaced_posts)); // quantity of paged and rendered posts should vary on configuration
     }
 }
 exports.Thread = Thread;
@@ -250,9 +263,9 @@ module.exports = {
         console.log("qtest " + id_str);
         ReactDOM.render(React.createElement(Thread_1.Thread, { id: id_str, board: board_str, paged: false }), document.getElementById("thread_form"));
     },
-    renderPage: function (page_str, board_str) {
-        console.log("ptest " + page_str + " " + board_str);
-        ReactDOM.render(React.createElement(Page_1.Page, { page: page_str, board: board_str }), document.getElementById("thread_form"));
+    renderPage: function (page_num, board_str) {
+        console.log("ptest " + page_num + " " + board_str);
+        ReactDOM.render(React.createElement(Page_1.Page, { page: page_num, board: board_str }), document.getElementById("thread_form"));
     }
 };
 
@@ -352,7 +365,17 @@ class Post extends React.Component {
     }
     readableTime(time) {
         var ms_time = new Date(time * 1000);
-        return "" + (ms_time.getDate() + "").padStart(2, '0') + "/" + (ms_time.getMonth() + "").padStart(2, '0') + "/" + (ms_time.getFullYear() + "").substr(2) + "|" + (ms_time.getHours() + "").padStart(2, '0') + ":" + (ms_time.getMinutes() + "").padStart(2, '0') + ":" + (ms_time.getSeconds() + "").padStart(2, '0');
+        return (ms_time.getHours() + "").padStart(2, '0') + ":" + (ms_time.getMinutes() + "").padStart(2, '0') + ":" + (ms_time.getSeconds() + "").padStart(2, '0');
+    }
+    detailsExpander(is_file) {
+        return (is_file ? React.createElement("a", { href: "", onClick: (e) => {
+                e.preventDefault();
+                return false;
+            } }, "\u2B0E \u2B10") : " ");
+    }
+    readableDate(time) {
+        var ms_time = new Date(time * 1000);
+        return "" + (ms_time.getDate() + "").padStart(2, '0') + "/" + (ms_time.getMonth() + "").padStart(2, '0') + "/" + (ms_time.getFullYear() + "").substr(2);
     }
     render() {
         return (React.createElement("div", { className: "post " + this.props.hierarchy_class },
@@ -368,35 +391,51 @@ class Post extends React.Component {
                                 this.props.sub),
                         this.parseEmailField(this.props.email, this.props.name),
                         "\u00A0",
-                        React.createElement("time", { "data-utc": this.props.time }, this.readableTime(this.props.time))),
+                        React.createElement("time", { "data-utc": this.props.time },
+                            this.readableDate(this.props.time),
+                            " ",
+                            this.detailsExpander(!!this.props.filename),
+                            " ",
+                            this.readableTime(this.props.time))),
                     "\u00A0",
                     React.createElement("a", { className: "post_no", id: "post_no_" + this.props.id, onClick: (event) => { return this.highlightReply(event, this.props.id); }, href: "/qa/res/" + this.props.op_id + "#" + this.props.id }, "No."),
                     React.createElement("a", { className: "post_no", onClick: (event) => { return this.citeReply(event, this.props.id); }, href: "/qa/res/" + this.props.op_id + "#" + this.props.id }, this.props.id),
                     this.props.sticky == 1 && React.createElement("i", { className: "fa fa-thumb-tack", title: "Sticky" }),
                     this.props.locked == 1 && React.createElement("i", { className: "fa fa-lock", title: "Locked" }),
                     this.props.cyclical == 1 && React.createElement("i", { className: "fa fa-refresh", title: "Cycle" }),
-                    this.props.sage == 1 && React.createElement("i", { className: "fa fa-anchor", title: "Sink" })),
+                    this.props.sage == 1 && React.createElement("i", { className: "fa fa-anchor", title: "Sink" }),
+                    this.props.hierarchy_class == "op" && React.createElement("span", { className: "reply-anchor" },
+                        "\u2003",
+                        React.createElement("a", { href: "/" + this.props.board + "/res/" + this.props.id }, "[Open Thread]"))),
+                this.props.filename &&
+                    React.createElement("div", { className: "image-search" },
+                        React.createElement("a", { className: "sauce", target: "_blank", href: "https://www.google.com/searchbyimage?image_url=&safe=off" }, "Google")),
                 this.props.filename &&
                     React.createElement("div", { className: "file" },
                         React.createElement("span", { className: "fileinfo" },
                             React.createElement("a", { href: "/" + this.props.board + "/src/" + this.props.tim + this.props.ext },
                                 React.createElement("span", { className: "postfilename", title: this.props.filename + this.props.ext }, this.shortenFileName(this.props.filename) + this.props.ext)),
-                            "\u2B0E\u00A0",
+                            "\u00A0",
                             React.createElement("span", { className: "unimportant" },
                                 "(",
                                 this.formatFileSize(this.props.fsize),
                                 "," + this.props.h,
                                 "x" + this.props.w,
                                 ")"),
-                            "\u00A0",
-                            React.createElement("a", { className: "sauce", target: "_blank", href: "https://www.google.com/searchbyimage?image_url=&safe=off" }, "Google"))),
+                            "\u00A0")),
                 this.props.filename &&
                     React.createElement("div", null,
                         React.createElement("a", { href: "/" + this.props.board + "/src/" + this.props.tim + this.props.ext, target: "_blank" },
                             React.createElement("img", { className: "post-image", src: "/" + this.props.board + "/thumb/" + this.props.tim + ".png", style: { width: this.props.tn_w, height: this.props.tn_h }, alt: "Image failed to load" })))),
             React.createElement("div", { className: "body" }, this.parsePostBodyIntoSafeJSX(this.props.com)),
-            this.props.hierarchy_class == "op" && this.props.paged &&
-                React.createElement("span", { className: "omited" })));
+            this.props.omitted_posts > 0 &&
+                React.createElement("div", { className: "omitted" },
+                    this.props.omitted_posts,
+                    " Replies Hidden \u00A0",
+                    React.createElement("a", { href: "/" + this.props.board + "/res/" + this.props.id, onClick: (e) => {
+                            e.preventDefault();
+                            return false;
+                        } }, "[Expand Replies]"))));
     }
 }
 exports.Post = Post;
@@ -415,23 +454,78 @@ const Thread_1 = __webpack_require__(1);
 class Page extends React.Component {
     constructor(props) {
         super(props);
+        this.setPageThreads = this.setPageThreads.bind(this);
+        this.getPagedJSONData = this.getPagedJSONData.bind(this);
+        this.returnThreadJSXObject = this.returnThreadJSXObject.bind(this);
+        this.defineStateThreadsArray = this.defineStateThreadsArray.bind(this);
+        this.state = { spaced_threads: [], error: null };
     }
     componentDidMount() {
         this.setPageThreads();
     }
     setPageThreads() {
-        var json_arr = this.getPagedJSONData(this.props.board, this.props.page);
-        var threads_arr = [];
-        // for each reply/op in json_arr
-        var thread_details;
-        this.setState({ threads: [...this.state.threads, React.createElement(Thread_1.Thread, Object.assign({}, thread_details))] });
+        var json_arr = this.getPagedJSONData(this.props.board, this.props.page)
+            .then((recieved) => {
+            var paged_json = JSON.parse(recieved)["threads"];
+            if (paged_json.length >= this.props.page - 1) {
+                var threads_arr = [];
+                paged_json.forEach((thread_obj, index) => {
+                    threads_arr.push(this.returnThreadJSXObject(thread_obj["posts"], index));
+                });
+                this.defineStateThreadsArray(threads_arr);
+            }
+            else {
+                this.setState({ error: "Page out of bounds" });
+            }
+        })
+            .catch((err) => {
+            console.log(console.log(err));
+            this.setState({ error: err + "\nJSON fetch error" });
+        });
+    }
+    returnThreadJSXObject(thread_obj, key) {
+        var thread_details = {
+            board: this.props.board,
+            id: thread_obj[0]['no'],
+            paged: thread_obj
+        };
+        return React.createElement(Thread_1.Thread, Object.assign({}, thread_details, { key: key * 3 }));
+    }
+    defineStateThreadsArray(threads) {
+        for (var thread_ind = 0; thread_ind < threads.length; thread_ind++) {
+            this.setState({ spaced_threads: [...this.state.spaced_threads, threads[thread_ind]] });
+            this.setState({ spaced_threads: [...this.state.spaced_threads, React.createElement("br", { className: "clear", key: thread_ind * 3 - 1 })] });
+            this.setState({ spaced_threads: [...this.state.spaced_threads, React.createElement("hr", { key: thread_ind * 3 - 2 })] });
+        }
     }
     getPagedJSONData(board, page) {
+        return new Promise((resolve, reject) => {
+            var threads_req = new XMLHttpRequest();
+            threads_req.addEventListener("load", function (re) {
+                if (this.status >= 400) {
+                    reject(this.status);
+                }
+                else if (this.status >= 300) {
+                    reject(this.status);
+                }
+                else {
+                    console.log(this.response);
+                    resolve(this.response);
+                }
+            });
+            threads_req.addEventListener("error", function (err) {
+                reject(this.status);
+            });
+            threads_req.open("GET", `/${board}/${page - 1}.json`);
+            threads_req.send();
+        });
     }
     render() {
+        if (this.state.error)
+            return (React.createElement("p", null, this.state.error));
         return (React.createElement("div", null,
             React.createElement("input", { type: "hidden", name: "board", value: this.props.board }),
-            this.state.threads));
+            this.state.spaced_threads));
     }
 }
 exports.Page = Page;
