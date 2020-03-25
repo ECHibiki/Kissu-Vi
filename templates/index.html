@@ -97,7 +97,7 @@
 	<div>
 	{% if not no_post_form %}
 		{% if config.poll_board %}
-			{% include 'post_form_poll.template' %}
+			{% include 'post_form_poll.html' %}
                 {% elseif config.advanced_post_form  %}
                        {% include 'post_form_advanced.html' %}
                 {% else %}

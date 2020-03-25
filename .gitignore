@@ -5,6 +5,7 @@
 /node_modules/*
 #boards
 /b/*
+/p/*
 /qa/*
 /xmas/*
 /lit/*
