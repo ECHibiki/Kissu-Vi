@@ -1,7 +1,7 @@
 import * as React from "react";
 import {Thread, ThreadProperties} from "./Thread";
 
-type PageProperties = {
+export type PageProperties = {
     board:string,
     page:number
 }
@@ -47,11 +47,16 @@ export class Page extends React.Component<PageProperties, PageVariables>{
 		 });
 	}
 
+	threadQuickReply(thread_id:number, reply_id:number){
+}	
+
 	returnThreadJSXObject(thread_obj:any, key:number):JSX.Element{
 		var thread_details:ThreadProperties = {
-			board: this.props.board,
-			id: thread_obj[0]['no'],
-			paged: thread_obj
+			board: this.props.board as string,
+			id: thread_obj[0]["no"] as number,
+			paged: thread_obj,
+
+			threadQuickReply: this.threadQuickReply
 		};
 		return <Thread {...thread_details} key={key * 3}/>;
 	}

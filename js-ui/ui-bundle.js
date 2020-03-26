@@ -117,16 +117,40 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const React = __webpack_require__(0);
-const Post_1 = __webpack_require__(5);
+const Post_1 = __webpack_require__(6);
+// FIX: expansion doesn't updates the paged property when new treads have been added.
 class Thread extends React.Component {
     constructor(props) {
         super(props);
         this.setThreadPostsFetched = this.setThreadPostsFetched.bind(this);
         this.setThreadPostsPreFetched = this.setThreadPostsPreFetched.bind(this);
+        this.rebuildThreadOnBool = this.rebuildThreadOnBool.bind(this);
+        this.highlightThreadPost = this.highlightThreadPost.bind(this);
+        this.threadQuickReply = this.threadQuickReply.bind(this);
         this.getThreadJSONData = this.getThreadJSONData.bind(this);
         this.returnPostJSXObject = this.returnPostJSXObject.bind(this);
         this.defineStatePostsArray = this.defineStatePostsArray.bind(this);
-        this.state = { spaced_posts: [], error: null };
+        this.state = { spaced_posts: [], error: null, expanded: false };
+    }
+    highlightThreadPost(e, id) {
+        var copy_ele = [];
+        for (var post of this.state.spaced_posts) {
+            if (post.props.id) {
+                if (id == post.props.id) {
+                    e.preventDefault();
+                    copy_ele.push(React.cloneElement(post, { highlighted: !post.props.highlighted }));
+                    history.pushState("", document.title, window.location.pathname + window.location.search);
+                }
+                else {
+                    copy_ele.push(React.cloneElement(post, { highlighted: false }));
+                }
+            }
+            else {
+                copy_ele.push(post);
+            }
+        }
+        this.setState({ spaced_posts: copy_ele });
+        console.log(this.state.spaced_posts);
     }
     componentDidMount() {
         if (!this.props.paged) {
@@ -135,6 +159,20 @@ class Thread extends React.Component {
         else {
             this.setThreadPostsPreFetched(this.props.paged);
         }
+    }
+    rebuildThreadOnBool() {
+        this.setState({ expanded: !this.state.expanded });
+        if (!this.state.expanded) { // naming is a bit confusing
+            this.setThreadPostsFetched();
+        }
+        else {
+            this.setThreadPostsPreFetched(this.props.paged);
+        }
+    }
+    threadQuickReply(id) {
+        console.log(id);
+        console.log(this.props.id);
+        this.props.threadQuickReply(this.props.id, id);
     }
     setThreadPostsPreFetched(thread_json) {
         var posts_arr = [];
@@ -186,10 +224,15 @@ class Thread extends React.Component {
         var post_details = {
             hierarchy_class: (post_obj['resto'] == 0 ? "op" : "reply"),
             paged: typeof this.props.paged != 'boolean',
+            expanded: this.state.expanded,
+            highlighted: false,
+            threadReconstruct: this.rebuildThreadOnBool,
+            threadHighlighting: this.highlightThreadPost,
+            threadQuickReply: this.threadQuickReply,
             board: this.props.board,
             id: post_obj['no'],
-            op_id: post_obj['resto'],
-            key: key * 2 - 1,
+            op_id: (post_obj['resto'] == false ? post_obj['no'] : post_obj['resto']),
+            key: key * 2,
             sub: post_obj['sub'],
             com: post_obj['com'],
             email: post_obj['email'],
@@ -220,7 +263,7 @@ class Thread extends React.Component {
         var spaced_list = [];
         for (var post_ind = 0; post_ind < posts.length; post_ind++) {
             spaced_list = [...spaced_list, posts[post_ind]];
-            spaced_list = [...spaced_list, React.createElement("br", { key: post_ind * 2 })];
+            spaced_list = [...spaced_list, React.createElement("br", { key: (post_ind + 1) * 2 - 1 })];
         }
         this.setState({ spaced_posts: spaced_list });
     }
@@ -248,10 +291,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var React = __webpack_require__(0);
 var ReactDOM = __webpack_require__(3);
 const Hello_1 = __webpack_require__(4);
-// A composite of posts
-const Thread_1 = __webpack_require__(1);
-// A composite of threads
-const Page_1 = __webpack_require__(6);
+// The master container 
+const PostForm_1 = __webpack_require__(5);
 // Use library solution to render elements through inline HTML
 module.exports = {
     renderTest: function (id) {
@@ -259,13 +300,13 @@ module.exports = {
         ReactDOM.render(React.createElement(Hello_1.Hello, null), document.getElementById(id));
     },
     // the two functions are for the sake of testing purposes only
-    renderThread: function (id_str, board_str) {
-        console.log("qtest " + id_str);
-        ReactDOM.render(React.createElement(Thread_1.Thread, { id: id_str, board: board_str, paged: false }), document.getElementById("thread_form"));
+    renderThread: function (id_num, board_str) {
+        console.log("qtest " + id_num);
+        ReactDOM.render(React.createElement(PostForm_1.PostForm, { thread_id: id_num, board: board_str, paged: false, page: 0 }), document.getElementById("thread_form"));
     },
     renderPage: function (page_num, board_str) {
         console.log("ptest " + page_num + " " + board_str);
-        ReactDOM.render(React.createElement(Page_1.Page, { page: page_num, board: board_str }), document.getElementById("thread_form"));
+        ReactDOM.render(React.createElement(PostForm_1.PostForm, { thread_id: 0, board: board_str, paged: true, page: page_num }), document.getElementById("thread_form"));
     }
 };
 
@@ -301,6 +342,58 @@ exports.Hello = Hello;
 
 Object.defineProperty(exports, "__esModule", { value: true });
 const React = __webpack_require__(0);
+// A composite of posts
+const Thread_1 = __webpack_require__(1);
+// A composite of threads
+const Page_1 = __webpack_require__(7);
+// QR form
+const QuickReply_1 = __webpack_require__(8);
+class PostForm extends React.Component {
+    constructor(props) {
+        super(props);
+        this.threadQuickReply = this.threadQuickReply.bind(this);
+        this.state = { quick_reply_form: null };
+    }
+    threadQuickReply(thread_id, post_id) {
+        console.log(thread_id);
+        console.log(post_id);
+        var quick_reply_properties = {
+            thread: thread_id,
+            cite: post_id
+        };
+        this.setState({ quick_reply_form: React.createElement(QuickReply_1.QuickReply, Object.assign({}, quick_reply_properties)) });
+    }
+    render() {
+        var thread_options = {
+            board: this.props.board,
+            id: this.props.thread_id,
+            paged: false,
+            threadQuickReply: this.threadQuickReply
+        };
+        console.log(this.props.thread_id);
+        var page_options = {
+            board: this.props.board,
+            page: this.props.page,
+        };
+        // decide which type of thread display to use. 
+        // some modifications will be made to this when the post form is integrated
+        // it also should contains delete info
+        return (React.createElement("div", null,
+            !this.props.paged && React.createElement(Thread_1.Thread, Object.assign({}, thread_options)),
+            this.props.paged && React.createElement(Page_1.Page, Object.assign({}, page_options))));
+    }
+}
+exports.PostForm = PostForm;
+
+
+/***/ }),
+/* 6 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+const React = __webpack_require__(0);
 // TODO: Class should make use of conditionals on every state and render given information iff user permits it or is default based on localstore values.
 // TODO: Retrieve JSON Data
 // TODO: Use JSON Data
@@ -315,7 +408,7 @@ const React = __webpack_require__(0);
 class Post extends React.Component {
     constructor(props) {
         super(props);
-        this.state = ({ filename_cutoff: 20 });
+        this.state = ({ filename_cutoff: 20, file_details_hidden: true });
     }
     componentDidMount() {
     }
@@ -334,9 +427,14 @@ class Post extends React.Component {
         else
             return fname;
     }
-    highlightReply(e, id) {
+    triggerThreadRebuild() {
+        this.props.threadReconstruct();
     }
-    citeReply(e, id) {
+    highlightReply(e, id) {
+        this.props.threadHighlighting(e, id);
+    }
+    citeReply(id) {
+        this.props.threadQuickReply(id);
     }
     formatFileSize(fsize) {
         if (fsize / (1024 * 1024) > 1) { // MB size check
@@ -359,7 +457,7 @@ class Post extends React.Component {
             for (let item of parsed_email) {
                 classes += item + " ";
             }
-            return (React.createElement("a", { className: classes, title: classes, href: classes, onClick: (e) => { e.preventDefault(); return false; } },
+            return (React.createElement("a", { className: classes, title: classes, href: classes, onClick: (e) => { e.preventDefault(); } },
                 React.createElement("span", { className: "name" }, name)));
         }
     }
@@ -368,81 +466,100 @@ class Post extends React.Component {
         return (ms_time.getHours() + "").padStart(2, '0') + ":" + (ms_time.getMinutes() + "").padStart(2, '0') + ":" + (ms_time.getSeconds() + "").padStart(2, '0');
     }
     detailsExpander(is_file) {
-        return (is_file ? React.createElement("a", { href: "", onClick: (e) => {
+        return (is_file ? React.createElement("a", { className: "details-expander", style: { cursor: "pointer" }, target: "_blank", onClick: (e) => {
+                this.setState({ file_details_hidden: !this.state.file_details_hidden });
                 e.preventDefault();
-                return false;
-            } }, "\u2B0E \u2B10") : " ");
+            } }, this.state.file_details_hidden ? "⬎↥⬐" : "↲↧↳") : " ");
     }
     readableDate(time) {
         var ms_time = new Date(time * 1000);
         return "" + (ms_time.getDate() + "").padStart(2, '0') + "/" + (ms_time.getMonth() + "").padStart(2, '0') + "/" + (ms_time.getFullYear() + "").substr(2);
     }
+    createImageSearchLink(search_engine_name, search_engine_pattern) {
+        var source = window.location.protocol + "//" + window.location.hostname + "/" + this.props.board + "/src/" + this.props.tim + this.props.ext;
+        var search_url = search_engine_pattern.replace("%s", source);
+        return React.createElement("a", { className: "sauce", target: "_blank", href: search_url }, search_engine_name);
+    }
     render() {
-        return (React.createElement("div", { className: "post " + this.props.hierarchy_class },
-            React.createElement("div", { className: "intro" },
-                React.createElement("div", { className: "user" },
-                    React.createElement("label", { htmlFor: "delete_" + this.props.id },
-                        "\u00A0",
-                        React.createElement("input", { type: "checkbox", className: "delete", name: "delete_" + this.props.id, id: "delete_" + this.props.id }),
-                        "\u00A0",
-                        this.props.sub &&
-                            React.createElement("span", { className: "subject" },
-                                "\u00A0",
-                                this.props.sub),
-                        this.parseEmailField(this.props.email, this.props.name),
-                        "\u00A0",
-                        React.createElement("time", { "data-utc": this.props.time },
-                            this.readableDate(this.props.time),
-                            " ",
-                            this.detailsExpander(!!this.props.filename),
-                            " ",
-                            this.readableTime(this.props.time))),
-                    "\u00A0",
-                    React.createElement("a", { className: "post_no", id: "post_no_" + this.props.id, onClick: (event) => { return this.highlightReply(event, this.props.id); }, href: "/qa/res/" + this.props.op_id + "#" + this.props.id }, "No."),
-                    React.createElement("a", { className: "post_no", onClick: (event) => { return this.citeReply(event, this.props.id); }, href: "/qa/res/" + this.props.op_id + "#" + this.props.id }, this.props.id),
-                    this.props.sticky == 1 && React.createElement("i", { className: "fa fa-thumb-tack", title: "Sticky" }),
-                    this.props.locked == 1 && React.createElement("i", { className: "fa fa-lock", title: "Locked" }),
-                    this.props.cyclical == 1 && React.createElement("i", { className: "fa fa-refresh", title: "Cycle" }),
-                    this.props.sage == 1 && React.createElement("i", { className: "fa fa-anchor", title: "Sink" }),
-                    this.props.hierarchy_class == "op" && React.createElement("span", { className: "reply-anchor" },
-                        "\u2003",
-                        React.createElement("a", { href: "/" + this.props.board + "/res/" + this.props.id }, "[Open Thread]"))),
-                this.props.filename &&
-                    React.createElement("div", { className: "image-search" },
-                        React.createElement("a", { className: "sauce", target: "_blank", href: "https://www.google.com/searchbyimage?image_url=&safe=off" }, "Google")),
-                this.props.filename &&
-                    React.createElement("div", { className: "file" },
-                        React.createElement("span", { className: "fileinfo" },
-                            React.createElement("a", { href: "/" + this.props.board + "/src/" + this.props.tim + this.props.ext },
-                                React.createElement("span", { className: "postfilename", title: this.props.filename + this.props.ext }, this.shortenFileName(this.props.filename) + this.props.ext)),
+        // FIX: state expantion is hard to follow and depends on multiple conditions. 
+        var detail_display_prop = { display: (this.state.file_details_hidden ? "none" : "block") };
+        return (React.createElement("div", { className: "post " + this.props.hierarchy_class + " " + (this.props.highlighted || window.location.hash == "#" + this.props.id ? "highlighted" : "") },
+            this.props.filename &&
+                React.createElement("div", { className: "image-container" },
+                    React.createElement("a", { href: "/" + this.props.board + "/src/" + this.props.tim + this.props.ext, target: "_blank" },
+                        React.createElement("img", { className: "post-image", src: "/" + this.props.board + "/thumb/" + this.props.tim + ".png", style: { width: this.props.tn_w, height: this.props.tn_h }, alt: "Image failed to load" }))),
+            React.createElement("div", { className: "post-contents" },
+                React.createElement("div", { className: "intro" },
+                    React.createElement("div", { className: "user" },
+                        React.createElement("label", { htmlFor: "delete_" + this.props.id },
                             "\u00A0",
-                            React.createElement("span", { className: "unimportant" },
-                                "(",
-                                this.formatFileSize(this.props.fsize),
-                                "," + this.props.h,
-                                "x" + this.props.w,
-                                ")"),
-                            "\u00A0")),
-                this.props.filename &&
-                    React.createElement("div", null,
-                        React.createElement("a", { href: "/" + this.props.board + "/src/" + this.props.tim + this.props.ext, target: "_blank" },
-                            React.createElement("img", { className: "post-image", src: "/" + this.props.board + "/thumb/" + this.props.tim + ".png", style: { width: this.props.tn_w, height: this.props.tn_h }, alt: "Image failed to load" })))),
-            React.createElement("div", { className: "body" }, this.parsePostBodyIntoSafeJSX(this.props.com)),
-            this.props.omitted_posts > 0 &&
+                            React.createElement("input", { type: "checkbox", className: "delete", name: "delete_" + this.props.id, id: "delete_" + this.props.id }),
+                            this.props.sub &&
+                                React.createElement("span", { className: "subject" },
+                                    "\u00A0",
+                                    this.props.sub),
+                            this.parseEmailField(this.props.email, this.props.name),
+                            "\u00A0",
+                            React.createElement("time", { "data-utc": this.props.time },
+                                this.readableDate(this.props.time),
+                                " ",
+                                this.detailsExpander(!!this.props.filename),
+                                " ",
+                                this.readableTime(this.props.time))),
+                        "\u00A0",
+                        React.createElement("a", { className: "post_no", id: "post_no_" + this.props.id, onClick: (event) => {
+                                this.highlightReply(event, this.props.id);
+                            }, href: "/" + this.props.board + "/res/" + this.props.op_id + "#" + this.props.id }, "No."),
+                        React.createElement("a", { className: "post_no", style: { cursor: "pointer" }, onClick: (event) => {
+                                this.citeReply(this.props.id);
+                                event.preventDefault();
+                            } }, this.props.id),
+                        this.props.sticky == 1 && React.createElement("i", { className: "fa fa-thumb-tack", title: "Sticky" }),
+                        this.props.locked == 1 && React.createElement("i", { className: "fa fa-lock", title: "Locked" }),
+                        this.props.cyclical == 1 && React.createElement("i", { className: "fa fa-refresh", title: "Cycle" }),
+                        this.props.sage == 1 && React.createElement("i", { className: "fa fa-anchor", title: "Sink" }),
+                        this.props.hierarchy_class == "op" && this.props.paged && React.createElement("span", { className: "reply-anchor" },
+                            "\u2003",
+                            React.createElement("a", { href: "/" + this.props.board + "/res/" + this.props.id }, "[Open Thread]"))),
+                    this.props.filename &&
+                        React.createElement("div", { className: "image-search", style: detail_display_prop },
+                            "\u2002\u00A0",
+                            this.createImageSearchLink("Google", "https://www.google.com/searchbyimage?image_url=%s&safe=off"),
+                            " \u00A0",
+                            this.createImageSearchLink("Yandex", "https://yandex.com/images/search?rpt=imageview&url=%s"),
+                            " \u00A0",
+                            this.createImageSearchLink("iqdb", "https://iqdb.org/?url=%s"),
+                            " \u00A0",
+                            this.createImageSearchLink("Trace", "trace.moe/?auto&url=%s"),
+                            " \u00A0"),
+                    this.props.filename &&
+                        React.createElement("div", { className: "file", style: detail_display_prop },
+                            React.createElement("span", { className: "fileinfo" },
+                                React.createElement("a", { href: "/" + this.props.board + "/src/" + this.props.tim + this.props.ext },
+                                    React.createElement("span", { className: "postfilename", title: this.props.filename + this.props.ext }, this.shortenFileName(this.props.filename) + this.props.ext)),
+                                "\u00A0",
+                                React.createElement("span", { className: "unimportant" },
+                                    "(",
+                                    this.formatFileSize(this.props.fsize),
+                                    "," + this.props.h,
+                                    "x" + this.props.w,
+                                    ")"),
+                                "\u00A0"))),
+                React.createElement("div", { className: "body" }, this.parsePostBodyIntoSafeJSX(this.props.com))),
+            (this.props.hierarchy_class == "op" && (this.props.omitted_posts > 0 || (this.props.expanded && this.props.paged))) &&
                 React.createElement("div", { className: "omitted" },
-                    this.props.omitted_posts,
-                    " Replies Hidden \u00A0",
-                    React.createElement("a", { href: "/" + this.props.board + "/res/" + this.props.id, onClick: (e) => {
+                    this.props.omitted_posts > 0 && this.props.omitted_posts + " Replies Hidden ",
+                    React.createElement("a", { style: { cursor: "pointer" }, onClick: (e) => {
+                            this.triggerThreadRebuild();
                             e.preventDefault();
-                            return false;
-                        } }, "[Expand Replies]"))));
+                        } }, this.props.omitted_posts > 0 ? "[Expand Replies]" : "[Condense Replies]"))));
     }
 }
 exports.Post = Post;
 
 
 /***/ }),
-/* 6 */
+/* 7 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -483,11 +600,14 @@ class Page extends React.Component {
             this.setState({ error: err + "\nJSON fetch error" });
         });
     }
+    threadQuickReply(thread_id, reply_id) {
+    }
     returnThreadJSXObject(thread_obj, key) {
         var thread_details = {
             board: this.props.board,
-            id: thread_obj[0]['no'],
-            paged: thread_obj
+            id: thread_obj[0]["no"],
+            paged: thread_obj,
+            threadQuickReply: this.threadQuickReply
         };
         return React.createElement(Thread_1.Thread, Object.assign({}, thread_details, { key: key * 3 }));
     }
@@ -529,6 +649,21 @@ class Page extends React.Component {
     }
 }
 exports.Page = Page;
+
+
+/***/ }),
+/* 8 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+// For now quick reply is a throwaway that will simply copy fields from the post form and reuse them through standard javascript querry selectors
+// in future it should reference against the solid post form component
+Object.defineProperty(exports, "__esModule", { value: true });
+const React = __webpack_require__(0);
+class QuickReply extends React.Component {
+}
+exports.QuickReply = QuickReply;
 
 
 /***/ })

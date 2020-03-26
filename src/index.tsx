@@ -14,7 +14,8 @@ import {Thread} from "./components/Thread";
 import {Page} from "./components/Page";
 // A composite of pages
 import {Catalog} from "./components/Catalog";
-
+// The master container 
+import {PostForm} from "./components/PostForm";
 
 // Use library solution to render elements through inline HTML
 module.exports = {
@@ -23,12 +24,12 @@ module.exports = {
 	ReactDOM.render(<Hello/>, document.getElementById(id));
   },
   // the two functions are for the sake of testing purposes only
-  renderThread: function(id_str:string, board_str:string){
-	console.log("qtest " + id_str);
-	ReactDOM.render(<Thread id={id_str} board={board_str} paged={false}/>, document.getElementById("thread_form"));
+  renderThread: function(id_num:number, board_str:string){
+	console.log("qtest " + id_num);
+	ReactDOM.render(<PostForm thread_id={id_num} board={board_str} paged={false} page={0}/>, document.getElementById("thread_form"));
   },
   renderPage: function(page_num:number, board_str:string){
    	console.log("ptest " + page_num + " " + board_str)
-	ReactDOM.render(<Page page={page_num} board={board_str}/>, document.getElementById("thread_form"));
+	ReactDOM.render(<PostForm thread_id={0} board={board_str} paged={true} page={page_num}/>, document.getElementById("thread_form"));
   }
 }

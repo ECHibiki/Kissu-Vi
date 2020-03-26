@@ -3,11 +3,18 @@ import * as React from "react";
 export type PostProperties = {
 // properties
 	hierarchy_class:string,
-	paged:boolean,
+	paged:boolean, // a check for if you're in a thread page or not
+	expanded: boolean, // a check for if thread has been expanded in page mode or not, default false if in thread
 	board:string,
 	id:number,
 	op_id:number,
 	key:number,
+	highlighted:boolean,
+
+// callbacks
+	threadReconstruct:()=>void,
+	threadHighlighting:(event: React.MouseEvent<HTMLAnchorElement, MouseEvent>, id:number)=>void,
+	threadQuickReply:(id:number)=>void,
 
 // json - no & resto already defined
 	sub:string,
@@ -38,7 +45,8 @@ export type PostProperties = {
 
 type PostDetails = {
 	// options
-	filename_cutoff:number
+	filename_cutoff:number,
+	file_details_hidden:boolean;
 }
 
 
@@ -61,7 +69,7 @@ export class Post extends React.Component<PostProperties, PostDetails>{
 
 	constructor(props:any){
 		super(props);
-		this.state = ({filename_cutoff:20})
+		this.state = ({filename_cutoff:20, file_details_hidden:true})
 	}
 
 	componentDidMount(){
@@ -83,10 +91,15 @@ export class Post extends React.Component<PostProperties, PostDetails>{
 		else
 			return fname;
 	}
-
-	highlightReply(e:React.MouseEvent<HTMLAnchorElement, MouseEvent>, id:number){
+	triggerThreadRebuild(){
+		this.props.threadReconstruct();
 	}
-	citeReply(e: React.MouseEvent<HTMLAnchorElement, MouseEvent>, id:number){
+	
+	highlightReply(e:React.MouseEvent<HTMLAnchorElement, MouseEvent>, id:number){
+		this.props.threadHighlighting(e, id);
+	}
+	citeReply(id:number){
+		this.props.threadQuickReply(id);		
 	}
 	formatFileSize(fsize:number){
 		if(fsize / (1024 * 1024) > 1){ // MB size check
@@ -109,7 +122,7 @@ export class Post extends React.Component<PostProperties, PostDetails>{
 			for (let item of parsed_email){
 				classes += item + " ";
 			}
-			return (<a className={classes} title={classes} href={classes} onClick={(e:React.MouseEvent<HTMLAnchorElement>)=> {e.preventDefault();return false;}}>
+			return (<a className={classes} title={classes} href={classes} onClick={(e:React.MouseEvent<HTMLAnchorElement>)=> {e.preventDefault();}}>
 				   <span className="name">{name}</span>
 				</a>);
 		}
@@ -119,46 +132,74 @@ export class Post extends React.Component<PostProperties, PostDetails>{
 		return  (ms_time.getHours()+ "").padStart(2,'0') + ":" + (ms_time.getMinutes() + "").padStart(2,'0') + ":" + (ms_time.getSeconds()+ "").padStart(2,'0');
 	}
 	detailsExpander(is_file:boolean){
-		return  (is_file ? <a href="" onClick={(e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
+		return  (is_file ? <a className="details-expander" style={{cursor: "pointer"}} target="_blank" onClick={(e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
+							 this.setState({file_details_hidden: !this.state.file_details_hidden});
                                                          e.preventDefault();
-                                                         return false;
                                                    }
-					}	>⬎ ⬐</a> : " ");
+					}	>{this.state.file_details_hidden ? "⬎↥⬐" : "↲↧↳"}</a> : " ");
 	}
 	readableDate(time:number){
 		var ms_time = new Date(time * 1000);
 		return  "" + (ms_time.getDate() + "").padStart(2,'0') + "/" + (ms_time.getMonth() + "").padStart(2,'0') + "/" + (ms_time.getFullYear()+"").substr(2) 
 	}
 
+	createImageSearchLink(search_engine_name:string, search_engine_pattern:string){
+		var source = window.location.protocol + "//" + window.location.hostname + "/" + this.props.board + "/src/" + this.props.tim + this.props.ext;
+		var search_url = search_engine_pattern.replace("%s", source);
+		return <a className="sauce" target="_blank" href={search_url}>{search_engine_name}</a>
+	}
 	render(){
-		return (<div className={"post " + this.props.hierarchy_class}>
+// FIX: state expantion is hard to follow and depends on multiple conditions. 
+
+		var detail_display_prop:React.CSSProperties = {display: (this.state.file_details_hidden ? "none" : "block")};
+		return (<div className={"post " + this.props.hierarchy_class + " " + (this.props.highlighted || window.location.hash == "#" + this.props.id ? "highlighted" : "")}>
+		 {this.props.filename &&
+			     <div className="image-container">
+			    	<a href={"/" + this.props.board + "/src/" + this.props.tim + this.props.ext} target="_blank">
+					<img className="post-image" src={"/" + this.props.board + "/thumb/" + this.props.tim + ".png"} style={{width:this.props.tn_w, height:this.props.tn_h}} alt={"Image failed to load"} />
+				</a>
+                             </div>
+ 			   }
+
+			<div className="post-contents">
 			   <div className="intro">
 				<div className="user">
 				  <label htmlFor={"delete_" + this.props.id}>&nbsp;
-				    <input type="checkbox" className="delete" name={"delete_" + this.props.id} id={"delete_" + this.props.id} />&nbsp;
+				    <input type="checkbox" className="delete" name={"delete_" + this.props.id} id={"delete_" + this.props.id} />
 				    {this.props.sub &&
 					<span className="subject">&nbsp;{this.props.sub}</span>
 				    }
 				    {this.parseEmailField(this.props.email,this.props.name)}&nbsp;
 				    <time data-utc={this.props.time}>{ this.readableDate(this.props.time) } { this.detailsExpander(!!this.props.filename) } { this.readableTime(this.props.time) }</time>
 				  </label>&nbsp;
-			  	  <a className="post_no" id={"post_no_" + this.props.id} onClick={(event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {return this.highlightReply(event,this.props.id)}} href={"/qa/res/" + this.props.op_id + "#" + this.props.id}>No.</a>
-			          <a className="post_no" onClick={(event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {return this.citeReply(event,this.props.id)}} href={"/qa/res/" + this.props.op_id + "#" + this.props.id}>{this.props.id}</a>
-				{this.props.sticky == 1 &&   <i className="fa fa-thumb-tack" title="Sticky"></i>}
-				{this.props.locked == 1 &&   <i className="fa fa-lock" title="Locked"></i>}
+			  	  <a className="post_no" id={"post_no_" + this.props.id} onClick={(event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
+							this.highlightReply(event,this.props.id);
+						}
+				   } href={ "/" + this.props.board + "/res/" + this.props.op_id + "#" + this.props.id}>No.</a>
+			          <a className="post_no" style={{cursor: "pointer"}} onClick={(event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
+						this.citeReply(this.props.id);
+						event.preventDefault();
+					    }
+					}
+				  >{this.props.id}</a>
+				{this.props.sticky == 1   && <i className="fa fa-thumb-tack" title="Sticky"></i>}
+				{this.props.locked == 1   && <i className="fa fa-lock" title="Locked"></i>}
 				{this.props.cyclical == 1 && <i className="fa fa-refresh" title="Cycle"></i>}
-				{this.props.sage == 1   &&   <i className="fa fa-anchor" title="Sink"></i>}
-				{this.props.hierarchy_class == "op" && <span className="reply-anchor">&emsp;<a href={ "/" + this.props.board + "/res/" + this.props.id }>[Open Thread]</a></span>}
+				{this.props.sage == 1     && <i className="fa fa-anchor" title="Sink"></i>}
+				{this.props.hierarchy_class == "op" && this.props.paged && <span className="reply-anchor">&emsp;<a href={ "/" + this.props.board + "/res/" + this.props.id }>[Open Thread]</a></span>}
 
 			      </div>
 				{this.props.filename &&
-				   <div className="image-search">
-					<a className="sauce" target="_blank" href="https://www.google.com/searchbyimage?image_url=&safe=off">Google</a>
+				   <div className="image-search" style={detail_display_prop}>&ensp;&nbsp;
+					{this.createImageSearchLink("Google", "https://www.google.com/searchbyimage?image_url=%s&safe=off")} &nbsp;
+					{this.createImageSearchLink("Yandex", "https://yandex.com/images/search?rpt=imageview&url=%s")} &nbsp;
+					{this.createImageSearchLink("iqdb", "https://iqdb.org/?url=%s")} &nbsp;
+					{this.createImageSearchLink("Trace", "trace.moe/?auto&url=%s")} &nbsp;
 				   </div>
 				}
 
 				{this.props.filename &&
-				   <div className="file">
+				   <div className="file" style={detail_display_prop}>
 					<span className="fileinfo">
 					 <a href={"/" + this.props.board + "/src/" + this.props.tim + this.props.ext}>
 						<span className="postfilename" title={this.props.filename + this.props.ext}>{this.shortenFileName(this.props.filename) + this.props.ext}</span>
@@ -167,26 +208,20 @@ export class Post extends React.Component<PostProperties, PostDetails>{
 					</span>
 				   </div>
 				}
-			   {this.props.filename &&
-			     <div>
-			    	<a href={"/" + this.props.board + "/src/" + this.props.tim + this.props.ext} target="_blank">
-					<img className="post-image" src={"/" + this.props.board + "/thumb/" + this.props.tim + ".png"} style={{width:this.props.tn_w, height:this.props.tn_h}} alt={"Image failed to load"} />
-				</a>
-                             </div>
- 			   }
 			   </div>
-			   <div className="body">
-				{this.parsePostBodyIntoSafeJSX(this.props.com)}
+				<div className="body">
+				   {this.parsePostBodyIntoSafeJSX(this.props.com)}
+				</div>
 			   </div>
-			   {this.props.omitted_posts > 0 && 
+			   {(this.props.hierarchy_class == "op" && (this.props.omitted_posts > 0 || (this.props.expanded && this.props.paged))) && 
 				<div className="omitted">
-					{this.props.omitted_posts} Replies Hidden &nbsp;
-					<a href={ "/" + this.props.board + "/res/" + this.props.id } onClick={
+					{this.props.omitted_posts > 0 && this.props.omitted_posts + " Replies Hidden "}
+					<a style={{cursor: "pointer"}} onClick={
 						(e:React.MouseEvent<HTMLAnchorElement>)=> {
+							this.triggerThreadRebuild();
 							e.preventDefault();
-							return false;
 						  }
-						}>[Expand Replies]</a>
+						}>{this.props.omitted_posts > 0 ? "[Expand Replies]" : "[Condense Replies]"}</a>
 										
 				</div>
 		          } 

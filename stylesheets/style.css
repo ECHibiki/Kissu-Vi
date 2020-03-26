@@ -1446,6 +1446,15 @@ div.mix {
 	padding-right: 0.8em;
 }
 
+.reply .image-container{
+	float:left
+}
+
+.reply .post-contents{
+	float:right
+}
+
+
 @media(max-width: 700px){
 .recaptcha{
 	height:24em;width: 67.4%;

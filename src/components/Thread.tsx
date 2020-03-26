@@ -3,15 +3,19 @@ import {Post, PostProperties} from "./Post";
 
 export type ThreadProperties = {
     board:string,
-    id: string,
-    paged: any
+    id: any, // typescript bizzarely not letter me set this as number
+    paged: any,
+
+    threadQuickReply: (thread_id:number, post_id:number)=>void
 }
 
 type ThreadVariables = {
 	spaced_posts:JSX.Element[],
-	error:string
+	error:string,
+	expanded:boolean // stores past directive on thread expantion
 }
 
+// FIX: expansion doesn't updates the paged property when new treads have been added.
 export class Thread extends React.Component<ThreadProperties, ThreadVariables>{
 	
 	constructor(props:any){
@@ -19,12 +23,38 @@ export class Thread extends React.Component<ThreadProperties, ThreadVariables>{
 
 	  this.setThreadPostsFetched = this.setThreadPostsFetched.bind(this);
 	  this.setThreadPostsPreFetched = this.setThreadPostsPreFetched.bind(this);
+	  this.rebuildThreadOnBool = this.rebuildThreadOnBool.bind(this);
+
+	  this.highlightThreadPost = this.highlightThreadPost.bind(this);
+ 	  this.threadQuickReply = this.threadQuickReply.bind(this);
 
 	  this.getThreadJSONData = this.getThreadJSONData.bind(this);
 	  this.returnPostJSXObject = this.returnPostJSXObject.bind(this);
 	  this.defineStatePostsArray = this.defineStatePostsArray.bind(this);
 
-	  this.state = {spaced_posts:[], error:null};
+	  this.state = {spaced_posts:[], error:null, expanded: false};
+	}
+
+	highlightThreadPost(e:React.MouseEvent<HTMLAnchorElement, MouseEvent>, id:number){
+		var copy_ele:JSX.Element[] = [];
+		for (var post of this.state.spaced_posts){
+			if(post.props.id){
+				if(id == post.props.id){
+					e.preventDefault();
+					copy_ele.push(React.cloneElement(post, {highlighted:!post.props.highlighted}));
+					history.pushState("", document.title, window.location.pathname + window.location.search);
+				}
+				else{
+					copy_ele.push(React.cloneElement(post, {highlighted:false}));
+				}
+			}
+			else{
+				copy_ele.push(post);
+			}
+		}
+		this.setState({spaced_posts: copy_ele});
+		console.log(this.state.spaced_posts);
+		
 	}
 
 	componentDidMount(){
@@ -36,13 +66,27 @@ export class Thread extends React.Component<ThreadProperties, ThreadVariables>{
 		}
 	}
 
+	rebuildThreadOnBool(){
+		this.setState({expanded: !this.state.expanded});
+		if(! this.state.expanded){ // naming is a bit confusing
+			this.setThreadPostsFetched();
+		}
+		else{
+			this.setThreadPostsPreFetched(this.props.paged);
+		}
+	}
+		
+	threadQuickReply(id:number){
+		console.log(id); console.log(this.props.id);
+		this.props.threadQuickReply(this.props.id, id);	
+	}	
+
 	setThreadPostsPreFetched(thread_json:any){
 		var posts_arr:JSX.Element[] = [];
 		thread_json.forEach((post_obj:any, index:number)=>{
 			posts_arr.push(this.returnPostJSXObject(post_obj, index));		
 		});
 		this.defineStatePostsArray(posts_arr);
-
 	}
 
 	async setThreadPostsFetched(){
@@ -88,10 +132,15 @@ export class Thread extends React.Component<ThreadProperties, ThreadVariables>{
 		var post_details:PostProperties = {
 			hierarchy_class: (post_obj['resto'] == 0 ? "op" : "reply"),
 			paged: typeof this.props.paged != 'boolean',
+			expanded: this.state.expanded,
+			highlighted:false,
+			threadReconstruct:this.rebuildThreadOnBool,
+			threadHighlighting:this.highlightThreadPost,
+			threadQuickReply:this.threadQuickReply,
 			board: this.props.board,
 			id: post_obj['no'],
-			op_id:post_obj['resto'],
-			key: key * 2 - 1,
+			op_id:(post_obj['resto'] == false ? post_obj['no'] : post_obj['resto']) ,
+			key: key * 2,
 			sub: post_obj['sub'],
 			com: post_obj['com'],
 			email: post_obj['email'],
@@ -124,7 +173,7 @@ export class Thread extends React.Component<ThreadProperties, ThreadVariables>{
 		var spaced_list:JSX.Element[] = [];
 		for(var post_ind = 0 ; post_ind < posts.length ; post_ind++){
 		  spaced_list = [...spaced_list, posts[post_ind]]
-		  spaced_list = [...spaced_list, <br key={post_ind * 2}/>]
+		  spaced_list = [...spaced_list, <br key={(post_ind+1) * 2 - 1}/>]
 		}
 		this.setState({spaced_posts: spaced_list});
 	}
