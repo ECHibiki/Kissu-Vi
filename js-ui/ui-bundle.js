@@ -346,22 +346,15 @@ const React = __webpack_require__(0);
 const Thread_1 = __webpack_require__(1);
 // A composite of threads
 const Page_1 = __webpack_require__(7);
-// QR form
-const QuickReply_1 = __webpack_require__(8);
 class PostForm extends React.Component {
     constructor(props) {
         super(props);
         this.threadQuickReply = this.threadQuickReply.bind(this);
-        this.state = { quick_reply_form: null };
     }
     threadQuickReply(thread_id, post_id) {
         console.log(thread_id);
         console.log(post_id);
-        var quick_reply_properties = {
-            thread: thread_id,
-            cite: post_id
-        };
-        this.setState({ quick_reply_form: React.createElement(QuickReply_1.QuickReply, Object.assign({}, quick_reply_properties)) });
+        // keep passing up to top
     }
     render() {
         var thread_options = {
@@ -370,13 +363,13 @@ class PostForm extends React.Component {
             paged: false,
             threadQuickReply: this.threadQuickReply
         };
-        console.log(this.props.thread_id);
         var page_options = {
             board: this.props.board,
             page: this.props.page,
         };
         // decide which type of thread display to use. 
         // some modifications will be made to this when the post form is integrated
+        // qr sould not be here
         // it also should contains delete info
         return (React.createElement("div", null,
             !this.props.paged && React.createElement(Thread_1.Thread, Object.assign({}, thread_options)),
@@ -435,6 +428,48 @@ class Post extends React.Component {
     }
     citeReply(id) {
         this.props.threadQuickReply(id);
+        /* The Following is a messy copy past from main.js */
+        // JQUERY types local has been added but should be removed
+        var textarea;
+        var with_link = undefined;
+        if (document.getElementById('index-body') != undefined)
+            textarea = document.getElementById('index-body');
+        else
+            textarea = document.getElementById('body');
+        if (!textarea) {
+            return false;
+        }
+        if (document.selection) {
+            // IE
+            textarea.focus();
+            var sel = document.selection.createRange();
+            sel.text = '>>' + id + '\n';
+        }
+        else if (textarea.selectionStart || textarea.selectionStart == 0) {
+            var start = textarea.selectionStart;
+            var end = textarea.selectionEnd;
+            textarea.value = textarea.value.substring(0, start) + '>>' + id + '\n' + textarea.value.substring(end, textarea.value.length);
+            textarea.selectionStart += ('>>' + id).length + 1;
+            textarea.selectionEnd = textarea.selectionStart;
+        }
+        else {
+            // ???
+            textarea.value += '>>' + id + '\n';
+        }
+        if (typeof $ != 'undefined') {
+            var select = document.getSelection().toString();
+            if (select) {
+                var body = $('#reply_' + id + ', #op_' + id).find('div.body'); // TODO: support for OPs
+                var index = body.text().indexOf(select.replace('\n', '')); // for some reason this only works like this
+                if (index > -1) {
+                    textarea.value += '>' + select + '\n';
+                }
+            }
+            $(window).trigger('cite', [id, with_link]);
+            $(textarea).change();
+        }
+        return false;
+        // END MESS
     }
     formatFileSize(fsize) {
         if (fsize / (1024 * 1024) > 1) { // MB size check
@@ -482,8 +517,9 @@ class Post extends React.Component {
     }
     render() {
         // FIX: state expantion is hard to follow and depends on multiple conditions. 
+        // NOTE: data-op is a temporary messure to maintain compatibility with legacy JS
         var detail_display_prop = { display: (this.state.file_details_hidden ? "none" : "block") };
-        return (React.createElement("div", { className: "post " + this.props.hierarchy_class + " " + (this.props.highlighted || window.location.hash == "#" + this.props.id ? "highlighted" : "") },
+        return (React.createElement("div", { "data-op": this.props.op_id, id: this.props.hierarchy_class + "_" + this.props.id, className: "post " + this.props.hierarchy_class + " " + (this.props.highlighted || window.location.hash == "#" + this.props.id ? "highlighted" : "") },
             this.props.filename &&
                 React.createElement("div", { className: "image-container" },
                     React.createElement("a", { href: "/" + this.props.board + "/src/" + this.props.tim + this.props.ext, target: "_blank" },
@@ -649,21 +685,6 @@ class Page extends React.Component {
     }
 }
 exports.Page = Page;
-
-
-/***/ }),
-/* 8 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-// For now quick reply is a throwaway that will simply copy fields from the post form and reuse them through standard javascript querry selectors
-// in future it should reference against the solid post form component
-Object.defineProperty(exports, "__esModule", { value: true });
-const React = __webpack_require__(0);
-class QuickReply extends React.Component {
-}
-exports.QuickReply = QuickReply;
 
 
 /***/ })

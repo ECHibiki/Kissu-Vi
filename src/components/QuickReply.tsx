@@ -13,5 +13,12 @@ type QuickReplyVariables = {
 }
 
 export class QuickReply extends React.Component<QuickReplyProperties, QuickReplyVariables>{
+	constructor(props:any){
+		super(props);
+	}	
 
+	render(){
+		return (<Draggable><div className="qr-form">Test Div</div></Draggable>)
+	}
+	
 }

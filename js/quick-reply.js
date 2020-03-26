@@ -127,8 +127,9 @@
 	var show_quick_reply = function(target_id){
 
 if($('div.banner').length == 0){
-var thread_id = $("#reply_" + target_id + ",#op_"+target_id).closest("[id*=thread_").attr("id").replace("thread_", "");
+var thread_id = $("#reply_" + target_id + ",#op_"+target_id).attr("data-op");
 			var in_index = true;
+	console.log(thread_id);
 		}
 else
 			var in_index = false;

@@ -4,10 +4,8 @@ import * as React from "react";
 import {Thread, ThreadProperties} from "./Thread";
 // A composite of threads
 import {Page, PageProperties} from "./Page";
-// QR form
-import {QuickReply, QuickReplyProperties} from "./QuickReply";
 
-type PostFormProperties = {
+export type PostFormProperties = {
 	paged:boolean,
 	board:string,
 
@@ -19,24 +17,18 @@ type PostFormProperties = {
 };
 
 type PostFormVariables = {
-	quick_reply_form:JSX.Element
 };
 
 export class PostForm extends React.Component<PostFormProperties, PostFormVariables>{
 	constructor(props:any){
 		super(props);
 		this.threadQuickReply = this.threadQuickReply.bind(this);
-		this.state = {quick_reply_form: null}
 	}
 	
 	threadQuickReply(thread_id:number, post_id:number){
 	   console.log(thread_id);
 	   console.log(post_id);
-		var quick_reply_properties = {
-			thread: thread_id,
-			cite: post_id
-		}
-		this.setState({quick_reply_form: <QuickReply {...quick_reply_properties} />});
+		// keep passing up to top
 	}
 
 	render(){
@@ -46,7 +38,6 @@ export class PostForm extends React.Component<PostFormProperties, PostFormVariab
 		    paged: false,
 		    threadQuickReply: this.threadQuickReply
 		}
-	console.log(this.props.thread_id);
 
 		var page_options:PageProperties = {
 		    board: this.props.board,
@@ -55,6 +46,7 @@ export class PostForm extends React.Component<PostFormProperties, PostFormVariab
 
 		// decide which type of thread display to use. 
 		// some modifications will be made to this when the post form is integrated
+		// qr sould not be here
 		// it also should contains delete info
 		return (<div>
 			{!this.props.paged && <Thread {...thread_options} />}

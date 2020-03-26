@@ -16,9 +16,9 @@
 			var modRoot="{{ config.root }}"+(inMod ? "mod.php?/" : "");
 		</script>
 		{% if not nojavascript %}
-			<script type="text/javascript" src="{{ config.url_javascript }}?0b2"></script>
+			<script type="text/javascript" src="{{ config.url_javascript }}?0b3"></script>
 			{% if not config.additional_javascript_compile %}
-			{% for javascript in config.additional_javascript %}<script type="text/javascript" src="{{ config.additional_javascript_url }}{{ javascript }}?0b2"></script>{% endfor %}
+			{% for javascript in config.additional_javascript %}<script type="text/javascript" src="{{ config.additional_javascript_url }}{{ javascript }}?0b3"></script>{% endfor %}
 			{% endif %}
 		{% endif %}
 		{% if config.poll_board %}<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>{% endif %}

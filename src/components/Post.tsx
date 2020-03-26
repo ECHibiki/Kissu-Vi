@@ -99,7 +99,50 @@ export class Post extends React.Component<PostProperties, PostDetails>{
 		this.props.threadHighlighting(e, id);
 	}
 	citeReply(id:number){
-		this.props.threadQuickReply(id);		
+		this.props.threadQuickReply(id);	
+
+/* The Following is a messy copy past from main.js */
+// JQUERY types local has been added but should be removed
+	var textarea:any;
+	var with_link = undefined;
+	if(document.getElementById('index-body') != undefined)
+		textarea = document.getElementById('index-body');
+	else
+        	textarea = document.getElementById('body');
+	if (!textarea){
+		 return false;
+	}
+	if ((document as any).selection) {
+		// IE
+		textarea.focus();
+		var sel = (document as any).selection.createRange();
+		sel.text = '>>' + id + '\n';
+	} else if (textarea.selectionStart || textarea.selectionStart == 0) {
+		var start = textarea.selectionStart;
+		var end = textarea.selectionEnd;
+		textarea.value = textarea.value.substring(0, start) + '>>' + id + '\n' + textarea.value.substring(end, textarea.value.length);
+		
+		textarea.selectionStart += ('>>' + id).length + 1;
+		textarea.selectionEnd = textarea.selectionStart;
+	} else {
+		// ???
+		textarea.value += '>>' + id + '\n';
+	}
+	if (typeof $ != 'undefined') {
+		var select = document.getSelection().toString();
+		if (select) {
+			var body = $('#reply_' + id + ', #op_' + id).find('div.body');  // TODO: support for OPs
+			var index = body.text().indexOf(select.replace('\n', ''));  // for some reason this only works like this
+			if (index > -1) {
+				textarea.value += '>' + select + '\n';
+			}
+		}
+
+		$(window).trigger('cite', [id, with_link]);
+		$(textarea).change();
+	}
+	return false;
+	// END MESS
 	}
 	formatFileSize(fsize:number){
 		if(fsize / (1024 * 1024) > 1){ // MB size check
@@ -150,9 +193,9 @@ export class Post extends React.Component<PostProperties, PostDetails>{
 	}
 	render(){
 // FIX: state expantion is hard to follow and depends on multiple conditions. 
-
+// NOTE: data-op is a temporary messure to maintain compatibility with legacy JS
 		var detail_display_prop:React.CSSProperties = {display: (this.state.file_details_hidden ? "none" : "block")};
-		return (<div className={"post " + this.props.hierarchy_class + " " + (this.props.highlighted || window.location.hash == "#" + this.props.id ? "highlighted" : "")}>
+		return (<div data-op={this.props.op_id} id={this.props.hierarchy_class + "_" + this.props.id} className={"post " + this.props.hierarchy_class + " " + (this.props.highlighted || window.location.hash == "#" + this.props.id ? "highlighted" : "")}>
 		 {this.props.filename &&
 			     <div className="image-container">
 			    	<a href={"/" + this.props.board + "/src/" + this.props.tim + this.props.ext} target="_blank">

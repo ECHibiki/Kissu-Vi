@@ -582,6 +582,7 @@ var script_settings = function(script_name) {
 
 
 function init() {
+	setTimeout(function(){
 	init_stylechooser();
 
 	$("#option_simplifier").change(function(e){
@@ -605,6 +606,7 @@ function init() {
 	if (window.location.hash.indexOf('q') != 1 && window.location.hash.substring(1))
 		highlightReply(window.location.hash.substring(1));
 	captchaSetup();
+	}, 3000);
 }
 
 var RecaptchaOptions = {

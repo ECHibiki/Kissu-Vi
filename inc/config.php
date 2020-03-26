@@ -1070,13 +1070,13 @@ $config['filters'][] = array(
 	 * with groups. Each array() in $config['boards'] represents a new square bracket group.
 	 */
 
-	// $config['boards'] = array(
-	// 	array('a', 'b'),
+	$config['boards'] = array(
+	 	array('b')//,
 	// 	array('c', 'd', 'e', 'f', 'g'),
 	// 	array('h', 'i', 'j'),
 	// 	array('k', array('l', 'm')),
 	// 	array('status' => 'http://status.example.org/')
-	// );
+	);
 
 	// Whether or not to put brackets around the whole board list
 	$config['boardlist_wrap_bracket'] = false;
