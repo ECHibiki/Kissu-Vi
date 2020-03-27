@@ -39,7 +39,8 @@ export type PostProperties = {
 	md5:string,
 	bumplimit:number,
 	imagelimit:number,
-
+// conditional
+	cites:any[],
 	omitted_posts:number,
 }
 
@@ -47,6 +48,10 @@ type PostDetails = {
 	// options
 	filename_cutoff:number,
 	file_details_hidden:boolean;
+	show_full_image:boolean,
+	show_full_audio:boolean,
+	show_full_video:boolean,
+	show_full_embed:boolean
 }
 
 
@@ -69,11 +74,36 @@ export class Post extends React.Component<PostProperties, PostDetails>{
 
 	constructor(props:any){
 		super(props);
-		this.state = ({filename_cutoff:20, file_details_hidden:true})
+		this.generateProperMedia = this.generateProperMedia.bind(this);
+		this.generateStagedEmbeding = this.generateStagedEmbeding.bind(this);
+		this.onClickExpandImage = this.onClickExpandImage.bind(this);
+		this.onClickExpandAudio = this.onClickExpandAudio.bind(this);
+		this.onClickExpandVideo = this.onClickExpandVideo.bind(this);
+		this.onClickExpandEmbed = this.onClickExpandEmbed.bind(this);
+
+		this.state = ({filename_cutoff:20, file_details_hidden:true, show_full_image: false, show_full_audio:false, show_full_video:false, show_full_embed:false})
 	}
 
 	componentDidMount(){
 	}
+
+	onClickExpandImage(e:React.MouseEvent<HTMLImageElement, MouseEvent>){
+		e.preventDefault();
+		this.setState({show_full_image: !this.state.show_full_image});
+	}
+	onClickExpandAudio(e:React.MouseEvent<HTMLImageElement, MouseEvent>){
+		e.preventDefault();
+		this.setState({show_full_audio: !this.state.show_full_audio});
+	}
+	onClickExpandVideo(e:React.MouseEvent<HTMLImageElement, MouseEvent>){
+		e.preventDefault();
+		this.setState({show_full_video: !this.state.show_full_video});
+	}
+	onClickExpandEmbed(e:React.MouseEvent<HTMLImageElement, MouseEvent>){
+		e.preventDefault();
+		this.setState({show_full_embed: !this.state.show_full_embed});
+	}
+
 
 	// taking the json data for body field, parse string and create JSX elements for safe tags such as <a>, <br>
 	// the raw json should already be safe from the server, however can never be too sure and makes for crearer render insertion
@@ -90,9 +120,6 @@ export class Post extends React.Component<PostProperties, PostDetails>{
 			return fname.substr(0,this.state.filename_cutoff) + "..";
 		else
 			return fname;
-	}
-	triggerThreadRebuild(){
-		this.props.threadReconstruct();
 	}
 	
 	highlightReply(e:React.MouseEvent<HTMLAnchorElement, MouseEvent>, id:number){
@@ -191,19 +218,124 @@ export class Post extends React.Component<PostProperties, PostDetails>{
 		var search_url = search_engine_pattern.replace("%s", source);
 		return <a className="sauce" target="_blank" href={search_url}>{search_engine_name}</a>
 	}
+
+	createCitesList(cite_arr:any[]){
+		var return_jsx:JSX.Element[] = [];
+		var i = 0;
+		for(var cite of cite_arr){
+			console.log(cite)
+			if(cite['board'] ==  this.props.board){
+				return_jsx.push(<span key={i++}>&nbsp;
+						  <a href={window.location.protocol + "//" + window.location.host + "/" + this.props.board + "/res/" + cite['host'] + "#" + cite['post'] }>{ ">>"  + cite['post']}</a>
+						</span>)
+			}
+			else{
+				return_jsx.push(<span key={i++}>&nbsp;<a href={window.location.protocol + "//" + window.location.host + "/" + cite['board'] + "/res/" + cite['host'] + "#" + cite['post'] } >{ ">>>/" + cite['board'] + "/" + cite['post']}</a></span>)	
+			}
+			
+		}
+		return return_jsx;
+ }
+
+	generateProperMedia(){
+		var is_image = false;
+		var is_video = false;
+		var is_audio = false;
+		switch(this.props.ext){
+		   case ".jpg": is_image = true; break;
+		   case ".png": is_image = true; break;
+		   case ".gif": is_image = true; break;
+		   case ".mp4": is_video = true; break;
+		   case ".webm": is_video = true; break;
+		   case ".mp3": is_audio = true; break;
+		}
+		
+		if(is_image){
+			if(!this.state.show_full_image){
+				return <div className="image-container-thumb">
+				   <a href={"/" + this.props.board + "/src/" + this.props.tim + this.props.ext} target="_blank">
+				       <img onClick={this.onClickExpandImage} className="post-image" src={"/" + this.props.board + "/thumb/" + this.props.tim + ".png"} style={{width:this.props.tn_w, height:this.props.tn_h}} alt={"Thumb failed to load"} />
+				   </a>
+				</div>
+			}
+			else{
+			        return <div className="image-container">
+				  <a href={"/" + this.props.board + "/src/" + this.props.tim + this.props.ext} target="_blank">
+				       <img onClick={this.onClickExpandImage} className="full-image" src={"/" + this.props.board + "/src/" + this.props.tim + this.props.ext} style={{}} alt={this.props.filename + " failed to load"} />
+				   </a>
+				</div>
+			}
+		}
+		else if(is_video){
+			if(!this.state.show_full_video){
+				return <div className="video-container-thumb">
+				   <a href={"/player.php?v=/" + this.props.board + "/src/" + this.props.tim + this.props.ext + "&t=" + this.props.filename + this.props.ext + "&loop=0"} target="_blank">
+				       <img onClick={this.onClickExpandVideo} className="post-image" src={"/" + this.props.board + "/thumb/" + this.props.tim + ".jpg"} style={{width:this.props.tn_w, height:this.props.tn_h}} alt={"Thumb failed to load"} />
+				   </a>
+				</div>
+			}
+			else{
+				return <div style={{paddingLeft: "15px", display: "block", position: "static"}} className="video-container">
+				 <img onClick={this.onClickExpandVideo} src="/static/collapse.gif" alt="[ - ]" title="Collapse video" style={{marginLeft: "-15px", float: "left", display: "inline"}} />
+				   <a href={"/player.php?v=/" + this.props.board + "/src/" + this.props.tim + this.props.ext + "&t=" + this.props.filename + this.props.ext + "&loop=0"} target="_blank">
+					<video src={"/" + this.props.board + "/src/" + this.props.tim + this.props.ext} loop={false} style={{position: "static", pointerEvents: "inherit", display: "inline", "maxWidth": "100%", maxHeight: "913px"}} controls={true} autoPlay={true}>Your browser does not support HTML5 video.</video>				   
+				   </a>
+				</div>
+			}
+		}
+		else if(is_audio){
+			if(!this.state.show_full_audio){	
+				return <div className="audio-container-thumb">
+				   <a href={"/" + this.props.board + "/src/" + this.props.tim + this.props.ext} target="_blank">
+				       <img onClick={this.onClickExpandAudio} className="post-image" src={"/static/kissu-audio.png"} style={{width:200, height:200}} alt={"Audio Thumb failed to load"} />
+				   </a>
+				</div>
+			}
+			else{
+				return <div style={{paddingLeft: "15px", display: "block", position: "static"}} className='audio-container'>
+				 <img onClick={this.onClickExpandAudio} src="/static/collapse.gif" alt="[ - ]" title="Collapse Audio" style={{marginLeft: "-15px", float: "left", display: "inline"}} />
+				   <a href={"/" + this.props.board + "/src/" + this.props.tim + this.props.ext} target="_blank">
+					<audio src={"/" + this.props.board + "/src/" + this.props.tim + this.props.ext} loop={false} style={{position: "static", pointerEvents: "inherit", display: "inline", "maxWidth": "100%", maxHeight: "913px"}} controls={true} autoPlay={true}>Your browser does not support HTML5 video.</audio>				   
+				   </a>
+				</div>
+			}
+
+		}
+	}
+
+
+	generateStagedEmbeding(){
+		if(!this.state.show_full_embed){
+			return <div className="embed-container-thumb">
+				<a target="_blank">
+			      <img onClick={this.onClickExpandEmbed} className="post-image" src={"/static/kissu-embed.jpg"} style={{width:200, height:200,cursor:"pointer"}} alt={"Embed Thumb failed to load"} />
+			   </a>
+			</div>
+		}
+		else{
+			var dangerous_html = {__html: this.props.embed};
+			return <div className="embed-container" >
+				 <img onClick={this.onClickExpandEmbed} src="/static/collapse.gif" alt="[ - ]" title="Collapse Media" style={{marginLeft: "-15px", float: "left", display: "inline"}} />
+				 <div dangerouslySetInnerHTML={dangerous_html}></div>
+				</div>
+		}
+
+	}
+
+
+	triggerThreadRebuild(){
+		this.props.threadReconstruct();
+	}
+
 	render(){
 // FIX: state expantion is hard to follow and depends on multiple conditions. 
 // NOTE: data-op is a temporary messure to maintain compatibility with legacy JS
 		var detail_display_prop:React.CSSProperties = {display: (this.state.file_details_hidden ? "none" : "block")};
 		return (<div data-op={this.props.op_id} id={this.props.hierarchy_class + "_" + this.props.id} className={"post " + this.props.hierarchy_class + " " + (this.props.highlighted || window.location.hash == "#" + this.props.id ? "highlighted" : "")}>
-		 {this.props.filename &&
-			     <div className="image-container">
-			    	<a href={"/" + this.props.board + "/src/" + this.props.tim + this.props.ext} target="_blank">
-					<img className="post-image" src={"/" + this.props.board + "/thumb/" + this.props.tim + ".png"} style={{width:this.props.tn_w, height:this.props.tn_h}} alt={"Image failed to load"} />
-				</a>
-                             </div>
- 			   }
 
+			{this.props.filename &&  this.generateProperMedia()}
+			{this.props.embed && this.generateStagedEmbeding()}		
+	
 			<div className="post-contents">
 			   <div className="intro">
 				<div className="user">
@@ -229,7 +361,8 @@ export class Post extends React.Component<PostProperties, PostDetails>{
 				{this.props.locked == 1   && <i className="fa fa-lock" title="Locked"></i>}
 				{this.props.cyclical == 1 && <i className="fa fa-refresh" title="Cycle"></i>}
 				{this.props.sage == 1     && <i className="fa fa-anchor" title="Sink"></i>}
-				{this.props.hierarchy_class == "op" && this.props.paged && <span className="reply-anchor">&emsp;<a href={ "/" + this.props.board + "/res/" + this.props.id }>[Open Thread]</a></span>}
+				{this.props.hierarchy_class == "op" && this.props.paged && <span className="reply-anchor">&emsp;<a href={ "/" + this.props.board + "/res/" + this.props.id }>[Open]</a></span>}
+				{this.props.cites && this.createCitesList(this.props.cites)}
 
 			      </div>
 				{this.props.filename &&
@@ -264,7 +397,7 @@ export class Post extends React.Component<PostProperties, PostDetails>{
 							this.triggerThreadRebuild();
 							e.preventDefault();
 						  }
-						}>{this.props.omitted_posts > 0 ? "[Expand Replies]" : "[Condense Replies]"}</a>
+						}>{this.props.omitted_posts > 0 ? "[Expand]" : "[Condense]"}</a>
 										
 				</div>
 		          } 

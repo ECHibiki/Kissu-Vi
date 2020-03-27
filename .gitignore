@@ -28,8 +28,8 @@
 /win/*
 
 #logs
-*.log
-*.txt
+/*.log
+/*.txt
 
 #gz
 *.gz

@@ -163,7 +163,7 @@ export class Thread extends React.Component<ThreadProperties, ThreadVariables>{
 			md5:post_obj['md5'],
 			bumplimit:post_obj['bumplimit'],
 			imagelimit:post_obj['imagelimit'],
-
+			cites: post_obj['cites'],
 			omitted_posts:post_obj['omitted_posts']
 		};
 		return <Post {...post_details}/>;

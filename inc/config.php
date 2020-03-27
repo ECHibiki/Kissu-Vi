@@ -1126,7 +1126,7 @@ $config['filters'][] = array(
 
 /*
  * ====================
- *  Javascript
+ *  Javascript/
  * ====================
  */
 	
@@ -1167,7 +1167,7 @@ $config['filters'][] = array(
  */
 
 	// Enable embedding (see below).
-	$config['enable_embedding'] = false;
+	$config['enable_embedding'] = true;
 
 	// Custom embedding (YouTube, vimeo, etc.)
 	// It's very important that you match the entire input (with ^ and $) or things will not work correctly.

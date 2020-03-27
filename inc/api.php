@@ -110,7 +110,7 @@ class Api {
 		}
 	}
 
-	private function translatePost($post, $threadsPage = false) {
+	private function translatePost($post, $threadsPage = false, &$cited_arr) {
 		global $config, $board;
 		$apiPost = array();
 		$fields = $threadsPage ? $this->threadsPageFields : $this->postFields;
@@ -153,7 +153,18 @@ class Api {
 				$apiPost['extra_files'] = $extra_files;
 			}
 		}
-
+		foreach ($cited_arr as &$cite){
+			if($cite['target'] == $apiPost['no']){
+				//a messy way to get cites from other boards, but there's not much other choice with vichan's DB design
+				$query = prepare(sprintf('SELECT `thread` FROM ``posts_%s`` WHERE id=%s', $board['uri'], $cite['post']));
+				$query->execute() or error(db_error($query));
+				$linked_thread_id = $query->fetch(PDO::FETCH_ASSOC);
+				if($linked_thread_id)
+					$apiPost['cites'][] = ['post'=>$cite['post'],'board'=>$cite['board'],'host'=>$linked_thread_id['thread']];
+				else
+					$apiPost['cites'][] = ['post'=>$cite['post'],'board'=>$cite['board'],'host'=>$cite['post']];
+			}
+		}
 		return $apiPost;
 	}
 
@@ -165,10 +176,10 @@ class Api {
 		return $li;
 	}
 	
-	function translateThread(Thread $thread, $threadsPage = false) {
+	function translateThread(Thread $thread, $threadsPage = false, &$cited_arr) {
 		global $config;
 		$apiPosts = array();
-		$op = $this->translatePost($thread, $threadsPage);
+		$op = $this->translatePost($thread, $threadsPage, $cited_arr);
 		$op_limits_checked = false;
 		if(isset($op["replies"] )){
 			$op_limits_checked = true;
@@ -195,7 +206,7 @@ class Api {
 		
 		
 		foreach ($thread->posts as $p) {
-			$apiPosts['posts'][] = $this->translatePost($p, $threadsPage);
+			$apiPosts['posts'][] = $this->translatePost($p, $threadsPage, $cited_arr);
 		}
 		return $apiPosts;
 	}
@@ -230,18 +241,18 @@ class Api {
             return $api_counter;
 	}
 
-	function translatePage(array $threads) {
+	function translatePage(array $threads, &$cited_arr) {
 		$apiPage = array();
 		foreach ($threads as $thread) {
-			$apiPage['threads'][] = $this->translateThread($thread);
+			$apiPage['threads'][] = $this->translateThread($thread, false, $cited_arr);
 		}
 		return $apiPage;
 	}
 
-	function translateCatalogPage(array $threads, $threadsPage = false) {
+	function translateCatalogPage(array $threads, $threadsPage = false, &$cited_arr) {
 		$apiPage = array();
 		foreach ($threads as $thread) {
-			$ts = $this->translateThread($thread, $threadsPage);
+			$ts = $this->translateThread($thread, $threadsPage, $cited_arr);
 			$first = array_shift($ts["posts"]);
 			if(!$threadsPage)
 				$first["last_replies"] = $ts["posts"];
@@ -250,10 +261,10 @@ class Api {
 		return $apiPage;
 	}
 
-	function translateCatalog($catalog, $threadsPage = false) {
+	function translateCatalog($catalog, $threadsPage = false, &$cited_arr) {
 		$apiCatalog = array();
 		foreach ($catalog as $page => $threads) {
-			$apiPage = $this->translateCatalogPage($threads, $threadsPage);
+			$apiPage = $this->translateCatalogPage($threads, $threadsPage, $cited_arr);
 			$apiPage['page'] = $page;
 			$apiCatalog[] = $apiPage;
 		}

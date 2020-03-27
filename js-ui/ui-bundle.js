@@ -255,6 +255,7 @@ class Thread extends React.Component {
             md5: post_obj['md5'],
             bumplimit: post_obj['bumplimit'],
             imagelimit: post_obj['imagelimit'],
+            cites: post_obj['cites'],
             omitted_posts: post_obj['omitted_posts']
         };
         return React.createElement(Post_1.Post, Object.assign({}, post_details));
@@ -401,9 +402,31 @@ const React = __webpack_require__(0);
 class Post extends React.Component {
     constructor(props) {
         super(props);
-        this.state = ({ filename_cutoff: 20, file_details_hidden: true });
+        this.generateProperMedia = this.generateProperMedia.bind(this);
+        this.generateStagedEmbeding = this.generateStagedEmbeding.bind(this);
+        this.onClickExpandImage = this.onClickExpandImage.bind(this);
+        this.onClickExpandAudio = this.onClickExpandAudio.bind(this);
+        this.onClickExpandVideo = this.onClickExpandVideo.bind(this);
+        this.onClickExpandEmbed = this.onClickExpandEmbed.bind(this);
+        this.state = ({ filename_cutoff: 20, file_details_hidden: true, show_full_image: false, show_full_audio: false, show_full_video: false, show_full_embed: false });
     }
     componentDidMount() {
+    }
+    onClickExpandImage(e) {
+        e.preventDefault();
+        this.setState({ show_full_image: !this.state.show_full_image });
+    }
+    onClickExpandAudio(e) {
+        e.preventDefault();
+        this.setState({ show_full_audio: !this.state.show_full_audio });
+    }
+    onClickExpandVideo(e) {
+        e.preventDefault();
+        this.setState({ show_full_video: !this.state.show_full_video });
+    }
+    onClickExpandEmbed(e) {
+        e.preventDefault();
+        this.setState({ show_full_embed: !this.state.show_full_embed });
     }
     // taking the json data for body field, parse string and create JSX elements for safe tags such as <a>, <br>
     // the raw json should already be safe from the server, however can never be too sure and makes for crearer render insertion
@@ -419,9 +442,6 @@ class Post extends React.Component {
             return fname.substr(0, this.state.filename_cutoff) + "..";
         else
             return fname;
-    }
-    triggerThreadRebuild() {
-        this.props.threadReconstruct();
     }
     highlightReply(e, id) {
         this.props.threadHighlighting(e, id);
@@ -515,15 +535,110 @@ class Post extends React.Component {
         var search_url = search_engine_pattern.replace("%s", source);
         return React.createElement("a", { className: "sauce", target: "_blank", href: search_url }, search_engine_name);
     }
+    createCitesList(cite_arr) {
+        var return_jsx = [];
+        var i = 0;
+        for (var cite of cite_arr) {
+            console.log(cite);
+            if (cite['board'] == this.props.board) {
+                return_jsx.push(React.createElement("span", { key: i++ },
+                    "\u00A0",
+                    React.createElement("a", { href: window.location.protocol + "//" + window.location.host + "/" + this.props.board + "/res/" + cite['host'] + "#" + cite['post'] }, ">>" + cite['post'])));
+            }
+            else {
+                return_jsx.push(React.createElement("span", { key: i++ },
+                    "\u00A0",
+                    React.createElement("a", { href: window.location.protocol + "//" + window.location.host + "/" + cite['board'] + "/res/" + cite['host'] + "#" + cite['post'] }, ">>>/" + cite['board'] + "/" + cite['post'])));
+            }
+        }
+        return return_jsx;
+    }
+    generateProperMedia() {
+        var is_image = false;
+        var is_video = false;
+        var is_audio = false;
+        switch (this.props.ext) {
+            case ".jpg":
+                is_image = true;
+                break;
+            case ".png":
+                is_image = true;
+                break;
+            case ".gif":
+                is_image = true;
+                break;
+            case ".mp4":
+                is_video = true;
+                break;
+            case ".webm":
+                is_video = true;
+                break;
+            case ".mp3":
+                is_audio = true;
+                break;
+        }
+        if (is_image) {
+            if (!this.state.show_full_image) {
+                return React.createElement("div", { className: "image-container-thumb" },
+                    React.createElement("a", { href: "/" + this.props.board + "/src/" + this.props.tim + this.props.ext, target: "_blank" },
+                        React.createElement("img", { onClick: this.onClickExpandImage, className: "post-image", src: "/" + this.props.board + "/thumb/" + this.props.tim + ".png", style: { width: this.props.tn_w, height: this.props.tn_h }, alt: "Thumb failed to load" })));
+            }
+            else {
+                return React.createElement("div", { className: "image-container" },
+                    React.createElement("a", { href: "/" + this.props.board + "/src/" + this.props.tim + this.props.ext, target: "_blank" },
+                        React.createElement("img", { onClick: this.onClickExpandImage, className: "full-image", src: "/" + this.props.board + "/src/" + this.props.tim + this.props.ext, style: {}, alt: this.props.filename + " failed to load" })));
+            }
+        }
+        else if (is_video) {
+            if (!this.state.show_full_video) {
+                return React.createElement("div", { className: "video-container-thumb" },
+                    React.createElement("a", { href: "/player.php?v=/" + this.props.board + "/src/" + this.props.tim + this.props.ext + "&t=" + this.props.filename + this.props.ext + "&loop=0", target: "_blank" },
+                        React.createElement("img", { onClick: this.onClickExpandVideo, className: "post-image", src: "/" + this.props.board + "/thumb/" + this.props.tim + ".jpg", style: { width: this.props.tn_w, height: this.props.tn_h }, alt: "Thumb failed to load" })));
+            }
+            else {
+                return React.createElement("div", { style: { paddingLeft: "15px", display: "block", position: "static" }, className: "video-container" },
+                    React.createElement("img", { onClick: this.onClickExpandVideo, src: "/static/collapse.gif", alt: "[ - ]", title: "Collapse video", style: { marginLeft: "-15px", float: "left", display: "inline" } }),
+                    React.createElement("a", { href: "/player.php?v=/" + this.props.board + "/src/" + this.props.tim + this.props.ext + "&t=" + this.props.filename + this.props.ext + "&loop=0", target: "_blank" },
+                        React.createElement("video", { src: "/" + this.props.board + "/src/" + this.props.tim + this.props.ext, loop: false, style: { position: "static", pointerEvents: "inherit", display: "inline", "maxWidth": "100%", maxHeight: "913px" }, controls: true, autoPlay: true }, "Your browser does not support HTML5 video.")));
+            }
+        }
+        else if (is_audio) {
+            if (!this.state.show_full_audio) {
+                return React.createElement("div", { className: "audio-container-thumb" },
+                    React.createElement("a", { href: "/" + this.props.board + "/src/" + this.props.tim + this.props.ext, target: "_blank" },
+                        React.createElement("img", { onClick: this.onClickExpandAudio, className: "post-image", src: "/static/kissu-audio.png", style: { width: 200, height: 200 }, alt: "Audio Thumb failed to load" })));
+            }
+            else {
+                return React.createElement("div", { style: { paddingLeft: "15px", display: "block", position: "static" }, className: 'audio-container' },
+                    React.createElement("img", { onClick: this.onClickExpandAudio, src: "/static/collapse.gif", alt: "[ - ]", title: "Collapse Audio", style: { marginLeft: "-15px", float: "left", display: "inline" } }),
+                    React.createElement("a", { href: "/" + this.props.board + "/src/" + this.props.tim + this.props.ext, target: "_blank" },
+                        React.createElement("audio", { src: "/" + this.props.board + "/src/" + this.props.tim + this.props.ext, loop: false, style: { position: "static", pointerEvents: "inherit", display: "inline", "maxWidth": "100%", maxHeight: "913px" }, controls: true, autoPlay: true }, "Your browser does not support HTML5 video.")));
+            }
+        }
+    }
+    generateStagedEmbeding() {
+        if (!this.state.show_full_embed) {
+            return React.createElement("div", { className: "embed-container-thumb" },
+                React.createElement("a", { target: "_blank" },
+                    React.createElement("img", { onClick: this.onClickExpandEmbed, className: "post-image", src: "/static/kissu-embed.jpg", style: { width: 200, height: 200, cursor: "pointer" }, alt: "Embed Thumb failed to load" })));
+        }
+        else {
+            var dangerous_html = { __html: this.props.embed };
+            return React.createElement("div", { className: "embed-container" },
+                React.createElement("img", { onClick: this.onClickExpandEmbed, src: "/static/collapse.gif", alt: "[ - ]", title: "Collapse Media", style: { marginLeft: "-15px", float: "left", display: "inline" } }),
+                React.createElement("div", { dangerouslySetInnerHTML: dangerous_html }));
+        }
+    }
+    triggerThreadRebuild() {
+        this.props.threadReconstruct();
+    }
     render() {
         // FIX: state expantion is hard to follow and depends on multiple conditions. 
         // NOTE: data-op is a temporary messure to maintain compatibility with legacy JS
         var detail_display_prop = { display: (this.state.file_details_hidden ? "none" : "block") };
         return (React.createElement("div", { "data-op": this.props.op_id, id: this.props.hierarchy_class + "_" + this.props.id, className: "post " + this.props.hierarchy_class + " " + (this.props.highlighted || window.location.hash == "#" + this.props.id ? "highlighted" : "") },
-            this.props.filename &&
-                React.createElement("div", { className: "image-container" },
-                    React.createElement("a", { href: "/" + this.props.board + "/src/" + this.props.tim + this.props.ext, target: "_blank" },
-                        React.createElement("img", { className: "post-image", src: "/" + this.props.board + "/thumb/" + this.props.tim + ".png", style: { width: this.props.tn_w, height: this.props.tn_h }, alt: "Image failed to load" }))),
+            this.props.filename && this.generateProperMedia(),
+            this.props.embed && this.generateStagedEmbeding(),
             React.createElement("div", { className: "post-contents" },
                 React.createElement("div", { className: "intro" },
                     React.createElement("div", { className: "user" },
@@ -556,7 +671,8 @@ class Post extends React.Component {
                         this.props.sage == 1 && React.createElement("i", { className: "fa fa-anchor", title: "Sink" }),
                         this.props.hierarchy_class == "op" && this.props.paged && React.createElement("span", { className: "reply-anchor" },
                             "\u2003",
-                            React.createElement("a", { href: "/" + this.props.board + "/res/" + this.props.id }, "[Open Thread]"))),
+                            React.createElement("a", { href: "/" + this.props.board + "/res/" + this.props.id }, "[Open]")),
+                        this.props.cites && this.createCitesList(this.props.cites)),
                     this.props.filename &&
                         React.createElement("div", { className: "image-search", style: detail_display_prop },
                             "\u2002\u00A0",
@@ -588,7 +704,7 @@ class Post extends React.Component {
                     React.createElement("a", { style: { cursor: "pointer" }, onClick: (e) => {
                             this.triggerThreadRebuild();
                             e.preventDefault();
-                        } }, this.props.omitted_posts > 0 ? "[Expand Replies]" : "[Condense Replies]"))));
+                        } }, this.props.omitted_posts > 0 ? "[Expand]" : "[Condense]"))));
     }
 }
 exports.Post = Post;

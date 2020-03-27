@@ -1974,10 +1974,14 @@ function buildIndex($global_api = "yes") {
 
 	$pages = null;
 	$antibot = null;
-
+	$cites = null;
 	if ($config['api']['enabled']) {
 		$api = new Api();
 		$catalog = array();
+
+		$query = prepare(sprintf('SELECT `post`,`board`,`target` FROM ``cites`` where target_board="%s"', $board['uri']));
+		$query->execute() or error(db_error($query));
+		$cited_arr = $query->fetchAll(PDO::FETCH_ASSOC);
 	}
 
 	for ($page = 1; $page <= $config['max_pages']; $page++) {
@@ -1998,7 +2002,7 @@ function buildIndex($global_api = "yes") {
 			// json api
 			if ($config['api']['enabled']) {
 				$threads = $content['threads'];
-				$json = json_encode($api->translatePage($threads));
+				$json = json_encode($api->translatePage($threads, $cited_arr));
 				file_write($jsonFilename, $json);
 
 				$catalog[$page-1] = $threads;
@@ -2056,11 +2060,11 @@ function buildIndex($global_api = "yes") {
 			file_unlink($jsonFilename);
 		}
 		elseif ($catalog_api_action == 'rebuild') {
-			$json = json_encode($api->translateCatalog($catalog));
+			$json = json_encode($api->translateCatalog($catalog, false, $cited_arr));
 			$jsonFilename = $board['dir'] . 'catalog.json';
 			file_write($jsonFilename, $json);
 
-			$json = json_encode($api->translateCatalog($catalog, true));
+			$json = json_encode($api->translateCatalog($catalog, true, $cited_arr));
 			$jsonFilename = $board['dir'] . 'threads.json';
 			file_write($jsonFilename, $json);
 
@@ -2633,6 +2637,10 @@ function buildThread($id, $return = false, $mod = false) {
 		// Clear cache
 		cache::delete("thread_index_{$board['uri']}_{$id}");
 		cache::delete("thread_{$board['uri']}_{$id}");
+
+		$query = prepare(sprintf('SELECT `post`,`board`,`target` FROM ``cites`` where target_board="%s"', $board['uri']));
+		$query->execute() or error(db_error($query));
+		$cited_arr = $query->fetchAll(PDO::FETCH_ASSOC);
 	}
 
 	if ($config['try_smarter'] && !$mod)
@@ -2679,7 +2687,7 @@ function buildThread($id, $return = false, $mod = false) {
 		// json api
 		if ($config['api']['enabled'] && !$mod) {
 			$api = new Api();
-			$json = json_encode($api->translateThread($thread));
+			$json = json_encode($api->translateThread($thread, false, $cited_arr));
 			$jsonFilename = $board['dir'] . $config['dir']['res'] . $id . '.json';
 			file_write($jsonFilename, $json);
 		}
