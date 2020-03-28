@@ -1,9 +1,10 @@
 import * as React from "react";
 import {Post, PostProperties} from "./Post";
+import {ThreadUpdater, ThreadUpdaterProperties} from "./ThreadUpdater";
 
 export type ThreadProperties = {
     board:string,
-    id: any, // typescript bizzarely not letter me set this as number
+    thread_id: any, // typescript bizzarely not letting me set this as number
     paged: any,
 
     threadQuickReply: (thread_id:number, post_id:number)=>void
@@ -11,6 +12,7 @@ export type ThreadProperties = {
 
 type ThreadVariables = {
 	spaced_posts:JSX.Element[],
+
 	error:string,
 	expanded:boolean // stores past directive on thread expantion
 }
@@ -18,8 +20,12 @@ type ThreadVariables = {
 // FIX: expansion doesn't updates the paged property when new treads have been added.
 export class Thread extends React.Component<ThreadProperties, ThreadVariables>{
 	
+	stored_title:string = "";
+
 	constructor(props:any){
 	  super(props);
+
+	  this.stored_title = document.title;
 
 	  this.setThreadPostsFetched = this.setThreadPostsFetched.bind(this);
 	  this.setThreadPostsPreFetched = this.setThreadPostsPreFetched.bind(this);
@@ -38,7 +44,7 @@ export class Thread extends React.Component<ThreadProperties, ThreadVariables>{
 	highlightThreadPost(e:React.MouseEvent<HTMLAnchorElement, MouseEvent>, id:number){
 		var copy_ele:JSX.Element[] = [];
 		for (var post of this.state.spaced_posts){
-			if(post.props.id){
+			if(post.props.thread_id){
 				if(id == post.props.id){
 					e.preventDefault();
 					copy_ele.push(React.cloneElement(post, {highlighted:!post.props.highlighted}));
@@ -54,7 +60,6 @@ export class Thread extends React.Component<ThreadProperties, ThreadVariables>{
 		}
 		this.setState({spaced_posts: copy_ele});
 		console.log(this.state.spaced_posts);
-		
 	}
 
 	componentDidMount(){
@@ -77,8 +82,7 @@ export class Thread extends React.Component<ThreadProperties, ThreadVariables>{
 	}
 		
 	threadQuickReply(id:number){
-		console.log(id); console.log(this.props.id);
-		this.props.threadQuickReply(this.props.id, id);	
+		this.props.threadQuickReply(this.props.thread_id, id);	
 	}	
 
 	setThreadPostsPreFetched(thread_json:any){
@@ -89,14 +93,21 @@ export class Thread extends React.Component<ThreadProperties, ThreadVariables>{
 		this.defineStatePostsArray(posts_arr);
 	}
 
-	async setThreadPostsFetched(){
-		this.getThreadJSONData(this.props.board, this.props.id)
+	async setThreadPostsFetched(display_notification:boolean = false){
+		this.getThreadJSONData(this.props.board, this.props.thread_id)
 		   .then((recieved:string) => {
 			var thread_json = JSON.parse(recieved);
 			var posts_arr:JSX.Element[] = [];
+			var max_ind = 0;
 			thread_json["posts"].forEach((post_obj:any, index:number)=>{
+				max_ind = index;
 				posts_arr.push(this.returnPostJSXObject(post_obj, index));		
 			});
+			if(display_notification){
+				var new_posts = (thread_json['posts'].length - this.state.spaced_posts.length / 2);	
+				if(new_posts != 0)
+					document.title = "[" + new_posts + "] " + this.stored_title;
+			}
 			this.defineStatePostsArray(posts_arr);
 		   })
  		   .catch((err)=>{
@@ -181,10 +192,15 @@ export class Thread extends React.Component<ThreadProperties, ThreadVariables>{
 	render(){
 		if(this.state.error)
 			return (<p>{this.state.error}</p>)
+		
+		var thread_updater_props:ThreadUpdaterProperties =
+			 {board: this.props.board, thread_id:this.props.thread_id, threadListUpdateSignal:this.setThreadPostsFetched}
+		
 		return (
-			<div id={"thread" + this.props.id} className="thread" data-board={this.props.board} data-full-i-d={this.props.board + "." + this.props.id}>
-	  		<input type="hidden" name="board" value={this.props.board} />
-	  		{ this.state.spaced_posts } 
+			<div id={"thread" + this.props.thread_id} className="thread" data-board={this.props.board} data-full-i-d={this.props.board + "." + this.props.thread_id}>
+	  		  <input type="hidden" name="board" value={this.props.board} />
+	  		   { this.state.spaced_posts } 
+			   {!this.props.paged && <div className="bottom-page-modifiers"><hr/><ThreadUpdater {...thread_updater_props} /></div>}
 			</div>);// quantity of paged and rendered posts should vary on configuration
 	}
 }

@@ -118,10 +118,13 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 const React = __webpack_require__(0);
 const Post_1 = __webpack_require__(6);
+const ThreadUpdater_1 = __webpack_require__(7);
 // FIX: expansion doesn't updates the paged property when new treads have been added.
 class Thread extends React.Component {
     constructor(props) {
         super(props);
+        this.stored_title = "";
+        this.stored_title = document.title;
         this.setThreadPostsFetched = this.setThreadPostsFetched.bind(this);
         this.setThreadPostsPreFetched = this.setThreadPostsPreFetched.bind(this);
         this.rebuildThreadOnBool = this.rebuildThreadOnBool.bind(this);
@@ -135,7 +138,7 @@ class Thread extends React.Component {
     highlightThreadPost(e, id) {
         var copy_ele = [];
         for (var post of this.state.spaced_posts) {
-            if (post.props.id) {
+            if (post.props.thread_id) {
                 if (id == post.props.id) {
                     e.preventDefault();
                     copy_ele.push(React.cloneElement(post, { highlighted: !post.props.highlighted }));
@@ -170,9 +173,7 @@ class Thread extends React.Component {
         }
     }
     threadQuickReply(id) {
-        console.log(id);
-        console.log(this.props.id);
-        this.props.threadQuickReply(this.props.id, id);
+        this.props.threadQuickReply(this.props.thread_id, id);
     }
     setThreadPostsPreFetched(thread_json) {
         var posts_arr = [];
@@ -181,15 +182,22 @@ class Thread extends React.Component {
         });
         this.defineStatePostsArray(posts_arr);
     }
-    setThreadPostsFetched() {
+    setThreadPostsFetched(display_notification = false) {
         return __awaiter(this, void 0, void 0, function* () {
-            this.getThreadJSONData(this.props.board, this.props.id)
+            this.getThreadJSONData(this.props.board, this.props.thread_id)
                 .then((recieved) => {
                 var thread_json = JSON.parse(recieved);
                 var posts_arr = [];
+                var max_ind = 0;
                 thread_json["posts"].forEach((post_obj, index) => {
+                    max_ind = index;
                     posts_arr.push(this.returnPostJSXObject(post_obj, index));
                 });
+                if (display_notification) {
+                    var new_posts = (thread_json['posts'].length - this.state.spaced_posts.length / 2);
+                    if (new_posts != 0)
+                        document.title = "[" + new_posts + "] " + this.stored_title;
+                }
                 this.defineStatePostsArray(posts_arr);
             })
                 .catch((err) => {
@@ -271,9 +279,13 @@ class Thread extends React.Component {
     render() {
         if (this.state.error)
             return (React.createElement("p", null, this.state.error));
-        return (React.createElement("div", { id: "thread" + this.props.id, className: "thread", "data-board": this.props.board, "data-full-i-d": this.props.board + "." + this.props.id },
+        var thread_updater_props = { board: this.props.board, thread_id: this.props.thread_id, threadListUpdateSignal: this.setThreadPostsFetched };
+        return (React.createElement("div", { id: "thread" + this.props.thread_id, className: "thread", "data-board": this.props.board, "data-full-i-d": this.props.board + "." + this.props.thread_id },
             React.createElement("input", { type: "hidden", name: "board", value: this.props.board }),
-            this.state.spaced_posts)); // quantity of paged and rendered posts should vary on configuration
+            this.state.spaced_posts,
+            !this.props.paged && React.createElement("div", { className: "bottom-page-modifiers" },
+                React.createElement("hr", null),
+                React.createElement(ThreadUpdater_1.ThreadUpdater, Object.assign({}, thread_updater_props))))); // quantity of paged and rendered posts should vary on configuration
     }
 }
 exports.Thread = Thread;
@@ -346,7 +358,7 @@ const React = __webpack_require__(0);
 // A composite of posts
 const Thread_1 = __webpack_require__(1);
 // A composite of threads
-const Page_1 = __webpack_require__(7);
+const Page_1 = __webpack_require__(8);
 class PostForm extends React.Component {
     constructor(props) {
         super(props);
@@ -360,7 +372,7 @@ class PostForm extends React.Component {
     render() {
         var thread_options = {
             board: this.props.board,
-            id: this.props.thread_id,
+            thread_id: this.props.thread_id,
             paged: false,
             threadQuickReply: this.threadQuickReply
         };
@@ -370,7 +382,7 @@ class PostForm extends React.Component {
         };
         // decide which type of thread display to use. 
         // some modifications will be made to this when the post form is integrated
-        // qr sould not be here
+        // qr sould not be here nor should navigation items, but for now they are.
         // it also should contains delete info
         return (React.createElement("div", null,
             !this.props.paged && React.createElement(Thread_1.Thread, Object.assign({}, thread_options)),
@@ -581,19 +593,19 @@ class Post extends React.Component {
             if (!this.state.show_full_image) {
                 return React.createElement("div", { className: "image-container-thumb" },
                     React.createElement("a", { href: "/" + this.props.board + "/src/" + this.props.tim + this.props.ext, target: "_blank" },
-                        React.createElement("img", { onClick: this.onClickExpandImage, className: "post-image", src: "/" + this.props.board + "/thumb/" + this.props.tim + ".png", style: { width: this.props.tn_w, height: this.props.tn_h }, alt: "Thumb failed to load" })));
+                        React.createElement("img", { onClick: this.onClickExpandImage, className: "post-image", src: "/" + this.props.board + "/thumb/" + this.props.tim + ".png", style: { width: this.props.tn_w, height: this.props.tn_h } })));
             }
             else {
                 return React.createElement("div", { className: "image-container" },
                     React.createElement("a", { href: "/" + this.props.board + "/src/" + this.props.tim + this.props.ext, target: "_blank" },
-                        React.createElement("img", { onClick: this.onClickExpandImage, className: "full-image", src: "/" + this.props.board + "/src/" + this.props.tim + this.props.ext, style: {}, alt: this.props.filename + " failed to load" })));
+                        React.createElement("img", { onClick: this.onClickExpandImage, className: "full-image", src: "/" + this.props.board + "/src/" + this.props.tim + this.props.ext, style: {} })));
             }
         }
         else if (is_video) {
             if (!this.state.show_full_video) {
                 return React.createElement("div", { className: "video-container-thumb" },
                     React.createElement("a", { href: "/player.php?v=/" + this.props.board + "/src/" + this.props.tim + this.props.ext + "&t=" + this.props.filename + this.props.ext + "&loop=0", target: "_blank" },
-                        React.createElement("img", { onClick: this.onClickExpandVideo, className: "post-image", src: "/" + this.props.board + "/thumb/" + this.props.tim + ".jpg", style: { width: this.props.tn_w, height: this.props.tn_h }, alt: "Thumb failed to load" })));
+                        React.createElement("img", { onClick: this.onClickExpandVideo, className: "post-image", src: "/" + this.props.board + "/thumb/" + this.props.tim + ".jpg", style: { width: this.props.tn_w, height: this.props.tn_h } })));
             }
             else {
                 return React.createElement("div", { style: { paddingLeft: "15px", display: "block", position: "static" }, className: "video-container" },
@@ -606,13 +618,13 @@ class Post extends React.Component {
             if (!this.state.show_full_audio) {
                 return React.createElement("div", { className: "audio-container-thumb" },
                     React.createElement("a", { href: "/" + this.props.board + "/src/" + this.props.tim + this.props.ext, target: "_blank" },
-                        React.createElement("img", { onClick: this.onClickExpandAudio, className: "post-image", src: "/static/kissu-audio.png", style: { width: 200, height: 200 }, alt: "Audio Thumb failed to load" })));
+                        React.createElement("img", { onClick: this.onClickExpandAudio, className: "post-image", src: "/static/kissu-audio.png", style: { width: 200, height: 200 } })));
             }
             else {
                 return React.createElement("div", { style: { paddingLeft: "15px", display: "block", position: "static" }, className: 'audio-container' },
                     React.createElement("img", { onClick: this.onClickExpandAudio, src: "/static/collapse.gif", alt: "[ - ]", title: "Collapse Audio", style: { marginLeft: "-15px", float: "left", display: "inline" } }),
                     React.createElement("a", { href: "/" + this.props.board + "/src/" + this.props.tim + this.props.ext, target: "_blank" },
-                        React.createElement("audio", { src: "/" + this.props.board + "/src/" + this.props.tim + this.props.ext, loop: false, style: { position: "static", pointerEvents: "inherit", display: "inline", "maxWidth": "100%", maxHeight: "913px" }, controls: true, autoPlay: true }, "Your browser does not support HTML5 video.")));
+                        React.createElement("audio", { src: "/" + this.props.board + "/src/" + this.props.tim + this.props.ext, loop: false, style: { position: "static", pointerEvents: "inherit", display: "inline", "maxWidth": "100%", maxHeight: "913px" }, controls: true, autoPlay: true }, "Your browser does not support HTML5 Audio")));
             }
         }
     }
@@ -697,7 +709,7 @@ class Post extends React.Component {
                                     "x" + this.props.w,
                                     ")"),
                                 "\u00A0"))),
-                React.createElement("div", { className: "body" }, this.parsePostBodyIntoSafeJSX(this.props.com))),
+                React.createElement("div", { className: "body" }, this.props.com && this.parsePostBodyIntoSafeJSX(this.props.com))),
             (this.props.hierarchy_class == "op" && (this.props.omitted_posts > 0 || (this.props.expanded && this.props.paged))) &&
                 React.createElement("div", { className: "omitted" },
                     this.props.omitted_posts > 0 && this.props.omitted_posts + " Replies Hidden ",
@@ -712,6 +724,60 @@ exports.Post = Post;
 
 /***/ }),
 /* 7 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+const React = __webpack_require__(0);
+class ThreadUpdater extends React.Component {
+    constructor(props) {
+        super(props);
+        this.timer_increment = 5;
+        this.timer_repetitions = 1;
+        this.fireUpUpdater = this.fireUpUpdater.bind(this);
+        //this.countDown = this.countDown.bind(this);
+        this.state = { timer_seconds: 5 };
+    }
+    componentDidMount() {
+        this.timer = window.setInterval(() => this.countDown(), 1000);
+    }
+    componentWillUnmount() {
+        clearInterval(this.timer);
+    }
+    countDown() {
+        if (this.state.timer_seconds == 0) {
+            console.log(this.timer_increment * this.timer_repetitions);
+            this.timer_repetitions += 1;
+            this.setState({ timer_seconds: this.timer_increment * this.timer_repetitions });
+            this.fireUpUpdater();
+        }
+        else {
+            this.setState({ timer_seconds: this.state.timer_seconds - 1 });
+        }
+    }
+    fireUpUpdater() {
+        this.props.threadListUpdateSignal(true);
+    }
+    render() {
+        return (React.createElement("div", { id: "updater" },
+            React.createElement("a", { onClick: () => {
+                    this.setState({ timer_seconds: this.timer_increment });
+                    this.fireUpUpdater();
+                    this.timer_repetitions = 1;
+                }, style: { cursor: "pointer" } }, "[Update]"),
+            "\u2003",
+            React.createElement("span", { id: "timer" },
+                "[ ",
+                this.state.timer_seconds,
+                " ]")));
+    }
+}
+exports.ThreadUpdater = ThreadUpdater;
+
+
+/***/ }),
+/* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -757,7 +823,7 @@ class Page extends React.Component {
     returnThreadJSXObject(thread_obj, key) {
         var thread_details = {
             board: this.props.board,
-            id: thread_obj[0]["no"],
+            thread_id: thread_obj[0]["no"],
             paged: thread_obj,
             threadQuickReply: this.threadQuickReply
         };

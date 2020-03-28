@@ -247,8 +247,9 @@ function highlightReply(id, evt) {
             left.pop();
             right = window.location.href.split("/");
             right.pop();
-            return JSON.stringify(left) != JSON.stringify(right); // evt.target.href.split("/").pop().split(".").pop() == window.location.href.split("/").pop().split(".").pop();
+            return true //JSON.stringify(left) != JSON.stringify(right); // evt.target.href.split("/").pop().split(".").pop() == window.location.href.split("/").pop().split(".").pop();
         }
+	return true;
 }
 
 function generatePassword() {

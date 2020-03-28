@@ -53,7 +53,7 @@ export class Page extends React.Component<PageProperties, PageVariables>{
 	returnThreadJSXObject(thread_obj:any, key:number):JSX.Element{
 		var thread_details:ThreadProperties = {
 			board: this.props.board as string,
-			id: thread_obj[0]["no"] as number,
+			thread_id: thread_obj[0]["no"] as number,
 			paged: thread_obj,
 
 			threadQuickReply: this.threadQuickReply

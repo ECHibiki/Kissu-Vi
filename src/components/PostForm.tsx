@@ -34,7 +34,7 @@ export class PostForm extends React.Component<PostFormProperties, PostFormVariab
 	render(){
 		var thread_options:ThreadProperties = {
 		    board: this.props.board,
-		    id: this.props.thread_id,
+		    thread_id: this.props.thread_id,
 		    paged: false,
 		    threadQuickReply: this.threadQuickReply
 		}
@@ -46,7 +46,7 @@ export class PostForm extends React.Component<PostFormProperties, PostFormVariab
 
 		// decide which type of thread display to use. 
 		// some modifications will be made to this when the post form is integrated
-		// qr sould not be here
+		// qr sould not be here nor should navigation items, but for now they are.
 		// it also should contains delete info
 		return (<div>
 			{!this.props.paged && <Thread {...thread_options} />}

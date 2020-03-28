@@ -104,7 +104,6 @@ export class Post extends React.Component<PostProperties, PostDetails>{
 		this.setState({show_full_embed: !this.state.show_full_embed});
 	}
 
-
 	// taking the json data for body field, parse string and create JSX elements for safe tags such as <a>, <br>
 	// the raw json should already be safe from the server, however can never be too sure and makes for crearer render insertion
 	// current method prevents localstore and cookie being called from inline scripting
@@ -254,14 +253,14 @@ export class Post extends React.Component<PostProperties, PostDetails>{
 			if(!this.state.show_full_image){
 				return <div className="image-container-thumb">
 				   <a href={"/" + this.props.board + "/src/" + this.props.tim + this.props.ext} target="_blank">
-				       <img onClick={this.onClickExpandImage} className="post-image" src={"/" + this.props.board + "/thumb/" + this.props.tim + ".png"} style={{width:this.props.tn_w, height:this.props.tn_h}} alt={"Thumb failed to load"} />
+				       <img onClick={this.onClickExpandImage} className="post-image" src={"/" + this.props.board + "/thumb/" + this.props.tim + ".png"} style={{width:this.props.tn_w, height:this.props.tn_h}} />
 				   </a>
 				</div>
 			}
 			else{
 			        return <div className="image-container">
 				  <a href={"/" + this.props.board + "/src/" + this.props.tim + this.props.ext} target="_blank">
-				       <img onClick={this.onClickExpandImage} className="full-image" src={"/" + this.props.board + "/src/" + this.props.tim + this.props.ext} style={{}} alt={this.props.filename + " failed to load"} />
+				       <img onClick={this.onClickExpandImage} className="full-image" src={"/" + this.props.board + "/src/" + this.props.tim + this.props.ext} style={{}} />
 				   </a>
 				</div>
 			}
@@ -270,7 +269,7 @@ export class Post extends React.Component<PostProperties, PostDetails>{
 			if(!this.state.show_full_video){
 				return <div className="video-container-thumb">
 				   <a href={"/player.php?v=/" + this.props.board + "/src/" + this.props.tim + this.props.ext + "&t=" + this.props.filename + this.props.ext + "&loop=0"} target="_blank">
-				       <img onClick={this.onClickExpandVideo} className="post-image" src={"/" + this.props.board + "/thumb/" + this.props.tim + ".jpg"} style={{width:this.props.tn_w, height:this.props.tn_h}} alt={"Thumb failed to load"} />
+				       <img onClick={this.onClickExpandVideo} className="post-image" src={"/" + this.props.board + "/thumb/" + this.props.tim + ".jpg"} style={{width:this.props.tn_w, height:this.props.tn_h}} />
 				   </a>
 				</div>
 			}
@@ -287,7 +286,7 @@ export class Post extends React.Component<PostProperties, PostDetails>{
 			if(!this.state.show_full_audio){	
 				return <div className="audio-container-thumb">
 				   <a href={"/" + this.props.board + "/src/" + this.props.tim + this.props.ext} target="_blank">
-				       <img onClick={this.onClickExpandAudio} className="post-image" src={"/static/kissu-audio.png"} style={{width:200, height:200}} alt={"Audio Thumb failed to load"} />
+				       <img onClick={this.onClickExpandAudio} className="post-image" src={"/static/kissu-audio.png"} style={{width:200, height:200}} />
 				   </a>
 				</div>
 			}
@@ -295,7 +294,7 @@ export class Post extends React.Component<PostProperties, PostDetails>{
 				return <div style={{paddingLeft: "15px", display: "block", position: "static"}} className='audio-container'>
 				 <img onClick={this.onClickExpandAudio} src="/static/collapse.gif" alt="[ - ]" title="Collapse Audio" style={{marginLeft: "-15px", float: "left", display: "inline"}} />
 				   <a href={"/" + this.props.board + "/src/" + this.props.tim + this.props.ext} target="_blank">
-					<audio src={"/" + this.props.board + "/src/" + this.props.tim + this.props.ext} loop={false} style={{position: "static", pointerEvents: "inherit", display: "inline", "maxWidth": "100%", maxHeight: "913px"}} controls={true} autoPlay={true}>Your browser does not support HTML5 video.</audio>				   
+					<audio src={"/" + this.props.board + "/src/" + this.props.tim + this.props.ext} loop={false} style={{position: "static", pointerEvents: "inherit", display: "inline", "maxWidth": "100%", maxHeight: "913px"}} controls={true} autoPlay={true}>Your browser does not support HTML5 Audio</audio>				   
 				   </a>
 				</div>
 			}
@@ -386,7 +385,7 @@ export class Post extends React.Component<PostProperties, PostDetails>{
 				}
 			   </div>
 				<div className="body">
-				   {this.parsePostBodyIntoSafeJSX(this.props.com)}
+				   {this.props.com && this.parsePostBodyIntoSafeJSX(this.props.com)}
 				</div>
 			   </div>
 			   {(this.props.hierarchy_class == "op" && (this.props.omitted_posts > 0 || (this.props.expanded && this.props.paged))) && 
