@@ -120,8 +120,12 @@
         {% endif %}
 {% endif %}
 </div>
-<div id="lowercontents">
+<div id="lowercontents"><hr/>
 	{% if config.global_message %}<hr /><div class="blotter">{{ config.global_message }}</div>{% endif %}
+		{% if config.js_ui and not mod %}
+		<div id="react-ui"></div>
+		<script>JS_UI.renderThread("{{ thread.id }}", "{{board.uri}}")</script>
+	{% else %}
 	<hr />
 		<span id="thread-links-top">
 		<a id="thread-return-top" href="{{ return }}">[{% trans %}Return{% endtrans %}]</a>
@@ -131,14 +135,11 @@
 				{% endif %}
 	</span>
 	<br/><hr/>
-	<form id="thread_form" name="postcontrols" action="{{ config.post_url }}" method="post" >
-		{% if config.js_ui and not mod %}
-			<script>JS_UI.renderThread("{{ thread.id }}", "{{board.uri}}")</script>
-		{% else %}
-			<input type="hidden" name="board" value="{{ board.uri }}" />
-			<input type="hidden" name="mod" value="1" />
-			{{ body }}
-		{% endif %}
+
+		<form id="thread_form" name="postcontrols" action="{{ config.post_url }}" method="post" >
+		<input type="hidden" name="board" value="{{ board.uri }}" />
+		<input type="hidden" name="mod" value="1" />
+		{{ body }}
 		
 		<div id="thread-interactions">
 			<span id="thread-links">
@@ -158,7 +159,9 @@
 		
 		<div class="clearfix"></div>
 	</form>
-	
+
+	{% endif %}
+			
 	<a name="bottom"></a>
 	{{ boardlist.bottom }}
 

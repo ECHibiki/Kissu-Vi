@@ -5,7 +5,7 @@ import {Thread, ThreadProperties} from "./Thread";
 // A composite of threads
 import {Page, PageProperties} from "./Page";
 
-export type PostFormProperties = {
+export type DeleteFormProperties = {
 	paged:boolean,
 	board:string,
 
@@ -16,10 +16,10 @@ export type PostFormProperties = {
 
 };
 
-type PostFormVariables = {
+type DeleteFormVariables = {
 };
 
-export class PostForm extends React.Component<PostFormProperties, PostFormVariables>{
+export class DeleteForm extends React.Component<DeleteFormProperties, DeleteFormVariables>{
 	constructor(props:any){
 		super(props);
 		this.threadQuickReply = this.threadQuickReply.bind(this);
@@ -48,9 +48,9 @@ export class PostForm extends React.Component<PostFormProperties, PostFormVariab
 		// some modifications will be made to this when the post form is integrated
 		// qr sould not be here nor should navigation items, but for now they are.
 		// it also should contains delete info
-		return (<div>
+		return (<form id="thread_form" name="postcontrols" action="/post.php" method="post">
 			{!this.props.paged && <Thread {...thread_options} />}
 			{this.props.paged && <Page {...page_options} />}
-		</div>)
+		</form>)
 	}
 }

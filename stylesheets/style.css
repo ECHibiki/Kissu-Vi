@@ -1458,6 +1458,28 @@ div.mix {
 	padding-left:1em;
 }
 
+.nav-links{float:left}
+.options-container{float:right}
+
+.admin{
+	color:red !important;
+	font-weight:bold
+}
+
+.mod{
+	color:#dd00da !important;
+	font-weight:bold
+}
+
+#options-menu{
+	background-color:black;
+	display:inline-block
+	min-width:100px;
+	min-height:100px;
+}
+
+.handle{ width:100%; height:20px;background-color:white}
+
 @media(max-width: 700px){
 .recaptcha{
 	height:24em;width: 67.4%;

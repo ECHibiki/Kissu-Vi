@@ -143,7 +143,17 @@
     	<!-- End Search Form -->
     	{% endif %}
 		
-	<span id="thread-links-top">
+		{% if config.js_ui and not mod %}
+			{% for page in pages %}
+				{% if page.selected %}
+					<div id="react-ui"></div>
+					<script>JS_UI.renderPage({{page.num}}, "{{board.uri}}")</script>
+				{% endif %}
+			{% endfor %}
+		{% else %}
+		<br/><hr/>
+	
+			<span id="thread-links-top">
 		<a id="thread-return-top" href="{{ return }}">[{% trans %}Refresh{% endtrans %}]</a>
 		<a id="thread-bottom" href="#bottom">[{% trans %}Bottom{% endtrans %}]</a>
 				{% if config.catalog_link %}
@@ -153,21 +163,11 @@
 &nbsp;<a id="archive-link-top" href="{{ config.root }}{{ board.dir }}archive/">[Archive]</a>
 {% endif %}
 	</span>
-	<br/><hr/>
-	
-	
-	<form id="thread_form" name="postcontrols" action="{{ config.post_url }}" method="post">
-		{% if config.js_ui and not mod %}
-			{% for page in pages %}
-				{% if page.selected %}
-					<script>JS_UI.renderPage({{page.num}}, "{{board.uri}}")</script>
-				{% endif %}
-			{% endfor %}
-		{% else %}
+<hr/>
+			<form id="delete-form" name="postcontrols" action="{{ config.post_url }}" method="post">
 			<input type="hidden" name="board" value="{{ board.uri }}" />
 			{% if mod %}<input type="hidden" name="mod" value="1" />{% endif %}
 			{{ body }}
-		{% endif %}
 
 		{% include 'report_delete.html' %}
 			<span id="thread-links">
@@ -185,6 +185,10 @@
 				<a id="link-quick-reply" href="#">[{% trans %}Post a Reply{% endtrans %}]</a>
 			</span>
 	</form>
+
+
+		{% endif %}
+
 	<a name="bottom"></a>
 	{{ boardlist.bottom }}<br/>
 	<div class="pages">

@@ -148,6 +148,7 @@ export class Thread extends React.Component<ThreadProperties, ThreadVariables>{
 			threadReconstruct:this.rebuildThreadOnBool,
 			threadHighlighting:this.highlightThreadPost,
 			threadQuickReply:this.threadQuickReply,
+		
 			board: this.props.board,
 			id: post_obj['no'],
 			op_id:(post_obj['resto'] == false ? post_obj['no'] : post_obj['resto']) ,
@@ -156,6 +157,7 @@ export class Thread extends React.Component<ThreadProperties, ThreadVariables>{
 			com: post_obj['com'],
 			email: post_obj['email'],
 			name:post_obj['name'],
+			capcode:post_obj['capcode'],
 			time:post_obj['time'],
 			sticky: post_obj['sticky'],
 			locked: post_obj['locked'],

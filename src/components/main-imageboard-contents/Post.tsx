@@ -21,6 +21,7 @@ export type PostProperties = {
 	com:string,
 	email:string,
 	name:string,
+	capcode:string,
 	time:number,
 	sticky:number,
 	locked:number,
@@ -51,7 +52,10 @@ type PostDetails = {
 	show_full_image:boolean,
 	show_full_audio:boolean,
 	show_full_video:boolean,
-	show_full_embed:boolean
+	show_full_embed:boolean,
+	use_embed_source_thumbnail:boolean;
+
+	media_opacity:number
 }
 
 
@@ -80,8 +84,9 @@ export class Post extends React.Component<PostProperties, PostDetails>{
 		this.onClickExpandAudio = this.onClickExpandAudio.bind(this);
 		this.onClickExpandVideo = this.onClickExpandVideo.bind(this);
 		this.onClickExpandEmbed = this.onClickExpandEmbed.bind(this);
-
-		this.state = ({filename_cutoff:20, file_details_hidden:true, show_full_image: false, show_full_audio:false, show_full_video:false, show_full_embed:false})
+		this.onMediaLoad = this.onMediaLoad.bind(this);
+		this.state = ({filename_cutoff:20, file_details_hidden:true, show_full_image: false, show_full_audio:false, show_full_video:false, 
+				show_full_embed:false, use_embed_source_thumbnail:true, media_opacity:1.0})
 	}
 
 	componentDidMount(){
@@ -89,19 +94,27 @@ export class Post extends React.Component<PostProperties, PostDetails>{
 
 	onClickExpandImage(e:React.MouseEvent<HTMLImageElement, MouseEvent>){
 		e.preventDefault();
+		this.setState({media_opacity:0.8});
 		this.setState({show_full_image: !this.state.show_full_image});
 	}
 	onClickExpandAudio(e:React.MouseEvent<HTMLImageElement, MouseEvent>){
 		e.preventDefault();
+		this.setState({media_opacity:0.8});
 		this.setState({show_full_audio: !this.state.show_full_audio});
 	}
 	onClickExpandVideo(e:React.MouseEvent<HTMLImageElement, MouseEvent>){
 		e.preventDefault();
+		this.setState({media_opacity:0.8});
 		this.setState({show_full_video: !this.state.show_full_video});
 	}
 	onClickExpandEmbed(e:React.MouseEvent<HTMLImageElement, MouseEvent>){
 		e.preventDefault();
+		this.setState({media_opacity:0.8});
 		this.setState({show_full_embed: !this.state.show_full_embed});
+	}
+
+	onMediaLoad(){
+		this.setState({media_opacity:1.0});
 	}
 
 	// taking the json data for body field, parse string and create JSX elements for safe tags such as <a>, <br>
@@ -181,9 +194,27 @@ export class Post extends React.Component<PostProperties, PostDetails>{
 			return (fsize) + "B";
 		}
 	}
+
+	createCapCode(name:string, cap_type:string):JSX.Element{
+		switch(cap_type){
+			case "Admin": return <span className="admin">
+						<span className="admin-name">{name}</span>
+					        <span className="admin-position">&nbsp;##&nbsp;{cap_type}&nbsp;</span>
+						<i className="fas fa-kiss-wink-heart fa-lg"></i>
+					     </span>; break;
+			case "Mod": return <span className="mod">
+						<span className="mod-name">{name}</span>
+					        <span className="mod-position">&nbsp;##&nbsp;{cap_type}&nbsp;</span>
+						<i className="far fa-kiss fa-lg"></i>
+					     </span>; break;
+		}
+	}
 	// also does name
-	parseEmailField(email:string, name:string){
-		if(email == "" || !email)
+	parseEmailNameField(email:string, name:string, capcode:string):JSX.Element{
+		if(capcode){
+			return this.createCapCode(name, capcode)
+		}
+		else if(email == "" || !email)
 			return (<span className="name">{this.props.name}</span>);
 		else {
 			var parsed_email = email.split('%20');
@@ -200,8 +231,8 @@ export class Post extends React.Component<PostProperties, PostDetails>{
 		var ms_time = new Date(time * 1000);
 		return  (ms_time.getHours()+ "").padStart(2,'0') + ":" + (ms_time.getMinutes() + "").padStart(2,'0') + ":" + (ms_time.getSeconds()+ "").padStart(2,'0');
 	}
-	detailsExpander(is_file:boolean){
-		return  (is_file ? <a className="details-expander" style={{cursor: "pointer"}} target="_blank" onClick={(e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
+	detailsExpander(is_file:boolean, is_embed:boolean):JSX.Element|string{
+		return  (is_file || is_embed ? <a className="details-expander" style={{cursor: "pointer"}} target="_blank" onClick={(e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
 							 this.setState({file_details_hidden: !this.state.file_details_hidden});
                                                          e.preventDefault();
                                                    }
@@ -212,13 +243,13 @@ export class Post extends React.Component<PostProperties, PostDetails>{
 		return  "" + (ms_time.getDate() + "").padStart(2,'0') + "/" + (ms_time.getMonth() + "").padStart(2,'0') + "/" + (ms_time.getFullYear()+"").substr(2) 
 	}
 
-	createImageSearchLink(search_engine_name:string, search_engine_pattern:string){
+	createImageSearchLink(search_engine_name:string, search_engine_pattern:string):JSX.Element{
 		var source = window.location.protocol + "//" + window.location.hostname + "/" + this.props.board + "/src/" + this.props.tim + this.props.ext;
 		var search_url = search_engine_pattern.replace("%s", source);
 		return <a className="sauce" target="_blank" href={search_url}>{search_engine_name}</a>
 	}
 
-	createCitesList(cite_arr:any[]){
+	createCitesList(cite_arr:any[]):JSX.Element[]{
 		var return_jsx:JSX.Element[] = [];
 		var i = 0;
 		for(var cite of cite_arr){
@@ -236,7 +267,7 @@ export class Post extends React.Component<PostProperties, PostDetails>{
 		return return_jsx;
  }
 
-	generateProperMedia(){
+	generateProperMedia():JSX.Element{
 		var is_image = false;
 		var is_video = false;
 		var is_audio = false;
@@ -251,16 +282,17 @@ export class Post extends React.Component<PostProperties, PostDetails>{
 		
 		if(is_image){
 			if(!this.state.show_full_image){
+console.log("test");
 				return <div className="image-container-thumb">
 				   <a href={"/" + this.props.board + "/src/" + this.props.tim + this.props.ext} target="_blank">
-				       <img onClick={this.onClickExpandImage} className="post-image" src={"/" + this.props.board + "/thumb/" + this.props.tim + ".png"} style={{width:this.props.tn_w, height:this.props.tn_h}} />
+				       <img onClick={this.onClickExpandImage} onLoad={this.onMediaLoad} className="post-image" src={"/" + this.props.board + "/thumb/" + this.props.tim + ".png"} style={{width:this.props.tn_w, height:this.props.tn_h, opacity:this.state.media_opacity}} />
 				   </a>
 				</div>
 			}
 			else{
 			        return <div className="image-container">
 				  <a href={"/" + this.props.board + "/src/" + this.props.tim + this.props.ext} target="_blank">
-				       <img onClick={this.onClickExpandImage} className="full-image" src={"/" + this.props.board + "/src/" + this.props.tim + this.props.ext} style={{}} />
+				       <img onClick={this.onClickExpandImage} onLoad={this.onMediaLoad} className="full-image" src={"/" + this.props.board + "/src/" + this.props.tim + this.props.ext} style={{opacity:this.state.media_opacity}} />
 				   </a>
 				</div>
 			}
@@ -269,15 +301,18 @@ export class Post extends React.Component<PostProperties, PostDetails>{
 			if(!this.state.show_full_video){
 				return <div className="video-container-thumb">
 				   <a href={"/player.php?v=/" + this.props.board + "/src/" + this.props.tim + this.props.ext + "&t=" + this.props.filename + this.props.ext + "&loop=0"} target="_blank">
-				       <img onClick={this.onClickExpandVideo} className="post-image" src={"/" + this.props.board + "/thumb/" + this.props.tim + ".jpg"} style={{width:this.props.tn_w, height:this.props.tn_h}} />
+				       <img onClick={this.onClickExpandVideo} onLoad={this.onMediaLoad} className="post-image" src={"/" + this.props.board + "/thumb/" + this.props.tim + ".jpg"} style={{width:this.props.tn_w, height:this.props.tn_h,opacity:this.state.media_opacity}} />
 				   </a>
 				</div>
 			}
 			else{
 				return <div style={{paddingLeft: "15px", display: "block", position: "static"}} className="video-container">
-				 <img onClick={this.onClickExpandVideo} src="/static/collapse.gif" alt="[ - ]" title="Collapse video" style={{marginLeft: "-15px", float: "left", display: "inline"}} />
+				 <img onClick={this.onClickExpandVideo} onLoad={this.onMediaLoad} src="/static/collapse.gif" alt="[ - ]" title="Collapse video" style={{marginLeft: "-15px", float: "left", display: "inline"}} />
 				   <a href={"/player.php?v=/" + this.props.board + "/src/" + this.props.tim + this.props.ext + "&t=" + this.props.filename + this.props.ext + "&loop=0"} target="_blank">
-					<video src={"/" + this.props.board + "/src/" + this.props.tim + this.props.ext} loop={false} style={{position: "static", pointerEvents: "inherit", display: "inline", "maxWidth": "100%", maxHeight: "913px"}} controls={true} autoPlay={true}>Your browser does not support HTML5 video.</video>				   
+					<video src={"/" + this.props.board + "/src/" + this.props.tim + this.props.ext} 
+							loop={false} style={{position: "static", pointerEvents: "inherit", display: "inline", "maxWidth": "100%", maxHeight: "913px", opacity:this.state.media_opacity}} 
+							controls={true} autoPlay={true}>Your browser does not support HTML5 video.
+					</video>				   
 				   </a>
 				</div>
 			}
@@ -286,15 +321,15 @@ export class Post extends React.Component<PostProperties, PostDetails>{
 			if(!this.state.show_full_audio){	
 				return <div className="audio-container-thumb">
 				   <a href={"/" + this.props.board + "/src/" + this.props.tim + this.props.ext} target="_blank">
-				       <img onClick={this.onClickExpandAudio} className="post-image" src={"/static/kissu-audio.png"} style={{width:200, height:200}} />
+				       <img onClick={this.onClickExpandAudio} onLoad={this.onMediaLoad} className="post-image" src={"/static/kissu-audio.png"} style={{width:200, height:200,opacity:this.state.media_opacity}} />
 				   </a>
 				</div>
 			}
 			else{
 				return <div style={{paddingLeft: "15px", display: "block", position: "static"}} className='audio-container'>
-				 <img onClick={this.onClickExpandAudio} src="/static/collapse.gif" alt="[ - ]" title="Collapse Audio" style={{marginLeft: "-15px", float: "left", display: "inline"}} />
+				 <img onClick={this.onClickExpandAudio}  onLoad={this.onMediaLoad} src="/static/collapse.gif" alt="[ - ]" title="Collapse Audio" style={{marginLeft: "-15px", float: "left", display: "inline"}} />
 				   <a href={"/" + this.props.board + "/src/" + this.props.tim + this.props.ext} target="_blank">
-					<audio src={"/" + this.props.board + "/src/" + this.props.tim + this.props.ext} loop={false} style={{position: "static", pointerEvents: "inherit", display: "inline", "maxWidth": "100%", maxHeight: "913px"}} controls={true} autoPlay={true}>Your browser does not support HTML5 Audio</audio>				   
+					<audio src={"/" + this.props.board + "/src/" + this.props.tim + this.props.ext} loop={false} style={{position: "static", pointerEvents: "inherit", display: "inline", "maxWidth": "100%", maxHeight: "913px", opacity:this.state.media_opacity}} controls={true} autoPlay={true}>Your browser does not support HTML5 Audio</audio>				   
 				   </a>
 				</div>
 			}
@@ -302,14 +337,25 @@ export class Post extends React.Component<PostProperties, PostDetails>{
 		}
 	}
 
-
-	generateStagedEmbeding(){
+	// If it were possible to XSS this then it should also be possible on vichan.
+	// Still a saftey check would be nice
+	generateStagedEmbeding():JSX.Element{
 		if(!this.state.show_full_embed){
+		    if(!this.state.use_embed_source_thumbnail){
 			return <div className="embed-container-thumb">
 				<a target="_blank">
 			      <img onClick={this.onClickExpandEmbed} className="post-image" src={"/static/kissu-embed.jpg"} style={{width:200, height:200,cursor:"pointer"}} alt={"Embed Thumb failed to load"} />
 			   </a>
 			</div>
+		   }
+		   else{
+		      return <div className="embed-container-thumb">
+				<img onClick={this.onClickExpandEmbed} 
+					src={this.getEmbedThumb(this.getSRCFromIframe(this.props.embed))} 
+					className="post-image" style={{width:270, height:202,cursor:"pointer"}} 
+					alt={""} />
+			     </div> 
+                   }
 		}
 		else{
 			var dangerous_html = {__html: this.props.embed};
@@ -319,6 +365,37 @@ export class Post extends React.Component<PostProperties, PostDetails>{
 				</div>
 		}
 
+	}
+	
+	// from pure url return image link
+	getEmbedThumb(url:string){
+		let code_match:RegExpMatchArray;
+		if((code_match = /(youtu\.be\/|youtube.com\/)([a-z0-9\-]{11})/gi.exec(url))){
+			console.log(code_match);
+			return "https://img.youtube.com/vi/" + code_match[2] + "/mqdefault.jpg";
+		}
+		else if((code_match = /(nicovideo\.jp\/watch\/sm)([0-9]{8})/gi.exec(url))){
+			console.log(code_match);
+			return "https://nicovideo.cdn.nimg.jp/thumbnails/" + code_match[2] + "/" + code_match[2] + ".L";
+
+		}
+		else{
+			return "https://static.libsyn.com/p/assets/6/c/a/3/6ca38c2fefa1e989/WTF_-_new_larger_cover.jpg"
+		}
+	}
+
+	getSRCFromIframe(embed_string:string){
+		var embed_match = embed_string.match(/src=\".*?\"/gi);
+		if(embed_match.length == 1){
+			let processed_match = embed_match[0]
+				.replace("src=\"", "")
+				.replace("\"", "")
+				.replace("embed/", "")
+				.replace("embed.", ""); 			
+			return processed_match;
+		}
+		else
+			return "URL not found";
 	}
 
 
@@ -343,8 +420,8 @@ export class Post extends React.Component<PostProperties, PostDetails>{
 				    {this.props.sub &&
 					<span className="subject">&nbsp;{this.props.sub}</span>
 				    }
-				    {this.parseEmailField(this.props.email,this.props.name)}&nbsp;
-				    <time data-utc={this.props.time}>{ this.readableDate(this.props.time) } { this.detailsExpander(!!this.props.filename) } { this.readableTime(this.props.time) }</time>
+				    {this.parseEmailNameField(this.props.email,this.props.name, this.props.capcode)}&nbsp;
+				    <time data-utc={this.props.time}>{ this.readableDate(this.props.time) } { this.detailsExpander(!!this.props.filename, !!this.props.embed) } { this.readableTime(this.props.time) }</time>
 				  </label>&nbsp;
 			  	  <a className="post_no" id={"post_no_" + this.props.id} onClick={(event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
 							this.highlightReply(event,this.props.id);
@@ -355,26 +432,27 @@ export class Post extends React.Component<PostProperties, PostDetails>{
 						event.preventDefault();
 					    }
 					}
-				  >{this.props.id}</a>
-				{this.props.sticky == 1   && <i className="fa fa-thumb-tack" title="Sticky"></i>}
-				{this.props.locked == 1   && <i className="fa fa-lock" title="Locked"></i>}
-				{this.props.cyclical == 1 && <i className="fa fa-refresh" title="Cycle"></i>}
-				{this.props.sage == 1     && <i className="fa fa-anchor" title="Sink"></i>}
+				  >{this.props.id}</a>&nbsp;
+				{this.props.sticky == 1   && <i className="fas fa-thumbtack fa-lg" title="Sticky">&nbsp;</i>}
+				{this.props.locked == 1   && <i className="fas fa-lock fa-lg" title="Locked">&nbsp;</i>}
+				{this.props.cyclical == 1 && <i className="fas fa-sync-alt fa-lg" title="Cycle">&nbsp;</i>}
+				{this.props.sage == 1     && <i className="fas fa-anchor fa-lg" title="Sink">&nbsp;</i>}
 				{this.props.hierarchy_class == "op" && this.props.paged && <span className="reply-anchor">&emsp;<a href={ "/" + this.props.board + "/res/" + this.props.id }>[Open]</a></span>}
 				{this.props.cites && this.createCitesList(this.props.cites)}
 
 			      </div>
-				{this.props.filename &&
-				   <div className="image-search" style={detail_display_prop}>&ensp;&nbsp;
+			        <div className="optional-file-info" style={detail_display_prop}>
+				 {this.props.filename &&
+				   <div className="image-search">&ensp;&nbsp;
 					{this.createImageSearchLink("Google", "https://www.google.com/searchbyimage?image_url=%s&safe=off")} &nbsp;
 					{this.createImageSearchLink("Yandex", "https://yandex.com/images/search?rpt=imageview&url=%s")} &nbsp;
 					{this.createImageSearchLink("iqdb", "https://iqdb.org/?url=%s")} &nbsp;
 					{this.createImageSearchLink("Trace", "trace.moe/?auto&url=%s")} &nbsp;
 				   </div>
-				}
+			  	 }
 
-				{this.props.filename &&
-				   <div className="file" style={detail_display_prop}>
+				 {this.props.filename &&
+				   <div className="file" >
 					<span className="fileinfo">
 					 <a href={"/" + this.props.board + "/src/" + this.props.tim + this.props.ext}>
 						<span className="postfilename" title={this.props.filename + this.props.ext}>{this.shortenFileName(this.props.filename) + this.props.ext}</span>
@@ -382,7 +460,18 @@ export class Post extends React.Component<PostProperties, PostDetails>{
 						<span className="unimportant">({ this.formatFileSize(this.props.fsize) }{"," + this.props.h}{"x"+this.props.w})</span>&nbsp;
 					</span>
 				   </div>
-				}
+				 }
+				 {this.props.embed &&
+				   <div className="embed-src" >
+					<span className="embedinfo">
+					  <a href={this.getSRCFromIframe(this.props.embed)} target="_blank">
+						{this.getSRCFromIframe(this.props.embed)}
+					  </a>&nbsp;
+					</span>
+				   </div>
+				 }
+
+			    </div>
 			   </div>
 				<div className="body">
 				   {this.props.com && this.parsePostBodyIntoSafeJSX(this.props.com)}

@@ -97,7 +97,7 @@ export class Page extends React.Component<PageProperties, PageVariables>{
 	render(){
 	   if(this.state.error)
 		return (<p>{this.state.error}</p>)	 
-	   return (<div>
+	   return (<div id={"page-" + this.props.page + "-container"} className="page-container">
 		   <input type="hidden" name="board" value={this.props.board} />
 		     {this.state.spaced_threads}
 		</div>);

@@ -25,10 +25,9 @@
 		}
 		static function respondToPoll($id, $response_json){
 			$board = explode("/",$_SERVER['HTTP_REFERER'])[3];
-			var_dump($board);
-			var_dump($id);
+
 			$response_arr = json_decode($response_json, true);
-			var_dump($response_arr);
+
 			// check if response is empty
 			if (empty($response_arr)){
 				return "No options selected";
@@ -39,7 +38,7 @@
                         $query->bindValue(':id', $id);
                         $query->bindValue(':board', $board);
 			$query->execute() or error(db_error($query));
-			var_dump($query->fetchAll(PDO::FETCH_ASSOC));
+
                         $poll_data = ($query->fetchAll(PDO::FETCH_ASSOC)[0]);
                         $mul_choice = $poll_data['mutliple_choice'];
 			if(count($response_arr) > 1 && $mul_choice == 0){
@@ -82,7 +81,7 @@
                         $query->bindValue(':ip', $_SERVER['REMOTE_ADDR']);
                         $query->bindValue(':response', $response_json);
                         $query->execute() or error(db_error($query));
-			}
+		    }
 			
 		}
 	
