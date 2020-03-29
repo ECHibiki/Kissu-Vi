@@ -156,10 +156,10 @@ class Api {
 		foreach ($cited_arr as &$cite){
 			if($cite['target'] == $apiPost['no']){
 				//a messy way to get cites from other boards, but there's not much other choice with vichan's DB design
-				$query = prepare(sprintf('SELECT `thread` FROM ``posts_%s`` WHERE id=%s', $board['uri'], $cite['post']));
+				$query = prepare(sprintf('SELECT `thread` FROM ``posts_%s`` WHERE id=%s', $cite['board'], $cite['post']));
 				$query->execute() or error(db_error($query));
 				$linked_thread_id = $query->fetch(PDO::FETCH_ASSOC);
-				if($linked_thread_id)
+				if($linked_thread_id && $linked_thread_id['thread'])
 					$apiPost['cites'][] = ['post'=>$cite['post'],'board'=>$cite['board'],'host'=>$linked_thread_id['thread']];
 				else
 					$apiPost['cites'][] = ['post'=>$cite['post'],'board'=>$cite['board'],'host'=>$cite['post']];
