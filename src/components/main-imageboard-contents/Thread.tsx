@@ -199,8 +199,7 @@ export class Thread extends React.Component<ThreadProperties, ThreadVariables>{
 			 {board: this.props.board, thread_id:this.props.thread_id, threadListUpdateSignal:this.setThreadPostsFetched}
 		
 		return (
-			<div id={"thread" + this.props.thread_id} className="thread" data-board={this.props.board} data-full-i-d={this.props.board + "." + this.props.thread_id}>
-	  		  <input type="hidden" name="board" value={this.props.board} />
+			<div id={"thread_" + this.props.thread_id} className="thread" data-board={this.props.board} data-full-i-d={this.props.board + "." + this.props.thread_id}>
 	  		   { this.state.spaced_posts } 
 			   {!this.props.paged && <div className="bottom-page-modifiers"><hr/><ThreadUpdater {...thread_updater_props} /></div>}
 			</div>);// quantity of paged and rendered posts should vary on configuration

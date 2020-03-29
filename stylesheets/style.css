@@ -1451,7 +1451,8 @@ div.mix {
 }
 
 .reply .post-contents{
-	float:right
+	float:right;
+	display:contents;
 }
 
 #updater{

@@ -49,6 +49,7 @@ export class DeleteForm extends React.Component<DeleteFormProperties, DeleteForm
 		// qr sould not be here nor should navigation items, but for now they are.
 		// it also should contains delete info
 		return (<form id="thread_form" name="postcontrols" action="/post.php" method="post">
+			<input type="hidden" name="board" value={ this.props.board } />
 			{!this.props.paged && <Thread {...thread_options} />}
 			{this.props.paged && <Page {...page_options} />}
 		</form>)

@@ -287,8 +287,7 @@ class Thread extends React.Component {
         if (this.state.error)
             return (React.createElement("p", null, this.state.error));
         var thread_updater_props = { board: this.props.board, thread_id: this.props.thread_id, threadListUpdateSignal: this.setThreadPostsFetched };
-        return (React.createElement("div", { id: "thread" + this.props.thread_id, className: "thread", "data-board": this.props.board, "data-full-i-d": this.props.board + "." + this.props.thread_id },
-            React.createElement("input", { type: "hidden", name: "board", value: this.props.board }),
+        return (React.createElement("div", { id: "thread_" + this.props.thread_id, className: "thread", "data-board": this.props.board, "data-full-i-d": this.props.board + "." + this.props.thread_id },
             this.state.spaced_posts,
             !this.props.paged && React.createElement("div", { className: "bottom-page-modifiers" },
                 React.createElement("hr", null),
@@ -379,13 +378,13 @@ class MainImageboardContents extends React.Component {
         };
         return (React.createElement("div", { id: "main-imageboard-contents" },
             React.createElement("hr", null),
-            React.createElement(NavButtons_1.NavButtons, null),
+            React.createElement(NavButtons_1.NavButtons, { paged: !!this.props.paged, board: this.props.board }),
             " ",
             React.createElement(OptionMenu_1.OptionMenu, null),
             React.createElement("br", null),
             React.createElement("hr", null),
             React.createElement(DeleteForm_1.DeleteForm, Object.assign({}, delete_form_properties)),
-            React.createElement(NavButtons_1.NavButtons, null)));
+            React.createElement(NavButtons_1.NavButtons, { paged: this.props.paged, board: this.props.board })));
     }
 }
 exports.MainImageboardContents = MainImageboardContents;
@@ -429,6 +428,7 @@ class DeleteForm extends React.Component {
         // qr sould not be here nor should navigation items, but for now they are.
         // it also should contains delete info
         return (React.createElement("form", { id: "thread_form", name: "postcontrols", action: "/post.php", method: "post" },
+            React.createElement("input", { type: "hidden", name: "board", value: this.props.board }),
             !this.props.paged && React.createElement(Thread_1.Thread, Object.assign({}, thread_options)),
             this.props.paged && React.createElement(Page_1.Page, Object.assign({}, page_options))));
     }
@@ -1046,8 +1046,14 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const React = __webpack_require__(0);
 // FIX: expansion doesn't updates the paged property when new treads have been added.
 class NavButtons extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = ({ paged: false, board: "" });
+    }
     render() {
         return React.createElement("span", { className: "nav-links" },
+            !this.props.paged && React.createElement("a", { href: "/" + this.props.board + "/" }, "[Index]"),
+            "\u00A0",
             React.createElement("a", { href: "" }, "[Refresh]"),
             "\u00A0",
             React.createElement("a", { href: "catalog" }, "[Catalog]"),

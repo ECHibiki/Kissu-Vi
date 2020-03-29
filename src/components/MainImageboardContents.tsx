@@ -40,10 +40,10 @@ export class MainImageboardContents extends React.Component<MainImageboardConten
 
 		return (<div id="main-imageboard-contents">
 			   <hr />
-				<NavButtons /> <OptionMenu />
+				<NavButtons paged={!!this.props.paged} board={this.props.board} /> <OptionMenu />
  			   <br/><hr />
 				<DeleteForm {...delete_form_properties} />
-			    	<NavButtons />
+			    	<NavButtons paged={this.props.paged} board={this.props.board}/>
 			</div>)	
 	}
 } 
