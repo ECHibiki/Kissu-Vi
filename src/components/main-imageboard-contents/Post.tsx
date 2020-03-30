@@ -15,6 +15,7 @@ export type PostProperties = {
 	threadReconstruct:()=>void,
 	threadHighlighting:(event: React.MouseEvent<HTMLAnchorElement, MouseEvent>, id:number)=>void,
 	threadQuickReply:(id:number)=>void,
+	finishedCallBackFunction:()=>void,
 
 // json - no & resto already defined
 	sub:string,
@@ -88,8 +89,10 @@ export class Post extends React.Component<PostProperties, PostDetails>{
 		this.state = ({filename_cutoff:20, file_details_hidden:true, show_full_image: false, show_full_audio:false, show_full_video:false, 
 				show_full_embed:false, use_embed_source_thumbnail:true, media_opacity:1.0})
 	}
-
+	
+	//this post better be done
 	componentDidMount(){
+		this.props.finishedCallBackFunction();
 	}
 
 	onClickExpandImage(e:React.MouseEvent<HTMLImageElement, MouseEvent>){
@@ -253,7 +256,6 @@ export class Post extends React.Component<PostProperties, PostDetails>{
 		var return_jsx:JSX.Element[] = [];
 		var i = 0;
 		for(var cite of cite_arr){
-			console.log(cite)
 			if(cite['board'] ==  this.props.board){
 				return_jsx.push(<span key={i++}>&nbsp;
 						  <a href={window.location.protocol + "//" + window.location.host + "/" + this.props.board + "/res/" + cite['host'] + "#" + cite['post'] }>{ ">>"  + cite['post']}</a>
@@ -282,7 +284,6 @@ export class Post extends React.Component<PostProperties, PostDetails>{
 		
 		if(is_image){
 			if(!this.state.show_full_image){
-console.log("test");
 				return <div className="image-container-thumb">
 				   <a href={"/" + this.props.board + "/src/" + this.props.tim + this.props.ext} target="_blank">
 				       <img onClick={this.onClickExpandImage} onLoad={this.onMediaLoad} className="post-image" src={"/" + this.props.board + "/thumb/" + this.props.tim + ".png"} style={{width:this.props.tn_w, height:this.props.tn_h, opacity:this.state.media_opacity}} />
@@ -371,11 +372,9 @@ console.log("test");
 	getEmbedThumb(url:string){
 		let code_match:RegExpMatchArray;
 		if((code_match = /(youtu\.be\/|youtube.com\/)([a-z0-9\-]{11})/gi.exec(url))){
-			console.log(code_match);
 			return "https://img.youtube.com/vi/" + code_match[2] + "/mqdefault.jpg";
 		}
 		else if((code_match = /(nicovideo\.jp\/watch\/sm)([0-9]{8})/gi.exec(url))){
-			console.log(code_match);
 			return "https://nicovideo.cdn.nimg.jp/thumbnails/" + code_match[2] + "/" + code_match[2] + ".L";
 
 		}

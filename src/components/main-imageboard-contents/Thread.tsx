@@ -7,7 +7,8 @@ export type ThreadProperties = {
     thread_id: any, // typescript bizzarely not letting me set this as number
     paged: any,
 
-    threadQuickReply: (thread_id:number, post_id:number)=>void
+    threadQuickReply: (thread_id:number, post_id:number)=>void,
+    finishedCallBackFunction: ()=>void
 }
 
 type ThreadVariables = {
@@ -21,6 +22,9 @@ type ThreadVariables = {
 export class Thread extends React.Component<ThreadProperties, ThreadVariables>{
 	
 	stored_title:string = "";
+	total_posts_in_thread:number = 0;
+	total_posts_mounted:number = 0;
+
 
 	constructor(props:any){
 	  super(props);
@@ -30,7 +34,7 @@ export class Thread extends React.Component<ThreadProperties, ThreadVariables>{
 	  this.setThreadPostsFetched = this.setThreadPostsFetched.bind(this);
 	  this.setThreadPostsPreFetched = this.setThreadPostsPreFetched.bind(this);
 	  this.rebuildThreadOnBool = this.rebuildThreadOnBool.bind(this);
-
+	  this.maintainCountOfAllPostsMounted = this.maintainCountOfAllPostsMounted.bind(this);
 	  this.highlightThreadPost = this.highlightThreadPost.bind(this);
  	  this.threadQuickReply = this.threadQuickReply.bind(this);
 
@@ -59,7 +63,6 @@ export class Thread extends React.Component<ThreadProperties, ThreadVariables>{
 			}
 		}
 		this.setState({spaced_posts: copy_ele});
-		console.log(this.state.spaced_posts);
 	}
 
 	componentDidMount(){
@@ -68,6 +71,13 @@ export class Thread extends React.Component<ThreadProperties, ThreadVariables>{
 		}
 		else{
 			this.setThreadPostsPreFetched(this.props.paged);	
+		}
+	}
+
+	maintainCountOfAllPostsMounted(){
+		this.total_posts_mounted++;
+		if(this.total_posts_mounted == this.total_posts_in_thread){
+			this.props.finishedCallBackFunction();
 		}
 	}
 
@@ -90,6 +100,8 @@ export class Thread extends React.Component<ThreadProperties, ThreadVariables>{
 		thread_json.forEach((post_obj:any, index:number)=>{
 			posts_arr.push(this.returnPostJSXObject(post_obj, index));		
 		});
+		this.total_posts_in_thread = posts_arr.length;
+		this.total_posts_mounted = 0;
 		this.defineStatePostsArray(posts_arr);
 	}
 
@@ -103,6 +115,10 @@ export class Thread extends React.Component<ThreadProperties, ThreadVariables>{
 				max_ind = index;
 				posts_arr.push(this.returnPostJSXObject(post_obj, index));		
 			});
+
+			this.total_posts_in_thread = posts_arr.length;
+			this.total_posts_mounted = 0;
+
 			if(display_notification){
 				var new_posts = (thread_json['posts'].length - this.state.spaced_posts.length / 2);	
 				if(new_posts != 0)
@@ -148,6 +164,7 @@ export class Thread extends React.Component<ThreadProperties, ThreadVariables>{
 			threadReconstruct:this.rebuildThreadOnBool,
 			threadHighlighting:this.highlightThreadPost,
 			threadQuickReply:this.threadQuickReply,
+			finishedCallBackFunction:this.maintainCountOfAllPostsMounted,
 		
 			board: this.props.board,
 			id: post_obj['no'],

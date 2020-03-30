@@ -3,7 +3,8 @@ import {Thread, ThreadProperties} from "./Thread";
 
 export type PageProperties = {
     board:string,
-    page:number
+    page:number,
+    finishedCallBackFunction: ()=>void
 }
 type PageVariables = {
     spaced_threads:JSX.Element[],
@@ -12,18 +13,30 @@ type PageVariables = {
 
 // TODO: Use threads.json to retrieve a list of all threads and have individual threads carry their own json data
 export class Page extends React.Component<PageProperties, PageVariables>{
+
+	count_of_all_threads_on_page:number = 0;
+	count_of_all_threads_mounted:number = 0;
+
 	constructor(props:any){
 	  super(props);
 	  this.setPageThreads = this.setPageThreads.bind(this);
 	  this.getPagedJSONData = this.getPagedJSONData.bind(this);
 	  this.returnThreadJSXObject = this.returnThreadJSXObject.bind(this);
 	  this.defineStateThreadsArray = this.defineStateThreadsArray.bind(this);
-
+	  this.maintainCountOfAllThreads = this.maintainCountOfAllThreads.bind(this);
 	  this.state = {spaced_threads:[], error:null};
 	}
 
 	componentDidMount(){
 		this.setPageThreads();
+	}
+
+	maintainCountOfAllThreads(){
+		this.count_of_all_threads_mounted++;
+		if(this.count_of_all_threads_mounted == this.count_of_all_threads_on_page){
+			this.props.finishedCallBackFunction();
+		}
+		
 	}
 
 	setPageThreads(){
@@ -35,6 +48,10 @@ export class Page extends React.Component<PageProperties, PageVariables>{
 				paged_json.forEach((thread_obj:any, index:number)=>{
 					threads_arr.push(this.returnThreadJSXObject(thread_obj["posts"], index));		
 				});
+
+				this.count_of_all_threads_on_page = threads_arr.length;
+				this.count_of_all_threads_mounted = 0;
+
 				this.defineStateThreadsArray(threads_arr);
 			}
 			else{
@@ -42,7 +59,7 @@ export class Page extends React.Component<PageProperties, PageVariables>{
 			}
 		   })
  		   .catch((err:any)=>{
-			console.log(console.log(err))
+			console.log(err);
 		       this.setState({error: err + "\nJSON fetch error"});
 		 });
 	}
@@ -56,7 +73,8 @@ export class Page extends React.Component<PageProperties, PageVariables>{
 			thread_id: thread_obj[0]["no"] as number,
 			paged: thread_obj,
 
-			threadQuickReply: this.threadQuickReply
+			threadQuickReply: this.threadQuickReply,
+			finishedCallBackFunction: this.maintainCountOfAllThreads
 		};
 		return <Thread {...thread_details} key={key * 3}/>;
 	}
@@ -81,7 +99,6 @@ export class Page extends React.Component<PageProperties, PageVariables>{
 					reject(this.status);
 				}
 				else{
-					console.log(this.response);
 					resolve(this.response);
 				}
 			});
@@ -98,7 +115,6 @@ export class Page extends React.Component<PageProperties, PageVariables>{
 	   if(this.state.error)
 		return (<p>{this.state.error}</p>)	 
 	   return (<div id={"page-" + this.props.page + "-container"} className="page-container">
-		   <input type="hidden" name="board" value={this.props.board} />
 		     {this.state.spaced_threads}
 		</div>);
 	}
