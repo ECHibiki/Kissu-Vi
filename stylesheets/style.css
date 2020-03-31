@@ -1472,7 +1472,7 @@ div.mix {
 }
 
 #options-menu{
-	background-color:#939393;
+	background-color:#cecece;
 	display:inline-block;
 	color:black;
 	position:fixed;
@@ -1480,17 +1480,23 @@ div.mix {
 
 }
 
+#option-input-container{
+	padding: 0 0.4em
+}
+
 .handle{ 
 	width:100%; 
 	height:20px;
 	background-color:white;
 	border:1px solid black;
+	text-align: center;
 }
 
 .close-options{
 	color:red;
 	cursor: pointer;
 	float: right;
+	padding-right:0.5em;
 }
 
 .user-mod-container{

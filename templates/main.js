@@ -275,16 +275,20 @@ function pollSubmit(button){
 	var xhttp = new XMLHttpRequest();
 	xhttp.onreadystatechange = function(){
 		if(this.readyState == 4){
-		if(this.status != 200) 
-			alert("Poll Transfer Error");
-		else{ //use response data to build chart
-			displayPoll(this.responseText, button);
-		}
+			if(this.status != 200) 
+				alert("Poll Transfer Error");
+			else{ //use response data to build chart
+				displayPoll(this.responseText, button);
+			}
 		}
 	}	
 	xhttp.open("POST", "/poll.php");
 	xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-	var thread_id = button.parentNode.parentNode.parentNode.id.replace("op_", "");
+	var thread = head_element;
+	while(thread && thread != document && thread.id != undefined && thread.id.indexOf("op_") < 0){
+		thread = thread.parentNode;
+	}
+	var thread_id = thread.id.replace("op_", "");
 	xhttp.send("respond_poll=1&response_json=" + json_answer + "&id=" + thread_id); 
 	return false;
 }
@@ -412,8 +416,13 @@ function displayPoll(response_text, reference_element){
 }
 
 function viewPoll(link){
-	var thread_id = link.parentNode.parentNode.parentNode.id.replace("op_", "");
-        var xhttp = new XMLHttpRequest();
+	
+	var thread = link;
+	while(thread && thread != document && thread.id != undefined && thread.id.indexOf("op_") < 0){
+		thread = thread.parentNode;
+	}
+	var thread_id = thread.id.replace("op_", "");
+	var xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function(){
                 if(this.readyState == 4){
 			if(this.status != 200) { //replace with error message where canvas would be

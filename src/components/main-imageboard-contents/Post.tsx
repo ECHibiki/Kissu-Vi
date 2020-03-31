@@ -54,7 +54,6 @@ type PostDetails = {
 	show_full_audio:boolean,
 	show_full_video:boolean,
 	show_full_embed:boolean,
-	use_embed_source_thumbnail:boolean;
 
 	media_opacity:number
 }
@@ -86,8 +85,8 @@ export class Post extends React.Component<PostProperties, PostDetails>{
 		this.onClickExpandVideo = this.onClickExpandVideo.bind(this);
 		this.onClickExpandEmbed = this.onClickExpandEmbed.bind(this);
 		this.onMediaLoad = this.onMediaLoad.bind(this);
-		this.state = ({filename_cutoff:20, file_details_hidden:true, show_full_image: false, show_full_audio:false, show_full_video:false, 
-				show_full_embed:false, use_embed_source_thumbnail:true, media_opacity:1.0})
+		this.state = ({filename_cutoff:20, file_details_hidden:localStorage['file-info'] == "false", show_full_image: false, show_full_audio:false, show_full_video:false, 
+				show_full_embed:false,  media_opacity:1.0})
 	}
 	
 	//this post better be done
@@ -341,8 +340,8 @@ export class Post extends React.Component<PostProperties, PostDetails>{
 	// If it were possible to XSS this then it should also be possible on vichan.
 	// Still a saftey check would be nice
 	generateStagedEmbeding():JSX.Element{
-		if(!this.state.show_full_embed){
-		    if(!this.state.use_embed_source_thumbnail){
+		if(!this.state.show_full_embed && localStorage['fast-embed'] == "true"){
+		    if(localStorage['embed-specific'] == "thumb"){
 			return <div className="embed-container-thumb">
 				<a target="_blank">
 			      <img onClick={this.onClickExpandEmbed} className="post-image" src={"/static/kissu-embed.jpg"} style={{width:200, height:200,cursor:"pointer"}} alt={"Embed Thumb failed to load"} />
@@ -408,8 +407,8 @@ export class Post extends React.Component<PostProperties, PostDetails>{
 		var detail_display_prop:React.CSSProperties = {display: (this.state.file_details_hidden ? "none" : "block")};
 		return (<div data-op={this.props.op_id} id={this.props.hierarchy_class + "_" + this.props.id} className={"post " + this.props.hierarchy_class + " " + (this.props.highlighted || window.location.hash == "#" + this.props.id ? "highlighted" : "")}>
 
-			{this.props.filename &&  this.generateProperMedia()}
-			{this.props.embed && this.generateStagedEmbeding()}		
+			{this.props.filename && localStorage['no-img'] == "false" && this.generateProperMedia()}
+			{this.props.embed && localStorage['no-img'] == "false" && this.generateStagedEmbeding()}		
 	
 			<div className="post-contents">
 			   <div className="intro">
@@ -441,7 +440,7 @@ export class Post extends React.Component<PostProperties, PostDetails>{
 
 			      </div>
 			        <div className="optional-file-info" style={detail_display_prop}>
-				 {this.props.filename &&
+				 {this.props.filename && localStorage['rev-img'] == "true" &&
 				   <div className="image-search">&ensp;&nbsp;
 					{this.createImageSearchLink("Google", "https://www.google.com/searchbyimage?image_url=%s&safe=off")} &nbsp;
 					{this.createImageSearchLink("Yandex", "https://yandex.com/images/search?rpt=imageview&url=%s")} &nbsp;

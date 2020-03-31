@@ -198,7 +198,7 @@ class Thread extends React.Component {
         this.total_posts_mounted = 0;
         this.defineStatePostsArray(posts_arr);
     }
-    setThreadPostsFetched(display_notification = false) {
+    setThreadPostsFetched(display_notification_event = false) {
         return __awaiter(this, void 0, void 0, function* () {
             this.getThreadJSONData(this.props.board, this.props.thread_id)
                 .then((recieved) => {
@@ -211,7 +211,7 @@ class Thread extends React.Component {
                 });
                 this.total_posts_in_thread = posts_arr.length;
                 this.total_posts_mounted = 0;
-                if (display_notification) {
+                if (display_notification_event) {
                     var new_posts = (thread_json['posts'].length - this.state.spaced_posts.length / 2);
                     if (new_posts != 0)
                         document.title = "[" + new_posts + "] " + this.stored_title;
@@ -228,14 +228,10 @@ class Thread extends React.Component {
         return new Promise((resolve, reject) => {
             var thread_req = new XMLHttpRequest();
             thread_req.addEventListener("load", function (re) {
-                if (this.status >= 400) {
-                    reject(this.status);
-                }
-                else if (this.status >= 300) {
+                if (this.status >= 300) {
                     reject(this.status);
                 }
                 else {
-                    console.log(this.response);
                     resolve(this.response);
                 }
             });
@@ -302,7 +298,7 @@ class Thread extends React.Component {
         var thread_updater_props = { board: this.props.board, thread_id: this.props.thread_id, threadListUpdateSignal: this.setThreadPostsFetched };
         return (React.createElement("div", { id: "thread_" + this.props.thread_id, className: "thread", "data-board": this.props.board, "data-full-i-d": this.props.board + "." + this.props.thread_id },
             this.state.spaced_posts,
-            !this.props.paged && React.createElement("div", { className: "bottom-page-modifiers" },
+            !this.props.paged && localStorage['auto-up'] == "true" && React.createElement("div", { className: "bottom-page-modifiers" },
                 React.createElement("hr", null),
                 React.createElement(ThreadUpdater_1.ThreadUpdater, Object.assign({}, thread_updater_props))))); // quantity of paged and rendered posts should vary on configuration
     }
@@ -367,6 +363,7 @@ exports.Hello = Hello;
 "use strict";
 
 // This file contains information components such as the post form, page navigation, catalog, threads, posts, delete form and images. At current time it probably does not include everything listed, but these are the plans
+// Cursor change is set in delete form which also handles outside events.
 Object.defineProperty(exports, "__esModule", { value: true });
 const React = __webpack_require__(0);
 // Where threads and delete fields are placed
@@ -379,25 +376,53 @@ const NavButtons_1 = __webpack_require__(14);
 class MainImageboardContents extends React.Component {
     constructor(props) {
         super(props);
+        this.time_of_last_rebuild = Date.now();
+        this.state = { options: {}, time_since_last_update: "" };
+        this.information_holder_ref = React.createRef();
+        this.confirmUpdateClick = this.confirmUpdateClick.bind(this);
+        this.sendDoneEvents = this.sendDoneEvents.bind(this);
+        this.optionSetRebuild = this.optionSetRebuild.bind(this);
+        this.mounted = false;
+    }
+    componentDidMount() {
+    }
+    sendDoneEvents() {
+        var mounted_event = new CustomEvent('mounted');
+        //tester
+        document.body.addEventListener('mounted', function (r) { console.log(r); });
+        document.body.addEventListener('likely-rendered', function (r) { console.log(r); });
+        document.body.dispatchEvent(mounted_event);
+        document.body.style.cursor = "default";
+        this.mounted = true;
     }
     createQuickReply(thread_id, post_id) { }
-    createOptionsMenu() { }
+    optionSetRebuild() {
+        this.information_holder_ref.current.triggerRebuild();
+    }
+    confirmUpdateClick(time_since_last_update, recent_thread_time) {
+        // pass down new time since last update
+        if (this.mounted && recent_thread_time > this.time_of_last_rebuild / 1000) {
+            this.information_holder_ref.current.triggerRebuild();
+            this.time_of_last_rebuild = recent_thread_time;
+        }
+        this.setState({ time_since_last_update: time_since_last_update });
+    }
     render() {
         var delete_form_properties = {
             board: this.props.board,
             thread_id: this.props.thread_id,
             page: this.props.page,
-            paged: this.props.paged
+            paged: this.props.paged,
+            doneEventCallBack: this.sendDoneEvents
         };
         return (React.createElement("div", { id: "main-imageboard-contents" },
             React.createElement("hr", null),
-            React.createElement(NavButtons_1.NavButtons, { paged: !!this.props.paged, board: this.props.board }),
-            " ",
-            React.createElement(OptionMenu_1.OptionMenu, null),
+            React.createElement(NavButtons_1.NavButtons, { paged: !!this.props.paged, board: this.props.board, confirmUpdateClick: this.confirmUpdateClick, time_string: this.state.time_since_last_update }),
+            React.createElement(OptionMenu_1.OptionMenu, { optionSetCallBack: this.optionSetRebuild }),
             React.createElement("br", null),
             React.createElement("hr", null),
-            React.createElement(DeleteForm_1.DeleteForm, Object.assign({}, delete_form_properties)),
-            React.createElement(NavButtons_1.NavButtons, { paged: this.props.paged, board: this.props.board })));
+            React.createElement(DeleteForm_1.DeleteForm, Object.assign({}, delete_form_properties, { ref: this.information_holder_ref })),
+            React.createElement(NavButtons_1.NavButtons, { paged: this.props.paged, board: this.props.board, confirmUpdateClick: this.confirmUpdateClick, time_string: this.state.time_since_last_update })));
     }
 }
 exports.MainImageboardContents = MainImageboardContents;
@@ -420,24 +445,24 @@ const ReportButton_1 = __webpack_require__(11);
 class DeleteForm extends React.Component {
     constructor(props) {
         super(props);
+        this.state = ({ display_user_moderation_tools: false });
         this.threadQuickReply = this.threadQuickReply.bind(this);
+        this.paged_rebuild_ref = React.createRef();
+        this.thread_rebuild_ref = React.createRef();
     }
     threadQuickReply(thread_id, post_id) {
         console.log(thread_id);
         console.log(post_id);
         // keep passing up to top
     }
-    sendDoneEvents() {
-        var mounted_event = new CustomEvent('mounted', { detail: "mounted" });
-        var estimated_done_event = new CustomEvent('likely-rendered', { detail: "likely-rendered" });
-        //tester
-        document.body.addEventListener('mounted', function (r) { console.log(r); });
-        document.body.addEventListener('likely-rendered', function (r) { console.log(r); });
-        window.setTimeout(() => {
-            document.body.dispatchEvent(estimated_done_event);
-        }, 60);
-        document.body.dispatchEvent(mounted_event);
-        document.body.style.cursor = "default";
+    // ref function
+    triggerRebuild() {
+        if (this.props.paged) {
+            this.paged_rebuild_ref.current.setPageThreads();
+        }
+        else {
+            this.thread_rebuild_ref.current.rebuildThreadOnBool();
+        }
     }
     componentDidMount() {
         document.body.style.cursor = "wait";
@@ -448,12 +473,12 @@ class DeleteForm extends React.Component {
             thread_id: this.props.thread_id,
             paged: false,
             threadQuickReply: this.threadQuickReply,
-            finishedCallBackFunction: this.sendDoneEvents
+            finishedCallBackFunction: this.props.doneEventCallBack
         };
         var page_options = {
             board: this.props.board,
             page: this.props.page,
-            finishedCallBackFunction: this.sendDoneEvents
+            finishedCallBackFunction: this.props.doneEventCallBack
         };
         // decide which type of thread display to use. 
         // some modifications will be made to this when the post form is integrated
@@ -461,12 +486,16 @@ class DeleteForm extends React.Component {
         // it also should contains delete info
         return (React.createElement("form", { id: "thread_form", name: "postcontrols", action: "/post.php", method: "post" },
             React.createElement("input", { type: "hidden", name: "board", value: this.props.board }),
-            !this.props.paged && React.createElement(Thread_1.Thread, Object.assign({}, thread_options)),
-            this.props.paged && React.createElement(Page_1.Page, Object.assign({}, page_options)),
-            React.createElement("div", { className: "user-mod-container" },
-                React.createElement(DeleteButton_1.DeleteButton, null),
-                React.createElement("br", null),
-                React.createElement(ReportButton_1.ReportButton, null))));
+            !this.props.paged && React.createElement(Thread_1.Thread, Object.assign({}, thread_options, { ref: this.thread_rebuild_ref })),
+            this.props.paged && React.createElement(Page_1.Page, Object.assign({}, page_options, { ref: this.paged_rebuild_ref })),
+            React.createElement("a", { style: { cursor: "pointer", float: "right" }, onClick: () => this.setState({ display_user_moderation_tools: !this.state.display_user_moderation_tools }) }, "Toggle Moderation"),
+            " ",
+            React.createElement("br", null),
+            React.createElement("div", { className: "user-mod-container" }, this.state.display_user_moderation_tools &&
+                React.createElement("div", null,
+                    React.createElement(DeleteButton_1.DeleteButton, null),
+                    React.createElement("br", null),
+                    React.createElement(ReportButton_1.ReportButton, null)))));
     }
 }
 exports.DeleteForm = DeleteForm;
@@ -501,8 +530,8 @@ class Post extends React.Component {
         this.onClickExpandVideo = this.onClickExpandVideo.bind(this);
         this.onClickExpandEmbed = this.onClickExpandEmbed.bind(this);
         this.onMediaLoad = this.onMediaLoad.bind(this);
-        this.state = ({ filename_cutoff: 20, file_details_hidden: true, show_full_image: false, show_full_audio: false, show_full_video: false,
-            show_full_embed: false, use_embed_source_thumbnail: true, media_opacity: 1.0 });
+        this.state = ({ filename_cutoff: 20, file_details_hidden: localStorage['file-info'] == "false", show_full_image: false, show_full_audio: false, show_full_video: false,
+            show_full_embed: false, media_opacity: 1.0 });
     }
     //this post better be done
     componentDidMount() {
@@ -746,8 +775,8 @@ class Post extends React.Component {
     // If it were possible to XSS this then it should also be possible on vichan.
     // Still a saftey check would be nice
     generateStagedEmbeding() {
-        if (!this.state.show_full_embed) {
-            if (!this.state.use_embed_source_thumbnail) {
+        if (!this.state.show_full_embed && localStorage['fast-embed'] == "true") {
+            if (localStorage['embed-specific'] == "thumb") {
                 return React.createElement("div", { className: "embed-container-thumb" },
                     React.createElement("a", { target: "_blank" },
                         React.createElement("img", { onClick: this.onClickExpandEmbed, className: "post-image", src: "/static/kissu-embed.jpg", style: { width: 200, height: 200, cursor: "pointer" }, alt: "Embed Thumb failed to load" })));
@@ -798,8 +827,8 @@ class Post extends React.Component {
         // NOTE: data-op is a temporary messure to maintain compatibility with legacy JS
         var detail_display_prop = { display: (this.state.file_details_hidden ? "none" : "block") };
         return (React.createElement("div", { "data-op": this.props.op_id, id: this.props.hierarchy_class + "_" + this.props.id, className: "post " + this.props.hierarchy_class + " " + (this.props.highlighted || window.location.hash == "#" + this.props.id ? "highlighted" : "") },
-            this.props.filename && this.generateProperMedia(),
-            this.props.embed && this.generateStagedEmbeding(),
+            this.props.filename && localStorage['no-img'] == "false" && this.generateProperMedia(),
+            this.props.embed && localStorage['no-img'] == "false" && this.generateStagedEmbeding(),
             React.createElement("div", { className: "post-contents" },
                 React.createElement("div", { className: "intro" },
                     React.createElement("div", { className: "user" },
@@ -836,7 +865,7 @@ class Post extends React.Component {
                             React.createElement("a", { href: "/" + this.props.board + "/res/" + this.props.id }, "[Open]")),
                         this.props.cites && this.createCitesList(this.props.cites)),
                     React.createElement("div", { className: "optional-file-info", style: detail_display_prop },
-                        this.props.filename &&
+                        this.props.filename && localStorage['rev-img'] == "true" &&
                             React.createElement("div", { className: "image-search" },
                                 "\u2002\u00A0",
                                 this.createImageSearchLink("Google", "https://www.google.com/searchbyimage?image_url=%s&safe=off"),
@@ -974,6 +1003,8 @@ class Page extends React.Component {
                 });
                 this.count_of_all_threads_on_page = threads_arr.length;
                 this.count_of_all_threads_mounted = 0;
+                //unset if set
+                this.setState({ spaced_threads: [] });
                 this.defineStateThreadsArray(threads_arr);
             }
             else {
@@ -1105,11 +1136,48 @@ const react_draggable_1 = __webpack_require__(13);
 class OptionMenu extends React.Component {
     constructor(props) {
         super(props);
-        this.state = ({ show_menu: false, grab_pointer: "grab" });
+        this.state = ({ show_menu: false, grab_pointer: "grab", toggle_options: false });
         this.toggleShowMenu = this.toggleShowMenu.bind(this);
+        this.setOptionLocalStore = this.setOptionLocalStore.bind(this);
+        if (localStorage['fast-embed'] == undefined)
+            localStorage['fast-embed'] = "true";
+        if (localStorage['embed-specific'] == undefined)
+            localStorage['embed-specific'] = "source";
+        if (localStorage['file-info'] == undefined)
+            localStorage['file-info'] = "false";
+        if (localStorage['rev-img'] == undefined)
+            localStorage['rev-img'] = "true";
+        if (localStorage['no-img'] == undefined)
+            localStorage['no-img'] = "false";
+        if (localStorage['auto-up'] == undefined)
+            localStorage['auto-up'] = "true";
     }
     toggleShowMenu() {
         this.setState({ show_menu: !this.state.show_menu });
+    }
+    setOptionLocalStore(e) {
+        switch (e.target.name) {
+            case "fast-embed":
+                localStorage.setItem("fast-embed", "" + e.target.checked);
+                break;
+            case "embed-specific":
+                localStorage.setItem("embed-specific", e.target.value);
+                break;
+            case "file-info":
+                localStorage.setItem("file-info", "" + e.target.checked);
+                break;
+            case "rev-img":
+                localStorage.setItem("rev-img", "" + e.target.checked);
+                break;
+            case "no-img":
+                localStorage.setItem("no-img", "" + e.target.checked);
+                break;
+            case "auto-up":
+                localStorage.setItem("auto-up", "" + e.target.checked);
+                break;
+        }
+        this.setState({ toggle_options: !this.state.toggle_options });
+        this.props.optionSetCallBack();
     }
     render() {
         return React.createElement("span", { className: "options-container" },
@@ -1121,72 +1189,55 @@ class OptionMenu extends React.Component {
                             React.createElement("strong", { unselectable: "on" }, "Page Options"),
                             React.createElement("a", { className: "close-options", onClick: this.toggleShowMenu }, "X"),
                             React.createElement("hr", null)),
-                        React.createElement("strong", null, "Embedding"),
-                        " ",
-                        React.createElement("br", null),
-                        "\u2003",
-                        React.createElement("label", null,
-                            React.createElement("input", { type: "checkbox", defaultChecked: true }),
-                            "Fast Video Embedding"),
-                        React.createElement("br", null),
-                        "\u2003\u2003",
-                        React.createElement("label", null,
-                            React.createElement("input", { type: "radio", name: "embed_specific", defaultChecked: true }),
-                            "Source Thumbnails"),
-                        React.createElement("br", null),
-                        "\u2003\u2003",
-                        React.createElement("label", null,
-                            React.createElement("input", { type: "radio", name: "embed_specific", defaultChecked: false }),
-                            "Kissu Thumbnails"),
-                        React.createElement("br", null),
-                        React.createElement("hr", null),
-                        React.createElement("strong", null, "File Options"),
-                        " ",
-                        React.createElement("br", null),
-                        "\u2003",
-                        React.createElement("label", null,
-                            React.createElement("input", { type: "checkbox", defaultChecked: true }),
-                            "Show file info by default"),
-                        React.createElement("br", null),
-                        "\u2003",
-                        React.createElement("label", null,
-                            React.createElement("input", { type: "checkbox", defaultChecked: false }),
-                            "Show reverse image search"),
-                        React.createElement("br", null),
-                        "\u2003",
-                        React.createElement("label", null,
-                            React.createElement("input", { type: "checkbox", defaultChecked: false }),
-                            "Remove images from page load"),
-                        React.createElement("br", null),
-                        React.createElement("hr", null),
-                        React.createElement("strong", null, "Auto Updater Options"),
-                        " ",
-                        React.createElement("br", null),
-                        "\u2003",
-                        React.createElement("label", null,
-                            React.createElement("input", { type: "radio", name: "embed_specific", defaultChecked: true }),
-                            "Source Thumbnails"),
-                        React.createElement("br", null),
-                        "\u2003",
-                        React.createElement("label", null,
-                            React.createElement("input", { type: "radio", name: "embed_specific", defaultChecked: false }),
-                            "Kissu Thumbnails"),
-                        React.createElement("br", null),
-                        React.createElement("hr", null),
-                        React.createElement("strong", null, "Userscript Options"),
-                        " ",
-                        React.createElement("br", null),
-                        "\u2003",
-                        React.createElement("label", null,
-                            React.createElement("input", { type: "radio", name: "embed_specific", defaultChecked: true }),
-                            "Source Thumbnails"),
-                        React.createElement("br", null),
-                        "\u2003",
-                        React.createElement("label", null,
-                            React.createElement("input", { type: "radio", name: "embed_specific", defaultChecked: false }),
-                            "Kissu Thumbnails"),
-                        React.createElement("br", null),
-                        React.createElement("hr", null))));
+                        React.createElement("div", { id: "option-input-container" },
+                            React.createElement("strong", null, "Embedding"),
+                            " ",
+                            React.createElement("br", null),
+                            "\u2003",
+                            React.createElement("label", null,
+                                React.createElement("input", { type: "checkbox", name: "fast-embed", onClick: this.setOptionLocalStore, defaultChecked: localStorage['fast-embed'] == "true" }),
+                                "Fast Video Embedding"),
+                            React.createElement("br", null),
+                            "\u2003\u2003",
+                            React.createElement("label", null,
+                                React.createElement("input", { type: "radio", name: "embed-specific", value: "source", onClick: this.setOptionLocalStore, defaultChecked: localStorage['embed-specific'] == "source", disabled: localStorage['fast-embed'] == "false" }),
+                                "Source Thumbnails"),
+                            React.createElement("br", null),
+                            "\u2003\u2003",
+                            React.createElement("label", null,
+                                React.createElement("input", { type: "radio", name: "embed-specific", value: "thumb", onClick: this.setOptionLocalStore, defaultChecked: localStorage['embed-specific'] == "thumb", disabled: localStorage['fast-embed'] == "false" }),
+                                "Kissu Thumbnails"),
+                            React.createElement("br", null),
+                            React.createElement("hr", null),
+                            React.createElement("strong", null, "File Options"),
+                            " ",
+                            React.createElement("br", null),
+                            "\u2003",
+                            React.createElement("label", null,
+                                React.createElement("input", { name: "file-info", type: "checkbox", onClick: this.setOptionLocalStore, defaultChecked: localStorage['file-info'] == "true" }),
+                                "Show file info by default"),
+                            React.createElement("br", null),
+                            "\u2003",
+                            React.createElement("label", null,
+                                React.createElement("input", { name: "rev-img", type: "checkbox", onClick: this.setOptionLocalStore, defaultChecked: localStorage['rev-img'] == "true" }),
+                                "Show reverse image search"),
+                            React.createElement("br", null),
+                            "\u2003",
+                            React.createElement("label", null,
+                                React.createElement("input", { name: "no-img", type: "checkbox", onClick: this.setOptionLocalStore, defaultChecked: localStorage['no-img'] == "true" }),
+                                "Remove images from page load"),
+                            React.createElement("br", null),
+                            React.createElement("hr", null),
+                            React.createElement("strong", null, "Auto Updater Options"),
+                            " ",
+                            React.createElement("br", null),
+                            "\u2003",
+                            React.createElement("label", null,
+                                React.createElement("input", { name: "auto-up", type: "checkbox", onClick: this.setOptionLocalStore, defaultChecked: localStorage['auto-up'] == "true" }),
+                                "Enable thread auto-updates"),
+                            React.createElement("br", null),
+                            React.createElement("hr", null),
+                            React.createElement("hr", null)))));
     }
 }
 exports.OptionMenu = OptionMenu;
@@ -1210,6 +1261,15 @@ exports.OptionMenu = OptionMenu;
 
 "use strict";
 
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 const React = __webpack_require__(0);
 // FIX: expansion doesn't updates the paged property when new treads have been added.
@@ -1217,12 +1277,87 @@ class NavButtons extends React.Component {
     constructor(props) {
         super(props);
         this.state = ({ paged: false, board: "" });
+        this.checkThreadUpdates = this.checkThreadUpdates.bind(this);
+        this.fetchThreadTimeJSON = this.fetchThreadTimeJSON.bind(this);
+    }
+    componentDidMount() {
+        this.checkThreadUpdates();
+    }
+    // return a time to parent to pass down to child
+    /*
+       Time save by only scanning first page for greatest time.
+       Hides issue with useless position based sorting of threads.json.
+       Unlikley any board will have a page of stickies.
+    */
+    checkThreadUpdates() {
+        return __awaiter(this, void 0, void 0, function* () {
+            this.fetchThreadTimeJSON(this.props.board)
+                .then((recieved) => {
+                let thread_json = JSON.parse(recieved);
+                let max_time = 0;
+                thread_json[0]["threads"].forEach(function (json_el) {
+                    if (json_el['last_modified'] > max_time) {
+                        max_time = json_el['last_modified'];
+                    }
+                });
+                let time_string = "";
+                console.log(((Date.now() / 1000 - max_time) / (60 * 60 * 24)));
+                console.log(((Date.now() / 1000 - max_time)));
+                if (((Date.now() / 1000 - max_time) / (60 * 60 * 24 * 30 * 12)) > 1) {
+                    time_string = Math.floor((Date.now() / 1000 - max_time / (60 * 60 * 24 * 30 * 12))) + " year";
+                }
+                else if (((Date.now() / 1000 - max_time) / (60 * 60 * 24 * 30)) > 1) {
+                    time_string = Math.floor(((Date.now() / 1000 - max_time) / (60 * 60 * 24 * 30))) + " month";
+                }
+                else if (((Date.now() / 1000 - max_time) / (60 * 60 * 24)) > 1) {
+                    time_string = Math.floor(((Date.now() / 1000 - max_time) / (60 * 60 * 24))) + " day";
+                }
+                else if (((Date.now() / 1000 - max_time) / (60 * 60)) > 1) {
+                    time_string = Math.floor(((Date.now() / 1000 - max_time) / (60 * 60))) + " hour";
+                }
+                else if (((Date.now() / 1000 - max_time) / (60)) > 1) {
+                    time_string = Math.floor(((Date.now() / 1000 - max_time) / (60))) + " minute";
+                }
+                else {
+                    time_string = Math.floor(Date.now() / 1000 - max_time) + " second";
+                }
+                if (time_string.substring(0, time_string.indexOf(" ")).length > 1 || parseInt(time_string[0]) > 1) {
+                    time_string += "s";
+                }
+                console.log(time_string);
+                this.props.confirmUpdateClick(time_string, max_time);
+            })
+                .catch((err) => {
+                console.log(err);
+                //this.setState({error: err + "\nJSON fetchError"});
+            });
+        });
+    }
+    fetchThreadTimeJSON(board) {
+        console.log('f');
+        return new Promise((resolve, reject) => {
+            var xhr_thread_details = new XMLHttpRequest();
+            xhr_thread_details.addEventListener("load", function (re) {
+                if (this.status >= 300)
+                    reject(this.status);
+                else
+                    resolve(this.response);
+            });
+            xhr_thread_details.addEventListener("error", function (err) {
+                reject(this.status);
+            });
+            xhr_thread_details.open("GET", `/${board}/threads.json`);
+            xhr_thread_details.send();
+        });
     }
     render() {
         return React.createElement("span", { className: "nav-links" },
-            !this.props.paged && React.createElement("a", { href: "/" + this.props.board + "/" }, "[Index]"),
+            !this.props.paged && React.createElement("a", { href: "/" + this.props.board + "/", className: "return" }, "[Return]"),
             "\u00A0",
-            React.createElement("a", { href: "" }, "[Refresh]"),
+            this.props.paged && React.createElement("a", { title: "Click to Update", style: { cursor: "pointer" }, className: "index-updater", onClick: this.checkThreadUpdates },
+                "[",
+                this.props.time_string,
+                "]"),
             "\u00A0",
             React.createElement("a", { href: "catalog" }, "[Catalog]"),
             "\u00A0",

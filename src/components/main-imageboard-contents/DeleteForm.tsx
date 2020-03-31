@@ -15,17 +15,29 @@ export type DeleteFormProperties = {
 	// on condition of not paged
 	thread_id:number,
 	// on condition of is paged
-	page: number
+	page: number,
 
+	doneEventCallBack:()=>void
 };
 
 type DeleteFormVariables = {
+	display_user_moderation_tools:boolean;
 };
 
 export class DeleteForm extends React.Component<DeleteFormProperties, DeleteFormVariables>{
+	
+	paged_rebuild_ref: React.RefObject<Page>;
+	thread_rebuild_ref: React.RefObject<Thread>;
+
 	constructor(props:any){
 		super(props);
+
+		this.state = ({display_user_moderation_tools: false})
+
 		this.threadQuickReply = this.threadQuickReply.bind(this);
+		
+		this.paged_rebuild_ref = React.createRef();
+		this.thread_rebuild_ref = React.createRef();
 	}
 	
 	threadQuickReply(thread_id:number, post_id:number){
@@ -34,19 +46,14 @@ export class DeleteForm extends React.Component<DeleteFormProperties, DeleteForm
 		// keep passing up to top
 	}
 
-	sendDoneEvents(){
-		var mounted_event = new CustomEvent('mounted', {detail: "mounted"});
-		var estimated_done_event = new CustomEvent('likely-rendered', {detail:"likely-rendered"});
-
-		//tester
-		document.body.addEventListener('mounted', function(r:CustomEvent){console.log(r)});
-		document.body.addEventListener('likely-rendered', function(r:CustomEvent){console.log(r)});	
-
-		window.setTimeout(()=>{
-			document.body.dispatchEvent(estimated_done_event);
-		}, 60);
-		document.body.dispatchEvent(mounted_event);
-		document.body.style.cursor="default";	
+	// ref function
+	triggerRebuild(){
+		if(this.props.paged){
+			this.paged_rebuild_ref.current.setPageThreads();
+		}
+		else{
+			this.thread_rebuild_ref.current.rebuildThreadOnBool();
+		}
 	}
 
 	componentDidMount(){
@@ -58,14 +65,16 @@ export class DeleteForm extends React.Component<DeleteFormProperties, DeleteForm
 		    board: this.props.board,
 		    thread_id: this.props.thread_id,
 		    paged: false,
+
 		    threadQuickReply: this.threadQuickReply,
-		    finishedCallBackFunction: this.sendDoneEvents
+		    finishedCallBackFunction: this.props.doneEventCallBack
 		}
 
 		var page_options:PageProperties = {
 		    board: this.props.board,
 		    page: this.props.page,
-		    finishedCallBackFunction: this.sendDoneEvents
+
+		    finishedCallBackFunction: this.props.doneEventCallBack
 		}
 
 		// decide which type of thread display to use. 
@@ -74,11 +83,16 @@ export class DeleteForm extends React.Component<DeleteFormProperties, DeleteForm
 		// it also should contains delete info
 		return (<form id="thread_form" name="postcontrols" action="/post.php" method="post">
 			<input type="hidden" name="board" value={ this.props.board } />
-			{!this.props.paged && <Thread {...thread_options} />}
-			{this.props.paged && <Page {...page_options} />}
+			{!this.props.paged && <Thread {...thread_options} ref={this.thread_rebuild_ref} />}
+			{this.props.paged && <Page {...page_options} ref={this.paged_rebuild_ref} />}
+			<a style={{cursor:"pointer", float:"right"}} onClick={() => this.setState({display_user_moderation_tools: !this.state.display_user_moderation_tools})}>Toggle Moderation</a> <br/>
 			<div className="user-mod-container">
-				<DeleteButton /><br/>
-				<ReportButton />
+				{this.state.display_user_moderation_tools &&
+					<div>
+						<DeleteButton /><br/>
+						<ReportButton />
+					</div>
+				}
 			</div>
 		</form>)
 	}

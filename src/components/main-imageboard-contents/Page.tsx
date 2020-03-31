@@ -4,6 +4,7 @@ import {Thread, ThreadProperties} from "./Thread";
 export type PageProperties = {
     board:string,
     page:number,
+
     finishedCallBackFunction: ()=>void
 }
 type PageVariables = {
@@ -51,6 +52,9 @@ export class Page extends React.Component<PageProperties, PageVariables>{
 
 				this.count_of_all_threads_on_page = threads_arr.length;
 				this.count_of_all_threads_mounted = 0;
+
+				//unset if set
+				this.setState({spaced_threads: []});
 
 				this.defineStateThreadsArray(threads_arr);
 			}

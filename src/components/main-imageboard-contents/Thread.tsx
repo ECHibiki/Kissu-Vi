@@ -105,7 +105,7 @@ export class Thread extends React.Component<ThreadProperties, ThreadVariables>{
 		this.defineStatePostsArray(posts_arr);
 	}
 
-	async setThreadPostsFetched(display_notification:boolean = false){
+	async setThreadPostsFetched(display_notification_event:boolean = false){
 		this.getThreadJSONData(this.props.board, this.props.thread_id)
 		   .then((recieved:string) => {
 			var thread_json = JSON.parse(recieved);
@@ -119,7 +119,7 @@ export class Thread extends React.Component<ThreadProperties, ThreadVariables>{
 			this.total_posts_in_thread = posts_arr.length;
 			this.total_posts_mounted = 0;
 
-			if(display_notification){
+			if(display_notification_event){
 				var new_posts = (thread_json['posts'].length - this.state.spaced_posts.length / 2);	
 				if(new_posts != 0)
 					document.title = "[" + new_posts + "] " + this.stored_title;
@@ -136,14 +136,10 @@ export class Thread extends React.Component<ThreadProperties, ThreadVariables>{
 		return new Promise((resolve, reject) => {	
 			var thread_req = new XMLHttpRequest();
 			thread_req.addEventListener("load", function(re:ProgressEvent<XMLHttpRequestEventTarget>){
-				if(this.status >= 400){
-					reject(this.status);
-				}
-				else if (this.status >= 300){
+				if(this.status >= 300){
 					reject(this.status);
 				}
 				else{
-					console.log(this.response);
 					resolve(this.response);
 				}
 			});
@@ -218,7 +214,7 @@ export class Thread extends React.Component<ThreadProperties, ThreadVariables>{
 		return (
 			<div id={"thread_" + this.props.thread_id} className="thread" data-board={this.props.board} data-full-i-d={this.props.board + "." + this.props.thread_id}>
 	  		   { this.state.spaced_posts } 
-			   {!this.props.paged && <div className="bottom-page-modifiers"><hr/><ThreadUpdater {...thread_updater_props} /></div>}
+			   {!this.props.paged && localStorage['auto-up'] == "true" && <div className="bottom-page-modifiers"><hr/><ThreadUpdater {...thread_updater_props} /></div>}
 			</div>);// quantity of paged and rendered posts should vary on configuration
 	}
 }
