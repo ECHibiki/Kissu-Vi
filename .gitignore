@@ -65,11 +65,8 @@ secrets.php
 /main.js
 
 
-# rss
-*.rss
-
 #sitemap
-sitemap.xml
+/sitemap.xml
 
 # templates cache
 /templates/cache
