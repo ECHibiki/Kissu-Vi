@@ -209,7 +209,9 @@ export class Thread extends React.Component<ThreadProperties, ThreadVariables>{
 			return (<p>{this.state.error}</p>)
 		
 		var thread_updater_props:ThreadUpdaterProperties =
-			 {board: this.props.board, thread_id:this.props.thread_id, threadListUpdateSignal:this.setThreadPostsFetched}
+			 {board: this.props.board, 
+			  thread_id:this.props.thread_id, 
+			   threadListUpdateSignal:this.setThreadPostsFetched}
 		
 		return (
 			<div id={"thread_" + this.props.thread_id} className="thread" data-board={this.props.board} data-full-i-d={this.props.board + "." + this.props.thread_id}>

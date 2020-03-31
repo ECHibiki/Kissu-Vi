@@ -461,7 +461,7 @@ class DeleteForm extends React.Component {
             this.paged_rebuild_ref.current.setPageThreads();
         }
         else {
-            this.thread_rebuild_ref.current.rebuildThreadOnBool();
+            this.thread_rebuild_ref.current.setThreadPostsFetched();
         }
     }
     componentDidMount() {

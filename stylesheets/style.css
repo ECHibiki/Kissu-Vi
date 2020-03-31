@@ -39,8 +39,8 @@
 	position:relative;
 }
 
-.intro{
-	/* display: inline-block; Why???*/
+.post-contents .intro{
+	display: inline-block;
 }
 
 /* http://kissu.moe/b/res/198.html#q290 */
