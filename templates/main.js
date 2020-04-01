@@ -211,7 +211,7 @@ function init_stylechooser() {
 		newElement.appendChild(style);
 	}	
 	
-	document.getElementsByClassName('boardlist')[0].insertBefore(newElement, document.getElementsByTagName('body')[0].lastChild.nextSibling);
+ document.getElementById('lowercontents').insertBefore(newElement, document.getElementsByTagName('body')[0].lastChild.nextSibling);
 }
 
 function get_cookie(cookie_name) {
@@ -616,7 +616,7 @@ function init() {
 	if (window.location.hash.indexOf('q') != 1 && window.location.hash.substring(1))
 		highlightReply(window.location.hash.substring(1));
 	captchaSetup();
-	}, 3000);
+	}, 2000);
 }
 
 var RecaptchaOptions = {
@@ -629,9 +629,11 @@ function onready(fnc) {
 }
 
 function ready() {
+
 	for (var i = 0; i < onready_callbacks.length; i++) {
 		onready_callbacks[i]();
 	}
+
 }
 
 {% endraw %}
