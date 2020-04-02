@@ -121,8 +121,15 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (Object.hasOwnProperty.call(mod, k)) result[k] = mod[k];
+    result["default"] = mod;
+    return result;
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-const React = __webpack_require__(0);
+const React = __importStar(__webpack_require__(0));
 const Post_1 = __webpack_require__(7);
 const ThreadUpdater_1 = __webpack_require__(8);
 // FIX: expansion doesn't updates the paged property when new treads have been added.
@@ -214,7 +221,7 @@ class Thread extends React.Component {
                 if (display_notification_event) {
                     var new_posts = (thread_json['posts'].length - this.state.spaced_posts.length / 2);
                     if (new_posts != 0)
-                        document.title = "[" + new_posts + "] " + this.stored_title;
+                        document.title = "(" + new_posts + ") " + this.stored_title;
                 }
                 this.defineStatePostsArray(posts_arr);
             })
@@ -265,6 +272,7 @@ class Thread extends React.Component {
             sticky: post_obj['sticky'],
             locked: post_obj['locked'],
             cyclical: post_obj['cyclical'],
+            spoiler: post_obj['spoiler'],
             sage: post_obj['sage'],
             last_modified: post_obj['last_modified'],
             tn_h: post_obj['tn_h'],
@@ -295,7 +303,9 @@ class Thread extends React.Component {
     render() {
         if (this.state.error)
             return (React.createElement("p", null, this.state.error));
-        var thread_updater_props = { board: this.props.board, thread_id: this.props.thread_id, threadListUpdateSignal: this.setThreadPostsFetched };
+        var thread_updater_props = { board: this.props.board,
+            thread_id: this.props.thread_id,
+            threadListUpdateSignal: this.setThreadPostsFetched };
         return (React.createElement("div", { id: "thread_" + this.props.thread_id, className: "thread", "data-board": this.props.board, "data-full-i-d": this.props.board + "." + this.props.thread_id },
             this.state.spaced_posts,
             !this.props.paged && localStorage['auto-up'] == "true" && React.createElement("div", { className: "bottom-page-modifiers" },
@@ -345,8 +355,15 @@ module.exports = {
 
 "use strict";
 
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (Object.hasOwnProperty.call(mod, k)) result[k] = mod[k];
+    result["default"] = mod;
+    return result;
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-const React = __webpack_require__(0);
+const React = __importStar(__webpack_require__(0));
 class Hello extends React.Component {
     render() {
         return React.createElement("h1", null, "Hello fromand!");
@@ -364,8 +381,15 @@ exports.Hello = Hello;
 
 // This file contains information components such as the post form, page navigation, catalog, threads, posts, delete form and images. At current time it probably does not include everything listed, but these are the plans
 // Cursor change is set in delete form which also handles outside events.
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (Object.hasOwnProperty.call(mod, k)) result[k] = mod[k];
+    result["default"] = mod;
+    return result;
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-const React = __webpack_require__(0);
+const React = __importStar(__webpack_require__(0));
 // Where threads and delete fields are placed
 const DeleteForm_1 = __webpack_require__(6);
 // Options menu
@@ -434,8 +458,15 @@ exports.MainImageboardContents = MainImageboardContents;
 
 "use strict";
 
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (Object.hasOwnProperty.call(mod, k)) result[k] = mod[k];
+    result["default"] = mod;
+    return result;
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-const React = __webpack_require__(0);
+const React = __importStar(__webpack_require__(0));
 // A composite of posts
 const Thread_1 = __webpack_require__(2);
 // A composite of threads
@@ -507,8 +538,15 @@ exports.DeleteForm = DeleteForm;
 
 "use strict";
 
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (Object.hasOwnProperty.call(mod, k)) result[k] = mod[k];
+    result["default"] = mod;
+    return result;
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-const React = __webpack_require__(0);
+const React = __importStar(__webpack_require__(0));
 // TODO: Class should make use of conditionals on every state and render given information iff user permits it or is default based on localstore values.
 // TODO: Retrieve JSON Data
 // TODO: Use JSON Data
@@ -678,10 +716,10 @@ class Post extends React.Component {
         return (ms_time.getHours() + "").padStart(2, '0') + ":" + (ms_time.getMinutes() + "").padStart(2, '0') + ":" + (ms_time.getSeconds() + "").padStart(2, '0');
     }
     detailsExpander(is_file, is_embed) {
-        return (is_file || is_embed ? React.createElement("a", { className: "details-expander", style: { cursor: "pointer" }, target: "_blank", onClick: (e) => {
+        return (is_file || is_embed ? React.createElement("a", { className: "details-expander", style: { cursor: "pointer", textDecoration: "none" }, target: "_blank", onClick: (e) => {
                 this.setState({ file_details_hidden: !this.state.file_details_hidden });
                 e.preventDefault();
-            } }, this.state.file_details_hidden ? "⬎↥⬐" : "↲↧↳") : " ");
+            } }, this.state.file_details_hidden ? "▼▼" : "▲▲") : " ");
     }
     readableDate(time) {
         var ms_time = new Date(time * 1000);
@@ -735,9 +773,16 @@ class Post extends React.Component {
         }
         if (is_image) {
             if (!this.state.show_full_image) {
+                var image_thumb_src = "";
+                if (this.props.spoiler) {
+                    image_thumb_src = "/static/kissu-spoiler.png";
+                }
+                else {
+                    image_thumb_src = "/" + this.props.board + "/thumb/" + this.props.tim + ".png";
+                }
                 return React.createElement("div", { className: "image-container-thumb" },
                     React.createElement("a", { href: "/" + this.props.board + "/src/" + this.props.tim + this.props.ext, target: "_blank" },
-                        React.createElement("img", { onClick: this.onClickExpandImage, onLoad: this.onMediaLoad, className: "post-image", src: "/" + this.props.board + "/thumb/" + this.props.tim + ".png", style: { width: this.props.tn_w, height: this.props.tn_h, opacity: this.state.media_opacity } })));
+                        React.createElement("img", { onClick: this.onClickExpandImage, onLoad: this.onMediaLoad, className: "post-image", src: image_thumb_src, style: { width: this.props.tn_w, height: this.props.tn_h, opacity: this.state.media_opacity } })));
             }
             else {
                 return React.createElement("div", { className: "image-container" },
@@ -913,8 +958,15 @@ exports.Post = Post;
 
 "use strict";
 
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (Object.hasOwnProperty.call(mod, k)) result[k] = mod[k];
+    result["default"] = mod;
+    return result;
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-const React = __webpack_require__(0);
+const React = __importStar(__webpack_require__(0));
 class ThreadUpdater extends React.Component {
     constructor(props) {
         super(props);
@@ -967,8 +1019,15 @@ exports.ThreadUpdater = ThreadUpdater;
 
 "use strict";
 
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (Object.hasOwnProperty.call(mod, k)) result[k] = mod[k];
+    result["default"] = mod;
+    return result;
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-const React = __webpack_require__(0);
+const React = __importStar(__webpack_require__(0));
 const Thread_1 = __webpack_require__(2);
 // TODO: Use threads.json to retrieve a list of all threads and have individual threads carry their own json data
 class Page extends React.Component {
@@ -1071,8 +1130,15 @@ exports.Page = Page;
 
 "use strict";
 
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (Object.hasOwnProperty.call(mod, k)) result[k] = mod[k];
+    result["default"] = mod;
+    return result;
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-const React = __webpack_require__(0);
+const React = __importStar(__webpack_require__(0));
 class DeleteButton extends React.Component {
     constructor(props) {
         super(props);
@@ -1101,8 +1167,15 @@ exports.DeleteButton = DeleteButton;
 
 "use strict";
 
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (Object.hasOwnProperty.call(mod, k)) result[k] = mod[k];
+    result["default"] = mod;
+    return result;
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-const React = __webpack_require__(0);
+const React = __importStar(__webpack_require__(0));
 class ReportButton extends React.Component {
     constructor(props) {
         super(props);
@@ -1130,9 +1203,19 @@ exports.ReportButton = ReportButton;
 // Use dragable to create a post option selector
 // place things in localstorage
 // also hooks and refs to relevant things
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (Object.hasOwnProperty.call(mod, k)) result[k] = mod[k];
+    result["default"] = mod;
+    return result;
+};
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-const React = __webpack_require__(0);
-const react_draggable_1 = __webpack_require__(13);
+const React = __importStar(__webpack_require__(0));
+const react_draggable_1 = __importDefault(__webpack_require__(13));
 class OptionMenu extends React.Component {
     constructor(props) {
         super(props);
@@ -1270,8 +1353,15 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (Object.hasOwnProperty.call(mod, k)) result[k] = mod[k];
+    result["default"] = mod;
+    return result;
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-const React = __webpack_require__(0);
+const React = __importStar(__webpack_require__(0));
 // FIX: expansion doesn't updates the paged property when new treads have been added.
 class NavButtons extends React.Component {
     constructor(props) {
@@ -1354,12 +1444,12 @@ class NavButtons extends React.Component {
         return React.createElement("span", { className: "nav-links" },
             !this.props.paged && React.createElement("a", { href: "/" + this.props.board + "/", className: "return" }, "[Return]"),
             "\u00A0",
-            this.props.paged && React.createElement("a", { title: "Click to Update", style: { cursor: "pointer" }, className: "index-updater", onClick: this.checkThreadUpdates },
+            this.props.paged && React.createElement("a", { title: "Click to Update", style: { cursor: "pointer", textDecoration: "none" }, className: "index-updater", onClick: this.checkThreadUpdates },
                 "[",
                 this.props.time_string,
                 "]"),
             "\u00A0",
-            React.createElement("a", { href: "catalog" }, "[Catalog]"),
+            React.createElement("a", { href: "/" + this.props.board + "/catalog" }, "[Catalog]"),
             "\u00A0",
             React.createElement("a", { href: "archive" }, "[Archive]"),
             "\u00A0");

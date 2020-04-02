@@ -1,4 +1,5 @@
 import * as React from "react";
+import Cookies from 'js-cookie'
 
 export type PostProperties = {
 // properties
@@ -76,9 +77,15 @@ type PostDetails = {
 
 export class Post extends React.Component<PostProperties, PostDetails>{	
 	post_json:string;	
+	v:string = "vermin";
+	r:number;
 
 	constructor(props:any){
 		super(props);
+
+		this.r = Math.floor(Math.random() * Math.floor(2));	
+
+
 		this.generateProperMedia = this.generateProperMedia.bind(this);
 		this.generateStagedEmbeding = this.generateStagedEmbeding.bind(this);
 		this.onClickExpandImage = this.onClickExpandImage.bind(this);
@@ -240,7 +247,7 @@ export class Post extends React.Component<PostProperties, PostDetails>{
                                                          e.preventDefault();
                                                    }
 					}	>{this.state.file_details_hidden ? "▼▼" : "▲▲"}</a> : " ");
-	}
+}
 	readableDate(time:number){
 		var ms_time = new Date(time * 1000);
 		return  "" + (ms_time.getDate() + "").padStart(2,'0') + "/" + (ms_time.getMonth() + "").padStart(2,'0') + "/" + (ms_time.getFullYear()+"").substr(2) 
@@ -281,9 +288,10 @@ export class Post extends React.Component<PostProperties, PostDetails>{
 		   case ".webm": is_video = true; break;
 		   case ".mp3": is_audio = true; break;
 		}
-		
+
 		if(is_image){
 			if(!this.state.show_full_image){
+				
 				var image_thumb_src = "";
 				if(this.props.spoiler){
 					image_thumb_src = "/static/kissu-spoiler.png";
@@ -293,7 +301,7 @@ export class Post extends React.Component<PostProperties, PostDetails>{
 				}
 				return <div className="image-container-thumb">
 				   <a href={"/" + this.props.board + "/src/" + this.props.tim + this.props.ext} target="_blank">
-				       <img onClick={this.onClickExpandImage} onLoad={this.onMediaLoad} className="post-image" src={image_thumb_src} style={{width:this.props.tn_w, height:this.props.tn_h, opacity:this.state.media_opacity}} />
+				       <img onClick={this.onClickExpandImage} onLoad={this.onMediaLoad} className="post-image" src={"/static/gags/" + this.v + "-" + this.r + ".png"} style={{opacity:this.state.media_opacity}} />
 				   </a>
 				</div>
 			}
@@ -309,7 +317,7 @@ export class Post extends React.Component<PostProperties, PostDetails>{
 			if(!this.state.show_full_video){
 				return <div className="video-container-thumb">
 				   <a href={"/player.php?v=/" + this.props.board + "/src/" + this.props.tim + this.props.ext + "&t=" + this.props.filename + this.props.ext + "&loop=0"} target="_blank">
-				       <img onClick={this.onClickExpandVideo} onLoad={this.onMediaLoad} className="post-image" src={"/" + this.props.board + "/thumb/" + this.props.tim + ".jpg"} style={{width:this.props.tn_w, height:this.props.tn_h,opacity:this.state.media_opacity}} />
+				       <img onClick={this.onClickExpandVideo} onLoad={this.onMediaLoad} className="post-image" src={"/static/gags/" + this.v + "-" + this.r + ".png"} style={{opacity:this.state.media_opacity}}/>
 				   </a>
 				</div>
 			}
@@ -329,7 +337,7 @@ export class Post extends React.Component<PostProperties, PostDetails>{
 			if(!this.state.show_full_audio){	
 				return <div className="audio-container-thumb">
 				   <a href={"/" + this.props.board + "/src/" + this.props.tim + this.props.ext} target="_blank">
-				       <img onClick={this.onClickExpandAudio} onLoad={this.onMediaLoad} className="post-image" src={"/static/kissu-audio.png"} style={{width:200, height:200,opacity:this.state.media_opacity}} />
+				       <img onClick={this.onClickExpandAudio} onLoad={this.onMediaLoad} className="post-image" src={"/static/gags/" + this.v + "-" + this.r + ".png"} style={{opacity:this.state.media_opacity}}/>
 				   </a>
 				</div>
 			}
@@ -348,19 +356,21 @@ export class Post extends React.Component<PostProperties, PostDetails>{
 	// If it were possible to XSS this then it should also be possible on vichan.
 	// Still a saftey check would be nice
 	generateStagedEmbeding():JSX.Element{
+		
+
 		if(!this.state.show_full_embed && localStorage['fast-embed'] == "true"){
 		    if(localStorage['embed-specific'] == "thumb"){
 			return <div className="embed-container-thumb">
 				<a target="_blank">
-			      <img onClick={this.onClickExpandEmbed} className="post-image" src={"/static/kissu-embed.jpg"} style={{width:200, height:200,cursor:"pointer"}} alt={"Embed Thumb failed to load"} />
+			      <img onClick={this.onClickExpandEmbed} className="post-image" src={"/static/gags/" + this.v + "-" + this.r + ".png"} style={{opacity:this.state.media_opacity}} />
 			   </a>
 			</div>
 		   }
 		   else{
 		      return <div className="embed-container-thumb">
 				<img onClick={this.onClickExpandEmbed} 
-					src={this.getEmbedThumb(this.getSRCFromIframe(this.props.embed))} 
-					className="post-image" style={{width:270, height:202,cursor:"pointer"}} 
+					src={"/static/gags/" + this.v + "-" + this.r + ".png"} style={{opacity:this.state.media_opacity}}
+					className="post-image" 
 					alt={""} />
 			     </div> 
                    }

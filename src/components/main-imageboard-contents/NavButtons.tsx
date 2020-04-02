@@ -96,10 +96,11 @@ console.log('f');
 	render(){
 		return <span className="nav-links">
 			  {!this.props.paged && <a href={"/" + this.props.board +"/"} className="return">[Return]</a> }&nbsp;
-			  {this.props.paged && <a title= "Click to Update" style={{cursor:"pointer"}} className="index-updater" onClick={this.checkThreadUpdates}>[{this.props.time_string}]</a> }&nbsp;
-			  <a href="catalog">[Catalog]</a>&nbsp;
+			  {this.props.paged && <a title= "Click to Update" style={{cursor:"pointer", textDecoration: "none"}} className="index-updater" onClick={this.checkThreadUpdates}>[{this.props.time_string}]</a> }&nbsp;
+			  <a href={"/" + this.props.board + "/catalog"}>[Catalog]</a>&nbsp;
 			  <a href="archive">[Archive]</a>&nbsp;
 		     </span>
 	}
 
 }
+

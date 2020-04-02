@@ -122,7 +122,7 @@ export class Thread extends React.Component<ThreadProperties, ThreadVariables>{
 			if(display_notification_event){
 				var new_posts = (thread_json['posts'].length - this.state.spaced_posts.length / 2);	
 				if(new_posts != 0)
-					document.title = "[" + new_posts + "] " + this.stored_title;
+					document.title = "(" + new_posts + ") " + this.stored_title;
 			}
 			this.defineStatePostsArray(posts_arr);
 		   })
@@ -175,6 +175,7 @@ export class Thread extends React.Component<ThreadProperties, ThreadVariables>{
 			sticky: post_obj['sticky'],
 			locked: post_obj['locked'],
 			cyclical: post_obj['cyclical'],
+			spoiler: post_obj['spoiler'],
 			sage: post_obj['sage'],
 			last_modified: post_obj['last_modified'],	
 			tn_h:post_obj['tn_h'],

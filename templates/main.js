@@ -629,10 +629,16 @@ function onready(fnc) {
 }
 
 function ready() {
+var m1 = true;
+	document.body.addEventListener("mount", function(){
+		if(m1){
+        for (var i = 0; i < onready_callbacks.length; i++) {
+                onready_callbacks[i]();
+        }
 
-	for (var i = 0; i < onready_callbacks.length; i++) {
-		onready_callbacks[i]();
-	}
+m1=false;};
+	});
+
 
 }
 
