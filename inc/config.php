@@ -40,6 +40,9 @@
 	// $config['global_message'] = 'This is an important announcement!';
 	$config['blotter'] = &$config['global_message'];
 
+        // flag for react to replace standard html template behaviour with dynamic ones.
+	$config['js_ui'] = false;
+
 	// Automatically check if a newer version of Tinyboard is available when an administrator logs in.
 	$config['check_updates'] = false;
 	// How often to check for updates
@@ -1067,13 +1070,13 @@ $config['filters'][] = array(
 	 * with groups. Each array() in $config['boards'] represents a new square bracket group.
 	 */
 
-	// $config['boards'] = array(
-	// 	array('a', 'b'),
+	$config['boards'] = array(
+	 	array('b')//,
 	// 	array('c', 'd', 'e', 'f', 'g'),
 	// 	array('h', 'i', 'j'),
 	// 	array('k', array('l', 'm')),
 	// 	array('status' => 'http://status.example.org/')
-	// );
+	);
 
 	// Whether or not to put brackets around the whole board list
 	$config['boardlist_wrap_bracket'] = false;
@@ -1123,7 +1126,7 @@ $config['filters'][] = array(
 
 /*
  * ====================
- *  Javascript
+ *  Javascript/
  * ====================
  */
 	
@@ -1164,7 +1167,7 @@ $config['filters'][] = array(
  */
 
 	// Enable embedding (see below).
-	$config['enable_embedding'] = false;
+	$config['enable_embedding'] = true;
 
 	// Custom embedding (YouTube, vimeo, etc.)
 	// It's very important that you match the entire input (with ^ and $) or things will not work correctly.

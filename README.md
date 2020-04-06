@@ -21,6 +21,8 @@ The git log of this project is somewhat messy due to a lack of understanding on 
 Instead of a long list of instalation instructions consult the vichan wiki and readme. The instalation and setup procedures are identical. What this documentation will provide is an explanation on what has been added to the software since the git log is pretty unclear. It makes use of features from NPFChan and my own to give use cases centered around users having control and information. Though the intent of democratic imageboard usage was has not yet been met, it offers the majority a greater controll over what happens should you chose to enable these features.
 <br/><br/>
 Kissu has not been tested for upgrades off of NPFChan or Vichan. I have no affiliation with the two parties and am simply using their code as per the lisence agreement.
+### Experimental UI
+This Version of kissu uses an experimental react UI. I'm not sure if I recomend using it at this point though.
 ### Polling
 Orig. Kissu adds the ability for users to set up polling boards. These are an aditional board/thread type that creates polling threads with questions, keeping track of responses, and outputting them through the charts.js Library
 ### Captchouli and Filters

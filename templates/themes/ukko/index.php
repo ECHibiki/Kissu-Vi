@@ -51,7 +51,7 @@
 	{% endif %}
 	</div>
 {% if config.banner_ads %}
-	{% include 'banner.template' %}
+	{% include 'banner.html' %}
 {% endif %}
 	</div>
 	</div>

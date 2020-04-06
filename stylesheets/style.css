@@ -39,8 +39,8 @@
 	position:relative;
 }
 
-.intro{
-	/* display: inline-block; Why???*/
+.post-contents .intro{
+	display: inline-block;
 }
 
 /* http://kissu.moe/b/res/198.html#q290 */
@@ -331,7 +331,7 @@ input.delete {
 }
 
 .intro a {
-  margin-left: 8px;
+  margin-left: 0px;
 }
 
 div.delete {
@@ -345,7 +345,7 @@ div.post.reply p {
 div.post.reply div.body {
   margin-left: 1.8em;
   margin-top: 0.1em;
-  padding-right: 3em;
+  padding-right: 0em;
   padding-bottom: 0.3em;
 }
 
@@ -382,7 +382,7 @@ span.quote {
   color: #789922;
 }
 
-span.omitted {
+.omitted {
   display: block;
   margin-top: 1em;
 }
@@ -1169,7 +1169,6 @@ div.boardlist {
 }
 div.boardlist.bottom {
 	margin-top: 12px;
-	clear: both;
 }
 div.boardlist a {
 	text-decoration: none;
@@ -1440,6 +1439,68 @@ div.mix {
 .captchouli{
 	height:35.5em;
 	width: 95%;
+}
+
+.user{
+	padding-right: 0.8em;
+}
+
+.reply .image-container,.image-container-thumb,.audio-container,.audio-container-thumb,.video-container,.video-container-thumb{
+	float:left
+}
+
+.reply .post-contents{
+	float:right;
+	display:contents;
+}
+
+#updater{
+	padding-left:1em;
+}
+
+.nav-links{float:left}
+.options-container{float:right}
+
+.admin{
+	color:red !important;
+	font-weight:bold
+}
+
+.mod{
+	color:#dd00da !important;
+	font-weight:bold
+}
+
+#options-menu{
+	background-color:#cecece;
+	display:inline-block;
+	color:black;
+	position:fixed;
+	left:50%;
+
+}
+
+#option-input-container{
+	padding: 0 0.4em
+}
+
+.handle{ 
+	width:100%; 
+	height:20px;
+	background-color:white;
+	border:1px solid black;
+	text-align: center;
+}
+
+.close-options{
+	color:red;
+	cursor: pointer;
+	float: right;
+	padding-right:0.5em;
+}
+
+.user-mod-container{
+	float:right;
 }
 
 @media(max-width: 700px){

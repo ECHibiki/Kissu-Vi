@@ -57,6 +57,7 @@ $(document).ready(function(){
 				thread_container.find(fields_to_hide).hide();
 				
 				var hidden_div = thread_container.find('div.post.op > p.intro').clone();
+				if(hidden_div != undefined && hidden_div.html() != undefined){
 				hidden_div.addClass('thread-hidden');
 				hidden_div.find('a[href]:not([href$=".html"]),input').remove();
 				hidden_div.html(hidden_div.html().replace(' [] ', ' '));
@@ -74,6 +75,7 @@ $(document).ready(function(){
 					});
 				
 				hidden_div.insertAfter(thread_container.find(':not(h2,h2 *):first'));
+				}
 			});
 		if (hidden_data[board][id])
 			thread_container.find('.hide-thread-link').click();

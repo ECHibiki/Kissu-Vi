@@ -211,7 +211,7 @@ function init_stylechooser() {
 		newElement.appendChild(style);
 	}	
 	
-	document.getElementsByClassName('boardlist')[0].insertBefore(newElement, document.getElementsByTagName('body')[0].lastChild.nextSibling);
+ document.getElementById('lowercontents').insertBefore(newElement, document.getElementsByTagName('body')[0].lastChild.nextSibling);
 }
 
 function get_cookie(cookie_name) {
@@ -247,8 +247,9 @@ function highlightReply(id, evt) {
             left.pop();
             right = window.location.href.split("/");
             right.pop();
-            return JSON.stringify(left) != JSON.stringify(right); // evt.target.href.split("/").pop().split(".").pop() == window.location.href.split("/").pop().split(".").pop();
+            return true //JSON.stringify(left) != JSON.stringify(right); // evt.target.href.split("/").pop().split(".").pop() == window.location.href.split("/").pop().split(".").pop();
         }
+	return true;
 }
 
 function generatePassword() {
@@ -274,16 +275,20 @@ function pollSubmit(button){
 	var xhttp = new XMLHttpRequest();
 	xhttp.onreadystatechange = function(){
 		if(this.readyState == 4){
-		if(this.status != 200) 
-			alert("Poll Transfer Error");
-		else{ //use response data to build chart
-			displayPoll(this.responseText, button);
-		}
+			if(this.status != 200) 
+				alert("Poll Transfer Error");
+			else{ //use response data to build chart
+				displayPoll(this.responseText, button);
+			}
 		}
 	}	
 	xhttp.open("POST", "/poll.php");
 	xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-	var thread_id = button.parentNode.parentNode.parentNode.id.replace("op_", "");
+	var thread = head_element;
+	while(thread && thread != document && thread.id != undefined && thread.id.indexOf("op_") < 0){
+		thread = thread.parentNode;
+	}
+	var thread_id = thread.id.replace("op_", "");
 	xhttp.send("respond_poll=1&response_json=" + json_answer + "&id=" + thread_id); 
 	return false;
 }
@@ -411,8 +416,13 @@ function displayPoll(response_text, reference_element){
 }
 
 function viewPoll(link){
-	var thread_id = link.parentNode.parentNode.parentNode.id.replace("op_", "");
-        var xhttp = new XMLHttpRequest();
+	
+	var thread = link;
+	while(thread && thread != document && thread.id != undefined && thread.id.indexOf("op_") < 0){
+		thread = thread.parentNode;
+	}
+	var thread_id = thread.id.replace("op_", "");
+	var xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function(){
                 if(this.readyState == 4){
 			if(this.status != 200) { //replace with error message where canvas would be
@@ -582,6 +592,7 @@ var script_settings = function(script_name) {
 
 
 function init() {
+	setTimeout(function(){
 	init_stylechooser();
 
 	$("#option_simplifier").change(function(e){
@@ -605,6 +616,7 @@ function init() {
 	if (window.location.hash.indexOf('q') != 1 && window.location.hash.substring(1))
 		highlightReply(window.location.hash.substring(1));
 	captchaSetup();
+	}, 2000);
 }
 
 var RecaptchaOptions = {
@@ -617,9 +629,17 @@ function onready(fnc) {
 }
 
 function ready() {
-	for (var i = 0; i < onready_callbacks.length; i++) {
-		onready_callbacks[i]();
-	}
+var m1 = true;
+	document.body.addEventListener("mount", function(){
+		if(m1){
+        for (var i = 0; i < onready_callbacks.length; i++) {
+                onready_callbacks[i]();
+        }
+
+m1=false;};
+	});
+
+
 }
 
 {% endraw %}

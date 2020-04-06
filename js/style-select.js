@@ -15,9 +15,13 @@
  */
 // var is_style_select = true;
 onready(function(){	
+	setTimeout(function(){
 	var stylesDiv = $('div.styles');
 	var stylesSelect = $('<select></select>');
 	
+console.log(stylesDiv);
+
+
 	var i = 1;
 	stylesDiv.children().each(function() {
 		var opt = $('<option></option>')
@@ -41,5 +45,6 @@ onready(function(){
 			.text(_(' '))
 			.append(stylesSelect)
 	);
+	}, 2500);
 });
 

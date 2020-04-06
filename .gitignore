@@ -1,5 +1,11 @@
+# For development
+/inc/instance-config.php
+
+#node
+/node_modules/*
 #boards
 /b/*
+/p/*
 /qa/*
 /xmas/*
 /lit/*
@@ -22,8 +28,8 @@
 /win/*
 
 #logs
-*.log
-*.txt
+/*.log
+/*.txt
 
 #gz
 *.gz
@@ -59,11 +65,8 @@ secrets.php
 /main.js
 
 
-# rss
-*.rss
-
 #sitemap
-sitemap.xml
+/sitemap.xml
 
 # templates cache
 /templates/cache

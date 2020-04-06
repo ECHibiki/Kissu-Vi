@@ -119,7 +119,7 @@
 			
 			$antibot = create_antibot($board['uri']);
 
-			file_write($config['dir']['home'] . $board_name . '/catalog.html', Element('themes/catalog/catalog.php', Array(
+			file_write($config['dir']['home'] . $board_name . '/catalog.html', Element('themes/catalog/catalog.html', Array(
 				'antibot' => $antibot,
 				'settings' => $settings,
 				'config' => $config,

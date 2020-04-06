@@ -4,17 +4,21 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes">
 		{% if config.meta_keywords %}<meta name="keywords" content="{{ config.meta_keywords }}">{% endif %}
 		{% if config.default_stylesheet.1 != '' %}<link rel="stylesheet" type="text/css" id="stylesheet" href="{{ config.uri_stylesheets }}{{ config.default_stylesheet.1 }}?0b2">{% endif %}
-		{% if config.font_awesome %}<link rel="stylesheet" href="{{ config.root }}{{ config.font_awesome_css }}">{% endif %}
+		{% if config.font_awesome %}<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">{% endif %}
 		{% if config.country_flags_condensed %}<link rel="stylesheet" href="{{ config.root }}{{ config.country_flags_condensed_css }}">{% endif %}
+		{% if config.js_ui %}
+			<script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+			<script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>		<script src="/js-ui/ui-bundle.js" type="text/javascript"></script>
+		{% endif %}
 		<script type="text/javascript">
 			var configRoot="{{ config.root }}";
 			var inMod = {% if mod %}true{% else %}false{% endif %};
 			var modRoot="{{ config.root }}"+(inMod ? "mod.php?/" : "");
 		</script>
 		{% if not nojavascript %}
-			<script type="text/javascript" src="{{ config.url_javascript }}?0b2"></script>
+			<script type="text/javascript" src="{{ config.url_javascript }}?0b3"></script>
 			{% if not config.additional_javascript_compile %}
-			{% for javascript in config.additional_javascript %}<script type="text/javascript" src="{{ config.additional_javascript_url }}{{ javascript }}?0b2"></script>{% endfor %}
+			{% for javascript in config.additional_javascript %}<script type="text/javascript" src="{{ config.additional_javascript_url }}{{ javascript }}?0b3"></script>{% endfor %}
 			{% endif %}
 		{% endif %}
 		{% if config.poll_board %}<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>{% endif %}

@@ -1,7 +1,7 @@
 <?php
 echo "<pre>";
 // Installation/upgrade file	
-define('VERSION', '6.0.1');
+define('VERSION', '6.1.0');
 require 'inc/functions.php';
 loadConfig();
 

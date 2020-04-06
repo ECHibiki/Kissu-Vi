@@ -20,6 +20,8 @@ h1 {
 	text-shadow: 5px 5px 10px black;
 }
 
+a {color: #CCCCCC; }
+
 div.title p {
 	font-size: 10px;
 }
@@ -76,10 +78,10 @@ div.post.reply div.body a:link:hover, div.post.reply div.body a:visited:hover {
 	color: #784bff;
 	text-shadow: rgb(12, 12, 12) 1px 1px 1px;
 }
-.intro a.sage, p.intro a.sage span.name, p.intro a.noko:hover, p.intro a.noko:hover span.name {
+.intro a.sage, div.intro a.sage span.name, div.intro a.noko:hover, p.intro a.noko:hover span.name {
 	color: #3df55e;
 }
-.intro a.repo, p.intro a.repo span.name, p.intro a.repo:hover, p.intro a.repo:hover span.name {
+.intro a.repo, div.intro a.repo span.name, div.intro a.repo:hover, p.intro a.repo:hover span.name {
 	color: #fb672a;
 	text-shadow: rgb(12, 12, 12) 0.1px 0.1px 0.1px;
 }
