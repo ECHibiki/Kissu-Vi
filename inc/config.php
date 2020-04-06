@@ -41,7 +41,7 @@
 	$config['blotter'] = &$config['global_message'];
 
         // flag for react to replace standard html template behaviour with dynamic ones.
-	$config['js_ui'] = true;
+	$config['js_ui'] = false;
 
 	// Automatically check if a newer version of Tinyboard is available when an administrator logs in.
 	$config['check_updates'] = false;
