@@ -66,14 +66,11 @@
 	}
 	input_container = this.parentNode.cloneNode(true);
 	
-
 	input_container.firstChild.nextElementSibling.id = 'color' + (1 + parseInt(input_container.firstChild.textContent.split(' ')[1].replace(':','')));
 	input_container.firstChild.nextElementSibling.name = input_container.firstChild.nextElementSibling.id;
-
 	
 	input_container.firstChild.nextElementSibling.nextElementSibling.id = 'pollopt' + (1 + parseInt(input_container.firstChild.textContent.split(' ')[1].replace(':','')));
 	input_container.firstChild.nextElementSibling.nextElementSibling.name = input_container.firstChild.nextElementSibling.nextElementSibling.id;
-	//document.getElementById('polldata').appendChild(input_container);
 	input_container.firstChild.textContent = 'Option ' + (1 + parseInt(input_container.firstChild.textContent.split(' ')[1].replace(':',''))) + ': '; 
 	document.getElementById('polldata').appendChild(input_container);
 
@@ -321,3 +318,4 @@ $('input[id=force_noko]').prop('checked', localStorage.AlwaysNoko == "true");
 		document.getElementById("pollform").style = "display:block";
 }
 {% endraw %}</script>
+
