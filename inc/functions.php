@@ -73,7 +73,7 @@ function loadConfig() {
 	}
 
 
-	if (isset($config['cache_config']) && 
+	if (isset($config['cache_config']) &&
 	    $config['cache_config'] &&
             $config = Cache::get('config_' . $boardsuffix ) ) {
 		$events = Cache::get('events_' . $boardsuffix );
@@ -92,7 +92,7 @@ function loadConfig() {
 	else {
 		$config = array();
 
-		reset_events();	
+		reset_events();
 
 		$arrays = array(
 			'db',
@@ -318,7 +318,7 @@ function loadConfig() {
 
 	if (is_array($config['anonymous']))
 		$config['anonymous'] = $config['anonymous'][array_rand($config['anonymous'])];
-	
+
 	if ($config['debug']) {
 		if (!isset($debug)) {
 			$debug = array(
@@ -358,7 +358,7 @@ function basic_error_function_because_the_other_isnt_loaded_yet($message, $prior
 		'<p class="c">This alternative error page is being displayed because the other couldn\'t be found or hasn\'t loaded yet.</p></body></html>');
 }
 
-function fatal_error_handler() { 
+function fatal_error_handler() {
 	if ($error = error_get_last()) {
 		if ($error['type'] == E_ERROR) {
 			if (function_exists('error')) {
@@ -399,7 +399,7 @@ function define_groups() {
 			define($group_name, $group_value, true);
 		}
 	}
-	
+
 	ksort($config['mod']['groups']);
 }
 
@@ -437,7 +437,7 @@ function rebuildThemes($action, $boardname = false) {
 		$config = $_config;
 		$board = $_board;
 
-		// Reload the locale	
+		// Reload the locale
 	        if ($config['locale'] != $current_locale) {
 	                $current_locale = $config['locale'];
 	                init_locale($config['locale']);
@@ -458,7 +458,7 @@ function rebuildThemes($action, $boardname = false) {
 	$config = $_config;
 	$board = $_board;
 
-	// Reload the locale	
+	// Reload the locale
 	if ($config['locale'] != $current_locale) {
 	        $current_locale = $config['locale'];
 	        init_locale($config['locale']);
@@ -473,7 +473,7 @@ function scrapePages($regex_pattern){
 
 	if($sites_string == '""'){
 		error("No sites in Table 'proxy-sites' list");
-	} 
+	}
 	set_time_limit(300);
 	if(preg_match("/Linux/", php_uname())){
 		return shell_exec("xvfb-run python3 " . $config['webscraper_path'] . " -u $sites_string -r \"$regex_pattern\" --raw --json");
@@ -654,7 +654,7 @@ function purge($uri) {
 	global $config, $debug;
 
 	// Fix for Unicode
-	$uri = rawurlencode($uri); 
+	$uri = rawurlencode($uri);
 
 	$noescape = "/!~*()+:";
 	$noescape = preg_split('//', $noescape);
@@ -771,7 +771,7 @@ function file_write($path, $data, $simple = false, $skip_purge = false) {
 
 function file_unlink($path, $gzip_if_possible=true) {
 	global $config, $debug;
-	
+
 	if ($config['debug']) {
 		if (!isset($debug['unlink']))
 			$debug['unlink'] = array();
@@ -779,7 +779,7 @@ function file_unlink($path, $gzip_if_possible=true) {
 	}
 
 	$ret = @unlink($path);
-		
+
 		// Conflicts with rrmdir
         if ($config['gzip_static'] && $gzip_if_possible) {
                 $gzpath = "$path.gz";
@@ -851,7 +851,7 @@ function listBoards($just_uri = false) {
 			$boards[] = $board;
 		}
 	}
- 
+
 	if ($config['cache']['enabled'])
 		cache::set($cache_name, $boards);
 
@@ -917,10 +917,10 @@ function displayBan($ban) {
 			$post = new Thread($ban['post'], null, false, false);
 		}
 	}
-	
+
 	$denied_appeals = array();
 	$pending_appeal = false;
-	
+
 	if ($config['ban_appeals']) {
 		$query = query("SELECT `time`, `denied` FROM ``ban_appeals`` WHERE `ban_id` = " . (int)$ban['id']) or error(db_error());
 		while ($ban_appeal = $query->fetch(PDO::FETCH_ASSOC)) {
@@ -931,7 +931,7 @@ function displayBan($ban) {
 			}
 		}
 	}
-	
+
 	// Show banned page and exit
 	die(
 		Element('page.html', array(
@@ -956,7 +956,7 @@ function checkBan($board = false) {
 	if (!isset($_SERVER['REMOTE_ADDR'])) {
 		// Server misconfiguration
 		return;
-	}		
+	}
 
 	if (event('check-ban', $board))
 		return true;
@@ -971,7 +971,7 @@ function checkBan($board = false) {
 
 	foreach ($ips as $ip) {
 		$bans = Bans::find($_SERVER['REMOTE_ADDR'], $board, $config['show_modname']);
-	
+
 		foreach ($bans as &$ban) {
 			if ($ban['expires'] && $ban['expires'] < time()) {
 				Bans::delete($ban['id']);
@@ -1000,20 +1000,20 @@ function checkBan($board = false) {
 		if (time() - $last_time_purged < $config['purge_bans'] )
 			return;
 	}
-	
+
 	Bans::purge();
-	
+
 	if ($config['cache']['enabled'])
 		cache::set('purged_bans_last', time());
 }
 
 function post_laterPost(&$post, &$thread, $numposts, &$noko, &$dropped_post, &$pdo){
-	
+
 		require_once 'inc/anti-bot.php';
 		require_once 'inc/bans.php';
 		require_once 'inc/image.php';
-	
-	
+
+
 	global $config, $board, $build_pages;
 	//POST IS DONE HERE
         $post['id'] = $id = post($post);
@@ -1059,23 +1059,23 @@ function post_laterPost(&$post, &$thread, $numposts, &$noko, &$dropped_post, &$p
 		nntp_publish($message, $msgid);
 	}
 
-	
+
 	insertFloodPost($post);
 
 	// Handle cyclical threads
 	if (!$post['op'] && isset($thread['cycle']) && $thread['cycle']) {
-				
+
 		// Query is a bit weird due to "This version of MariaDB doesn't yet support 'LIMIT & IN/ALL/ANY/SOME subquery'" (MariaDB Ver 15.1 Distrib 10.0.17-MariaDB, for Linux (x86_64))
 		$query = prepare(sprintf('DELETE FROM ``posts_%s`` WHERE `thread` = :thread AND `id` NOT IN (SELECT `id` FROM (SELECT `id` FROM ``posts_%s`` WHERE `thread` = :thread ORDER BY `id` DESC LIMIT :limit) i)', $board['uri'], $board['uri']));
 		$query->bindValue(':thread', $post['thread']);
 		$query->bindValue(':limit', $config['cycle_limit'], PDO::PARAM_INT);
 		$query->execute() or error(db_error($query));
 	}
-	
+
 	if (isset($post['antispam_hash'])) {
 		incrementSpamHash($post['antispam_hash']);
 	}
-	
+
 	if (isset($post['tracked_cites']) && !empty($post['tracked_cites'])) {
 		$insert_rows = array();
 		foreach ($post['tracked_cites'] as $cite) {
@@ -1085,11 +1085,11 @@ function post_laterPost(&$post, &$thread, $numposts, &$noko, &$dropped_post, &$p
 		}
 		query('INSERT INTO ``cites`` VALUES ' . implode(', ', $insert_rows)) or error(db_error());
 	}
-	
+
 	if (!$post['op'] && !preg_match('/sage/', strtolower($post['email'])) && !$thread['sage'] && ($config['reply_limit'] == 0 || $numposts['replies']+1 < $config['reply_limit'])) {
 		bumpThread($post['thread']);
 	}
-		
+
 	if (isset($_SERVER['HTTP_REFERER'])) {
 		// Tell Javascript that we posted successfully
 		if (isset($_COOKIE[$config['cookies']['js']]))
@@ -1101,9 +1101,9 @@ function post_laterPost(&$post, &$thread, $numposts, &$noko, &$dropped_post, &$p
 		// Encode and set cookie
 		setcookie($config['cookies']['js'], json_encode($js), 0, $config['cookies']['jail'] ? $config['cookies']['path'] : '/', null, false, false);
 	}
-	
+
 	$root = $post['mod'] ? $config['root'] . $config['file_mod'] . '?/' : $config['root'];
-	
+
 //TODO: Bonus add nonoko
 	if ($noko) {
 		$redirect = $root . $board['dir'] . $config['dir']['res'] .
@@ -1131,13 +1131,13 @@ function post_laterPost(&$post, &$thread, $numposts, &$noko, &$dropped_post, &$p
 			$redirect = $root . $board['dir'] . $config['file_index'];
 		}
 	}
-			   	
+
 	buildThread($post['op'] ? $id : $post['thread']);
 
 	if ($config['syslog'])
 		_syslog(LOG_INFO, 'New post: /' . $board['dir'] . $config['dir']['res'] .
 			link_for($post) . (!$post['op'] ? '#' . $id : ''));
-	
+
 	if (!$post['mod']) header('X-Associated-Content: "' . $redirect . '"');
 
 	if (!isset($_POST['json_response'])) {
@@ -1150,16 +1150,16 @@ function post_laterPost(&$post, &$thread, $numposts, &$noko, &$dropped_post, &$p
 			'id' => $id
 		));
 	}
-	
+
 	if ($config['try_smarter'] && $post['op'])
 		$build_pages = range(1, $config['max_pages']);
-	
+
 	if ($post['op'])
 		clean($id);
-	
+
 	event('post-after', $post);
 
-	
+
 	buildIndex();
 
 	// // We are already done, let's continue our heavy-lifting work in the background (if we run off FastCGI)
@@ -1170,7 +1170,7 @@ function post_laterPost(&$post, &$thread, $numposts, &$noko, &$dropped_post, &$p
 		rebuildThemes('post-thread', $board['uri']);
 	else
 		rebuildThemes('post', $board['uri']);
-	
+
 }
 
 function threadLocked($id) {
@@ -1225,7 +1225,7 @@ function threadExists($id) {
 
 function insertFloodPost(array $post) {
 	global $board;
-	
+
 	$query = prepare("INSERT INTO ``flood`` VALUES (NULL, :ip, :board, :time, :posthash, :filehash, :isreply)");
 	$query->bindValue(':ip', $_SERVER['REMOTE_ADDR']);
 	$query->bindValue(':board', $board['uri']);
@@ -1266,7 +1266,7 @@ function post(array $post) {
 	$query->bindValue(':body', $post['body']);
 	$query->bindValue(':body_nomarkup', $post['body_nomarkup']);
 	$query->bindValue(':time', isset($post['time']) ? $post['time'] : time(), PDO::PARAM_INT);
-	$query->bindValue(':password', $post['password']);		
+	$query->bindValue(':password', $post['password']);
 	$query->bindValue(':ip', isset($post['ip']) ? $post['ip'] : $_SERVER['REMOTE_ADDR']);
 
 	if ($post['op'] && $post['mod'] && isset($post['sticky']) && $post['sticky']) {
@@ -1425,7 +1425,7 @@ function deletePostKeepOrder($id, $error_if_doesnt_exist=true, $rebuild_after=tr
 		global $board, $config;
 	// Select post and replies (if thread) in one query
 	if($config["poll_board"])
-            //remove poll if exists, 
+            //remove poll if exists,
             Polling::removePoll($id);
 
 	$query = prepare(sprintf("SELECT `id`,`thread`,`files`,`slug` FROM ``posts_%s`` WHERE `id` = :id OR `thread` = :id", $board['uri']));
@@ -1440,7 +1440,7 @@ function deletePostKeepOrder($id, $error_if_doesnt_exist=true, $rebuild_after=tr
 	// Delete posts and maybe replies
 	while ($post = $query->fetch(PDO::FETCH_ASSOC)) {
 		event('delete', $post);
-		
+
 		if (!$post['thread']) {
 			// Delete thread HTML page
 			@file_unlink($board['dir'] . $config['dir']['res'] . link_for($post) );
@@ -1484,7 +1484,7 @@ function deletePostKeepOrder($id, $error_if_doesnt_exist=true, $rebuild_after=tr
 	$query = prepare("DELETE FROM ``cites`` WHERE (`target_board` = :board AND (`target` = " . implode(' OR `target` = ', $ids) . ")) OR (`board` = :board AND (`post` = " . implode(' OR `post` = ', $ids) . "))");
 	$query->bindValue(':board', $board['uri']);
 	$query->execute() or error(db_error($query));
-	
+
 	if (isset($rebuild) && $rebuild_after) {
 		buildThread($rebuild);
 		buildIndex();
@@ -1497,7 +1497,7 @@ function deletePost($id, $error_if_doesnt_exist=true, $rebuild_after=true, $stor
 	global $board, $config;
 
         if($config["poll_board"])
-            //remove poll if exists, 
+            //remove poll if exists,
             Polling::removePoll($id);
 
 	// Select post and replies (if thread) in one query
@@ -1516,7 +1516,7 @@ function deletePost($id, $error_if_doesnt_exist=true, $rebuild_after=true, $stor
 	// Delete posts and maybe replies
 	while ($post = $query->fetch(PDO::FETCH_ASSOC)) {
 		event('delete', $post);
-		
+
 		if (!$post['thread']) {
 			// Delete thread HTML page
 			file_unlink($board['dir'] . $config['dir']['res'] . link_for($post) );
@@ -1600,7 +1600,7 @@ function deletePost($id, $error_if_doesnt_exist=true, $rebuild_after=true, $stor
 	$query = prepare("DELETE FROM ``cites`` WHERE (`target_board` = :board AND (`target` = " . implode(' OR `target` = ', $ids) . ")) OR (`board` = :board AND (`post` = " . implode(' OR `post` = ', $ids) . "))");
 	$query->bindValue(':board', $board['uri']);
 	$query->execute() or error(db_error($query));
-	
+
 	if (isset($rebuild) && $rebuild_after) {
 		buildThread($rebuild);
 		buildIndex();
@@ -1637,7 +1637,7 @@ function clean($pid = false) {
 		$query = prepare(sprintf("SELECT `id` AS `thread_id`, (SELECT COUNT(`id`) FROM ``posts_%s`` WHERE `thread` = `thread_id`) AS `reply_count` FROM ``posts_%s`` WHERE `thread` IS NULL ORDER BY `sticky` DESC, `bump` DESC LIMIT :offset, 9001", $board['uri'], $board['uri']));
 		$query->bindValue(':offset', $offset, PDO::PARAM_INT);
 		$query->execute() or error(db_error($query));
-		
+
 		if ($config['early_404_staged']) {
 			$page = $config['early_404_page'];
 			$iter = 0;
@@ -1693,7 +1693,7 @@ function index($page, $mod=false, $brief = false) {
 		return false;
 
 	$threads = array();
-	
+
 	while ($th = $query->fetch(PDO::FETCH_ASSOC)) {
 		$thread = new Thread($th, $mod ? '?/' : $config['root'], $mod);
 
@@ -1744,14 +1744,14 @@ function index($page, $mod=false, $brief = false) {
 			$thread->omitted = $omitted['post_count'] - ($th['sticky'] ? $config['threads_preview_sticky'] : $config['threads_preview']);
 			$thread->omitted_images = $omitted['image_count'] - $num_images;
 		}
-		
+
 		$threads[] = $thread;
 
 		if (!$brief) {
 			$body .= $thread->build(true);
 		}
 	}
-	
+
 	if ($config['file_board']) {
 		$body = Element('fileboard.html', array('body' => $body, 'mod' => $mod));
 	}
@@ -1961,7 +1961,7 @@ function checkMute() {
 			// Not expired yet
 			error(sprintf($config['error']['youaremuted'], $mute['time'] + $mutetime - time()));
 		} else {
-			// Already expired	
+			// Already expired
 			return;
 		}
 	}
@@ -2084,7 +2084,7 @@ function buildIndex($global_api = "yes") {
 				$recent_no = intval($re['id']);
 			else
 				$recent_no = 0;
-			
+
 			$query = prepare(sprintf("SELECT COUNT(*) AS count FROM posts_%s WHERE email LIKE '%%sage%%' AND id > :boundry_id", $board['uri']));
 			$query->bindValue(':boundry_id', $json_posts["recent_post"], PDO::PARAM_INT);
 			$query->execute() or error(db_error($query));
@@ -2092,7 +2092,7 @@ function buildIndex($global_api = "yes") {
 				$sage_count = $json_posts["sage_count"] + intval($se['count']);
 			else
 				$sage_count = 0;
-			
+
 			$query = prepare(sprintf("SELECT COUNT(*) AS count FROM posts_%s WHERE files IS NOT NULL AND id > :boundry_id", $board['uri']));
 			$query->bindValue(':boundry_id', $json_posts["recent_post"], PDO::PARAM_INT);
 			$query->execute() or error(db_error($query));
@@ -2100,7 +2100,7 @@ function buildIndex($global_api = "yes") {
 				$file_count = $json_posts["file_count"] + intval($fe['count']);
 			else
 				$file_count = 0;
-				
+
 			$json = json_encode($api->translateCounts($recent_no, $sage_count, $file_count));
 			$jsonFilename = $board['dir'] . 'posts.json';
 			file_write($jsonFilename, $json);
@@ -2142,7 +2142,7 @@ function buildJavascript() {
 	}
 
 	if ($config['minify_js']) {
-		require_once 'inc/lib/minify/JSMin.php';		
+		require_once 'inc/lib/minify/JSMin.php';
 		$script = JSMin::minify($script);
 	}
 
@@ -2250,7 +2250,7 @@ function markup_url($matches) {
 		'rel' => 'nofollow',
 		'target' => '_blank',
 	);
-	
+
 	event('markup-url', $link);
 	$link = (array)$link;
 
@@ -2281,7 +2281,7 @@ function unicodify($body) {
 
 function extract_modifiers($body) {
 	$modifiers = array();
-	
+
 	if (preg_match_all('@<tinyboard ([\w\s]+)>(.*?)</tinyboard>@us', $body, $matches, PREG_SET_ORDER)) {
 		foreach ($matches as $match) {
 			if (preg_match('/^escape /', $match[1]))
@@ -2289,7 +2289,7 @@ function extract_modifiers($body) {
 			$modifiers[$match[1]] = html_entity_decode($match[2]);
 		}
 	}
-		
+
 	return $modifiers;
 }
 
@@ -2299,12 +2299,12 @@ function remove_modifiers($body) {
 
 function markup(&$body, $track_cites = false, $op = false) {
 	global $board, $config, $markup_urls;
-	
+
 	$modifiers = extract_modifiers($body);
-	
+
 	$body = preg_replace('@<tinyboard (?!escape )([\w\s]+)>(.+?)</tinyboard>@us', '', $body);
 	$body = preg_replace('@<(tinyboard) escape ([\w\s]+)>@i', '<$1 $2>', $body);
-	
+
 	if (isset($modifiers['raw html']) && $modifiers['raw html'] == '1') {
 		return array();
 	}
@@ -2345,7 +2345,7 @@ function markup(&$body, $track_cites = false, $op = false) {
 		if ($num_links > $config['max_links'])
 			error($config['error']['toomanylinks']);
 	}
-	
+
 	if ($config['markup_repair_tidy'])
 		$body = str_replace('  ', ' &nbsp;', $body);
 
@@ -2372,38 +2372,33 @@ function markup(&$body, $track_cites = false, $op = false) {
 
 		$skip_chars = 0;
 		$body_tmp = $body;
-		
+
 		$search_cites = array();
 		foreach ($cites as $matches) {
 			$search_cites[] = '`id` = ' . $matches[1][0];
 		}
 		$search_cites = array_unique($search_cites);
-		
+
 		$query = query(sprintf('SELECT `thread`, `id` FROM ``posts_%s`` WHERE ' .
 			implode(' OR ', $search_cites), $board['uri'])) or error(db_error());
-		
+
 		$cited_posts = array();
 		while ($cited = $query->fetch(PDO::FETCH_ASSOC)) {
 			$cited_posts[$cited['id']] = $cited['thread'] ? $cited['thread'] : false;
 		}
-				
+
 		foreach ($cites as $matches) {
 			$cite = $matches[1][0];
 
 			// preg_match_all is not multibyte-safe
-			// foreach ($matches as &$match) {
-				// $match[1] = mb_strlen(substr($body_tmp, 0, $match[1]));
-			// }
+			foreach ($matches as &$match) {
+				$match[1] = mb_strlen(substr($body_tmp, 0, $match[1]));
+			}
 			if (isset($cited_posts[$cite])) {
-				$op_str = "";
-				if(!$cited_posts[$cite]){
-					// disabled for 4chanx
-					// $op_str = "(op)";
-				}
 				$replacement = '<a onclick="return highlightReply(\''.$cite.'\', event);" href="' .
 					$config['root'] . $board['dir'] . $config['dir']['res'] .
 					link_for(array('id' => $cite, 'thread' => $cited_posts[$cite]),false,false,false, $remove_ext=$config['remove_ext']) . '#' . $cite . '">' .
-					'&gt;&gt;' . $cite . $op_str .
+					'&gt;&gt;' . $cite .
 					'</a>';
 
 				$body = mb_substr_replace($body, $replacement . $matches[2][0], $matches[0][1] + $skip_chars, mb_strlen($matches[0][0]));
@@ -2423,34 +2418,34 @@ function markup(&$body, $track_cites = false, $op = false) {
 
 		$skip_chars = 0;
 		$body_tmp = $body;
-		
+
 		if (isset($cited_posts)) {
 			// Carry found posts from local board >>X links
 			foreach ($cited_posts as $cite => $thread) {
 				$cited_posts[$cite] = $config['root'] . $board['dir'] . $config['dir']['res'] .
 					($thread ? $thread : $cite) . '.html#' . $cite;
 			}
-			
+
 			$cited_posts = array(
 				$board['uri'] => $cited_posts
 			);
 		} else
 			$cited_posts = array();
-		
+
 		$crossboard_indexes = array();
 		$search_cites_boards = array();
-		
+
 		foreach ($cites as $matches) {
 			$_board = $matches[2][0];
 			$cite = @$matches[3][0];
-			
+
 			if (!isset($search_cites_boards[$_board]))
 				$search_cites_boards[$_board] = array();
 			$search_cites_boards[$_board][] = $cite;
 		}
-		
+
 		$tmp_board = $board['uri'];
-		
+
 		foreach ($search_cites_boards as $_board => $search_cites) {
 			$clauses = array();
 			foreach ($search_cites as $cite) {
@@ -2459,27 +2454,27 @@ function markup(&$body, $track_cites = false, $op = false) {
 				$clauses[] = '`id` = ' . $cite;
 			}
 			$clauses = array_unique($clauses);
-			
+
 			if ($board['uri'] != $_board) {
 				if (!openBoard($_board))
 					continue; // Unknown board
 			}
-			
+
 			if (!empty($clauses)) {
 				$cited_posts[$_board] = array();
-				
+
 				$query = query(sprintf('SELECT `thread`, `id`, `slug` FROM ``posts_%s`` WHERE ' .
 					implode(' OR ', $clauses), $board['uri'])) or error(db_error());
-				
+
 				while ($cite = $query->fetch(PDO::FETCH_ASSOC)) {
 					$cited_posts[$_board][$cite['id']] = $config['root'] . $board['dir'] . $config['dir']['res'] .
 						link_for($cite,false,false,false, $remove_ext=$config['remove_ext']) . '#' . $cite['id'];
 				}
 			}
-			
+
 			$crossboard_indexes[$_board] = $config['remove_ext'] ?  ($config['root'] . $board['dir']): ($config['root'] . $board['dir'] . $config['file_index']);
 		}
-		
+
 		// Restore old board
 		if ($board['uri'] != $tmp_board)
 			openBoard($tmp_board);
@@ -2496,7 +2491,7 @@ function markup(&$body, $track_cites = false, $op = false) {
 			if ($cite) {
 				if (isset($cited_posts[$_board][$cite])) {
 					$link = $cited_posts[$_board][$cite];
-		                        
+
 					$replacement = '<a ' .
 						($_board == $board['uri'] ?
 							'onclick="return highlightReply(\''.$cite.'\', event);" '
@@ -2519,7 +2514,7 @@ function markup(&$body, $track_cites = false, $op = false) {
 			}
 		}
 	}
-	
+
 	$tracked_cites = array_unique($tracked_cites, SORT_REGULAR);
 
 	$body = preg_replace("/^\s*&gt;.*$/m", '<span class="quote">$0</span>', $body);
@@ -2568,7 +2563,7 @@ function markup(&$body, $track_cites = false, $op = false) {
 
 
 function archive_list_markup(&$body) {
-	
+
 	$body = str_replace("\r", '', $body);
 	$body = utf8tohtml($body);
 
@@ -2589,7 +2584,7 @@ function utf8tohtml($utf8) {
 }
 
 function ordutf8($string, &$offset) {
-	$code = ord(substr($string, $offset,1)); 
+	$code = ord(substr($string, $offset,1));
 	if ($code >= 128) { // otherwise 0xxxxxxx
 		if ($code < 224)
 			$bytesnumber = 2; // 110xxxxx
@@ -2654,7 +2649,7 @@ function buildThread($id, $return = false, $mod = false) {
 		$query->execute() or error(db_error($query));
 
 
-		
+
 		while ($post = $query->fetch(PDO::FETCH_ASSOC)) {
 			if (!isset($thread)) {
 				$thread = new Thread($post, $mod ? '?/' : $config['root'], $mod);
@@ -2666,10 +2661,10 @@ function buildThread($id, $return = false, $mod = false) {
 		// Check if any posts were found
 		if (!isset($thread))
 			error($config['error']['nonexistant']);
-	
+
 		$hasnoko50 = $thread->postCount() >= $config['noko50_min'];
 		$antibot = $mod || $return ? false : create_antibot($board['uri'], $id);
-			
+
 		$body = Element('thread.html', array(
 			'board' => $board,
 			'thread' => $thread,
@@ -2717,16 +2712,16 @@ function buildThread($id, $return = false, $mod = false) {
 function buildThread50($id, $return = false, $mod = false, $thread = null, $antibot = false) {
 	global $board, $config, $build_pages;
 	$id = round($id);
-	
+
 	if ($antibot)
 		$antibot->reset();
-		
+
 	if (!$thread) {
 		$query = prepare(sprintf("SELECT * FROM ``posts_%s`` WHERE (`thread` IS NULL AND `id` = :id) OR `thread` = :id ORDER BY `thread`,`id` DESC LIMIT :limit", $board['uri']));
 		$query->bindValue(':id', $id, PDO::PARAM_INT);
 		$query->bindValue(':limit', $config['noko50_count']+1, PDO::PARAM_INT);
 		$query->execute() or error(db_error($query));
-		
+
 		$num_images = 0;
 		while ($post = $query->fetch(PDO::FETCH_ASSOC)) {
 			if (!isset($thread)) {
@@ -2734,7 +2729,7 @@ function buildThread50($id, $return = false, $mod = false, $thread = null, $anti
 			} else {
 				if ($post['files'])
 					$num_images += $post['num_files'];
-					
+
 				$thread->add(new Post($post, $mod ? '?/' : $config['root'], $mod));
 			}
 		}
@@ -2749,10 +2744,10 @@ function buildThread50($id, $return = false, $mod = false, $thread = null, $anti
 						  SELECT SUM(`num_files`) FROM ``posts_%s`` WHERE `files` IS NOT NULL AND `thread` = :thread", $board['uri'], $board['uri']));
 			$count->bindValue(':thread', $id, PDO::PARAM_INT);
 			$count->execute() or error(db_error($count));
-			
+
 			$c = $count->fetch();
 			$thread->omitted = $c['num'] - $config['noko50_count'];
-			
+
 			$c = $count->fetch();
 			$thread->omitted_images = $c['num'] - $num_images;
 		}
@@ -2765,13 +2760,13 @@ function buildThread50($id, $return = false, $mod = false, $thread = null, $anti
 		$thread->omitted += count($allPosts) - count($thread->posts);
 		foreach ($allPosts as $index => $post) {
 			if ($index == count($allPosts)-count($thread->posts))
-				break;  
+				break;
 			if ($post->files)
 				$thread->omitted_images += $post->num_files;
 		}
 	}
 
-	$hasnoko50 = $thread->postCount() >= $config['noko50_min'];		
+	$hasnoko50 = $thread->postCount() >= $config['noko50_min'];
 
 	$body = Element('thread.html', array(
 		'board' => $board,
@@ -2785,7 +2780,7 @@ function buildThread50($id, $return = false, $mod = false, $thread = null, $anti
 		'antibot' => $mod ? false : ($antibot ? $antibot : create_antibot($board['uri'], $id)),
 		'boardlist' => createBoardlist($mod),
 		'return' => ($mod ? '?' . $board['url'] . $config['file_index'] : $config['root'] . $board['dir'] . $config['file_index'])
-	));	
+	));
 
 	if ($return) {
 		return $body;
@@ -2864,7 +2859,7 @@ function hcf($a, $b){
 		$b = $a-$b;
 		$a = $a-$b;
 	}
-	if ($b==(round($b/$a))*$a) 
+	if ($b==(round($b/$a))*$a)
 		$gcd=$a;
 	else {
 		for ($i=round($a/2);$i;$i--) {
@@ -2980,7 +2975,7 @@ function DNS($host) {
 
 function shell_exec_error($command, $suppress_stdout = false) {
 	global $config, $debug;
-	
+
 	if ($config['debug'])
 		$start = microtime(true);
 
@@ -3254,7 +3249,7 @@ function json_scrambler($id_name, $append_extention = false)
 			return sprintf('%d.json', $id_name);
 		return $id_name;
 	}
-	
+
 	$hash = crypt($board['uri'] . $id_name, "$2y$05$" . $config['json_scrambler']['salt'] . "$");
 	if($append_extention)
 		return str_replace(array("/", "."), "_", substr($hash, 29)) . ".json";
