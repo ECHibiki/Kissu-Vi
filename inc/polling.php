@@ -1,8 +1,8 @@
-<?php 
+<?php
 	class Polling{
 		//remove certain id from poll sql table
 		static function removePoll($id){
-		       	global $board;        
+		       	global $board;
                         $query = prepare("DELETE FROM ``poll`` WHERE id=:id AND board=:board");
                         $query->bindValue(':id', $id);
                         $query->bindValue(':board', $board['uri']);
@@ -10,7 +10,7 @@
 		}
 		//return nothing but add poll to sql table
 		static function addPoll($poll_json, $id, &$pdo){
-			global $board;        
+			global $board;
 			$poll_obj = json_decode($poll_json, true);
         		$query = prepare("INSERT INTO ``poll`` VALUES (:id, :board, :questionaire, :multichoice, :post_count, :expires, :creation, :colors)");
         		$query->bindValue(':id', $id);
@@ -18,7 +18,7 @@
        			$query->bindValue(':questionaire', json_encode($poll_obj['options']));
        			$query->bindValue(':multichoice', $poll_obj['multisel'] == 'on' ? 1 : 0);
 			$query->bindValue(':post_count', $poll_obj['postthresh']);
-        		$query->bindValue(':expires', intval($poll_obj['lifespan']) * 60 * 60 + time());
+        		$query->bindValue(':expires', intval($poll_obj['lifespan']) * 60 * 60 * 24 + time());
        			$query->bindValue(':creation', time());
        			$query->bindValue(':colors', json_encode($poll_obj['colors']));
 	       		$query->execute() or error(db_error($query));
@@ -33,7 +33,7 @@
 				return "No options selected";
 			}
 
-			// check if response is not applicable(multichoice where not allowed, bad indexing etc.)	
+			// check if response is not applicable(multichoice where not allowed, bad indexing etc.)
                         $query = prepare("SELECT * FROM ``poll`` WHERE id=:id AND board=:board");
                         $query->bindValue(':id', $id);
                         $query->bindValue(':board', $board);
@@ -64,7 +64,7 @@
 				$query->execute() or error(db_error($query));
 	                        $count = $query->fetchAll(PDO::FETCH_ASSOC)[0]["COUNT(*)"];
 				$post_count += intval($count);
-				if($post_count > $post_threashold) 
+				if($post_count > $post_threashold)
 					break;
 			}
 			if($post_count < $post_threashold){
@@ -82,9 +82,9 @@
                         $query->bindValue(':response', $response_json);
                         $query->execute() or error(db_error($query));
 		    }
-			
+
 		}
-	
+
 		static function getPollInfo($id){
 			// get all responses to poll id
 			$board = explode("/",$_SERVER['HTTP_REFERER'])[3];
@@ -93,8 +93,8 @@
                         $query->bindValue(':board', $board);
                         $query->execute() or error(db_error($query));
 			$all_responses = $query->fetchAll(PDO::FETCH_ASSOC);
-			
-			// create array based on possible answers			
+
+			// create array based on possible answers
 			$query = prepare("SELECT * FROM ``poll`` WHERE id=:id AND board=:board");
 			$query->bindValue(':id', $id);
 			$query->bindValue(':board', $board);
@@ -107,7 +107,7 @@
 			$question_arr = array();
 			foreach($questions as $index=>$question)
 				$question_arr[$index][$question] = 0;
-		
+
 
 			// tally up each response to answer
 			foreach($all_responses as $single_response){
@@ -134,14 +134,14 @@
 				foreach($post as $key => $value){
 						if(preg_match('/^pollopt\d+/', $key)){
 							array_push($poll_obj->options, $value);
-						}					
+						}
 						if(preg_match('/^color\d+/', $key)){
 							array_push($poll_obj->colors, $value);
 						}
 				 }
 				return json_encode($poll_obj);
 			}
-			else 
+			else
 				return null;
 		}
 		static function bodyAddablePoll($poll_json){

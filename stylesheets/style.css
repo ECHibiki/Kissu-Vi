@@ -14,6 +14,18 @@
   background-color: #5FC9F5;
 }
 
+.sjis{
+    font-family: Mona, "MS PGothic";
+    font-size: 16px;
+    line-height:1.05;
+    display: block;
+}
+@media (max-width: 38.125em){
+    .sjis{
+            font-size: 2vw;
+            display: block;
+    }
+}
 
 
 #style-select{
@@ -1145,10 +1157,10 @@ span.pln {
 	clear: both;
 	visibility: hidden;
 	overflow: hidden;
-	
+
 	font-size: 0px;
 	line-height: 0px;
-	
+
 	box-sizing: border-box;
 	border: none;
 	height: 0;
@@ -1163,7 +1175,7 @@ span.pln {
 /* Board List */
 div.boardlist {
 	margin-top: 3px;
-	
+
 	color: #89A;
 	font-size: 9pt;
 }
@@ -1484,8 +1496,8 @@ div.mix {
 	padding: 0 0.4em
 }
 
-.handle{ 
-	width:100%; 
+.handle{
+	width:100%;
 	height:20px;
 	background-color:white;
 	border:1px solid black;
