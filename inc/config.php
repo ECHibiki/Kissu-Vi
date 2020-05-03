@@ -2,7 +2,7 @@
 
 /*
  *  Copyright (c) 2010-2013 Tinyboard Development Group
- *  
+ *
  *  WARNING: This is a project-wide configuration file and is overwritten when upgrading to a newer
  *  version of Tinyboard. Please leave this file unchanged, or it will be a lot harder for you to upgrade.
  *  If you would like to make instance-specific changes to your own setup, please use instance-config.php.
@@ -21,7 +21,7 @@
  *
  *  Tinyboard documentation: https://web.archive.org/web/20121003095807/http://tinyboard.org/docs/?p=Main_Page
  *
- 
+
 /* AHEM */
  // config.php should be left in tact
  // make your modifications in a new file called instance-config.php and it will be used to replace most of the values here. Filters are an exception.
@@ -40,7 +40,7 @@
 	// $config['global_message'] = 'This is an important announcement!';
 	$config['blotter'] = &$config['global_message'];
 
-        // flag for react to replace standard html template behaviour with dynamic ones.
+        // EXPERIMENTAL: flag for react to replace standard html template behaviour with dynamic ones.
 	$config['js_ui'] = false;
 
 	// Automatically check if a newer version of Tinyboard is available when an administrator logs in.
@@ -80,7 +80,7 @@
 	// When executing most command-line tools (such as `convert` for ImageMagick image processing), add this
 	// to the environment path (seperated by :).
 	$config['shell_path'] = '/usr/local/bin';
-	
+
 
 
 /*
@@ -118,7 +118,7 @@
 
 	/*
 	 * On top of the static file caching system, you can enable the additional caching system which is
-	 * designed to minimize SQL queries and can significantly increase speed when posting or using the 
+	 * designed to minimize SQL queries and can significantly increase speed when posting or using the
 	 * moderator interface. APC is the recommended method of caching.
 	 *
 	 * https://web.archive.org/web/20121003095626/http://tinyboard.org/docs/?p=Config/Cache
@@ -205,33 +205,33 @@
 
 	// Prevents most Tor exit nodes from making posts. Recommended, as a lot of abuse comes from Tor because
 	// of the strong anonymity associated with it.
-	// Example: $config['dnsbl'][] = 'another.blacklist.net'; // 
-	// $config['dnsbl'][] = array('tor.dnsbl.sectoor.de', 1); //sectoor.de site is dead. the number stands for (an) ip adress(es) I guess. 
-	
+	// Example: $config['dnsbl'][] = 'another.blacklist.net'; //
+	// $config['dnsbl'][] = array('tor.dnsbl.sectoor.de', 1); //sectoor.de site is dead. the number stands for (an) ip adress(es) I guess.
+
 	// Replacement for sectoor.de
 	$config['dnsbl'][] = array('rbl.efnet.org', 4);
-	
+
 	// block banned from viewing site
 	$config['ban_block'] = false;
 
 	//search for proxies requires cron setup
 	$config["enable_proxy_scrape"] = false;
-	
+
 	// http://www.sorbs.net/using.shtml
 	// $config['dnsbl'][] = array('dnsbl.sorbs.net', array(2, 3, 4, 5, 6, 7, 8, 9));
 
 	// http://www.projecthoneypot.org/httpbl.php
 	// $config['dnsbl'][] = array('<your access key>.%.dnsbl.httpbl.org', function($ip) {
 	//	$octets = explode('.', $ip);
-	//	
+	//
 	//	// days since last activity
 	//	if ($octets[1] > 14)
 	//		return false;
-	//	
+	//
 	//	// "threat score" (http://www.projecthoneypot.org/threat_info.php)
 	//	if ($octets[2] < 5)
 	//		return false;
-	//	
+	//
 	//	return true;
 	// }, 'dnsbl.httpbl.org'); // hide our access key
 
@@ -267,7 +267,7 @@
 
 	// How soon after regeneration do hashes expire (in seconds)?
 	$config['spam']['hidden_inputs_expire'] = 60 * 60 * 3; // three hours
-	
+
 	// Whether to use Unicode characters in hidden input names and values.
 	$config['spam']['unicode'] = true;
 
@@ -318,24 +318,24 @@
 	$config['recaptcha'] = false;
 	// - currently not set up - Enable captchouli to make spam even harder.
 	$config['captchouli'] = false;
-	
-	// ReCaptcha flood bypass. 
+
+	// ReCaptcha flood bypass.
 	// Use to set a captcha for floods
 	// If both true defaults to recaptcha
-	$config['flood_recaptcha'] = false; 
-	// Captchouli flood bypass. 
+	$config['flood_recaptcha'] = false;
+	// Captchouli flood bypass.
 	// Use to set a captcha for floods
 	// If both true defaults to recaptcha
 	$config['flood_captchouli'] = false;
-	
+
 	//where to request captcha
 	$config['captchouli_addr'] = '127.0.0.1:8512/captcha';
-	
+
 	// Public and private key pair from https://www.google.com/recaptcha/admin/create
 	$config['recaptcha_public'] = '6LcXTcUSAAAAAKBxyFWIt2SO8jwx4W7wcSMRoN3f';
 	$config['recaptcha_private'] = '6LcXTcUSAAAAAOGVbVdhmEM1_SyRF4xTKe8jbzf_';
 
-	// Enable Custom Captcha you need to change a couple of settings 
+	// Enable Custom Captcha you need to change a couple of settings
 	// Read more at: /captcha/instructions.md
 	 $config['captcha'] = array();
 
@@ -343,7 +343,7 @@
 	$config['captcha']['enabled'] = false;
 
 	// New thread captcha
- 	// Require solving a captcha to post a thread. 
+ 	// Require solving a captcha to post a thread.
  	// Default off.
  	 $config['new_thread_capt'] = false;
 
@@ -354,7 +354,7 @@
 
 	// Custom captcha extra field (eg. charset)
 	 $config['captcha']['extra'] = 'abcdefghijklmnopqrstuvwxyz';
-	
+
 	// Ability to lock a board for normal users and still allow mods to post.  Could also be useful for making an archive board
 	// Do on a per board entry
 	$config['board_locked'] = false;
@@ -391,10 +391,10 @@
 	// Minimum time between each post on the board
 	$config['flood_board_active'] = false;
 	$config['flood_board_time'] = 60;
-	
+
 	// Time until posts held for captcha verification expire
 	$config['captcha_flood_hold_time'] = 121;
-	
+
 	// Decide the result of a flood detection
 	// possible: 'reject', 'ban' or 'captcha'
 	$config['flood_reject'] = 'reject';
@@ -432,7 +432,7 @@
 		'action' => $config['flood_captcha'],
 		'message' => &$config['error']['flood']['repeat']
 	);
-	
+
 	// Minimum time between each post on the board
 	$config['filters'][] = array(
 		'condition' => array(
@@ -444,10 +444,10 @@
 	);
 $config['filters'][] = array(
         'condition' => array(
-			'body' => '/apg\.de/', 
-			),                                       
-		  'action' => $config['flood_captcha'],    
-		  'message' => &$config['error']['spam']                 
+			'body' => '/apg\.de/',
+			),
+		  'action' => $config['flood_captcha'],
+		  'message' => &$config['error']['spam']
 		);
 
 
@@ -518,7 +518,7 @@ $config['filters'][] = array(
 	// 	),
 	// 	'action' => 'reject'
 	// );
-	
+
 	// Filter flood prevention conditions ("flood-match") depend on a table which contains a cache of recent
 	// posts across all boards. This table is automatically purged of older posts, determining the maximum
 	// "age" by looking at each filter. However, when determining the maximum age, Tinyboard does not look
@@ -544,8 +544,8 @@ $config['filters'][] = array(
 	$config['strip_superfluous_returns'] = true;
 	// Strip combining characters from Unicode strings (eg. "Zalgo").
 	$config['strip_combining_chars'] = true;
-	
-	// A regex pattern that referers must match. 
+
+	// A regex pattern that referers must match.
 	// Prevents. posts originating from fishy locations.
 	$config['referer_match'] = false;
 
@@ -574,7 +574,7 @@ $config['filters'][] = array(
 	$config['max_filename_display'] = 30;
 	// Swap file and unix location
 	$config['file_location_swap'] = true;
-	
+
 	// Allow users to delete their own posts?
 	$config['allow_delete'] = true;
 	// How long after posting should you have to wait before being able to delete that post? (In seconds.)
@@ -607,10 +607,10 @@ $config['filters'][] = array(
 	$config['markup_urls'] = true;
 
 	// Optional URL prefix for links (eg. "http://anonym.to/?").
-	$config['link_prefix'] = ''; 
+	$config['link_prefix'] = '';
 	// leave alias
 	$config['url_ads'] = &$config['link_prefix'];
-	
+
 	// Allow "uploading" images via URL as well. Users can enter the URL of the image and then Tinyboard will
 	// download it. Not usually recommended.
 	$config['allow_upload_by_url'] = false;
@@ -629,7 +629,7 @@ $config['filters'][] = array(
 	// as they are submitted and changes or censors particular words or phrases.
 
 	// For a normal string replacement:
-	// $config['wordfilters'][] = array('cat', 'dog');	
+	// $config['wordfilters'][] = array('cat', 'dog');
 	// Advanced raplcement (regular expressions):
 	// $config['wordfilters'][] = array('/ca[rt]/', 'dog', true); // 'true' means it's a regular expression
 
@@ -670,7 +670,7 @@ $config['filters'][] = array(
 
 	// Don't display user's email when it's not "sage"
 	$config['hide_email'] = false;
-	
+
 
 	// Attach country flags to posts.
 	$config['country_flags'] = false;
@@ -686,7 +686,7 @@ $config['filters'][] = array(
 	// that you will have to disable BOTH country_flags and contry_flags_condensed optimization (at least on a board
 	// where they are enabled).
 	$config['user_flag'] = false;
-	
+
 	// List of user_flag the user can choose. Flags must be placed in the directory set by $config['uri_flags']
 	$config['user_flags'] = array();
 	/* example: 
@@ -703,7 +703,7 @@ $config['filters'][] = array(
 
 	// Use semantic URLs for threads, like /b/res/12345/daily-programming-thread.html
 	$config['slugify'] = false;
-	
+
 	// Max size for slugs
 	$config['slug_max_size'] = 80;
 
@@ -744,9 +744,7 @@ $config['filters'][] = array(
  */
 
 	// "Wiki" markup syntax ($config['wiki_markup'] in pervious versions):
-	$config['markup'][] = array("/'''(.+?)'''/ims", "<strong>\$1</strong>");
 	$config['markup'][] = array("/\[b\](.+?)\[\/b\]/s", "<strong>\$1</strong>");
-	$config['markup'][] = array("/''(.+?)''/s", "<em>\$1</em>");
 	$config['markup'][] = array("/\[i\](.+?)\[\/i\]/s", "<em>\$1</em>");
 	$config['markup'][] = array("/\*\*(.+?)\*\*/s", "<span class=\"spoiler\">\$1</span>");
 	$config['markup'][] = array("/\[u\](.+?)\[\/u\]/s", "<u>\$1</u>");
@@ -754,14 +752,15 @@ $config['filters'][] = array(
 	$config['markup'][] = array("/\[spoilers\](.+?)\[\/spoilers\]/s", "<span class=\"spoiler\">\$1</span>");
 	$config['markup'][] = array("/==(.+?)==/s", "<span class=\"heading\">\$1</span>");
 	$config['markup'][] = array("/\[header\](.+?)\[\/header\]/s", "<span class=\"heading\">\$1</span>");
-	
+
 	// Markup from Nen
 	$config['markup'][] = array("/\[pink\](.+?)\[\/pink\]/s", "<span class=\"glowpink\">\$1</span>");
 	$config['markup'][] = array("/\[blue\](.+?)\[\/blue\]/s", "<span class=\"glowblue\">\$1</span>");
 	$config['markup'][] = array("/\[gold\](.+?)\[\/gold\]/s", "<span class=\"glowgold\">\$1</span>");
-        
+
 	//kissu markup
 	$config['markup'][] = array("/~~(.+?)~~/s", "<strike>\$1</strike>");
+	$config['markup'][] = array("/\[sjis\](.+?)\[\/sjis\]/is", "<span class=\"sjis\">\$1</span>");
 
 	// Code markup. This should be set to a regular expression, using tags you want to use. Examples:
 	// "/\[code\](.*?)\[\/code\]/is"
@@ -789,10 +788,10 @@ $config['filters'][] = array(
 	// $config['additional_javascript'][] = 'js/multi-image.js';
 	$config['max_images'] = 1;
 
-	// Method to use for determing the max filesize. 
+	// Method to use for determing the max filesize.
 	// "split" means that your max filesize is split between the images. For example, if your max filesize
-	// is 2MB, the filesizes of all files must add up to 2MB for it to work. 
-	// "each" means that each file can be 2MB, so if your max_images is 3, each post could contain 6MB of 
+	// is 2MB, the filesizes of all files must add up to 2MB for it to work.
+	// "each" means that each file can be 2MB, so if your max_images is 3, each post could contain 6MB of
 	// images. "split" is recommended.
 	$config['multiimage_method'] = 'split';
 
@@ -819,7 +818,7 @@ $config['filters'][] = array(
 	 *   'gd'		   PHP GD (default). Only handles the most basic image formats (GIF, JPEG, PNG).
 	 *				  GD is a prerequisite for Tinyboard no matter what method you choose.
 	 *
-	 *   'imagick'	  PHP's ImageMagick bindings. Fast and efficient, supporting many image formats. 
+	 *   'imagick'	  PHP's ImageMagick bindings. Fast and efficient, supporting many image formats.
 	 *				  A few minor bugs. http://pecl.php.net/package/imagick
 	 *
 	 *   'convert'	  The command line version of ImageMagick (`convert`). Fixes most of the bugs in
@@ -846,18 +845,18 @@ $config['filters'][] = array(
 	// Ignored when $config['redraw_image'] is true. This is also used to adjust the Orientation tag when
 	//  $config['strip_exif'] is false and $config['convert_manual_orient'] is true.
 	$config['use_exiftool'] = false;
-	
+
 	// Redraw the image to strip any excess data (commonly ZIP archives) WARNING: This might strip the
 	// animation of GIFs, depending on the chosen thumbnailing method. It also requires recompressing
 	// the image, so more processing power is required.
 	$config['redraw_image'] = false;
-	
+
 	// Automatically correct the orientation of JPEG files using -auto-orient in `convert`. This only works
 	// when `convert` or `gm` is selected for thumbnailing. Again, requires more processing power because
 	// this basically does the same thing as $config['redraw_image']. (If $config['redraw_image'] is enabled,
 	// this value doesn't matter as $config['redraw_image'] attempts to correct orientation too.)
 	$config['convert_auto_orient'] = false;
-	
+
 	// Is your version of ImageMagick or GraphicsMagick old? Older versions may not include the -auto-orient
 	// switch. This is a manual replacement for that switch. This is independent from the above switch;
 	// -auto-orrient is applied when thumbnailing too.
@@ -942,7 +941,7 @@ $config['filters'][] = array(
 	$config['image_identification_google'] = true;
 	// Anime/manga search engine.
 	$config['image_identification_iqdb'] = false;
-	
+
 	// Set this to true if you're using a BSD
 	$config['bsd_md5'] = false;
 
@@ -1129,7 +1128,7 @@ $config['filters'][] = array(
  *  Javascript/
  * ====================
  */
-	
+
 	// Additional Javascript files to include on board index and thread pages. See js/ for available scripts.
 	// $config['additional_javascript'][] = 'js/jquery.min.js';
 	// $config['additional_javascript'][] = 'js/inline-expanding.js';
@@ -1342,7 +1341,7 @@ $config['filters'][] = array(
 	$config['dir']['featured'] = 'featured/';
 
 
-	
+
 /*
 * ====================
 *  Archive settings
@@ -1370,7 +1369,7 @@ $config['filters'][] = array(
     	// Automatically send threads with thiese trips to Featured Archive
     	// $config['archive']['auto_feature_trips'] = array("!!securetrip", "!trip");
     	$config['archive']['auto_feature_trips'] = array();
-    																					
+
 
 	// For load balancing, having a seperate server (and domain/subdomain) for serving static content is
 	// possible. This can either be a directory or a URL. Defaults to $config['root'] . 'static/'.
@@ -1407,7 +1406,7 @@ $config['filters'][] = array(
 
 	// Website favicon.
 	// $config['url_favicon'] = '/favicon.gif';
-	
+
 	// Try not to build pages when we shouldn't have to.
 	$config['try_smarter'] = true;
 
@@ -1743,7 +1742,7 @@ $config['mod']['capcode'] = array(
 	// Create a PM (viewing mod usernames)
 	$config['mod']['create_pm'] = JANITOR;
 	// Read any PM, sent to or from anybody
-	$config['mod']['master_pm'] = ADMIN;	
+	$config['mod']['master_pm'] = ADMIN;
 	// Set websites to be scraped for proxies
 	$config['mod']['proxy_bans'] = ADMIN;
 	// Rebuild everything
@@ -1797,21 +1796,21 @@ $config['mod']['rebuild'] = BOT;
 		'convert_args',
 		'db>password',
 	);
-	
+
 	$config['mod']['config'][JANITOR] = array(
 		'!', // Allow editing ONLY the variables listed (in this case, nothing).
 	);
-	
+
 	$config['mod']['config'][MOD] = array(
 		'!', // Allow editing ONLY the variables listed (plus that in $config['mod']['config'][JANITOR]).
 		'global_message',
 	);
-	
+
 	// Example: Disallow ADMIN from editing (and viewing) $config['db']['password'].
 	// $config['mod']['config'][ADMIN] = array(
 	// 	'db>password',
 	// );
-	
+
 	// Example: Allow ADMIN to edit anything other than $config['db']
 	// (and $config['mod']['config'][DISABLED]).
 	// $config['mod']['config'][ADMIN] = array(
@@ -1823,7 +1822,7 @@ $config['mod']['rebuild'] = BOT;
 
 	// File board. Like 4chan /f/
 	$config['file_board'] = false;
-	
+
 	// NSFW board. Load a disclaimer for this board
 	$config['nsfw_board'] = false;
 
@@ -1856,7 +1855,7 @@ $config['mod']['rebuild'] = BOT;
 
 	// Limit of search results
 	$config['search']['search_limit'] = 100;
-		
+
 	// Boards for searching
 	//$config['search']['boards'] = array('a', 'b', 'c', 'd', 'e');
 
@@ -1877,7 +1876,7 @@ $config['mod']['rebuild'] = BOT;
 
 	// event_handler('post', function($post) {
 	// 	// do something else
-	// 	
+	//
 	// 	// return an error (reject post)
 	// 	return 'Sorry, you cannot post that!';
 	// });
@@ -2038,7 +2037,7 @@ $config['mod']['rebuild'] = BOT;
 
 
 // Json File Scrambler
-// Indicate if json filenames should be scrambled 
+// Indicate if json filenames should be scrambled
 $config['json_scrambler']['scramble'] = false;
 // Salt for hashing json filenames
 $config['json_scrambler']['salt'] = '0123456789012345678901';

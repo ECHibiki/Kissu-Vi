@@ -15,10 +15,10 @@
 
 (function() {
 	var settings = new script_settings('quick-reply');
-	
+
 	var do_css = function() {
 		$('#quick-reply-css').remove();
-		
+
 		// Find background of reply posts
 		var dummy_reply = $('<div class="post reply"></div>').appendTo($('body'));
 		var reply_background = dummy_reply.css('backgroundColor');
@@ -26,7 +26,7 @@
 		var reply_border_color = dummy_reply.css('borderColor');
 		var reply_border_width = dummy_reply.css('borderWidth');
 		dummy_reply.remove();
-		
+
 		$('<style type="text/css" id="quick-reply-css">\
 		#quick-reply {\
 			position: fixed;\
@@ -82,7 +82,7 @@
 			-moz-box-sizing: border-box;\
 		}\
 		#quick-reply textarea {\
-			width: 100%;\
+			/* width: 100%; */\
 			min-width: 100%;\
 			box-sizing: border-box;\
 			-webkit-box-sizing:border-box;\
@@ -118,12 +118,12 @@
 		}\
 		@media screen and (max-width: 400px) {\
 			#quick-reply {\
-				display: none !important;\
+				/* display: none !important; */\
 			}\
 		}\
 		</style>').appendTo($('head'));
 	};
-	
+
 	var show_quick_reply = function(target_id){
 
 if($('div.banner').length == 0){
@@ -135,50 +135,50 @@ else
 			var in_index = false;
 		if($('#quick-reply').length != 0)
 			return;
-		
+
 		do_css();
-		
+
 		var $postForm = $('form[name="post"]').clone();
-		
-		$postForm.clone();	
+
+		$postForm.clone();
 		$dummyStuff = $('<div class="nonsense"></div>').appendTo($postForm);
-		
+
 		$postForm.find('table tr').each(function() {
 			var $th = $(this).children('th:first');
-			var $td = $(this).children('td:first');		
+			var $td = $(this).children('td:first');
 			if ($th.length && $td.length) {
 				$td.attr('colspan', 2);
-	
+
 				if ($td.find('input[type="text"]').length) {
 					// Replace <th> with input placeholders
 					$td.find('input[type="text"]')
 						.removeAttr('size')
 						.attr('placeholder', $th.clone().children().remove().end().text());
 				}
-						
+
 				// Move anti-spam nonsense and remove <th>
 				$th.contents().filter(function() {
 					return this.nodeType == 3; // Node.TEXT_NODE
 				}).remove();
 				$th.contents().appendTo($dummyStuff);
 				$th.remove();
-						
+
 				if ($td.find('input[name="password"]').length) {
 					// Hide password field
 					$(this).hide();
 				}
-	
+
 				// Fix submit button
 				if ($td.find('input[type="submit"]').length) {
 					$td.removeAttr('colspan');
 					$('<td class="submit"></td>').append($td.find('input[type="submit"]')).insertAfter($td);
 				}
-	
+
 				// reCAPTCHA
 				if ($td.find('#recaptcha_widget_div').length) {
 					// Just show the image, and have it interact with the real form.
 					var $captchaimg = $td.find('#recaptcha_image img');
-					
+
 					$captchaimg
 						.removeAttr('id')
 						.removeAttr('style')
@@ -186,7 +186,7 @@ else
 						.click(function() {
 							$('#recaptcha_reload').click();
 						});
-					
+
 					// When we get a new captcha...
 					$('#recaptcha_response_field').focus(function() {
 						if ($captchaimg.attr('src') != $('#recaptcha_image img').attr('src')) {
@@ -195,13 +195,13 @@ else
 							$postForm.find('input[name="recaptcha_response_field"]').val('').focus();
 						}
 					});
-					
+
 					$postForm.submit(function() {
 						setTimeout(function() {
 							$('#recaptcha_reload').click();
 						}, 200);
 					});
-					
+
 					// Make a new row for the response text
 					var $newRow = $('<tr><td class="recaptcha-response" colspan="2"></td></tr>');
 					$newRow.children().first().append(
@@ -211,11 +211,11 @@ else
 						.removeAttr('id')
 						.addClass('recaptcha_response_field')
 						.attr('placeholder', $('#recaptcha_response_field').attr('placeholder'));
-					
+
 					$('#recaptcha_response_field').addClass('recaptcha_response_field')
-					
+
 					$td.replaceWith($('<td class="recaptcha" colspan="2"></td>').append($('<span></span>').append($captchaimg)));
-					
+
 					$newRow.insertAfter(this);
 				}
 
@@ -225,46 +225,46 @@ else
 						$file = $td.find('input[name="file"]');
 						$file.attr("style","width:90%");
 					}
-					
+
 					//captcha stuff
 					var $captcha_span = $td.find('span[name="captchasel"]');
 					var $caprow = $('<tr><td colspan="2"></td></tr>');
 					$captcha_span.clone().appendTo($caprow.find('td'));
 					$caprow.insertBefore(this);
-					
+
 					if ($td.find('input[name="file_url"]').length) {
 						$file_url = $td.find('input[name="file_url"]');
-						
+
 						//if (settings.get('show_remote', false)) {
 							// Make a new row for it
 							var $newRow = $('<tr><td colspan="2"></td></tr>');
-						
+
 							$file_url.clone().attr('placeholder', _('\
 			    Upload URL')).appendTo($newRow.find('td'));
-						
+
 							$newRow.insertAfter(this);
 						//}
 						$file_url.parent().remove();
 
-						
+
 						$td.find('label').remove();
 						$td.contents().filter(function() {
 							return this.nodeType == 3; // Node.TEXT_NODE
 						}).remove();
 						$td.find('input[name="file_url"]').removeAttr('id');
 					}
-					
+
 					if ($(this).find('input[name="spoiler"]').length) {
 						$td.removeAttr('colspan');
 					}
 				}
-				
-								
+
+
 				//captcha controls
 				if($td.find('input[name=captype]').length > 0){
-					
+
 				}
-							
+
 				// Disable embedding if configured so
 				// if (!settings.get('show_embed', false) && $td.find('input[name="embed"]').length) {
 					// $(this).remove();
@@ -279,7 +279,7 @@ else
 				if ($td.is('#upload_selection')) {
 					$(this).remove();
 				}
-				
+
 				// Remove mod controls, because it looks shit.
 				if ($td.find('input[type="checkbox"]').length) {
 					var tr = this;
@@ -297,18 +297,18 @@ else
 						}
 					});
 				}
-				
+
 				$td.find('small').hide();
 			}
 			if($td.find('[name="markup-hint"]').length){
 				$td.remove();
 			}
 		});
-				
+
 		$postForm.find('textarea[name="body"]').removeAttr('id').removeAttr('cols').attr('placeholder', _('Comment'));
-	
+
 		$postForm.find('textarea:not([name="body"]),input[type="hidden"]:not(.captcha_cookie)').removeAttr('id').appendTo($dummyStuff);
-	
+
 		$postForm.find('br').remove();
 		$postForm.find('table').prepend('<tr><th colspan="2">\
 			<span class="handle">\
@@ -316,12 +316,12 @@ else
 				' + _('Quick Reply') + '\
 			</span>\
 			</th></tr>');
-		
+
 		$postForm.attr('id', 'quick-reply');
-		
+
 		$postForm.appendTo($('body')).hide();
 		$origPostForm = $('form[name="post"]:first');
-		
+
 		// insert the thread that this post will be placed in and modify fields
 		if(in_index){
 			$("#quick-reply textarea").attr("id", "index-body");
@@ -353,7 +353,7 @@ else
 				$origPostForm.find('[name="' + $(this).attr('name') + '"]').val($(this).val());
 			});
 		}
-		if (typeof $postForm.draggable != 'undefined') {	
+		if (typeof $postForm.draggable != 'undefined') {
 			if (localStorage.quickReplyPosition) {
 				var offset = JSON.parse(localStorage.quickReplyPosition);
 				if (offset.top < 0)
@@ -375,24 +375,24 @@ else
 						right: $(window).width() - $(this).offset().left - $(this).width(),
 					};
 					localStorage.quickReplyPosition = JSON.stringify(offset);
-					
+
 					$postForm.css('right', offset.right).css('top', offset.top).css('left', 'auto');
 				}
 			});
 			$postForm.find('th .handle').css('cursor', 'move');
 		}
-		
+
 		$postForm.find('th .close-btn').click(function() {
 			$origPostForm.find('textarea[name="body"]').attr('id', 'body');
 			$postForm.remove();
 			floating_link();
 		});
-		
+
 		// Fix bug when table gets too big for form. Shouldn't exist, but crappy CSS etc.
 		$postForm.show();
 		$postForm.width($postForm.find('table').width());
 		$postForm.hide();
-		
+
 		$(window).trigger('quick-reply');
 		$(window).ready(function() {
 			if (!in_index && settings.get('hide_at_top', true)) {
@@ -407,7 +407,7 @@ else
 			} else {
 				$postForm.show();
 			}
-			
+
 			$(window).on('stylesheet', function() {
 				do_css();
 				if ($('link#stylesheet').attr('href')) {
@@ -431,7 +431,7 @@ else
 					highlightReply(id);
 					$(document).scrollTop($('#' + id).offset().top);
 				}
-				
+
 				// Honestly, I'm not sure why we need setTimeout() here, but it seems to work.
 				// Same for the "tmp" variable stuff you see inside here:
 				setTimeout(function() {
@@ -441,7 +441,7 @@ else
 			});
 		}
 	});
-	
+
 	var floating_link = function() {
 		if (!settings.get('floating_link', false))
 			return;
@@ -450,12 +450,12 @@ else
 				show_quick_reply();
 				$(this).remove();
 			}).appendTo($('body'));
-		
+
 		$(window).on('quick-reply', function() {
 			$('.quick-reply-btn').remove();
 		});
 	};
-	
+
 	if (settings.get('floating_link', false)) {
 		$(window).ready(function() {
 			if($('div.banner').length == 0)
@@ -470,12 +470,12 @@ else
 				text-decoration: none;\
 			}\
 			</style>').appendTo($('head'));
-			
+
 			floating_link();
-			
+
 			if (settings.get('hide_at_top', true)) {
 				$('.quick-reply-btn').hide();
-				
+
 				$(window).scroll(function() {
 					if ($(this).width() <= 400)
 						return;
