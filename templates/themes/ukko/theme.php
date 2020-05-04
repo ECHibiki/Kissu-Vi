@@ -1,6 +1,6 @@
 <?php
 	require 'info.php';
-	
+
 	function ukko_build($action, $settings) {
 		global $config;
 
@@ -14,19 +14,19 @@
 		$action = generation_strategy('sb_ukko', array());
 
 		if ($action == 'delete') {
-			file_unlink($settings['uri'] . '/index.php');
+			file_unlink($settings['uri'] . '/index.html');
 		}
 		elseif ($action == 'rebuild') {
-			file_write($settings['uri'] . '/index.php', $ukko->build());
+			file_write($settings['uri'] . '/index.html', $ukko->build());
 		}
 	}
-	
+
 	class ukko {
 		public $settings;
 		public function build($mod = false) {
 			global $config;
 			$boards = listBoards();
-			
+
 			$body = '';
 			$overflow = array();
 			$board = array(
@@ -53,32 +53,32 @@
 				} else {
 					$threads[$post['board']] += 1;
 				}
-	
-				if($count < $this->settings['thread_limit']) {				
-					openBoard($post['board']);			
+
+				if($count < $this->settings['thread_limit']) {
+					openBoard($post['board']);
 					$thread = new Thread($post, $mod ? '?/' : $config['root'], $mod);
 
 					$posts = prepare(sprintf("SELECT * FROM ``posts_%s`` WHERE `thread` = :id ORDER BY `id` DESC LIMIT :limit", $post['board']));
 					$posts->bindValue(':id', $post['id']);
 					$posts->bindValue(':limit', ($post['sticky'] ? $config['threads_preview_sticky'] : $config['threads_preview']), PDO::PARAM_INT);
 					$posts->execute() or error(db_error($posts));
-					
+
 					$num_images = 0;
 					while ($po = $posts->fetch()) {
 						if ($po['files'])
 							$num_images++;
-						
+
 						$thread->add(new Post($po, $mod ? '?/' : $config['root'], $mod));
-					
+
 					}
 					if ($posts->rowCount() == ($post['sticky'] ? $config['threads_preview_sticky'] : $config['threads_preview'])) {
 						$ct = prepare(sprintf("SELECT COUNT(`id`) as `num` FROM ``posts_%s`` WHERE `thread` = :thread UNION ALL SELECT COUNT(`id`) FROM ``posts_%s`` WHERE `files` IS NOT NULL AND `thread` = :thread", $post['board'], $post['board']));
 						$ct->bindValue(':thread', $post['id'], PDO::PARAM_INT);
 						$ct->execute() or error(db_error($count));
-						
+
 						$c = $ct->fetch();
 						$thread->omitted = $c['num'] - ($post['sticky'] ? $config['threads_preview_sticky'] : $config['threads_preview']);
-						
+
 						$c = $ct->fetch();
 						$thread->omitted_images = $c['num'] - $num_images;
 					}
@@ -101,16 +101,62 @@
 			$body .= '<script> var overflow = ' . json_encode($overflow) . '</script>';
 			$body .= '<script type="text/javascript" src="/'.$this->settings['uri'].'/ukko.js"></script>';
 
-			return Element('themes/ukko/index.php', array(
+			$this->ukko_api($boards);
+
+			return Element('themes/ukko/index.html', array(
 				'config' => $config,
 				'board' => $board,
 				'no_post_form' => true,
 				'body' => $body,
 				'mod' => $mod,
 				'boardlist' => createBoardlist($mod),
+				'boards' => $boards,
 			));
 		}
-		
+
+		function ukko_api($boards){
+
+$excluded = explode(' ', $this->settings['exclude']);
+
+			$query = 'SELECT SUM(`top`) FROM (';
+			foreach ($boards as &$_board) {
+				if (in_array($_board['uri'], $excluded))
+					continue;
+				$query .= sprintf("SELECT MAX(`id`) AS `top` FROM ``posts_%s`` UNION ALL ", $_board['uri']);
+			}
+			$query = preg_replace('/UNION ALL $/', ') AS `posts_all`', $query);
+			$query = query($query) or error(db_error());
+			$total_posts = number_format($query->fetchColumn());
+
+			$query = 'SELECT SUM(`top`) FROM (';
+			foreach ($boards as &$_board) {
+				if (in_array($_board['uri'], $excluded))
+					continue;
+				$query .= sprintf("SELECT MAX(`id`) AS `top` FROM ``posts_%s``  WHERE email = 'sage' UNION ALL ", $_board['uri']);
+			}
+			$query = preg_replace('/UNION ALL $/', ') AS `posts_all`', $query);
+			$query = query($query) or error(db_error());
+			$sage_count = number_format($query->fetchColumn());
+
+			$query = 'SELECT SUM(`top`) FROM (';
+			foreach ($boards as &$_board) {
+				if (in_array($_board['uri'], $excluded))
+					continue;
+				$query .= sprintf("SELECT MAX(`id`) AS `top` FROM ``posts_%s`` WHERE files is not null UNION ALL ", $_board['uri']);
+			}
+			$query = preg_replace('/UNION ALL $/', ') AS `posts_all`', $query);
+			$query = query($query) or error(db_error());
+			$file_count = number_format($query->fetchColumn());
+
+			var_dump($total_posts);
+			var_dump($sage_count);
+			var_dump($file_count);
+			echo $this->settings['uri'] . "/posts.json";
+			file_put_contents($this->settings['uri'] . "/posts.json",
+				json_encode(['recent_post'=>$total_posts, 'sage_count'=>$sage_count, 'file_count'=>$file_count]));
+			//{"recent_post":606,"sage_count":68,"file_count":126}
+		}
+
 	};
-	
+
 ?>

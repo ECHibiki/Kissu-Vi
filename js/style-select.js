@@ -6,7 +6,7 @@
  *
  * Released under the MIT license
  * Copyright (c) 2013 Michael Save <savetheinternet@tinyboard.org>
- * Copyright (c) 2013-2014 Marcin Łabanowski <marcin@6irc.net> 
+ * Copyright (c) 2013-2014 Marcin Łabanowski <marcin@6irc.net>
  *
  * Usage:
  *   $config['additional_javascript'][] = 'js/jquery.min.js';
@@ -14,13 +14,9 @@
  *
  */
 // var is_style_select = true;
-onready(function(){	
-	setTimeout(function(){
+onready(function(){
 	var stylesDiv = $('div.styles');
 	var stylesSelect = $('<select></select>');
-	
-console.log(stylesDiv);
-
 
 	var i = 1;
 	stylesDiv.children().each(function() {
@@ -33,18 +29,16 @@ console.log(stylesDiv);
 		$(this).attr('id', 'style-select-' + i);
 		i++;
 	});
-	
+
 	stylesSelect.change(function() {
 		$('#style-select-' + $(this).val()).click();
 	});
-	
+
 	stylesDiv.hide();
-	
+
 	stylesDiv.after(
 		$('<div id="style-select" style="float: right;margin-left:10px;"></div>')
 			.text(_(' '))
 			.append(stylesSelect)
 	);
-	}, 2500);
 });
-
