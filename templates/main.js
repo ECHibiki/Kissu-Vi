@@ -45,7 +45,7 @@ function ago($timestamp) {
         switch(true){
         case ($difference < 60) :
                 return "" + $difference + ' ' + _('second(s)');
-        case ($difference < 3600): //60*60 = 3600 
+        case ($difference < 3600): //60*60 = 3600
                 return "" + ($num = Math.round($difference/(60))) + ' ' + _('minute(s)');
         case ($difference <  86400): //60*60*24 = 86400
                 return "" + ($num = Math.round($difference/(3600))) + ' ' + _('hour(s)');
@@ -133,7 +133,7 @@ function changeStyle(styleName, link) {
 		localStorage.stylesheet = styleName;
 	{% endif %}
 	{% raw %}
-	
+
 	if (!document.getElementById('stylesheet')) {
 		var s = document.createElement('link');
 		s.rel = 'stylesheet';
@@ -142,21 +142,21 @@ function changeStyle(styleName, link) {
 		var x = document.getElementsByTagName('head')[0];
 		x.appendChild(s);
 	}
-	
+
 	document.getElementById('stylesheet').href = styles[styleName];
 	selectedstyle = styleName;
-	
+
 	if (document.getElementsByClassName('styles').length != 0) {
 		var styleLinks = document.getElementsByClassName('styles')[0].childNodes;
 		for (var i = 0; i < styleLinks.length; i++) {
 			styleLinks[i].className = '';
 		}
 	}
-	
+
 	if (link) {
 		link.className = 'selected';
 	}
-	
+
 	if (typeof $ != 'undefined')
 		$(window).trigger('stylesheet', styleName);
 }
@@ -165,11 +165,11 @@ function changeStyle(styleName, link) {
 {% endraw %}
 {% if config.stylesheets_board %}
 	{% raw %}
-	
+
 	if (!localStorage.board_stylesheets) {
 		localStorage.board_stylesheets = '{}';
 	}
-	
+
 	var stylesheet_choices = JSON.parse(localStorage.board_stylesheets);
 	if (board_name && stylesheet_choices[board_name]) {
 		for (var styleName in styles) {
@@ -197,7 +197,7 @@ function changeStyle(styleName, link) {
 function init_stylechooser() {
 	var newElement = document.createElement('div');
 	newElement.className = 'styles';
-	
+
 	for (styleName in styles) {
 		var style = document.createElement('a');
 		style.innerHTML = '[' + styleName + ']';
@@ -209,8 +209,8 @@ function init_stylechooser() {
 		}
 		style.href = 'javascript:void(0);';
 		newElement.appendChild(style);
-	}	
-	
+	}
+
  document.getElementById('lowercontents').insertBefore(newElement, document.getElementsByTagName('body')[0].lastChild.nextSibling);
 }
 
@@ -227,7 +227,7 @@ function highlightReply(id, evt) {
 		// don't highlight on middle click
 		return true;
 	}
-	
+
 	var divs = document.getElementsByTagName('div');
 	for (var i = 0; i < divs.length; i++)
 	{
@@ -240,7 +240,7 @@ function highlightReply(id, evt) {
 			post.className += ' highlighted';
 			window.location.hash = id;
 	}
-        if (evt == undefined) 
+        if (evt == undefined)
              return true;
         else{
             left = evt.target.href.split("/");
@@ -271,17 +271,17 @@ function pollSubmit(button){
 			input_arr.push(inputs[input_index].value);
 	}
 	json_answer = JSON.stringify(input_arr);
-	
+
 	var xhttp = new XMLHttpRequest();
 	xhttp.onreadystatechange = function(){
 		if(this.readyState == 4){
-			if(this.status != 200) 
+			if(this.status != 200)
 				alert("Poll Transfer Error");
 			else{ //use response data to build chart
 				displayPoll(this.responseText, button);
 			}
 		}
-	}	
+	}
 	xhttp.open("POST", "/poll.php");
 	xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 	var thread = head_element;
@@ -289,7 +289,7 @@ function pollSubmit(button){
 		thread = thread.parentNode;
 	}
 	var thread_id = thread.id.replace("op_", "");
-	xhttp.send("respond_poll=1&response_json=" + json_answer + "&id=" + thread_id); 
+	xhttp.send("respond_poll=1&response_json=" + json_answer + "&id=" + thread_id);
 	return false;
 }
 
@@ -314,7 +314,7 @@ function displayPoll(response_text, reference_element){
 			}
 			else{
 				var expiration_time = Math.round((parseInt(value) - Date.now()/1000) / 60 / 60);
-				expiration_time = expiration_time < 0 ? "Poll Finished" : expiration_time; 
+				expiration_time = expiration_time < 0 ? "Poll Finished" : expiration_time;
 			}
 			if(typeof expiration_time == "string"){}
 			else if(expiration_time / 24 < 1){
@@ -323,13 +323,13 @@ function displayPoll(response_text, reference_element){
 			else {
 			 expiration_time = Math.round(expiration_time / 24)
 				if(expiration_time == 1)
-					expiration_time += " Day"				
+					expiration_time += " Day"
 				else
 					expiration_time += " Days"
 			}
 			simple_string = simple_string + "<span>Expires in: " +  expiration_time +" </span>";
 		}else{
-			simple_string += "<span>" + key + " : " + value + "</span><br/>"; 
+			simple_string += "<span>" + key + " : " + value + "</span><br/>";
 			poll_labels.push(key);
 			poll_data.push(parseInt(value));
 			random_bg.push(json_arr['colors'][label]);
@@ -351,19 +351,19 @@ function displayPoll(response_text, reference_element){
                         br[i].style = "display:none";
                 }
 
-		reference_element.parentNode.getElementsByTagName("a")[0].style = "display:none";	
+		reference_element.parentNode.getElementsByTagName("a")[0].style = "display:none";
 		reference_element.parentNode.style = "display:flex;flex-direction:row;justify-content: safe;";
 		chart_text_div = document.createElement("div");
 		chart_text_div.innerHTML = simple_string;
 		chart_text_div.setAttribute("class","poll_data_text");
-	
+
 		chart_canvas_div = document.createElement("div");
 		chart_canvas_div.setAttribute('class', 'poll_container');
 		bar_chart_canvas = document.createElement("canvas");
 		pie_chart_canvas = document.createElement("canvas");
 
-		chart_canvas_div.appendChild(bar_chart_canvas);			
-		chart_canvas_div.appendChild(pie_chart_canvas);			
+		chart_canvas_div.appendChild(bar_chart_canvas);
+		chart_canvas_div.appendChild(pie_chart_canvas);
 		reference_element.parentNode.appendChild(chart_canvas_div);
 		reference_element.parentNode.appendChild(chart_text_div);
 
@@ -416,7 +416,7 @@ function displayPoll(response_text, reference_element){
 }
 
 function viewPoll(link){
-	
+
 	var thread = link;
 	while(thread && thread != document && thread.id != undefined && thread.id.indexOf("op_") < 0){
 		thread = thread.parentNode;
@@ -431,11 +431,11 @@ function viewPoll(link){
 			else{
 				displayPoll(this.responseText, link);
 			}
-		}	
-        }       
+		}
+        }
         xhttp.open("POST", "/poll.php");
         xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-        xhttp.send("query_poll=1&id=" + thread_id); 
+        xhttp.send("query_poll=1&id=" + thread_id);
         return false;
 }
 
@@ -451,10 +451,10 @@ function dopost(form) {
 	if (form.elements['email'] /*&& form.elements['email'].value != 'sage'*/) {
 		localStorage.email = form.elements['email'].value;
 	}
-	
+
 	saved[document.location] = form.elements['body'].value;
 	sessionStorage.body = JSON.stringify(saved);
-	
+
 	return form.elements['body'].value != "" || (form.elements['file'] && form.elements['file'].value != "") || (form.elements.file_url && form.elements['file_url'].value != "");
 }
 
@@ -476,7 +476,7 @@ function citeReply(id, with_link) {
 		var start = textarea.selectionStart;
 		var end = textarea.selectionEnd;
 		textarea.value = textarea.value.substring(0, start) + '>>' + id + '\n' + textarea.value.substring(end, textarea.value.length);
-		
+
 		textarea.selectionStart += ('>>' + id).length + 1;
 		textarea.selectionEnd = textarea.selectionStart;
 	} else {
@@ -508,21 +508,21 @@ function captchaSetup(){
 		$(".cap").each(function(index, el){
 			if(el != e.currentTarget){
 				el.click();
-			}	
+			}
 		});
 	});
 	$(".rec").click(function(e, handl){
 		if(localStorage.getItem("captcha") == "rec"){
 			return;
 		}
-		localStorage.setItem("captcha", "rec"); 
+		localStorage.setItem("captcha", "rec");
 		$(".rec").each(function(index, el){
 			if(el != e.currentTarget){
 				el.click();
 			}
 		});
 	});
-	
+
 	var captcha_val = localStorage.getItem("captcha");
 	if(captcha_val == null || captcha_val == "cap"){
 		var cap = $(".cap");
@@ -550,10 +550,10 @@ function rememberStuff() {
 		//	document.forms.post.elements['name'].value = localStorage.name;
 		if (localStorage.email && document.forms.post.elements['email'])
 			document.forms.post.elements['email'].value = localStorage.email;
-		
+
 		if (window.location.hash.indexOf('q') == 1)
 			citeReply(window.location.hash.substring(2), true);
-		
+
 		if (sessionStorage.body) {
 			var saved = JSON.parse(sessionStorage.body);
 			if (get_cookie('{% endraw %}{{ config.cookies.js }}{% raw %}')) {
@@ -563,14 +563,14 @@ function rememberStuff() {
 					saved[url] = null;
 				}
 				sessionStorage.body = JSON.stringify(saved);
-				
+
 				document.cookie = '{% endraw %}{{ config.cookies.js }}{% raw %}={};expires=0;path=/;';
 			}
 			if (saved[document.location]) {
 				document.forms.post.body.value = saved[document.location];
 			}
 		}
-		
+
 		if (localStorage.body) {
 			document.forms.post.body.value = localStorage.body;
 			localStorage.body = '';
@@ -592,14 +592,13 @@ var script_settings = function(script_name) {
 
 
 function init() {
-	setTimeout(function(){
 	init_stylechooser();
 
 	$("#option_simplifier").change(function(e){
 		$("#option_input").val($("#option_input").val() + " " + $( "#option_simplifier option:selected" ).val());
 	});
-	
-	{% endraw %}	
+
+	{% endraw %}
 	{% if config.allow_delete %}
 	if(document.forms.postcontrols != undefined){
 		if (document.forms.postcontrols.pswrd) {
@@ -612,11 +611,10 @@ function init() {
 	}
 	{% endif %}
 	{% raw %}
-	
+
 	if (window.location.hash.indexOf('q') != 1 && window.location.hash.substring(1))
 		highlightReply(window.location.hash.substring(1));
-	captchaSetup();
-	}, 2000);
+		captchaSetup();
 }
 
 var RecaptchaOptions = {
@@ -660,4 +658,3 @@ sc.innerHTML = 'var sc_project={{ config.statcounter_project }};var sc_invisible
 var s = document.getElementsByTagName('script')[0];
 s.parentNode.insertBefore(sc, s);
 {% endif %}
-
