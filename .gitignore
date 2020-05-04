@@ -2,6 +2,7 @@
 /node_modules/*
 #boards
 /b/*
+/c/*
 /p/*
 /qa/*
 /xmas/*
@@ -24,6 +25,11 @@
 /sgp/*
 /win/*
 
+#index
+/index.css
+/index.html
+/index.php
+
 #logs
 /*.log
 /*.txt
@@ -33,6 +39,7 @@
 
 #saves
 *.save*
+*.swp
 
 #ban files
 bans-all.html
@@ -78,10 +85,10 @@ Thumbs.db
 *.diff
 *.rej
 *.orig
+/tmp/cache/*
 *~
 
 # tmp filesystem
-/tmp/cache/*
 /tmp/locks/*
 !/tmp/cache/.gitkeep
 !/tmp/locks/.gitkeep
@@ -89,3 +96,7 @@ Thumbs.db
 #vichan custom
 favicon.ico
 /static/spoiler.png
+
+#ban lists
+ban-list.php
+bans.html
