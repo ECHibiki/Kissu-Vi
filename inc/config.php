@@ -212,9 +212,11 @@
 	$config['dnsbl'][] = array('rbl.efnet.org', 4);
 
 	// block banned from viewing site
+	// requires .php pages
 	$config['ban_block'] = false;
 
-	//search for proxies requires cron setup
+	//search for proxies
+  //requires cron setup to tools/scan_proxies.php
 	$config["enable_proxy_scrape"] = false;
 
 	// http://www.sorbs.net/using.shtml
@@ -1828,6 +1830,10 @@ $config['mod']['rebuild'] = BOT;
 
 	// Poll board
 	$config['poll_board'] = false;
+
+	// Score boards
+	$config['score_board'] = true;
+
 	// Thread tags. Set to false to disable
 	// Example: array('A' => 'Chinese cartoons', 'M' => 'Music', 'P' => 'Pornography');
 	$config['allowed_tags'] = false;

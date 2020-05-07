@@ -9,7 +9,34 @@
 	{% else %}
 		{% if config.file_location_swap %}
 
-			<p class="fileinfo">File: 
+			<p class="fileinfo">
+				{% if config.score_board %}
+				    <div class='score-counter'></div>&nbsp;
+						<script>
+							var board = "{{board.uri}}";
+							var sc=document.getElementsByClassName('score-counter');
+							var target_sc_{{post.id}}{{board.uri}} = sc[sc.length - 1];
+
+							var score_msgr_{{post.id}}{{board.uri}} = new XMLHttpRequest();
+							score_msgr_{{post.id}}{{board.uri}}.addEventListener("load", function(){
+								target_sc_{{post.id}}{{board.uri}}.textContent = this.responseText + "+1";
+							});
+							score_msgr_{{post.id}}{{board.uri}}.open('GET', '/score.php?get={{post.id}}');
+							score_msgr_{{post.id}}{{board.uri}}.send();
+
+							target_sc_{{post.id}}{{board.uri}}.addEventListener("click", function(){
+								var submit_msgr_{{post.id}}{{board.uri}} = new XMLHttpRequest();
+								submit_msgr_{{post.id}}{{board.uri}}.addEventListener('load', function(){
+									target_sc_{{post.id}}{{board.uri}}.textContent = this.responseText;
+									target_sc_{{post.id}}{{board.uri}}.class = 'score-submitted';
+								});
+								submit_msgr_{{post.id}}{{board.uri}}.open('POST', '/score.php?test=1');
+								submit_msgr_{{post.id}}{{board.uri}}.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');;
+								submit_msgr_{{post.id}}{{board.uri}}.send("submit={{post.id}}");
+							});
+						</script>
+				{% endif %}
+				File:
 			<a href="{{ config.uri_img }}{{ file.file }}">
 					{% if file.filename|length > config.max_filename_display %}
 						<span class="postfilename" title="{{ file.filename|e|bidi_cleanup }}">{{ file.filename|truncate_filename(config.max_filename_display)|e|bidi_cleanup }}</span>
@@ -19,7 +46,7 @@
 			</a> <span class="unimportant">
 			(
 				{% if file.thumb == 'spoiler' %}
-					{% trans %}Spoiler Image{% endtrans %}, 
+					{% trans %}Spoiler Image{% endtrans %},
 				{% endif %}
 				{{ file.size|filesize }}
 				{% if file.width and file.height %}
@@ -29,18 +56,18 @@
 					{% endif %}
 				{% endif %}
 				{% if config.show_filename and file.filename %}
-					<!--, 
+					<!--,
 					{{ file.file }} -->
 				{% endif %}
 			)
-		
+
 
 		{% else %}
-		
+
 			<p class="fileinfo">File: <a href="{{ config.uri_img }}{{ file.file }}">{{ file.file }}</a> <span class="unimportant">
 			(
 				{% if file.thumb == 'spoiler' %}
-					{% trans %}Spoiler Image{% endtrans %}, 
+					{% trans %}Spoiler Image{% endtrans %},
 				{% endif %}
 				{{ file.size|filesize }}
 				{% if file.width and file.height %}
@@ -50,7 +77,7 @@
 					{% endif %}
 				{% endif %}
 				{% if config.show_filename and file.filename %}
-					, 
+					,
 					{% if file.filename|length > config.max_filename_display %}
 						<span class="postfilename" title="{{ file.filename|e|bidi_cleanup }}">{{ file.filename|truncate_filename(config.max_filename_display)|e|bidi_cleanup }}</span>
 					{% else %}
@@ -58,7 +85,7 @@
 					{% endif %}
 				{% endif %}
 			)
-		
+
 		{% endif %}
 		{% include "post/image_identification.html" %}
 		{% include "post/file_controls.html" %}</span></p>

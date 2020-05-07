@@ -1,6 +1,8 @@
+/inc/instance-config.php
 #node
 /node_modules/*
 #boards
+/a/*
 /b/*
 /c/*
 /p/*
