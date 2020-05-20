@@ -989,6 +989,7 @@ if ($step == 0) {
 	$queries[] = Element('posts.sql', array('board' => 'b'));
 	$queries[] = Element('archive.sql', array('board' => 'b'));
 	$queries[] = Element('polling.sql', array());
+	$queries[] = Element('scoring.sql', array());
 	$queries[] = Element('captcha.sql', array());
 	$queries[] = Element('proxy.sql', array());
 

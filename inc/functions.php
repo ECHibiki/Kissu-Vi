@@ -23,6 +23,7 @@ require_once 'inc/lock.php';
 require_once 'inc/queue.php';
 require_once 'inc/polyfill.php';
 require_once 'inc/polling.php';
+require_once 'inc/scoring.php';
 require_once 'inc/archive.php';
 
 @include_once 'inc/lib/parsedown/Parsedown.php'; // fail silently, this isn't a critical piece of code
@@ -1023,6 +1024,10 @@ function post_laterPost(&$post, &$thread, $numposts, &$noko, &$dropped_post, &$p
 	// Assuming it's a new poll insert poll data here from new file polling.php
 		Polling::addPoll($post['poll_data'], $id, $pdo);
 	}
+	if($config['score_board'] && $post['num_files'] > 0){
+	// Assuming it's a new poll insert poll data here from new file polling.php
+		Scoring::create($id);
+	}
 
 	if ($dropped_post && $dropped_post['from_nntp']) {
 	        $query = prepare("INSERT INTO ``nntp_references`` (`board`, `id`, `message_id`, `message_id_digest`, `own`, `headers`) VALUES ".
@@ -1422,11 +1427,13 @@ function rebuildPost($id) {
 
 // Delete a post (reply or thread) and do not update bump order. original  8b46905ea9
 function deletePostKeepOrder($id, $error_if_doesnt_exist=true, $rebuild_after=true) {
-		global $board, $config;
+	global $board, $config;
 	// Select post and replies (if thread) in one query
-	if($config["poll_board"])
-            //remove poll if exists,
-            Polling::removePoll($id);
+	if($config["poll_board"]){
+      //remove if exists,
+      Polling::removePoll($id);
+			Scoring::delete($id);
+	}
 
 	$query = prepare(sprintf("SELECT `id`,`thread`,`files`,`slug` FROM ``posts_%s`` WHERE `id` = :id OR `thread` = :id", $board['uri']));
 	$query->bindValue(':id', $id, PDO::PARAM_INT);

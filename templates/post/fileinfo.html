@@ -13,7 +13,6 @@
 				{% if config.score_board %}
 				    <div class='score-counter'></div>&nbsp;
 						<script>
-							var board = "{{board.uri}}";
 							var sc=document.getElementsByClassName('score-counter');
 							var target_sc_{{post.id}}{{board.uri}} = sc[sc.length - 1];
 
@@ -21,7 +20,7 @@
 							score_msgr_{{post.id}}{{board.uri}}.addEventListener("load", function(){
 								target_sc_{{post.id}}{{board.uri}}.textContent = this.responseText + "+1";
 							});
-							score_msgr_{{post.id}}{{board.uri}}.open('GET', '/score.php?get={{post.id}}');
+							score_msgr_{{post.id}}{{board.uri}}.open('GET', '/score.php?id={{post.id}}&board={{board.uri}}');
 							score_msgr_{{post.id}}{{board.uri}}.send();
 
 							target_sc_{{post.id}}{{board.uri}}.addEventListener("click", function(){
@@ -30,9 +29,9 @@
 									target_sc_{{post.id}}{{board.uri}}.textContent = this.responseText;
 									target_sc_{{post.id}}{{board.uri}}.class = 'score-submitted';
 								});
-								submit_msgr_{{post.id}}{{board.uri}}.open('POST', '/score.php?test=1');
+								submit_msgr_{{post.id}}{{board.uri}}.open('POST', '/score.php');
 								submit_msgr_{{post.id}}{{board.uri}}.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');;
-								submit_msgr_{{post.id}}{{board.uri}}.send("submit={{post.id}}");
+								submit_msgr_{{post.id}}{{board.uri}}.send("id={{post.id}}&board={{board.uri}}");
 							});
 						</script>
 				{% endif %}

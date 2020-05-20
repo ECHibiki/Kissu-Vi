@@ -3,10 +3,10 @@
 		//remove certain id from poll sql table
 		static function removePoll($id){
 		       	global $board;
-                        $query = prepare("DELETE FROM ``poll`` WHERE id=:id AND board=:board");
-                        $query->bindValue(':id', $id);
-                        $query->bindValue(':board', $board['uri']);
-                        $query->execute() or error(db_error($query));
+            $query = prepare("DELETE FROM ``poll`` WHERE id=:id AND board=:board");
+            $query->bindValue(':id', $id);
+            $query->bindValue(':board', $board['uri']);
+            $query->execute() or error(db_error($query));
 		}
 		//return nothing but add poll to sql table
 		static function addPoll($poll_json, $id, &$pdo){
@@ -33,24 +33,24 @@
 			}
 
 			// check if response is not applicable(multichoice where not allowed, bad indexing etc.)
-                        $query = prepare("SELECT * FROM ``poll`` WHERE id=:id AND board=:board");
-                        $query->bindValue(':id', $id);
-                        $query->bindValue(':board', $board);
+			$query = prepare("SELECT * FROM ``poll`` WHERE id=:id AND board=:board");
+			$query->bindValue(':id', $id);
+			$query->bindValue(':board', $board);
 			$query->execute() or error(db_error($query));
 
-                        $poll_data = ($query->fetchAll(PDO::FETCH_ASSOC)[0]);
-                        $mul_choice = $poll_data['mutliple_choice'];
+      $poll_data = ($query->fetchAll(PDO::FETCH_ASSOC)[0]);
+      $mul_choice = $poll_data['mutliple_choice'];
 			if(count($response_arr) > 1 && $mul_choice == 0){
 				return "Multichoice on radio";
 			}
 
 			// check if ip already voted
-                        $query = prepare("SELECT responses FROM ``responders`` WHERE poll_id=:id AND board=:board AND ip=:ip");
-                        $query->bindValue(':id', $id);
-                        $query->bindValue(':board', $board);
-                        $query->bindValue(':ip', $_SERVER['REMOTE_ADDR']);
-                        $query->execute() or error(db_error($query));
-                        $all_responses = $query->fetchAll(PDO::FETCH_ASSOC);
+      $query = prepare("SELECT responses FROM ``responders`` WHERE poll_id=:id AND board=:board AND ip=:ip");
+      $query->bindValue(':id', $id);
+      $query->bindValue(':board', $board);
+      $query->bindValue(':ip', $_SERVER['REMOTE_ADDR']);
+      $query->execute() or error(db_error($query));
+      $all_responses = $query->fetchAll(PDO::FETCH_ASSOC);
 			if(!empty($all_responses)){
 				return "Already voted";
 			}
