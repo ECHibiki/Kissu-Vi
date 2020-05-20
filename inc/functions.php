@@ -1024,10 +1024,6 @@ function post_laterPost(&$post, &$thread, $numposts, &$noko, &$dropped_post, &$p
 	// Assuming it's a new poll insert poll data here from new file polling.php
 		Polling::addPoll($post['poll_data'], $id, $pdo);
 	}
-	if($config['score_board'] && $post['num_files'] > 0){
-	// Assuming it's a new poll insert poll data here from new file polling.php
-		Scoring::create($id);
-	}
 
 	if ($dropped_post && $dropped_post['from_nntp']) {
 	        $query = prepare("INSERT INTO ``nntp_references`` (`board`, `id`, `message_id`, `message_id_digest`, `own`, `headers`) VALUES ".
@@ -1432,8 +1428,8 @@ function deletePostKeepOrder($id, $error_if_doesnt_exist=true, $rebuild_after=tr
 	if($config["poll_board"]){
       //remove if exists,
       Polling::removePoll($id);
-			Scoring::delete($id);
 	}
+	Scoring::delete($id);
 
 	$query = prepare(sprintf("SELECT `id`,`thread`,`files`,`slug` FROM ``posts_%s`` WHERE `id` = :id OR `thread` = :id", $board['uri']));
 	$query->bindValue(':id', $id, PDO::PARAM_INT);
@@ -1503,10 +1499,11 @@ function deletePostKeepOrder($id, $error_if_doesnt_exist=true, $rebuild_after=tr
 function deletePost($id, $error_if_doesnt_exist=true, $rebuild_after=true, $store_image = false) {
 	global $board, $config;
 
-        if($config["poll_board"])
-            //remove poll if exists,
-            Polling::removePoll($id);
-
+  if($config["poll_board"]){
+      //remove poll if exists,
+      Polling::removePoll($id);
+	}
+	Scoring::delete($id);
 	// Select post and replies (if thread) in one query
 	$query = prepare(sprintf("SELECT `id`,`thread`,`files`,`slug` FROM ``posts_%s`` WHERE `id` = :id OR `thread` = :id", $board['uri']));
 	$query->bindValue(':id', $id, PDO::PARAM_INT);

@@ -15,24 +15,35 @@
 						<script>
 							var sc=document.getElementsByClassName('score-counter');
 							var target_sc_{{post.id}}{{board.uri}} = sc[sc.length - 1];
-
-							var score_msgr_{{post.id}}{{board.uri}} = new XMLHttpRequest();
-							score_msgr_{{post.id}}{{board.uri}}.addEventListener("load", function(){
-								target_sc_{{post.id}}{{board.uri}}.textContent = this.responseText + "+1";
-							});
-							score_msgr_{{post.id}}{{board.uri}}.open('GET', '/score.php?id={{post.id}}&board={{board.uri}}');
-							score_msgr_{{post.id}}{{board.uri}}.send();
-
-							target_sc_{{post.id}}{{board.uri}}.addEventListener("click", function(){
-								var submit_msgr_{{post.id}}{{board.uri}} = new XMLHttpRequest();
-								submit_msgr_{{post.id}}{{board.uri}}.addEventListener('load', function(){
+							if(localStorage.getItem("target_sc_{{post.id}}{{board.uri}}")){
+								var score_msgr_{{post.id}}{{board.uri}} = new XMLHttpRequest();
+								score_msgr_{{post.id}}{{board.uri}}.addEventListener("load", function(){
 									target_sc_{{post.id}}{{board.uri}}.textContent = this.responseText;
-									target_sc_{{post.id}}{{board.uri}}.class = 'score-submitted';
+									target_sc_{{post.id}}{{board.uri}}.className = 'score-submitted';
 								});
-								submit_msgr_{{post.id}}{{board.uri}}.open('POST', '/score.php');
-								submit_msgr_{{post.id}}{{board.uri}}.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');;
-								submit_msgr_{{post.id}}{{board.uri}}.send("id={{post.id}}&board={{board.uri}}");
-							});
+								score_msgr_{{post.id}}{{board.uri}}.open('GET', '/score.php?id={{post.id}}&board={{board.uri}}');
+								score_msgr_{{post.id}}{{board.uri}}.send();
+							}
+							else{
+								var score_msgr_{{post.id}}{{board.uri}} = new XMLHttpRequest();
+								score_msgr_{{post.id}}{{board.uri}}.addEventListener("load", function(){
+									target_sc_{{post.id}}{{board.uri}}.textContent = this.responseText + "+1";
+								});
+								score_msgr_{{post.id}}{{board.uri}}.open('GET', '/score.php?id={{post.id}}&board={{board.uri}}');
+								score_msgr_{{post.id}}{{board.uri}}.send();
+
+								target_sc_{{post.id}}{{board.uri}}.addEventListener("click", function(){
+									var submit_msgr_{{post.id}}{{board.uri}} = new XMLHttpRequest();
+									submit_msgr_{{post.id}}{{board.uri}}.addEventListener('load', function(){
+										target_sc_{{post.id}}{{board.uri}}.textContent = this.responseText;
+										target_sc_{{post.id}}{{board.uri}}.className = 'score-submitted';
+										localStorage.setItem("target_sc_{{post.id}}{{board.uri}}", "1");
+									});
+									submit_msgr_{{post.id}}{{board.uri}}.open('POST', '/score.php');
+									submit_msgr_{{post.id}}{{board.uri}}.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');;
+									submit_msgr_{{post.id}}{{board.uri}}.send("id={{post.id}}&board={{board.uri}}");
+								});
+							}
 						</script>
 				{% endif %}
 				File:
