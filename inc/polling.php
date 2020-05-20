@@ -23,8 +23,7 @@
        			$query->bindValue(':colors', json_encode($poll_obj['colors']));
 	       		$query->execute() or error(db_error($query));
 		}
-		static function respondToPoll($id, $response_json){
-			$board = explode("/",$_SERVER['HTTP_REFERER'])[3];
+		static function respondToPoll($id, $response_json, $board){
 
 			$response_arr = json_decode($response_json, true);
 
@@ -85,9 +84,8 @@
 
 		}
 
-		static function getPollInfo($id){
+		static function getPollInfo($id, $board ){
 			// get all responses to poll id
-			$board = explode("/",$_SERVER['HTTP_REFERER'])[3];
 			$query = prepare("SELECT responses FROM ``responders`` WHERE poll_id=:id AND board=:board");
                         $query->bindValue(':id', $id);
                         $query->bindValue(':board', $board);
