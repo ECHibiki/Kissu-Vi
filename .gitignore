@@ -52,6 +52,9 @@ bans-all.html
 /*/src
 /*/thumb
 
+/*.jpg
+/*.gif
+/*.png
 #password files
 secrets.php
 
