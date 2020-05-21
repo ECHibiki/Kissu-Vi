@@ -665,14 +665,19 @@ elseif (isset($_POST['post']) || $dropped_post) {
 			// but allow mods to post
 			if ($thread['locked'] && !hasPermission($config['mod']['postinlocked'], $board['uri']))
 				error($config['error']['locked']);
-
+		
 			$numposts = numPosts($post['thread']);
-
+		
 			if ($config['reply_hard_limit'] != 0 && $config['reply_hard_limit'] <= $numposts['replies'])
 				error($config['error']['reply_hard_limit']);
+		
+			if ($post['has_file'] && $config['image_hard_limit'] <= ($numposts['images'] + $numposts['embeds'])){
+				if($config['image_hard_limit'] == 0)
+					error($config['error']['faux_text_board_limit']);
+				else
+					error($config['error']['image_hard_limit']);
 
-			if ($post['has_file'] && $config['image_hard_limit'] != 0 && $config['image_hard_limit'] <= $numposts['images'])
-				error($config['error']['image_hard_limit']);
+			}
 		}
 	}
 	else {
