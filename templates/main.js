@@ -211,7 +211,8 @@ function init_stylechooser() {
 		newElement.appendChild(style);
 	}
 
- document.getElementById('lowercontents').insertBefore(newElement, document.getElementsByTagName('body')[0].lastChild.nextSibling);
+ Array.from(document.getElementsByTagName('footer')).slice(-1)[0].insertBefore(newElement,
+	 null);
 }
 
 function get_cookie(cookie_name) {
@@ -288,8 +289,9 @@ function pollSubmit(button){
 	while(thread && thread != document && thread.id != undefined && thread.id.indexOf("op_") < 0){
 		thread = thread.parentNode;
 	}
+	var board = thread.parentNode.getAttribute("data-board");
 	var thread_id = thread.id.replace("op_", "");
-	xhttp.send("respond_poll=1&response_json=" + json_answer + "&id=" + thread_id);
+	xhttp.send("respond_poll=1&response_json=" + json_answer + "&id=" + thread_id + "&board=" + board);
 	return false;
 }
 
@@ -415,28 +417,28 @@ function displayPoll(response_text, reference_element){
 
 }
 
-function viewPoll(link){
-
-	var thread = link;
+function viewPoll(op_element){
+	var thread = op_element;
 	while(thread && thread != document && thread.id != undefined && thread.id.indexOf("op_") < 0){
 		thread = thread.parentNode;
 	}
+	var board = thread.parentNode.getAttribute('data-board');
 	var thread_id = thread.id.replace("op_", "");
 	var xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function(){
-                if(this.readyState == 4){
+		if(this.readyState == 4){
 			if(this.status != 200) { //replace with error message where canvas would be
                         	alert("Poll Retrieval Error");
 			}
 			else{
-				displayPoll(this.responseText, link);
+				displayPoll(this.responseText, op_element);
 			}
 		}
-        }
-        xhttp.open("POST", "/poll.php");
-        xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-        xhttp.send("query_poll=1&id=" + thread_id);
-        return false;
+  }
+  xhttp.open("POST", "/poll.php");
+  xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+  xhttp.send("query_poll=1&id=" + thread_id + "&board=" + board);
+  return false;
 }
 
 function dopost(form) {
@@ -627,17 +629,9 @@ function onready(fnc) {
 }
 
 function ready() {
-var m1 = true;
-	document.body.addEventListener("mount", function(){
-		if(m1){
-        for (var i = 0; i < onready_callbacks.length; i++) {
-                onready_callbacks[i]();
-        }
-
-m1=false;};
-	});
-
-
+	for (var i = 0; i < onready_callbacks.length; i++) {
+			onready_callbacks[i]();
+	}
 }
 
 {% endraw %}
