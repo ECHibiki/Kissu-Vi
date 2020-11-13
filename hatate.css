@@ -1,0 +1,130 @@
+/**
+ * hatate.css
+ * by Hatate-hime
+ */
+body {
+	background: #e7d2e0 url('img/fade-hatate.png') top repeat-x;
+}
+
+a:link, a:visited {
+	text-decoration: none;
+	color: #770b39; text-shadow: 0px 0px 3px #ffe476;
+}
+
+a:link:hover, a:visited:hover {
+	color: #770b39;
+}
+
+a.post_no {
+	color: #000033;
+}
+
+.intro a.email span.name {
+	color: #F334C8;
+}
+
+header div.subtitle,h1 {
+  color: #ffda0f;
+  text-align: center;
+}
+
+
+.intro a.email:hover span.name {
+	color: #d118e5;
+}
+
+h2, div.title, h1 {
+	color: #ffda0f; text-shadow: 0px 0px 15px #e2375f;
+}
+
+form table tr th {
+	background: #b177b8;
+}
+
+div.banner {
+	background-color: #bb41ae;
+}
+
+div.post.op hr {
+	border-color: #B7C9D5;
+}
+
+.intro span.subject {
+	color: #D20055;
+	padding-right: 1px;
+	font-size: 11pt;
+	text-shadow: 0px 0px 2px #fff8ae;
+	font-weight: 800;
+}
+
+.intro span.name {
+	color: #AD1D72;
+	/* text-shadow: 0px 0px 2px #fff8ae; */
+	/* font-weight: 800; */
+}
+
+div.post.reply.highlighted {
+	background: #cd79d6;
+}
+
+div.post.reply {
+	background: #d39fd1;
+	border-color: #996d9e;
+		padding-left:20px;
+	padding-right:10px;
+	border-radius: 20px;
+}
+
+
+div.post.reply div.body a {
+  color: #c30085;
+}
+
+div.ban {
+	border: 1px solid #c10f84;
+}
+
+div.ban h2 {
+	background: #deb6d4;
+	color: #820077;  text-shadow: 0px 0px 1px #fff479;
+}
+
+div.pages {
+	color: #652d5f;
+	background: #ffc2f9;
+	border-right: 1px solid #d688ce;
+	border-bottom: 1px solid #d688ce;
+}
+
+hr {
+	border-color: #8e0462;
+}
+
+div.boardlist {
+	color: #320a2e;
+    background-color: rgba(95%, 75%, 95%, 0.8);
+    padding:7px;
+    border-radius: 5px;
+}
+}
+
+.desktop-style div.boardlist:nth-child(1) {
+  text-shadow: #D2FFEE 1px 1px 1px, #D2FFEE -1px -1px 1px;
+}
+
+
+.desktop-style div.boardlist:nth-child(1):hover, .desktop-style div.boardlist:nth-child(1).cb-menu {
+  background-color: rgba(70%, 95%, 100%, 0.45);
+}
+
+
+span.quote {
+  color: #FFDEF3;
+  text-shadow: 0px 0px 6px #AA17EA;
+}
+
+
+.theme-catalog div.thread:hover {
+background: #E6BAD8;
+border-color: #B185A3;
+}
