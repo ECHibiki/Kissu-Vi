@@ -27,6 +27,15 @@
     }
 }
 
+@font-face {
+  font-family: 'password';
+  src: url(https://jsbin-user-assets.s3.amazonaws.com/rafaelcastrocouto/password.ttf);
+}
+
+input.sensitive {
+  font-family: 'password' !important;
+}
+
 
 #style-select{
 	position:relative;
@@ -1449,7 +1458,7 @@ div.mix {
 	width: 67.4%;
 }
 .captchouli{
-	height:35.5em;
+	height:37.5em;
 	width: 95%;
 }
 
@@ -1515,13 +1524,47 @@ div.mix {
 	float:right;
 }
 
-@media(max-width: 700px){
+@media(max-width: 700px), ( max-height: 560px){
 .recaptcha{
 	height:24em;width: 67.4%;
 	}
 }
-@media(max-width: 700px){
+@media(max-width: 700px), ( max-height: 560px){
 .captchouli{
-	height:11.5em;width: 95%;
+	height:13.5em;width: 95%;
 	}
+}
+
+.score-counter{
+  background:#d8f8ff;
+  background:radial-gradient(circle,rgba(255,255,255,1) 0%,rgba(216,248,255,1) 100%);
+  display:inline-block;
+  padding:.1em .08em;
+  text-align:center;
+  cursor:pointer;
+  border:#ffffff .1em;
+  border-style:groove;
+  color:#8a8a8a;
+  text-shadow:none
+}
+  .score-counter:hover{
+    background:radial-gradient(circle,rgb(255,255,255) 0%,rgb(220,249,255) 100%);
+    border-style:double;
+    text-shadow:.01em .01em;
+    box-shadow:.05em .05em;
+	border:#f1cece .1em groove;
+    color:#c3c2c2
+}
+.score-submitted{
+  background:#d8f8ff;
+  background:radial-gradient(circle,rgba(255,255,255,1) 0%,rgb(223,236,239) 100%);
+  font-weight:700;
+  display:inline-block;
+  padding:.1em .08em;
+  text-align:center;
+  cursor:pointer;
+  border:#fb8383 .1em;
+  border-style:dashed;
+  color:#8a8a8a;
+  text-shadow:none
 }
